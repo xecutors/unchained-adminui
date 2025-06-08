@@ -101,7 +101,7 @@ const OrderDetail = ({ order }) => {
             id="confirm_order"
             onClick={onConfirmOrder}
             type="button"
-            className="bg-white-300 relative -ml-px inline-flex items-center space-x-2 rounded-md border border-indigo-500 bg-indigo-500 px-2 py-1 text-sm font-medium text-white hover:bg-indigo-700 focus:border-indigo-400 focus:outline-none focus:ring-0 focus:ring-indigo-400"
+            className="bg-white-300 relative -ml-px inline-flex items-center space-x-2 rounded-md border border-indigo-500 bg-indigo-500 px-2 py-1 text-sm font-medium text-white hover:bg-indigo-700 focus:border-indigo-400 focus:outline-hidden focus:ring-0 focus:ring-indigo-400"
           >
             {formatMessage({
               id: 'confirm_order',
@@ -112,7 +112,7 @@ const OrderDetail = ({ order }) => {
             id="reject_order"
             onClick={onRejectOrder}
             type="button"
-            className="bg-white-300 relative -ml-px inline-flex items-center space-x-2 rounded-md border border-red-500 bg-red-500 px-2 py-1 text-sm font-medium text-white hover:bg-red-700 focus:border-red-400 focus:outline-none focus:ring-0 focus:ring-red-400"
+            className="bg-white-300 relative -ml-px inline-flex items-center space-x-2 rounded-md border border-red-500 bg-red-500 px-2 py-1 text-sm font-medium text-white hover:bg-red-700 focus:border-red-400 focus:outline-hidden focus:ring-0 focus:ring-red-400"
           >
             {formatMessage({
               id: 'reject_order',
@@ -149,7 +149,7 @@ const OrderDetail = ({ order }) => {
         <OrderDetailBilling order={order} />
       </div>
 
-      <div className="lg:col-span-2 bg-white dark:bg-slate-800 p-4 shadow dark:shadow-none rounded-md">
+      <div className="lg:col-span-2 bg-white dark:bg-slate-800 p-4 shadow-sm dark:shadow-none rounded-md">
         <StatusProgress
           data={order}
           statusTypes={orderStatusType}

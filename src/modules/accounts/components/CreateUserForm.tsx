@@ -75,10 +75,10 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
               })}
             </p>
           </div>
-          <span className="ml-4 flex flex-shrink-0 items-start space-x-4" />
+          <span className="ml-4 flex shrink-0 items-start space-x-4" />
         </div>
 
-        <div className="mt-1 rounded-md border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800 pt-5 shadow dark:shadow-none lg:col-span-2">
+        <div className="mt-1 rounded-md border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800 pt-5 shadow-sm dark:shadow-none lg:col-span-2">
           <div className="px-6 space-y-4">
             <div>
               <EmailField
@@ -201,7 +201,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
           </div>
         </div>
 
-        <div className="rounded-md bg-white dark:bg-slate-800 pt-5 mb-5 shadow dark:shadow-none lg:col-span-2">
+        <div className="rounded-md bg-white dark:bg-slate-800 pt-5 mb-5 shadow-sm dark:shadow-none lg:col-span-2">
           <div className="px-5 space-y-4">
             <div className="mt-1 flex text-sm sm:mt-0">
               <div className="flex w-full">

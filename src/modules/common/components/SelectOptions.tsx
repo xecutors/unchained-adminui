@@ -48,16 +48,16 @@ const SelectOptions = ({
           </Listbox.Label>
           <div className="relative">
             <div
-              className={`inline-flex divide-x rounded-md shadow-sm divide-${select?.bgColor}-600`}
+              className={`inline-flex divide-x rounded-md shadow-xs divide-${select?.bgColor}-600`}
             >
               <div
                 onMouseEnter={() => setIsHover(true)}
                 onMouseLeave={() => setIsHover(false)}
-                className={`relative z-0 inline-flex divide-x rounded-md shadow-sm divide-${select?.bgColor}-600`}
+                className={`relative z-0 inline-flex divide-x rounded-md shadow-xs divide-${select?.bgColor}-600`}
               >
                 <div
                   className={classNames(
-                    `inline-flex items-center bg-${select?.bgColor}-500 hover:cursor-pointer rounded-l-md border border-transparent py-[0.3rem] pl-2 pr-2 text-white shadow-sm lg:py-2 lg:pl-3 lg:pr-4`,
+                    `inline-flex items-center bg-${select?.bgColor}-500 hover:cursor-pointer rounded-l-md border border-transparent py-[0.3rem] pl-2 pr-2 text-white shadow-xs lg:py-2 lg:pl-3 lg:pr-4`,
                     isHover && `bg-${select?.bgColor}-600`,
                   )}
                 >
@@ -71,7 +71,7 @@ const SelectOptions = ({
                 </div>
                 <Listbox.Button
                   className={classNames(
-                    `inline-flex items-center bg-${select?.bgColor}-500 hover:cursor-pointer rounded-l-none rounded-r-md border-none  text-sm font-medium text-white outline-none focus:z-10 focus:outline-none `,
+                    `inline-flex items-center bg-${select?.bgColor}-500 hover:cursor-pointer rounded-l-none rounded-r-md border-none  text-sm font-medium text-white outline-hidden focus:z-10 focus:outline-hidden `,
                     isHover && `bg-${select?.bgColor}-600`,
                   )}
                 >
@@ -103,7 +103,7 @@ const SelectOptions = ({
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Listbox.Options className="mt-1 absolute right-0 z-10 w-full origin-top-right divide-y divide-slate-200 overflow-hidden rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+              <Listbox.Options className="mt-1 absolute right-0 z-10 w-full origin-top-right divide-y divide-slate-200 overflow-hidden rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-hidden">
                 {options.map((option) => (
                   <Listbox.Option
                     key={option.title}

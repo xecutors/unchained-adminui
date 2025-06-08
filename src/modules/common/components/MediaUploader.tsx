@@ -68,7 +68,7 @@ const MediaUploader = ({
             </span>
             <button
               type="button"
-              className="ml-5 rounded-md border border-slate-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-slate-700 shadow-sm hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+              className="ml-5 rounded-md border border-slate-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-slate-700 shadow-xs hover:bg-slate-50 focus:outline-hidden focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
             >
               {text ||
                 formatMessage({
@@ -115,7 +115,7 @@ const MediaUploader = ({
               <div className="flex text-sm text-slate-600 dark:text-slate-200">
                 <label
                   htmlFor="file-upload"
-                  className="px-1 mr-1 relative cursor-pointer rounded-md font-medium text-indigo-600 dark:text-indigo-200 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500"
+                  className="px-1 mr-1 relative cursor-pointer rounded-md font-medium text-indigo-600 dark:text-indigo-200 focus-within:outline-hidden focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500"
                 >
                   <span>
                     {formatMessage({

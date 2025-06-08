@@ -49,33 +49,38 @@ const Home = () => {
   }, [formatMessage]);
 
   return (
-    <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 md:gap-8 mt-6 md:mt-10 xl:mt-20 text-slate-700 dark:text-slate-200">
-      {/* Orders Section */}
-      {hasRole('showOrders') && (
-        <div className="overflow-x-auto order-last xl:order-first">
-          <h2 className="ml-4 mb-4 text-lg sm:text-xl">
-            {formatMessage({ id: 'orders', defaultMessage: 'Orders' })}
+    <div className="grid grid-cols-1 xl:grid-cols-2 gap-10 md:mt-10 xl:mt-20 text-slate-700 dark:text-slate-200">
+      <div className="overflow-x-auto order-2 md:order-1">
+        {hasRole('showOrders') && (
+          <h2 className="ml-4 mb-3 text-xl">
+            {formatMessage({ id: 'orders', defaultMessage: 'Orders' })}{' '}
           </h2>
-          <LatestOrders />
-        </div>
-      )}
+        )}
+        {hasRole('showOrders') && <LatestOrders />}
+      </div>
 
-      {/* Shortcuts & System Info */}
-      <div className="order-first xl:order-last">
+      <div className="order-1 md:order-2">
         {(hasRole('addProduct') ||
           hasRole('addUser') ||
           hasRole('addAssortment')) && (
-          <div className="mb-6 md:mb-10">
-            <h2 className="ml-4 mb-4 text-lg sm:text-xl">
-              {formatMessage({ id: 'shortcuts', defaultMessage: 'Shortcuts' })}
+          <div className="mb-10">
+            <h2 className="ml-4 mb-3 text-xl text-slate-700">
+              {formatMessage({
+                id: 'shortcuts',
+                defaultMessage: 'Shortcuts',
+              })}
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {hasRole('addProduct') && (
                 <Link
                   href="/products/new"
-                  className="relative inline-flex items-center rounded bg-indigo-500 px-3 py-2 sm:py-3 text-sm sm:text-base font-medium text-white shadow-md hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-400"
+                  className="relative inline-flex items-center rounded-sm border border-transparent bg-indigo-500 px-3 py-3 text-sm font-medium text-white shadow-xs hover:bg-indigo-700 focus:outline-hidden focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
                 >
-                  <PlusIcon className="h-4 w-4" />
+                  <PlusIcon
+                    className="h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  />
                   <span className="ml-2">
                     {formatMessage({
                       id: 'product',
@@ -84,23 +89,34 @@ const Home = () => {
                   </span>
                 </Link>
               )}
-              {hasRole('addUser') && (
+              {hasRole('addProduct') && (
                 <Link
                   href="/users/new"
-                  className="relative inline-flex items-center rounded bg-indigo-500 px-3 py-2 sm:py-3 text-sm sm:text-base font-medium text-white shadow-md hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-400"
+                  className="relative inline-flex items-center rounded-sm border border-transparent bg-indigo-500 px-3 py-3 text-sm font-medium text-white shadow-xs hover:bg-indigo-700 focus:outline-hidden focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
                 >
-                  <PlusIcon className="h-4 w-4" />
+                  <PlusIcon
+                    className="h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  />
                   <span className="ml-2">
-                    {formatMessage({ id: 'user', defaultMessage: 'User' })}
+                    {formatMessage({
+                      id: 'user',
+                      defaultMessage: 'User',
+                    })}
                   </span>
                 </Link>
               )}
               {hasRole('addAssortment') && (
                 <Link
                   href="/assortments/new"
-                  className="relative inline-flex items-center rounded bg-indigo-500 px-3 py-2 sm:py-3 text-sm sm:text-base font-medium text-white shadow-md hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-400"
+                  className="relative inline-flex items-center rounded-sm border border-transparent bg-indigo-500 px-3 py-3 text-sm font-medium text-white shadow-xs hover:bg-indigo-700 focus:outline-hidden focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
                 >
-                  <PlusIcon className="h-4 w-4" />
+                  <PlusIcon
+                    className="h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  />
                   <span className="ml-2">
                     {formatMessage({
                       id: 'assortment',
@@ -114,17 +130,16 @@ const Home = () => {
         )}
         <div>
           <SystemInformation />
+
           {hasRole('showProducts') && (
-            <>
-              <h2 className="ml-4 mb-4 mt-6 text-lg sm:text-xl">
-                {formatMessage({
-                  id: 'latest-reviews',
-                  defaultMessage: 'Latest Reviews',
-                })}
-              </h2>
-              <LatestProductReviews />
-            </>
+            <h2 className="ml-4 mb-3 mt-4 text-xl">
+              {formatMessage({
+                id: 'latest-reviews',
+                defaultMessage: 'Latest Reviews',
+              })}{' '}
+            </h2>
           )}
+          {hasRole('showProducts') && <LatestProductReviews />}
         </div>
       </div>
     </div>

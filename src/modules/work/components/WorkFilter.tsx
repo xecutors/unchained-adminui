@@ -89,7 +89,7 @@ const WorkFilter = ({ workTypes = [] }) => {
                 selected={
                   router?.query?.start ? parseDate(router?.query?.start) : null
                 }
-                className="block w-full rounded-md border dark:bg-slate-800 border-slate-300 dark:border-slate-700 py-2 px-3 shadow-sm focus:outline-none focus:ring-indigo-400 sm:text-sm"
+                className="block w-full rounded-md border dark:bg-slate-800 border-slate-300 dark:border-slate-700 py-2 px-3 shadow-xs focus:outline-hidden focus:ring-indigo-400 sm:text-sm"
               />
               <label className="mr-2 ml-3 " htmlFor="report-end">
                 {formatMessage({ id: 'to', defaultMessage: 'To' })}
@@ -125,7 +125,7 @@ const WorkFilter = ({ workTypes = [] }) => {
                     ? parseDate(router?.query?.end)
                     : new Date()
                 }
-                className="block w-full rounded-md dark:bg-slate-800 border border-slate-300 dark:border-slate-700 py-2 px-3 shadow-sm focus:outline-none focus:ring-indigo-400 sm:text-sm"
+                className="block w-full rounded-md dark:bg-slate-800 border border-slate-300 dark:border-slate-700 py-2 px-3 shadow-xs focus:outline-hidden focus:ring-indigo-400 sm:text-sm"
               />
             </div>
           </div>

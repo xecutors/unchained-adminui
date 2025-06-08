@@ -86,7 +86,7 @@ const AddProduct = () => {
             <div className="my-2 py-2">
               <FormattedMessage
                 id="configurable_product_definition"
-                defaultMessage=" <h3>Configurable</h3> <p>Configurable Product is used to organize varieties of a product. A product might have a variation in color, size or other distinct property in that case you can use a configurable product type to organize all the variation under one category and outline there difference. </p>"
+                defaultMessage=" <h3>Configurable</h3> <p>Configurable Product is used to organize varieties of a product. A product might have a variation in color, size or other distinct property in that case you can use a configurable product type to organize all the variation under one category and outline-solid there difference. </p>"
                 values={{
                   h3: (chunks) => <h3 className="font-bold ">{chunks}</h3>,
                   p: (chunks) => <p>{chunks}</p>,

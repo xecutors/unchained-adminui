@@ -202,7 +202,7 @@ const CommerceForm = ({ productId }) => {
                                   id: 'vat_suspect',
                                   defaultMessage: 'Vat Suspect',
                                 })}
-                                className="mr-2 h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-400 lg:items-center"
+                                className="mr-2 h-4 w-4 rounded-sm border-slate-300 text-indigo-600 focus:ring-indigo-400 lg:items-center"
                                 type="checkbox"
                               />
                             </div>
@@ -216,7 +216,7 @@ const CommerceForm = ({ productId }) => {
                                   defaultMessage: 'Net Price',
                                 })}
                                 hideLabel
-                                className="mr-2 h-4 w-4 justify-between rounded border-slate-300 text-indigo-600 focus:ring-indigo-400 lg:items-center"
+                                className="mr-2 h-4 w-4 justify-between rounded-sm border-slate-300 text-indigo-600 focus:ring-indigo-400 lg:items-center"
                                 type="checkbox"
                               />
                             </div>
@@ -264,9 +264,9 @@ const CommerceForm = ({ productId }) => {
                             />
                           </div>
 
-                          <div className="absolute top-0 right-0 mt-0 mr-0 flex-shrink-0  pb-1 md:mr-0 lg:mt-6 lg:py-0 lg:px-0 ">
+                          <div className="absolute top-0 right-0 mt-0 mr-0 shrink-0  pb-1 md:mr-0 lg:mt-6 lg:py-0 lg:px-0 ">
                             <button
-                              className="items-center rounded-full bg-white px-1 py-1 text-sm text-red-500 hover:bg-red-50 focus:outline-none focus:ring-0 focus:ring-red-500 focus:ring-offset-2"
+                              className="items-center rounded-full bg-white px-1 py-1 text-sm text-red-500 hover:bg-red-50 focus:outline-hidden focus:ring-0 focus:ring-red-500 focus:ring-offset-2"
                               type="button"
                               onClick={() => removeConfig(index)}
                             >
@@ -291,11 +291,11 @@ const CommerceForm = ({ productId }) => {
                     })}
                     <div className="mt-2 flex flex-wrap items-center justify-between sm:flex-nowrap">
                       <div className=" " />
-                      <div className="mt-2 flex-shrink-0">
-                        <div className="flex-shrink-0">
+                      <div className="mt-2 shrink-0">
+                        <div className="shrink-0">
                           <button
                             type="button"
-                            className="items-right inline-flex rounded-full border border-transparent bg-indigo-500 px-2 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+                            className="items-right inline-flex rounded-full border border-transparent bg-indigo-500 px-2 py-2 text-sm font-medium text-white shadow-xs hover:bg-indigo-700 focus:outline-hidden focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
                             onClick={() =>
                               push({
                                 maxQuantity: '',

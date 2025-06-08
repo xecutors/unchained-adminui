@@ -95,7 +95,7 @@
   "code": "PLZ",
   "commerce": "Commerce",
   "company": "Unternehmen",
-  "configurable_product_definition": "<h3>Configurable</h3> <p>Configurable Product is used to organize varieties of a product. A product might have a variation in color, size or other distinct property in that case you can use a configurable product type to organize all the variation under one category and outline there difference. </p>",
+  "configurable_product_definition": "<h3>Configurable</h3> <p>Configurable Product is used to organize varieties of a product. A product might have a variation in color, size or other distinct property in that case you can use a configurable product type to organize all the variation under one category and outline-solid there difference. </p>",
   "configuration": "Configuration",
   "configuration_error": "Configuration error",
   "confirm_order": "Confirm order",

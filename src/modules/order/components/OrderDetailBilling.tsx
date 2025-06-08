@@ -15,7 +15,7 @@ const OrderDetailBilling = ({ order }) => {
       </h2>
 
       <div className="md:grid md:grid-cols-2 md:gap-x-8">
-        <dl className="bg-white dark:bg-slate-800 p-4 shadow dark:shadow-none sm:rounded-lg grid justify-center text-sm md:justify-start md:gap-x-8">
+        <dl className="bg-white dark:bg-slate-800 p-4 shadow-sm dark:shadow-none sm:rounded-lg grid justify-center text-sm md:justify-start md:gap-x-8">
           <div>
             <span className="text-xl mb-5 block font-bold">
               {order?.billingAddress?.firstName ||
@@ -42,7 +42,7 @@ const OrderDetailBilling = ({ order }) => {
           </div>
         </dl>
 
-        <dl className="bg-white dark:bg-slate-800 p-4 shadow dark:shadow-none sm:rounded-lg mt-4 divide-y divide-indigo-50 dark:divide-slate-700 text-sm lg:mt-0">
+        <dl className="bg-white dark:bg-slate-800 p-4 shadow-sm dark:shadow-none sm:rounded-lg mt-4 divide-y divide-indigo-50 dark:divide-slate-700 text-sm lg:mt-0">
           <div className="flex items-center justify-between pb-3 text-lg">
             <dt className="font-bold">
               {formatMessage({

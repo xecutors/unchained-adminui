@@ -298,7 +298,7 @@ const AssortmentDetail = ({ assortment, extendedData }) => {
         <input
           id="sequence"
           type="number"
-          className="w-24 shadow-sm focus:ring-indigo-500 dark:bg-slate-800 dark:border-slate-700 focus:border-indigo-500 block text-sm  border-slate-300 rounded-full mr-2 font-bold text-indigo-500"
+          className="w-24 shadow-xs focus:ring-indigo-500 dark:bg-slate-800 dark:border-slate-700 focus:border-indigo-500 block text-sm  border-slate-300 rounded-full mr-2 font-bold text-indigo-500"
           defaultValue={assortment?.sequence}
           onBlur={updateAssortmentSequence}
         />

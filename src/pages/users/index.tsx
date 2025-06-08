@@ -91,7 +91,7 @@ const Users = () => {
         />
       </ListHeader>
 
-      <div className="my-3 shadow">
+      <div className="my-3 shadow-sm">
         {loading ? <Loading /> : <UserList users={users} />}
         {!loading && !users?.length && (
           <NoData

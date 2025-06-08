@@ -15,7 +15,7 @@ const Badge = ({
     <span
       id="badge"
       className={classnames(
-        `inline-flex items-center shadow-sm border ${borderColor(
+        `inline-flex items-center shadow-xs border ${borderColor(
           normalizedColor,
           400,
         )} px-2.5 py-0.5 text-sm font-medium ${bgColor(
@@ -44,13 +44,13 @@ const Badge = ({
           id="badge-x-button"
           type="button"
           onClick={onClick}
-          className={`ml-0.5 inline-flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full ${textColor(
+          className={`ml-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full ${textColor(
             normalizedColor,
             400,
           )} hover:${bgColor(
             normalizedColor,
             200,
-          )} hover:text-${normalizedColor}-500 focus:outline-none focus:${bgColor(
+          )} hover:text-${normalizedColor}-500 focus:outline-hidden focus:${bgColor(
             normalizedColor,
             500,
           )} focus:text-white`}

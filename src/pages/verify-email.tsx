@@ -81,7 +81,7 @@ const VerifyEmail = () => {
       />
       <Link
         href="/"
-        className="m-auto group relative flex justify-center rounded-md border border-transparent bg-indigo-500 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+        className="m-auto group relative flex justify-center rounded-md border border-transparent bg-indigo-500 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-hidden focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
       >
         {formatMessage({
           id: 'go-home',
@@ -141,7 +141,7 @@ const VerifyEmail = () => {
         <div className="mt-4">
           <Link
             href="/"
-            className="px-4 py-2 text-blue-200 bg-blue-600 rounded"
+            className="px-4 py-2 text-blue-200 bg-blue-600 rounded-sm"
           >
             {formatMessage({
               id: 'go_to_home',

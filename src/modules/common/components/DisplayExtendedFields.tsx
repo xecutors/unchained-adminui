@@ -59,7 +59,7 @@ const DisplayData = ({ value }) => {
     }
 
     return (
-      <div className="ml-4 flex-shrink-0">
+      <div className="ml-4 shrink-0">
         <a
           href={value}
           className="font-medium text-blue-600 hover:text-blue-500"

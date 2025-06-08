@@ -79,7 +79,7 @@ const SignWeb3AddressForm = ({ nonce, address, close }) => {
               />
             </p>
           </div>
-          <div className="ml-4 mt-4 flex-shrink-0">
+          <div className="ml-4 mt-4 shrink-0">
             <CopyableText text={nonce} />
           </div>
         </div>
@@ -108,7 +108,7 @@ const SignWeb3AddressForm = ({ nonce, address, close }) => {
             id="danger_cancel"
             onClick={close}
             type="button"
-            className="mt-3 inline-flex w-full justify-center rounded-md border border-slate-300 bg-white px-4 py-2 text-base font-medium text-slate-700 shadow-sm hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+            className="mt-3 inline-flex w-full justify-center rounded-md border border-slate-300 bg-white px-4 py-2 text-base font-medium text-slate-700 shadow-xs hover:bg-slate-50 focus:outline-hidden focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
           >
             {formatMessage({ id: 'cancel', defaultMessage: 'Cancel' })}
           </button>

@@ -73,7 +73,7 @@ const ProductVariationsList = ({
       containerCSS="w-full my-0"
       bodyCSS="bg-white dark:bg-slate-800"
       itemContainerCSS="mt-0 my-0"
-      headerCSS="w-full flex items-center rounded justify-between p-2 bg-white dark:bg-slate-800"
+      headerCSS="w-full flex items-center rounded-sm justify-between p-2 bg-white dark:bg-slate-800"
     />
   );
 };

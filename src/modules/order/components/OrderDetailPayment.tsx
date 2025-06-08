@@ -52,7 +52,7 @@ const OrderDetailPayment = ({ order }) => {
   };
 
   return (
-    <div className="bg-white dark:bg-slate-800 shadow dark:shadow-none sm:rounded-lg">
+    <div className="bg-white dark:bg-slate-800 shadow-sm dark:shadow-none sm:rounded-lg">
       <div className="flex items-center justify-between px-4 sm:px-6">
         <h2 className="py-4 text-lg font-medium text-slate-900 dark:text-slate-200">
           {formatMessage({
@@ -116,7 +116,7 @@ const OrderDetailPayment = ({ order }) => {
                     id="pay"
                     type="button"
                     onClick={markAsPaid}
-                    className="my-2 mr-2 inline-flex h-full items-center justify-center  rounded border border-slate-300 border-transparent bg-blue-600 py-1 px-2 text-xs font-semibold text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+                    className="my-2 mr-2 inline-flex h-full items-center justify-center  rounded-sm border border-slate-300 border-transparent bg-blue-600 py-1 px-2 text-xs font-semibold text-white shadow-xs hover:bg-blue-700 focus:outline-hidden focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
                   >
                     <span className="mr-1">
                       <PlusIcon className="inline-block h-3 w-3 text-white" />

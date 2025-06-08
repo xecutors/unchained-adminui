@@ -23,7 +23,7 @@ const TangleTree = ({ data, options = {} }: { data: any; options?: any }) => {
       <span className="absolute top-2 left-8">
         <button
           type="button"
-          className="inline-flex items-center justify-center px-2 py-2 hover:bg-yellow-100 dark:hover:bg-yellow-700 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-600 dark:focus:ring-yellow-500"
+          className="inline-flex items-center justify-center px-2 py-2 hover:bg-yellow-100 dark:hover:bg-yellow-700 rounded-full focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-yellow-600 dark:focus:ring-yellow-500"
           onClick={() => router.back()}
         >
           <ArrowLeftIcon className="h-6 w-6 text-teal-600 hover:text-teal-800" />
@@ -106,7 +106,7 @@ const TangleTree = ({ data, options = {} }: { data: any; options?: any }) => {
                           texts: n,
                         },
                       )}`}
-                      className="text-blue-600 dark:text-fuchsia-400 dark:hover:text-fuchsia-600 ml-2 inline-flex items-center px-4 border border-slate-300 shadow-sm text-sm font-medium rounded-md bg-white dark:bg-slate-500 hover:bg-slate-50 dark:hover:bg-slate-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      className="text-blue-600 dark:text-fuchsia-400 dark:hover:text-fuchsia-600 ml-2 inline-flex items-center px-4 border border-slate-300 shadow-xs text-sm font-medium rounded-md bg-white dark:bg-slate-500 hover:bg-slate-50 dark:hover:bg-slate-400 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     >
                       {formatMessage({
                         id: 'children',

@@ -59,7 +59,7 @@ const ProductDetailPage = ({ slug }) => {
                 })}
                 message={e instanceof CustomError ? e.message : e}
                 icon={
-                  <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                  <div className="mx-auto flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
                     <XMarkIcon
                       className="h-6 w-6 text-red-600"
                       xmlns="http://www.w3.org/2000/svg"

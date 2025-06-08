@@ -155,7 +155,7 @@ const AssortmentLinks = ({ assortmentId }) => {
         {loading ? (
           <Loading />
         ) : (
-          <div className="ml-auto shadow dark:shadow-none dark:bg-slate-800 w-full md:col-span-2 bg-white">
+          <div className="ml-auto shadow-sm dark:shadow-none dark:bg-slate-800 w-full md:col-span-2 bg-white">
             <DndContext
               sensors={sensors}
               collisionDetection={closestCenter}

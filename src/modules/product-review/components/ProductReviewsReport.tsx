@@ -45,7 +45,7 @@ const ProductReviewsReport = ({ productReviews }) => {
                             ? 'text-yellow-400'
                             : 'text-slate-400'
                         }
-                        h-5 w-5 flex-shrink-0
+                        h-5 w-5 shrink-0
                       `}
                 aria-hidden="true"
               />
@@ -85,7 +85,7 @@ const ProductReviewsReport = ({ productReviews }) => {
                               ? 'text-yellow-400'
                               : 'text-slate-400'
                           }
-                          h-5 w-5 flex-shrink-0`}
+                          h-5 w-5 shrink-0`}
                   aria-hidden="true"
                 />
 
@@ -126,7 +126,7 @@ const ProductReviewsReport = ({ productReviews }) => {
                               ? 'text-yellow-400'
                               : 'text-slate-400'
                           }
-                          h-5 w-5 flex-shrink-0
+                          h-5 w-5 shrink-0
                         `}
                   aria-hidden="true"
                 />

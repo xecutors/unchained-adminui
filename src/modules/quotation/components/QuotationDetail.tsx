@@ -83,7 +83,7 @@ const QuotationDetail = ({ quotation }) => {
           defaultMessage: 'Reject',
         })}
         icon={
-          <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
             <XCircleIcon className="h-6 w-6 text-red-600" />
           </div>
         }
@@ -117,7 +117,7 @@ const QuotationDetail = ({ quotation }) => {
           defaultMessage: 'Mark as processed',
         })}
         icon={
-          <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-indigo-100 sm:mx-0 sm:h-10 sm:w-10 mr-3">
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-indigo-100 sm:mx-0 sm:h-10 sm:w-10 mr-3">
             <PaperAirplaneIcon className="h-6 w-6 text-indigo-600" />
           </div>
         }
@@ -134,7 +134,7 @@ const QuotationDetail = ({ quotation }) => {
         <Button
           text="Verify"
           onClick={onVerify}
-          className="bg-white-300 relative -ml-px inline-flex items-center space-x-2 rounded-md border border-indigo-500 bg-indigo-500 px-2 py-1 text-base font-medium text-white hover:bg-indigo-700 focus:border-indigo-400 focus:outline-none focus:ring-0 focus:ring-indigo-400"
+          className="bg-white-300 relative -ml-px inline-flex items-center space-x-2 rounded-md border border-indigo-500 bg-indigo-500 px-2 py-1 text-base font-medium text-white hover:bg-indigo-700 focus:border-indigo-400 focus:outline-hidden focus:ring-0 focus:ring-indigo-400"
         />
       ),
     },
@@ -146,7 +146,7 @@ const QuotationDetail = ({ quotation }) => {
         <Button
           text="Propose"
           onClick={proposeQuote}
-          className="bg-white-300 relative -ml-px inline-flex items-center space-x-2 rounded-md border border-indigo-500 bg-indigo-500 px-2 py-1 text-base font-medium text-white hover:bg-indigo-700 focus:border-indigo-400 focus:outline-none focus:ring-0 focus:ring-indigo-400"
+          className="bg-white-300 relative -ml-px inline-flex items-center space-x-2 rounded-md border border-indigo-500 bg-indigo-500 px-2 py-1 text-base font-medium text-white hover:bg-indigo-700 focus:border-indigo-400 focus:outline-hidden focus:ring-0 focus:ring-indigo-400"
         />
       ),
     },
@@ -164,7 +164,7 @@ const QuotationDetail = ({ quotation }) => {
           <Button
             text="Reject"
             onClick={onReject}
-            className="bg-white-300 relative -ml-px inline-flex items-center space-x-2 rounded-md border border-red-500 bg-red-500 px-2 py-2 text-base font-medium text-white hover:bg-red-700 focus:border-red-400 focus:outline-none focus:ring-0 focus:ring-red-400"
+            className="bg-white-300 relative -ml-px inline-flex items-center space-x-2 rounded-md border border-red-500 bg-red-500 px-2 py-2 text-base font-medium text-white hover:bg-red-700 focus:border-red-400 focus:outline-hidden focus:ring-0 focus:ring-red-400"
           />
         ),
     },
@@ -184,7 +184,7 @@ const QuotationDetail = ({ quotation }) => {
         timeline={timeline}
       />
       <section aria-labelledby="products-heading" className="my-6">
-        <div className="rounded-lg border-t border-b border-slate-200 dark:border-slate-800 bg-white shadow-sm sm:border">
+        <div className="rounded-lg border-t border-b border-slate-200 dark:border-slate-800 bg-white shadow-xs sm:border">
           <div className="grid grid-cols-1 text-sm sm:grid-cols-12 sm:grid-rows-1 sm:gap-x-6 md:gap-x-8 lg:gap-x-8">
             <div className="sm:col-span-4 md:col-span-5 md:row-span-2 md:row-end-2">
               <div className="m:col-span-4 rounded-lg bg-slate-50 md:col-span-5 md:row-span-2 md:row-end-2">

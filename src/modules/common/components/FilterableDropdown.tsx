@@ -32,7 +32,7 @@ const FilterableDropdown = ({
       <div className="w-full">
         <div
           className={classNames(
-            'my-2 flex items-center rounded border-slate-200 dark:border-slate-800',
+            'my-2 flex items-center rounded-sm border-slate-200 dark:border-slate-800',
             props.className,
           )}
         >

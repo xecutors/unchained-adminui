@@ -37,7 +37,7 @@ const AccountView = ({
             'This information will be displayed publicly so be careful what you share.',
         })}
       >
-        <div className="space-y-6 overflow-hidden rounded-md p-3 shadow bg-white dark:bg-slate-800 sm:p-6">
+        <div className="space-y-6 overflow-hidden rounded-md p-3 shadow-sm bg-white dark:bg-slate-800 sm:p-6">
           <UserNameView username={username} _id={_id} />
         </div>
       </SelfDocumentingView>
@@ -52,7 +52,7 @@ const AccountView = ({
             emails={emails}
             enableVerification
             userId={_id}
-            emailBodyContainer="rounded-md shadow"
+            emailBodyContainer="rounded-md shadow-sm"
           />
         </div>
       </SelfDocumentingView>
@@ -93,7 +93,7 @@ const AccountView = ({
           defaultMessage: 'Tags',
         })}
       >
-        <div className="my-2 rounded-md px-4 py-5 shadow bg-white dark:bg-slate-800 sm:p-6">
+        <div className="my-2 rounded-md px-4 py-5 shadow-sm bg-white dark:bg-slate-800 sm:p-6">
           <UserTagsView tags={tags} userId={_id} />
         </div>
       </SelfDocumentingView>
@@ -105,7 +105,7 @@ const AccountView = ({
             defaultMessage: 'Roles',
           })}
         >
-          <div className="space-y-6 overflow-hidden rounded-md border-b bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-200 border-slate-200 dark:border-slate-800 px-4 py-5 shadow sm:p-6">
+          <div className="space-y-6 overflow-hidden rounded-md border-b bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-200 border-slate-200 dark:border-slate-800 px-4 py-5 shadow-sm sm:p-6">
             <UserRolesView roles={roles} userId={_id} />
           </div>
         </SelfDocumentingView>
@@ -118,7 +118,7 @@ const AccountView = ({
             defaultMessage: 'Set password',
           })}
         >
-          <div className="space-y-6 overflow-hidden rounded-md border-b bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-200 border-slate-200 dark:border-slate-800 px-4 py-5 shadow sm:p-6">
+          <div className="space-y-6 overflow-hidden rounded-md border-b bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-200 border-slate-200 dark:border-slate-800 px-4 py-5 shadow-sm sm:p-6">
             <SetPassword
               userId={_id}
               isInitialPassword={isInitialPassword}
@@ -135,7 +135,7 @@ const AccountView = ({
             defaultMessage: 'Change password',
           })}
         >
-          <div className="space-y-6 overflow-hidden rounded-md border-b bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-200 border-slate-200 dark:border-slate-800 shadow">
+          <div className="space-y-6 overflow-hidden rounded-md border-b bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-200 border-slate-200 dark:border-slate-800 shadow-sm">
             <ChangePassword />
           </div>
         </SelfDocumentingView>
@@ -148,7 +148,7 @@ const AccountView = ({
             defaultMessage: 'Web Authentication',
           })}
         >
-          <div className="overflow-hidden rounded-md border-b bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-200 border-slate-200 dark:border-slate-800 px-4 py-5 shadow sm:p-6">
+          <div className="overflow-hidden rounded-md border-b bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-200 border-slate-200 dark:border-slate-800 px-4 py-5 shadow-sm sm:p-6">
             <UserWebAuthCredentials userId={_id} />
           </div>
         </SelfDocumentingView>

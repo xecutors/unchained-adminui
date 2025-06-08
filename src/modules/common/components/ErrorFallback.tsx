@@ -7,8 +7,8 @@ const ErrorFallback = ({ error = null, resetError = null }) => {
   const { formatMessage } = useIntl();
   return (
     <div className="flex min-h-full flex-col bg-white dark:bg-slate-900 pt-16 pb-12 ">
-      <main className="mx-auto flex w-full max-w-7xl flex-grow flex-col justify-center px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-shrink-0 justify-center">
+      <main className="mx-auto flex w-full max-w-7xl grow flex-col justify-center px-4 sm:px-6 lg:px-8">
+        <div className="flex shrink-0 justify-center">
           <Link href="/" className="inline-flex">
             <span className="sr-only">
               {formatMessage({
