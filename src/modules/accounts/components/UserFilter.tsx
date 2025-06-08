@@ -94,7 +94,7 @@ const UserFilter: React.FC = () => {
                   ? parseDate(router.query.start as string)
                   : null
               }
-              className="w-full rounded-md border py-2 px-3 shadow-sm focus:outline-none focus:ring-indigo-400"
+              className="w-full rounded-md border py-2 px-3 shadow-xs focus:outline-hidden focus:ring-indigo-400"
             />
             <label htmlFor="lastLoginEnd" className="text-sm">
               {formatMessage({ id: 'to', defaultMessage: 'To' })}
@@ -116,7 +116,7 @@ const UserFilter: React.FC = () => {
               selected={
                 router.query.end ? parseDate(router.query.end as string) : null
               }
-              className="w-full rounded-md border py-2 px-3 shadow-sm focus:outline-none focus:ring-indigo-400"
+              className="w-full rounded-md border py-2 px-3 shadow-xs focus:outline-hidden focus:ring-indigo-400"
             />
           </div>
         </div>

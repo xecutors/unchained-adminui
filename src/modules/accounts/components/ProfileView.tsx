@@ -160,7 +160,7 @@ const ProfileView = ({ profile, avatar, _id }) => {
               )}
             </div>
 
-            <div className="col-span-2 ml-auto rounded-md px-6 shadow dark:shadow-none lg:w-full bg-white dark:bg-slate-800">
+            <div className="col-span-2 ml-auto rounded-md px-6 shadow-sm dark:shadow-none lg:w-full bg-white dark:bg-slate-800">
               <div className="py-4">
                 <div className="py-4 sm:grid sm:py-2">
                   <label className="text-slate-70 block text-sm font-medium">
@@ -202,14 +202,14 @@ const ProfileView = ({ profile, avatar, _id }) => {
                       )}
                     </span>
                     {hasRole('editUserAvatar') && (
-                      <span className="mt-1 ml-4 flex flex-shrink-0 items-start space-x-4">
+                      <span className="mt-1 ml-4 flex shrink-0 items-start space-x-4">
                         <button
                           onClick={() => {
                             if ((fileInputRef?.current as any)?.click)
                               (fileInputRef?.current as any)?.click();
                           }}
                           type="button"
-                          className="rounded-md border border-slate-300 dark:border-slate-700 bg-white py-2 px-3 text-sm font-medium leading-4 text-slate-700 shadow-sm hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                          className="rounded-md border border-slate-300 dark:border-slate-700 bg-white py-2 px-3 text-sm font-medium leading-4 text-slate-700 shadow-xs hover:bg-slate-50 focus:outline-hidden focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                         >
                           {formatMessage({
                             id: 'change',
@@ -244,7 +244,7 @@ const ProfileView = ({ profile, avatar, _id }) => {
                         })}
                       />
                     ) : (
-                      <span className="flex-grow">{profile?.displayName}</span>
+                      <span className="grow">{profile?.displayName}</span>
                     )}
                   </div>
                 </div>
@@ -282,9 +282,7 @@ const ProfileView = ({ profile, avatar, _id }) => {
                         }}
                       />
                     ) : (
-                      <span className="flex-grow">
-                        {profile?.gender || 'n/a'}
-                      </span>
+                      <span className="grow">{profile?.gender || 'n/a'}</span>
                     )}
                   </div>
                 </div>
@@ -312,7 +310,7 @@ const ProfileView = ({ profile, avatar, _id }) => {
                         name="birthday"
                       />
                     ) : (
-                      <span className="flex-grow">
+                      <span className="grow">
                         {formatDateTime(profile?.birthday, {
                           dateStyle: 'short',
                         })}
@@ -344,14 +342,14 @@ const ProfileView = ({ profile, avatar, _id }) => {
                         })}
                       />
                     ) : (
-                      <span className="flex-grow">
+                      <span className="grow">
                         {profile?.phoneMobile || 'n/a'}
                       </span>
                     )}
                   </div>
                 </div>
               </div>
-              <div className="border-t border-t-indigo-50 dark:border-slate-700 -mx-6 bg-slate-50 dark:bg-slate-800 flex flex-shrink-0 items-center justify-end space-x-4 pr-5">
+              <div className="border-t border-t-indigo-50 dark:border-slate-700 -mx-6 bg-slate-50 dark:bg-slate-800 flex shrink-0 items-center justify-end space-x-4 pr-5">
                 {isEdit ? (
                   <SaveAndCancelButtons onCancel={() => setIsEdit(!isEdit)} />
                 ) : null}
@@ -397,7 +395,7 @@ const ProfileView = ({ profile, avatar, _id }) => {
               )}
             </div>
 
-            <div className="col-span-2 w-full border-slate-200 dark:border-slate-800 px-6 py-6 rounded-md shadow dark:shadow-none lg:ml-auto lg:w-full bg-white dark:bg-slate-800 ">
+            <div className="col-span-2 w-full border-slate-200 dark:border-slate-800 px-6 py-6 rounded-md shadow-sm dark:shadow-none lg:ml-auto lg:w-full bg-white dark:bg-slate-800 ">
               <AddressFields
                 isEdit={isEdit}
                 address={address}

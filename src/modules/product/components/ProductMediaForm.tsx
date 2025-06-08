@@ -125,7 +125,7 @@ const ProductMediaForm = ({ productId, selectedLocale = null }) => {
   );
 
   return (
-    <div className="mx-auto mt-5 space-y-5 lg:space-y-0 max-w-full bg-white dark:bg-slate-900 py-6 shadow dark:shadow-none lg:grid lg:grid-cols-12 lg:gap-4 lg:rounded">
+    <div className="mx-auto mt-5 space-y-5 lg:space-y-0 max-w-full bg-white dark:bg-slate-900 py-6 shadow-sm dark:shadow-none lg:grid lg:grid-cols-12 lg:gap-4 lg:rounded-sm">
       <div className="mx-auto w-full px-6 lg:col-span-6 lg:col-start-1">
         <MediaUploader onlyDragAndDrop addMedia={onAddMedia} />
       </div>

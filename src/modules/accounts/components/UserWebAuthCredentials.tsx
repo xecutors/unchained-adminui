@@ -87,7 +87,7 @@ const UserWebAuthCredentials = ({ userId }) => {
         type="button"
         disabled={userId !== currentUser?._id}
         className={classNames(
-          'inline-flex cursor-pointer ml-4 justify-center rounded-md border border-transparent px-4 py-2 text-center text-sm font-medium leading-5 text-white shadow-sm focus:ring-indigo-400 bg-indigo-500 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2',
+          'inline-flex cursor-pointer ml-4 justify-center rounded-md border border-transparent px-4 py-2 text-center text-sm font-medium leading-5 text-white shadow-xs focus:ring-indigo-400 bg-indigo-500 hover:bg-indigo-700 focus:outline-hidden focus:ring-2 focus:ring-offset-2',
           {
             'focus:ring-indigo-200 bg-indigo-300 hover:bg-indigo-200':
               userId !== currentUser?._id,

@@ -63,7 +63,7 @@ const EnrollmentDetail = ({ enrollment }: { enrollment: IEnrollment }) => {
 
   const EmailIcon = (
     <div className="flex w-full items-center justify-center">
-      <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10">
+      <div className="mx-auto flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10">
         <InboxIcon className="h-6 w-6 text-blue-600" aria-hidden="true" />
       </div>
     </div>
@@ -156,7 +156,7 @@ const EnrollmentDetail = ({ enrollment }: { enrollment: IEnrollment }) => {
         <Button
           text="Activate"
           onClick={onActivateEnrollment}
-          className="bg-white-300 relative -ml-px inline-flex items-center space-x-2 rounded-md border border-indigo-500 bg-indigo-500 px-2 py-1 text-base font-medium text-white hover:bg-indigo-700 focus:border-indigo-400 focus:outline-none focus:ring-0 focus:ring-indigo-400"
+          className="bg-white-300 relative -ml-px inline-flex items-center space-x-2 rounded-md border border-indigo-500 bg-indigo-500 px-2 py-1 text-base font-medium text-white hover:bg-indigo-700 focus:border-indigo-400 focus:outline-hidden focus:ring-0 focus:ring-indigo-400"
         />
       ),
     },
@@ -171,14 +171,14 @@ const EnrollmentDetail = ({ enrollment }: { enrollment: IEnrollment }) => {
             defaultMessage: 'Terminate Enrollment',
           })}
           onClick={onTerminateEnrollment}
-          className="bg-white-300  inline-flex items-center space-x-2 rounded-md border border-red-500 bg-red-500 px-2 py-1 text-base font-medium text-white hover:bg-red-700 focus:border-red-400 focus:outline-none focus:ring-0 focus:ring-red-400"
+          className="bg-white-300  inline-flex items-center space-x-2 rounded-md border border-red-500 bg-red-500 px-2 py-1 text-base font-medium text-white hover:bg-red-700 focus:border-red-400 focus:outline-hidden focus:ring-0 focus:ring-red-400"
         />
       ),
     },
   };
 
   const headerCSS =
-    'inline-flex items-center justify-between w-full px-4 py-2 rounded-t-md border border-slate-300 bg-slate-100 text-sm font-medium text-slate-700 hover:bg-slate-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-400 focus:border-indigo-400';
+    'inline-flex items-center justify-between w-full px-4 py-2 rounded-t-md border border-slate-300 bg-slate-100 text-sm font-medium text-slate-700 hover:bg-slate-50 focus:z-10 focus:outline-hidden focus:ring-1 focus:ring-indigo-400 focus:border-indigo-400';
 
   const periods = {
     header: (
@@ -240,7 +240,7 @@ const EnrollmentDetail = ({ enrollment }: { enrollment: IEnrollment }) => {
               <div className="flex-auto border-t border-slate-200 dark:border-slate-800 pt-4 lg:col-span-6 lg:border-0">
                 <JSONView
                   disabled
-                  className="bg-white dark:bg-slate-900 dark:text-slate-200 mt-1 block w-full max-w-full rounded-md border-2 resize-none border-slate-200 dark:border-slate-800 shadow-sm sm:text-sm"
+                  className="bg-white dark:bg-slate-900 dark:text-slate-200 mt-1 block w-full max-w-full rounded-md border-2 resize-none border-slate-200 dark:border-slate-800 shadow-xs sm:text-sm"
                   value={JSON.stringify(
                     (enrollment?.plan.configuration || []).map(
                       ({ __typename, ...rest }: any) => rest,

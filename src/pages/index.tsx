@@ -74,7 +74,7 @@ const Home = () => {
               {hasRole('addProduct') && (
                 <Link
                   href="/products/new"
-                  className="relative inline-flex items-center rounded border border-transparent bg-indigo-500 px-3 py-3 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+                  className="relative inline-flex items-center rounded-sm border border-transparent bg-indigo-500 px-3 py-3 text-sm font-medium text-white shadow-xs hover:bg-indigo-700 focus:outline-hidden focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
                 >
                   <PlusIcon
                     className="h-4 w-4"
@@ -92,7 +92,7 @@ const Home = () => {
               {hasRole('addProduct') && (
                 <Link
                   href="/users/new"
-                  className="relative inline-flex items-center rounded border border-transparent bg-indigo-500 px-3 py-3 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+                  className="relative inline-flex items-center rounded-sm border border-transparent bg-indigo-500 px-3 py-3 text-sm font-medium text-white shadow-xs hover:bg-indigo-700 focus:outline-hidden focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
                 >
                   <PlusIcon
                     className="h-4 w-4"
@@ -110,7 +110,7 @@ const Home = () => {
               {hasRole('addAssortment') && (
                 <Link
                   href="/assortments/new"
-                  className="relative inline-flex items-center rounded border border-transparent bg-indigo-500 px-3 py-3 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+                  className="relative inline-flex items-center rounded-sm border border-transparent bg-indigo-500 px-3 py-3 text-sm font-medium text-white shadow-xs hover:bg-indigo-700 focus:outline-hidden focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
                 >
                   <PlusIcon
                     className="h-4 w-4"

@@ -17,9 +17,9 @@ const RegisteredWebAuthItem = ({
   const { formatMessage } = useIntl();
   const { formatDateTime } = useFormatDateTime();
   return (
-    <li className="col-span-1 flex shadow-sm rounded-md ">
+    <li className="col-span-1 flex shadow-xs rounded-md ">
       {md5Metadata?.icon && (
-        <div className="flex-shrink-0 flex items-center justify-center w-16  text-sm font-medium rounded-l-md">
+        <div className="shrink-0 flex items-center justify-center w-16  text-sm font-medium rounded-l-md">
           <ImageWithFallback
             className="inline-block h-10 w-10 rounded-full border-2"
             src={md5Metadata?.icon}
@@ -43,7 +43,7 @@ const RegisteredWebAuthItem = ({
             <Badge text={counter} />
           </div>
         </div>
-        <div className="flex-shrink-0 pr-2 justify-between h-100  text-right">
+        <div className="shrink-0 pr-2 justify-between h-100  text-right">
           <div>{formatDateTime(created)}</div>
           {!removeDisabled && (
             <div className="align-bottom">

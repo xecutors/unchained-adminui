@@ -48,7 +48,7 @@ const UserNameView = ({ _id: userId, username }) => {
               formatMessage({ id: 'username', defaultMessage: 'Username' })}
           </div>
           <div className="shrink mt-1 flex grow basis-3/5 flex-wrap items-center gap-4 text-sm sm:col-span-2 sm:mt-0 sm:gap-0">
-            <span className="flex-grow">
+            <span className="grow">
               {isEdit ? (
                 <TextField
                   className="mt-0"
@@ -67,14 +67,14 @@ const UserNameView = ({ _id: userId, username }) => {
             </span>
             <FormErrors />
             {hasRole('editUsername') && (
-              <span className="ml-4 mt-1 flex flex-shrink-0 items-center space-x-4">
+              <span className="ml-4 mt-1 flex shrink-0 items-center space-x-4">
                 <button
                   data-id="cancel_update"
                   onClick={() => setIsEdit(!isEdit)}
                   type="button"
                   className={classNames(
                     isEdit ? '' : 'focus:ring-indigo-400',
-                    'inline-flex items-center rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2',
+                    'inline-flex items-center rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-xs hover:bg-slate-50 focus:outline-hidden focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2',
                   )}
                 >
                   {isEdit
@@ -90,7 +90,7 @@ const UserNameView = ({ _id: userId, username }) => {
                 {isEdit && (
                   <button
                     type="submit"
-                    className="inline-flex items-center rounded-md border border-transparent bg-indigo-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+                    className="inline-flex items-center rounded-md border border-transparent bg-indigo-500 px-4 py-2 text-sm font-medium text-white shadow-xs hover:bg-indigo-700 focus:outline-hidden focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
                   >
                     {formatMessage({
                       id: 'save',

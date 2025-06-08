@@ -84,7 +84,7 @@ const Web3Addresses = ({ web3Addresses }) => {
   });
 
   return (
-    <div className="rounded-md shadow px-4 py-5 sm:p-6 bg-white dark:bg-slate-800">
+    <div className="rounded-md shadow-sm px-4 py-5 sm:p-6 bg-white dark:bg-slate-800">
       <ul className="-my-5 divide-y divide-slate-200 dark:divide-slate-700">
         {(web3Addresses || []).map(({ address, verified, nonce }) => (
           <li className="py-4" key={address}>
@@ -102,7 +102,7 @@ const Web3Addresses = ({ web3Addresses }) => {
                     onClick={async () => {
                       await onVerifyAddress({ address, nonce });
                     }}
-                    className="inline-flex items-center rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+                    className="inline-flex items-center rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-xs hover:bg-slate-50 focus:outline-hidden focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
                   >
                     {formatMessage({
                       id: 'verification_web3_address',
@@ -137,7 +137,7 @@ const Web3Addresses = ({ web3Addresses }) => {
                 defaultMessage: 'Web3 Address',
               })}
             />
-            <span className="flex-shrink-0 flex items-end">
+            <span className="shrink-0 flex items-end">
               <SubmitButton
                 className="py-2.5"
                 label={formatMessage({

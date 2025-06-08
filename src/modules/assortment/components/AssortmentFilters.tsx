@@ -152,11 +152,11 @@ const AssortmentFilters = ({ assortmentId }) => {
         }
       >
         {loading ? (
-          <div className="ml-auto shadow dark:shadow-none w-full md:col-span-2">
+          <div className="ml-auto shadow-sm dark:shadow-none w-full md:col-span-2">
             <Loading />
           </div>
         ) : (
-          <div className="ml-auto shadow dark:shadow-none w-full md:col-span-2 bg-white dark:bg-slate-800">
+          <div className="ml-auto shadow-sm dark:shadow-none w-full md:col-span-2 bg-white dark:bg-slate-800">
             <DndContext
               sensors={sensors}
               collisionDetection={closestCenter}

@@ -40,7 +40,7 @@ const ForgotPasswordForm = ({
     <FormWrapper>
       <Form
         form={form}
-        className="mt-8 space-y-6 px-4 pt-3 pb-8 shadow sm:rounded-lg sm:px-10"
+        className="mt-8 space-y-6 px-4 pt-3 pb-8 shadow-sm sm:rounded-lg sm:px-10"
       >
         <div>
           <p className="py-4">
@@ -82,7 +82,7 @@ const ForgotPasswordForm = ({
           {'  '}
           <Link
             href="/sign-up"
-            className="font-semibold text-indigo-500 dark:text-indigo-400 focus:text-indigo-600 dark:hover:text-indigo-300 focus:underline focus:outline-none"
+            className="font-semibold text-indigo-500 dark:text-indigo-400 focus:text-indigo-600 dark:hover:text-indigo-300 focus:underline focus:outline-hidden"
           >
             {formatMessage({ id: 'sign_up', defaultMessage: 'Sign up' })}
           </Link>

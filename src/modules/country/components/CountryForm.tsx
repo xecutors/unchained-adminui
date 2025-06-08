@@ -100,7 +100,7 @@ const CountryForm = ({
                 id: 'active',
                 defaultMessage: 'Active',
               })}
-              className="mr-2 h-4 w-4 rounded-sm border-slate-300 text-indigo-600 focus:ring-indigo-400"
+              className="mr-2 h-4 w-4 rounded-xs border-slate-300 text-indigo-600 focus:ring-indigo-400"
             />
           </div>
         )}

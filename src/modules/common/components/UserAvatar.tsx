@@ -21,7 +21,7 @@ const UserAvatar = ({ avatar, ...user }) => {
   };
 
   return (
-    <a href="#" onClick={onLogout} className="group block flex-shrink-0">
+    <a href="#" onClick={onLogout} className="group block shrink-0">
       <div className="flex items-center">
         {avatar ? (
           <ImageWithFallback

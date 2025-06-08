@@ -16,7 +16,7 @@ const AssortmentLinksList = ({
   const { formatMessage } = useIntl();
   return links.length ? (
     <SortableContext items={items} strategy={verticalListSortingStrategy}>
-      <div className="space-y-4 py-3 px-6 rounded transition-[background-color] ease-in-out delay-200">
+      <div className="space-y-4 py-3 px-6 rounded-sm transition-[background-color] ease-in-out delay-200">
         {items.map((id) => {
           const { child, parent, _id } = Object.values(
             links as IAssortmentLink[],

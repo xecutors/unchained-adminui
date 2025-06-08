@@ -1,111 +1,147 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-option:not(:first-of-type),
-html,
-body,
-a {
-  color: rgb(51 65 85);
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-blue-ribbon-50: #f7f7fe;
+  --color-blue-ribbon-100: #eff0fe;
+  --color-blue-ribbon-200: #d8d9fc;
+  --color-blue-ribbon-300: #c1c2f9;
+  --color-blue-ribbon-400: #9294f5;
+  --color-blue-ribbon-500: #6366f1;
+  --color-blue-ribbon-600: #595cd9;
+  --color-blue-ribbon-700: #4a4db5;
+  --color-blue-ribbon-800: #3b3d91;
+  --color-blue-ribbon-900: #313276;
 }
 
-.node {
-  stroke-linecap: round;
-}
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
 
-.ql-toolbar.ql-snow,
-.ql-container.ql-snow {
-  border: 0;
-}
-
-.xl\:text-5xl {
-  line-height: 1.15 !important;
-}
-
-@media (min-width: 640px) {
-  table {
-    display: inline-table !important;
-  }
-
-  thead tr:not(:first-child) {
-    display: none;
-  }
-}
-
-@media (max-width: 639px) {
-  thead tr {
-    border: 1px solid #e2e8f0;
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
   }
 }
 
-.top-100 {
-  top: 100%;
-}
-.bottom-100 {
-  bottom: 100%;
-}
-.max-h-select {
-  max-height: 300px;
-}
-
-.react-datepicker {
-  box-shadow: 0 10px 15px -3px rgb(0 0 0/0.1), 0 4px 6px -4px rgb(0 0 0/0.1);
-}
-
-.react-datepicker__day--selected,
-.react-datepicker__day--in-selecting-range,
-.react-datepicker__day--in-range,
-.react-datepicker__month-text--selected,
-.react-datepicker__month-text--in-selecting-range,
-.react-datepicker__month-text--in-range,
-.react-datepicker__quarter-text--selected,
-.react-datepicker__quarter-text--in-selecting-range,
-.react-datepicker__quarter-text--in-range,
-.react-datepicker__year-text--selected,
-.react-datepicker__year-text--in-selecting-range,
-.react-datepicker__year-text--in-range,
-.react-datepicker__day--selected:hover,
-.react-datepicker__day--in-selecting-range:hover,
-.react-datepicker__day--in-range:hover,
-.react-datepicker__month-text--selected:hover,
-.react-datepicker__month-text--in-selecting-range:hover,
-.react-datepicker__month-text--in-range:hover,
-.react-datepicker__quarter-text--selected:hover,
-.react-datepicker__quarter-text--in-selecting-range:hover,
-.react-datepicker__quarter-text--in-range:hover,
-.react-datepicker__year-text--selected:hover,
-.react-datepicker__year-text--in-selecting-range:hover,
-.react-datepicker__year-text--in-range:hover {
-  background-color: rgb(99, 102, 241) !important;
-}
-
-.react-datepicker-time__input input {
-  width: 100%;
-  padding: 4px 6px;
-  border-radius: 4px;
-}
-
-.quill-error-border .ql-editor {
-  border: 1px solid rgb(252 165 165);
-}
-
-.ql-editor:focus {
-  outline: 3px solid #818cf8;
-  border-radius: 0.25rem;
-}
-
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus {
-  -webkit-text-fill-color: rgb(15 23 42);
-  -webkit-box-shadow: 0 0 0px 1000px white inset;
+@utility autofill {
+  -webkit-text-fill-color: white;
+  -webkit-box-shadow: 0 0 0px 1000px rgb(15 23 42) inset;
   transition: background-color 5000s ease-in-out 0s;
 }
 
 @layer utilities {
-  .autofill {
-    -webkit-text-fill-color: white;
-    -webkit-box-shadow: 0 0 0px 1000px rgb(15 23 42) inset;
+  option:not(:first-of-type),
+  html,
+  body,
+  a {
+    color: rgb(51 65 85);
+  }
+
+  .node {
+    stroke-linecap: round;
+  }
+
+  .ql-toolbar.ql-snow,
+  .ql-container.ql-snow {
+    border: 0;
+  }
+
+  .xl\:text-5xl {
+    line-height: 1.15 !important;
+  }
+
+  @media (min-width: 640px) {
+    table {
+      display: inline-table !important;
+    }
+
+    thead tr:not(:first-child) {
+      display: none;
+    }
+  }
+
+  @media (max-width: 639px) {
+    thead tr {
+      border: 1px solid #e2e8f0;
+    }
+  }
+
+  .top-100 {
+    top: 100%;
+  }
+  .bottom-100 {
+    bottom: 100%;
+  }
+  .max-h-select {
+    max-height: 300px;
+  }
+
+  .react-datepicker {
+    box-shadow:
+      0 10px 15px -3px rgb(0 0 0/0.1),
+      0 4px 6px -4px rgb(0 0 0/0.1);
+  }
+
+  .react-datepicker__day--selected,
+  .react-datepicker__day--in-selecting-range,
+  .react-datepicker__day--in-range,
+  .react-datepicker__month-text--selected,
+  .react-datepicker__month-text--in-selecting-range,
+  .react-datepicker__month-text--in-range,
+  .react-datepicker__quarter-text--selected,
+  .react-datepicker__quarter-text--in-selecting-range,
+  .react-datepicker__quarter-text--in-range,
+  .react-datepicker__year-text--selected,
+  .react-datepicker__year-text--in-selecting-range,
+  .react-datepicker__year-text--in-range,
+  .react-datepicker__day--selected:hover,
+  .react-datepicker__day--in-selecting-range:hover,
+  .react-datepicker__day--in-range:hover,
+  .react-datepicker__month-text--selected:hover,
+  .react-datepicker__month-text--in-selecting-range:hover,
+  .react-datepicker__month-text--in-range:hover,
+  .react-datepicker__quarter-text--selected:hover,
+  .react-datepicker__quarter-text--in-selecting-range:hover,
+  .react-datepicker__quarter-text--in-range:hover,
+  .react-datepicker__year-text--selected:hover,
+  .react-datepicker__year-text--in-selecting-range:hover,
+  .react-datepicker__year-text--in-range:hover {
+    background-color: rgb(99, 102, 241) !important;
+  }
+
+  .react-datepicker-time__input input {
+    width: 100%;
+    padding: 4px 6px;
+    border-radius: 4px;
+  }
+
+  .quill-error-border .ql-editor {
+    border: 1px solid rgb(252 165 165);
+  }
+
+  .ql-editor:focus {
+    outline: 3px solid #818cf8;
+    border-radius: 0.25rem;
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus {
+    -webkit-text-fill-color: rgb(15 23 42);
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
     transition: background-color 5000s ease-in-out 0s;
   }
 }

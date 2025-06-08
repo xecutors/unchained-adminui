@@ -158,7 +158,7 @@ const AssortmentProducts = ({ assortmentId }) => {
             <Loading />
           </div>
         ) : (
-          <div className="ml-auto my-auto w-full rounded shadow dark:shadow-none md:col-span-2">
+          <div className="ml-auto my-auto w-full rounded-sm shadow-sm dark:shadow-none md:col-span-2">
             <DndContext
               sensors={sensors}
               collisionDetection={closestCenter}

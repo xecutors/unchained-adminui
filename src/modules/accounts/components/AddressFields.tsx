@@ -47,7 +47,7 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
               />
             </div>
           ) : (
-            <span className="flex-grow">
+            <span className="grow">
               {address?.firstName} {address?.lastName}{' '}
             </span>
           )}
@@ -76,7 +76,7 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
               })}
             />
           ) : (
-            <span className="flex-grow">{address?.company}</span>
+            <span className="grow">{address?.company}</span>
           )}
         </div>
       </div>
@@ -103,7 +103,7 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
               })}
             />
           ) : (
-            <span className="flex-grow">{address?.addressLine}</span>
+            <span className="grow">{address?.addressLine}</span>
           )}
         </div>
       </div>
@@ -130,7 +130,7 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
               })}
             />
           ) : (
-            <span className="flex-grow">{address?.addressLine2}</span>
+            <span className="grow">{address?.addressLine2}</span>
           )}
         </div>
       </div>
@@ -250,7 +250,7 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
         </div>
       </div>
 
-      <div className="border-t border-t-indigo-50 dark:border-t-slate-700 mt-3 -mx-6 -mb-6 bg-slate-50 dark:bg-slate-800 flex flex-shrink-0 items-center justify-end space-x-4 pr-5">
+      <div className="border-t border-t-indigo-50 dark:border-t-slate-700 mt-3 -mx-6 -mb-6 bg-slate-50 dark:bg-slate-800 flex shrink-0 items-center justify-end space-x-4 pr-5">
         {isEdit ? (
           <SaveAndCancelButtons onCancel={() => setIsEdit(!isEdit)} />
         ) : null}

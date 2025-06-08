@@ -13,7 +13,7 @@ const LocaleSwitcher = () => {
   return (
     <div className="ml-auto">
       <select
-        className="cursor-pointer rounded-md border-slate-300 py-[0.25rem] pr-8 text-sm lg:py-1 lg:pr-10 text-black dark:text-white  dark:bg-slate-400"
+        className="cursor-pointer rounded-md border-slate-300 py-1 pr-8 text-sm lg:py-1 lg:pr-10 text-black dark:text-white  dark:bg-slate-400"
         value={locale}
         onChange={handleOnChange}
       >

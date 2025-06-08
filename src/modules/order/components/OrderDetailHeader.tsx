@@ -9,7 +9,7 @@ const OrderDetailHeader = ({ order }) => {
   const { formatDateTime } = useFormatDateTime();
   if (!order) return null;
   return (
-    <div className="bg-white dark:bg-slate-800 rounded-md shadow dark:shadow-none p-4 space-y-5 ">
+    <div className="bg-white dark:bg-slate-800 rounded-md shadow-sm dark:shadow-none p-4 space-y-5 ">
       <div className="flex items-center justify-between">
         <span className="text-sm block mr-3">
           {formatMessage({

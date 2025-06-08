@@ -70,7 +70,7 @@ const PasswordReset = () => {
       />
       <Link
         href="/"
-        className="m-auto group relative flex justify-center rounded-md border border-transparent bg-indigo-500 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+        className="m-auto group relative flex justify-center rounded-md border border-transparent bg-indigo-500 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-hidden focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
       >
         {formatMessage({
           id: 'go-home',
@@ -80,7 +80,7 @@ const PasswordReset = () => {
     </BlockingContent>
   ) : (
     <div className="flex min-h-screen justify-center bg-slate-100 dark:bg-slate-900 antialiased">
-      <div className="container my-auto mt-24 max-w-md border-2 border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow rounded dark:shadow-none p-3 sm:mt-40">
+      <div className="container my-auto mt-24 max-w-md border-2 border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm rounded-sm dark:shadow-none p-3 sm:mt-40">
         <div className="m-6 text-center">
           <h1 className="text-3xl font-semibold text-slate-700 dark:text-slate-200">
             {formatMessage({

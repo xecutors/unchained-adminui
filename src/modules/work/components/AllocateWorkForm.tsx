@@ -109,7 +109,7 @@ const AllocateWorkForm = () => {
                           />
                         </div>
                       </div>
-                      <div className="ml-2 mt-5  flex-shrink-0 sm:mt-4">
+                      <div className="ml-2 mt-5  shrink-0 sm:mt-4">
                         <DeleteButton onClick={() => removeConfig(index)} />
                       </div>
                     </div>
@@ -117,11 +117,11 @@ const AllocateWorkForm = () => {
                 })}
                 <div className="mt-2 flex flex-wrap items-center justify-between sm:flex-nowrap">
                   <div className=" " />
-                  <div className=" mt-2 flex-shrink-0">
-                    <div className="flex-shrink-0">
+                  <div className=" mt-2 shrink-0">
+                    <div className="shrink-0">
                       <button
                         type="button"
-                        className="items-right inline-flex rounded-full border border-transparent bg-indigo-500 px-2 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+                        className="items-right inline-flex rounded-full border border-transparent bg-indigo-500 px-2 py-2 text-sm font-medium text-white shadow-xs hover:bg-indigo-700 focus:outline-hidden focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
                         onClick={() => push('')}
                       >
                         <svg

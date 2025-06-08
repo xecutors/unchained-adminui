@@ -17,11 +17,11 @@ const StatusFilter = ({ selectedStatuses, onStatusChange, statuses }) => {
 
   return statuses?.map((status) => (
     <div
-      className="inline-flex items-center rounded-md bg-white dark:bg-slate-800 py-2 px-4 text-sm font-medium text-indigo-800 shadow-sm dark:shadow-none"
+      className="inline-flex items-center rounded-md bg-white dark:bg-slate-800 py-2 px-4 text-sm font-medium text-indigo-800 shadow-xs dark:shadow-none"
       key={status}
     >
       <input
-        className="h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-400"
+        className="h-4 w-4 rounded-sm border-slate-300 text-indigo-600 focus:ring-indigo-400"
         type="checkbox"
         id={status}
         name={status}

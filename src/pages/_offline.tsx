@@ -154,7 +154,7 @@ const Offline = () => {
           <a
             href="#"
             onClick={() => router.reload()}
-            className="bg-transparent hover:bg-indigo-700 text-indigo-700 hover:text-white rounded shadow hover:shadow-lg py-2 px-4 border border-indigo-700 hover:border-transparent"
+            className="bg-transparent hover:bg-indigo-700 text-indigo-700 hover:text-white rounded-sm shadow-sm hover:shadow-lg py-2 px-4 border border-indigo-700 hover:border-transparent"
           >
             {formatMessage({ id: 'retry', defaultMessage: 'Retry' })}
           </a>

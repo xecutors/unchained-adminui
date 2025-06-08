@@ -48,7 +48,7 @@ const LocaleWrapper = ({ children }) => {
         <div className="w-fit ml-auto">
           <select
             id="locale-wrapper"
-            className="cursor-pointer rounded-md border-slate-300 dark:border-slate-700 py-[0.25rem] pr-8 text-sm lg:py-1 lg:pr-10 text-black dark:text-slate-400 dark:bg-slate-800"
+            className="cursor-pointer rounded-md border-slate-300 dark:border-slate-700 py-1 pr-8 text-sm lg:py-1 lg:pr-10 text-black dark:text-slate-400 dark:bg-slate-800"
             value={selectedLocale}
             onChange={(e) => {
               e.stopPropagation();

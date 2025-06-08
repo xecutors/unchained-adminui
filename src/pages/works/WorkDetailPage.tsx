@@ -91,7 +91,7 @@ const WorkDetailPage = ({ workerId }) => {
           <button
             type="button"
             aria-describedby="header-delete-button"
-            className="my-auto flex items-center justify-center rounded border-2 border-green-600 px-3 py-2 text-sm font-semibold text-green-600 shadow-sm hover:border-green-800 hover:bg-green-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-offset-2"
+            className="my-auto flex items-center justify-center rounded-sm border-2 border-green-600 px-3 py-2 text-sm font-semibold text-green-600 shadow-xs hover:border-green-800 hover:bg-green-700 hover:text-white focus:outline-hidden focus:ring-2 focus:ring-green-700 focus:ring-offset-2"
             onClick={retryWork}
           >
             <span className="pr-1">

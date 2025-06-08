@@ -68,12 +68,12 @@ const DetailHeader = ({ user, contact }) => {
                 <dd className="mt-3 flex items-center self-end text-sm font-medium capitalize text-slate-500 sm:mr-6 sm:mt-0">
                   {user?.primaryEmail?.verified ? (
                     <CheckCircleIcon
-                      className="mb-1.5 h-4 w-4 flex-shrink-0 text-green-400"
+                      className="mb-1.5 h-4 w-4 shrink-0 text-green-400"
                       aria-hidden="true"
                     />
                   ) : (
                     <XCircleIcon
-                      className="mb-1.5 h-4 w-4 flex-shrink-0 text-red-400"
+                      className="mb-1.5 h-4 w-4 shrink-0 text-red-400"
                       aria-hidden="true"
                     />
                   )}
@@ -101,7 +101,7 @@ const DetailHeader = ({ user, contact }) => {
               </dt>
               <dd className="flex items-center text-sm font-medium capitalize text-slate-500 sm:mr-6">
                 <DevicePhoneMobileIcon
-                  className="mr-1.5 h-5 w-5 flex-shrink-0 text-slate-400"
+                  className="mr-1.5 h-5 w-5 shrink-0 text-slate-400"
                   aria-hidden="true"
                 />
                 {contact.telNumber}

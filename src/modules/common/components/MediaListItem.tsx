@@ -56,7 +56,7 @@ const MediaListItem = ({
       key={media._id}
       ref={setNodeRef}
       style={style}
-      className="flex flex-wrap gap-4 rounded hover:cursor-pointer"
+      className="flex flex-wrap gap-4 rounded-sm hover:cursor-pointer"
     >
       <div className="flex-1 basis-1/3">
         <a onClick={() => displayImageInModal({ url: media?.file?.url })}>
@@ -81,7 +81,7 @@ const MediaListItem = ({
             {media?.tags.map((tag, i) => (
               <span
                 key={`${tag}${i + 1}`}
-                className="rounded border px-1 text-sm font-light capitalize text-slate-900 dark:text-slate-200 shadow-sm dark:shadow-none"
+                className="rounded border px-1 text-sm font-light capitalize text-slate-900 dark:text-slate-200 shadow-xs dark:shadow-none"
               >
                 {tag}
               </span>
