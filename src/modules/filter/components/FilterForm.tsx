@@ -177,7 +177,7 @@ const FilterForm = ({
         </FieldArray>
       </div>
       <FormErrors />
-      <div className="sm:px-15 space-y-6 bg-slate-50 dark:bg-slate-800 border-t-indigo-50 dark:border-t-slate-700 p-5 text-right">
+      <div className="space-y-6 bg-slate-50 dark:bg-slate-800 border-t-indigo-50 dark:border-t-slate-700 p-5 text-right">
         <SubmitButton
           hidden={!hasRole('addFilter')}
           label={formatMessage({

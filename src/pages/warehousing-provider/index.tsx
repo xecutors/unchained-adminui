@@ -90,7 +90,7 @@ const WarehousingProviders = () => {
         <Loading />
       ) : (
         <ProvidersList
-          providerPath="/warehousing-provider"
+          providerPath="/warehousing-provider?warehousingProviderId"
           providers={warehousingProviders}
           onRemove={onRemoveWarehousingProvider}
           canDelete={hasRole('removeWarehousingProvider')}

@@ -80,7 +80,7 @@ const PaymentProviders = () => {
         <Loading />
       ) : (
         <ProvidersList
-          providerPath="/payment-provider"
+          providerPath="/payment-provider?paymentProviderId"
           providers={paymentProviders}
           onRemove={onRemovePaymentProvider}
           canDelete={hasRole('removePaymentProvider')}

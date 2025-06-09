@@ -154,7 +154,7 @@ const ProductTokenizationForm = ({ productId }) => {
             />
           </div>
 
-          <div className="sm:px-15 space-y-6 border-t border-t-indigo-50 dark:border-t-slate-700 bg-slate-50 dark:bg-slate-800 p-5 text-right">
+          <div className="space-y-6 border-t border-t-indigo-50 dark:border-t-slate-700 bg-slate-50 dark:bg-slate-800 p-5 text-right">
             <SubmitButton
               hidden={!hasRole('editProduct')}
               label={formatMessage({

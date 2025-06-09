@@ -77,7 +77,7 @@ const LanguageForm = ({
           </div>
         )}
       </div>
-      <div className="border-t-indigo-50 border-t dark:border-t-slate-700 sm:px-15 mt-5 space-y-6 bg-slate-50 dark:bg-slate-800 p-5 text-right">
+      <div className="border-t-indigo-50 border-t dark:border-t-slate-700 mt-5 space-y-6 bg-slate-50 dark:bg-slate-800 p-5 text-right">
         <SubmitButton
           hidden={!hasRole('editLanguage')}
           label={

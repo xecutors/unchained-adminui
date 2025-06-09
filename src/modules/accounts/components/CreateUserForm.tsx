@@ -175,7 +175,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
             </div>
           </div>
 
-          <div className="border-t-indigo-50 border-t dark:border-t-slate-700 bg-slate-50 dark:bg-slate-800 sm:px-15 mt-5 pr-5">
+          <div className="border-t-indigo-50 border-t dark:border-t-slate-700 bg-slate-50 dark:bg-slate-800 mt-5 pr-5">
             <FormErrors />
             <SaveAndCancelButtons className="justify-end" onCancel={back} />
           </div>
@@ -337,7 +337,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
               </div>
             </div>
           </div>
-          <div className="border-t border-indigo-50 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 sm:px-15 mt-5 pr-5">
+          <div className="border-t border-indigo-50 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 mt-5 pr-5">
             <SaveAndCancelButtons className="justify-end" onCancel={back} />
           </div>
         </div>

@@ -5,7 +5,7 @@ const FormWrapper = ({ children, className = '' }) => {
     <div className="sm:max-w-full">
       <div
         className={classNames(
-          'sm:px-15 rounded-md bg-white dark:bg-slate-800 shadow-sm dark:shadow-none',
+          'rounded-md bg-white dark:bg-slate-800 shadow-sm dark:shadow-none',
           className,
         )}
       >

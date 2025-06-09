@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl';
 import ProviderListItem from './ProvidersListItem';
 import Table from './Table';
 
-const ProviderList = ({
+const ProvidersList = ({
   providers,
   providerPath,
   onRemove,
@@ -52,4 +52,4 @@ const ProviderList = ({
   );
 };
 
-export default ProviderList;
+export default ProvidersList;

@@ -18,11 +18,14 @@ const PaymentProvidersQuery = gql`
 const usePaymentProviders = ({
   type = null,
 }: IPaymentProvidersQueryVariables = {}) => {
+  const variables: any = {};
+  if (type) variables.type = type;
+
   const { data, loading, error }: any = useQuery<
     IPaymentProvidersQuery,
     IPaymentProvidersQueryVariables
   >(PaymentProvidersQuery, {
-    variables: { type },
+    variables,
   });
 
   const paymentProviders = data?.paymentProviders || [];
