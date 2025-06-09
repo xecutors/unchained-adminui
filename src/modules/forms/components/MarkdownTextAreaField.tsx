@@ -14,12 +14,13 @@ import Tab from '../../common/components/Tab';
 const GetCurrentTab = ({ selectedView = 'edit', ...field }) => {
   if (selectedView === 'preview') {
     return (
-      <ReactMarkdown
-        className=" prose  dark:prose-invert"
-        // eslint-disable-next-line react/no-children-prop
-        children={field.value}
-        rehypePlugins={[rehypeRaw, remarkGfm, rehypeSanitize] as any}
-      />
+      <div className="prose dark:prose-invert">
+        <ReactMarkdown
+          rehypePlugins={[rehypeRaw, remarkGfm, rehypeSanitize] as any}
+        >
+          {field.value}
+        </ReactMarkdown>
+      </div>
     );
   }
   return (
