@@ -19,7 +19,6 @@ import useCurrentUser from '../../accounts/hooks/useCurrentUser';
 import useShopInfo from '../hooks/useShopInfo';
 import SideNav from './SideNav';
 import UserAvatar from './UserAvatar';
-import LocaleSwitcher from './LocaleSwitcher';
 import ThemeToggle from './ThemeToggle';
 import useOutsideClick from '../hooks/useOutsideClick';
 import ImageWithFallback from './ImageWithFallback';

@@ -3,6 +3,8 @@ import classnames from 'classnames';
 import useField, { FieldHookProps } from '../hooks/useField';
 import FieldWrapper from './FieldWrapper';
 
+import type { JSX } from 'react';
+
 export interface SelectFieldOptions {
   [key: string]: string | JSX.Element;
 }

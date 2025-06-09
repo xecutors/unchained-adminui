@@ -4,7 +4,7 @@
  * @type {import('next').NextConfig}
  **/
 
-import './node_env.js'; // for side effects only, note the .js extension is required in ESM
+require('./node_env.js'); // for side effects only, note the .js extension is required in ESM
 
 module.exports = {
   output: 'export',

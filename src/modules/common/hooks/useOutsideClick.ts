@@ -1,7 +1,7 @@
 import { useEffect, useRef, useCallback } from 'react';
 
 const useOutsideClick = (callback) => {
-  const ref = useRef<HTMLButtonElement>();
+  const ref = useRef<HTMLButtonElement>(undefined);
 
   // Create a memoized version of the handleClick function
   const handleClick = useCallback(

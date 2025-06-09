@@ -2,6 +2,8 @@ import classnames from 'classnames';
 
 import { ComputedProps } from '../hooks/useField';
 
+import type { JSX } from 'react';
+
 interface FieldWrapperProps extends ComputedProps {
   children: JSX.Element;
 }

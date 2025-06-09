@@ -19,7 +19,7 @@ import { validateBirthdate } from '../../forms/lib/validators';
 
 const ProfileView = ({ profile, avatar, _id }) => {
   const { address } = profile || {};
-  const fileInputRef = useRef();
+  const fileInputRef = useRef(undefined);
   const { formatMessage } = useIntl();
   const { currentUser } = useCurrentUser();
   const { formatDateTime } = useFormatDateTime();

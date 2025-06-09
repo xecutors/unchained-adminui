@@ -44,10 +44,10 @@ const useFormatDateTime = () => {
   };
 
   const parseDate = (value) => {
-    return format(fromZonedTime(
-      value,
-      Intl.DateTimeFormat().resolvedOptions().timeZone,
-    ), 'yyyy-MM-dd');
+    return format(
+      fromZonedTime(value, Intl.DateTimeFormat().resolvedOptions().timeZone),
+      'yyyy-MM-dd',
+    );
   };
 
   return { formatDateTime, getDateFormatPattern, parseDate };
