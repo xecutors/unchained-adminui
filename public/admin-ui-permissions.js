@@ -281,8 +281,7 @@ window.AdminUiPermissions = () => {
       apolloClient,
       { componentName, router },
     ) => {
-      const { pathname } = router;   
-      
+      const { pathname } = router;            
       if (!user?._id && !UnrestrictedPages?.includes(pathname)) return false;
 
       if (
