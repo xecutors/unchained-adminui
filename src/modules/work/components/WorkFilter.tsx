@@ -1,6 +1,5 @@
 import { VariableIcon } from '@heroicons/react/24/outline';
 import { useRouter } from 'next/router';
-import DatePicker from 'react-datepicker';
 import { useIntl } from 'react-intl';
 
 import MultipleSelect from '../../common/components/MultipleSelect';
@@ -8,11 +7,12 @@ import StatusFilter from '../../common/components/StatusFilter';
 import { extractQuery } from '../../common/utils/normalizeFilterKeys';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
 import { normalizeQuery } from '../../common/utils/utils';
+import DateInputField from '../../common/components/DateInput';
 
 const WORK_STATUSES = ['NEW', 'ALLOCATED', 'SUCCESS', 'FAILED', 'DELETED'];
 
 const WorkFilter = ({ workTypes = [] }) => {
-  const { getDateFormatPattern, parseDate } = useFormatDateTime();
+  const { parseDate } = useFormatDateTime();
   const router = useRouter();
   const { formatMessage } = useIntl();
   const appliedStatuses = extractQuery(router.query.status);
@@ -60,8 +60,7 @@ const WorkFilter = ({ workTypes = [] }) => {
               <label className="ml-1 mr-2" htmlFor="work-start">
                 {formatMessage({ id: 'from', defaultMessage: 'From' })}
               </label>
-              <DatePicker
-                name="startDate"
+              <DateInputField
                 id="work-start"
                 onChange={(value: any) => {
                   if (value)
@@ -77,26 +76,19 @@ const WorkFilter = ({ workTypes = [] }) => {
                     router.push({ query: { ...rest } });
                   }
                 }}
-                placeholderText={formatMessage({
+                placeholder={formatMessage({
                   id: 'start_date',
                   defaultMessage: 'Start date',
                 })}
-                showMonthDropdown
-                dateFormat={getDateFormatPattern()}
-                showYearDropdown
-                dropdownMode="select"
-                selectsMultiple={null}
-                selected={
+                value={
                   router?.query?.start ? parseDate(router?.query?.start) : null
                 }
-                className="block w-full rounded-md border dark:bg-slate-800 border-slate-300 dark:border-slate-700 py-2 px-3 shadow-xs focus:outline-hidden focus:ring-indigo-400 sm:text-sm"
+                containerClassName="w-full rounded-md border dark:bg-slate-800 border-slate-300 dark:border-slate-700 focus:outline-hidden focus:ring-indigo-400 sm:text-sm"
               />
               <label className="mr-2 ml-3 " htmlFor="report-end">
                 {formatMessage({ id: 'to', defaultMessage: 'To' })}
               </label>
-              <DatePicker
-                selectsMultiple={null}
-                name="endDate"
+              <DateInputField
                 id="work-end"
                 onChange={(value: any) => {
                   if (value)
@@ -112,20 +104,16 @@ const WorkFilter = ({ workTypes = [] }) => {
                     router.push({ query: { ...rest } });
                   }
                 }}
-                placeholderText={formatMessage({
+                placeholder={formatMessage({
                   id: 'end_date',
                   defaultMessage: 'End Date',
                 })}
-                dateFormat={getDateFormatPattern()}
-                showMonthDropdown
-                showYearDropdown
-                dropdownMode="select"
-                selected={
+                value={
                   router?.query?.end
                     ? parseDate(router?.query?.end)
-                    : new Date()
+                    : parseDate(new Date())
                 }
-                className="block w-full rounded-md dark:bg-slate-800 border border-slate-300 dark:border-slate-700 py-2 px-3 shadow-xs focus:outline-hidden focus:ring-indigo-400 sm:text-sm"
+                containerClassName="w-full rounded-md border dark:bg-slate-800 border-slate-300 dark:border-slate-700 focus:outline-hidden focus:ring-indigo-400 sm:text-sm"
               />
             </div>
           </div>

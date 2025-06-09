@@ -15,6 +15,7 @@ import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
 import useCurrentUser from '../hooks/useCurrentUser';
 import ImageWithFallback from '../../common/components/ImageWithFallback';
+import { validateBirthdate } from '../../forms/lib/validators';
 
 const ProfileView = ({ profile, avatar, _id }) => {
   const { address } = profile || {};
@@ -308,6 +309,7 @@ const ProfileView = ({ profile, avatar, _id }) => {
                         })}
                         className="mt-0 w-full"
                         name="birthday"
+                        validators={[validateBirthdate]}
                       />
                     ) : (
                       <span className="grow">

@@ -23,7 +23,6 @@ const WorkQueueView = () => {
   const { query, push } = useRouter();
   const { hasRole } = useAuth();
   const { formatMessage } = useIntl();
-
   const filter = {
     created: {
       start: query?.start,
@@ -32,7 +31,6 @@ const WorkQueueView = () => {
     status: (query?.status as string)?.split(',') as IWorkStatus[],
     types: (query?.types as string)?.split(',') as IWorkType[],
   };
-
   const limit = parseInt(query?.limit as string, 10) || DefaultLimit;
   const offset = parseInt(query?.skip as string, 10) || 0;
 

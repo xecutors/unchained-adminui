@@ -1,11 +1,11 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import DatePicker from 'react-datepicker';
 import { useIntl } from 'react-intl';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
+import DateInputField from '../../common/components/DateInput';
 
 const UserFilter: React.FC = () => {
-  const { getDateFormatPattern, parseDate } = useFormatDateTime();
+  const { parseDate } = useFormatDateTime();
   const router = useRouter();
   const { formatMessage } = useIntl();
 
@@ -75,48 +75,38 @@ const UserFilter: React.FC = () => {
             <label htmlFor="lastLoginStart" className="text-sm">
               {formatMessage({ id: 'from', defaultMessage: 'From' })}
             </label>
-            <DatePicker
+            <DateInputField
               id="lastLoginStart"
               onChange={(date: any) =>
                 updateQuery('start', date ? new Date(date).toISOString() : null)
               }
-              placeholderText={formatMessage({
+              placeholder={formatMessage({
                 id: 'start_date',
                 defaultMessage: 'Start date',
               })}
-              dateFormat={getDateFormatPattern()}
-              showMonthDropdown
-              showYearDropdown
-              dropdownMode="select"
-              selectsMultiple={null}
-              selected={
+              value={
                 router.query.start
                   ? parseDate(router.query.start as string)
                   : null
               }
-              className="w-full rounded-md border py-2 px-3 shadow-xs focus:outline-hidden focus:ring-indigo-400"
+              containerClassName="w-full  focus:outline-hidden focus:ring-indigo-400"
             />
             <label htmlFor="lastLoginEnd" className="text-sm">
               {formatMessage({ id: 'to', defaultMessage: 'To' })}
             </label>
-            <DatePicker
+            <DateInputField
               id="lastLoginEnd"
               onChange={(date: any) =>
                 updateQuery('end', date ? new Date(date).toISOString() : null)
               }
-              placeholderText={formatMessage({
+              placeholder={formatMessage({
                 id: 'end_date',
                 defaultMessage: 'End Date',
               })}
-              dateFormat={getDateFormatPattern()}
-              showMonthDropdown
-              showYearDropdown
-              dropdownMode="select"
-              selectsMultiple={null}
-              selected={
+              value={
                 router.query.end ? parseDate(router.query.end as string) : null
               }
-              className="w-full rounded-md border py-2 px-3 shadow-xs focus:outline-hidden focus:ring-indigo-400"
+              containerClassName="w-full  focus:outline-hidden focus:ring-indigo-400"
             />
           </div>
         </div>

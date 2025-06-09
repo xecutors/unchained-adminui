@@ -10,6 +10,7 @@ import EmailField from '../../forms/components/EmailField';
 import PasswordField from '../../forms/components/PasswordField';
 import SaveAndCancelButtons from '../../common/components/SaveAndCancelButtons';
 import FormErrors from '../../forms/components/FormErrors';
+import { validateBirthdate } from '../../forms/lib/validators';
 
 const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
   const { formatMessage } = useIntl();
@@ -157,6 +158,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                 })}
                 className="mt-0 w-full"
                 name="birthday"
+                validators={[validateBirthdate]}
               />
             </div>
             <div>
