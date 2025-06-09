@@ -1,148 +1,136 @@
-declare global {
-  interface Window {
-    workbox?: any;
-  }
-}
-
-import React, { useEffect } from 'react';
-
-import { useIntl } from 'react-intl';
-import { PlusIcon } from '@heroicons/react/24/outline';
-import Link from 'next/link';
-import SystemInformation from '../modules/common/components/SystemInformation';
-import LatestOrders from '../modules/order/components/LatestOrders';
-import useAuth from '../modules/Auth/useAuth';
-import LatestProductReviews from '../modules/product-review/components/LatestProductReviews';
+import React from 'react';
+import { useChat } from '@ai-sdk/react';
 
 const Home = () => {
-  const { hasRole } = useAuth();
-  const { formatMessage } = useIntl();
+  const { messages, input, handleInputChange, handleSubmit, addToolResult } =
+    useChat({
+      maxSteps: 5,
+      credentials: 'include',
+      api: 'http://localhost:4010/chat',
 
-  useEffect(() => {
-    if (
-      typeof window !== 'undefined' &&
-      'serviceWorker' in navigator &&
-      window?.workbox !== undefined
-    ) {
-      const wb = window.workbox;
-
-      const promptNewVersionAvailable = () => {
-        if (
-          confirm(
-            formatMessage({
-              id: 'app_new_version_available',
-              defaultMessage:
-                'A newer version of this web app is available, reload to update?',
-            }),
-          )
-        ) {
-          wb.addEventListener('controlling', () => {
-            window?.location.reload();
-          });
-
-          wb.messageSkipWaiting();
+      // run client-side tools that are automatically executed:
+      async onToolCall({ toolCall }) {
+        if (toolCall.toolName === 'getLocation') {
+          const cities = [
+            'New York',
+            'Los Angeles',
+            'Chicago',
+            'San Francisco',
+          ];
+          return cities[Math.floor(Math.random() * cities.length)];
         }
-      };
-      wb.addEventListener('waiting', promptNewVersionAvailable);
-      wb.register();
-    }
-  }, [formatMessage]);
+      },
+    });
 
   return (
-    <div className="grid grid-cols-1 xl:grid-cols-2 gap-10 md:mt-10 xl:mt-20 text-slate-700 dark:text-slate-200">
-      <div className="overflow-x-auto order-2 md:order-1">
-        {hasRole('showOrders') && (
-          <h2 className="ml-4 mb-3 text-xl">
-            {formatMessage({ id: 'orders', defaultMessage: 'Orders' })}{' '}
-          </h2>
-        )}
-        {hasRole('showOrders') && <LatestOrders />}
-      </div>
+    <>
+      {messages?.map((message) => (
+        <div key={message.id}>
+          <strong>{`${message.role}: `}</strong>
+          {message.parts.map((part) => {
+            switch (part.type) {
+              // render text parts as simple text:
+              case 'text':
+                return part.text;
 
-      <div className="order-1 md:order-2">
-        {(hasRole('addProduct') ||
-          hasRole('addUser') ||
-          hasRole('addAssortment')) && (
-          <div className="mb-10">
-            <h2 className="ml-4 mb-3 text-xl text-slate-700">
-              {formatMessage({
-                id: 'shortcuts',
-                defaultMessage: 'Shortcuts',
-              })}
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {hasRole('addProduct') && (
-                <Link
-                  href="/products/new"
-                  className="relative inline-flex items-center rounded-sm border border-transparent bg-indigo-500 px-3 py-3 text-sm font-medium text-white shadow-xs hover:bg-indigo-700 focus:outline-hidden focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
-                >
-                  <PlusIcon
-                    className="h-4 w-4"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  />
-                  <span className="ml-2">
-                    {formatMessage({
-                      id: 'product',
-                      defaultMessage: 'Product',
-                    })}
-                  </span>
-                </Link>
-              )}
-              {hasRole('addProduct') && (
-                <Link
-                  href="/users/new"
-                  className="relative inline-flex items-center rounded-sm border border-transparent bg-indigo-500 px-3 py-3 text-sm font-medium text-white shadow-xs hover:bg-indigo-700 focus:outline-hidden focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
-                >
-                  <PlusIcon
-                    className="h-4 w-4"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  />
-                  <span className="ml-2">
-                    {formatMessage({
-                      id: 'user',
-                      defaultMessage: 'User',
-                    })}
-                  </span>
-                </Link>
-              )}
-              {hasRole('addAssortment') && (
-                <Link
-                  href="/assortments/new"
-                  className="relative inline-flex items-center rounded-sm border border-transparent bg-indigo-500 px-3 py-3 text-sm font-medium text-white shadow-xs hover:bg-indigo-700 focus:outline-hidden focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
-                >
-                  <PlusIcon
-                    className="h-4 w-4"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  />
-                  <span className="ml-2">
-                    {formatMessage({
-                      id: 'assortment',
-                      defaultMessage: 'Assortment',
-                    })}
-                  </span>
-                </Link>
-              )}
-            </div>
-          </div>
-        )}
-        <div>
-          <SystemInformation />
+              // for tool invocations, distinguish between the tools and the state:
+              case 'tool-invocation': {
+                const callId = part.toolInvocation.toolCallId;
 
-          {hasRole('showProducts') && (
-            <h2 className="ml-4 mb-3 mt-4 text-xl">
-              {formatMessage({
-                id: 'latest-reviews',
-                defaultMessage: 'Latest Reviews',
-              })}{' '}
-            </h2>
-          )}
-          {hasRole('showProducts') && <LatestProductReviews />}
+                switch (part.toolInvocation.toolName) {
+                  case 'askForConfirmation': {
+                    switch (part.toolInvocation.state) {
+                      case 'call':
+                        return (
+                          <div key={callId}>
+                            {part.toolInvocation.args.message}
+                            <div>
+                              <button
+                                onClick={() =>
+                                  addToolResult({
+                                    toolCallId: callId,
+                                    result: 'Yes, confirmed.',
+                                  })
+                                }
+                              >
+                                Yes
+                              </button>
+                              <button
+                                onClick={() =>
+                                  addToolResult({
+                                    toolCallId: callId,
+                                    result: 'No, denied',
+                                  })
+                                }
+                              >
+                                No
+                              </button>
+                            </div>
+                          </div>
+                        );
+                      case 'result':
+                        return (
+                          <div key={callId}>
+                            Location access allowed:{' '}
+                            {part.toolInvocation.result}
+                          </div>
+                        );
+                    }
+                    break;
+                  }
+
+                  case 'getLocation': {
+                    switch (part.toolInvocation.state) {
+                      case 'call':
+                        return <div key={callId}>Getting location...</div>;
+                      case 'result':
+                        return (
+                          <div key={callId}>
+                            Location: {part.toolInvocation.result}
+                          </div>
+                        );
+                    }
+                    break;
+                  }
+
+                  case 'getWeatherInformation': {
+                    switch (part.toolInvocation.state) {
+                      // example of pre-rendering streaming tool calls:
+                      case 'partial-call':
+                        return (
+                          <pre key={callId}>
+                            {JSON.stringify(part.toolInvocation, null, 2)}
+                          </pre>
+                        );
+                      case 'call':
+                        return (
+                          <div key={callId}>
+                            Getting weather information for{' '}
+                            {part.toolInvocation.args.city}...
+                          </div>
+                        );
+                      case 'result':
+                        return (
+                          <div key={callId}>
+                            Weather in {part.toolInvocation.args.city}:{' '}
+                            {part.toolInvocation.result}
+                          </div>
+                        );
+                    }
+                    break;
+                  }
+                }
+              }
+            }
+          })}
+          <br />
         </div>
-      </div>
-    </div>
+      ))}
+
+      <form onSubmit={handleSubmit}>
+        <input value={input} onChange={handleInputChange} />
+      </form>
+    </>
   );
 };
 
