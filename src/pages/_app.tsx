@@ -17,6 +17,7 @@ import UnchainedContextWrapper from '../modules/UnchainedContext/UnchainedContex
 import ErrorBoundary from '../modules/common/components/ErrorBoundary';
 import Head from 'next/head';
 import Script from 'next/script';
+import AuthWrapper from '../modules/Auth/AuthWrapper';
 
 const handleRouteChange = (url) => {
   matomo.pageView(document.location.origin + url, document.title);
@@ -27,12 +28,12 @@ const UnchainedAdmin = ({ Component, componentName, pageProps, router }) => {
 
   const getLayout = Component.getLayout
     ? (page) => (
-        <>
+        <AuthWrapper>
           <div className="absolute top-4 right-4">
             <ThemeToggle />
           </div>
           {Component.getLayout(page)}
-        </>
+        </AuthWrapper>
       )
     : (page) => <Layout componentName={componentName}>{page}</Layout>;
 

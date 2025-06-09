@@ -18,14 +18,3 @@ By default admin UI is pointed to `http://localhost:4010/graphql` set `GRAPHQL_E
 ## Change logo
 Set company logo by using  `NEXT_PUBLIC_LOGO` to provide url of the logo
 
-## Enable Sandbox mode
-Set `NEXT_PUBLIC_ALLOW_ENDPOINT_SWITCH` to a truthy value to run admin UI in a sandbox mode
-
-
-## Adding Additional language support
-
-It is possible to convert to any other language or additional support through env. 
-steps:
-
-- provide a `JSON` translation file that uses the exact keys used for localization by setting each translation file path to be used though `UNCHAINED_ADMINUI_TRANSLATIONS` separated with **,**. look into `i18n/en.json` file to see available keys
-- each translation file name should follow the convention [locale].json where locale is the language `ISO` code.
