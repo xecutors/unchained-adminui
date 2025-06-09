@@ -1,6 +1,6 @@
 import isLength from 'validator/lib/isLength';
 import isEmail from 'validator/lib/isEmail';
-import { isValid as isValidDate } from 'date-fns';
+import { isAfter, isValid as isValidDate, startOfDay } from 'date-fns';
 
 import { MessageDescriptor, useIntl } from 'react-intl';
 import { PrimitiveType } from 'intl-messageformat';
@@ -84,10 +84,25 @@ export const validateRequired: Validator = {
 };
 
 export const validateDate: Validator = {
-  isValid: (value) => (value ? isValidDate(value) : true),
+  isValid: (value) => (value ? isValidDate(new Date(value)) : true),
   intlMessageDescriptor: {
     id: 'error_invalid_date',
     defaultMessage: '{label} is not a valid date',
+  },
+};
+
+export const validateBirthdate: Validator = {
+  isValid: (value) => {
+    if (!value) return true;
+
+    const date = new Date(value);
+    if (!isValidDate(date)) return false;
+    const today = startOfDay(new Date());
+    return !isAfter(date, today);
+  },
+  intlMessageDescriptor: {
+    id: 'error_birthdate_in_future',
+    defaultMessage: '{label} cannot be in the future',
   },
 };
 

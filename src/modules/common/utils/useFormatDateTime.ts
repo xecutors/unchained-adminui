@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 import { fromZonedTime } from 'date-fns-tz';
 
 const useFormatDateTime = () => {
@@ -43,10 +44,10 @@ const useFormatDateTime = () => {
   };
 
   const parseDate = (value) => {
-    return fromZonedTime(
+    return format(fromZonedTime(
       value,
       Intl.DateTimeFormat().resolvedOptions().timeZone,
-    );
+    ), 'yyyy-MM-dd');
   };
 
   return { formatDateTime, getDateFormatPattern, parseDate };

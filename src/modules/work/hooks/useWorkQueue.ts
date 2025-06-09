@@ -65,7 +65,7 @@ const useWorkQueue = ({
       created: Object.fromEntries(
         Object.entries(created || {})
           .filter(([, value]) => value)
-          .map(([key, value]) => [key, parseDate(value)]),
+          .map(([key, value]) => [key, value]),
       ),
       sort: (sortOptions || []).length
         ? sortOptions
