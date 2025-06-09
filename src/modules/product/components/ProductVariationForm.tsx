@@ -78,7 +78,7 @@ const ProductVariationForm = ({ onSubmit }: { onSubmit: OnSubmitType }) => {
             )}
           />
         </div>
-        <div className="sm:px-15 space-y-6 bg-slate-50 dark:bg-slate-700 px-5 py-6 text-right">
+        <div className="space-y-6 bg-slate-50 dark:bg-slate-700 px-5 py-6 text-right">
           <SubmitButton
             hidden={!hasRole('addProductVariation')}
             label={formatMessage({

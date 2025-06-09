@@ -302,9 +302,6 @@ const Layout = ({
           </div>
           <div className="flex shrink-0 border-t border-slate-200 dark:border-slate-800 p-4">
             <UserAvatar avatar={currentUser?.avatar} {...currentUser} />
-            <div className="ml-auto self-center">
-              <LocaleSwitcher />
-            </div>
           </div>
         </div>
       </div>
@@ -331,7 +328,6 @@ const Layout = ({
             />
           </button>
           <div className="flex items-center gap-4 pr-4">
-            <LocaleSwitcher />
             <ThemeToggle />
           </div>
         </div>

@@ -47,7 +47,7 @@ const ProviderListItem = ({
         <Table.Cell>
           <div className="flex items-center gap-1">
             {canEdit && (
-              <Link href={`${providerPath}/${provider?._id}`}>
+              <Link href={`${providerPath}=${provider?._id}`}>
                 <EditIcon />
               </Link>
             )}

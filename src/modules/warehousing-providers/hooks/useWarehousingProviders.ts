@@ -18,11 +18,13 @@ const WarehousingProvidersQuery = gql`
 const useWarehousingProviders = ({
   type = null,
 }: IWarehousingProvidersQueryVariables) => {
+  const variables: any = {};
+  if (type) variables.type = type;
   const { data, loading, error }: any = useQuery<
     IWarehousingProvidersQuery,
     IWarehousingProvidersQueryVariables
   >(WarehousingProvidersQuery, {
-    variables: { type },
+    variables,
   });
 
   const warehousingProviders = data?.warehousingProviders || [];

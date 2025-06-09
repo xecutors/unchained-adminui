@@ -35,7 +35,7 @@ const NewProviderForm = ({
     <FormWrapper>
       <Form form={form}>
         <div className="mt-6 shadow-sm dark:shadow-none sm:max-w-full sm:rounded-lg">
-          <div className="sm:px-15 px-4 pt-4 pb-6">
+          <div className="px-4 pt-4 pb-6">
             <SelectField
               onChange={(e) => onProviderChange(e.target.value)}
               name="type"
@@ -63,7 +63,7 @@ const NewProviderForm = ({
               className="mt-2"
             />
           </div>
-          <div className="border-t-indigo-50 border-t dark:border-t-slate-700 sm:px-15 space-y-6 bg-slate-50 dark:bg-slate-800 p-6 px-5 text-right">
+          <div className="border-t-indigo-50 border-t dark:border-t-slate-700 space-y-6 bg-slate-50 dark:bg-slate-800 p-6 px-5 text-right">
             <SubmitButton
               hidden={readOnly}
               label={formatMessage({

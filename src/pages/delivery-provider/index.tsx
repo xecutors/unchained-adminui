@@ -87,7 +87,7 @@ const DeliveryProviders = () => {
         <ProvidersList
           canEdit="editDeliveryProvider"
           canDelete="removeDeliveryProvider"
-          providerPath="/delivery-provider"
+          providerPath="/delivery-provider?deliveryProviderId"
           providers={deliveryProviders}
           onRemove={onRemoveDeliveryProvider}
         />
