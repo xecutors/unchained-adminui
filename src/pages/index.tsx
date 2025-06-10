@@ -1,136 +1,97 @@
 import React from 'react';
 import { useChat } from '@ai-sdk/react';
-
+import Markdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
+import remarkGfm from 'remark-gfm';
+import rehypeSanitize from 'rehype-sanitize';
+import ProductListItem from '../modules/product/components/ProductListItem';
 const Home = () => {
-  const { messages, input, handleInputChange, handleSubmit, addToolResult } =
-    useChat({
-      maxSteps: 5,
-      credentials: 'include',
-      api: 'http://localhost:4010/chat',
-
-      // run client-side tools that are automatically executed:
-      async onToolCall({ toolCall }) {
-        if (toolCall.toolName === 'getLocation') {
-          const cities = [
-            'New York',
-            'Los Angeles',
-            'Chicago',
-            'San Francisco',
-          ];
-          return cities[Math.floor(Math.random() * cities.length)];
-        }
-      },
-    });
+  const { messages, input, handleInputChange, handleSubmit } = useChat({
+    maxSteps: 5,
+    credentials: 'include',
+    api: 'http://localhost:4010/chat',
+  });
 
   return (
-    <>
-      {messages?.map((message) => (
-        <div key={message.id}>
-          <strong>{`${message.role}: `}</strong>
-          {message.parts.map((part) => {
-            switch (part.type) {
-              // render text parts as simple text:
-              case 'text':
-                return part.text;
+    <div className="min-h-screen bg-gray-50 text-gray-800 p-4 sm:p-6 lg:p-8 font-sans">
+      <div className="max-w-3xl mx-auto space-y-6">
+        <h1 className="text-2xl font-bold text-center mb-4">AI Assistant</h1>
 
-              // for tool invocations, distinguish between the tools and the state:
-              case 'tool-invocation': {
-                const callId = part.toolInvocation.toolCallId;
+        <div className="space-y-4">
+          {messages?.map((message) => (
+            <div key={message.id} className="bg-white shadow rounded-xl p-4">
+              <strong className="block mb-2 capitalize text-blue-600">{`${message.role}:`}</strong>
+              {message.parts.map((part: any) => {
+                switch (part.type) {
+                  case 'text':
+                    return (
+                      <Markdown
+                        rehypePlugins={
+                          [rehypeRaw, remarkGfm, rehypeSanitize] as any
+                        }
+                      >
+                        {part.text}
+                      </Markdown>
+                    );
+                  case 'tool-invocation':
+                    if (
+                      part?.toolInvocation?.toolName === 'list_products' &&
+                      part?.toolInvocation?.result
+                    ) {
+                      const [{ text }] = part.toolInvocation.result.content;
+                      const normalized = JSON.parse(text);
 
-                switch (part.toolInvocation.toolName) {
-                  case 'askForConfirmation': {
-                    switch (part.toolInvocation.state) {
-                      case 'call':
-                        return (
-                          <div key={callId}>
-                            {part.toolInvocation.args.message}
-                            <div>
-                              <button
-                                onClick={() =>
-                                  addToolResult({
-                                    toolCallId: callId,
-                                    result: 'Yes, confirmed.',
-                                  })
-                                }
-                              >
-                                Yes
-                              </button>
-                              <button
-                                onClick={() =>
-                                  addToolResult({
-                                    toolCallId: callId,
-                                    result: 'No, denied',
-                                  })
-                                }
-                              >
-                                No
-                              </button>
-                            </div>
-                          </div>
-                        );
-                      case 'result':
-                        return (
-                          <div key={callId}>
-                            Location access allowed:{' '}
-                            {part.toolInvocation.result}
-                          </div>
-                        );
+                      const { products, productTexts } = normalized || {};
+                      return products?.map((product, i) => (
+                        <ProductListItem
+                          key={product?._id}
+                          product={{ ...product, texts: productTexts?.[0] }}
+                        />
+                      ));
                     }
-                    break;
-                  }
 
-                  case 'getLocation': {
-                    switch (part.toolInvocation.state) {
-                      case 'call':
-                        return <div key={callId}>Getting location...</div>;
-                      case 'result':
-                        return (
-                          <div key={callId}>
-                            Location: {part.toolInvocation.result}
-                          </div>
-                        );
-                    }
-                    break;
-                  }
-
-                  case 'getWeatherInformation': {
-                    switch (part.toolInvocation.state) {
-                      // example of pre-rendering streaming tool calls:
-                      case 'partial-call':
-                        return (
-                          <pre key={callId}>
-                            {JSON.stringify(part.toolInvocation, null, 2)}
-                          </pre>
-                        );
-                      case 'call':
-                        return (
-                          <div key={callId}>
-                            Getting weather information for{' '}
-                            {part.toolInvocation.args.city}...
-                          </div>
-                        );
-                      case 'result':
-                        return (
-                          <div key={callId}>
-                            Weather in {part.toolInvocation.args.city}:{' '}
-                            {part.toolInvocation.result}
-                          </div>
-                        );
-                    }
-                    break;
-                  }
+                    return (
+                      <div>
+                        <h6>
+                          Tool Invocation :{' '}
+                          <b> {part?.toolInvocation?.toolName}</b>
+                        </h6>
+                      </div>
+                    );
+                  case 'step-start':
+                    return <h1>getting your data</h1>;
+                  default:
+                    return (
+                      <div>
+                        {' '}
+                        <h1>Unkown part </h1>
+                        {JSON.stringify(part)}
+                      </div>
+                    );
                 }
-              }
-            }
-          })}
-          <br />
+              })}
+            </div>
+          ))}
         </div>
-      ))}
 
-      <form onSubmit={handleSubmit}>
-        <input value={input} onChange={handleInputChange} />
-      </form>
-    </>
+        <form onSubmit={handleSubmit} className="mt-6">
+          <div className="flex gap-2">
+            <input
+              value={input}
+              onChange={handleInputChange}
+              placeholder="Type your message..."
+              className="flex-1 border border-gray-300 rounded-xl px-4 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <button
+              type="submit"
+              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-xl"
+            >
+              Send
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   );
 };
 
