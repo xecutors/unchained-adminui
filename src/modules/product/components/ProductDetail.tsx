@@ -35,7 +35,7 @@ import ProductAssignmentForm from './ProductAssignmentForm';
 import ProductTokenizationForm from './ProductTokenizationForm';
 import DisplayExtendedFields from '../../common/components/DisplayExtendedFields';
 
-const GetCurrentTab = ({ id, selectedView, ...extendedData }) => {
+const GetCurrentTab = ({ id, selectedView = '', ...extendedData }) => {
   if (selectedView === 'texts')
     return (
       <LocaleWrapper>
@@ -77,7 +77,7 @@ const GetCurrentTab = ({ id, selectedView, ...extendedData }) => {
     </LocaleWrapper>
   );
 };
-const ProductDetail = ({ product, extendedData }) => {
+const ProductDetail = ({ product, extendedData = {} }) => {
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
   const { publishProduct } = usePublishProduct();
