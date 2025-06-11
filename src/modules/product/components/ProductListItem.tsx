@@ -13,7 +13,11 @@ const PRODUCT_STATUS = {
   DELETED: 'red',
 };
 
-const ProductListItem = ({ product, showAvatar = false }) => {
+const ProductListItem = ({
+  product,
+  showAvatar = false,
+  hideSortIndex = false,
+}) => {
   const { formatMessage } = useIntl();
   const { updateProduct } = useUpdateProduct();
 
@@ -83,15 +87,17 @@ const ProductListItem = ({ product, showAvatar = false }) => {
       <Table.Cell>
         {product.tags?.map((t) => <Badge key={t} text={t} color="indigo" />)}
       </Table.Cell>
-      <Table.Cell>
-        <input
-          type="number"
-          id={`${product?._id}-sequence`}
-          className="w-24 shadow-xs focus:ring-indigo-500 dark:bg-slate-800 dark:border-slate-700 focus:border-indigo-500 block text-sm  border-gray-300 rounded-full mr-2 font-bold text-indigo-500"
-          defaultValue={product?.sequence}
-          onBlur={updateProductSequence}
-        />
-      </Table.Cell>
+      {hideSortIndex ? null : (
+        <Table.Cell>
+          <input
+            type="number"
+            id={`${product?._id}-sequence`}
+            className="w-24 shadow-xs focus:ring-indigo-500 dark:bg-slate-800 dark:border-slate-700 focus:border-indigo-500 block text-sm  border-gray-300 rounded-full mr-2 font-bold text-indigo-500"
+            defaultValue={product?.sequence}
+            onBlur={updateProductSequence}
+          />
+        </Table.Cell>
+      )}
     </Table.Row>
   );
 };
