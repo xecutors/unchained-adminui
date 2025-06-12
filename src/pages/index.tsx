@@ -6,8 +6,86 @@ import remarkGfm from 'remark-gfm';
 import rehypeSanitize from 'rehype-sanitize';
 import { PaperAirplaneIcon } from '@heroicons/react/24/outline';
 
-import ProductListItem from '../modules/product/components/ProductListItem';
 import ProductDetail from '../modules/product/components/ProductDetail';
+import useCurrentUser from '../modules/accounts/hooks/useCurrentUser';
+import { IUser } from '../gql/types';
+import MiniUserAvatar from '../modules/common/components/MiniUserAvatar';
+import { ComputerDesktopIcon } from '@heroicons/react/24/solid';
+import { useFormatPrice } from '../modules/common/utils/utils';
+import ImageWithFallback from '../modules/common/components/ImageWithFallback';
+import Link from 'next/link';
+import generateUniqueId from '../modules/common/utils/getUniqueId';
+
+const ProductListItem: React.FC<{
+  product;
+}> = ({ product }) => {
+  const { formatPrice } = useFormatPrice();
+  const { texts, media, commerce } = product;
+  const [text = {}] = texts || [];
+  return (
+    <Link
+      href={`/products?slug=${generateUniqueId(product)}`}
+      className="text-blue-600 dark:text-blue-400"
+    >
+      <div className="flex gap-4 p-4 border-b border-gray-200 hover:bg-gray-50 transition">
+        <div className="w-24 h-24 flex-shrink-0 bg-gray-100 rounded-md overflow-hidden">
+          {media?.length ? (
+            <ImageWithFallback
+              src={media[0]?.file.url}
+              alt={text?.title}
+              className="w-full h-full object-cover"
+              width={100}
+              height={100}
+            />
+          ) : (
+            <div className="flex items-center justify-center h-full text-gray-400 text-sm">
+              No Image
+            </div>
+          )}
+        </div>
+        <div className="flex-1 flex flex-col justify-between">
+          <div>
+            <h2 className="text-lg font-semibold text-gray-900">
+              {text.title}
+            </h2>
+            <p className="text-sm text-gray-600">{text?.subtitle}</p>
+          </div>
+
+          <div className="mt-2 flex items-center justify-between text-sm">
+            <span className="text-blue-600 font-semibold">
+              {formatPrice(commerce?.pricing?.[0])}
+            </span>
+            <span className="text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded">
+              {product.type}
+            </span>
+          </div>
+          {product.tags && product.tags.length > 0 && (
+            <div className="mt-2 flex flex-wrap gap-2">
+              {product.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="text-xs bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded-full"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </Link>
+  );
+};
+
+const ProductList = ({ products }: { products: any[] }) => {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {products.map((product) => (
+        <ProductListItem key={product._id} product={product} />
+      ))}
+    </div>
+  );
+};
 
 const MarkdownText = ({ text }: { text: string }) => (
   <Markdown rehypePlugins={[rehypeRaw, remarkGfm, rehypeSanitize] as any}>
@@ -24,14 +102,7 @@ const ToolInvocationRenderer = ({ part }: { part: any }) => {
     const parsed = JSON.parse(text);
 
     if (toolName === 'list_products' && parsed?.products?.length) {
-      return parsed.products.map((p: any) => (
-        <ProductListItem
-          showAvatar
-          key={p._id}
-          product={{ ...p, texts: p.texts?.[0] }}
-          hideSortIndex
-        />
-      ));
+      return <ProductList products={parsed.products} />;
     }
 
     if (toolName === 'get_product' && parsed?.product) {
@@ -59,10 +130,21 @@ const ToolInvocationRenderer = ({ part }: { part: any }) => {
   }
 };
 
-const MessageRenderer = ({ message }: { message: any }) => {
+const MessageRenderer = ({ message, user }: { message: any; user: IUser }) => {
   const isUser = message.role === 'user';
   return (
-    <div className={`flex ${isUser ? 'justify-end' : 'justify-start'}`}>
+    <div className={`flex ${!isUser ? 'justify-end' : 'justify-start'}`}>
+      {isUser && (
+        <div className="flex-shrink-0 mr-2">
+          {user && (
+            <MiniUserAvatar
+              url={user?.avatar?.url}
+              showName={false}
+              name={user.username}
+            />
+          )}
+        </div>
+      )}
       <div
         className={`max-w-[75%] rounded-xl px-4 py-3 shadow-md ${
           isUser
@@ -87,6 +169,13 @@ const MessageRenderer = ({ message }: { message: any }) => {
           }
         })}
       </div>
+      {!isUser && (
+        <div className="flex-shrink-0 ml-2">
+          <div className="h-10 w-10 bg-blue-200 text-blue-800 font-bold rounded-full flex items-center justify-center">
+            <ComputerDesktopIcon className="h-6 w-6" />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
@@ -97,7 +186,7 @@ const Home = () => {
     credentials: 'include',
     api: 'http://localhost:4010/chat',
   });
-
+  const { currentUser } = useCurrentUser();
   const bottomRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const el = bottomRef.current;
@@ -120,7 +209,11 @@ const Home = () => {
       </header>
       <main className="flex-1 overflow-y-auto px-4 py-6 space-y-4">
         {messages?.map((message) => (
-          <MessageRenderer key={message.id} message={message} />
+          <MessageRenderer
+            key={message.id}
+            message={message}
+            user={currentUser}
+          />
         ))}
         <div ref={bottomRef} />
       </main>
