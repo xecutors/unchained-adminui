@@ -20,7 +20,6 @@ const ProductListItem = ({
 }) => {
   const { formatMessage } = useIntl();
   const { updateProduct } = useUpdateProduct();
-
   const updateProductSequence = async (e) => {
     if (e.target.value)
       await updateProduct({

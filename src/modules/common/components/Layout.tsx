@@ -219,7 +219,7 @@ const Layout = ({
         aria-modal="true"
       >
         <div
-          className="fixed inset-0 bg-slate-600 bg-opacity-75"
+          className="fixed inset-0 bg-slate-600 bg-opacity/75"
           aria-hidden="true"
         />
 
