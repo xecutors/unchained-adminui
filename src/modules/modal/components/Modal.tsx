@@ -40,7 +40,7 @@ const Modal = ({
 
   return visible ? (
     <ModalInner intl={intl}>
-      <div className="fixed inset-0 z-10 overflow-y-auto" aria-modal="true">
+      <div className="fixed inset-0  overflow-y-auto" aria-modal="true">
         <div
           className="flex min-h-screen items-center justify-center px-4 pt-4 pb-20 text-center sm:block sm:p-0"
           tabIndex={-1}
@@ -49,7 +49,7 @@ const Modal = ({
           <div
             onClick={onOverlayClick}
             onKeyUp={onOverlayClick}
-            className="fixed inset-0 bg-slate-500 bg-opacity-75 transition-opacity"
+            className="inset-0  z-50 bg-slate-400 bg-opacity/75 transition-opacity"
             aria-hidden="true"
           />
           <span
@@ -59,7 +59,7 @@ const Modal = ({
             &#8203;
           </span>
           <div
-            className="inline-block transform overflow-hidden rounded-lg bg-white dark:bg-slate-900 px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6 sm:align-middle"
+            className="inline-block z-50 transform overflow-hidden rounded-lg bg-white dark:bg-slate-900 px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6 sm:align-middle"
             onClick={(e) => {
               e.stopPropagation();
             }}

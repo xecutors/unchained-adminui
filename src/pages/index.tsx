@@ -16,9 +16,7 @@ import ImageWithFallback from '../modules/common/components/ImageWithFallback';
 import Link from 'next/link';
 import generateUniqueId from '../modules/common/utils/getUniqueId';
 
-const ProductListItem: React.FC<{
-  product;
-}> = ({ product }) => {
+const ProductListItem = ({ product }) => {
   const { formatPrice } = useFormatPrice();
   const { texts, media, commerce } = product;
   const [text = {}] = texts || [];
@@ -100,10 +98,18 @@ const ToolInvocationRenderer = ({ part }: { part: any }) => {
   try {
     const [{ text }] = result.content;
     const parsed = JSON.parse(text);
-
+    const listViewTools = [
+      'create_product',
+      'remove_product',
+      'publish_product',
+      'unpublish_product',
+    ];
     if (toolName === 'list_products' && parsed?.products?.length) {
       return <ProductList products={parsed.products} />;
     }
+
+    if (listViewTools.includes(toolName) && parsed?.product)
+      return <ProductList products={[parsed.product]} />;
 
     if (toolName === 'get_product' && parsed?.product) {
       return (
@@ -111,8 +117,6 @@ const ToolInvocationRenderer = ({ part }: { part: any }) => {
           key={parsed.product._id}
           product={{
             ...parsed.product,
-            texts: parsed.productTexts?.[0],
-            media: parsed?.media,
           }}
         />
       );
