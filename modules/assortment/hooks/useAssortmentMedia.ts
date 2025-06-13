@@ -43,7 +43,6 @@ const useAssortmentMedia = ({
       variables: {
         assortmentId: id || parsedId,
       },
-      fetchPolicy: 'cache-first',
     },
   );
 

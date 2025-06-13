@@ -217,7 +217,7 @@ const Layout = ({
   const ref = useOutsideClick(handleClickOutside);
 
   return (
-    <AuthWrapper componentName={componentName}>
+    <AuthWrapper>
       <div
         className={`fixed inset-0 z-40 flex md:hidden  ${
           hideNav ? 'hidden' : ''

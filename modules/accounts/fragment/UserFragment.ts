@@ -95,6 +95,18 @@ const UserFragment = gql`
     roles
     tags
     deleted
+    cart {
+      _id
+      items {
+        _id
+      }
+    }
+    orders {
+      _id
+      items {
+        _id
+      }
+    }
   }
   ${MD5MetaDataFragment}
 `;

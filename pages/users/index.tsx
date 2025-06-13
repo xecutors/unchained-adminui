@@ -58,7 +58,6 @@ const Users = () => {
     lastLogin,
     emailVerified,
   });
-
   return (
     <div className="mb-10">
       <BreadCrumbs />
@@ -96,7 +95,7 @@ const Users = () => {
           />
         )}
       </div>
-      <Pagination data={users} total={usersCount} />
+      <Pagination data={users} total={usersCount} onLoadMore={loadMore} />
     </div>
   );
 };

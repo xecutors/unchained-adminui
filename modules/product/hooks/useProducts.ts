@@ -49,7 +49,7 @@ const useProducts = ({
   sort: sortOptions = [],
   forceLocale = '',
 }: IProductsQueryVariables & { forceLocale?: string } = {}) => {
-  const { data, loading, error } = useQuery<
+  const { data, loading, error, fetchMore } = useQuery<
     IProductsQuery,
     IProductsQueryVariables
   >(ProductsQuery, {
@@ -74,12 +74,19 @@ const useProducts = ({
   const productsCount = data?.productsCount;
   const hasMore = products?.length < productsCount;
 
+  const loadMore = () => {
+    fetchMore({
+      variables: { offset: products.length },
+    });
+  };
+
   return {
     products,
     productsCount,
     hasMore,
     loading,
     error,
+    loadMore,
   };
 };
 

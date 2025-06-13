@@ -108,6 +108,13 @@ const ProductDetailPage = () => {
               }}
             />
           }
+          title={formatMessage(
+            {
+              id: 'product_detail_title',
+              defaultMessage: 'Product {id}',
+            },
+            { id: product?._id },
+          )}
         >
           <div className="mr-4">
             {product?.created && (

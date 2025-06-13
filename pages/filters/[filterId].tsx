@@ -63,6 +63,13 @@ const FilterDetailPage = () => {
             id: 'filter_detail',
             defaultMessage: 'Filter Detail',
           })}
+          title={formatMessage(
+            {
+              id: 'filter_detail_title',
+              defaultMessage: 'Filter {id}',
+            },
+            { id: filter?._id },
+          )}
         />
         {hasRole('removeFilter') && (
           <HeaderDeleteButton onClick={onRemoveFilter} />

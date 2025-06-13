@@ -38,7 +38,7 @@ const useFilters = ({
   sort = [],
   forceLocale = '',
 }: IFiltersQueryVariables & { forceLocale?: string } = {}) => {
-  const { data, loading, error } = useQuery<
+  const { data, loading, error, fetchMore } = useQuery<
     IFiltersQuery,
     IFiltersQueryVariables & { forceLocale?: string }
   >(FiltersQuery, {
@@ -58,12 +58,18 @@ const useFilters = ({
   const filters = data?.filters || [];
   const filtersCount = data?.filtersCount;
   const hasMore = filters?.length < filtersCount;
+  const loadMore = () => {
+    fetchMore({
+      variables: { offset: filters?.length },
+    });
+  };
   return {
     filters,
     filtersCount,
     hasMore,
     loading,
     error,
+    loadMore,
   };
 };
 

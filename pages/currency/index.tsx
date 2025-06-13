@@ -47,7 +47,7 @@ const Currencies = () => {
   };
   const sortKeys = convertSortFieldsToQueryFormat(sort);
 
-  const { currencies, currenciesCount, loading } = useCurrencies({
+  const { currencies, currenciesCount, loading, loadMore } = useCurrencies({
     queryString: queryString as string,
     limit,
     offset,
@@ -125,7 +125,11 @@ const Currencies = () => {
             sortable
           />
         )}
-        <Pagination data={currencies} total={currenciesCount} />
+        <Pagination
+          data={currencies}
+          total={currenciesCount}
+          onLoadMore={loadMore}
+        />
       </div>
     </>
   );

@@ -15,7 +15,7 @@ const AssortmentListView = ({
 
   const sortKeys = convertSortFieldsToQueryFormat(sort);
 
-  const { assortments, assortmentsCount, loading } = useAssortments({
+  const { assortments, assortmentsCount, loading, loadMore } = useAssortments({
     queryString,
     includeInactive,
     includeLeaves,
@@ -32,7 +32,11 @@ const AssortmentListView = ({
   ) : (
     <>
       <AssortmentList assortments={assortments} sortable={sortable} />
-      <Pagination data={assortments} total={assortmentsCount} />
+      <Pagination
+        data={assortments}
+        total={assortmentsCount}
+        onLoadMore={loadMore}
+      />
     </>
   );
 };

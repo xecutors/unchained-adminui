@@ -35,7 +35,6 @@ const useAssortmentFilters = ({
       variables: {
         assortmentId: id || parsedId,
       },
-      fetchPolicy: 'cache-first',
     },
   );
 

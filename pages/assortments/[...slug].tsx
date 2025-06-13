@@ -70,6 +70,13 @@ const AssortmentDetailPage = () => {
             }}
           />
         }
+        title={formatMessage(
+          {
+            id: 'assortment_detail_title',
+            defaultMessage: 'Assortment {id}',
+          },
+          { id: assortment?._id },
+        )}
       >
         <div id="date">
           {assortment?.created && (

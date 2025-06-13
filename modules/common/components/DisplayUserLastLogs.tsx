@@ -47,7 +47,7 @@ const LoginInfo = ({ loginData }) => {
         label={formatMessage({ id: 'time', defaultMessage: 'Time' })}
         value={
           loginData.timestamp
-            ? formatDateTime(loginData.timestamp, {
+            ? formatDateTime(loginData?.timestamp, {
                 dateStyle: 'short',
                 timeStyle: 'short',
               })

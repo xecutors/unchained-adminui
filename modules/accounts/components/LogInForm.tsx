@@ -124,7 +124,6 @@ const LogInForm = () => {
         webAuthnPublicKeyCredentials,
       });
       if (data && data?.loginWithWebAuthn) {
-        const { _id, tokenExpires } = data.loginWithWebAuthn;
         return { success: true, errors };
       }
     }

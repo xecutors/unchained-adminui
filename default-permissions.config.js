@@ -1,9 +1,4 @@
 module.exports = () => {
-  function isAdmin(user) {
-    return (
-      user?.allowedActions.length === 0 || (user?.roles || []).includes('admin')
-    );
-  }
   const ACTION_ROLES = {
     assortments: {
       showAssortment: 'viewAssortment',
@@ -272,16 +267,19 @@ module.exports = () => {
     '/reset-password',
     '/api/graphql',
   ];
+  
+  const isAdmin = (user) => {
+    return (
+      user?.allowedActions.length === 0 || (user?.roles || []).includes('admin')
+    );
+  }
+
   return {
     UnrestrictedPages,
     checkAccess: (
       user,
-      action,
-
-      apolloClient,
-      { componentName, router },
+      pathname
     ) => {
-      const { pathname } = router;
       if (!user?._id && !UnrestrictedPages?.includes(pathname)) return false;
 
       if (
@@ -292,7 +290,7 @@ module.exports = () => {
         return true;
       return false;
     },
-    checkRole: (user, role, apolloClient, { componentName, router }) => {
+    checkRole: (user, role) => {
       if (isAdmin(user)) {
         return true;
       }
@@ -302,8 +300,7 @@ module.exports = () => {
       return false;
     },
     isUserAdmin: isAdmin,
-    isPublicOnlyPage: (router) => {
-      const { pathname } = router;
+    isPublicOnlyPage: (pathname) => {
       return OnlyPublicPages.includes(pathname);
     },
     isUserAuthenticated: (user) => {
