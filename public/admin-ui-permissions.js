@@ -1,9 +1,4 @@
 window.AdminUiPermissions = () => {
-  function isAdmin(user) {
-    return (
-      user?.allowedActions.length === 0 || (user?.roles || []).includes('admin')
-    );
-  }
   const ACTION_ROLES = {
     assortments: {
       showAssortment: 'viewAssortment',
@@ -272,16 +267,16 @@ window.AdminUiPermissions = () => {
     '/reset-password',
     '/api/graphql',
   ];
+
+  const isAdmin = (user) => {
+    return (
+      user?.allowedActions.length === 0 || (user?.roles || []).includes('admin')
+    );
+  };
+
   return {
     UnrestrictedPages,
-    checkAccess: (
-      user,
-      action,
-
-      apolloClient,
-      { componentName, router },
-    ) => {
-      const { pathname } = router;            
+    checkAccess: (user, pathname) => {
       if (!user?._id && !UnrestrictedPages?.includes(pathname)) return false;
 
       if (
@@ -292,7 +287,7 @@ window.AdminUiPermissions = () => {
         return true;
       return false;
     },
-    checkRole: (user, role, apolloClient, { componentName, router }) => {
+    checkRole: (user, role) => {
       if (isAdmin(user)) {
         return true;
       }
@@ -302,8 +297,7 @@ window.AdminUiPermissions = () => {
       return false;
     },
     isUserAdmin: isAdmin,
-    isPublicOnlyPage: (router) => {      
-      const { pathname } = router;
+    isPublicOnlyPage: (pathname) => {
       return OnlyPublicPages.includes(pathname);
     },
     isUserAuthenticated: (user) => {
