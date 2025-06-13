@@ -7,7 +7,6 @@ import { createUploadLink } from 'apollo-upload-client';
 import { setContext } from '@apollo/client/link/context';
 import { onError } from '@apollo/client/link/error';
 import getConfig from 'next/config';
-import { onTokenChange, getLoginToken } from '../../accounts/utils/store';
 import apolloCache, { resetCache } from './apolloCache';
 
 const {
@@ -64,11 +63,6 @@ const createApolloClient = ({
   const authLink = new ApolloLink((operation, forward) => {
     const context = operation.getContext();
     const headers: { authorization?: string } = {};
-
-    const foundToken = getLoginToken();
-    if (foundToken) {
-      headers.authorization = `Bearer ${foundToken}`;
-    }
 
     operation.setContext({
       headers: {
@@ -127,10 +121,6 @@ const createApolloClient = ({
 
   apolloClient.onResetStore(async () => {
     resetCache(cache);
-  });
-
-  onTokenChange(() => {
-    apolloClient.resetStore();
   });
 
   return apolloClient;

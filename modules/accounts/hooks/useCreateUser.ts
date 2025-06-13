@@ -27,7 +27,7 @@ const CreateUserMutation = gql`
 `;
 
 const useCreateUser = () => {
-  const [createUserMutation, { data, error, loading }] = useMutation<
+  const [createUserMutation, { data, error, loading, client }] = useMutation<
     ICreateUserMutation,
     ICreateUserMutationVariables
   >(CreateUserMutation);
@@ -53,10 +53,13 @@ const useCreateUser = () => {
       variables.username = username;
     }
     variables.plainPassword = plainPassword;
-    return createUserMutation({
+    const result = await createUserMutation({
       variables,
       refetchQueries: ['Users'],
     });
+
+    await client.resetStore();
+    return result;
   };
   const newUser = data?.createUser;
 

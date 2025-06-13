@@ -17,7 +17,7 @@ const LogWithWebAuthnMutation = gql`
 `;
 
 const useLoginWithWebAuthn = () => {
-  const [loginWithWebAuthnMutation] = useMutation<
+  const [loginWithWebAuthnMutation, { client }] = useMutation<
     ILoginWithWebAuthnMutation,
     ILoginWithWebAuthnMutationVariables
   >(LogWithWebAuthnMutation);
@@ -25,9 +25,12 @@ const useLoginWithWebAuthn = () => {
   const loginWithWebAuthn = async ({
     webAuthnPublicKeyCredentials,
   }: ILoginWithWebAuthnMutationVariables) => {
-    return loginWithWebAuthnMutation({
+    const result = await loginWithWebAuthnMutation({
       variables: { webAuthnPublicKeyCredentials },
+      awaitRefetchQueries: true,
     });
+    await client.resetStore();
+    return result;
   };
   return { loginWithWebAuthn };
 };

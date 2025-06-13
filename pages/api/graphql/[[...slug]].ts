@@ -21,20 +21,16 @@ export default createProxyMiddleware({
     '*': process.env.UNCHAINED_COOKIE_DOMAIN || '',
   },
   cookiePathRewrite: '/',
+  // onError: (err, req, res) => {
+  //   console.error('Proxy error:', err);
+
+  // pathRewrite: (path, req) => {
+  //   // Remove the /api/graphql prefix from the path
+  //   const newPath = path.replace(/^\/api\/graphql/, '');
+  //   console.log(newPath);
+  //   return newPath;
+  // },
   target: process.env.GRAPHQL_ENDPOINT,
   changeOrigin: true,
   proxyTimeout: 60000,
-  on: {
-    proxyRes: (proxyRes) => {
-      const removeSecure = (str) => str.replace(/; Secure/i, '');
-      const set = proxyRes.headers['set-cookie'];
-      if (set) {
-        const result = Array.isArray(set)
-          ? set.map(removeSecure)
-          : removeSecure(set);
-        // eslint-disable-next-line
-        proxyRes.headers['set-cookie'] = result;
-      }
-    },
-  },
 });

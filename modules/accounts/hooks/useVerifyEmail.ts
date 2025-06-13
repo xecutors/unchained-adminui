@@ -20,15 +20,17 @@ const VerifyEmailMutation = gql`
 `;
 
 const useVerifyEmail = () => {
-  const [verifyEmailMutation] = useMutation<
+  const [verifyEmailMutation, { client }] = useMutation<
     IVerifyEmailMutation,
     IVerifyEmailMutationVariables
   >(VerifyEmailMutation);
 
   const verifyEmail = async ({ token }: IVerifyEmailMutationVariables) => {
-    return verifyEmailMutation({
+    const result = await verifyEmailMutation({
       variables: { token },
     });
+    await client.resetStore();
+    return result;
   };
 
   return {

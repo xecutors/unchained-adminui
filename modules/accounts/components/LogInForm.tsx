@@ -19,7 +19,6 @@ import useForm, {
 import useGenerateLoginCredentials from '../hooks/useGenerateLoginCredentials';
 import useLoginWithPassword from '../hooks/useLoginWithPassword';
 import useLoginWithWebAuthn from '../hooks/useLoginWithWebAuthn';
-import { storeLoginToken } from '../utils/store';
 import GoogleOauth from './GoogleOauth';
 import { useCallback, useState } from 'react';
 
@@ -123,9 +122,6 @@ const LogInForm = () => {
         webAuthnPublicKeyCredentials,
       });
       if (data && data?.loginWithWebAuthn) {
-        const { id, token, tokenExpires } = data.loginWithWebAuthn;
-
-        await storeLoginToken(id, token, new Date(tokenExpires));
         return { success: true, errors };
       }
     }
@@ -144,8 +140,7 @@ const LogInForm = () => {
         password,
       });
       if (!errors?.length) {
-        const { id, token, tokenExpires, user } = data.loginWithPassword;
-        await storeLoginToken(id, token, new Date(tokenExpires));
+        const { id } = data.loginWithPassword;
         return { success: Boolean(id), ...data.loginWithPassword };
       }
       const [error] = errors;
@@ -160,10 +155,6 @@ const LogInForm = () => {
         usernameOrEmail,
         password,
       });
-      if (!errors?.length) {
-        const { id, token, tokenExpires, user } = data.loginWithPassword;
-        await storeLoginToken(id, token, new Date(tokenExpires));
-      }
       return { success: false, errors };
     }
     return { success: false };

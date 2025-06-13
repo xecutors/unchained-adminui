@@ -101,10 +101,7 @@ const UnchainedAdmin = ({ Component, componentName, pageProps, router }) => {
                   pauseOnHover
                 />
                 <ModalWrapper>
-                  <AuthWrapper
-                    apolloClient={apollo}
-                    componentName={componentName}
-                  >
+                  <AuthWrapper>
                     {getLayout(<Component {...pageProps} />)}
                   </AuthWrapper>
                 </ModalWrapper>

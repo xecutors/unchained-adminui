@@ -6,7 +6,7 @@ import {
 import useUnchainedContext from '../../UnchainedContext/useUnchainedContext';
 import UserFragment from '../fragment/UserFragment';
 
-export const GetCurrentUserQuery = (inlineFragment = '') => gql`
+const GetCurrentUserQuery = (inlineFragment = '') => gql`
   query CurrentUser {
     me {
       ...UserFragment
@@ -29,12 +29,12 @@ const useCurrentUser = (params?: ICurrentUserQueryVariables) => {
     notifyOnNetworkStatusChange: true,
   });
 
-  const currentUser = data?.me || undefined;
+  const currentUser = data?.me;
   const extendedData = hydrateFragment(customProperties?.User, currentUser);
   const impersonator = data?.impersonator;
 
   return {
-    currentUser: data?.me,
+    currentUser,
     loading,
     error,
     extendedData,
