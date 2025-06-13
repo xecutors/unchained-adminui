@@ -1,6 +1,6 @@
-import localizations from '../../i18n';
-import generateUniqueId from '../../modules/common/utils/getUniqueId';
-import { getContent } from '../../modules/common/utils/utils';
+import localizations from '../../src/i18n';
+import generateUniqueId from '../../src/modules/common/utils/getUniqueId';
+import { getContent } from '../../src/modules/common/utils/utils';
 import {
   AssortmentListResponse,
   AssortmentOperation,
@@ -76,7 +76,7 @@ describe('Assortment Detail Texts', () => {
     beforeEach(() => {
       const { assortment } = SingleAssortmentResponse.data;
 
-      cy.get(`a[href="/assortments/${generateUniqueId(assortment)}"]`)
+      cy.get(`a[href="/assortments?assortmentSlug=${generateUniqueId(assortment)}"]`)
         .contains(assortment?.texts?.title)
         .click();
 
@@ -102,7 +102,7 @@ describe('Assortment Detail Texts', () => {
 
       cy.location('pathname').should(
         'eq',
-        `/assortments/${generateUniqueId(assortment)}`,
+        `/assortments?assortmentSlug=${generateUniqueId(assortment)}`,
       );
       cy.get('h2').within(() => {
         cy.get('span').should(
@@ -179,7 +179,7 @@ describe('Assortment Detail Texts', () => {
         .click({ force: true });
       cy.location('pathname').should(
         'eq',
-        `/assortments/${generateUniqueId(assortment)}`,
+        `/assortments?assortmentSlug=${generateUniqueId(assortment)}`,
       );
     });
 
@@ -202,7 +202,7 @@ describe('Assortment Detail Texts', () => {
 
       cy.location('pathname').should(
         'eq',
-        `/assortments/${generateUniqueId(assortment)}`,
+        `/assortments?assortmentSlug=${generateUniqueId(assortment)}`,
       );
     });
 
@@ -222,7 +222,7 @@ describe('Assortment Detail Texts', () => {
 
       cy.location('pathname').should(
         'eq',
-        `/assortments/${generateUniqueId(assortment)}`,
+        `/assortments?assortmentSlug=${generateUniqueId(assortment)}`,
       );
     });
 
@@ -242,7 +242,7 @@ describe('Assortment Detail Texts', () => {
 
       cy.location('pathname').should(
         'eq',
-        `/assortments/${generateUniqueId(assortment)}`,
+        `/assortments?assortmentSlug=${generateUniqueId(assortment)}`,
       );
     });
 
@@ -279,7 +279,7 @@ describe('Assortment Detail Texts', () => {
 
       cy.location('pathname').should(
         'eq',
-        `/assortments/${generateUniqueId(assortment)}`,
+        `/assortments?assortmentSlug=${generateUniqueId(assortment)}`,
       );
     });
 
@@ -317,7 +317,7 @@ describe('Assortment Detail Texts', () => {
 
       cy.location('pathname').should(
         'eq',
-        `/assortments/${generateUniqueId(assortment)}`,
+        `/assortments?assortmentSlug=${generateUniqueId(assortment)}`,
       );
     });
 
@@ -352,7 +352,7 @@ describe('Assortment Detail Texts', () => {
         ({ _id }) => _id === 'not-base',
       );
 
-      cy.get(`a[href="/assortments/${generateUniqueId(assortment)}"]`)
+      cy.get(`a[href="/assortments?assortmentSlug=${generateUniqueId(assortment)}"]`)
         .contains(assortment?.texts?.title)
         .click();
 
@@ -382,7 +382,7 @@ describe('Assortment Detail Texts', () => {
 
       cy.location('pathname').should(
         'eq',
-        `/assortments/${generateUniqueId(assortment)}`,
+        `/assortments?assortmentSlug=${generateUniqueId(assortment)}`,
       );
       cy.get('h2').within(() => {
         cy.get('span').should(
@@ -427,7 +427,7 @@ describe('Assortment Detail Texts', () => {
 
       cy.location('pathname').should(
         'eq',
-        `/assortments/${generateUniqueId(assortment)}`,
+        `/assortments?assortmentSlug=${generateUniqueId(assortment)}`,
       );
     });
 
@@ -436,7 +436,7 @@ describe('Assortment Detail Texts', () => {
         ({ _id }) => _id === 'not-root',
       );
 
-      cy.get(`a[href="/assortments/${generateUniqueId(assortment)}"]`)
+      cy.get(`a[href="/assortments?assortmentSlug=${generateUniqueId(assortment)}"]`)
         .contains(assortment?.texts?.title)
         .click();
 
@@ -466,7 +466,7 @@ describe('Assortment Detail Texts', () => {
 
       cy.location('pathname').should(
         'eq',
-        `/assortments/${generateUniqueId(assortment)}`,
+        `/assortments?assortmentSlug=${generateUniqueId(assortment)}`,
       );
       cy.get('h2').within(() => {
         cy.get('span').should(
@@ -509,7 +509,7 @@ describe('Assortment Detail Texts', () => {
 
       cy.location('pathname').should(
         'eq',
-        `/assortments/${generateUniqueId(assortment)}`,
+        `/assortments?assortmentSlug=${generateUniqueId(assortment)}`,
       );
     });
 
@@ -518,7 +518,7 @@ describe('Assortment Detail Texts', () => {
         ({ _id }) => _id === 'not-active',
       );
 
-      cy.get(`a[href="/assortments/${generateUniqueId(assortment)}"]`)
+      cy.get(`a[href="/assortments?assortmentSlug=${generateUniqueId(assortment)}"]`)
         .contains(assortment?.texts?.title)
         .click();
 
@@ -548,7 +548,7 @@ describe('Assortment Detail Texts', () => {
 
       cy.location('pathname').should(
         'eq',
-        `/assortments/${generateUniqueId(assortment)}`,
+        `/assortments?assortmentSlug=${generateUniqueId(assortment)}`,
       );
       cy.get('h2').within(() => {
         cy.get('span').should(
@@ -591,7 +591,7 @@ describe('Assortment Detail Texts', () => {
 
       cy.location('pathname').should(
         'eq',
-        `/assortments/${generateUniqueId(assortment)}`,
+        `/assortments?assortmentSlug=${generateUniqueId(assortment)}`,
       );
     });
   });

@@ -1,4 +1,4 @@
-import localizations from '../../i18n';
+import localizations from '../../src/i18n';
 import { LanguageOperations, LanguagesResponse } from '../mock/language';
 import {
   createUserRequestVariables,
@@ -259,7 +259,7 @@ describe('User', () => {
       },
     );
 
-    cy.location('pathname').should('contains', `/users/${enrollUser._id}`);
+    cy.location('pathname').should('contains', `/users?userId=${enrollUser._id}`);
   });
 
   it('Show [CANCEL USER] successfully on new user', () => {
@@ -305,8 +305,8 @@ describe('User', () => {
     const { user } = SingleUserResponse.data;
 
     cy.location('pathname').should('eq', '/users');
-    cy.get(`a[href="/users/${user._id}"]`).click();
-    cy.location('pathname').should('eq', `/users/${user._id}`);
+    cy.get(`a[href="/users?userId=${user._id}"]`).click();
+    cy.location('pathname').should('eq', `/users?userId=${user._id}`);
 
     cy.wait(fullAliasName(UserOperations.GetSingle)).then((currentSubject) => {
       const { request, response } = currentSubject;
@@ -357,8 +357,8 @@ describe('User', () => {
     const { user } = SingleUserResponse.data;
 
     cy.location('pathname').should('eq', '/users');
-    cy.get(`a[href="/users/${user._id}"]`).click();
-    cy.location('pathname').should('eq', `/users/${user._id}`);
+    cy.get(`a[href="/users?userId=${user._id}"]`).click();
+    cy.location('pathname').should('eq', `/users?userId=${user._id}`);
 
     cy.get('[data-id="cancel_update"]').first().click();
 
@@ -397,13 +397,13 @@ describe('User', () => {
     const { user } = SingleUserResponse.data;
 
     cy.location('pathname').should('eq', '/users');
-    cy.get(`a[href="/users/${user._id}"]`).click();
-    cy.location('pathname').should('eq', `/users/${user._id}`);
+    cy.get(`a[href="/users?userId=${user._id}"]`).click();
+    cy.location('pathname').should('eq', `/users?userId=${user._id}`);
 
     cy.get('[data-id="cancel_update"]').last().click();
     cy.get('input#displayName').clear().type(user.profile.displayName);
     cy.get('button').contains(localizations.en.cancel).last().click();
 
-    cy.location('pathname').should('eq', `/users/${user._id}`);
+    cy.location('pathname').should('eq', `/users?userId=${user._id}`);
   });
 });

@@ -1,4 +1,4 @@
-import localizations from '../../i18n';
+import localizations from '../../src/i18n';
 import {
   AddWorkResponse,
   AllocatedWorkResponse,
@@ -322,7 +322,7 @@ describe('WorkQueue', () => {
   it('Should Navigate to [WORK DETAIL] page successfully', () => {
     cy.location('pathname').should('eq', '/works');
     cy.get('h2').should('contain', localizations.en.work_queue_header);
-    cy.get(`a[href="/works/${AllocatedWorkResponse.data.work._id}"]`)
+    cy.get(`a[href="/works?workerId=${AllocatedWorkResponse.data.work._id}"]`)
       .first()
       .click();
 
@@ -336,7 +336,7 @@ describe('WorkQueue', () => {
 
     cy.location('pathname').should(
       'eq',
-      `/works/${AllocatedWorkResponse.data.work._id}`,
+      `/works?workerId=${AllocatedWorkResponse.data.work._id}`,
     );
 
     cy.get('h2').should('contain', localizations.en.work_detail);
@@ -345,7 +345,7 @@ describe('WorkQueue', () => {
   it('Should Navigate to [WORK DETAIL] page successfully', () => {
     cy.location('pathname').should('eq', '/works');
     cy.get('h2').should('contain', localizations.en.work_queue_header);
-    cy.get(`a[href="/works/${AllocatedWorkResponse.data.work._id}"]`)
+    cy.get(`a[href="/works?workerId=${AllocatedWorkResponse.data.work._id}"]`)
       .first()
       .click();
 
@@ -359,7 +359,7 @@ describe('WorkQueue', () => {
 
     cy.location('pathname').should(
       'eq',
-      `/works/${AllocatedWorkResponse.data.work._id}`,
+      `/works?workerId=${AllocatedWorkResponse.data.work._id}`,
     );
     cy.get('h2').should('contain', localizations.en.work_detail);
   });
@@ -425,7 +425,7 @@ describe('WorkQueue', () => {
 
     cy.location('pathname').should(
       'eq',
-      `/works/${AddWorkResponse.data.addWork._id}`,
+      `/works?workerId=${AddWorkResponse.data.addWork._id}`,
     );
   });
 

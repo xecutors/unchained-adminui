@@ -1,6 +1,6 @@
-import localizations from '../../i18n';
-import generateUniqueId from '../../modules/common/utils/getUniqueId';
-import { getContent } from '../../modules/common/utils/utils';
+import localizations from '../../src/i18n';
+import generateUniqueId from '../../src/modules/common/utils/getUniqueId';
+import { getContent } from '../../src/modules/common/utils/utils';
 import {
   AddAssortmentFilterResponse,
   AssortmentFiltersResponse,
@@ -73,7 +73,7 @@ describe('Assortment Detail Filters', () => {
       localizations.en.assortments_list_header,
     );
 
-    cy.get(`a[href="/assortments/${generateUniqueId(assortment)}"]`)
+    cy.get(`a[href="/assortments?assortmentSlug=${generateUniqueId(assortment)}"]`)
       .contains(assortment?.texts?.title)
       .click();
 
@@ -99,7 +99,7 @@ describe('Assortment Detail Filters', () => {
 
     cy.location('pathname').should(
       'eq',
-      `/assortments/${generateUniqueId(assortment)}`,
+      `/assortments?assortmentSlug=${generateUniqueId(assortment)}`,
     );
     cy.get('h2').within(() => {
       cy.get('span').should(
@@ -150,7 +150,7 @@ describe('Assortment Detail Filters', () => {
   afterEach(() => {
     cy.location().should((loc) => {
       expect(loc.pathname).to.eq(
-        `/assortments/${generateUniqueId(assortment)}`,
+        `/assortments?assortmentSlug=${generateUniqueId(assortment)}`,
       );
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
         tab: 'filters',

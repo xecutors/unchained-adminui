@@ -1,4 +1,4 @@
-import localizations from '../../i18n';
+import localizations from '../../src/i18n';
 import convertURLSearchParamToObj from '../utils/convertURLSearchParamToObj';
 import {
   CreateCurrencyResponse,
@@ -210,7 +210,7 @@ describe('Currencies', () => {
 
     cy.location('pathname').should(
       'eq',
-      `/currency/${CreateCurrencyResponse.data.createCurrency._id}`,
+      `/currency?currencyId=${CreateCurrencyResponse.data.createCurrency._id}`,
     );
   });
 
@@ -241,7 +241,7 @@ describe('Currencies', () => {
     );
     cy.location('pathname').should(
       'eq',
-      `/currency/${CreateCurrencyResponse.data.createCurrency._id}`,
+      `/currency?currencyId=${CreateCurrencyResponse.data.createCurrency._id}`,
     );
   });
 
@@ -271,9 +271,9 @@ describe('Currencies', () => {
 
     cy.location('pathname').should('eq', '/currency');
 
-    cy.get(`a[href="/currency/${currency._id}"]`).click();
+    cy.get(`a[href="/currency?currencyId=${currency._id}"]`).click();
 
-    cy.location('pathname').should('eq', `/currency/${currency._id}`);
+    cy.location('pathname').should('eq', `/currency?currencyId=${currency._id}`);
     cy.wait(fullAliasName(CurrencyOperations.GetSingleCurrency)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -296,8 +296,8 @@ describe('Currencies', () => {
     const { currency } = SingleCurrencyResponse.data;
 
     cy.location('pathname').should('eq', '/currency');
-    cy.get(`a[href="/currency/${currency._id}"]`).click();
-    cy.location('pathname').should('eq', `/currency/${currency._id}`);
+    cy.get(`a[href="/currency?currencyId=${currency._id}"]`).click();
+    cy.location('pathname').should('eq', `/currency?currencyId=${currency._id}`);
     cy.wait(fullAliasName(CurrencyOperations.GetSingleCurrency)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -331,7 +331,7 @@ describe('Currencies', () => {
     );
     cy.location('pathname').should(
       'eq',
-      `/currency/${SingleCurrencyResponse.data.currency._id}`,
+      `/currency?currencyId=${SingleCurrencyResponse.data.currency._id}`,
     );
   });
 
@@ -340,8 +340,8 @@ describe('Currencies', () => {
 
     cy.location('pathname').should('eq', '/currency');
 
-    cy.get(`a[href="/currency/${currency._id}"]`).click();
-    cy.location('pathname').should('eq', `/currency/${currency._id}`);
+    cy.get(`a[href="/currency?currencyId=${currency._id}"]`).click();
+    cy.location('pathname').should('eq', `/currency?currencyId=${currency._id}`);
     cy.get('input#contractAddress')
       .clear()
       .type('0x26b3E189B7DEE08EB86cCc698a');
@@ -363,8 +363,8 @@ describe('Currencies', () => {
     const { currency } = SingleCurrencyResponse.data;
 
     cy.location('pathname').should('eq', '/currency');
-    cy.get(`a[href="/currency/${currency._id}"]`).click();
-    cy.location('pathname').should('eq', `/currency/${currency._id}`);
+    cy.get(`a[href="/currency?currencyId=${currency._id}"]`).click();
+    cy.location('pathname').should('eq', `/currency?currencyId=${currency._id}`);
     cy.get('button[aria-describedby="header-delete-button"]')
       .contains(localizations.en.delete)
       .click();

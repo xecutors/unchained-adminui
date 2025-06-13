@@ -1,4 +1,4 @@
-import localizations from '../../i18n';
+import localizations from '../../src/i18n';
 import {
   CountryListResponse,
   CountryOperations,
@@ -208,7 +208,7 @@ describe('Countries', () => {
     );
     cy.location('pathname').should(
       'eq',
-      `/country/${CreateCountryResponse.data.createCountry._id}`,
+      `/country?countryId=${CreateCountryResponse.data.createCountry._id}`,
     );
   });
 
@@ -235,8 +235,8 @@ describe('Countries', () => {
     const { country } = SingleCountryResponse.data;
 
     cy.location('pathname').should('eq', '/country');
-    cy.get(`a[href="/country/${country._id}"]`).click();
-    cy.location('pathname').should('eq', `/country/${country._id}`);
+    cy.get(`a[href="/country?countryId=${country._id}"]`).click();
+    cy.location('pathname').should('eq', `/country?countryId=${country._id}`);
     cy.wait(fullAliasName(CountryOperations.GetSingleCountry)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -261,8 +261,8 @@ describe('Countries', () => {
     const { country } = SingleCountryResponse.data;
 
     cy.location('pathname').should('eq', '/country');
-    cy.get(`a[href="/country/${country._id}"]`).click();
-    cy.location('pathname').should('eq', `/country/${country._id}`);
+    cy.get(`a[href="/country?countryId=${country._id}"]`).click();
+    cy.location('pathname').should('eq', `/country?countryId=${country._id}`);
     cy.wait(fullAliasName(CountryOperations.GetSingleCountry)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -294,7 +294,7 @@ describe('Countries', () => {
     );
     cy.location('pathname').should(
       'eq',
-      `/country/${SingleCountryResponse.data.country._id}`,
+      `/country?countryId=${SingleCountryResponse.data.country._id}`,
     );
   });
 
@@ -302,8 +302,8 @@ describe('Countries', () => {
     const { country } = SingleCountryResponse.data;
 
     cy.location('pathname').should('eq', '/country');
-    cy.get(`a[href="/country/${country._id}"]`).click();
-    cy.location('pathname').should('eq', `/country/${country._id}`);
+    cy.get(`a[href="/country?countryId=${country._id}"]`).click();
+    cy.location('pathname').should('eq', `/country?countryId=${country._id}`);
     cy.get('input[type="checkbox"]#isActive');
     cy.get('button[aria-describedby="header-delete-button"]')
       .contains(localizations.en.delete)

@@ -1,4 +1,4 @@
-import localizations from '../../i18n';
+import localizations from '../../src/i18n';
 import {
   EventOperations,
   EventsListResponse,
@@ -232,7 +232,7 @@ describe('Events ', () => {
   it('Navigate to [EVENT DETAIL] successfully', () => {
     const [firstEvent] = EventsListResponse.data.events;
 
-    cy.get(`a[href="/events/${firstEvent._id}"]`).click();
+    cy.get(`a[href="/events?eventId=${firstEvent._id}"]`).click();
     cy.wait(fullAliasName(EventOperations.GetSingleEvent)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -243,7 +243,7 @@ describe('Events ', () => {
       },
     );
 
-    cy.location('pathname').should('eq', `/events/${firstEvent._id}`);
+    cy.location('pathname').should('eq', `/events?eventId=${firstEvent._id}`);
     cy.get('textarea').should('not.exist');
     cy.contains(localizations.en.payload).click({ multiple: true });
     cy.get('textarea').should('be.visible');

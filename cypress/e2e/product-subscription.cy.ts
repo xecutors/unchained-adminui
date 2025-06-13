@@ -1,5 +1,5 @@
-import localizations from '../../i18n';
-import { parseUniqueId } from '../../modules/common/utils/getUniqueId';
+import localizations from '../../src/i18n';
+import { parseUniqueId } from '../../src/modules/common/utils/getUniqueId';
 import {
   ACTIVE_PRODUCT_SLUG,
   ProductFilterRequest,
@@ -75,8 +75,8 @@ describe('Product Subscription', () => {
     );
     cy.get('h2').should('contain.text', localizations.en.products);
 
-    cy.get(`a[href="/products/${ACTIVE_PRODUCT_SLUG}"]`).first().click();
-    cy.location('pathname').should('eq', `/products/${ACTIVE_PRODUCT_SLUG}`);
+    cy.get(`a[href="/products?slug=${ACTIVE_PRODUCT_SLUG}"]`).first().click();
+    cy.location('pathname').should('eq', `/products?slug=${ACTIVE_PRODUCT_SLUG}`);
 
     cy.wait(fullAliasName(ProductOperations.GetSingleProduct)).then(
       (currentSubject) => {
@@ -121,7 +121,7 @@ describe('Product Subscription', () => {
     });
 
     cy.location().then((current) => {
-      expect(current.pathname).to.eq(`/products/${ACTIVE_PRODUCT_SLUG}`);
+      expect(current.pathname).to.eq(`/products?slug=${ACTIVE_PRODUCT_SLUG}`);
       expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
         tab: 'subscriptions',
       });
@@ -130,7 +130,7 @@ describe('Product Subscription', () => {
 
   afterEach(() => {
     cy.location().then((current) => {
-      expect(current.pathname).to.eq(`/products/${ACTIVE_PRODUCT_SLUG}`);
+      expect(current.pathname).to.eq(`/products?slug=${ACTIVE_PRODUCT_SLUG}`);
       expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
         tab: 'subscriptions',
       });

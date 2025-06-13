@@ -15,8 +15,6 @@
 
 // Import commands.js using ES2015 syntax:
 import '../../styles/globals.css';
-import 'react-toastify/dist/ReactToastify.css';
-import 'react-datepicker/dist/react-datepicker.min.css';
 import { MockedProvider } from '@apollo/client/testing/testing.cjs';
 import Router from 'next/router';
 import './commands';

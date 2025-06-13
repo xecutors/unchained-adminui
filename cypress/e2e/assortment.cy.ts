@@ -1,5 +1,5 @@
-import localizations from '../../i18n';
-import generateUniqueId from '../../modules/common/utils/getUniqueId';
+import localizations from '../../src/i18n';
+import generateUniqueId from '../../src/modules/common/utils/getUniqueId';
 import {
   AssortmentChildrenResponse,
   AssortmentListResponse,
@@ -536,7 +536,7 @@ describe('Assortment', () => {
 
     cy.location('pathname').should(
       'eq',
-      `/assortments/${generateUniqueId(
+      `/assortments?assortmentSlug=${generateUniqueId(
         CreateAssortmentResponse.data.createAssortment,
       )}`,
     );

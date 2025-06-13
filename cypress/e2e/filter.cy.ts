@@ -1,4 +1,4 @@
-import localizations from '../../i18n';
+import localizations from '../../src/i18n';
 import {
   CreateFilterOptionResponse,
   CreateFilterResponse,
@@ -233,7 +233,7 @@ describe('Filter', () => {
 
   context('Detail View', () => {
     beforeEach(() => {
-      cy.get(`a[href="/filters/${SingleFilterResponse.data.filter._id}"]`)
+      cy.get(`a[href="/filters?filterId=${SingleFilterResponse.data.filter._id}"]`)
         .contains(SingleFilterResponse.data.filter.texts.title)
         .first()
         .click();
@@ -248,7 +248,7 @@ describe('Filter', () => {
 
       cy.location('pathname').should(
         'eq',
-        `/filters/${SingleFilterResponse.data.filter._id}`,
+        `/filters?filterId=${SingleFilterResponse.data.filter._id}`,
       );
       cy.get('h2').should('contain', localizations.en.filter_detail);
     });
@@ -390,7 +390,7 @@ describe('Filter', () => {
 
       cy.location().then((current) => {
         expect(current.pathname).to.eq(
-          `/filters/${SingleFilterResponse.data.filter._id}`,
+          `/filters?filterId=${SingleFilterResponse.data.filter._id}`,
         );
         expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
           tab: 'options',
@@ -446,7 +446,7 @@ describe('Filter', () => {
       cy.get('a[id="options"]').click({ multiple: true });
       cy.location().then((current) => {
         expect(current.pathname).to.eq(
-          `/filters/${SingleFilterResponse.data.filter._id}`,
+          `/filters?filterId=${SingleFilterResponse.data.filter._id}`,
         );
         expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
           tab: 'options',
@@ -480,7 +480,7 @@ describe('Filter', () => {
       cy.get('a[id="options"]').click({ multiple: true });
       cy.location().should((current) => {
         expect(current.pathname).to.eq(
-          `/filters/${SingleFilterResponse.data.filter._id}`,
+          `/filters?filterId=${SingleFilterResponse.data.filter._id}`,
         );
         expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
           tab: 'options',
@@ -517,7 +517,7 @@ describe('Filter', () => {
       cy.get('a[id="options"]').click({ multiple: true });
       cy.location().then((current) => {
         expect(current.pathname).to.eq(
-          `/filters/${SingleFilterResponse.data.filter._id}`,
+          `/filters?filterId=${SingleFilterResponse.data.filter._id}`,
         );
         expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
           tab: 'options',
@@ -686,7 +686,7 @@ describe('Filter', () => {
       );
       cy.location('pathname').should(
         'eq',
-        `/filters/${CreateFilterResponse.data.createFilter._id}`,
+        `/filters?filterId=${CreateFilterResponse.data.createFilter._id}`,
       );
     });
 
@@ -722,7 +722,7 @@ describe('Filter', () => {
       );
       cy.location('pathname').should(
         'eq',
-        `/filters/${CreateFilterResponse.data.createFilter._id}`,
+        `/filters?filterId=${CreateFilterResponse.data.createFilter._id}`,
       );
     });
 
@@ -775,7 +775,7 @@ describe('Filter', () => {
       );
       cy.location('pathname').should(
         'eq',
-        `/filters/${CreateFilterResponse.data.createFilter._id}`,
+        `/filters?filterId=${CreateFilterResponse.data.createFilter._id}`,
       );
     });
 
