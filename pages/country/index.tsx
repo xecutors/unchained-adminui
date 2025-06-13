@@ -50,7 +50,7 @@ const Country = () => {
 
   const sortKeys = convertSortFieldsToQueryFormat(sort);
 
-  const { countries, countriesCount, loading } = useCountries({
+  const { countries, countriesCount, loading, loadMore } = useCountries({
     queryString: queryString as string,
     limit,
     includeInactive,
@@ -126,7 +126,11 @@ const Country = () => {
             onRemoveCountry={onRemoveCountry}
           />
         )}
-        <Pagination data={countries} total={countriesCount} />
+        <Pagination
+          data={countries}
+          total={countriesCount}
+          onLoadMore={loadMore}
+        />
       </div>
     </>
   );

@@ -85,6 +85,13 @@ const WarehousingProviderUpdate = () => {
             id: 'update_warehousing_provider_header',
             defaultMessage: 'Update warehousing provider',
           })}
+          title={formatMessage(
+            {
+              id: 'warehouse_detail_title',
+              defaultMessage: 'Warehouse {id}',
+            },
+            { id: warehousingProvider?._id },
+          )}
         />
         {hasRole('removeWarehousingProvider') && (
           <HeaderDeleteButton onClick={handleOnClick} />

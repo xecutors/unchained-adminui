@@ -5,11 +5,11 @@ const TableRow = ({
   className = '',
   children = [],
   header = false,
-  enableSort = false,
+  enablesort = false,
   ...props
 }) => {
   const clone = (cell) =>
-    React?.cloneElement(cell || <span />, { header, enableSort });
+    React?.cloneElement(cell || <span />, { header, enablesort });
   const cells = React.Children.map(children, clone);
   return (
     <tr

@@ -1,19 +1,19 @@
 import { useRouter } from 'next/router';
-import React, { useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import getConfig from 'next/config';
 import useCurrentUser from '../accounts/hooks/useCurrentUser';
 import AuthContext from './AuthContext';
+
 import loadRoleConfig from '../common/utils/loadRoleConfig';
-import { useApolloClient } from '@apollo/client';
+import Loading from '../common/components/Loading';
 
 const {
   publicRuntimeConfig: { restrictNonAdmin },
 } = getConfig();
 
-const AuthWrapper = ({ children, componentName }) => {
+const AuthWrapper = ({ children }) => {
   const router = useRouter();
   const { currentUser, loading } = useCurrentUser();
-  const apolloClient = useApolloClient();
 
   const {
     checkAccess,
@@ -21,65 +21,60 @@ const AuthWrapper = ({ children, componentName }) => {
     isUserAdmin,
     checkRole,
     isPublicOnlyPage,
-  } = loadRoleConfig();
-
-  const isAuthenticated = (user) => {
-    if (!isUserAuthenticated) return false;
-    return isUserAuthenticated(user);
-  };
-
-  const isAdmin = (user) => {
-    if (!isUserAdmin) return false;
-    return isUserAdmin(user);
-  };
-
-  const hasRole = (action, component = null) => {
-    if (!checkRole) return false;
-    return checkRole(currentUser, action, apolloClient, {
-      componentName: component,
-      router,
-      action,
-    });
-  };
-
-  const hasAccess = ({ user, action = '' }) => {
-    if (!checkAccess) return false;
-    return checkAccess(user, action, apolloClient, {
-      router,
-      componentName,
-    });
-  };
+  } = useMemo(() => loadRoleConfig(), []);
 
   const ctx = useMemo(() => {
     return {
-      isAuthenticated,
-      hasAccess,
-      isAdmin,
-      hasRole,
+      isAdmin: () => {
+        if (!isUserAdmin) return false;
+        return isUserAdmin(currentUser);
+      },
+      hasRole: (action) => {
+        if (!checkRole) return false;
+        return checkRole(currentUser, action);
+      },
     };
-  }, [currentUser, router.pathname]);
+  }, [currentUser, checkRole, isUserAdmin]);
 
   useEffect(() => {
     if (loading) return;
 
-    if (isAuthenticated(currentUser)) {
-      if (!hasAccess({ user: currentUser })) {
-        router.replace('/403');
-      } else if (isPublicOnlyPage(router)) {
-        router.replace('/');
+    let nextPathname = undefined;
+    if (isUserAuthenticated(currentUser)) {
+      if (!checkAccess(currentUser, router.pathname)) {
+        nextPathname = '/403';
+      } else if (isPublicOnlyPage(router.pathname)) {
+        nextPathname = '/';
       } else if (
-        !isAdmin(currentUser) &&
+        !isUserAdmin(currentUser) &&
         restrictNonAdmin &&
         router.pathname !== '/423'
       ) {
-        router.replace('/423');
+        nextPathname = '/423';
       }
-    } else if (!hasAccess({ user: currentUser })) {
-      router.replace('/log-in');
+    } else if (!checkAccess(currentUser)) {
+      nextPathname = '/log-in';
     }
-  }, [router, currentUser, hasAccess, isAuthenticated, loading]);
 
-  return <AuthContext.Provider value={ctx}>{children}</AuthContext.Provider>;
+    if (nextPathname && router.pathname !== nextPathname) {
+      console.log('Redirecting to:', nextPathname);
+      router.replace(nextPathname);
+    }
+  }, [
+    currentUser,
+    loading,
+    isUserAdmin,
+    isUserAuthenticated,
+    isPublicOnlyPage,
+    router,
+    checkAccess,
+  ]);
+
+  return (
+    <AuthContext.Provider value={ctx}>
+      {loading && !currentUser ? <Loading /> : children}
+    </AuthContext.Provider>
+  );
 };
 
 export default AuthWrapper;

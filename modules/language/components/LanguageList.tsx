@@ -10,7 +10,7 @@ const LanguageList = ({ languages, onRemoveLanguage, sortable }) => {
   return (
     <Table className="min-w-full ">
       {languages?.map((language) => (
-        <Table.Row key={language._id} header enableSort={sortable}>
+        <Table.Row key={language._id} header enablesort={sortable}>
           <Table.Cell sortKey="isoCode">
             {formatMessage({
               id: 'iso_code',

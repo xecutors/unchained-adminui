@@ -4,68 +4,58 @@ import { offsetLimitPagination } from '@apollo/client/utilities';
 const keyMappings: any = {
   Query: {
     fields: {
-      Assortments: {
-        keyArgs: [
-          'limit',
+      assortments: {
+        ...offsetLimitPagination([
           'includeLeaves',
           'includeInactive',
-          'offset',
           'tags',
           'queryString',
           'slugs',
-        ],
-        merge(existing = [], incoming = []) {
-          return [...existing, ...incoming];
-        },
-      },
-      Products: {
-        keyArgs: [
           'limit',
+        ]),
+      },
+      products: {
+        ...offsetLimitPagination([
           'includeDrafts',
-          'offset',
           'tags',
           'queryString',
           'sort',
-        ],
-        merge(existing = [], incoming = []) {
-          return [...existing, ...incoming];
-        },
+          'limit',
+        ]),
       },
-      Product: {
+      product: {
         keyArgs: ['productId', 'slug'],
         fields: {
           reviews: offsetLimitPagination(),
         },
       },
-      User: {
+      user: {
         keyArgs: ['userId'],
         fields: {
           reviews: offsetLimitPagination(),
         },
       },
-      Countries: {
-        keyArgs: ['limit', 'includeInactive', 'offset', 'queryString'],
-        merge(existing = [], incoming = []) {
-          return [...existing, ...incoming];
-        },
+      countries: {
+        ...offsetLimitPagination([
+          'includeInactive',
+          'queryString',
+          'sort',
+          'limit',
+        ]),
       },
-      Currencies: {
-        keyArgs: ['limit', 'includeInactive', 'offset', 'queryString'],
-        merge(existing = [], incoming = []) {
-          return [...existing, ...incoming];
-        },
+      currencies: {
+        ...offsetLimitPagination([
+          'includeInactive',
+          'queryString',
+          'sort',
+          'limit',
+        ]),
       },
-      Enrollments: {
-        keyArgs: ['limit', 'offset', 'queryString'],
-        merge(existing = [], incoming = []) {
-          return [...existing, ...incoming];
-        },
+      enrollments: {
+        ...offsetLimitPagination(['queryString', 'status', 'sort', 'limit']),
       },
-      Quotations: {
-        keyArgs: ['limit', 'offset', 'queryString'],
-        merge(existing = [], incoming = []) {
-          return [...existing, ...incoming];
-        },
+      quotations: {
+        ...offsetLimitPagination(['queryString', 'sort', 'limit']),
       },
       workQueue: {
         ...offsetLimitPagination([
@@ -76,42 +66,42 @@ const keyMappings: any = {
           'limit',
         ]),
       },
-      Languages: {
-        keyArgs: ['limit', 'includeInactive', 'offset', 'queryString'],
-        merge(existing = [], incoming = []) {
-          return [...existing, ...incoming];
-        },
+      languages: {
+        ...offsetLimitPagination([
+          'includeInactive',
+          'queryString',
+          'sort',
+          'limit',
+        ]),
       },
       events: {
-        keyArgs: ['limit', 'types', 'queryString'],
-        merge(existing = [], incoming = []) {
-          return [...existing, ...incoming];
-        },
+        ...offsetLimitPagination(['types', 'queryString', 'sort', 'limit']),
       },
-      Users: {
-        keyArgs: ['limit', 'includeGuests', 'queryString', 'offset'],
-        merge(existing = [], incoming = []) {
-          return [...existing, ...incoming];
-        },
+      users: {
+        ...offsetLimitPagination([
+          'includeGuests',
+          'queryString',
+          'emailVerified',
+          'lastLogin',
+          'limit',
+        ]),
       },
-      Filters: {
-        keyArgs: ['limit', 'offset', 'queryString'],
-        merge(existing = [], incoming = []) {
-          return [...existing, ...incoming];
-        },
+      filters: {
+        ...offsetLimitPagination([
+          'queryString',
+          'includeInactive',
+          'sort',
+          'limit',
+        ]),
       },
-    },
-    Orders: {
-      keyArgs: ['limit', 'includeCarts', 'offset', 'queryString'],
-      merge(existing = [], incoming = []) {
-        return [...existing, ...incoming];
+      orders: {
+        ...offsetLimitPagination([
+          'includeCarts',
+          'queryString',
+          'sort',
+          'limit',
+        ]),
       },
-    },
-  },
-
-  SearchResult: {
-    fields: {
-      products: offsetLimitPagination(),
     },
   },
 };

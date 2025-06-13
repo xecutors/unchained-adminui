@@ -83,7 +83,7 @@ const ProductReviewsItem = ({
       hasRole('voteProductReview') &&
       enableDelete &&
       review?.author?._id === currentUser?._id) ||
-    (isAdmin(currentUser as IUser) && !review.deleted);
+    (isAdmin() && !review.deleted);
 
   const canManageVotes = !review.deleted && hasRole('voteProductReview');
   const product = review?.product;

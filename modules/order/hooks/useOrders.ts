@@ -24,7 +24,7 @@ const OrdersQuery = gql`
     ) {
       ...OrderFragment
     }
-    ordersCount
+    ordersCount(includeCarts: $includeCarts, queryString: $queryString)
   }
   ${OrderFragment}
 `;
@@ -36,7 +36,7 @@ const useOrders = ({
   queryString = '',
   sort: sortOptions = [],
 }: IOrdersQueryVariables = {}) => {
-  const { data, loading, error } = useQuery<
+  const { data, loading, error, fetchMore } = useQuery<
     IOrdersQuery,
     IOrdersQueryVariables
   >(OrdersQuery, {
@@ -46,13 +46,22 @@ const useOrders = ({
       includeCarts,
       queryString,
       sort: sortOptions.length
-        ? sortOptions
-        : [{ key: 'ordered', value: ISortDirection.Desc }],
+        ? [...sortOptions, { key: 'created', value: ISortDirection.Desc }]
+        : [
+            { key: 'ordered', value: ISortDirection.Desc },
+            { key: 'created', value: ISortDirection.Desc },
+          ],
     },
   });
   const orders = data?.orders || [];
   const ordersCount = data?.ordersCount;
   const hasMore = orders?.length < ordersCount;
+
+  const loadMore = () => {
+    fetchMore({
+      variables: { offset: orders?.length },
+    });
+  };
 
   return {
     orders,
@@ -60,6 +69,7 @@ const useOrders = ({
     hasMore,
     loading,
     error,
+    loadMore,
   };
 };
 

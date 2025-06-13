@@ -30,6 +30,13 @@ const EnrollmentDetailPage = () => {
             id: 'enrollment_detail',
             defaultMessage: 'Enrollment Detail',
           })}
+          title={formatMessage(
+            {
+              id: 'enrollment_detail_title',
+              defaultMessage: 'Enrollment {id}',
+            },
+            { id: enrollment?._id },
+          )}
         />
       </div>
       {loading ? (

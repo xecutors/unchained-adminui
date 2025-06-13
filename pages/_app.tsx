@@ -21,6 +21,8 @@ import * as matomo from '../modules/common/utils/matomo';
 import ThemeToggle from '../modules/common/components/ThemeToggle';
 import UnchainedContextWrapper from '../modules/UnchainedContext/UnchainedContextWrapper';
 import ErrorBoundary from '../modules/common/components/ErrorBoundary';
+import Head from 'next/head';
+import Script from 'next/script';
 
 const handleRouteChange = (url) => {
   matomo.pageView(document.location.origin + url, document.title);
@@ -57,6 +59,29 @@ const UnchainedAdmin = ({ Component, componentName, pageProps, router }) => {
   return (
     <IntlWrapper locale={router.locale} messages={messages} key="intl-provider">
       <ErrorBoundary>
+        <Head>
+          <title>Unchained: Admin UI</title>
+          {process.env.NEXT_PUBLIC_MATOMO_SITE_ID ? (
+            <>
+              <Script
+                id="matomo-script"
+                src={`${process.env.NEXT_PUBLIC_MATOMO_URL}/matomo.js`}
+              />
+              <Script
+                id="matomo-config"
+                dangerouslySetInnerHTML={{
+                  __html: `
+  var _paq = window._paq = window._paq || [];
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  _paq.push(['setTrackerUrl', '${process.env.NEXT_PUBLIC_MATOMO_URL}/matomo.php']);
+  _paq.push(['setSiteId', '${process.env.NEXT_PUBLIC_MATOMO_SITE_ID}']);
+  `,
+                }}
+              />
+            </>
+          ) : null}
+        </Head>
         <EndpointContext.Provider value={endpointContext}>
           <ApolloProvider client={apollo}>
             <UnchainedContextWrapper>

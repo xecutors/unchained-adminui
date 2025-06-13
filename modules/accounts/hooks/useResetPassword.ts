@@ -14,7 +14,7 @@ const ResetPasswordMutation = gql`
 `;
 
 const useResetPassword = () => {
-  const [resetPasswordMutation] = useMutation<
+  const [resetPasswordMutation, { client }] = useMutation<
     IResetPasswordMutation,
     IResetPasswordMutationVariables
   >(ResetPasswordMutation);
@@ -29,9 +29,12 @@ const useResetPassword = () => {
     };
     variables.newPlainPassword = newPlainPassword;
 
-    return resetPasswordMutation({
+    const result = await resetPasswordMutation({
       variables,
+      awaitRefetchQueries: true,
     });
+    await client.resetStore();
+    return result;
   };
 
   return {

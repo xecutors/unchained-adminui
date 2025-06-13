@@ -16,7 +16,7 @@ const ListHeader = ({
           {formatMessage(
             { id: 'total_records', defaultMessage: '{total} records found' },
             {
-              total: totalRecords,
+              total: totalRecords ?? 0,
             },
           )}
         </div>

@@ -28,6 +28,7 @@ const DEFAULT_ORDERS_FILTER = {
       key: 'ordered',
       value: 'DESC',
     },
+    { key: 'created', value: 'DESC' },
   ],
 };
 

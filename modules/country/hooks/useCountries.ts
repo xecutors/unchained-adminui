@@ -32,7 +32,7 @@ const useCountries = ({
   includeInactive = true,
   sort = [],
 } = {}) => {
-  const { data, loading, error } = useQuery<
+  const { data, loading, error, fetchMore } = useQuery<
     ICountriesQuery,
     ICountriesQueryVariables
   >(CountriesQuery, {
@@ -43,12 +43,19 @@ const useCountries = ({
   const countriesCount = data?.countriesCount;
   const hasMore = countries?.length < countriesCount;
 
+  const loadMore = () => {
+    fetchMore({
+      variables: { offset: countries?.length },
+    });
+  };
+
   return {
     countries,
     countriesCount,
     hasMore,
     loading,
     error,
+    loadMore,
   };
 };
 
