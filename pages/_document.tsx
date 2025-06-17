@@ -207,11 +207,11 @@ class MyDocument extends Document {
             // eslint-disable-next-line react/no-array-index-key
             <link key={`${attr?.href}-${attr.type}-${i}`} {...attr} />
           ))}
+          {/* eslint-disable-next-line */}
           <script
             src={`/api/permission-config?v=${process.env.npm_package_version}`}
             id="role-config-script"
             type="module"
-            async
           />
         </Head>
         <body className="h-full bg-slate-100 dark:bg-slate-900 dark:text-slate-200">
