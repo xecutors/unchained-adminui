@@ -18,7 +18,7 @@ export default async function handler(req, res) {
   } else {
     const javascriptCode = `window.AdminUiPermissions = ${permissionConfig.toString()}`;
     res.setHeader('Content-Type', 'application/javascript; charset=UTF-8');
-    res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+    res.setHeader('Cache-Control', 'public, max-age=180');
     res.status(200).send(javascriptCode);
   }
 }

@@ -1,3 +1,4 @@
+import { BUILD_ID_FILE } from 'next/dist/shared/lib/constants';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 
 const metaLinks = [
@@ -207,9 +208,10 @@ class MyDocument extends Document {
             <link key={`${attr?.href}-${attr.type}-${i}`} {...attr} />
           ))}
           <script
-            src="/api/permission-config"
+            src={`/api/permission-config?v=${process.env.npm_package_version}`}
             id="role-config-script"
             type="module"
+            async
           />
         </Head>
         <body className="h-full bg-slate-100 dark:bg-slate-900 dark:text-slate-200">

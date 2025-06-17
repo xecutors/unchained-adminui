@@ -267,19 +267,16 @@ module.exports = () => {
     '/reset-password',
     '/api/graphql',
   ];
-  
+
   const isAdmin = (user) => {
     return (
       user?.allowedActions.length === 0 || (user?.roles || []).includes('admin')
     );
-  }
+  };
 
   return {
     UnrestrictedPages,
-    checkAccess: (
-      user,
-      pathname
-    ) => {
+    checkAccess: (user, pathname) => {
       if (!user?._id && !UnrestrictedPages?.includes(pathname)) return false;
 
       if (
