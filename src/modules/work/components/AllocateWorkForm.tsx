@@ -39,7 +39,7 @@ const AllocateWorkForm = () => {
   const form = useForm({
     submit: onSubmit,
     onSubmitSuccess,
-    getSubmitErrorMessage: async (error) => {
+    getSubmitErrorMessage: (error) => {
       return (
         error?.message ||
         formatMessage({

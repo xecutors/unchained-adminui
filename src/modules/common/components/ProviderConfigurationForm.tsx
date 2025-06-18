@@ -18,7 +18,7 @@ const ProviderConfigurationForm = ({
       configuration: JSON.stringify(provider?.configuration || {}, null, 2),
     },
     submit: onSubmit,
-    getSubmitErrorMessage: async (error) => {
+    getSubmitErrorMessage: (error) => {
       return error?.message || '';
     },
     onSubmitSuccess,

@@ -25,7 +25,7 @@ const UserNameView = ({ _id: userId, username }) => {
   });
   const form = useForm({
     submit: onUpdateUserName,
-    getSubmitErrorMessage: async (error) => {
+    getSubmitErrorMessage: (error) => {
       if (error?.message?.toLowerCase().includes('duplicate'))
         return formatMessage({
           id: 'username_exists_error',

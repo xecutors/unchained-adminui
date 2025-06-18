@@ -50,7 +50,9 @@ const useLoginWithPassword = () => {
       variables,
       awaitRefetchQueries: true,
     });
-    await client.resetStore();
+    if (result?.data?.loginWithPassword) {
+      await client.resetStore();
+    }
     return result;
   };
 
