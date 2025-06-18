@@ -22,7 +22,7 @@ const ForgotPasswordForm = ({
   const form = useForm({
     submit: onSubmit,
     onSubmitSuccess,
-    getSubmitErrorMessage: async () => {
+    getSubmitErrorMessage: () => {
       form.formik.setFieldError(
         'email',
         formatMessage({

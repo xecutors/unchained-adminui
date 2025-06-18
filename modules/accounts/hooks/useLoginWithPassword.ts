@@ -56,7 +56,9 @@ const useLoginWithPassword = () => {
       notifyOnNetworkStatusChange: true,
       awaitRefetchQueries: true,
     });
-    await client.resetStore();
+    if (result?.data?.loginWithPassword) {
+      await client.resetStore();
+    }
     return result;
   };
 
