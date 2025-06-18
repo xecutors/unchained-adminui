@@ -32,7 +32,7 @@ const useForm = ({
 }: {
   submit: OnSubmitType;
 
-  getSubmitErrorMessage?: (error?: Error | any) => Promise<string> | string;
+  getSubmitErrorMessage?: (error?: Error | any) => string;
   onSubmitSuccess?: OnSubmitSuccessType;
   initialValues: FormikValues;
   initialTouched?: FormikTouched<FormikValues>;
@@ -99,7 +99,7 @@ const useForm = ({
   };
 
   const onSubmit = async (values) => {
-    setSubmitError('');
+    let reset = true;
     try {
       const result = await submit(clean(values));
 
@@ -113,23 +113,27 @@ const useForm = ({
         const errors = typeof result === 'boolean' ? !result : result?.errors;
 
         if (Array.isArray(errors)) {
-          errors.forEach(async (error) => {
-            setSubmitError(
-              (await getSubmitErrorMessage(error)) || parseError(error),
-            );
+          errors.forEach((error) => {
+            reset = false;
+            setSubmitError(getSubmitErrorMessage(error) || parseError(error));
           });
         } else if (typeof errors === 'string') {
-          setSubmitError(
-            (await getSubmitErrorMessage(errors)) || parseError(errors),
-          );
+          reset = false;
+          setSubmitError(getSubmitErrorMessage(errors) || parseError(errors));
         } else {
+          reset = false;
           setSubmitError(
-            (await getSubmitErrorMessage(!!errors)) || parseError(!!errors),
+            getSubmitErrorMessage(!!errors) || parseError(!!errors),
           );
         }
       }
     } catch (error) {
-      setSubmitError((await getSubmitErrorMessage(error)) || parseError(error));
+      reset = false;
+      setSubmitError(getSubmitErrorMessage(error) || parseError(error));
+    }
+
+    if (reset) {
+      setSubmitError('');
     }
   };
 

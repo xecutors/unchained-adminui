@@ -20,7 +20,7 @@ const ResetPasswordForm = ({
   const form = useForm({
     submit: onSubmit,
     onSubmitSuccess,
-    getSubmitErrorMessage: async (error) => {
+    getSubmitErrorMessage: (error) => {
       if (error?.message?.toLowerCase().includes('link expired')) {
         return formatMessage({
           id: 'reset_token_expired',
