@@ -44,7 +44,7 @@ const resolveUri = () => {
       `${window.location.origin}/graphql`
     );
   }
-  return process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT;
+  return process.env.GRAPHQL_ENDPOINT;
 };
 
 const createApolloClient = ({
