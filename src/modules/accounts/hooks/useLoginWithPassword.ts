@@ -46,7 +46,7 @@ const useLoginWithPassword = () => {
     }
 
     variables.password = password;
-    const result = logInWithPasswordMutation({
+    const result = await logInWithPasswordMutation({
       variables,
       awaitRefetchQueries: true,
     });
