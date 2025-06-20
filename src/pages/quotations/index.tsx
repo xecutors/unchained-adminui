@@ -11,6 +11,7 @@ import QuotationList from '../../modules/quotation/components/QuotationList';
 import useQuotations from '../../modules/quotation/hooks/useQuotations';
 import SearchField from '../../modules/common/components/SearchField';
 import { convertSortFieldsToQueryFormat } from '../../modules/common/utils/utils';
+import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
 import QuotationDetailPage from './QuotationDetailPage';
 
 const Quotations = () => {
@@ -52,32 +53,38 @@ const Quotations = () => {
   return (
     <>
       <BreadCrumbs />
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between">
-        <PageHeader
-          headerText={formatMessage(
-            (quotationsCount ?? 0) === 1
-              ? { id: 'quotation_count_header_singular', defaultMessage: '1 Quotation' }
-              : { id: 'quotations_count_header', defaultMessage: '{count} Quotations' },
-            { count: quotationsCount ?? 0 }
-          )}
-        />
-        <SearchField
-          defaultValue={queryString}
-          onInputChange={setQueryString}
-        />
-      </div>
+      <PageHeader
+        headerText={formatMessage(
+          (quotationsCount ?? 0) === 1
+            ? { id: 'quotation_count_header_singular', defaultMessage: '1 Quotation' }
+            : { id: 'quotations_count_header', defaultMessage: '{count} Quotations' },
+          { count: quotationsCount ?? 0 }
+        )}
+      />
       <div className="min-w-full overflow-x-auto">
         <ListHeader />
-        {loading ? (
-          <Loading />
-        ) : (
-          <QuotationList sortable quotations={quotations} showUser />
-        )}
-        <Pagination
-          data={quotations}
-          total={quotationsCount}
-          onLoadMore={loadMore}
-        />
+        
+        <LocaleWrapper
+          searchComponent={
+            <SearchField
+              defaultValue={queryString}
+              onInputChange={setQueryString}
+            />
+          }
+        >
+          <div>
+            {loading ? (
+              <Loading />
+            ) : (
+              <QuotationList sortable quotations={quotations} showUser />
+            )}
+            <Pagination
+              data={quotations}
+              total={quotationsCount}
+              onLoadMore={loadMore}
+            />
+          </div>
+        </LocaleWrapper>
       </div>
     </>
   );

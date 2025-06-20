@@ -23,7 +23,11 @@ const createLanguageDialectList = (languages, countries) => {
   return result;
 };
 
-const LocaleWrapper = ({ children, onlyFull = false }) => {
+const LocaleWrapper = ({
+  children,
+  onlyFull = false,
+  searchComponent = null,
+}) => {
   const { languages } = useLanguages();
   const { shopInfo, loading: shopInfoLoading } = useShopInfo();
   const { countries } = useCountries();
@@ -46,8 +50,9 @@ const LocaleWrapper = ({ children, onlyFull = false }) => {
   ).filter((l) => !onlyFull || l.isoCode.includes('-'));
 
   return (
-    <div className="my-3">
-      <div className="relative mb-2">
+    <div className="mt-5">
+      <div className="flex justify-between items-center flex-wrap gap-3">
+        {searchComponent && <div>{searchComponent}</div>}
         <div className="w-fit">
           <select
             id="locale-wrapper"

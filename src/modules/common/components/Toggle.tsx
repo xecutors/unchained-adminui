@@ -23,13 +23,13 @@ const Toggle = ({
   };
 
   return (
-    <div className={classNames('ml-1', className)}>
+    <div className={classNames('', className)}>
       <button
         id={toggleKey}
         disabled={disabled}
         type="button"
         className={classNames(
-          ' relative inline-flex h-4 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-hidden focus:ring-2 focus:ring-slate-800 focus:ring-offset-2',
+          'ml-1 relative inline-flex h-4 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-hidden focus:ring-2 focus:ring-slate-800 focus:ring-offset-2',
           {
             'bg-slate-200 dark:bg-slate-700': !toggleState,
             'bg-slate-900': toggleState,

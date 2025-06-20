@@ -88,21 +88,21 @@ const FiltersListView = () => {
         <PageHeader
           headerText={formatMessage(
             (filtersCount ?? 0) === 1
-              ? { id: 'filter_count_header_singular', defaultMessage: '1 Filter' }
-              : { id: 'filters_count_header', defaultMessage: '{count} Filters' },
-            { count: filtersCount ?? 0 }
+              ? {
+                  id: 'filter_count_header_singular',
+                  defaultMessage: '1 Filter',
+                }
+              : {
+                  id: 'filters_count_header',
+                  defaultMessage: '{count} Filters',
+                },
+            { count: filtersCount ?? 0 },
           )}
-        />
-        <SearchField
-          defaultValue={queryString}
-          onInputChange={setQueryString}
         />
       </div>
 
       <div className="min-w-full overflow-x-auto">
-        <ListHeader
-          addPath={hasRole('addFilter') && '/filters/new'}
-        >
+        <ListHeader addPath={hasRole('addFilter') && '/filters/new'}>
           <Toggle
             toggleText={formatMessage({
               id: 'include_inactive',
@@ -113,7 +113,15 @@ const FiltersListView = () => {
           />
         </ListHeader>
 
-        <LocaleWrapper onlyFull>
+        <LocaleWrapper
+          onlyFull
+          searchComponent={
+            <SearchField
+              defaultValue={queryString}
+              onInputChange={setQueryString}
+            />
+          }
+        >
           <FilterList
             onRemoveFilter={onRemoveFilter}
             {...{ queryString, limit, includeInactive, offset, sortKeys }}

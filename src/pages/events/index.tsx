@@ -18,6 +18,7 @@ import {
   normalizeQuery,
 } from '../../modules/common/utils/utils';
 import ListHeader from '../../modules/common/components/ListHeader';
+import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
 import EventDetailPage from './EventDetailPage';
 
 const Events = () => {
@@ -72,20 +73,14 @@ const Events = () => {
     <>
       <BreadCrumbs />
       <div className="w-full">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between">
-          <PageHeader
-            headerText={formatMessage(
-              (eventsCount ?? 0) === 1
-                ? { id: 'event_count_header_singular', defaultMessage: '1 Event' }
-                : { id: 'events_count_header', defaultMessage: '{count} Events' },
-              { count: eventsCount ?? 0 }
-            )}
-          />
-          <SearchField
-            onInputChange={setQueryString}
-            defaultValue={queryString}
-          />
-        </div>
+        <PageHeader
+          headerText={formatMessage(
+            (eventsCount ?? 0) === 1
+              ? { id: 'event_count_header_singular', defaultMessage: '1 Event' }
+              : { id: 'events_count_header', defaultMessage: '{count} Events' },
+            { count: eventsCount ?? 0 }
+          )}
+        />
         <div className="mt-4 flex space-x-2 sm:mt-1 md:mt-5 lg:mt-0">
           <VariableIcon
             width="24"
@@ -114,8 +109,19 @@ const Events = () => {
       <div className="min-w-full overflow-x-auto">
         <ListHeader />
 
-        {loading ? <Loading /> : <EventList events={events} sortable />}
-        <Pagination data={events} total={eventsCount} onLoadMore={loadMore} />
+        <LocaleWrapper
+          searchComponent={
+            <SearchField
+              onInputChange={setQueryString}
+              defaultValue={queryString}
+            />
+          }
+        >
+          <div>
+            {loading ? <Loading /> : <EventList events={events} sortable />}
+            <Pagination data={events} total={eventsCount} onLoadMore={loadMore} />
+          </div>
+        </LocaleWrapper>
       </div>
     </>
   );

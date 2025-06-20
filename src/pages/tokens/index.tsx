@@ -8,6 +8,7 @@ import NoData from '../../modules/common/components/NoData';
 import { useRouter } from 'next/router';
 import ListHeader from '../../modules/common/components/ListHeader';
 import SearchField from '../../modules/common/components/SearchField';
+import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
 import TokenDetailPage from './TokenDetailPage';
 
 const TokensPage = () => {
@@ -42,31 +43,37 @@ const TokensPage = () => {
   return (
     <>
       <BreadCrumbs />
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between">
-        <PageHeader
-          headerText={formatMessage(
-            (tokensCount ?? 0) === 1
-              ? { id: 'token_count_header_singular', defaultMessage: '1 Token' }
-              : { id: 'tokens_count_header', defaultMessage: '{count} Tokens' },
-            { count: tokensCount ?? 0 }
-          )}
-        />
-        <SearchField
-          defaultValue={queryString}
-          onInputChange={setQueryString}
-        />
-      </div>
+      <PageHeader
+        headerText={formatMessage(
+          (tokensCount ?? 0) === 1
+            ? { id: 'token_count_header_singular', defaultMessage: '1 Token' }
+            : { id: 'tokens_count_header', defaultMessage: '{count} Tokens' },
+          { count: tokensCount ?? 0 }
+        )}
+      />
       <div className="mt-5 inline-block min-w-full overflow-x-auto">
         <ListHeader />
-        {loading ? <Loading /> : <TokenList tokens={tokens} />}
-        {!loading && !tokens?.length && (
-          <NoData
-            message={formatMessage({
-              id: 'token',
-              defaultMessage: 'Token',
-            })}
-          />
-        )}
+        
+        <LocaleWrapper
+          searchComponent={
+            <SearchField
+              defaultValue={queryString}
+              onInputChange={setQueryString}
+            />
+          }
+        >
+          <div>
+            {loading ? <Loading /> : <TokenList tokens={tokens} />}
+            {!loading && !tokens?.length && (
+              <NoData
+                message={formatMessage({
+                  id: 'token',
+                  defaultMessage: 'Token',
+                })}
+              />
+            )}
+          </div>
+        </LocaleWrapper>
       </div>
     </>
   );

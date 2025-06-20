@@ -20,6 +20,7 @@ import {
   convertSortFieldsToQueryFormat,
   normalizeQuery,
 } from '../../modules/common/utils/utils';
+import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
 import CurrencyDetailPage from './CurrencyDetailPage';
 
 const Currencies = () => {
@@ -90,20 +91,14 @@ const Currencies = () => {
   return (
     <>
       <BreadCrumbs />
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between">
-        <PageHeader
-          headerText={formatMessage(
-            (currenciesCount ?? 0) === 1
-              ? { id: 'currency_count_header_singular', defaultMessage: '1 Currency' }
-              : { id: 'currencies_count_header', defaultMessage: '{count} Currencies' },
-            { count: currenciesCount ?? 0 }
-          )}
-        />
-        <SearchField
-          defaultValue={queryString}
-          onInputChange={setQueryString}
-        />
-      </div>
+      <PageHeader
+        headerText={formatMessage(
+          (currenciesCount ?? 0) === 1
+            ? { id: 'currency_count_header_singular', defaultMessage: '1 Currency' }
+            : { id: 'currencies_count_header', defaultMessage: '{count} Currencies' },
+          { count: currenciesCount ?? 0 }
+        )}
+      />
       <div className="min-w-full overflow-x-auto">
         <ListHeader
           addPath={hasRole('addCurrency') && '/currency/new'}
@@ -118,20 +113,31 @@ const Currencies = () => {
           />
         </ListHeader>
 
-        {loading ? (
-          <Loading />
-        ) : (
-          <CurrencyList
-            currencies={currencies}
-            onRemoveCurrency={onRemove}
-            sortable
-          />
-        )}
-        <Pagination
-          data={currencies}
-          total={currenciesCount}
-          onLoadMore={loadMore}
-        />
+        <LocaleWrapper
+          searchComponent={
+            <SearchField
+              defaultValue={queryString}
+              onInputChange={setQueryString}
+            />
+          }
+        >
+          <div>
+            {loading ? (
+              <Loading />
+            ) : (
+              <CurrencyList
+                currencies={currencies}
+                onRemoveCurrency={onRemove}
+                sortable
+              />
+            )}
+            <Pagination
+              data={currencies}
+              total={currenciesCount}
+              onLoadMore={loadMore}
+            />
+          </div>
+        </LocaleWrapper>
       </div>
     </>
   );

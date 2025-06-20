@@ -10,7 +10,7 @@ const ListHeader = ({
 }) => {
   const { formatMessage } = useIntl();
   return (
-    <div className="px-2 my-3">
+    <div className="my-3">
       {totalRecords !== null ? (
         <div className="text-md text-slate-950 dark:text-slate-100 mb-3">
           {formatMessage(
@@ -23,7 +23,7 @@ const ListHeader = ({
       ) : null}
       <div className="space-y-3">
         {children && (
-          <div className="flex items-center">
+          <div className="flex items-center mt-5">
             <h3 className="text-xs leading-6 text-slate-900 dark:text-slate-200">
               {children}
             </h3>
@@ -31,7 +31,7 @@ const ListHeader = ({
         )}
 
         {addPath && (
-          <div className="flex justify-start">
+          <div className="flex justify-start mt-5">
             <Link
               href={addPath}
               className="relative inline-flex items-center rounded-sm border border-transparent bg-slate-900 px-3 py-3 text-sm font-medium  text-white shadow-xs hover:bg-slate-950 focus:outline-hidden focus:ring-2 focus:ring-slate-800 focus:ring-offset-2"
