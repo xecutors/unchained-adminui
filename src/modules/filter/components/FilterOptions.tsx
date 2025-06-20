@@ -52,7 +52,7 @@ const FilterOptions = ({ filterId, selectedLocale = null }) => {
                 />,
               )
             }
-            className="fixed top-0 right-0 z-10 mb-5  mt-5 mr-2 h-9 rounded-md border  border-transparent bg-indigo-500 px-3 py-1 text-sm font-medium  leading-5 text-white shadow-xs sm:fixed sm:top-auto sm:right-auto"
+            className="fixed top-0 right-0 z-10 mb-5  mt-5 mr-2 h-9 rounded-md border  border-transparent bg-slate-900 px-3 py-1 text-sm font-medium  leading-5 text-white shadow-xs sm:fixed sm:top-auto sm:right-auto"
           >
             {formatMessage({
               id: 'add_filter_option',

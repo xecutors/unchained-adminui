@@ -26,7 +26,7 @@ const EnrollmentListItem = ({ enrollment, showUser }) => {
         <div className="text-sm">
           <Link
             href={`/enrollments?enrollmentId=${enrollment._id}`}
-            className="font-medium text-blue-500 dark:text-blue-400"
+            className="font-medium text-slate-800 dark:text-slate-700"
           >
             {enrollment?.enrollmentNumber || enrollment._id?.substr(0, 10)}
           </Link>
@@ -65,7 +65,7 @@ const EnrollmentListItem = ({ enrollment, showUser }) => {
         <Table.Cell>
           <Link
             href={`/users?userId=${enrollment.user._id}`}
-            className="flex items-center text-sm text-blue-500 dark:text-blue-400 hover:text-decoration"
+            className="flex items-center text-sm text-slate-800 dark:text-slate-700 hover:text-decoration"
           >
             <span className="inline-block h-9 w-9 rounded-full">
               <MediaAvatar file={enrollment?.user?.avatar} className="mr-2" />
@@ -78,7 +78,7 @@ const EnrollmentListItem = ({ enrollment, showUser }) => {
       <Table.Cell>
         <Link
           href={`/products?slug=${generateUniqueId(enrollment.plan.product)}`}
-          className="flex items-center text-sm text-blue-500 dark:text-blue-400 hover:text-decoration"
+          className="flex items-center text-sm text-slate-800 dark:text-slate-700 hover:text-decoration"
         >
           <MediaAvatar
             file={enrollment?.plan?.product?.media?.file}

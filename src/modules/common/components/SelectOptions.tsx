@@ -47,54 +47,32 @@ const SelectOptions = ({
             )}
           </Listbox.Label>
           <div className="relative">
-            <div
-              className={`inline-flex divide-x rounded-md shadow-xs divide-${select?.bgColor}-600`}
+            <Listbox.Button
+              onMouseEnter={() => setIsHover(true)}
+              onMouseLeave={() => setIsHover(false)}
+              className={classNames(
+                `inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-white shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2`,
+                select?.bgColor === 'green' && 'bg-green-500 hover:bg-green-600 focus:ring-green-500',
+                select?.bgColor === 'slate' && 'bg-slate-500 hover:bg-slate-600 focus:ring-slate-500',
+                isHover && select?.bgColor === 'green' && 'bg-green-600',
+                isHover && select?.bgColor === 'slate' && 'bg-slate-600',
+              )}
             >
-              <div
-                onMouseEnter={() => setIsHover(true)}
-                onMouseLeave={() => setIsHover(false)}
-                className={`relative z-0 inline-flex divide-x rounded-md shadow-xs divide-${select?.bgColor}-600`}
-              >
-                <div
-                  className={classNames(
-                    `inline-flex items-center bg-${select?.bgColor}-500 hover:cursor-pointer rounded-l-md border border-transparent py-[0.3rem] pl-2 pr-2 text-white shadow-xs lg:py-2 lg:pl-3 lg:pr-4`,
-                    isHover && `bg-${select?.bgColor}-600`,
-                  )}
-                >
-                  <CheckIcon
-                    className="h-4 w-4 lg:h-5 lg:w-5"
-                    aria-hidden="true"
-                  />
-                  <p className="ml-2.5 text-xs font-medium lg:text-sm">
-                    {select?.selectedTitle || select.title}
-                  </p>
-                </div>
-                <Listbox.Button
-                  className={classNames(
-                    `inline-flex items-center bg-${select?.bgColor}-500 hover:cursor-pointer rounded-l-none rounded-r-md border-none  text-sm font-medium text-white outline-hidden focus:z-10 focus:outline-hidden `,
-                    isHover && `bg-${select?.bgColor}-600`,
-                  )}
-                >
-                  {/* the button effect on whole rather than only on icon */}
-                  <span className="absolute inset-0" />
-                  <span className="sr-only">
-                    {formatMessage(
-                      {
-                        id: 'select_options_toggle',
-                        defaultMessage: 'Change {type} status',
-                      },
-                      {
-                        type,
-                      },
-                    )}
-                  </span>
-                  <ChevronDownIcon
-                    className="h-4 w-4 text-white lg:h-5 lg:w-5"
-                    aria-hidden="true"
-                  />
-                </Listbox.Button>
-              </div>
-            </div>
+              <CheckIcon
+                className="h-4 w-4"
+                aria-hidden="true"
+              />
+              <span>
+                {select?.selectedTitle || select.title}
+              </span>
+              <ChevronDownIcon
+                className={classNames(
+                  "h-4 w-4 -mr-1 transition-transform duration-200",
+                  open && "rotate-180"
+                )}
+                aria-hidden="true"
+              />
+            </Listbox.Button>
 
             <Transition
               show={open}
@@ -109,7 +87,7 @@ const SelectOptions = ({
                     key={option.title}
                     className={() =>
                       classNames(
-                        'group hover:bg-indigo-500 hover:text-white',
+                        'group hover:bg-slate-900 hover:text-white',
                         option?.disable && 'cursor-not-allowed',
                         option.id === select.id
                           ? `text-white bg-${option.bgColor}-500`
@@ -141,7 +119,7 @@ const SelectOptions = ({
                             className={
                               option.id === select.id
                                 ? 'text-white'
-                                : 'text-indigo-500'
+                                : 'text-slate-900'
                             }
                           >
                             <CheckIcon className="h-5 w-5" aria-hidden="true" />

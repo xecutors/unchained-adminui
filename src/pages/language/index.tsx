@@ -91,10 +91,12 @@ const Languages = () => {
       <BreadCrumbs />
       <div className="flex flex-col sm:flex-row sm:items-center justify-between">
         <PageHeaders
-          headerText={formatMessage({
-            id: 'language_header',
-            defaultMessage: 'Languages',
-          })}
+          headerText={formatMessage(
+            (languagesCount ?? 0) === 1
+              ? { id: 'language_count_header_singular', defaultMessage: '1 Language' }
+              : { id: 'languages_count_header', defaultMessage: '{count} Languages' },
+            { count: languagesCount ?? 0 }
+          )}
         />
         <SearchField
           defaultValue={queryString}
@@ -105,7 +107,6 @@ const Languages = () => {
       <div className="min-w-full overflow-x-auto">
         <ListHeader
           addPath={hasRole('addLanguage') && '/language/new'}
-          totalRecords={languagesCount}
         >
           <Toggle
             toggleText={formatMessage({

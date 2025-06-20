@@ -26,7 +26,7 @@ const QuotationDetailHeader = ({ quotation }) => {
             {quotation?.quotationNumber ? (
               <Badge
                 text={quotation?.quotationNumber}
-                color="indigo"
+                color="slate"
                 square
                 className="text-lg font-medium sm:text-xl sm:font-bold"
               />

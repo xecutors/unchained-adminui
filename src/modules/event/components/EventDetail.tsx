@@ -25,7 +25,7 @@ const EventDetail = ({ event }) => {
       />
     ) : (
       <NoData
-        className="bg-white dark:bg-slate-900 rounded-lg capitalize border border-slate-200 dark:border-slate-800 shadow-md"
+        className="bg-white dark:bg-slate-900 rounded-lg capitalize border border-slate-200 dark:border-slate-800"
         message={formatMessage({
           id: `no_payload`,
           defaultMessage: 'Payload',
@@ -35,7 +35,7 @@ const EventDetail = ({ event }) => {
   };
 
   const headerCSS =
-    'inline-flex items-center justify-between w-full px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-800 shadow-md text-sm font-medium text-slate-700 hover:bg-slate-50 focus:z-10 focus:outline-hidden focus:ring-1 focus:ring-indigo-400 focus:border-indigo-400 ';
+    'inline-flex items-center justify-between w-full px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-800 shadow-md text-sm font-medium text-slate-700 hover:bg-slate-50 focus:z-10 focus:outline-hidden focus:ring-1 focus:ring-slate-800 focus:border-slate-800 ';
 
   return (
     <>
@@ -48,7 +48,7 @@ const EventDetail = ({ event }) => {
               defaultMessage: 'Type:',
             })}
             <span className="ml-2">
-              <Badge text={event.type} square className="p-2" color="indigo" />
+              <Badge text={event.type} square className="p-2" color="slate" />
             </span>
           </div>
           <div className="my-1 pb-1 font-mono text-lg">

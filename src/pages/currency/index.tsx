@@ -92,10 +92,12 @@ const Currencies = () => {
       <BreadCrumbs />
       <div className="flex flex-col sm:flex-row sm:items-center justify-between">
         <PageHeader
-          headerText={formatMessage({
-            id: 'currencies_list_header',
-            defaultMessage: 'Currencies',
-          })}
+          headerText={formatMessage(
+            (currenciesCount ?? 0) === 1
+              ? { id: 'currency_count_header_singular', defaultMessage: '1 Currency' }
+              : { id: 'currencies_count_header', defaultMessage: '{count} Currencies' },
+            { count: currenciesCount ?? 0 }
+          )}
         />
         <SearchField
           defaultValue={queryString}
@@ -105,7 +107,6 @@ const Currencies = () => {
       <div className="min-w-full overflow-x-auto">
         <ListHeader
           addPath={hasRole('addCurrency') && '/currency/new'}
-          totalRecords={currenciesCount}
         >
           <Toggle
             toggleText={formatMessage({

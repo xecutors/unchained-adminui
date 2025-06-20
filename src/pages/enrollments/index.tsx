@@ -74,10 +74,12 @@ const EnrollmentListView = () => {
       <BreadCrumbs />
       <div className="flex flex-col sm:flex-row sm:items-center justify-between">
         <PageHeader
-          headerText={formatMessage({
-            id: 'enrollments_list_header',
-            defaultMessage: 'Enrollments',
-          })}
+          headerText={formatMessage(
+            (enrollmentsCount ?? 0) === 1
+              ? { id: 'enrollment_count_header_singular', defaultMessage: '1 Enrollment' }
+              : { id: 'enrollments_count_header', defaultMessage: '{count} Enrollments' },
+            { count: enrollmentsCount ?? 0 }
+          )}
         />
         <SearchField
           defaultValue={queryString}
@@ -97,7 +99,7 @@ const EnrollmentListView = () => {
         </div>
       </div>
       <div className="min-w-full overflow-x-auto">
-        <ListHeader totalRecords={enrollmentsCount} />
+        <ListHeader />
 
         {loading ? (
           <Loading />

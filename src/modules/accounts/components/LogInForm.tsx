@@ -45,7 +45,7 @@ const GetCurrentStep = ({ step }) => {
           <div className="my-1 text-sm sm:my-0 text-left">
             <Link
               href="/account/forgot-password"
-              className="font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300"
+              className="font-medium text-slate-950 hover:text-slate-900 dark:text-slate-800 dark:hover:text-slate-400"
             >
               {formatMessage({
                 id: 'forget_password',
@@ -228,7 +228,7 @@ const LogInForm = () => {
                     id="previous-button"
                     name="previous-button"
                     onClick={previousStep}
-                    className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-500 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-hidden focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+                    className="group relative flex w-full justify-center rounded-md border border-transparent bg-slate-900 dark:bg-slate-600 py-2 px-4 text-sm font-medium text-white hover:bg-slate-950 dark:hover:bg-slate-500 focus:outline-hidden focus:ring-2 focus:ring-slate-800 dark:focus:ring-slate-400 focus:ring-offset-2"
                   >
                     <span className="absolute inset-y-0 left-0 flex items-center pl-3" />
                     {formatMessage({
@@ -242,11 +242,11 @@ const LogInForm = () => {
                   id="submit"
                   disabled={!form.formik.isValid}
                   name="submit"
-                  className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-500 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-hidden focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+                  className="group relative flex w-full justify-center rounded-md border border-transparent bg-slate-900 dark:bg-slate-600 py-2 px-4 text-sm font-medium text-white hover:bg-slate-950 dark:hover:bg-slate-500 focus:outline-hidden focus:ring-2 focus:ring-slate-800 dark:focus:ring-slate-400 focus:ring-offset-2"
                 >
                   <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                     <svg
-                      className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
+                      className="h-5 w-5 text-slate-900 group-hover:text-slate-800"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
                       fill="currentColor"
@@ -268,11 +268,11 @@ const LogInForm = () => {
                   <a
                     type="button"
                     href={singleSignOnURL}
-                    className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-500 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-hidden focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+                    className="group relative flex w-full justify-center rounded-md border border-transparent bg-slate-900 dark:bg-slate-600 py-2 px-4 text-sm font-medium text-white hover:bg-slate-950 dark:hover:bg-slate-500 focus:outline-hidden focus:ring-2 focus:ring-slate-800 dark:focus:ring-slate-400 focus:ring-offset-2"
                   >
                     <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                       <svg
-                        className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
+                        className="h-5 w-5 text-slate-900 group-hover:text-slate-800"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
                         fill="currentColor"
@@ -300,7 +300,7 @@ const LogInForm = () => {
                 })}
                 <Link
                   href="/sign-up"
-                  className="ml-2 font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300"
+                  className="ml-2 font-medium text-slate-950 hover:text-slate-900 dark:text-slate-800 dark:hover:text-slate-400"
                 >
                   {intl.formatMessage({
                     id: 'sign_up',

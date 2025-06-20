@@ -71,13 +71,15 @@ const Events = () => {
   return (
     <>
       <BreadCrumbs />
-      <div className="w-full py-5">
+      <div className="w-full">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between">
           <PageHeader
-            headerText={formatMessage({
-              id: 'events_list_header',
-              defaultMessage: 'Events',
-            })}
+            headerText={formatMessage(
+              (eventsCount ?? 0) === 1
+                ? { id: 'event_count_header_singular', defaultMessage: '1 Event' }
+                : { id: 'events_count_header', defaultMessage: '{count} Events' },
+              { count: eventsCount ?? 0 }
+            )}
           />
           <SearchField
             onInputChange={setQueryString}
@@ -110,7 +112,7 @@ const Events = () => {
         </div>
       </div>
       <div className="min-w-full overflow-x-auto">
-        <ListHeader totalRecords={eventsCount} />
+        <ListHeader />
 
         {loading ? <Loading /> : <EventList events={events} sortable />}
         <Pagination data={events} total={eventsCount} onLoadMore={loadMore} />

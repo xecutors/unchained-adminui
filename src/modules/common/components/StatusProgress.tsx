@@ -21,7 +21,7 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                 {index !== status.length - 1 ? (
                   <span
                     className={classNames(
-                      currentId > index + 1 ? 'bg-indigo-500' : 'bg-slate-200',
+                      currentId > index + 1 ? 'bg-slate-900' : 'bg-slate-200',
                       'absolute top-2.5 left-2.5 -ml-px h-full w-0.5',
                     )}
                     aria-hidden="true"
@@ -31,7 +31,7 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                   <div>
                     <span
                       className={classNames(
-                        currentId > index ? 'bg-indigo-500' : 'bg-slate-600',
+                        currentId > index ? 'bg-slate-900' : 'bg-slate-600',
                         'flex h-5 w-5 items-center justify-center rounded-full',
                       )}
                     >
@@ -101,7 +101,7 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                   <span
                     className={classNames(
                       currentId >= timeline[value].id
-                        ? 'bg-indigo-400'
+                        ? 'bg-slate-800'
                         : 'bg-slate-200',
                       'absolute top-0 left-0 -ml-px h-2 w-full',
                     )}
@@ -111,7 +111,7 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                 <div
                   className={classNames(
                     currentId >= timeline[value].id
-                      ? 'text-indigo-600'
+                      ? 'text-slate-950'
                       : 'text-slate-600',
                     'text-center',
                   )}

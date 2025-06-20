@@ -12,7 +12,7 @@ const ListHeader = ({
   return (
     <div className="px-2 my-3">
       {totalRecords !== null ? (
-        <div className="text-lg italic text-indigo-900 font-black">
+        <div className="text-md text-slate-950 dark:text-slate-100 mb-3">
           {formatMessage(
             { id: 'total_records', defaultMessage: '{total} records found' },
             {
@@ -21,18 +21,20 @@ const ListHeader = ({
           )}
         </div>
       ) : null}
-      <div className="-ml-2 -mt-2 flex flex-wrap items-center justify-between sm:flex-nowrap">
+      <div className="space-y-3">
         {children && (
-          <div className="mt-2">
-            <h3 className="text-xs leading-6 text-slate-900">{children}</h3>
+          <div className="flex items-center">
+            <h3 className="text-xs leading-6 text-slate-900 dark:text-slate-200">
+              {children}
+            </h3>
           </div>
         )}
 
         {addPath && (
-          <div className="ml-4 mt-2 shrink-0">
+          <div className="flex justify-start">
             <Link
               href={addPath}
-              className="relative inline-flex items-center rounded-sm border border-transparent bg-indigo-500 px-3 py-3 text-sm font-medium  text-white shadow-xs hover:bg-indigo-700 focus:outline-hidden focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+              className="relative inline-flex items-center rounded-sm border border-transparent bg-slate-900 px-3 py-3 text-sm font-medium  text-white shadow-xs hover:bg-slate-950 focus:outline-hidden focus:ring-2 focus:ring-slate-800 focus:ring-offset-2"
             >
               <PlusIcon className="h-5 w-5" />
               <span className="ml-2">

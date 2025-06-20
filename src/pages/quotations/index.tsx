@@ -54,10 +54,12 @@ const Quotations = () => {
       <BreadCrumbs />
       <div className="flex flex-col sm:flex-row sm:items-center justify-between">
         <PageHeader
-          headerText={formatMessage({
-            id: 'quotation_list_header',
-            defaultMessage: 'Quotations',
-          })}
+          headerText={formatMessage(
+            (quotationsCount ?? 0) === 1
+              ? { id: 'quotation_count_header_singular', defaultMessage: '1 Quotation' }
+              : { id: 'quotations_count_header', defaultMessage: '{count} Quotations' },
+            { count: quotationsCount ?? 0 }
+          )}
         />
         <SearchField
           defaultValue={queryString}
@@ -65,7 +67,7 @@ const Quotations = () => {
         />
       </div>
       <div className="min-w-full overflow-x-auto">
-        <ListHeader totalRecords={quotationsCount} />
+        <ListHeader />
         {loading ? (
           <Loading />
         ) : (

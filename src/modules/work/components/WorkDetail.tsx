@@ -126,7 +126,7 @@ const WorkDetail = ({ work }) => {
               <div className="mt-2 max-w-prose space-y-5 text-sm">
                 <Link
                   href={`/works?workerId=${work?.original?._id}`}
-                  className="text-blue-600 dark:text-blue-400"
+                  className="text-slate-900 dark:text-slate-700"
                 >
                   {work?.original?._id}
                 </Link>

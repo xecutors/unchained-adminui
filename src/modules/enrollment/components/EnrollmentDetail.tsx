@@ -64,7 +64,7 @@ const EnrollmentDetail = ({ enrollment }: { enrollment: IEnrollment }) => {
   const EmailIcon = (
     <div className="flex w-full items-center justify-center">
       <div className="mx-auto flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10">
-        <InboxIcon className="h-6 w-6 text-blue-600" aria-hidden="true" />
+        <InboxIcon className="h-6 w-6 text-slate-900" aria-hidden="true" />
       </div>
     </div>
   );
@@ -156,7 +156,7 @@ const EnrollmentDetail = ({ enrollment }: { enrollment: IEnrollment }) => {
         <Button
           text="Activate"
           onClick={onActivateEnrollment}
-          className="bg-white-300 relative -ml-px inline-flex items-center space-x-2 rounded-md border border-indigo-500 bg-indigo-500 px-2 py-1 text-base font-medium text-white hover:bg-indigo-700 focus:border-indigo-400 focus:outline-hidden focus:ring-0 focus:ring-indigo-400"
+          className="bg-white-300 relative -ml-px inline-flex items-center space-x-2 rounded-md border border-slate-900 dark:border-slate-600 bg-slate-900 dark:bg-slate-600 px-2 py-1 text-base font-medium text-white hover:bg-slate-950 dark:hover:bg-slate-500 focus:border-slate-800 dark:focus:border-slate-400 focus:outline-hidden focus:ring-0 focus:ring-slate-800 dark:focus:ring-slate-400"
         />
       ),
     },
@@ -178,7 +178,7 @@ const EnrollmentDetail = ({ enrollment }: { enrollment: IEnrollment }) => {
   };
 
   const headerCSS =
-    'inline-flex items-center justify-between w-full px-4 py-2 rounded-t-md border border-slate-300 bg-slate-100 text-sm font-medium text-slate-700 hover:bg-slate-50 focus:z-10 focus:outline-hidden focus:ring-1 focus:ring-indigo-400 focus:border-indigo-400';
+    'inline-flex items-center justify-between w-full px-4 py-2 rounded-t-md border border-slate-300 bg-slate-100 text-sm font-medium text-slate-700 hover:bg-slate-50 focus:z-10 focus:outline-hidden focus:ring-1 focus:ring-slate-800 focus:border-slate-800';
 
   const periods = {
     header: (
@@ -263,7 +263,7 @@ const EnrollmentDetail = ({ enrollment }: { enrollment: IEnrollment }) => {
                 <dd className="mt-2 text-sm text-slate-500">
                   <Link
                     href={`/payment-provider?paymentProviderId=${enrollment?.payment?.provider?._id}`}
-                    className="text-blue-600 dark:text-blue-400"
+                    className="text-slate-900 dark:text-slate-700"
                   >
                     {getInterfaceLabel(
                       enrollment?.payment?.provider?.interface,
@@ -282,7 +282,7 @@ const EnrollmentDetail = ({ enrollment }: { enrollment: IEnrollment }) => {
                 <dd className="mt-2 text-sm text-slate-500">
                   <Link
                     href={`/delivery-provider?deliveryProviderId=${enrollment?.delivery?.provider._id}`}
-                    className="text-blue-600 dark:text-blue-400"
+                    className="text-slate-900 dark:text-slate-700"
                   >
                     {getInterfaceLabel(
                       enrollment?.delivery?.provider?.interface,

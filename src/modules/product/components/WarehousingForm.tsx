@@ -60,7 +60,7 @@ const WarehousingForm = ({ productId }) => {
           id="product_warehousing_form_description"
           defaultMessage="<ul><li> Information regarding product storage </li> </ul>"
           values={{
-            ul: (chunk) => <ul className="list-disc list-inside">{chunk} </ul>,
+            ul: (chunk) => <ul className="pl-5 space-y-1">{chunk} </ul>,
             li: (chunk) => <li>{chunk} </li>,
           }}
         />
@@ -91,7 +91,7 @@ const WarehousingForm = ({ productId }) => {
               />
             </div>
           </div>
-          <div className="border-t-indigo-50 border-t dark:border-t-slate-700 space-y-6 bg-slate-50 dark:bg-slate-800 text-right sm:p-6">
+          <div className="border-t-slate-100 border-t dark:border-t-slate-700 space-y-6 bg-slate-50 dark:bg-slate-800 text-right sm:p-6">
             <SubmitButton
               hidden={!hasRole('editProductWarehousing')}
               label={formatMessage({

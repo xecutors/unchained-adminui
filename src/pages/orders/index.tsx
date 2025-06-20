@@ -57,10 +57,12 @@ const Orders = () => {
       <BreadCrumbs />
       <div className="flex flex-col sm:flex-row sm:items-center justify-between">
         <PageHeader
-          headerText={formatMessage({
-            id: 'orders_list_header',
-            defaultMessage: 'Orders',
-          })}
+          headerText={formatMessage(
+            (ordersCount ?? 0) === 1
+              ? { id: 'order_count_header_singular', defaultMessage: '1 Order' }
+              : { id: 'orders_count_header', defaultMessage: '{count} Orders' },
+            { count: ordersCount ?? 0 }
+          )}
         />
         <SearchField
           defaultValue={queryString}
@@ -68,7 +70,7 @@ const Orders = () => {
         />
       </div>
       <div className="mt-5 inline-block min-w-full overflow-x-auto">
-        <ListHeader totalRecords={ordersCount}>
+        <ListHeader>
           <Toggle
             toggleText={formatMessage({
               id: 'show_carts',

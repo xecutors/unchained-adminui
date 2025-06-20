@@ -72,7 +72,7 @@ const AccountView = ({
                   <a
                     href="https://etherscan.io/verifiedSignatures"
                     target="__blank"
-                    className="text-lg text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300"
+                    className="text-lg text-slate-950 hover:text-slate-900 dark:text-slate-800 dark:hover:text-slate-400"
                   >
                     {chunk}{' '}
                   </a>

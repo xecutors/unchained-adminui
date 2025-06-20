@@ -84,10 +84,12 @@ const AssortmentsView = () => {
       <BreadCrumbs />
       <div className="flex flex-col sm:flex-row sm:items-center justify-between">
         <PageHeader
-          headerText={formatMessage({
-            id: 'assortments_list_header',
-            defaultMessage: 'Assortments',
-          })}
+          headerText={formatMessage(
+            (assortmentsCount ?? 0) === 1
+              ? { id: 'assortment_count_header_singular', defaultMessage: '1 Assortment' }
+              : { id: 'assortments_count_header', defaultMessage: '{count} Assortments' },
+            { count: assortmentsCount ?? 0 }
+          )}
         />
         <SearchField
           onInputChange={setQueryString}
@@ -98,7 +100,6 @@ const AssortmentsView = () => {
       <div className="min-w-full overflow-x-auto">
         <ListHeader
           addPath={hasRole('addAssortment') && '/assortments/new'}
-          totalRecords={assortmentsCount}
         >
           <div className="flex gap-4">
             <Toggle

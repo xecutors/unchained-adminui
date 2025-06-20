@@ -25,7 +25,7 @@ const EnrollmentDetailHeader = ({ enrollment }) => {
             <span className="sm:hidden">&#35;&nbsp;</span>
             {enrollment?.enrollmentNumber ? (
               <Badge
-                color="indigo"
+                color="slate"
                 text={enrollment?.enrollmentNumber}
                 className="p-0 text-lg font-medium sm:text-xl sm:font-bold"
               />

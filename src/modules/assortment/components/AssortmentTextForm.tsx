@@ -91,7 +91,7 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale = null }) => {
          <li> You can change the language of text by using the localization dropdown found at top right corner </li> 
          <li> Description area accepts text that are compatible with markdown or HTML format. Tip: in order to add a line break use \ </li></ul>"
           values={{
-            ul: (chunk) => <ul className="list-disc list-inside">{chunk} </ul>,
+            ul: (chunk) => <ul className="pl-5 space-y-1">{chunk} </ul>,
             li: (chunk) => <li>{chunk} </li>,
           }}
         />
@@ -151,7 +151,7 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale = null }) => {
               </div>
             </div>
 
-            <div className="border-t-indigo-50 border-t dark:border-t-slate-700 bg-slate-50 dark:bg-slate-800 px-4 py-5 text-right sm:px-6">
+            <div className="border-t-slate-100 border-t dark:border-t-slate-700 bg-slate-50 dark:bg-slate-800 px-4 py-5 text-right sm:px-6">
               {hasRole('editAssortmentText') && (
                 <SubmitButton
                   label={formatMessage({

@@ -117,8 +117,8 @@ const QuotationDetail = ({ quotation }) => {
           defaultMessage: 'Mark as processed',
         })}
         icon={
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-indigo-100 sm:mx-0 sm:h-10 sm:w-10 mr-3">
-            <PaperAirplaneIcon className="h-6 w-6 text-indigo-600" />
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-slate-200 sm:mx-0 sm:h-10 sm:w-10 mr-3">
+            <PaperAirplaneIcon className="h-6 w-6 text-slate-950" />
           </div>
         }
       />,
@@ -134,7 +134,7 @@ const QuotationDetail = ({ quotation }) => {
         <Button
           text="Verify"
           onClick={onVerify}
-          className="bg-white-300 relative -ml-px inline-flex items-center space-x-2 rounded-md border border-indigo-500 bg-indigo-500 px-2 py-1 text-base font-medium text-white hover:bg-indigo-700 focus:border-indigo-400 focus:outline-hidden focus:ring-0 focus:ring-indigo-400"
+          className="bg-white-300 relative -ml-px inline-flex items-center space-x-2 rounded-md border border-slate-900 dark:border-slate-600 bg-slate-900 dark:bg-slate-600 px-2 py-1 text-base font-medium text-white hover:bg-slate-950 dark:hover:bg-slate-500 focus:border-slate-800 dark:focus:border-slate-400 focus:outline-hidden focus:ring-0 focus:ring-slate-800 dark:focus:ring-slate-400"
         />
       ),
     },
@@ -146,7 +146,7 @@ const QuotationDetail = ({ quotation }) => {
         <Button
           text="Propose"
           onClick={proposeQuote}
-          className="bg-white-300 relative -ml-px inline-flex items-center space-x-2 rounded-md border border-indigo-500 bg-indigo-500 px-2 py-1 text-base font-medium text-white hover:bg-indigo-700 focus:border-indigo-400 focus:outline-hidden focus:ring-0 focus:ring-indigo-400"
+          className="bg-white-300 relative -ml-px inline-flex items-center space-x-2 rounded-md border border-slate-900 dark:border-slate-600 bg-slate-900 dark:bg-slate-600 px-2 py-1 text-base font-medium text-white hover:bg-slate-950 dark:hover:bg-slate-500 focus:border-slate-800 dark:focus:border-slate-400 focus:outline-hidden focus:ring-0 focus:ring-slate-800 dark:focus:ring-slate-400"
         />
       ),
     },

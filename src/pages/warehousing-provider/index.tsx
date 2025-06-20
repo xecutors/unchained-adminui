@@ -71,16 +71,17 @@ const WarehousingProviders = () => {
     <>
       <BreadCrumbs />
       <PageHeader
-        headerText={formatMessage({
-          id: 'warehousing_providers_header',
-          defaultMessage: 'Warehousing providers',
-        })}
+        headerText={formatMessage(
+          (warehousingProvidersCount ?? 0) === 1
+            ? { id: 'warehousing_provider_count_header_singular', defaultMessage: '1 Warehousing Provider' }
+            : { id: 'warehousing_providers_count_header', defaultMessage: '{count} Warehousing Providers' },
+          { count: warehousingProvidersCount ?? 0 }
+        )}
       />
       <ListHeader
         addPath={
           hasRole('addWarehousingProvider') && '/warehousing-provider/new'
         }
-        totalRecords={warehousingProvidersCount}
       >
         <ProvidersFilter
           providerType={warehousingProviderType?.map(({ value }) => value)}

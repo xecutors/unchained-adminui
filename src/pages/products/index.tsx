@@ -54,13 +54,15 @@ const Products = () => {
   return (
     <>
       <BreadCrumbs />
-      <div className="w-full py-5">
+      <div className="w-full">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between">
           <PageHeader
-            headerText={formatMessage({
-              id: 'products_list_header',
-              defaultMessage: 'Products',
-            })}
+            headerText={formatMessage(
+              (productsCount ?? 0) === 1
+                ? { id: 'product_count_header_singular', defaultMessage: '1 Product' }
+                : { id: 'products_count_header', defaultMessage: '{count} Products' },
+              { count: productsCount ?? 0 }
+            )}
           />
           <SearchField
             onInputChange={setQueryString}
@@ -72,7 +74,10 @@ const Products = () => {
       <div className="min-w-full overflow-x-auto">
         <ListHeader
           addPath={hasRole('addProduct') && '/products/new'}
-          totalRecords={productsCount}
+          addButtonText={formatMessage({
+            id: 'add_product',
+            defaultMessage: 'Add product',
+          })}
         >
           <Toggle
             toggleText={formatMessage({

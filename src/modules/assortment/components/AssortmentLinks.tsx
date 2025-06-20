@@ -121,7 +121,7 @@ const AssortmentLinks = ({ assortmentId }) => {
           </ul>"
             values={{
               ul: (chunk) => (
-                <ul className="list-disc list-inside">{chunk} </ul>
+                <ul className="pl-5 space-y-1">{chunk} </ul>
               ),
               li: (chunk) => <li>{chunk} </li>,
             }}
@@ -145,7 +145,7 @@ const AssortmentLinks = ({ assortmentId }) => {
          <li> Descendants are assortments found in the children tree on any level </li> </ul>"
             values={{
               ul: (chunk) => (
-                <ul className="list-disc list-inside">{chunk} </ul>
+                <ul className="pl-5 space-y-1">{chunk} </ul>
               ),
               li: (chunk) => <li>{chunk} </li>,
             }}

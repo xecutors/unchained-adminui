@@ -35,7 +35,7 @@ const BundleProductsListItem = ({ item, onDelete, index }) => {
         </div>
 
         <div className="ml-auto">
-          <Badge text={quantity} color="indigo" square />
+          <Badge text={quantity} color="slate" square />
         </div>
       </div>
 

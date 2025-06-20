@@ -63,14 +63,15 @@ const PaymentProviders = () => {
     <>
       <BreadCrumbs />
       <PageHeader
-        headerText={formatMessage({
-          id: 'payment_providers_header',
-          defaultMessage: 'Payment providers',
-        })}
+        headerText={formatMessage(
+          (paymentProvidersCount ?? 0) === 1
+            ? { id: 'payment_provider_count_header_singular', defaultMessage: '1 Payment Provider' }
+            : { id: 'payment_providers_count_header', defaultMessage: '{count} Payment Providers' },
+          { count: paymentProvidersCount ?? 0 }
+        )}
       />
       <ListHeader
         addPath={hasRole('addPaymentProvider') && '/payment-provider/new'}
-        totalRecords={paymentProvidersCount}
       >
         <ProvidersFilter
           providerType={paymentProviderType?.map(({ value }) => value)}

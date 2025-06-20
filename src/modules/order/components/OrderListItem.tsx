@@ -18,7 +18,7 @@ const OrderListItem = ({ order, showUser }) => {
         <div className="flex items-center text-sm">
           <Link
             href={`/orders?orderId=${order._id}`}
-            className="font-medium text-blue-500 dark:text-blue-400"
+            className="font-medium text-slate-800 dark:text-slate-700"
           >
             {order?.orderNumber || (
               <>
@@ -49,7 +49,7 @@ const OrderListItem = ({ order, showUser }) => {
         <Table.Cell>
           <Link
             href={`/users?userId=${order.user._id}`}
-            className="flex items-center text-sm text-blue-500 dark:text-blue-400 hover:text-decoration"
+            className="flex items-center text-sm text-slate-800 dark:text-slate-700 hover:text-decoration"
           >
             <MediaAvatar file={order.user?.avatar} className="mr-2" />
 

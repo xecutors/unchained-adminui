@@ -34,7 +34,7 @@ const CheckboxField = (props: CommonFieldProps) => {
         type="checkbox"
         className={
           (classNames(
-            'h-4 w-4 rounded-xs border-slate-300 text-indigo-600 focus:ring-indigo-400',
+            'h-4 w-4 rounded-xs border-slate-300 text-slate-950 focus:ring-slate-800',
           ),
           inputClassName)
         }

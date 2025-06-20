@@ -92,7 +92,7 @@ const TangleTree = ({ data, options = {} }: { data: any; options?: any }) => {
                     _id: n?.id,
                     texts: n,
                   })}`}
-                  className='className="selectable text-indigo-600 hover:text-indigo-800 dark:text-lime-400 dark:hover:text-lime-500 text-base'
+                  className='className="selectable text-slate-950 hover:text-slate-950 dark:text-lime-400 dark:hover:text-lime-500 text-base'
                   id="root"
                 >
                   {n?.title}
@@ -106,7 +106,7 @@ const TangleTree = ({ data, options = {} }: { data: any; options?: any }) => {
                           texts: n,
                         },
                       )}`}
-                      className="text-blue-600 dark:text-fuchsia-400 dark:hover:text-fuchsia-600 ml-2 inline-flex items-center px-4 border border-slate-300 shadow-xs text-sm font-medium rounded-md bg-white dark:bg-slate-500 hover:bg-slate-50 dark:hover:bg-slate-400 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      className="text-slate-900 dark:text-fuchsia-400 dark:hover:text-fuchsia-600 ml-2 inline-flex items-center px-4 border border-slate-300 shadow-xs text-sm font-medium rounded-md bg-white dark:bg-slate-500 hover:bg-slate-50 dark:hover:bg-slate-400 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-slate-900"
                     >
                       {formatMessage({
                         id: 'children',

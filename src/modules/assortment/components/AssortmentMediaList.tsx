@@ -16,7 +16,7 @@ const AssortmentMediaList = ({
   const { formatMessage } = useIntl();
 
   return (
-    <div className="rounded-md shadow-sm dark:shadow-none lg:col-span-6">
+    <div className="rounded-md lg:col-span-6">
       <div className="mx-auto max-w-7xl overflow-hidden">
         <h2 className="sr-only">
           {formatMessage({

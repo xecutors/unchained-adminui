@@ -68,7 +68,7 @@ const MediaUploader = ({
             </span>
             <button
               type="button"
-              className="ml-5 rounded-md border border-slate-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-slate-700 shadow-xs hover:bg-slate-50 focus:outline-hidden focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+              className="ml-5 rounded-md border border-slate-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-slate-700 shadow-xs hover:bg-slate-50 focus:outline-hidden focus:ring-2 focus:ring-slate-800 focus:ring-offset-2"
             >
               {text ||
                 formatMessage({
@@ -93,11 +93,11 @@ const MediaUploader = ({
             className={classNames(
               'mt-1 flex justify-center rounded-md border-2 border-dashed border-slate-300 px-6 pt-5 pb-6',
               {
-                'border-indigo-600': dragArea,
+                'border-slate-950': dragArea,
               },
             )}
           >
-            <div className="space-y-1 text-center">
+            <div className="pl-5 space-y-1 text-center">
               <svg
                 className="mx-auto h-12 w-12 text-slate-400 dark:text-slate-200"
                 stroke="currentColor"
@@ -115,7 +115,7 @@ const MediaUploader = ({
               <div className="flex text-sm text-slate-600 dark:text-slate-200">
                 <label
                   htmlFor="file-upload"
-                  className="px-1 mr-1 relative cursor-pointer rounded-md font-medium text-indigo-600 dark:text-indigo-200 focus-within:outline-hidden focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500"
+                  className="px-1 mr-1 relative cursor-pointer rounded-md font-medium text-slate-950 dark:text-slate-300 focus-within:outline-hidden focus-within:ring-2 focus-within:ring-slate-900 focus-within:ring-offset-2 hover:text-slate-900"
                 >
                   <span>
                     {formatMessage({

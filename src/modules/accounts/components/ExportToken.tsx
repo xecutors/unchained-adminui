@@ -37,7 +37,7 @@ const ExportToken = ({ tokenId, tokenStatus, addresses = [] }) => {
           onClick={() => setShowModal(true)}
           disabled={tokenStatus === 'EXPORTING'}
           className={classNames(
-            ' text-center   inline-flex truncate rounded-md border border-transparent bg-indigo-600 px-5 py-1 text-base font-medium text-white shadow-xs hover:bg-indigo-700 focus:outline-hidden focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2',
+            ' text-center   inline-flex truncate rounded-md border border-transparent bg-slate-950 px-5 py-1 text-base font-medium text-white shadow-xs hover:bg-slate-950 focus:outline-hidden focus:ring-2 focus:ring-slate-900 focus:ring-offset-2',
             { 'bg-gray-400 hover:bg-gray-500': tokenStatus === 'EXPORTING' },
           )}
         >

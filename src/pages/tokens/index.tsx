@@ -44,10 +44,12 @@ const TokensPage = () => {
       <BreadCrumbs />
       <div className="flex flex-col sm:flex-row sm:items-center justify-between">
         <PageHeader
-          headerText={formatMessage({
-            id: 'tokens',
-            defaultMessage: 'Tokens',
-          })}
+          headerText={formatMessage(
+            (tokensCount ?? 0) === 1
+              ? { id: 'token_count_header_singular', defaultMessage: '1 Token' }
+              : { id: 'tokens_count_header', defaultMessage: '{count} Tokens' },
+            { count: tokensCount ?? 0 }
+          )}
         />
         <SearchField
           defaultValue={queryString}
@@ -55,7 +57,7 @@ const TokensPage = () => {
         />
       </div>
       <div className="mt-5 inline-block min-w-full overflow-x-auto">
-        <ListHeader totalRecords={tokensCount} />
+        <ListHeader />
         {loading ? <Loading /> : <TokenList tokens={tokens} />}
         {!loading && !tokens?.length && (
           <NoData
