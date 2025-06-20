@@ -261,8 +261,8 @@ const Layout = ({
               <Link href="/">
                 <ImageWithFallback
                   src={process.env.NEXT_PUBLIC_LOGO}
-                  width={125}
-                  height={100}
+                  width={41}
+                  height={25}
                   alt={formatMessage({
                     id: 'unchained_logo',
                     defaultMessage: 'Unchained Logo',
@@ -283,13 +283,13 @@ const Layout = ({
 
       <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col 2xl:w-96 dark:bg-slate-900 dark:text-slate-200">
         <div className="flex min-h-0 flex-1 flex-col border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
-          <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
+          <div className="flex flex-1 flex-col overflow-y-auto pt-5 mt-5 mb-5 pb-4">
             <div className="flex shrink-0 items-center px-4">
               <Link href="/">
                 <ImageWithFallback
                   src={process.env.NEXT_PUBLIC_LOGO}
-                  width={175}
-                  height={100}
+                  width={41}
+                  height={25}
                   alt={formatMessage({
                     id: 'unchained_logo',
                     defaultMessage: 'Unchained Logo',

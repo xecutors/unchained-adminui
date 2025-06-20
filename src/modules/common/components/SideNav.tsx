@@ -71,7 +71,7 @@ const SideNav = ({ navigation, onClick = null }) => {
   const router = useRouter();
 
   return (
-    <div className="mt-1 flex grow flex-col dark:bg-slate-900">
+    <div className="mt-5 flex grow flex-col dark:bg-slate-900">
       <div className="flex items-center mb-3">
         <h1 className="text-md bg-white dark:bg-slate-900 px-2 font-bold text-indigo-500 lg:px-4 2xl:px-6 ">
           {formatMessage({ id: 'admin_ui', defaultMessage: 'Admin UI' })}
