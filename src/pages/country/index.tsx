@@ -22,6 +22,7 @@ import {
   convertSortFieldsToQueryFormat,
   normalizeQuery,
 } from '../../modules/common/utils/utils';
+import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
 import CountryDetailPage from './CountryDetailPage';
 
 const Country = () => {
@@ -94,20 +95,14 @@ const Country = () => {
   return (
     <>
       <BreadCrumbs />
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between">
-        <PageHeader
-          headerText={formatMessage(
-            (countriesCount ?? 0) === 1
-              ? { id: 'country_count_header_singular', defaultMessage: '1 Country' }
-              : { id: 'countries_count_header', defaultMessage: '{count} Countries' },
-            { count: countriesCount ?? 0 }
-          )}
-        />
-        <SearchField
-          defaultValue={queryString}
-          onInputChange={setQueryString}
-        />
-      </div>
+      <PageHeader
+        headerText={formatMessage(
+          (countriesCount ?? 0) === 1
+            ? { id: 'country_count_header_singular', defaultMessage: '1 Country' }
+            : { id: 'countries_count_header', defaultMessage: '{count} Countries' },
+          { count: countriesCount ?? 0 }
+        )}
+      />
       <div className="min-w-full overflow-x-auto">
         <ListHeader
           addPath={hasRole('addCountry') && '/country/new'}
@@ -121,20 +116,31 @@ const Country = () => {
             active={includeInactive}
           />
         </ListHeader>
-        {loading ? (
-          <Loading />
-        ) : (
-          <CountryList
-            sortable
-            countries={countries}
-            onRemoveCountry={onRemoveCountry}
-          />
-        )}
-        <Pagination
-          data={countries}
-          total={countriesCount}
-          onLoadMore={loadMore}
-        />
+        <LocaleWrapper
+          searchComponent={
+            <SearchField
+              defaultValue={queryString}
+              onInputChange={setQueryString}
+            />
+          }
+        >
+          <div>
+            {loading ? (
+              <Loading />
+            ) : (
+              <CountryList
+                sortable
+                countries={countries}
+                onRemoveCountry={onRemoveCountry}
+              />
+            )}
+            <Pagination
+              data={countries}
+              total={countriesCount}
+              onLoadMore={loadMore}
+            />
+          </div>
+        </LocaleWrapper>
       </div>
     </>
   );

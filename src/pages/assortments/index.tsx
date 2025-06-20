@@ -17,11 +17,11 @@ import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
 import useAssortmentsCount from '../../modules/assortment/hooks/useAssortmentsCount';
 import AssortmentDetailPage from './AssortmentDetailPage';
 
-const GetCurrentView = ({ options, queryString }) => {
+const GetCurrentView = ({ options, queryString, searchComponent }) => {
   const { graph, ...rest } = options;
 
   return (
-    <LocaleWrapper>
+    <LocaleWrapper searchComponent={searchComponent}>
       {graph === 'true' ? (
         <AssortmentGraphView options={rest} />
       ) : (
@@ -82,25 +82,22 @@ const AssortmentsView = () => {
   return (
     <>
       <BreadCrumbs />
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between">
-        <PageHeader
-          headerText={formatMessage(
-            (assortmentsCount ?? 0) === 1
-              ? { id: 'assortment_count_header_singular', defaultMessage: '1 Assortment' }
-              : { id: 'assortments_count_header', defaultMessage: '{count} Assortments' },
-            { count: assortmentsCount ?? 0 }
-          )}
-        />
-        <SearchField
-          onInputChange={setQueryString}
-          defaultValue={queryString}
-        />
-      </div>
-      <AssortmentSearchFilter />
-      <div className="min-w-full overflow-x-auto">
-        <ListHeader
-          addPath={hasRole('addAssortment') && '/assortments/new'}
-        >
+      <PageHeader
+        headerText={formatMessage(
+          (assortmentsCount ?? 0) === 1
+            ? {
+                id: 'assortment_count_header_singular',
+                defaultMessage: '1 Assortment',
+              }
+            : {
+                id: 'assortments_count_header',
+                defaultMessage: '{count} Assortments',
+              },
+          { count: assortmentsCount ?? 0 },
+        )}
+      />
+      <div>
+        <ListHeader addPath={hasRole('addAssortment') && '/assortments/new'}>
           <div className="flex gap-4">
             <Toggle
               toggleKey="includeInactive"
@@ -128,9 +125,15 @@ const AssortmentsView = () => {
             />
           </div>
         </ListHeader>
-
+        <AssortmentSearchFilter />
         <GetCurrentView
           queryString={queryString}
+          searchComponent={
+            <SearchField
+              onInputChange={setQueryString}
+              defaultValue={queryString}
+            />
+          }
           options={{
             graph,
             includeInactive,

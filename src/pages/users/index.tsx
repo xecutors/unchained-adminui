@@ -12,6 +12,7 @@ import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 import ListHeader from '../../modules/common/components/ListHeader';
 import UserFilter from '../../modules/accounts/components/UserFilter';
 import NoData from '../../modules/common/components/NoData';
+import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
 import UserDetailPage from './UserDetailPage';
 
 const Users = () => {
@@ -68,20 +69,14 @@ const Users = () => {
   return (
     <div className="mb-10">
       <BreadCrumbs />
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between">
-        <PageHeader
-          headerText={formatMessage(
-            (usersCount ?? 0) === 1
-              ? { id: 'user_count_header_singular', defaultMessage: '1 User' }
-              : { id: 'users_count_header', defaultMessage: '{count} Users' },
-            { count: usersCount ?? 0 }
-          )}
-        />
-        <SearchField
-          defaultValue={queryString}
-          onInputChange={setQueryString}
-        />
-      </div>
+      <PageHeader
+        headerText={formatMessage(
+          (usersCount ?? 0) === 1
+            ? { id: 'user_count_header_singular', defaultMessage: '1 User' }
+            : { id: 'users_count_header', defaultMessage: '{count} Users' },
+          { count: usersCount ?? 0 }
+        )}
+      />
       <UserFilter />
       <ListHeader addPath="/users/new">
         <Toggle
@@ -93,18 +88,27 @@ const Users = () => {
         />
       </ListHeader>
 
-      <div className="my-3">
-        {loading ? <Loading /> : <UserList users={users} />}
-        {!loading && !users?.length && (
-          <NoData
-            message={formatMessage({
-              id: 'user',
-              defaultMessage: 'User',
-            })}
+      <LocaleWrapper
+        searchComponent={
+          <SearchField
+            defaultValue={queryString}
+            onInputChange={setQueryString}
           />
-        )}
-      </div>
-      <Pagination data={users} total={usersCount} onLoadMore={loadMore} />
+        }
+      >
+        <div>
+          {loading ? <Loading /> : <UserList users={users} />}
+          {!loading && !users?.length && (
+            <NoData
+              message={formatMessage({
+                id: 'user',
+                defaultMessage: 'User',
+              })}
+            />
+          )}
+          <Pagination data={users} total={usersCount} onLoadMore={loadMore} />
+        </div>
+      </LocaleWrapper>
     </div>
   );
 };

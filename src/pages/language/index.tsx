@@ -19,6 +19,7 @@ import {
   convertSortFieldsToQueryFormat,
   normalizeQuery,
 } from '../../modules/common/utils/utils';
+import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
 import LanguageDetailPage from './LanguageDetailPage';
 
 const Languages = () => {
@@ -89,20 +90,14 @@ const Languages = () => {
   return (
     <>
       <BreadCrumbs />
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between">
-        <PageHeaders
-          headerText={formatMessage(
-            (languagesCount ?? 0) === 1
-              ? { id: 'language_count_header_singular', defaultMessage: '1 Language' }
-              : { id: 'languages_count_header', defaultMessage: '{count} Languages' },
-            { count: languagesCount ?? 0 }
-          )}
-        />
-        <SearchField
-          defaultValue={queryString}
-          onInputChange={setQueryString}
-        />
-      </div>
+      <PageHeaders
+        headerText={formatMessage(
+          (languagesCount ?? 0) === 1
+            ? { id: 'language_count_header_singular', defaultMessage: '1 Language' }
+            : { id: 'languages_count_header', defaultMessage: '{count} Languages' },
+          { count: languagesCount ?? 0 }
+        )}
+      />
 
       <div className="min-w-full overflow-x-auto">
         <ListHeader
@@ -117,20 +112,31 @@ const Languages = () => {
             active={includeInactive}
           />
         </ListHeader>
-        {loading ? (
-          <Loading />
-        ) : (
-          <LanguageList
-            sortable
-            languages={languages}
-            onRemoveLanguage={onRemoveLanguage}
-          />
-        )}
-        <Pagination
-          data={languages}
-          total={languagesCount}
-          onLoadMore={loadMore}
-        />
+        <LocaleWrapper
+          searchComponent={
+            <SearchField
+              defaultValue={queryString}
+              onInputChange={setQueryString}
+            />
+          }
+        >
+          <div>
+            {loading ? (
+              <Loading />
+            ) : (
+              <LanguageList
+                sortable
+                languages={languages}
+                onRemoveLanguage={onRemoveLanguage}
+              />
+            )}
+            <Pagination
+              data={languages}
+              total={languagesCount}
+              onLoadMore={loadMore}
+            />
+          </div>
+        </LocaleWrapper>
       </div>
     </>
   );

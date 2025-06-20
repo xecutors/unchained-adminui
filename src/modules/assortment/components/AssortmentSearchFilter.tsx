@@ -25,11 +25,11 @@ const AssortmentSearchFilter = () => {
   };
 
   return (
-    <div className="mb-5 mt-4 grid grid-cols-6 gap-6">
+    <div className="mt-5 grid grid-cols-6 gap-6">
       <div className="col-span-6 sm:col-span-3">
-        <TagInput 
-          tagList={router.query?.tags} 
-          onChange={handleOnChange} 
+        <TagInput
+          tagList={router.query?.tags}
+          onChange={handleOnChange}
           buttonText={formatMessage({
             id: 'apply',
             defaultMessage: 'Apply',

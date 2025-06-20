@@ -17,6 +17,7 @@ import {
   normalizeQuery,
 } from '../../modules/common/utils/utils';
 import { ISortOptionInput, IWorkStatus, IWorkType } from '../../gql/types';
+import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
 import WorkDetailPage from './WorkDetailPage';
 
 const WorkQueueView = () => {
@@ -72,20 +73,14 @@ const WorkQueueView = () => {
           defaultMessage: 'Work queue',
         })}
       />
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between">
-        <PageHeader
-          headerText={formatMessage(
-            (total ?? 0) === 1
-              ? { id: 'work_item_count_header_singular', defaultMessage: '1 Work Item' }
-              : { id: 'work_queue_count_header', defaultMessage: '{count} Work Items' },
-            { count: total ?? 0 }
-          )}
-        />
-        <SearchField
-          defaultValue={queryString}
-          onInputChange={setQueryString}
-        />
-      </div>
+      <PageHeader
+        headerText={formatMessage(
+          (total ?? 0) === 1
+            ? { id: 'work_item_count_header_singular', defaultMessage: '1 Work Item' }
+            : { id: 'work_queue_count_header', defaultMessage: '{count} Work Items' },
+          { count: total ?? 0 }
+        )}
+      />
       <WorkFilter workTypes={activeWorkTypes} />
       <div className="min-w-full overflow-x-auto">
         <ListHeader
@@ -99,8 +94,19 @@ const WorkQueueView = () => {
           })}
         />
 
-        {loading ? <Loading /> : <WorkList workQueue={workQueue} sortable />}
-        <Pagination total={total} data={workQueue} onLoadMore={loadMore} />
+        <LocaleWrapper
+          searchComponent={
+            <SearchField
+              defaultValue={queryString}
+              onInputChange={setQueryString}
+            />
+          }
+        >
+          <div>
+            {loading ? <Loading /> : <WorkList workQueue={workQueue} sortable />}
+            <Pagination total={total} data={workQueue} onLoadMore={loadMore} />
+          </div>
+        </LocaleWrapper>
       </div>
     </>
   );

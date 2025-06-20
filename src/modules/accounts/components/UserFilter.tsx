@@ -30,8 +30,11 @@ const UserFilter: React.FC = () => {
 
   return (
     <>
-      <div className="mb-4 lg:flex lg:justify-between py-4">
-        <div className="flex-1  mr-4">
+      <div
+        className="mb-4 flex flex-col gap-5 py-4"
+        style={{ maxWidth: '500px' }}
+      >
+        <div className="flex-1">
           <label className="block text-sm font-medium text-gray-700 mb-1">
             {formatMessage({
               id: 'email_verified_label',
@@ -64,7 +67,7 @@ const UserFilter: React.FC = () => {
           </select>
         </div>
 
-        <div className="flex-1 ">
+        <div className="flex-1">
           <label className="block text-sm font-medium text-gray-700 mb-1">
             {formatMessage({
               id: 'login_date_range',

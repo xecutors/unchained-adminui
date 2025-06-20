@@ -55,21 +55,20 @@ const Products = () => {
     <>
       <BreadCrumbs />
       <div className="w-full">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between">
-          <PageHeader
-            headerText={formatMessage(
-              (productsCount ?? 0) === 1
-                ? { id: 'product_count_header_singular', defaultMessage: '1 Product' }
-                : { id: 'products_count_header', defaultMessage: '{count} Products' },
-              { count: productsCount ?? 0 }
-            )}
-          />
-          <SearchField
-            onInputChange={setQueryString}
-            defaultValue={queryString}
-          />
-        </div>
-        <ProductFilter />
+        <PageHeader
+          headerText={formatMessage(
+            (productsCount ?? 0) === 1
+              ? {
+                  id: 'product_count_header_singular',
+                  defaultMessage: '1 Product',
+                }
+              : {
+                  id: 'products_count_header',
+                  defaultMessage: '{count} Products',
+                },
+            { count: productsCount ?? 0 },
+          )}
+        />
       </div>
       <div className="min-w-full overflow-x-auto">
         <ListHeader
@@ -88,8 +87,15 @@ const Products = () => {
             active={includeDrafts}
           />
         </ListHeader>
-
-        <LocaleWrapper>
+        <ProductFilter />
+        <LocaleWrapper
+          searchComponent={
+            <SearchField
+              onInputChange={setQueryString}
+              defaultValue={queryString}
+            />
+          }
+        >
           <ProductList
             sortable
             {...{ queryString, includeDrafts, limit, offset, tags, sortKeys }}

@@ -17,6 +17,7 @@ import {
 
 import useEnrollmentStatusTypes from '../../modules/enrollment/hooks/useEnrollmentStatusTypes';
 import StatusFilter from '../../modules/common/components/StatusFilter';
+import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
 import EnrollmentDetailPage from './EnrollmentDetailPage';
 
 const EnrollmentListView = () => {
@@ -72,20 +73,14 @@ const EnrollmentListView = () => {
   return (
     <>
       <BreadCrumbs />
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between">
-        <PageHeader
-          headerText={formatMessage(
-            (enrollmentsCount ?? 0) === 1
-              ? { id: 'enrollment_count_header_singular', defaultMessage: '1 Enrollment' }
-              : { id: 'enrollments_count_header', defaultMessage: '{count} Enrollments' },
-            { count: enrollmentsCount ?? 0 }
-          )}
-        />
-        <SearchField
-          defaultValue={queryString}
-          onInputChange={setQueryString}
-        />
-      </div>
+      <PageHeader
+        headerText={formatMessage(
+          (enrollmentsCount ?? 0) === 1
+            ? { id: 'enrollment_count_header_singular', defaultMessage: '1 Enrollment' }
+            : { id: 'enrollments_count_header', defaultMessage: '{count} Enrollments' },
+          { count: enrollmentsCount ?? 0 }
+        )}
+      />
       <div>
         <p className="mt-0 text-xl font-medium leading-5 text-slate-800 dark:text-slate-200 lg:gap-7 lg:leading-6 ">
           {formatMessage({ id: 'status', defaultMessage: 'Status' })}
@@ -101,16 +96,27 @@ const EnrollmentListView = () => {
       <div className="min-w-full overflow-x-auto">
         <ListHeader />
 
-        {loading ? (
-          <Loading />
-        ) : (
-          <EnrollmentList enrollments={enrollments} showUser sortable />
-        )}
-        <Pagination
-          data={enrollments}
-          total={enrollmentsCount}
-          onLoadMore={loadMore}
-        />
+        <LocaleWrapper
+          searchComponent={
+            <SearchField
+              defaultValue={queryString}
+              onInputChange={setQueryString}
+            />
+          }
+        >
+          <div>
+            {loading ? (
+              <Loading />
+            ) : (
+              <EnrollmentList enrollments={enrollments} showUser sortable />
+            )}
+            <Pagination
+              data={enrollments}
+              total={enrollmentsCount}
+              onLoadMore={loadMore}
+            />
+          </div>
+        </LocaleWrapper>
       </div>
     </>
   );

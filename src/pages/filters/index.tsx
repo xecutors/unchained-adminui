@@ -93,10 +93,6 @@ const FiltersListView = () => {
             { count: filtersCount ?? 0 }
           )}
         />
-        <SearchField
-          defaultValue={queryString}
-          onInputChange={setQueryString}
-        />
       </div>
 
       <div className="min-w-full overflow-x-auto">
@@ -113,7 +109,14 @@ const FiltersListView = () => {
           />
         </ListHeader>
 
-        <LocaleWrapper>
+        <LocaleWrapper
+          searchComponent={
+            <SearchField
+              defaultValue={queryString}
+              onInputChange={setQueryString}
+            />
+          }
+        >
           <FilterList
             onRemoveFilter={onRemoveFilter}
             {...{ queryString, limit, includeInactive, offset, sortKeys }}

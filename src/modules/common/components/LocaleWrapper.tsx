@@ -22,7 +22,7 @@ const createLanguageDialectList = (languages, countries) => {
   return result;
 };
 
-const LocaleWrapper = ({ children }) => {
+const LocaleWrapper = ({ children, searchComponent = null }) => {
   const { languages, loading } = useLanguages();
   const { countries } = useCountries();
   const { locale } = useIntl();
@@ -43,8 +43,9 @@ const LocaleWrapper = ({ children }) => {
   const languageDialectList = createLanguageDialectList(languages, countries);
 
   return (
-    <div className="my-3">
-      <div className="relative mb-2">
+    <div className="mt-5">
+      <div className="flex justify-between items-center flex-wrap gap-3">
+        {searchComponent && <div>{searchComponent}</div>}
         <div className="w-fit">
           <select
             id="locale-wrapper"

@@ -13,7 +13,7 @@ const AssortmentGraphView = ({ options, selectedLocale = null }) => {
   });
 
   return (
-    <div className="min-w-full overflow-hidden">
+    <div className="mt-5">
       {loading ? <Loading /> : <AssortmentGraph assortments={assortments} />}
     </div>
   );

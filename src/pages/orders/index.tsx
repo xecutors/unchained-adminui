@@ -15,6 +15,7 @@ import {
   convertSortFieldsToQueryFormat,
   normalizeQuery,
 } from '../../modules/common/utils/utils';
+import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
 import OrderDetailPage from './OrderDetailPage';
 
 const Orders = () => {
@@ -55,20 +56,14 @@ const Orders = () => {
   return (
     <>
       <BreadCrumbs />
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between">
-        <PageHeader
-          headerText={formatMessage(
-            (ordersCount ?? 0) === 1
-              ? { id: 'order_count_header_singular', defaultMessage: '1 Order' }
-              : { id: 'orders_count_header', defaultMessage: '{count} Orders' },
-            { count: ordersCount ?? 0 }
-          )}
-        />
-        <SearchField
-          defaultValue={queryString}
-          onInputChange={setQueryString}
-        />
-      </div>
+      <PageHeader
+        headerText={formatMessage(
+          (ordersCount ?? 0) === 1
+            ? { id: 'order_count_header_singular', defaultMessage: '1 Order' }
+            : { id: 'orders_count_header', defaultMessage: '{count} Orders' },
+          { count: ordersCount ?? 0 }
+        )}
+      />
       <div className="mt-5 inline-block min-w-full overflow-x-auto">
         <ListHeader>
           <Toggle
@@ -80,12 +75,24 @@ const Orders = () => {
             active={includeCarts}
           />
         </ListHeader>
-        {loading ? (
-          <Loading />
-        ) : (
-          <OrderList loading={loading} orders={orders} showUser sortable />
-        )}
-        <Pagination data={orders} total={ordersCount} onLoadMore={loadMore} />
+        
+        <LocaleWrapper
+          searchComponent={
+            <SearchField
+              defaultValue={queryString}
+              onInputChange={setQueryString}
+            />
+          }
+        >
+          <div>
+            {loading ? (
+              <Loading />
+            ) : (
+              <OrderList loading={loading} orders={orders} showUser sortable />
+            )}
+            <Pagination data={orders} total={ordersCount} onLoadMore={loadMore} />
+          </div>
+        </LocaleWrapper>
       </div>
     </>
   );
