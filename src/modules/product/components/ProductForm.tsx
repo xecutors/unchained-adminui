@@ -45,7 +45,7 @@ const ProductForm = ({
 
   return (
     <Form form={form}>
-      <div className="p-5 pb-7 sm:max-w-full">
+      <div className="p-5 pb-7 sm:max-w-full flex flex-col gap-3">
         <TextField
           name="title"
           id="name"
@@ -75,7 +75,7 @@ const ProductForm = ({
           className="block w-full max-w-full rounded-md border-slate-200 dark:border-slate-800 text-sm focus:border-slate-800 focus:ring-slate-800 sm:text-sm"
         />
 
-        <div className="my-5 flex items-center">
+        <div className="flex items-center">
           <SelectField
             className="mt-1 w-full"
             label={formatMessage({ id: 'type', defaultMessage: 'Type' })}
@@ -91,7 +91,7 @@ const ProductForm = ({
         />
       </div>
 
-      <div className="space-y-6 border-t border-t-slate-100 dark:border-t-slate-700 bg-slate-50 dark:bg-slate-800 p-5 text-right">
+      <div className="border-t border-t-slate-100 dark:border-t-slate-700 bg-slate-50 dark:bg-slate-800 p-5 text-right">
         <SubmitButton
           hidden={!hasRole('addProduct')}
           label={formatMessage({

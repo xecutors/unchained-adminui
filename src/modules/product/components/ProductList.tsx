@@ -36,6 +36,7 @@ const ProductList = ({
       loading={loading}
       hasMore={hasMore}
       onLoadMore={loadMore}
+      hasData={products?.length > 0}
     >
       <Table className="min-w-full ">
         {products?.map((product) => (

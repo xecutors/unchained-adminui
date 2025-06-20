@@ -50,10 +50,10 @@ const LocaleWrapper = ({
   ).filter((l) => !onlyFull || l.isoCode.includes('-'));
 
   return (
-    <div className="mt-5">
-      <div className="flex justify-between items-center flex-wrap gap-3">
+    <div>
+      <div className="mt-5 flex justify-between items-center flex-wrap gap-3">
         {searchComponent && <div>{searchComponent}</div>}
-        <div className="w-fit">
+        <div className="w-fit mt-5">
           <select
             id="locale-wrapper"
             className="cursor-pointer rounded-md border-slate-300 dark:border-slate-700 py-1 pr-8 text-sm lg:py-1 lg:pr-10 text-black dark:text-slate-400 dark:bg-slate-800"
