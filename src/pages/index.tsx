@@ -208,8 +208,8 @@ const Home = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-100 font-sans">
-      <header className="p-4 shadow bg-white border-b text-center text-xl font-semibold text-gray-700">
-        AI Assistant
+      <header className="p-4 text-xl font-semibold text-gray-900">
+        Unchained <span className="font-light">Copilot</span>
       </header>
       <main className="flex-1 overflow-y-auto px-4 py-6 space-y-4">
         {messages?.map((message) => (
@@ -224,20 +224,17 @@ const Home = () => {
 
       <form
         onSubmit={handleSubmit}
-        className="bg-white border-t p-4 sticky bottom-0"
+        className="bg-white shadow-2xl border rounded-md p-3 sticky bottom-6"
       >
         <div className="flex items-center gap-2">
           <input
             value={input}
             onChange={handleInputChange}
             placeholder="Type your message..."
-            className="flex-1 border border-gray-300 rounded-full px-4 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="flex-1 border-0 bg-slate-100 rounded-md px-4 py-2"
           />
-          <button
-            type="submit"
-            className="p-2 bg-blue-600 rounded-full hover:bg-blue-700"
-          >
-            <PaperAirplaneIcon className="h-6 w-6 text-white" strokeWidth={2} />
+          <button type="submit" className="p-2">
+            <PaperAirplaneIcon className="h-6 w-6" strokeWidth={2} />
           </button>
         </div>
       </form>
