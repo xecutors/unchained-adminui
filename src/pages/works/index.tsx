@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
-import Pagination from '../../modules/common/components/Pagination';
+import InfiniteScroll from '../../modules/common/components/InfiniteScroll';
 import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
 import WorkFilter from '../../modules/work/components/WorkFilter';
@@ -53,7 +53,7 @@ const WorkQueueView = () => {
   };
   const sortKeys = convertSortFieldsToQueryFormat(sort);
 
-  const { workQueue, loadMore, loading, activeWorkTypes, total } = useWorkQueue(
+  const { workQueue, loadMore, loading, activeWorkTypes, total, hasMore } = useWorkQueue(
     {
       queryString: queryString as string,
       limit,
@@ -102,10 +102,13 @@ const WorkQueueView = () => {
             />
           }
         >
-          <div>
-            {loading ? <Loading /> : <WorkList workQueue={workQueue} sortable />}
-            <Pagination total={total} data={workQueue} onLoadMore={loadMore} />
-          </div>
+          <InfiniteScroll
+            loading={loading}
+            hasMore={hasMore}
+            onLoadMore={loadMore}
+          >
+            {loading && workQueue?.length === 0 ? <Loading /> : <WorkList workQueue={workQueue} sortable />}
+          </InfiniteScroll>
         </LocaleWrapper>
       </div>
     </>

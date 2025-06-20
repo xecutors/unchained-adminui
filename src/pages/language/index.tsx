@@ -9,7 +9,7 @@ import PageHeaders from '../../modules/common/components/PageHeader';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
 import Toggle from '../../modules/common/components/Toggle';
-import Pagination from '../../modules/common/components/Pagination';
+import InfiniteScroll from '../../modules/common/components/InfiniteScroll';
 import useModal from '../../modules/modal/hooks/useModal';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import Loading from '../../modules/common/components/Loading';
@@ -48,7 +48,7 @@ const Languages = () => {
 
   const sortKeys = convertSortFieldsToQueryFormat(sort);
 
-  const { languages, languagesCount, loading, loadMore } = useLanguages({
+  const { languages, languagesCount, loading, loadMore, hasMore } = useLanguages({
     queryString: queryString as string,
     limit,
     includeInactive,
@@ -120,8 +120,12 @@ const Languages = () => {
             />
           }
         >
-          <div>
-            {loading ? (
+          <InfiniteScroll
+            loading={loading}
+            hasMore={hasMore}
+            onLoadMore={loadMore}
+          >
+            {loading && languages?.length === 0 ? (
               <Loading />
             ) : (
               <LanguageList
@@ -130,12 +134,7 @@ const Languages = () => {
                 onRemoveLanguage={onRemoveLanguage}
               />
             )}
-            <Pagination
-              data={languages}
-              total={languagesCount}
-              onLoadMore={loadMore}
-            />
-          </div>
+          </InfiniteScroll>
         </LocaleWrapper>
       </div>
     </>

@@ -10,7 +10,7 @@ const SubscriptionList = ({ periods }) => {
   const { formatDateTime } = useFormatDateTime();
 
   return (
-    <section className="my-3">
+    <section className="mt-3">
       {periods?.length ? (
         <Table className="mt-0 min-w-full rounded-t-none">
           {(periods || [])?.map((period) => (

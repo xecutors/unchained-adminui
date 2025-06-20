@@ -42,6 +42,7 @@ const useEnrollments = ({
   });
   const enrollments = data?.enrollments || [];
   const enrollmentsCount = data?.enrollmentsCount;
+  const hasMore = enrollments?.length < enrollmentsCount;
 
   const loadMore = () => {
     fetchMore({
@@ -52,6 +53,7 @@ const useEnrollments = ({
   return {
     enrollments,
     enrollmentsCount,
+    hasMore,
     loading,
     error,
     loadMore,

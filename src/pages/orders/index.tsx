@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
-import Pagination from '../../modules/common/components/Pagination';
+import InfiniteScroll from '../../modules/common/components/InfiniteScroll';
 import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
 import SearchField from '../../modules/common/components/SearchField';
@@ -43,7 +43,7 @@ const Orders = () => {
   };
 
   const sortKeys = convertSortFieldsToQueryFormat(sort);
-  const { orders, ordersCount, loading, loadMore } = useOrders({
+  const { orders, ordersCount, loading, loadMore, hasMore } = useOrders({
     limit,
     includeCarts,
     queryString: queryString as string,
@@ -84,14 +84,17 @@ const Orders = () => {
             />
           }
         >
-          <div>
-            {loading ? (
+          <InfiniteScroll
+            loading={loading}
+            hasMore={hasMore}
+            onLoadMore={loadMore}
+          >
+            {loading && orders?.length === 0 ? (
               <Loading />
             ) : (
-              <OrderList loading={loading} orders={orders} showUser sortable />
+              <OrderList loading={loading && orders?.length > 0} orders={orders} showUser sortable />
             )}
-            <Pagination data={orders} total={ordersCount} onLoadMore={loadMore} />
-          </div>
+          </InfiniteScroll>
         </LocaleWrapper>
       </div>
     </>

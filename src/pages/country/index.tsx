@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
-import Pagination from '../../modules/common/components/Pagination';
+import InfiniteScroll from '../../modules/common/components/InfiniteScroll';
 import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
 import Toggle from '../../modules/common/components/Toggle';
@@ -52,7 +52,7 @@ const Country = () => {
 
   const sortKeys = convertSortFieldsToQueryFormat(sort);
 
-  const { countries, countriesCount, loading, loadMore } = useCountries({
+  const { countries, countriesCount, loading, loadMore, hasMore } = useCountries({
     queryString: queryString as string,
     limit,
     includeInactive,
@@ -124,8 +124,12 @@ const Country = () => {
             />
           }
         >
-          <div>
-            {loading ? (
+          <InfiniteScroll
+            loading={loading}
+            hasMore={hasMore}
+            onLoadMore={loadMore}
+          >
+            {loading && countries?.length === 0 ? (
               <Loading />
             ) : (
               <CountryList
@@ -134,12 +138,7 @@ const Country = () => {
                 onRemoveCountry={onRemoveCountry}
               />
             )}
-            <Pagination
-              data={countries}
-              total={countriesCount}
-              onLoadMore={loadMore}
-            />
-          </div>
+          </InfiniteScroll>
         </LocaleWrapper>
       </div>
     </>

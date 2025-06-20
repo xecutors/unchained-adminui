@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import UserList from '../../modules/accounts/components/UserList';
 import useUsers from '../../modules/accounts/hooks/useUsers';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
-import Pagination from '../../modules/common/components/Pagination';
+import InfiniteScroll from '../../modules/common/components/InfiniteScroll';
 import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
 import SearchField from '../../modules/common/components/SearchField';
@@ -52,7 +52,7 @@ const Users = () => {
     end: query?.end as string,
   };
 
-  const { users, usersCount, loading, loadMore } = useUsers({
+  const { users, usersCount, loading, loadMore, hasMore } = useUsers({
     limit,
     includeGuests,
     queryString: queryString as string,
@@ -96,8 +96,12 @@ const Users = () => {
           />
         }
       >
-        <div>
-          {loading ? <Loading /> : <UserList users={users} />}
+        <InfiniteScroll
+          loading={loading}
+          hasMore={hasMore}
+          onLoadMore={loadMore}
+        >
+          {loading && users?.length === 0 ? <Loading /> : <UserList users={users} />}
           {!loading && !users?.length && (
             <NoData
               message={formatMessage({
@@ -106,8 +110,7 @@ const Users = () => {
               })}
             />
           )}
-          <Pagination data={users} total={usersCount} onLoadMore={loadMore} />
-        </div>
+        </InfiniteScroll>
       </LocaleWrapper>
     </div>
   );

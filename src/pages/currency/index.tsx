@@ -10,7 +10,7 @@ import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import PageHeader from '../../modules/common/components/PageHeader';
 import ListHeader from '../../modules/common/components/ListHeader';
 import Toggle from '../../modules/common/components/Toggle';
-import Pagination from '../../modules/common/components/Pagination';
+import InfiniteScroll from '../../modules/common/components/InfiniteScroll';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useModal from '../../modules/modal/hooks/useModal';
 import Loading from '../../modules/common/components/Loading';
@@ -49,7 +49,7 @@ const Currencies = () => {
   };
   const sortKeys = convertSortFieldsToQueryFormat(sort);
 
-  const { currencies, currenciesCount, loading, loadMore } = useCurrencies({
+  const { currencies, currenciesCount, loading, loadMore, hasMore } = useCurrencies({
     queryString: queryString as string,
     limit,
     offset,
@@ -121,8 +121,12 @@ const Currencies = () => {
             />
           }
         >
-          <div>
-            {loading ? (
+          <InfiniteScroll
+            loading={loading}
+            hasMore={hasMore}
+            onLoadMore={loadMore}
+          >
+            {loading && currencies?.length === 0 ? (
               <Loading />
             ) : (
               <CurrencyList
@@ -131,12 +135,7 @@ const Currencies = () => {
                 sortable
               />
             )}
-            <Pagination
-              data={currencies}
-              total={currenciesCount}
-              onLoadMore={loadMore}
-            />
-          </div>
+          </InfiniteScroll>
         </LocaleWrapper>
       </div>
     </>
