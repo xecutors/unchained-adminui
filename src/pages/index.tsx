@@ -57,18 +57,12 @@ const ProductListItem = ({ product }) => {
       <p className="text-xs text-gray-500 px-4 pb-4">
         {product._id || 'auf Lager'}
       </p>
-      <div className="flex gap-2 border-t border-gray-100">
+      <div className="border-t border-gray-100">
         <Link
           href={`/products?slug=${generateUniqueId(product)}`}
-          className="flex-1 text-center text-sm text-blue-600 hover:text-blue-800 py-3 border-r border-gray-200"
+          className="block text-center text-sm text-blue-600 hover:text-blue-800 py-3"
         >
           Edit
-        </Link>
-        <Link
-          href={`/`}
-          className="flex-1 text-center text-sm text-blue-600 hover:text-blue-800 py-3"
-        >
-          View in Shop
         </Link>
       </div>
     </div>
