@@ -116,7 +116,7 @@ const EmailAddresses = ({
                     onClick={async () => {
                       await onSendVerification({ email: address });
                     }}
-                    className="inline-flex items-center rounded-md dark:text-indigo-400 border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-2 text-sm font-medium text-slate-700 shadow-xs hover:bg-slate-50 focus:outline-hidden focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+                    className="inline-flex items-center rounded-md dark:text-slate-800 border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-2 text-sm font-medium text-slate-700 shadow-xs hover:bg-slate-50 focus:outline-hidden focus:ring-2 focus:ring-slate-800 focus:ring-offset-2"
                   >
                     {formatMessage({
                       id: 'send_verification_mail',

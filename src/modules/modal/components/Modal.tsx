@@ -72,7 +72,7 @@ const Modal = ({
                 id="modal_close"
                 type="button"
                 onClick={close}
-                className="rounded-md bg-white text-slate-400 hover:text-slate-500 focus:outline-hidden focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+                className="rounded-md bg-white text-slate-400 hover:text-slate-500 focus:outline-hidden focus:ring-2 focus:ring-slate-800 focus:ring-offset-2"
               >
                 <span className="sr-only">
                   {intl.formatMessage({ id: 'close', defaultMessage: 'Close' })}

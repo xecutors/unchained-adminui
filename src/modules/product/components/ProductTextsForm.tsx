@@ -90,7 +90,7 @@ const ProductTextsForm = ({ productId, selectedLocale = null }) => {
            <li> Description area accepts text that are compatible with markdown or HTML. Tip: in order to add a line break use \ </li>
            </ul>"
           values={{
-            ul: (chunk) => <ul className="list-disc list-inside">{chunk} </ul>,
+            ul: (chunk) => <ul className="pl-5 space-y-1">{chunk} </ul>,
             li: (chunk) => <li>{chunk} </li>,
           }}
         />
@@ -190,7 +190,7 @@ const ProductTextsForm = ({ productId, selectedLocale = null }) => {
               />
             </div>
           </div>
-          <div className="border-t-indigo-50 border-t dark:border-t-slate-700 bg-slate-50 dark:bg-slate-800 px-4 py-5 text-right sm:px-6">
+          <div className="border-t-slate-100 border-t dark:border-t-slate-700 bg-slate-50 dark:bg-slate-800 px-4 py-5 text-right sm:px-6">
             <SubmitButton
               hidden={!hasRole('editProductTexts')}
               label={formatMessage({

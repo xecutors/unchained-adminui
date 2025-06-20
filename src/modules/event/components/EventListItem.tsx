@@ -14,7 +14,7 @@ const EventListItem = ({ event }) => {
         <div className="flex items-center text-sm">
           <Link
             href={`/events?eventId=${event._id}`}
-            className="text-blue-600 dark:text-blue-400"
+            className="text-slate-900 dark:text-slate-700"
           >
             {event?.type || (
               <>

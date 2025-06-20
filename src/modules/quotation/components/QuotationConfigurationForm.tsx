@@ -63,7 +63,7 @@ const QuotationConfigurationForm = ({
           labelClassName="text-sm font-medium text-slate-500 mb-2"
         />
       </div>
-      <div className="border border-t-indigo-50 bg-slate-50 mt-6 -mx-5 -mb-6 dark:bg-slate-500 dark:border-0">
+      <div className="border border-t-slate-100 bg-slate-50 mt-6 -mx-5 -mb-6 dark:bg-slate-500 dark:border-0">
         <SaveAndCancelButtons
           onCancel={onCancel}
           submitText={submitButtonText}

@@ -56,7 +56,7 @@ const ErrorFallback = ({ error = null, resetError = null }) => {
             <div className="mt-6 flex">
               <Link
                 href="/"
-                className="text-base font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300"
+                className="text-base font-medium text-slate-950 dark:text-slate-800 hover:text-slate-900 dark:hover:text-slate-400"
               >
                 {formatMessage({
                   id: 'try_again',

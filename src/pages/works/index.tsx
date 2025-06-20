@@ -74,10 +74,12 @@ const WorkQueueView = () => {
       />
       <div className="flex flex-col sm:flex-row sm:items-center justify-between">
         <PageHeader
-          headerText={formatMessage({
-            id: 'work_queue_header',
-            defaultMessage: 'Work queue',
-          })}
+          headerText={formatMessage(
+            (total ?? 0) === 1
+              ? { id: 'work_item_count_header_singular', defaultMessage: '1 Work Item' }
+              : { id: 'work_queue_count_header', defaultMessage: '{count} Work Items' },
+            { count: total ?? 0 }
+          )}
         />
         <SearchField
           defaultValue={queryString}
@@ -91,7 +93,6 @@ const WorkQueueView = () => {
             (hasRole('allocateWork') || hasRole('addWork')) &&
             '/works/management'
           }
-          totalRecords={total}
           addButtonText={formatMessage({
             id: 'manage',
             defaultMessage: 'Manage',

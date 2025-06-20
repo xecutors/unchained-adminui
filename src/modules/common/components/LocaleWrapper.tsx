@@ -45,7 +45,7 @@ const LocaleWrapper = ({ children }) => {
   return (
     <div className="my-3">
       <div className="relative mb-2">
-        <div className="w-fit ml-auto">
+        <div className="w-fit">
           <select
             id="locale-wrapper"
             className="cursor-pointer rounded-md border-slate-300 dark:border-slate-700 py-1 pr-8 text-sm lg:py-1 lg:pr-10 text-black dark:text-slate-400 dark:bg-slate-800"

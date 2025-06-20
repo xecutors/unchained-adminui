@@ -93,7 +93,7 @@ const MediaListItem = ({
       <div className="my-auto flex-1 basis-1/3">
         <Form form={form}>
           <div className="space-y-2 sm:flex sm:flex-col sm:items-start sm:justify-between">
-            <div className="flex flex-auto flex-col justify-center space-y-1 text-sm font-medium text-slate-900 dark:text-slate-200">
+            <div className="flex flex-auto flex-col justify-center pl-5 space-y-1 text-sm font-medium text-slate-900 dark:text-slate-200">
               <h3>
                 {isEdit ? (
                   <TextField

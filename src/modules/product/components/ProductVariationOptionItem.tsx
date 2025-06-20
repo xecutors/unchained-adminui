@@ -104,7 +104,7 @@ const ProductVariationOptionItem = ({
                       id: 'save',
                       defaultMessage: 'Save',
                     })}
-                    className="rounded-md bg-white font-medium text-indigo-600 hover:text-indigo-500 focus:outline-hidden focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+                    className="rounded-md bg-white font-medium text-slate-950 hover:text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
                   >
                     {formatMessage({
                       id: 'save',

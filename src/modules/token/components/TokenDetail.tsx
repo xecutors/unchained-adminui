@@ -101,7 +101,7 @@ const TokenDetail = ({ token }) => {
           </span>
           <Link
             href={`/orders?orderId=${token.ercMetadata?.orderId}`}
-            className="text-blue-500 dark:text-blue-400 hover:underline"
+            className="text-slate-800 dark:text-slate-700 hover:underline"
           >
             {token?.ercMetadata?.orderId}
           </Link>

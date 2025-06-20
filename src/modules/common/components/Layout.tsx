@@ -10,6 +10,7 @@ import {
   UserIcon,
   Bars4Icon,
   AdjustmentsVerticalIcon,
+  CommandLineIcon,
 } from '@heroicons/react/24/outline';
 import { BoltIcon, LinkIcon, QrCodeIcon } from '@heroicons/react/24/solid';
 import Link from 'next/link';
@@ -49,8 +50,8 @@ const Layout = ({
 
   const defaultNavigation = [
     {
-      name: formatMessage({ id: 'home', defaultMessage: 'Home' }),
-      icon: HomeIcon,
+      name: formatMessage({ id: 'copilot', defaultMessage: 'Copilot' }),
+      icon: CommandLineIcon,
       href: '/',
     },
     {
@@ -257,7 +258,7 @@ const Layout = ({
           </div>
 
           <div className="h-0 flex-1 overflow-y-auto pt-5 pb-4">
-            <div className="flex shrink-0 items-center px-4">
+            <div className="flex shrink-0 items-center px-5">
               <Link href="/">
                 <div className="dark:brightness-0 dark:invert">
                   <ImageWithFallback
@@ -279,6 +280,9 @@ const Layout = ({
           </div>
           <div className="flex shrink-0 border-t border-slate-200 dark:border-slate-800 p-4">
             <UserAvatar avatar={currentUser?.avatar} {...currentUser} />
+            <div className="ml-auto">
+              <ThemeToggle />
+            </div>
           </div>
         </div>
       </div>
@@ -286,7 +290,7 @@ const Layout = ({
       <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col 2xl:w-96 dark:bg-slate-900 dark:text-slate-200">
         <div className="flex min-h-0 flex-1 flex-col border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
           <div className="flex flex-1 flex-col overflow-y-auto pt-5 mt-5 mb-5 pb-4">
-            <div className="flex shrink-0 items-center px-4">
+            <div className="flex shrink-0 items-center px-5">
               <Link href="/">
                 <div className="dark:brightness-0 dark:invert">
                   <ImageWithFallback
@@ -305,6 +309,9 @@ const Layout = ({
           </div>
           <div className="flex shrink-0 border-t border-slate-200 dark:border-slate-800 p-4">
             <UserAvatar avatar={currentUser?.avatar} {...currentUser} />
+            <div className="ml-auto">
+              <ThemeToggle />
+            </div>
           </div>
         </div>
       </div>
@@ -314,7 +321,7 @@ const Layout = ({
             type="button"
             ref={ref}
             onClick={() => setHideNav(!hideNav)}
-            className="-ml-0.5 -mt-0.5 inline-flex h-12 w-12 items-center justify-center rounded-md text-slate-500 hover:text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-inset focus:ring-indigo-400 dark:text-slate-200"
+            className="-ml-0.5 -mt-0.5 inline-flex h-12 w-12 items-center justify-center rounded-md text-slate-500 hover:text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-inset focus:ring-slate-800 dark:text-slate-200"
           >
             <span className="sr-only">
               {formatMessage({

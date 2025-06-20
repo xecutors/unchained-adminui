@@ -98,7 +98,7 @@ const SetPassword = ({ userId, isInitialPassword, primaryEmail }) => {
         />
       </div>
       <FormErrors />
-      <div className="border-t-indigo-50 border-t align-baseline flex items-center justify-between dark:border-t-slate-700 space-y-6 bg-slate-50 dark:bg-slate-800 text-right sm:p-6">
+      <div className="border-t-slate-100 border-t align-baseline flex items-center justify-between dark:border-t-slate-700 space-y-6 bg-slate-50 dark:bg-slate-800 text-right sm:p-6">
         {isInitialPassword && (
           <Button
             text={formatMessage({

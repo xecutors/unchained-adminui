@@ -11,7 +11,7 @@ const NoData = ({ message, className = '', Icon = null }) => {
       )}
     >
       <div className="grid items-center justify-center">
-        <div className="flex items-center justify-center text-indigo-300 dark:text-slate-200">
+        <div className="flex items-center justify-center text-slate-400 dark:text-slate-200">
           {Icon || <NoSymbolIcon className="h-8 w-8" />}
         </div>
 

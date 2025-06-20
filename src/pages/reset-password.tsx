@@ -58,7 +58,7 @@ const PasswordReset = () => {
           link: (
             <Link
               href="/account/forgot-password"
-              className="text-base font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300"
+              className="text-base font-medium text-slate-950 dark:text-slate-800 hover:text-slate-900 dark:hover:text-slate-400"
             >
               {formatMessage({
                 id: 'forget_password',
@@ -70,7 +70,7 @@ const PasswordReset = () => {
       />
       <Link
         href="/"
-        className="m-auto group relative flex justify-center rounded-md border border-transparent bg-indigo-500 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-hidden focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+        className="m-auto group relative flex justify-center rounded-md border border-transparent bg-slate-900 dark:bg-slate-600 py-2 px-4 text-sm font-medium text-white hover:bg-slate-950 dark:hover:bg-slate-500 focus:outline-hidden focus:ring-2 focus:ring-slate-800 dark:focus:ring-slate-400 focus:ring-offset-2"
       >
         {formatMessage({
           id: 'go-home',

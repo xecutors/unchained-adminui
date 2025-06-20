@@ -43,7 +43,7 @@ const DisplayData = ({ value }) => {
   if (isURL(value)) {
     if (isImageURL(value)) {
       return (
-        <div className="ring-2 ring-offset-2 ring-indigo-500 group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 overflow-hidden">
+        <div className="ring-2 ring-offset-2 ring-slate-900 group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 overflow-hidden">
           <ImageWithFallback
             src={value}
             className="relative h-10 w-10 rounded-full"
@@ -62,7 +62,7 @@ const DisplayData = ({ value }) => {
       <div className="ml-4 shrink-0">
         <a
           href={value}
-          className="font-medium text-blue-600 hover:text-blue-500"
+          className="font-medium text-slate-900 hover:text-slate-800"
           target="_blank"
           rel="noreferrer"
         >

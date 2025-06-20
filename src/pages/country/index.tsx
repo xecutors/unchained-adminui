@@ -96,10 +96,12 @@ const Country = () => {
       <BreadCrumbs />
       <div className="flex flex-col sm:flex-row sm:items-center justify-between">
         <PageHeader
-          headerText={formatMessage({
-            id: 'countries',
-            defaultMessage: 'Countries',
-          })}
+          headerText={formatMessage(
+            (countriesCount ?? 0) === 1
+              ? { id: 'country_count_header_singular', defaultMessage: '1 Country' }
+              : { id: 'countries_count_header', defaultMessage: '{count} Countries' },
+            { count: countriesCount ?? 0 }
+          )}
         />
         <SearchField
           defaultValue={queryString}
@@ -109,7 +111,6 @@ const Country = () => {
       <div className="min-w-full overflow-x-auto">
         <ListHeader
           addPath={hasRole('addCountry') && '/country/new'}
-          totalRecords={countriesCount}
         >
           <Toggle
             toggleText={formatMessage({

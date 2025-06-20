@@ -202,7 +202,7 @@ const CommerceForm = ({ productId }) => {
                                   id: 'vat_suspect',
                                   defaultMessage: 'Vat Suspect',
                                 })}
-                                className="mr-2 h-4 w-4 rounded-sm border-slate-300 text-indigo-600 focus:ring-indigo-400 lg:items-center"
+                                className="mr-2 h-4 w-4 rounded-sm border-slate-300 text-slate-950 focus:ring-slate-800 lg:items-center"
                                 type="checkbox"
                               />
                             </div>
@@ -216,7 +216,7 @@ const CommerceForm = ({ productId }) => {
                                   defaultMessage: 'Net Price',
                                 })}
                                 hideLabel
-                                className="mr-2 h-4 w-4 justify-between rounded-sm border-slate-300 text-indigo-600 focus:ring-indigo-400 lg:items-center"
+                                className="mr-2 h-4 w-4 justify-between rounded-sm border-slate-300 text-slate-950 focus:ring-slate-800 lg:items-center"
                                 type="checkbox"
                               />
                             </div>
@@ -295,7 +295,7 @@ const CommerceForm = ({ productId }) => {
                         <div className="shrink-0">
                           <button
                             type="button"
-                            className="items-right inline-flex rounded-full border border-transparent bg-indigo-500 px-2 py-2 text-sm font-medium text-white shadow-xs hover:bg-indigo-700 focus:outline-hidden focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+                            className="items-right inline-flex rounded-full border border-transparent bg-slate-900 px-2 py-2 text-sm font-medium text-white shadow-xs hover:bg-slate-950 focus:outline-hidden focus:ring-2 focus:ring-slate-800 focus:ring-offset-2"
                             onClick={() =>
                               push({
                                 maxQuantity: '',
@@ -329,7 +329,7 @@ const CommerceForm = ({ productId }) => {
               </FieldArray>
             </div>
             <FormErrors displayFieldErrors />
-            <div className="border-t-indigo-50 border-t dark:border-slate-700 space-y-6 bg-slate-50 dark:bg-slate-800 px-5 py-6 text-right">
+            <div className="border-t-slate-100 border-t dark:border-slate-700 space-y-6 bg-slate-50 dark:bg-slate-800 px-5 py-6 text-right">
               <SubmitButton
                 hidden={!hasRole('editProductCommerce')}
                 label={formatMessage({

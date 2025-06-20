@@ -37,7 +37,7 @@ const AssortmentProductListItem = ({ link, onDelete, id }) => {
           </p>
         </div>
       </div>
-      <div>
+      <div className="flex flex-wrap gap-2">
         {(tags || [])?.map((tag) => (
           <Badge text={tag} color="cyan" key={tag} />
         ))}

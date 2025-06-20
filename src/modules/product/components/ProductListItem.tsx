@@ -42,7 +42,7 @@ const ProductListItem = ({
           {product?.status !== 'DELETED' ? (
             <Link
               href={`/products?slug=${generateUniqueId(product)}`}
-              className="text-blue-600 dark:text-blue-400"
+              className="text-slate-900 dark:text-slate-700"
             >
               {product?.texts?.title || (
                 <>
@@ -84,14 +84,16 @@ const ProductListItem = ({
       </Table.Cell>
 
       <Table.Cell>
-        {product.tags?.map((t) => <Badge key={t} text={t} color="indigo" />)}
+        <div className="flex flex-wrap gap-2">
+          {product.tags?.map((t) => <Badge key={t} text={t} color="slate" />)}
+        </div>
       </Table.Cell>
       {hideSortIndex ? null : (
         <Table.Cell>
           <input
             type="number"
             id={`${product?._id}-sequence`}
-            className="w-24 shadow-xs focus:ring-indigo-500 dark:bg-slate-800 dark:border-slate-700 focus:border-indigo-500 block text-sm  border-gray-300 rounded-full mr-2 font-bold text-indigo-500"
+            className="w-24 shadow-xs focus:ring-slate-900 dark:bg-slate-800 dark:border-slate-700 focus:border-slate-900 block text-sm  border-gray-300 rounded-full mr-2 font-bold text-slate-900"
             defaultValue={product?.sequence}
             onBlur={updateProductSequence}
           />

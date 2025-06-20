@@ -38,7 +38,7 @@ const Tab = ({ children, tabItems, defaultTab, updateRoute = true }) => {
           onChange={(e) => onTabSelected(e.target.value)}
           id="selected-tab"
           name="selected-tab"
-          className="mt-1 block dark:bg-slate-800 dark:text-white w-full rounded-md border-slate-300 py-2 pl-3 pr-10 text-base capitalize focus:border-indigo-400 focus:outline-hidden focus:ring-indigo-400 sm:text-sm"
+          className="mt-1 block dark:bg-slate-800 dark:text-white w-full rounded-md border-slate-300 py-2 pl-3 pr-10 text-base capitalize focus:border-slate-800 focus:outline-hidden focus:ring-slate-800 sm:text-sm"
           value={tab}
         >
           {tabItems.filter(Boolean).map((value) => (
@@ -49,7 +49,7 @@ const Tab = ({ children, tabItems, defaultTab, updateRoute = true }) => {
         </select>
       </div>
       <div className="mb-5 hidden lg:block">
-        <div className="al border-b border-indigo-100 dark:border-slate-800">
+        <div className="al border-b border-slate-200 dark:border-slate-800">
           <nav className="-mb-px flex flex-wrap gap-6">
             {tabItems.filter(Boolean).map((option) => (
               <a
@@ -58,10 +58,10 @@ const Tab = ({ children, tabItems, defaultTab, updateRoute = true }) => {
                 onClick={() => onTabSelected(option.id)}
                 className={classNames(
                   {
-                    'cursor-pointer rounded-t-lg border border-indigo-200 dark:border-slate-700 border-b-indigo-500 dark:border-b-indigo-500 bg-indigo-100 text-indigo-800 dark:text-slate-200 dark:bg-slate-800':
+                    'cursor-pointer rounded-t-lg border border-slate-300 dark:border-slate-700 border-b-slate-900 dark:border-b-slate-900 bg-slate-200 text-slate-950 dark:text-slate-200 dark:bg-slate-800':
                       tab === option.id,
                   },
-                  'cursor-pointer relative whitespace-nowrap border border-b-2 border-transparent py-4 px-1 pr-3 pl-2 text-sm dark:text-slate-400 font-medium dark:hover:bg-slate-700 hover:border-b-indigo-500 hover:rounded-t-lg',
+                  'cursor-pointer relative whitespace-nowrap border border-b-2 border-transparent py-4 px-1 pr-3 pl-2 text-sm dark:text-slate-400 font-medium dark:hover:bg-slate-700 hover:border-b-slate-900 hover:rounded-t-lg',
                 )}
               >
                 <div className="flex items-center space-x-1">
@@ -70,7 +70,7 @@ const Tab = ({ children, tabItems, defaultTab, updateRoute = true }) => {
                     {option?.title || option?.id}
                   </div>
                   {option?.length ? (
-                    <span className="absolute top-0 right-0 inline-flex translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full bg-indigo-300 px-1 py-0.5 text-sm leading-none text-slate-900">
+                    <span className="absolute top-0 right-0 inline-flex translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full bg-slate-400 px-1 py-0.5 text-sm leading-none text-slate-900">
                       {option?.length}
                     </span>
                   ) : null}

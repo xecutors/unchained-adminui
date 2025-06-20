@@ -84,12 +84,14 @@ const FiltersListView = () => {
   return (
     <>
       <BreadCrumbs />
-      <div className="w-full py-5">
+      <div className="w-full">
         <PageHeader
-          headerText={formatMessage({
-            id: 'filters_list_header',
-            defaultMessage: 'Filters',
-          })}
+          headerText={formatMessage(
+            (filtersCount ?? 0) === 1
+              ? { id: 'filter_count_header_singular', defaultMessage: '1 Filter' }
+              : { id: 'filters_count_header', defaultMessage: '{count} Filters' },
+            { count: filtersCount ?? 0 }
+          )}
         />
         <SearchField
           defaultValue={queryString}
@@ -100,7 +102,6 @@ const FiltersListView = () => {
       <div className="min-w-full overflow-x-auto">
         <ListHeader
           addPath={hasRole('addFilter') && '/filters/new'}
-          totalRecords={filtersCount}
         >
           <Toggle
             toggleText={formatMessage({

@@ -10,7 +10,7 @@ const ShopInformation = () => {
   if (loading) return <Loading />;
   return (
     <>
-      <h2 className="ml-4 mb-6 text-xl text-slate-700 dark:text-slate-200">
+      <h2 className="ml-4 mb-6 text-xl text-slate-900 dark:text-slate-200">
         {formatMessage({
           id: 'system_information',
           defaultMessage: 'System Information',
@@ -28,7 +28,7 @@ const ShopInformation = () => {
                   })}
                 </div>
                 <div className="min-w-0 flex-1">
-                  <Badge text={shopInfo?.version} color="indigo" square />
+                  <Badge text={shopInfo?.version} color="slate" square />
                 </div>
               </div>
             </li>

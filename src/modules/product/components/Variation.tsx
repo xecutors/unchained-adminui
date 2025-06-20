@@ -64,7 +64,7 @@ const Variation = ({ type, variation, selectedLocale, onDelete }) => {
               )}
             >
               <div
-                className="space-y-1"
+                className="pl-5 space-y-1"
                 onClick={(event) => {
                   event.stopPropagation();
                   event.preventDefault();
@@ -137,7 +137,7 @@ const Variation = ({ type, variation, selectedLocale, onDelete }) => {
                         setIsEdit(false);
                       }}
                       type="submit"
-                      className="rounded-md pl-2 pr-2 bg-white font-medium text-indigo-600 hover:text-indigo-500 focus:outline-hidden focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+                      className="rounded-md pl-2 pr-2 bg-white font-medium text-slate-950 hover:text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
                     >
                       {formatMessage({
                         id: 'save',

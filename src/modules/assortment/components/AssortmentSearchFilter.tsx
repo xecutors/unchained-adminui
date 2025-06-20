@@ -1,10 +1,12 @@
 import { useRouter } from 'next/router';
+import { useIntl } from 'react-intl';
 import TagInput from '../../common/components/TagInput';
 import { isTruthy } from '../../common/utils/normalizeFilterKeys';
 import { normalizeQuery } from '../../common/utils/utils';
 
 const AssortmentSearchFilter = () => {
   const router = useRouter();
+  const { formatMessage } = useIntl();
 
   const handleOnChange = (value) => {
     if (isTruthy(value)) {
@@ -25,7 +27,14 @@ const AssortmentSearchFilter = () => {
   return (
     <div className="mb-5 mt-4 grid grid-cols-6 gap-6">
       <div className="col-span-6 sm:col-span-3">
-        <TagInput tagList={router.query?.tags} onChange={handleOnChange} />
+        <TagInput 
+          tagList={router.query?.tags} 
+          onChange={handleOnChange} 
+          buttonText={formatMessage({
+            id: 'apply',
+            defaultMessage: 'Apply',
+          })}
+        />
       </div>
     </div>
   );

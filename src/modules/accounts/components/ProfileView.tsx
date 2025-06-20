@@ -210,7 +210,7 @@ const ProfileView = ({ profile, avatar, _id }) => {
                               (fileInputRef?.current as any)?.click();
                           }}
                           type="button"
-                          className="rounded-md border border-slate-300 dark:border-slate-700 bg-white py-2 px-3 text-sm font-medium leading-4 text-slate-700 shadow-xs hover:bg-slate-50 focus:outline-hidden focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                          className="rounded-md border border-slate-300 dark:border-slate-700 bg-white py-2 px-3 text-sm font-medium leading-4 text-slate-700 shadow-xs hover:bg-slate-50 focus:outline-hidden focus:ring-2 focus:ring-slate-900 focus:ring-offset-2"
                         >
                           {formatMessage({
                             id: 'change',
@@ -351,7 +351,7 @@ const ProfileView = ({ profile, avatar, _id }) => {
                   </div>
                 </div>
               </div>
-              <div className="border-t border-t-indigo-50 dark:border-slate-700 -mx-6 bg-slate-50 dark:bg-slate-800 flex shrink-0 items-center justify-end space-x-4 pr-5">
+              <div className="border-t border-t-slate-100 dark:border-slate-700 -mx-6 bg-slate-50 dark:bg-slate-800 flex shrink-0 items-center justify-end space-x-4 pr-5">
                 {isEdit ? (
                   <SaveAndCancelButtons onCancel={() => setIsEdit(!isEdit)} />
                 ) : null}
@@ -360,7 +360,7 @@ const ProfileView = ({ profile, avatar, _id }) => {
           </div>
 
           <div className="my-7 border-t dark:border-t-slate-800 pt-6 lg:grid lg:grid-cols-3">
-            <div className="col-span-1 space-y-1 py-3 lg:py-0 ">
+            <div className="col-span-1 pl-5 space-y-1 py-3 lg:py-0">
               <div className="space-y-2">
                 <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-slate-200">
                   {formatMessage({

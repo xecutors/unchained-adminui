@@ -42,7 +42,7 @@ const OrderDetailBilling = ({ order }) => {
           </div>
         </dl>
 
-        <dl className="bg-white dark:bg-slate-800 p-4 shadow-sm dark:shadow-none sm:rounded-lg mt-4 divide-y divide-indigo-50 dark:divide-slate-700 text-sm lg:mt-0">
+        <dl className="bg-white dark:bg-slate-800 p-4 shadow-sm dark:shadow-none sm:rounded-lg mt-4 divide-y divide-slate-100 dark:divide-slate-700 text-sm lg:mt-0">
           <div className="flex items-center justify-between pb-3 text-lg">
             <dt className="font-bold">
               {formatMessage({

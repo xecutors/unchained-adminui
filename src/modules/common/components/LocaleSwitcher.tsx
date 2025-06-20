@@ -13,7 +13,7 @@ const LocaleSwitcher = () => {
   if (locales?.length < 2) return null;
 
   return (
-    <div className="ml-auto">
+    <div className="mr-auto">
       <select
         className="cursor-pointer rounded-md border-slate-300 py-1 pr-8 text-sm lg:py-1 lg:pr-10 text-black dark:text-white  dark:bg-slate-400"
         value={locale}

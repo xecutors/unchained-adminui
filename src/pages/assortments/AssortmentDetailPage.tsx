@@ -56,64 +56,49 @@ const AssortmentDetailPage = ({ assortmentSlug }) => {
         depth={3}
         currentPageTitle={assortment?.texts?.title}
       />
-      <PageHeader
-        headerText={
-          <FormattedMessage
-            id="assortment_detail_header"
-            defaultMessage="Assortment detail <b>({id})</b>"
-            values={{
-              b: (chunks) => <b className="text-lg">{chunks}</b>,
-
-              id: assortment?._id,
-            }}
+      <div>
+        <div className="align-center flex min-w-full justify-between">
+          <PageHeader
+            headerText={
+              <>
+                {assortment?.texts?.title || 'Untitled Assortment'}
+                <span className="text-lg font-normal text-gray-500 ml-2">
+                  ({assortment?._id})
+                </span>
+              </>
+            }
+            title={`${assortment?.texts?.title || 'Assortment'} (${assortment?._id})`}
           />
-        }
-        title={formatMessage(
-          {
-            id: 'assortment_detail_title',
-            defaultMessage: 'Assortment {id}',
-          },
-          { id: assortment?._id },
-        )}
-      >
-        <div id="date">
+          {assortment && hasRole('removeAssortment') ? (
+            <HeaderDeleteButton onClick={handleOnClick} />
+          ) : null}
+        </div>
+        
+        <div className="mt-4 mb-6 flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-400">
           {assortment?.created && (
-            <FormattedMessage
-              id="added_date"
-              defaultMessage="<b>Created :</b>  {created} "
-              values={{
-                b: (chunks) => <b>{chunks}</b>,
-
-                created: formatDateTime(assortment.created, {
-                  dateStyle: 'long',
-                  timeStyle: 'short',
-                }),
-              }}
-              tagName="div"
-            />
+            <div className="flex items-center gap-1">
+              <span className="font-medium text-gray-700 dark:text-gray-300">
+                {formatMessage({ id: 'created', defaultMessage: 'Created' })}:
+              </span>
+              <span>{formatDateTime(assortment.created, {
+                dateStyle: 'medium',
+                timeStyle: 'short',
+              })}</span>
+            </div>
           )}
 
           {assortment?.updated && (
-            <FormattedMessage
-              id="updated_date"
-              defaultMessage="<b>Updated :</b>  {updated} "
-              values={{
-                b: (chunks) => <b>{chunks}</b>,
-
-                updated: formatDateTime(assortment.updated, {
-                  dateStyle: 'long',
-                  timeStyle: 'short',
-                }),
-              }}
-              tagName="div"
-            />
+            <div className="flex items-center gap-1">
+              <span className="font-medium text-gray-700 dark:text-gray-300">
+                {formatMessage({ id: 'updated', defaultMessage: 'Updated' })}:
+              </span>
+              <span>{formatDateTime(assortment.updated, {
+                dateStyle: 'medium',
+                timeStyle: 'short',
+              })}</span>
+            </div>
           )}
         </div>
-      </PageHeader>
-      <div className="align-center flex min-w-full justify-end mb-3 ">
-        {assortment && hasRole('removeAssortment') ? (
-          <HeaderDeleteButton onClick={handleOnClick} />
-        ) : null}
       </div>
       {loading ? (
         <Loading />

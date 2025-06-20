@@ -144,7 +144,7 @@ const Offline = () => {
               </defs>
             </svg>
           </div>
-          <p className="text-sm md:text-base text-indigo-700 p-2 mb-4">
+          <p className="text-sm md:text-base text-slate-950 p-2 mb-4">
             {formatMessage({
               id: 'no_internet_access',
               defaultMessage:
@@ -154,7 +154,7 @@ const Offline = () => {
           <a
             href="#"
             onClick={() => router.reload()}
-            className="bg-transparent hover:bg-indigo-700 text-indigo-700 hover:text-white rounded-sm shadow-sm hover:shadow-lg py-2 px-4 border border-indigo-700 hover:border-transparent"
+            className="bg-transparent hover:bg-slate-950 text-slate-950 hover:text-white rounded-sm shadow-sm hover:shadow-lg py-2 px-4 border border-slate-950 hover:border-transparent"
           >
             {formatMessage({ id: 'retry', defaultMessage: 'Retry' })}
           </a>

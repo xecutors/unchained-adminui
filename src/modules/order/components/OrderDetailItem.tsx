@@ -18,7 +18,7 @@ const OrderDetailItem = ({ item }) => {
         </h2>
 
         <div className="space-y-8">
-          <div className="mb-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm dark:shadow-none dark:text-slate-200 hover:border hover:border-solid hover:border-blue-600">
+          <div className="mb-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm dark:shadow-none dark:text-slate-200 hover:border hover:border-solid hover:border-slate-900">
             <div className="px-2 py-1">
               <div className="flex items-center flex-wrap">
                 <div className="flex shrink-0 overflow-hidden rounded-lg sm:mx-0 ">

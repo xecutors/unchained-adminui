@@ -57,7 +57,7 @@ const NotAuthorized = () => {
               {currentUser?._id ? (
                 <Link
                   href="/"
-                  className="text-base font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-300"
+                  className="text-base font-medium text-slate-950 hover:text-slate-900 dark:text-slate-800 dark:hover:text-300"
                 >
                   {formatMessage({
                     id: 'go_back_home',
@@ -68,7 +68,7 @@ const NotAuthorized = () => {
               ) : (
                 <Link
                   href="/log-in"
-                  className="text-base font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300"
+                  className="text-base font-medium text-slate-950 dark:text-slate-800 hover:text-slate-900 dark:hover:text-slate-400"
                 >
                   {formatMessage({
                     id: 'go_to_login',

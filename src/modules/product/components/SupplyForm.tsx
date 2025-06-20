@@ -88,7 +88,7 @@ const SupplyForm = ({ productId }) => {
           id="product_supply_form_description"
           defaultMessage="<ul><li> Information that will be used to identify dimensions of a product  </li> </ul>"
           values={{
-            ul: (chunk) => <ul className="list-disc list-inside">{chunk} </ul>,
+            ul: (chunk) => <ul className="pl-5 space-y-1">{chunk} </ul>,
             li: (chunk) => <li>{chunk} </li>,
           }}
         />
@@ -152,7 +152,7 @@ const SupplyForm = ({ productId }) => {
               </div>
             </div>
           </div>
-          <div className="border-t-indigo-50 border-t dark:border-t-slate-700 space-y-6 bg-slate-50 dark:bg-slate-800 text-right sm:p-6">
+          <div className="border-t-slate-100 border-t dark:border-t-slate-700 space-y-6 bg-slate-50 dark:bg-slate-800 text-right sm:p-6">
             <SubmitButton
               hidden={!hasRole('editProductSupply')}
               label={formatMessage({

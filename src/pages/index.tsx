@@ -22,7 +22,7 @@ const ProductListItem = ({ product }) => {
   const [text = {}] = texts || [];
   return (
     <div
-      className="my-5 bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden hover:shadow-md transition-shadow duration-200"
+      className="my-5 bg-white dark:bg-slate-800 rounded-lg shadow-md border border-gray-200 dark:border-slate-700 overflow-hidden hover:shadow-md transition-shadow duration-200"
       style={{
         display: 'grid',
         gridTemplateRows: 'subgrid',
@@ -47,20 +47,20 @@ const ProductListItem = ({ product }) => {
           </div>
         )}
       </div>
-      <h3 className="text-sm font-medium text-gray-900 px-4 line-clamp-2">
+      <h3 className="text-sm font-medium text-gray-900 dark:text-gray-100 px-4 line-clamp-2">
         {text.title}
       </h3>
-      <p className="text-sm text-gray-600 px-4">
+      <p className="text-sm text-gray-600 dark:text-gray-300 px-4">
         {commerce?.pricing?.[0]?.currencyCode || 'CHF'}{' '}
         {commerce?.pricing?.[0]?.amount?.toFixed(2) || '0.00'}
       </p>
-      <p className="text-xs text-gray-500 px-4 pb-4">
+      <p className="text-xs text-gray-500 dark:text-gray-400 px-4 pb-4">
         {product._id || 'auf Lager'}
       </p>
-      <div className="border-t border-gray-100">
+      <div className="border-t border-gray-100 dark:border-slate-700">
         <Link
           href={`/products?slug=${generateUniqueId(product)}`}
-          className="block text-center text-sm text-blue-600 hover:text-blue-800 py-3"
+          className="block text-center text-sm text-slate-900 dark:text-slate-200 hover:text-slate-800 dark:hover:text-slate-300 py-3"
         >
           Edit
         </Link>
@@ -152,7 +152,7 @@ const MessageRenderer = ({ message, user }: { message: any; user: IUser }) => {
       )}
       <div
         className={`px-4 py-3 ${
-          isUser ? 'bg-slate-200 rounded-br-none rounded-xl' : 'text-gray-800'
+          isUser ? 'bg-slate-200 dark:bg-slate-700 rounded-br-none rounded-xl' : 'text-gray-800 dark:text-gray-200'
         }`}
       >
         {message.parts.map((part: any, index: number) => {
@@ -176,7 +176,7 @@ const MessageRenderer = ({ message, user }: { message: any; user: IUser }) => {
   );
 };
 
-const Home = () => {
+const Copilot = () => {
   const { messages, input, handleInputChange, handleSubmit } = useChat({
     maxSteps: 5,
     credentials: 'include',
@@ -199,8 +199,8 @@ const Home = () => {
   }, [messages]);
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-100 font-sans">
-      <header className="p-4 mt-1 text-xl font-semibold text-gray-900">
+    <div className="flex flex-col min-h-screen bg-gray-100 dark:bg-slate-900 font-sans">
+      <header className="p-4 mt-1 text-xl font-semibold text-gray-900 dark:text-gray-100">
         Unchained <span className="font-light">Copilot</span>
       </header>
       <main className="flex-1 overflow-y-auto py-6 space-y-4">
@@ -215,19 +215,19 @@ const Home = () => {
       </main>
 
       <div className="sticky bottom-6">
-        <div className="absolute bottom-full left-0 right-0 h-24 bg-gradient-to-t from-gray-100 to-transparent pointer-events-none" />
+        <div className="absolute bottom-full left-0 right-0 h-24 bg-gradient-to-t from-gray-100 dark:from-slate-900 to-transparent pointer-events-none" />
         <form
           onSubmit={handleSubmit}
-          className="bg-white shadow-2xl border rounded-md p-3"
+          className="bg-white dark:bg-slate-800 shadow-2xl border border-gray-200 dark:border-slate-700 rounded-md p-3"
         >
           <div className="flex items-center gap-2">
             <input
               value={input}
               onChange={handleInputChange}
               placeholder="Type your message..."
-              className="flex-1 border-0 bg-slate-100 rounded-md px-4 py-2"
+              className="flex-1 border-0 bg-slate-100 dark:bg-slate-700 dark:text-slate-200 dark:placeholder-slate-400 rounded-md px-4 py-2"
             />
-            <button type="submit" className="p-2">
+            <button type="submit" className="p-2 text-gray-600 dark:text-slate-300 hover:text-gray-900 dark:hover:text-slate-100">
               <PaperAirplaneIcon className="h-6 w-6" strokeWidth={2} />
             </button>
           </div>
@@ -238,4 +238,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Copilot;

@@ -26,7 +26,7 @@ const MobilePaginator = ({
           onOffsetChange(offset - limit);
         }}
         className={classNames(
-          'relative inline-flex items-center rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-4 py-2 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-500',
+          'relative inline-flex items-center rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-2 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-600',
           {
             'text-slate-200': !offset,
             'text-slate-700': offset,
@@ -46,7 +46,7 @@ const MobilePaginator = ({
             id="location"
             defaultValue={DefaultLimit}
             name="location"
-            className="block h-8 w-full rounded-md dark:bg-slate-400 border-slate-300 dark:border-slate-700 py-0 text-base focus:border-indigo-400 focus:outline-hidden focus:ring-indigo-400 sm:text-sm"
+            className="block h-8 w-full rounded-md dark:bg-slate-400 border-slate-300 dark:border-slate-700 py-0 text-base focus:border-slate-800 focus:outline-hidden focus:ring-slate-800 sm:text-sm"
           >
             {LimitSteps.map((l) => (
               <option key={l} value={l}>
@@ -65,7 +65,7 @@ const MobilePaginator = ({
           onOffsetChange(offset + limit);
         }}
         className={classNames(
-          'relative ml-3 inline-flex items-center rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-4 py-2 text-sm font-medium  hover:bg-slate-50 dark:hover:bg-slate-500',
+          'relative ml-3 inline-flex items-center rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-2 text-sm font-medium  hover:bg-slate-50 dark:hover:bg-slate-600',
           {
             'text-slate-200': offset + limit >= total,
             'text-slate-700': offset + limit < total,
@@ -86,11 +86,11 @@ const Step = ({ onClick, disabled = false, label }) => {
       aria-current="page"
       disabled={disabled}
       className={classNames(
-        'relative inline-flex items-center border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-4 py-2 text-sm font-medium  hover:bg-slate-50 ',
+        'relative inline-flex items-center border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-2 text-sm font-medium  hover:bg-slate-50 ',
         {
-          'z-10 border-indigo-500 bg-indigo-50 text-indigo-400 dark:bg-slate-500 dark:border-indigo-300 dark:text-slate-200':
+          'z-10 border-slate-900 bg-slate-100 text-slate-800 dark:bg-slate-600 dark:border-slate-400 dark:text-slate-200':
             disabled,
-          'text-slate-500 dark:hover:bg-slate-500 dark:text-slate-400 dark:hover:text-slate-100':
+          'text-slate-500 dark:hover:bg-slate-600 dark:text-slate-400 dark:hover:text-slate-100':
             !disabled,
         },
       )}
@@ -206,7 +206,7 @@ const Pagination = ({
   };
 
   return (
-    <div className="flex items-center justify-between px-4 py-3">
+    <div className="flex items-center justify-between pe-4 py-3">
       {total !== data?.length && data?.length && onLoadMore ? (
         !isLoading ? (
           <Button
@@ -265,7 +265,7 @@ const Pagination = ({
                     changeOffset(offset - limit);
                   }}
                   className={classNames(
-                    'relative inline-flex items-center rounded-l-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-2 py-2 text-sm font-medium  hover:bg-slate-50 dark:hover:bg-slate-500',
+                    'relative inline-flex items-center rounded-l-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 py-2 text-sm font-medium  hover:bg-slate-50 dark:hover:bg-slate-600',
                     {
                       'text-slate-200': !offset,
                       'text-slate-600': offset,
@@ -304,7 +304,7 @@ const Pagination = ({
                   }}
                   disabled={offset + limit >= total}
                   className={classNames(
-                    'relative inline-flex items-center rounded-r-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-2 py-2 text-sm font-medium  hover:bg-slate-50 dark:hover:bg-slate-500',
+                    'relative inline-flex items-center rounded-r-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 py-2 text-sm font-medium  hover:bg-slate-50 dark:hover:bg-slate-600',
                     {
                       'text-slate-200': offset + limit >= total,
                       'text-slate-500': offset + limit < total,
@@ -343,7 +343,7 @@ const Pagination = ({
         </>
       ) : null}
 
-      <div className="ml-2 hidden justify-between sm:block sm:justify-end">
+      <div className="hidden justify-between sm:block sm:justify-end">
         <div>
           <select
             onChange={(e) => {
@@ -354,7 +354,7 @@ const Pagination = ({
             id="location"
             defaultValue={limit}
             name="location"
-            className="block h-8 w-full rounded-md text-slate-500 dark:text-slate-100 dark:bg-slate-900 border-slate-300 dark:border-slate-700 py-0 text-base focus:border-indigo-400 focus:outline-hidden focus:ring-indigo-400 sm:text-sm"
+            className="block h-8 w-full rounded-md text-slate-500 dark:text-slate-100 dark:bg-slate-900 border-slate-300 dark:border-slate-700 py-0 text-base focus:border-slate-800 focus:outline-hidden focus:ring-slate-800 sm:text-sm"
           >
             {LimitSteps.map((l) => (
               <option key={l} value={l} className="dark:text-slate-100">

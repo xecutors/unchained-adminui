@@ -70,10 +70,12 @@ const Users = () => {
       <BreadCrumbs />
       <div className="flex flex-col sm:flex-row sm:items-center justify-between">
         <PageHeader
-          headerText={formatMessage({
-            id: 'users_list_header',
-            defaultMessage: 'Users',
-          })}
+          headerText={formatMessage(
+            (usersCount ?? 0) === 1
+              ? { id: 'user_count_header_singular', defaultMessage: '1 User' }
+              : { id: 'users_count_header', defaultMessage: '{count} Users' },
+            { count: usersCount ?? 0 }
+          )}
         />
         <SearchField
           defaultValue={queryString}
@@ -81,7 +83,7 @@ const Users = () => {
         />
       </div>
       <UserFilter />
-      <ListHeader addPath="/users/new" totalRecords={usersCount}>
+      <ListHeader addPath="/users/new">
         <Toggle
           toggleKey="includeGuests"
           toggleText={formatMessage({
@@ -91,7 +93,7 @@ const Users = () => {
         />
       </ListHeader>
 
-      <div className="my-3 shadow-sm">
+      <div className="my-3">
         {loading ? <Loading /> : <UserList users={users} />}
         {!loading && !users?.length && (
           <NoData
