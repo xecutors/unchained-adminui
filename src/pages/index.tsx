@@ -21,7 +21,14 @@ const ProductListItem = ({ product }) => {
   const { texts, media, commerce } = product;
   const [text = {}] = texts || [];
   return (
-    <div className="my-5 bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden hover:shadow-md transition-shadow duration-200">
+    <div
+      className="my-5 bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden hover:shadow-md transition-shadow duration-200"
+      style={{
+        display: 'grid',
+        gridTemplateRows: 'subgrid',
+        gridRow: 'span 5',
+      }}
+    >
       <div className="aspect-square bg-gray-50 relative">
         {media?.length ? (
           <ImageWithFallback
@@ -40,31 +47,29 @@ const ProductListItem = ({ product }) => {
           </div>
         )}
       </div>
-      <div className="p-4">
-        <h3 className="text-sm font-medium text-gray-900 mb-1 line-clamp-2">
-          {text.title}
-        </h3>
-        <p className="text-sm text-gray-600 mb-2">
-          {commerce?.pricing?.[0]?.currencyCode || 'CHF'}{' '}
-          {commerce?.pricing?.[0]?.amount?.toFixed(2) || '0.00'}
-        </p>
-        <p className="text-xs text-gray-500 mb-5">
-          {product._id || 'auf Lager'}
-        </p>
-        <div className="flex gap-2">
-          <Link
-            href={`/products?slug=${generateUniqueId(product)}`}
-            className="flex-1 text-center text-sm text-blue-600 hover:text-blue-800 py-2 border-r border-gray-200"
-          >
-            Edit
-          </Link>
-          <Link
-            href={`/`}
-            className="flex-1 text-center text-sm text-blue-600 hover:text-blue-800 py-2"
-          >
-            View in Shop
-          </Link>
-        </div>
+      <h3 className="text-sm font-medium text-gray-900 px-4 line-clamp-2">
+        {text.title}
+      </h3>
+      <p className="text-sm text-gray-600 px-4">
+        {commerce?.pricing?.[0]?.currencyCode || 'CHF'}{' '}
+        {commerce?.pricing?.[0]?.amount?.toFixed(2) || '0.00'}
+      </p>
+      <p className="text-xs text-gray-500 px-4 pb-4">
+        {product._id || 'auf Lager'}
+      </p>
+      <div className="flex gap-2 border-t border-gray-100">
+        <Link
+          href={`/products?slug=${generateUniqueId(product)}`}
+          className="flex-1 text-center text-sm text-blue-600 hover:text-blue-800 py-3 border-r border-gray-200"
+        >
+          Edit
+        </Link>
+        <Link
+          href={`/`}
+          className="flex-1 text-center text-sm text-blue-600 hover:text-blue-800 py-3"
+        >
+          View in Shop
+        </Link>
       </div>
     </div>
   );
@@ -72,7 +77,14 @@ const ProductListItem = ({ product }) => {
 
 const ProductList = ({ products }: { products: any[] }) => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div
+      className="gap-5"
+      style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
+        gridTemplateRows: 'auto auto auto auto auto',
+      }}
+    >
       {products.map((product) => (
         <ProductListItem key={product._id} product={product} />
       ))}
