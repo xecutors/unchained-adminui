@@ -137,9 +137,9 @@ const ToolInvocationRenderer = ({ part }: { part: any }) => {
 const MessageRenderer = ({ message, user }: { message: any; user: IUser }) => {
   const isUser = message.role === 'user';
   return (
-    <div className={`flex ${!isUser ? 'justify-end' : 'justify-start'}`}>
+    <div className={`flex ${!isUser ? 'justify-start' : 'justify-end'}`}>
       {isUser && (
-        <div className="flex-shrink-0 mr-2">
+        <div className="flex-shrink-0">
           {user && (
             <MiniUserAvatar
               url={user?.avatar?.url}
@@ -150,10 +150,8 @@ const MessageRenderer = ({ message, user }: { message: any; user: IUser }) => {
         </div>
       )}
       <div
-        className={`max-w-[75%] rounded-xl px-4 py-3 shadow-md ${
-          isUser
-            ? 'bg-blue-600 text-white rounded-br-none'
-            : 'bg-white text-gray-800 rounded-bl-none'
+        className={`max-w-[75%] px-4 py-3 ${
+          isUser ? 'bg-slate-200 rounded-br-none rounded-md' : 'text-gray-800'
         }`}
       >
         {message.parts.map((part: any, index: number) => {
@@ -173,13 +171,6 @@ const MessageRenderer = ({ message, user }: { message: any; user: IUser }) => {
           }
         })}
       </div>
-      {!isUser && (
-        <div className="flex-shrink-0 ml-2">
-          <div className="h-10 w-10 bg-blue-200 text-blue-800 font-bold rounded-full flex items-center justify-center">
-            <ComputerDesktopIcon className="h-6 w-6" />
-          </div>
-        </div>
-      )}
     </div>
   );
 };
@@ -211,7 +202,7 @@ const Home = () => {
       <header className="p-4 text-xl font-semibold text-gray-900">
         Unchained <span className="font-light">Copilot</span>
       </header>
-      <main className="flex-1 overflow-y-auto px-4 py-6 space-y-4">
+      <main className="flex-1 overflow-y-auto py-6 space-y-4">
         {messages?.map((message) => (
           <MessageRenderer
             key={message.id}
