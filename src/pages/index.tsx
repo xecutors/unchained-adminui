@@ -21,57 +21,52 @@ const ProductListItem = ({ product }) => {
   const { texts, media, commerce } = product;
   const [text = {}] = texts || [];
   return (
-    <Link
-      href={`/products?slug=${generateUniqueId(product)}`}
-      className="text-blue-600 dark:text-blue-400"
-    >
-      <div className="flex gap-4 p-4 border-b border-gray-200 hover:bg-gray-50 transition">
-        <div className="w-24 h-24 flex-shrink-0 bg-gray-100 rounded-md overflow-hidden">
-          {media?.length ? (
-            <ImageWithFallback
-              src={media[0]?.file.url}
-              alt={text?.title}
-              className="w-full h-full object-cover"
-              width={100}
-              height={100}
-            />
-          ) : (
-            <div className="flex items-center justify-center h-full text-gray-400 text-sm">
-              No Image
+    <div className="my-5 bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden hover:shadow-md transition-shadow duration-200">
+      <div className="aspect-square bg-gray-50 relative">
+        {media?.length ? (
+          <ImageWithFallback
+            src={media[0]?.file.url}
+            alt={text?.title}
+            className="w-full h-full object-contain p-4"
+            width={300}
+            height={300}
+          />
+        ) : (
+          <div className="flex items-center justify-center h-full text-gray-400">
+            <div className="text-center">
+              <div className="text-6xl mb-2">📦</div>
+              <div className="text-sm">No Image</div>
             </div>
-          )}
-        </div>
-        <div className="flex-1 flex flex-col justify-between">
-          <div>
-            <h2 className="text-lg font-semibold text-gray-900">
-              {text.title}
-            </h2>
-            <p className="text-sm text-gray-600">{text?.subtitle}</p>
           </div>
-
-          <div className="mt-2 flex items-center justify-between text-sm">
-            <span className="text-blue-600 font-semibold">
-              {formatPrice(commerce?.pricing?.[0])}
-            </span>
-            <span className="text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded">
-              {product.type}
-            </span>
-          </div>
-          {product.tags && product.tags.length > 0 && (
-            <div className="mt-2 flex flex-wrap gap-2">
-              {product.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="text-xs bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded-full"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          )}
+        )}
+      </div>
+      <div className="p-4">
+        <h3 className="text-sm font-medium text-gray-900 mb-1 line-clamp-2">
+          {text.title}
+        </h3>
+        <p className="text-sm text-gray-600 mb-2">
+          {commerce?.pricing?.[0]?.currencyCode || 'CHF'}{' '}
+          {commerce?.pricing?.[0]?.amount?.toFixed(2) || '0.00'}
+        </p>
+        <p className="text-xs text-gray-500 mb-5">
+          {product._id || 'auf Lager'}
+        </p>
+        <div className="flex gap-2">
+          <Link
+            href={`/products?slug=${generateUniqueId(product)}`}
+            className="flex-1 text-center text-sm text-blue-600 hover:text-blue-800 py-2 border-r border-gray-200"
+          >
+            Edit
+          </Link>
+          <Link
+            href={`/`}
+            className="flex-1 text-center text-sm text-blue-600 hover:text-blue-800 py-2"
+          >
+            View in Shop
+          </Link>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 
@@ -150,7 +145,7 @@ const MessageRenderer = ({ message, user }: { message: any; user: IUser }) => {
         </div>
       )}
       <div
-        className={`max-w-[75%] px-4 py-3 ${
+        className={`px-4 py-3 ${
           isUser ? 'bg-slate-200 rounded-br-none rounded-md' : 'text-gray-800'
         }`}
       >
