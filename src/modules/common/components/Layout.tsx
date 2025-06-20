@@ -219,18 +219,15 @@ const Layout = ({
         role="dialog"
         aria-modal="true"
       >
-        <div
-          className="fixed inset-0 bg-slate-600 bg-opacity/75"
-          aria-hidden="true"
-        />
+        <div className="fixed inset-0 backdrop-blur-sm" aria-hidden="true" />
 
-        <div className="relative flex w-full max-w-xs flex-1 flex-col bg-white dark:bg-slate-900">
+        <div className="relative flex w-full max-w-xs flex-1 flex-col bg-white dark:bg-slate-900 shadow-xl">
           <div className="absolute top-0 right-0 -mr-12 pt-2">
             <button
               id="close_sidebar"
               type="button"
               onClick={() => setHideNav(!hideNav)}
-              className="ml-1 flex h-10 w-10 items-center justify-center rounded-full focus:outline-hidden focus:ring-2 focus:ring-inset focus:ring-white"
+              className="ml-1 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 dark:bg-slate-800/50 backdrop-blur-sm shadow-lg focus:outline-hidden focus:ring-2 focus:ring-inset focus:ring-white dark:focus:ring-slate-400"
             >
               <span className="sr-only">
                 {formatMessage({
@@ -240,7 +237,7 @@ const Layout = ({
               </span>
 
               <svg
-                className="h-6 w-6 text-white"
+                className="h-6 w-6 text-slate-800 dark:text-slate-200"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -316,7 +313,7 @@ const Layout = ({
         </div>
       </div>
       <div className="flex flex-1 flex-col md:pl-64 2xl:pl-96">
-        <div className="flex justify-between sticky top-0 z-10 bg-white dark:bg-slate-800 pl-1 pt-1 sm:pl-3 sm:pt-3 md:hidden border-b border-slate-200 dark:border-slate-700">
+        <div className="flex justify-between items-center sticky top-0 z-10 bg-white dark:bg-slate-800 sm:pl-3 sm:pt-3 md:hidden border-b border-slate-200 dark:border-slate-700">
           <button
             type="button"
             ref={ref}
@@ -329,14 +326,36 @@ const Layout = ({
                 defaultMessage: ' Open sidebar',
               })}
             </span>
-            <Bars4Icon
+            <svg
+              className="h-6 w-6"
               fill="none"
               viewBox="0 0 24 24"
-              className="h-8 w-8"
               stroke="currentColor"
               aria-hidden="true"
-            />
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 8h16M4 16h16"
+              />
+            </svg>
           </button>
+
+          <div className="flex-1 flex justify-center">
+            <div className="dark:brightness-0 dark:invert">
+              <ImageWithFallback
+                src={process.env.NEXT_PUBLIC_LOGO}
+                width={41}
+                height={25}
+                alt={formatMessage({
+                  id: 'unchained_logo',
+                  defaultMessage: 'Unchained Logo',
+                })}
+              />
+            </div>
+          </div>
+
           <div className="flex items-center gap-4 pr-4">
             <ThemeToggle />
           </div>

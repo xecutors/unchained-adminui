@@ -25,7 +25,7 @@ const TextField = ({
     <FieldWrapper {...field}>
       <input
         className={classnames(
-          'relative mt-1 block w-full dark:focus:autofill dark:hover:autofill dark:autofill dark:placeholder:text-white dark:bg-slate-900 dark:text-slate-200 appearance-none rounded-md border-2 dark:border-slate-700 px-4 py-2.5 text-sm text-slate-900  focus:border-slate-800 focus:outline-hidden  focus:ring-1 focus:ring-slate-800 shadow-xs',
+          'relative mt-1 block w-full dark:focus:autofill dark:hover:autofill dark:autofill dark:placeholder:text-white dark:bg-slate-900 dark:text-slate-200 appearance-none rounded-md border-2 dark:border-slate-700 px-4 py-2.5 text-sm text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-slate-800 shadow-xs',
           {
             'border-red-700 placeholder:text-red-300 placeholder-red-300':
               !!field.error,
