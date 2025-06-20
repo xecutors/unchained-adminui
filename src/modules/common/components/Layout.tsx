@@ -259,15 +259,17 @@ const Layout = ({
           <div className="h-0 flex-1 overflow-y-auto pt-5 pb-4">
             <div className="flex shrink-0 items-center px-4">
               <Link href="/">
-                <ImageWithFallback
-                  src={process.env.NEXT_PUBLIC_LOGO}
-                  width={41}
-                  height={25}
-                  alt={formatMessage({
-                    id: 'unchained_logo',
-                    defaultMessage: 'Unchained Logo',
-                  })}
-                />
+                <div className="dark:brightness-0 dark:invert">
+                  <ImageWithFallback
+                    src={process.env.NEXT_PUBLIC_LOGO}
+                    width={41}
+                    height={25}
+                    alt={formatMessage({
+                      id: 'unchained_logo',
+                      defaultMessage: 'Unchained Logo',
+                    })}
+                  />
+                </div>
               </Link>
             </div>
             <SideNav
@@ -286,15 +288,17 @@ const Layout = ({
           <div className="flex flex-1 flex-col overflow-y-auto pt-5 mt-5 mb-5 pb-4">
             <div className="flex shrink-0 items-center px-4">
               <Link href="/">
-                <ImageWithFallback
-                  src={process.env.NEXT_PUBLIC_LOGO}
-                  width={41}
-                  height={25}
-                  alt={formatMessage({
-                    id: 'unchained_logo',
-                    defaultMessage: 'Unchained Logo',
-                  })}
-                />
+                <div className="dark:brightness-0 dark:invert">
+                  <ImageWithFallback
+                    src={process.env.NEXT_PUBLIC_LOGO}
+                    width={41}
+                    height={25}
+                    alt={formatMessage({
+                      id: 'unchained_logo',
+                      defaultMessage: 'Unchained Logo',
+                    })}
+                  />
+                </div>
               </Link>
             </div>
             <SideNav navigation={defaultNavigation} />
