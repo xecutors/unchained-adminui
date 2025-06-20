@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { VariableIcon } from '@heroicons/react/24/solid';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 
-import Pagination from '../../modules/common/components/Pagination';
+import InfiniteScroll from '../../modules/common/components/InfiniteScroll';
 import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
 import SearchField from '../../modules/common/components/SearchField';
@@ -58,7 +58,7 @@ const Events = () => {
     }
   };
 
-  const { events, eventsCount, loading, loadMore } = useEvents({
+  const { events, eventsCount, loading, loadMore, hasMore } = useEvents({
     limit,
     types: (query?.types as string)?.split(','),
     offset,
@@ -117,10 +117,13 @@ const Events = () => {
             />
           }
         >
-          <div>
-            {loading ? <Loading /> : <EventList events={events} sortable />}
-            <Pagination data={events} total={eventsCount} onLoadMore={loadMore} />
-          </div>
+          <InfiniteScroll
+            loading={loading}
+            hasMore={hasMore}
+            onLoadMore={loadMore}
+          >
+            {loading && events?.length === 0 ? <Loading /> : <EventList events={events} sortable />}
+          </InfiniteScroll>
         </LocaleWrapper>
       </div>
     </>

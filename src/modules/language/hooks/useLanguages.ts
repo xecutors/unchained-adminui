@@ -39,6 +39,7 @@ const useLanguages = ({
   });
   const languages = data?.languages || [];
   const languagesCount = data?.languagesCount;
+  const hasMore = languages?.length < languagesCount;
 
   const loadMore = () => {
     fetchMore({
@@ -49,6 +50,7 @@ const useLanguages = ({
   return {
     languages,
     languagesCount,
+    hasMore,
     loading,
     error,
     loadMore,

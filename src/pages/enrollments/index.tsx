@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
-import Pagination from '../../modules/common/components/Pagination';
+import InfiniteScroll from '../../modules/common/components/InfiniteScroll';
 import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
@@ -44,7 +44,7 @@ const EnrollmentListView = () => {
 
   const sortKeys = convertSortFieldsToQueryFormat(sort);
 
-  const { enrollments, enrollmentsCount, loading, loadMore } = useEnrollments({
+  const { enrollments, enrollmentsCount, loading, loadMore, hasMore } = useEnrollments({
     queryString: queryString as string,
     limit,
     offset,
@@ -76,16 +76,22 @@ const EnrollmentListView = () => {
       <PageHeader
         headerText={formatMessage(
           (enrollmentsCount ?? 0) === 1
-            ? { id: 'enrollment_count_header_singular', defaultMessage: '1 Enrollment' }
-            : { id: 'enrollments_count_header', defaultMessage: '{count} Enrollments' },
-          { count: enrollmentsCount ?? 0 }
+            ? {
+                id: 'enrollment_count_header_singular',
+                defaultMessage: '1 Enrollment',
+              }
+            : {
+                id: 'enrollments_count_header',
+                defaultMessage: '{count} Enrollments',
+              },
+          { count: enrollmentsCount ?? 0 },
         )}
       />
       <div>
-        <p className="mt-0 text-xl font-medium leading-5 text-slate-800 dark:text-slate-200 lg:gap-7 lg:leading-6 ">
+        <p className="mt-5 text-md font-medium leading-5 text-slate-800 dark:text-slate-200 lg:gap-7 lg:leading-6 ">
           {formatMessage({ id: 'status', defaultMessage: 'Status' })}
         </p>
-        <div className="m-1 mt-3 grid grid-cols-2 gap-5 sm:grid-cols-2 lg:grid-cols-5 lg:pr-5">
+        <div className="mt-2 grid grid-cols-2 gap-5 sm:grid-cols-2 lg:grid-cols-5 lg:pr-5">
           <StatusFilter
             statuses={ENROLLMENT_STATUS}
             onStatusChange={onStatusChange}
@@ -104,18 +110,17 @@ const EnrollmentListView = () => {
             />
           }
         >
-          <div>
-            {loading ? (
+          <InfiniteScroll
+            loading={loading}
+            hasMore={hasMore}
+            onLoadMore={loadMore}
+          >
+            {loading && enrollments?.length === 0 ? (
               <Loading />
             ) : (
               <EnrollmentList enrollments={enrollments} showUser sortable />
             )}
-            <Pagination
-              data={enrollments}
-              total={enrollmentsCount}
-              onLoadMore={loadMore}
-            />
-          </div>
+          </InfiniteScroll>
         </LocaleWrapper>
       </div>
     </>

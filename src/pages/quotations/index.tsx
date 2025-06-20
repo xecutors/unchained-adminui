@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl';
 import { useRouter } from 'next/router';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
-import Pagination from '../../modules/common/components/Pagination';
+import InfiniteScroll from '../../modules/common/components/InfiniteScroll';
 import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
@@ -42,7 +42,7 @@ const Quotations = () => {
 
   const sortKeys = convertSortFieldsToQueryFormat(sort);
 
-  const { quotations, quotationsCount, loading, loadMore } = useQuotations({
+  const { quotations, quotationsCount, loading, loadMore, hasMore } = useQuotations({
     queryString: queryString as string,
     limit,
     offset,
@@ -72,18 +72,17 @@ const Quotations = () => {
             />
           }
         >
-          <div>
-            {loading ? (
+          <InfiniteScroll
+            loading={loading}
+            hasMore={hasMore}
+            onLoadMore={loadMore}
+          >
+            {loading && quotations?.length === 0 ? (
               <Loading />
             ) : (
               <QuotationList sortable quotations={quotations} showUser />
             )}
-            <Pagination
-              data={quotations}
-              total={quotationsCount}
-              onLoadMore={loadMore}
-            />
-          </div>
+          </InfiniteScroll>
         </LocaleWrapper>
       </div>
     </>

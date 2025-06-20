@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl';
 import Loading from '../../common/components/Loading';
-import Pagination from '../../common/components/Pagination';
+import InfiniteScroll from '../../common/components/InfiniteScroll';
 import Table from '../../common/components/Table';
 import useProducts from '../hooks/useProducts';
 import ProductListItem from './ProductListItem';
@@ -17,7 +17,7 @@ const ProductList = ({
   sortable,
 }) => {
   const { formatMessage } = useIntl();
-  const { products, productsCount, loading, loadMore } = useProducts({
+  const { products, productsCount, loading, loadMore, hasMore } = useProducts({
     queryString,
     includeDrafts,
     limit,
@@ -27,53 +27,56 @@ const ProductList = ({
     forceLocale: selectedLocale,
   });
 
+  if (loading && products?.length === 0) {
+    return <Loading />;
+  }
+
   return (
-    <>
-      {loading ? (
-        <Loading />
-      ) : (
-        <Table className="min-w-full ">
-          {products?.map((product) => (
-            <Table.Row key={product._id} header enablesort={sortable}>
-              <Table.Cell>
-                {formatMessage({
-                  id: 'name',
-                  defaultMessage: 'Name',
-                })}
-              </Table.Cell>
-              <Table.Cell sortKey="status">
-                {formatMessage({
-                  id: 'active',
-                  defaultMessage: 'Active',
-                })}
-              </Table.Cell>
+    <InfiniteScroll
+      loading={loading}
+      hasMore={hasMore}
+      onLoadMore={loadMore}
+    >
+      <Table className="min-w-full ">
+        {products?.map((product) => (
+          <Table.Row key={product._id} header enablesort={sortable}>
+            <Table.Cell>
+              {formatMessage({
+                id: 'name',
+                defaultMessage: 'Name',
+              })}
+            </Table.Cell>
+            <Table.Cell sortKey="status">
+              {formatMessage({
+                id: 'active',
+                defaultMessage: 'Active',
+              })}
+            </Table.Cell>
 
-              <Table.Cell>
-                {formatMessage({
-                  id: 'tags',
-                  defaultMessage: 'Tags',
-                })}
-              </Table.Cell>
-              <Table.Cell sortKey="sequence" defaultSortDirection="ASC">
-                {formatMessage({
-                  id: 'sequence',
-                  defaultMessage: 'Sequence',
-                })}
-              </Table.Cell>
-            </Table.Row>
-          ))}
+            <Table.Cell>
+              {formatMessage({
+                id: 'tags',
+                defaultMessage: 'Tags',
+              })}
+            </Table.Cell>
+            <Table.Cell sortKey="sequence" defaultSortDirection="ASC">
+              {formatMessage({
+                id: 'sequence',
+                defaultMessage: 'Sequence',
+              })}
+            </Table.Cell>
+          </Table.Row>
+        ))}
 
-          {products?.map((product) => (
-            <ProductListItem
-              key={`${product?._id}-body`}
-              product={product}
-              showAvatar={showAvatar}
-            />
-          ))}
-        </Table>
-      )}
-      <Pagination data={products} total={productsCount} onLoadMore={loadMore} />
-    </>
+        {products?.map((product) => (
+          <ProductListItem
+            key={`${product?._id}-body`}
+            product={product}
+            showAvatar={showAvatar}
+          />
+        ))}
+      </Table>
+    </InfiniteScroll>
   );
 };
 

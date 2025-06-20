@@ -53,7 +53,6 @@ const OrderList = ({ orders, showUser, loading, sortable }) => {
           <OrderListItem key={`${order?._id}-body`} order={order} showUser />
         ))}
       </Table>
-      {loading && <Loading />}
     </>
   );
 };

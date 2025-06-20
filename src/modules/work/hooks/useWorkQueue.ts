@@ -74,6 +74,8 @@ const useWorkQueue = ({
   });
   const workQueue = data?.workQueue || previousData?.workQueue || [];
   const activeWorkTypes = data?.activeWorkTypes || [];
+  const total = data?.workQueueCount || 0;
+  const hasMore = workQueue?.length < total;
 
   const loadMore = () => {
     fetchMore({
@@ -82,8 +84,9 @@ const useWorkQueue = ({
   };
   return {
     workQueue,
-    total: data?.workQueueCount || 0,
+    total,
     activeWorkTypes,
+    hasMore,
     loading,
     error,
     loadMore,
