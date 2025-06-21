@@ -59,7 +59,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
 
   return (
     <Form form={form} className="max-w-6xl">
-      <div className="space-y-4 overflow-hidden rounded-md border-b dark:border-none lg:grid lg:grid-cols-3">
+      <div className="space-y-4 overflow-hidden rounded-md lg:grid lg:grid-cols-3">
         <div className="flex justify-between pt-5 sm:col-span-1">
           <div className="space-y-1">
             <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-slate-200">
