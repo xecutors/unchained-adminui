@@ -156,7 +156,7 @@ const ColorLookupTable = {
   },
   indigo: {
     bg: {
-      50: 'bg-slate-100',
+      50: 'bg-slate-50',
       100: 'bg-slate-200',
       200: 'bg-slate-300',
       300: 'bg-slate-400',

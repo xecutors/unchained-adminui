@@ -73,7 +73,7 @@ const SideNav = ({ navigation, onClick = null }) => {
                 className={classNames(
                   'group flex w-full dark:text-slate-400 dark:hover:bg-slate-800 items-center rounded-md py-2 pl-2 text-sm font-medium ',
                   {
-                    'text-slate-900 dark:text-slate-400 bg-slate-100 dark:bg-slate-800':
+                    'text-slate-900 dark:text-slate-400 bg-slate-50 dark:bg-slate-800':
                       router.asPath === item.href,
                   },
                 )}

@@ -178,7 +178,7 @@ const EnrollmentDetail = ({ enrollment }: { enrollment: IEnrollment }) => {
   };
 
   const headerCSS =
-    'inline-flex items-center justify-between w-full px-4 py-2 rounded-t-md border border-slate-300 bg-slate-100 text-sm font-medium text-slate-700 hover:bg-slate-50 focus:z-10 focus:outline-hidden focus:ring-1 focus:ring-slate-800 focus:border-slate-800';
+    'inline-flex items-center justify-between w-full px-4 py-2 rounded-t-md border border-slate-300 bg-slate-50 text-sm font-medium text-slate-700 hover:bg-slate-50 focus:z-10 focus:outline-hidden focus:ring-1 focus:ring-slate-800 focus:border-slate-800';
 
   const periods = {
     header: (
