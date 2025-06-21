@@ -62,7 +62,7 @@ const FilterOptions = ({ filterId, selectedLocale = null }) => {
         ) : null
       }
     >
-      <div className="mt-8 w-full border-slate-200 dark:border-slate-800 p-3 sm:mt-0 shadow-md  bg-white dark:bg-slate-900">
+      <div className="mt-8 w-full border-slate-300 dark:border-slate-800 p-3 sm:mt-0 shadow-md  bg-white dark:bg-slate-900">
         <FilterOptionsList
           filterId={filterId}
           options={filterOptions}

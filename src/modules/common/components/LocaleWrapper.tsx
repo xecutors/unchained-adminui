@@ -56,7 +56,7 @@ const LocaleWrapper = ({
         <div className="w-fit mt-5">
           <select
             id="locale-wrapper"
-            className="cursor-pointer rounded-md border-slate-300 dark:border-slate-700 py-1 pr-8 text-sm lg:py-1 lg:pr-10 text-black dark:text-slate-400 dark:bg-slate-800"
+            className="cursor-pointer rounded-md border-1 border-slate-300 dark:border-slate-700 py-1 pr-8 text-sm lg:py-1 lg:pr-10 text-black dark:text-white dark:bg-slate-800 shadow-xs  focus:outline-hidden focus:ring-2 focus:ring-slate-800"
             value={selectedLocale}
             onChange={(e) => {
               e.stopPropagation();
@@ -66,14 +66,16 @@ const LocaleWrapper = ({
             {languageDialectList?.map((language) => {
               const displayName = (() => {
                 try {
-                  return new Intl.DisplayNames([selectedLocale], {
-                    type: 'language',
-                  }).of(language.isoCode) || language.isoCode;
+                  return (
+                    new Intl.DisplayNames([selectedLocale], {
+                      type: 'language',
+                    }).of(language.isoCode) || language.isoCode
+                  );
                 } catch {
                   return language.isoCode;
                 }
               })();
-              
+
               return (
                 <option key={language._id} value={language.isoCode}>
                   {displayName}

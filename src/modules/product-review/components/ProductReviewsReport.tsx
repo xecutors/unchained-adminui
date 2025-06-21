@@ -90,7 +90,7 @@ const ProductReviewsReport = ({ productReviews }) => {
                 />
 
                 <div className="relative ml-3 flex-1">
-                  <div className="h-3 rounded-full border border-slate-200 dark:border-slate-800 bg-slate-50" />
+                  <div className="h-3 rounded-full border border-slate-300 dark:border-slate-800 bg-slate-50" />
                   {totalUpVote > 0 ? (
                     <div
                       className="absolute inset-y-0 rounded-full border border-amber-400 bg-amber-400"
@@ -132,7 +132,7 @@ const ProductReviewsReport = ({ productReviews }) => {
                 />
 
                 <div className="relative ml-3 flex-1">
-                  <div className="h-3 rounded-full border border-slate-200 dark:border-slate-800 bg-slate-50" />
+                  <div className="h-3 rounded-full border border-slate-300 dark:border-slate-800 bg-slate-50" />
                   {totalDownVote > 0 ? (
                     <div
                       className="absolute inset-y-0 rounded-full border border-amber-400 bg-amber-400"

@@ -19,7 +19,7 @@ const TokenDetail = ({ token }) => {
 
   return (
     <div className="grid gap-8 bg-white dark:bg-slate-800 p-6 rounded-lg shadow-md">
-      <div className="border-b border-slate-200 dark:border-slate-700 pb-6">
+      <div className="border-b border-slate-300 dark:border-slate-700 pb-6">
         <Link
           href={`/products?slug=${generateUniqueId(token?.product)}`}
           className="block overflow-hidden rounded-lg bg-slate-50 dark:bg-slate-700 hover:opacity-90"

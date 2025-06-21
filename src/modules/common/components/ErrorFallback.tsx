@@ -53,7 +53,7 @@ const ErrorFallback = ({ error = null, resetError = null }) => {
                 {error?.message}
               </p>
             )}
-            <div className="mt-6 flex">
+            <div className="mt-6 flex flex-col gap-3">
               <Link
                 href="/"
                 className="text-base font-medium text-slate-950 dark:text-slate-800 hover:text-slate-900 dark:hover:text-slate-400"

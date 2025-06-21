@@ -121,10 +121,10 @@ const ProductReviewsItem = ({
       className={classNames(
         'mb-2 rounded-md px-3 pb-3 pt-1',
         {
-          'border-2 border-solid border-red-200': review.deleted,
+          'border-1 border-solid border-red-200': review.deleted,
         },
         {
-          'border-2 border-solid border-slate-200 dark:border-slate-800':
+          'border-1 border-solid border-slate-300 dark:border-slate-800':
             !review.deleted,
         },
       )}

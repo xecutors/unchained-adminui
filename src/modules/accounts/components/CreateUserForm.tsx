@@ -79,7 +79,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
           <span className="ml-4 flex shrink-0 items-start space-x-4" />
         </div>
 
-        <div className="mt-1 rounded-md border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800 pt-5 shadow-sm dark:shadow-none lg:col-span-2">
+        <div className="mt-1 rounded-md border-slate-300 dark:border-slate-800 bg-white dark:bg-slate-800 pt-5 shadow-sm dark:shadow-none lg:col-span-2">
           <div className="px-6 space-y-4">
             <div>
               <EmailField

@@ -22,7 +22,7 @@ const ProductListItem = ({ product }) => {
   const [text = {}] = texts || [];
   return (
     <div
-      className="my-5 bg-white dark:bg-slate-800 rounded-lg shadow-md border border-slate-200 dark:border-slate-700 overflow-hidden hover:shadow-md transition-shadow duration-200"
+      className="my-5 bg-white dark:bg-slate-800 rounded-lg shadow-md border border-slate-300 dark:border-slate-700 overflow-hidden hover:shadow-md transition-shadow duration-200"
       style={{
         display: 'grid',
         gridTemplateRows: 'subgrid',
@@ -223,7 +223,7 @@ const Copilot = () => {
         <div className="absolute bottom-full left-0 right-0 h-24 bg-gradient-to-t from-slate-100 dark:from-slate-900 to-transparent pointer-events-none" />
         <form
           onSubmit={handleSubmit}
-          className="bg-white dark:bg-slate-800 shadow-2xl border border-slate-200 dark:border-slate-700 rounded-md p-3"
+          className="bg-white dark:bg-slate-800 shadow-2xl border border-slate-300 dark:border-slate-700 rounded-md p-3"
         >
           <div className="flex items-center gap-2">
             <input

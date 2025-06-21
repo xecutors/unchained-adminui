@@ -122,7 +122,7 @@ const ProductTokenizationForm = ({ productId }) => {
                 defaultMessage: 'Contract Address',
               })}
               required
-              className="block w-full max-w-full rounded-md border-slate-200 dark:border-slate-800 text-sm focus:border-slate-800 focus:ring-slate-800 sm:text-sm"
+              className="block w-full max-w-full rounded-md border-slate-300 dark:border-slate-800 text-sm  focus:ring-slate-800 sm:text-sm"
             />
             <TextField
               name="supply"
@@ -137,7 +137,7 @@ const ProductTokenizationForm = ({ productId }) => {
                 defaultMessage: 'Supply',
               })}
               required
-              className="block w-full max-w-full rounded-md border-slate-200 dark:border-slate-800 text-sm focus:border-slate-800 focus:ring-slate-800 sm:text-sm"
+              className="block w-full max-w-full rounded-md border-slate-300 dark:border-slate-800 text-sm  focus:ring-slate-800 sm:text-sm"
             />
             <TextField
               name="tokenId"
@@ -150,7 +150,7 @@ const ProductTokenizationForm = ({ productId }) => {
                 id: 'token-id-label',
                 defaultMessage: 'Token ID',
               })}
-              className="block w-full max-w-full rounded-md border-slate-200 dark:border-slate-800 text-sm focus:border-slate-800 focus:ring-slate-800 sm:text-sm"
+              className="block w-full max-w-full rounded-md border-slate-300 dark:border-slate-800 text-sm  focus:ring-slate-800 sm:text-sm"
             />
           </div>
 

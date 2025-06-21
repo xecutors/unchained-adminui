@@ -69,7 +69,7 @@ const UserWebAuthCredentials = ({ userId }) => {
   return (
     <>
       <div>
-        <ul className="border-slate-200 divide-slate-200">
+        <ul className="border-slate-300 divide-slate-200">
           {webAuthnCredentials?.map((credential) => (
             <RegisteredWebAuthItem
               md5Metadata={credential?.mdsMetadata}
