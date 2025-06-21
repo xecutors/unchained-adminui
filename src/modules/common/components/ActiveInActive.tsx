@@ -16,7 +16,7 @@ const ActiveInActive = ({
         ? activeIcon || (
             <CheckBadgeIcon
               className={classNames(
-                'text-green-400 w-5 h-5 mr-2',
+                'text-emerald-400 w-5 h-5 mr-2',
                 iconClassName,
                 activeClassName,
               )}

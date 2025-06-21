@@ -31,9 +31,9 @@ const QuotationConfigurationForm = ({
     <Form form={form} id="quotation_configuration">
       <div className="flex items-center text-center  mb-3">
         {icon || (
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
+          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100">
             <CheckIcon
-              className="h-8 w-8 text-green-600"
+              className="h-8 w-8 text-emerald-600"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"

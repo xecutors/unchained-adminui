@@ -42,7 +42,7 @@ const ProductReviewsReport = ({ productReviews }) => {
                 className={`
                         ${
                           averageUpVote >= rating * 20
-                            ? 'text-yellow-400'
+                            ? 'text-amber-400'
                             : 'text-slate-400'
                         }
                         h-5 w-5 shrink-0
@@ -82,7 +82,7 @@ const ProductReviewsReport = ({ productReviews }) => {
                   className={`
                           ${
                             totalUpVote > 0
-                              ? 'text-yellow-400'
+                              ? 'text-amber-400'
                               : 'text-slate-400'
                           }
                           h-5 w-5 shrink-0`}
@@ -93,7 +93,7 @@ const ProductReviewsReport = ({ productReviews }) => {
                   <div className="h-3 rounded-full border border-slate-200 dark:border-slate-800 bg-slate-50" />
                   {totalUpVote > 0 ? (
                     <div
-                      className="absolute inset-y-0 rounded-full border border-yellow-400 bg-yellow-400"
+                      className="absolute inset-y-0 rounded-full border border-amber-400 bg-amber-400"
                       style={{
                         width: `calc(${averageUpVote}%)`,
                       }}
@@ -123,7 +123,7 @@ const ProductReviewsReport = ({ productReviews }) => {
                   className={`
                           ${
                             totalDownVote > 0
-                              ? 'text-yellow-400'
+                              ? 'text-amber-400'
                               : 'text-slate-400'
                           }
                           h-5 w-5 shrink-0
@@ -135,7 +135,7 @@ const ProductReviewsReport = ({ productReviews }) => {
                   <div className="h-3 rounded-full border border-slate-200 dark:border-slate-800 bg-slate-50" />
                   {totalDownVote > 0 ? (
                     <div
-                      className="absolute inset-y-0 rounded-full border border-yellow-400 bg-yellow-400"
+                      className="absolute inset-y-0 rounded-full border border-amber-400 bg-amber-400"
                       style={{
                         width: `calc(${averageDownVote}%)`,
                       }}

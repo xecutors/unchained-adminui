@@ -183,7 +183,7 @@ const ProductReviewsItem = ({
               className={`h-7 w-7
             ${
               hasAlreadyVoted(voteTypes.UPVOTE)
-                ? 'text-yellow-400'
+                ? 'text-amber-400'
                 : 'text-slate-400'
             }`}
             />
@@ -198,7 +198,7 @@ const ProductReviewsItem = ({
               className={`h-7 w-7
             ${
               hasAlreadyVoted(voteTypes.DOWNVOTE)
-                ? 'text-yellow-400'
+                ? 'text-amber-400'
                 : 'text-slate-400'
             }            
           `}
@@ -231,7 +231,7 @@ const ProductReviewsItem = ({
                 className={classNames(
                   'h-5 w-5 border-slate-600  text-slate-400 border-3',
                   {
-                    'text-yellow-400': hasAlreadyVoted(voteTypes.REPORT),
+                    'text-amber-400': hasAlreadyVoted(voteTypes.REPORT),
                     'text-slate-400': !hasAlreadyVoted(voteTypes.REPORT),
                     'hover:text-white': canManageVotes,
                   },

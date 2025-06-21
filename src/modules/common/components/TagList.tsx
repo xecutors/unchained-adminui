@@ -11,7 +11,7 @@ const TagList = ({ defaultValue, onSubmit, enableEdit }) => {
   const { setModal } = useModal();
 
   return (
-    <div className="mr-auto ml-4 flex w-1/2 gap-2">
+    <div className="flex items-center mr-auto ml-1 w-1/2 gap-2">
       <span className="flex items-center">
         <TagIcon className="mr-auto h-5 w-5 text-slate-950" />
       </span>

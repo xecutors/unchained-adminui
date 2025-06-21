@@ -289,7 +289,7 @@ const AssortmentDetail = ({ assortment, extendedData }) => {
 
   return (
     <>
-      <div className="-ml-2 flex flex-wrap gap-2 lg:justify-end">
+      <div className="flex flex-wrap gap-2 lg:justify-end">
         <TagList
           defaultValue={assortment?.tags}
           onSubmit={updateAssortmentTags}
@@ -306,7 +306,7 @@ const AssortmentDetail = ({ assortment, extendedData }) => {
           {isBase ? (
             <span
               id="is_base"
-              className="py-2.5 px-8 text-sm font-medium text-white bg-green-500 white inline-flex items-center shadow-md border rounded-md"
+              className="py-2.5 px-8 text-sm font-medium text-white bg-emerald-500 white inline-flex items-center shadow-md border rounded-md"
             >
               {formatMessage({
                 id: 'base',
