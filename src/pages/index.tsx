@@ -152,7 +152,9 @@ const MessageRenderer = ({ message, user }: { message: any; user: IUser }) => {
       )}
       <div
         className={`px-4 py-3 ${
-          isUser ? 'bg-slate-200 dark:bg-slate-700 rounded-br-none rounded-xl' : 'text-gray-800 dark:text-gray-200'
+          isUser
+            ? 'bg-slate-200 dark:bg-slate-700 rounded-br-none rounded-xl'
+            : 'text-gray-800 dark:text-gray-200'
         }`}
       >
         {message.parts.map((part: any, index: number) => {
@@ -199,9 +201,12 @@ const Copilot = () => {
   }, [messages]);
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-100 dark:bg-slate-900 font-sans">
+    <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-slate-900 font-sans">
       <header className="p-4 mt-1 text-xl font-semibold text-gray-900 dark:text-gray-100">
-        Unchained <span className="font-light">Copilot</span>
+        Unchained{' '}
+        <span className="font-light">
+          Copilot<span className="text-xs ml-1"> 1.0</span>
+        </span>
       </header>
       <main className="flex-1 overflow-y-auto py-6 space-y-4">
         {messages?.map((message) => (
@@ -225,9 +230,12 @@ const Copilot = () => {
               value={input}
               onChange={handleInputChange}
               placeholder="Type your message..."
-              className="flex-1 border-0 bg-slate-100 dark:bg-slate-700 dark:text-slate-200 dark:placeholder-slate-400 rounded-md px-4 py-2"
+              className="flex-1 border-0 bg-slate-50 dark:bg-slate-700 dark:text-slate-200 dark:placeholder-slate-400 rounded-md px-4 py-2"
             />
-            <button type="submit" className="p-2 text-gray-600 dark:text-slate-300 hover:text-gray-900 dark:hover:text-slate-100">
+            <button
+              type="submit"
+              className="p-2 text-gray-600 dark:text-slate-300 hover:text-gray-900 dark:hover:text-slate-100"
+            >
               <PaperAirplaneIcon className="h-6 w-6" strokeWidth={2} />
             </button>
           </div>

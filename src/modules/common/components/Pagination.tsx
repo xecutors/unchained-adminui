@@ -88,7 +88,7 @@ const Step = ({ onClick, disabled = false, label }) => {
       className={classNames(
         'relative inline-flex items-center border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-2 text-sm font-medium  hover:bg-slate-50 ',
         {
-          'z-10 border-slate-900 bg-slate-100 text-slate-800 dark:bg-slate-600 dark:border-slate-400 dark:text-slate-200':
+          'z-10 border-slate-900 bg-slate-50 text-slate-800 dark:bg-slate-600 dark:border-slate-400 dark:text-slate-200':
             disabled,
           'text-slate-500 dark:hover:bg-slate-600 dark:text-slate-400 dark:hover:text-slate-100':
             !disabled,

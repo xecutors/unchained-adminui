@@ -313,7 +313,7 @@ const Layout = ({
         </div>
       </div>
       <div className="flex flex-1 flex-col md:pl-64 2xl:pl-96">
-        <div className="flex justify-between items-center sticky top-0 z-10 bg-white dark:bg-slate-800 sm:pl-3 sm:pt-3 md:hidden border-b border-slate-200 dark:border-slate-700">
+        <div className="flex justify-between items-center sticky top-0 z-10 bg-white dark:bg-slate-800 md:hidden border-b border-slate-200 dark:border-slate-700">
           <button
             type="button"
             ref={ref}
@@ -360,7 +360,7 @@ const Layout = ({
             <ThemeToggle />
           </div>
         </div>
-        <main className="container mx-auto max-w-7xl flex-1 px-4 py-5 sm:px-6 md:px-8">
+        <main className="container mx-auto max-w-7xl flex-1 px-4 py-5 md:pt-10 lg:pt-5 sm:px-6 md:px-8">
           <h3 className="ml-8 text-lg font-medium leading-6 text-slate-900">
             {pageHeader}
           </h3>

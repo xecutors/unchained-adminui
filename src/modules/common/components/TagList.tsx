@@ -35,7 +35,7 @@ const TagList = ({ defaultValue, onSubmit, enableEdit }) => {
         <button
           id="add_tag"
           type="button"
-          className="inline-flex items-center justify-center h-8 w-8 rounded-full text-slate-600 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-400 dark:hover:text-slate-200 dark:hover:bg-slate-800 transition-colors"
+          className="inline-flex items-center justify-center h-8 w-8 rounded-full text-slate-600 hover:text-slate-900 hover:bg-slate-50 dark:text-slate-400 dark:hover:text-slate-200 dark:hover:bg-slate-800 transition-colors"
           onClick={() =>
             setModal(
               <TagListForm

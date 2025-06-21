@@ -57,7 +57,7 @@ const MediaUploader = ({
             {formatMessage({ id: 'avatar', defaultMessage: 'Avatar' })}
           </h3>
           <div className="my-4 flex items-center">
-            <span className="inline-block h-12 w-12 overflow-hidden rounded-full bg-slate-100">
+            <span className="inline-block h-12 w-12 overflow-hidden rounded-full bg-slate-50">
               <svg
                 className="h-full w-full text-slate-300 dark:text-slate-200"
                 fill="currentColor"

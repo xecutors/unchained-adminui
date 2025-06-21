@@ -123,7 +123,7 @@ const ProfileView = ({ profile, avatar, _id }) => {
   return (
     <FormWrapper className="shadow-none">
       <Form form={form}>
-        <div className="mt-6 overflow-hidden rounded-md bg-slate-100 dark:bg-slate-900">
+        <div className="mt-6 overflow-hidden rounded-md bg-slate-50 dark:bg-slate-900">
           <div className="lg:grid lg:grid-cols-3">
             <div className="mb-5 lg:col-span-1 lg:pr-5">
               <div className="space-y-2">
@@ -191,7 +191,7 @@ const ProfileView = ({ profile, avatar, _id }) => {
                           })}
                         />
                       ) : (
-                        <span className="inline-block h-12 w-12 overflow-hidden rounded-full bg-slate-100">
+                        <span className="inline-block h-12 w-12 overflow-hidden rounded-full bg-slate-50">
                           <svg
                             className="h-full w-full text-slate-300"
                             fill="currentColor"

@@ -98,7 +98,7 @@ const AssortmentsView = () => {
       />
       <div>
         <ListHeader addPath={hasRole('addAssortment') && '/assortments/new'}>
-          <div className="flex gap-4">
+          <div className="lg:flex gap-5">
             <Toggle
               toggleKey="includeInactive"
               toggleText={formatMessage({

@@ -36,7 +36,7 @@ const UserAvatar = ({ avatar, ...user }) => {
             })}
           />
         ) : (
-          <span className="inline-block h-8 w-8 overflow-hidden rounded-full bg-slate-100">
+          <span className="inline-block h-8 w-8 overflow-hidden rounded-full bg-slate-50">
             <svg
               className="h-full w-full text-slate-300"
               fill="currentColor"

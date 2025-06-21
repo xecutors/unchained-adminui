@@ -207,7 +207,7 @@ class MyDocument extends Document {
           ))}
           <script src={`/admin-ui-permissions.js`} id="role-config-script" />
         </Head>
-        <body className="h-full bg-slate-100 dark:bg-slate-900 dark:text-slate-200">
+        <body className="h-full bg-slate-50 dark:bg-slate-900 dark:text-slate-200">
           <noscript
             dangerouslySetInnerHTML={{
               __html: `
