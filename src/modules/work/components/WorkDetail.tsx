@@ -212,8 +212,8 @@ const WorkDetail = ({ work }) => {
 
         {work?.input && (
           <div className="col-span-2  bg-white dark:bg-slate-900 lg:col-span-1">
-            <div className="border-b border-gray-200 bg-white px-4 py-5 sm:px-6">
-              <h3 className="text-lg font-medium leading-6 text-gray-900">
+            <div className="border-b border-slate-200 bg-white px-4 py-5 sm:px-6">
+              <h3 className="text-lg font-medium leading-6 text-slate-900">
                 {formatMessage({ id: 'input', defaultMessage: 'Input' })}
               </h3>
             </div>
@@ -227,8 +227,8 @@ const WorkDetail = ({ work }) => {
 
         {work?.result && (
           <div className="col-span-2  bg-white dark:bg-slate-900   lg:col-span-1 ">
-            <div className="border-b border-gray-200 bg-white px-4 py-5 sm:px-6">
-              <h3 className="text-lg font-medium leading-6 text-gray-900">
+            <div className="border-b border-slate-200 bg-white px-4 py-5 sm:px-6">
+              <h3 className="text-lg font-medium leading-6 text-slate-900">
                 {formatMessage({ id: 'result', defaultMessage: 'Result' })}
               </h3>
             </div>
@@ -241,7 +241,7 @@ const WorkDetail = ({ work }) => {
         )}
         {work?.error && (
           <div className="col-span-2  bg-white dark:bg-slate-900  lg:col-span-1 ">
-            <div className="border-b border-gray-200 bg-white px-4 py-5 sm:px-6">
+            <div className="border-b border-slate-200 bg-white px-4 py-5 sm:px-6">
               <h3 className="text-lg font-medium leading-6  text-red-500">
                 {formatMessage({ id: 'error', defaultMessage: 'Error' })}
               </h3>

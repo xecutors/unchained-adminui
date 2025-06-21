@@ -35,7 +35,7 @@ const UserFilter: React.FC = () => {
         style={{ maxWidth: '500px' }}
       >
         <div className="flex-1">
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-slate-700 mb-1">
             {formatMessage({
               id: 'email_verified_label',
               defaultMessage: 'E-Mail verified',
@@ -68,7 +68,7 @@ const UserFilter: React.FC = () => {
         </div>
 
         <div className="flex-1">
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-slate-700 mb-1">
             {formatMessage({
               id: 'login_date_range',
               defaultMessage: 'Login Date Range',

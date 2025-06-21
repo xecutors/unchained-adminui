@@ -10,7 +10,7 @@ const RetryStatistics = ({ work, children = null }) => {
           viewBox="0 0 24 24"
           strokeWidth="1.5"
           stroke="currentColor"
-          className="w-3 h-3 inline-block text-gray-500 mr-2"
+          className="w-3 h-3 inline-block text-slate-500 mr-2"
         >
           <path
             strokeLinecap="round"
@@ -31,7 +31,7 @@ const RetryStatistics = ({ work, children = null }) => {
           viewBox="0 0 24 24"
           strokeWidth="1.5"
           stroke="currentColor"
-          className="w-3 h-3 inline-block text-gray-500 mr-2"
+          className="w-3 h-3 inline-block text-slate-500 mr-2"
         >
           <path
             strokeLinecap="round"

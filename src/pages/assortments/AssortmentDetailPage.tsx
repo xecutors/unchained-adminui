@@ -62,7 +62,7 @@ const AssortmentDetailPage = ({ assortmentSlug }) => {
             headerText={
               <>
                 {assortment?.texts?.title || 'Untitled Assortment'}
-                <span className="text-lg font-normal text-gray-500 ml-2">
+                <span className="text-lg font-normal text-slate-500 ml-2">
                   ({assortment?._id})
                 </span>
               </>
@@ -74,10 +74,10 @@ const AssortmentDetailPage = ({ assortmentSlug }) => {
           ) : null}
         </div>
         
-        <div className="mt-4 mb-6 flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-400">
+        <div className="mt-4 mb-6 flex flex-wrap gap-4 text-sm text-slate-600 dark:text-slate-400">
           {assortment?.created && (
             <div className="flex items-center gap-1">
-              <span className="font-medium text-gray-700 dark:text-gray-300">
+              <span className="font-medium text-slate-700 dark:text-slate-300">
                 {formatMessage({ id: 'created', defaultMessage: 'Created' })}:
               </span>
               <span>{formatDateTime(assortment.created, {
@@ -89,7 +89,7 @@ const AssortmentDetailPage = ({ assortmentSlug }) => {
 
           {assortment?.updated && (
             <div className="flex items-center gap-1">
-              <span className="font-medium text-gray-700 dark:text-gray-300">
+              <span className="font-medium text-slate-700 dark:text-slate-300">
                 {formatMessage({ id: 'updated', defaultMessage: 'Updated' })}:
               </span>
               <span>{formatDateTime(assortment.updated, {

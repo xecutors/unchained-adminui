@@ -85,7 +85,7 @@ const DisplayData = ({ value }) => {
 const DisplayLabel = ({ value }) => {
   return (
     <h3 className="text-base font-medium">
-      <span className="text-gray-900">{value}</span>
+      <span className="text-slate-900">{value}</span>
     </h3>
   );
 };
@@ -112,7 +112,7 @@ const DisplayExtendedFields = (props) => {
             {value?.map((item) => (
               <span
                 key={item}
-                className="inline-flex items-center rounded-md bg-slate-50 px-2.5 py-0.5 text-sm font-medium text-gray-800 ml-2"
+                className="inline-flex items-center rounded-md bg-slate-50 px-2.5 py-0.5 text-sm font-medium text-slate-800 ml-2"
               >
                 <DisplayData value={item} />
               </span>
