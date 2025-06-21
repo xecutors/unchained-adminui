@@ -74,7 +74,7 @@ const UserNameView = ({ _id: userId, username }) => {
                   type="button"
                   className={classNames(
                     isEdit ? '' : 'focus:ring-slate-800',
-                    'inline-flex items-center rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-xs hover:bg-slate-50 focus:outline-hidden focus:ring-2 focus:ring-slate-800 focus:ring-offset-2',
+                    'inline-flex items-center rounded-md border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-200 shadow-xs hover:bg-slate-50 dark:hover:bg-slate-700 focus:outline-hidden focus:ring-2 focus:ring-slate-800 dark:focus:ring-slate-400 focus:ring-offset-2',
                   )}
                 >
                   {isEdit
@@ -90,7 +90,7 @@ const UserNameView = ({ _id: userId, username }) => {
                 {isEdit && (
                   <button
                     type="submit"
-                    className="inline-flex items-center rounded-md border border-transparent bg-slate-900 px-4 py-2 text-sm font-medium text-white shadow-xs hover:bg-slate-950 focus:outline-hidden focus:ring-2 focus:ring-slate-800 focus:ring-offset-2"
+                    className="inline-flex items-center rounded-md border border-transparent bg-slate-900 dark:bg-slate-600 px-4 py-2 text-sm font-medium text-white shadow-xs hover:bg-slate-950 dark:hover:bg-slate-500 focus:outline-hidden focus:ring-2 focus:ring-slate-800 dark:focus:ring-slate-400 focus:ring-offset-2"
                   >
                     {formatMessage({
                       id: 'save',

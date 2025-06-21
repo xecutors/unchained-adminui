@@ -75,7 +75,7 @@ const OrderDetailPayment = ({ order }) => {
         <span className="mb-5  block">
           <Link
             href={`/payment-provider?paymentProviderId=${order.payment.provider._id}`}
-            className="font-medium text-slate-900 dark:text-slate-700 hover:text-slate-800 dark:hover:text-slate-600"
+            className="font-medium text-slate-900 dark:text-slate-300 hover:text-slate-800 dark:hover:text-slate-600"
           >
             {getInterfaceLabel(order.payment?.provider?.interface)}
           </Link>

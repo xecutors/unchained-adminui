@@ -154,7 +154,7 @@ const WorkFilter = ({ workTypes = [] }) => {
         <p className="mt-0 text-xl font-medium leading-5 text-slate-800 dark:text-slate-200 lg:gap-7 lg:leading-6 ">
           {formatMessage({ id: 'status', defaultMessage: 'Status' })}
         </p>
-        <div className="m-1 mt-3 grid grid-cols-2 gap-5 sm:grid-cols-2 lg:grid-cols-5 lg:pr-5">
+        <div className="mt-3 grid grid-cols-2 gap-1 sm:grid-cols-2 lg:grid-cols-5 lg:pr-5">
           <StatusFilter
             onStatusChange={onStatusChange}
             selectedStatuses={appliedStatuses}
