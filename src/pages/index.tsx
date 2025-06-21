@@ -203,8 +203,8 @@ const Copilot = () => {
   return (
     <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-slate-900 font-sans">
       <header className="p-4 mt-1 text-xl font-semibold text-slate-900 dark:text-slate-100">
-        Unchained{' '}
-        <span className="font-light">
+        Unchained
+        <span className="font-light ml-1">
           Copilot<span className="text-xs ml-1"> 1.0</span>
         </span>
       </header>

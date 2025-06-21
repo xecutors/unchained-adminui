@@ -33,7 +33,7 @@ const PasswordField = ({ autoComplete = 'on', ...props }: any) => {
           {isPasswordVisible ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 stroke-indigo-500"
+              className="h-6 w-6 stroke-slate-500"
               fill="none"
               viewBox="0 0 24 24"
             >
@@ -53,7 +53,7 @@ const PasswordField = ({ autoComplete = 'on', ...props }: any) => {
           ) : (
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 stroke-indigo-500"
+              className="h-6 w-6 stroke-slate-500"
               fill="none"
               viewBox="0 0 24 24"
             >
