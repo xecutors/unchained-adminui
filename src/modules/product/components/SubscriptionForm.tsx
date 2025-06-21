@@ -82,7 +82,7 @@ const SubscriptionForm = ({ productId }) => {
         id: 'subscription',
         defaultMessage: 'Subscription',
       })}
-      className="mt-2 sm:mt-0"
+      className="mt-2 lg:mt-5"
       documentation={
         <FormattedMessage
           id="product_subscription_form_description"

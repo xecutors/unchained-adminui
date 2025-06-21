@@ -114,7 +114,7 @@ const AssortmentProducts = ({ assortmentId }) => {
           id: 'assortment_product_form_header',
           defaultMessage: 'Products',
         })}
-        className="mt-2 sm:mt-0"
+        className="mt-2 lg:mt-5"
         documentation={
           <FormattedMessage
             id="assortment_product_form_description"

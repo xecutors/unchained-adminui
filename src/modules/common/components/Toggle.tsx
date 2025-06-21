@@ -29,10 +29,10 @@ const Toggle = ({
         disabled={disabled}
         type="button"
         className={classNames(
-          'ml-1 relative inline-flex h-4 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-hidden focus:ring-2 focus:ring-slate-800 focus:ring-offset-2',
+          'ml-1 relative inline-flex h-4 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-all duration-200 ease-in-out focus:outline-hidden focus:ring-2 focus:ring-slate-400 focus:ring-offset-2',
           {
             'bg-slate-200 dark:bg-slate-700': !toggleState,
-            'bg-slate-900': toggleState,
+            'bg-slate-300 dark:bg-slate-600 shadow-sm': toggleState,
           },
         )}
         role="switch"
@@ -44,9 +44,9 @@ const Toggle = ({
 
         <span
           className={classNames(
-            ' pointer-events-none relative inline-block h-3 w-3 transform rounded-full bg-white shadow-sm ring-0 transition duration-200 ease-in-out',
+            ' pointer-events-none relative inline-block h-3 w-3 transform rounded-full bg-white shadow-sm ring-0 transition-all duration-200 ease-in-out',
             {
-              'translate-x-5': toggleState,
+              'translate-x-5 shadow-md': toggleState,
               'translate-x-0': !toggleState,
             },
           )}
@@ -87,7 +87,7 @@ const Toggle = ({
             aria-hidden="true"
           >
             <svg
-              className="h-3 w-3 text-slate-950"
+              className="h-3 w-3 text-emerald-500"
               fill="currentColor"
               viewBox="0 0 12 12"
             >

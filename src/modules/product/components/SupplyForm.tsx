@@ -82,7 +82,7 @@ const SupplyForm = ({ productId }) => {
         id: 'supply',
         defaultMessage: 'Supply',
       })}
-      className="mt-2 sm:mt-0"
+      className="mt-2 lg:mt-5"
       documentation={
         <FormattedMessage
           id="product_supply_form_description"
