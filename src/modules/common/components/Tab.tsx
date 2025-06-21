@@ -58,7 +58,7 @@ const Tab = ({ children, tabItems, defaultTab, updateRoute = true }) => {
                 onClick={() => onTabSelected(option.id)}
                 className={classNames(
                   {
-                    'cursor-pointer rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 text-slate-900 dark:text-slate-200 dark:bg-slate-800':
+                    'cursor-pointer rounded-lg border border-slate-300 dark:border-slate-600 bg-slate-100 text-slate-900 dark:text-slate-100 dark:bg-slate-700 shadow-md':
                       tab === option.id,
                   },
                   'cursor-pointer relative whitespace-nowrap border border-transparent py-4 px-1 pr-3 pl-2 text-sm dark:text-slate-400 font-medium dark:hover:bg-slate-700 hover:border-slate-200 hover:rounded-lg',

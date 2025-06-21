@@ -26,7 +26,7 @@ const ProductReviewsReport = ({ productReviews }) => {
 
   return (
     <div className="lg:col-span-4">
-      <h2 className="text-2xl font-extrabold tracking-tight">
+      <h2 className="text-2xl">
         {formatMessage({
           id: 'customer_reviews',
           defaultMessage: 'Customer Reviews',
