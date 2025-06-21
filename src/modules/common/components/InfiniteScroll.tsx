@@ -25,7 +25,7 @@ const InfiniteScroll = ({
         onLoadMore();
       }
     },
-    [hasMore, loading, onLoadMore]
+    [hasMore, loading, onLoadMore],
   );
 
   useEffect(() => {
@@ -53,7 +53,7 @@ const InfiniteScroll = ({
         </div>
       )}
       {!hasMore && !loading && (
-        <div className="text-center py-4 text-slate-500 dark:text-slate-400 text-sm">
+        <div className="py-4 text-slate-500 dark:text-slate-400 text-sm">
           No more items to load
         </div>
       )}
