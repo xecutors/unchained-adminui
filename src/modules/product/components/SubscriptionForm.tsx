@@ -90,7 +90,7 @@ const SubscriptionForm = ({ productId }) => {
           <li>The price specified in commerce section will be used when calculating fees on each interval. </li>
           <li>Price will not be included for the specified trial period </li> </ul>"
           values={{
-            ul: (chunk) => <ul className="pl-5 space-y-1">{chunk} </ul>,
+            ul: (chunk) => <ul className="space-y-1">{chunk} </ul>,
             li: (chunk) => <li>{chunk}</li>,
           }}
         />

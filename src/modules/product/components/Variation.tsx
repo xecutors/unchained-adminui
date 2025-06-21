@@ -64,7 +64,7 @@ const Variation = ({ type, variation, selectedLocale, onDelete }) => {
               )}
             >
               <div
-                className="pl-5 space-y-1"
+                className="space-y-1"
                 onClick={(event) => {
                   event.stopPropagation();
                   event.preventDefault();

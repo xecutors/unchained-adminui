@@ -61,7 +61,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
     <Form form={form} className="max-w-6xl">
       <div className="space-y-4 overflow-hidden rounded-md border-b dark:border-none lg:grid lg:grid-cols-3">
         <div className="flex justify-between pt-5 sm:col-span-1">
-          <div className="pl-5 space-y-1">
+          <div className="space-y-1">
             <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-slate-200">
               {formatMessage({
                 id: 'profile',
@@ -186,7 +186,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
         <div className="mb-6 w-full lg:col-span-3" />
 
         <div className="flex justify-between pt-6 lg:col-span-1">
-          <div className="pl-5 space-y-1">
+          <div className="space-y-1">
             <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-slate-200">
               {formatMessage({
                 id: 'address',

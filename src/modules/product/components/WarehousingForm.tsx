@@ -60,7 +60,7 @@ const WarehousingForm = ({ productId }) => {
           id="product_warehousing_form_description"
           defaultMessage="<ul><li> Information regarding product storage </li> </ul>"
           values={{
-            ul: (chunk) => <ul className="pl-5 space-y-1">{chunk} </ul>,
+            ul: (chunk) => <ul className="space-y-1">{chunk} </ul>,
             li: (chunk) => <li>{chunk} </li>,
           }}
         />
