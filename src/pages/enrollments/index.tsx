@@ -44,13 +44,14 @@ const EnrollmentListView = () => {
 
   const sortKeys = convertSortFieldsToQueryFormat(sort);
 
-  const { enrollments, enrollmentsCount, loading, loadMore, hasMore } = useEnrollments({
-    queryString: queryString as string,
-    limit,
-    offset,
-    sort: sortKeys,
-    status: (query?.status as string)?.split(','),
-  });
+  const { enrollments, enrollmentsCount, loading, loadMore, hasMore } =
+    useEnrollments({
+      queryString: queryString as string,
+      limit,
+      offset,
+      sort: sortKeys,
+      status: (query?.status as string)?.split(','),
+    });
 
   const { enrollmentStatusTypes } = useEnrollmentStatusTypes();
 
@@ -99,7 +100,7 @@ const EnrollmentListView = () => {
           />
         </div>
       </div>
-      <div className="min-w-full overflow-x-auto">
+      <div className="min-w-full overflow-x-auto px-1">
         <ListHeader />
 
         <LocaleWrapper
