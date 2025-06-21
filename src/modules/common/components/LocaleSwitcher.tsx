@@ -19,13 +19,23 @@ const LocaleSwitcher = () => {
         value={locale}
         onChange={handleOnChange}
       >
-        {locales?.map((language) => (
-          <option key={language} value={language}>
-            {new Intl.DisplayNames([locale], {
-              type: 'language',
-            }).of(language)}
-          </option>
-        ))}
+        {locales?.map((language) => {
+          const displayName = (() => {
+            try {
+              return new Intl.DisplayNames([locale], {
+                type: 'language',
+              }).of(language) || language;
+            } catch {
+              return language;
+            }
+          })();
+          
+          return (
+            <option key={language} value={language}>
+              {displayName}
+            </option>
+          );
+        })}
       </select>
     </div>
   );

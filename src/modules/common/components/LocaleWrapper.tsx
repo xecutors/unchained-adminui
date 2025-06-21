@@ -57,9 +57,19 @@ const LocaleWrapper = ({ children, searchComponent = null }) => {
             }}
           >
             {languageDialectList?.map((language) => {
+              const displayName = (() => {
+                try {
+                  return new Intl.DisplayNames([selectedLocale], {
+                    type: 'language',
+                  }).of(language.isoCode) || language.isoCode;
+                } catch {
+                  return language.isoCode;
+                }
+              })();
+              
               return (
                 <option key={language._id} value={language.isoCode}>
-                  {language.isoCode}
+                  {displayName}
                 </option>
               );
             })}
