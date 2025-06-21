@@ -17,7 +17,7 @@ const StatusFilter = ({ selectedStatuses, onStatusChange, statuses }) => {
 
   return statuses?.map((status) => (
     <div
-      className="inline-flex items-center rounded-md bg-white dark:bg-slate-800 py-2 px-4 text-sm font-medium text-slate-950 shadow-xs dark:shadow-none"
+      className="inline-flex items-center rounded-md py-2 text-sm font-medium text-slate-900"
       key={status}
     >
       <input

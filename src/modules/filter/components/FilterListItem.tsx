@@ -23,7 +23,7 @@ const FilterListItem = ({ filter, onRemove }) => {
         <div className="flex items-center text-sm text-slate-900">
           <Link
             href={`/filters?filterId=${filter._id}`}
-            className="text-slate-900 dark:text-slate-700"
+            className="text-slate-900 dark:text-slate-300"
           >
             {filter?.texts &&
               (filter?.texts.title || (

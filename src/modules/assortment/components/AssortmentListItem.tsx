@@ -35,7 +35,7 @@ const AssortmentListItem = ({ assortment, showAvatar }) => {
           )}
           <Link
             href={`/assortments?assortmentSlug=${generateUniqueId(assortment)}`}
-            className="text-slate-900 dark:text-slate-700"
+            className="text-slate-900 dark:text-slate-300"
           >
             {assortment?.texts?.title || (
               <>
@@ -90,7 +90,7 @@ const AssortmentListItem = ({ assortment, showAvatar }) => {
         <input
           id={`${assortment._id}-sequence`}
           type="number"
-          className="w-24 shadow-xs focus:ring-slate-900 dark:bg-slate-800 dark:border-slate-700 focus:border-slate-900 block text-sm  border-slate-300 rounded-full mr-2 font-bold text-slate-900"
+          className="w-24 shadow-xs focus:ring-slate-900 dark:bg-slate-800 dark:border-slate-700 focus:border-slate-900 block text-sm border-slate-300 rounded-md mr-2 font-bold text-slate-900 dark:text-slate-300"
           defaultValue={assortment?.sequence}
           onBlur={updateAssortmentSequence}
         />

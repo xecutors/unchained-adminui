@@ -54,7 +54,7 @@ const UserListItem = ({ user }) => {
             />
             <div className="flex-1 min-w-0">
               <div className="flex items-center justify-between">
-                <span className="text-sm font-semibold text-slate-950 dark:text-slate-800 truncate">
+                <span className="text-sm font-semibold text-slate-900 dark:text-slate-300 truncate">
                   {formatUsername(user)}
                 </span>
                 <div className="flex items-center space-x-1 text-xs text-slate-500">

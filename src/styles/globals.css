@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
@@ -75,7 +75,7 @@
 
   @media (max-width: 639px) {
     thead tr {
-      border: 1px solid #e2e8f0;
+      @apply border border-slate-200;
     }
   }
 
@@ -89,14 +89,12 @@
     max-height: 300px;
   }
 
-
   .quill-error-border .ql-editor {
-    border: 1px solid rgb(252 165 165);
+    @apply border border-rose-300;
   }
 
   .ql-editor:focus {
-    outline: 3px solid #818cf8;
-    border-radius: 0.25rem;
+    @apply outline outline-3 outline-indigo-400 rounded;
   }
 
   input:-webkit-autofill,
@@ -116,13 +114,13 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type='number'] {
+input[type="number"] {
   -moz-appearance: textfield;
 }
 
-.whistle{
+.whistle {
   width: 20%;
-  fill: #f95959;
+  fill: rgb(251 113 133); /* rose-400 */
   margin: 100px 40%;
 }
 
@@ -131,3 +129,4 @@ iframe#external-page {
   height: 100vh;
   border: none;
 }
+

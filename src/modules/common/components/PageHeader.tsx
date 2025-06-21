@@ -26,7 +26,7 @@ const PageHeader = ({
           {onEdit && (
             <button
               type="button"
-              className="inline-flex items-center rounded-md border border-slate-300 bg-slate-900 px-4 py-2 text-sm font-medium text-white dark shadow-xs hover:bg-slate-950 focus:outline-hidden focus:ring-2 focus:ring-slate-800 focus:ring-offset-2"
+              className="inline-flex items-center rounded-md border border-slate-300 dark:border-slate-600 bg-slate-900 dark:bg-slate-600 px-4 py-2 text-sm font-medium text-white shadow-xs hover:bg-slate-950 dark:hover:bg-slate-500 focus:outline-hidden focus:ring-2 focus:ring-slate-800 dark:focus:ring-slate-400 focus:ring-offset-2"
               onClick={onEdit}
             >
               {formatMessage({ id: 'edit', defaultMessage: 'Edit' })}
@@ -36,7 +36,7 @@ const PageHeader = ({
           {onDelete && (
             <button
               type="button"
-              className="ml-3 inline-flex items-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-sm font-medium text-white shadow-xs hover:bg-red-700 focus:outline-hidden focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+              className="ml-3 inline-flex items-center rounded-md border border-transparent bg-rose-600 dark:bg-rose-500 px-4 py-2 text-sm font-medium text-white shadow-xs hover:bg-rose-700 dark:hover:bg-rose-600 focus:outline-hidden focus:ring-2 focus:ring-rose-500 dark:focus:ring-rose-400 focus:ring-offset-2"
               onClick={onDelete}
             >
               {formatMessage({ id: 'delete', defaultMessage: 'Delete' })}

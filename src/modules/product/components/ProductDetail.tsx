@@ -264,7 +264,7 @@ const ProductDetail = ({ product, extendedData = {} }) => {
         <input
           type="number"
           id="sequence-input"
-          className="w-24 shadow-xs focus:ring-slate-900 dark:bg-slate-800 dark:border-slate-700 focus:border-slate-900 block text-sm  border-slate-300 rounded-full mr-2 font-bold text-slate-900 dark:text-white"
+          className="w-24 shadow-xs focus:ring-slate-900 dark:bg-slate-800 dark:border-slate-700 focus:border-slate-900 block text-sm border-slate-300 rounded-md mr-2 font-bold text-slate-900 dark:text-slate-300 dark:text-white"
           defaultValue={product?.sequence}
           onBlur={updateProductSequence}
         />
