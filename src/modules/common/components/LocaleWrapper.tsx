@@ -53,7 +53,7 @@ const LocaleWrapper = ({
     <div>
       <div className="mt-5 flex justify-between items-center flex-wrap gap-3">
         {searchComponent && <div>{searchComponent}</div>}
-        <div className="w-fit mt-5">
+        <div className="w-fit">
           <select
             id="locale-wrapper"
             className="cursor-pointer rounded-md border-1 border-slate-300 dark:border-slate-700 py-1 pr-8 text-sm lg:py-1 lg:pr-10 text-black dark:text-white dark:bg-slate-800 shadow-xs  focus:outline-hidden focus:ring-2 focus:ring-slate-800"

@@ -17,7 +17,7 @@ const ChildrenNav = ({ item, hasRole, onSelected }) => {
         <>
           <Disclosure.Button
             className={classNames(
-              'flex w-full dark:bg-slate-900 dark:hover:bg-slate-700 dark:text-slate-400 items-center rounded-md py-2 pl-2 pr-1 text-left text-sm font-medium focus:outline-hidden focus:ring-2 focus:ring-slate-800',
+              'flex w-full cursor-pointer hover:bg-slate-50 dark:bg-slate-900 dark:hover:bg-slate-700 dark:text-slate-400 items-center rounded-md py-2 pl-2 pr-1 text-left text-sm font-medium focus:outline-hidden focus:ring-2 focus:ring-slate-800',
             )}
           >
             {item?.icon && (
@@ -71,7 +71,7 @@ const SideNav = ({ navigation, onClick = null }) => {
               <Link
                 href={item?.href || '#'}
                 className={classNames(
-                  'group flex w-full dark:text-slate-400 dark:hover:bg-slate-800 items-center rounded-md py-2 pl-2 text-sm font-medium ',
+                  'group flex w-full hover:bg-slate-50 dark:text-slate-400 dark:hover:bg-slate-800 items-center rounded-md py-2 pl-2 text-sm font-medium ',
                   {
                     'text-slate-900 dark:text-slate-400 bg-slate-50 dark:bg-slate-800':
                       router.asPath === item.href,

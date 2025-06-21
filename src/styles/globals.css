@@ -94,7 +94,7 @@
   }
 
   .ql-editor:focus {
-    @apply outline outline-3 outline-indigo-400 rounded;
+    @apply outline outline-3 outline-slate-400 rounded;
   }
 
   input:-webkit-autofill,
