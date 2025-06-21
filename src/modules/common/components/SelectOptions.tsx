@@ -52,9 +52,9 @@ const SelectOptions = ({
               onMouseLeave={() => setIsHover(false)}
               className={classNames(
                 `inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-white shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2`,
-                select?.bgColor === 'green' && 'bg-green-500 hover:bg-green-600 focus:ring-green-500',
+                select?.bgColor === 'green' && 'bg-emerald-600 hover:bg-emerald-700 focus:ring-emerald-600',
                 select?.bgColor === 'slate' && 'bg-slate-500 hover:bg-slate-600 focus:ring-slate-500',
-                isHover && select?.bgColor === 'green' && 'bg-green-600',
+                isHover && select?.bgColor === 'green' && 'bg-emerald-700',
                 isHover && select?.bgColor === 'slate' && 'bg-slate-600',
               )}
             >
@@ -90,7 +90,9 @@ const SelectOptions = ({
                         'group hover:bg-slate-900 hover:text-white',
                         option?.disable && 'cursor-not-allowed',
                         option.id === select.id
-                          ? `text-white bg-${option.bgColor}-500`
+                          ? option.bgColor === 'green' 
+                            ? 'text-white bg-emerald-600'
+                            : `text-white bg-${option.bgColor}-500`
                           : 'text-slate-900',
                         `relative cursor-default select-none px-4 py-2 text-sm`,
                       )
@@ -130,7 +132,7 @@ const SelectOptions = ({
                         className={classNames(
                           'mt-2',
                           option.id === select.id
-                            ? 'text-green-100'
+                            ? 'text-emerald-100'
                             : 'text-slate-500 group-hover:text-white',
 
                           '',
