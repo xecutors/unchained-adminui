@@ -259,6 +259,8 @@ const ProductDetail = ({ product, extendedData = {} }) => {
           onSubmit={onUpdateTags}
           enableEdit={hasRole('editProduct')}
         />
+      </div>
+      <div className="mt-5 flex">
         <input
           type="number"
           id="sequence-input"

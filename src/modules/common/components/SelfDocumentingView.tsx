@@ -26,11 +26,6 @@ const SelfDocumentingView = ({
           {children || mainContent}
         </div>
       </div>
-      <div className="hidden sm:block" aria-hidden="true">
-        <div className="py-5">
-          <div className="border-t border-slate-200 dark:border-slate-800" />
-        </div>
-      </div>
     </>
   );
 };

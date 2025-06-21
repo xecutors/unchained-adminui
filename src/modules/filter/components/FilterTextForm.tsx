@@ -72,7 +72,7 @@ const FilterTextForm = ({ filterId, selectedLocale = null }) => {
           defaultMessage="<ul> <li>You can change the language of filter using the dropdown found at top right corner</li>
         </ul>"
           values={{
-            ul: (chunk) => <ul className="pl-5 space-y-1">{chunk} </ul>,
+            ul: (chunk) => <ul className="space-y-1">{chunk} </ul>,
             li: (chunk) => <li>{chunk} </li>,
           }}
         />

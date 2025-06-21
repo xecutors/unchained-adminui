@@ -90,7 +90,7 @@ const ProductTextsForm = ({ productId, selectedLocale = null }) => {
            <li> Description area accepts text that are compatible with markdown or HTML. Tip: in order to add a line break use \ </li>
            </ul>"
           values={{
-            ul: (chunk) => <ul className="pl-5 space-y-1">{chunk} </ul>,
+            ul: (chunk) => <ul className="space-y-1">{chunk} </ul>,
             li: (chunk) => <li>{chunk} </li>,
           }}
         />

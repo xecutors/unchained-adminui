@@ -29,7 +29,7 @@ const flatten = (obj, path = '') => {
 const FormErrorsPure = ({ submitError = '', fieldErrors = [] }) => {
   return (
     <div className="mx-4 pl-4 text-left text-red-600">
-      <ul className="pl-5 space-y-1">
+      <ul className="space-y-1">
         {submitError && (
           <li key="submitError" className="disabled">
             <span dangerouslySetInnerHTML={{ __html: submitError }} />

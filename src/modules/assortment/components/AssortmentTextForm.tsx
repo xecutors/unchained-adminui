@@ -86,7 +86,7 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale = null }) => {
          <li> You can change the language of text by using the localization dropdown found at top right corner </li> 
          <li> Description area accepts text that are compatible with markdown or HTML format. Tip: in order to add a line break use \ </li></ul>"
           values={{
-            ul: (chunk) => <ul className="pl-5 space-y-1">{chunk} </ul>,
+            ul: (chunk) => <ul className="space-y-1">{chunk} </ul>,
             li: (chunk) => <li>{chunk} </li>,
           }}
         />

@@ -122,7 +122,7 @@ const AssortmentProducts = ({ assortmentId }) => {
           </ul>"
             values={{
               ul: (chunk) => (
-                <ul className="pl-5 space-y-1">{chunk} </ul>
+                <ul className="space-y-1">{chunk} </ul>
               ),
               li: (chunk) => <li>{chunk} </li>,
             }}
@@ -146,7 +146,7 @@ const AssortmentProducts = ({ assortmentId }) => {
           </ul>"
             values={{
               ul: (chunk) => (
-                <ul className="pl-5 space-y-1">{chunk} </ul>
+                <ul className="space-y-1">{chunk} </ul>
               ),
               li: (chunk) => <li>{chunk} </li>,
             }}
