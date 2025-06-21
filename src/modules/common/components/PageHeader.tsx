@@ -15,7 +15,7 @@ const PageHeader = ({
         <title>Admin UI - {title || headerText} </title>
       </Head>
       <div className="my-2 md:flex md:items-center md:justify-between w-full">
-        <div className="min-w-0 flex-1">
+        <div className="min-w-0 flex-1 px-1">
           {headerText && (
             <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-200 sm:truncate sm:text-3xl lg:text-4xl xl:text-5xl">
               {headerText}

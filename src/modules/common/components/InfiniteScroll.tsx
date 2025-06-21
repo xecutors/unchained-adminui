@@ -53,7 +53,7 @@ const InfiniteScroll = ({
         </div>
       )}
       {!hasMore && !loading && (
-        <div className="py-4 text-slate-500 dark:text-slate-400 text-sm">
+        <div className="py-4 text-slate-500 dark:text-slate-400 text-sm mx-1">
           No more items to load
         </div>
       )}

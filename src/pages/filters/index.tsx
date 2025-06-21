@@ -95,7 +95,7 @@ const FiltersListView = () => {
         />
       </div>
 
-      <div className="min-w-full overflow-x-auto">
+      <div className="min-w-full overflow-x-auto px-1">
         <ListHeader
           addPath={hasRole('addFilter') && '/filters/new'}
         >
