@@ -27,25 +27,6 @@ const ChildrenNav = ({ item, hasRole, onSelected }) => {
               />
             )}
             <span className="flex-1 dark:text-slate-400">{item.name}</span>
-            <svg
-              className={classNames(
-                'ml-3 h-3 w-3 shrink-0 transform transition-all duration-150 ease-in-out text-slate-700 dark:text-slate-400',
-                {
-                  'rotate-180 text-slate-900 dark:text-slate-200': open,
-                },
-              )}
-              fill="none"
-              viewBox="0 0 16 16"
-              strokeWidth={2}
-              stroke="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M4 6l4 4 4-4"
-              />
-            </svg>
           </Disclosure.Button>
           <Disclosure.Panel className="pl-6 space-y-1" onClick={onSelected}>
             {item.children
