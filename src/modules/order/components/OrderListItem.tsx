@@ -51,7 +51,7 @@ const OrderListItem = ({ order, showUser }) => {
             href={`/users?userId=${order.user._id}`}
             className="flex items-center text-sm text-slate-800 dark:text-slate-700 hover:text-decoration"
           >
-            <MediaAvatar file={order.user?.avatar} className="mr-2" />
+            <MediaAvatar file={order.user?.avatar} className="mr-3" />
 
             <span className="font-medium ml-2">
               {formatUsername(order.user)}

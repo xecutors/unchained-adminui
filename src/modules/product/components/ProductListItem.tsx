@@ -36,7 +36,7 @@ const ProductListItem = ({
           {showAvatar && (
             <MediaAvatar
               file={product?.media?.length && product.media[0].file}
-              className="mr-2"
+              className="mr-3"
             />
           )}
           {product?.status !== 'DELETED' ? (

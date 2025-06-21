@@ -30,7 +30,7 @@ const AssortmentListItem = ({ assortment, showAvatar }) => {
           {showAvatar && (
             <MediaAvatar
               file={assortment?.media?.length && assortment.media[0].file}
-              className="mr-2"
+              className="mr-3"
             />
           )}
           <Link

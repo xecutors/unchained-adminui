@@ -68,7 +68,7 @@ const EnrollmentListItem = ({ enrollment, showUser }) => {
             className="flex items-center text-sm text-slate-800 dark:text-slate-700 hover:text-decoration"
           >
             <span className="inline-block h-9 w-9 rounded-full">
-              <MediaAvatar file={enrollment?.user?.avatar} className="mr-2" />
+              <MediaAvatar file={enrollment?.user?.avatar} className="mr-3" />
             </span>
             <span className="ml-2">{formatUsername(enrollment.user)}</span>
           </Link>
@@ -82,7 +82,7 @@ const EnrollmentListItem = ({ enrollment, showUser }) => {
         >
           <MediaAvatar
             file={enrollment?.plan?.product?.media?.file}
-            className="mr-2"
+            className="mr-3"
           />
           <span className="ml-2">{enrollment?.plan.product.texts.title}</span>
         </Link>
