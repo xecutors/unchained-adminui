@@ -34,7 +34,7 @@ const WorkDetail = ({ work }) => {
   return (
     <div className={`my-4 p-2 sm:p-6 lg:p-8 ${getShadowStyle(work?.status)}`}>
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-        <div className="max-h-fit col-span-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow-md dark:shadow-none sm:p-6 lg:col-span-1 lg:p-8 ">
+        <div className="max-h-fit col-span-2 rounded-lg border border-slate-300 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow-md dark:shadow-none sm:p-6 lg:col-span-1 lg:p-8 ">
           <div className="mb-2 flex flex-wrap items-center justify-between">
             <div className="mr-4 text-base font-semibold text-slate-500 dark:text-slate-200 sm:text-lg sm:font-bold">
               {formatMessage({
@@ -137,7 +137,7 @@ const WorkDetail = ({ work }) => {
           )}
         </div>
 
-        <div className="col-span-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow-md dark:shadow-none sm:p-6 lg:col-span-1 lg:p-8">
+        <div className="col-span-2 rounded-lg border border-slate-300 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow-md dark:shadow-none sm:p-6 lg:col-span-1 lg:p-8">
           <div className="grid grid-cols-2 gap-5">
             <div className="sm:col-span-1">
               <div className="flex text-base font-semibold text-slate-500 dark:text-slate-200 sm:text-lg sm:font-bold">
@@ -212,7 +212,7 @@ const WorkDetail = ({ work }) => {
 
         {work?.input && (
           <div className="col-span-2  bg-white dark:bg-slate-900 lg:col-span-1">
-            <div className="border-b border-slate-200 bg-white px-4 py-5 sm:px-6">
+            <div className="border-b border-slate-300 bg-white px-4 py-5 sm:px-6">
               <h3 className="text-lg font-medium leading-6 text-slate-900">
                 {formatMessage({ id: 'input', defaultMessage: 'Input' })}
               </h3>
@@ -227,7 +227,7 @@ const WorkDetail = ({ work }) => {
 
         {work?.result && (
           <div className="col-span-2  bg-white dark:bg-slate-900   lg:col-span-1 ">
-            <div className="border-b border-slate-200 bg-white px-4 py-5 sm:px-6">
+            <div className="border-b border-slate-300 bg-white px-4 py-5 sm:px-6">
               <h3 className="text-lg font-medium leading-6 text-slate-900">
                 {formatMessage({ id: 'result', defaultMessage: 'Result' })}
               </h3>
@@ -241,7 +241,7 @@ const WorkDetail = ({ work }) => {
         )}
         {work?.error && (
           <div className="col-span-2  bg-white dark:bg-slate-900  lg:col-span-1 ">
-            <div className="border-b border-slate-200 bg-white px-4 py-5 sm:px-6">
+            <div className="border-b border-slate-300 bg-white px-4 py-5 sm:px-6">
               <h3 className="text-lg font-medium leading-6  text-red-500">
                 {formatMessage({ id: 'error', defaultMessage: 'Error' })}
               </h3>

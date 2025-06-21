@@ -46,7 +46,7 @@ const MobilePaginator = ({
             id="location"
             defaultValue={DefaultLimit}
             name="location"
-            className="block h-8 w-full rounded-md dark:bg-slate-400 border-slate-300 dark:border-slate-700 py-0 text-base focus:border-slate-800 focus:outline-hidden focus:ring-slate-800 sm:text-sm"
+            className="block h-8 w-full rounded-md dark:bg-slate-400 border-slate-300 dark:border-slate-700 py-0 text-base  focus:outline-hidden focus:ring-slate-800 sm:text-sm"
           >
             {LimitSteps.map((l) => (
               <option key={l} value={l}>
@@ -354,7 +354,7 @@ const Pagination = ({
             id="location"
             defaultValue={limit}
             name="location"
-            className="block h-8 w-full rounded-md text-slate-500 dark:text-slate-100 dark:bg-slate-900 border-slate-300 dark:border-slate-700 py-0 text-base focus:border-slate-800 focus:outline-hidden focus:ring-slate-800 sm:text-sm"
+            className="block h-8 w-full rounded-md text-slate-500 dark:text-slate-100 dark:bg-slate-900 border-slate-300 dark:border-slate-700 py-0 text-base  focus:outline-hidden focus:ring-slate-800 sm:text-sm"
           >
             {LimitSteps.map((l) => (
               <option key={l} value={l} className="dark:text-slate-100">

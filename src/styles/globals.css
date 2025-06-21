@@ -75,7 +75,7 @@
 
   @media (max-width: 639px) {
     thead tr {
-      @apply border border-slate-200;
+      @apply border border-slate-300;
     }
   }
 
@@ -129,4 +129,3 @@ iframe#external-page {
   height: 100vh;
   border: none;
 }
-

@@ -397,7 +397,7 @@ const ProfileView = ({ profile, avatar, _id }) => {
               )}
             </div>
 
-            <div className="col-span-2 w-full border-slate-200 dark:border-slate-800 px-6 py-6 rounded-md shadow-sm dark:shadow-none lg:ml-auto lg:w-full bg-white dark:bg-slate-800 ">
+            <div className="col-span-2 w-full border-slate-300 dark:border-slate-800 px-6 py-6 rounded-md shadow-sm dark:shadow-none lg:ml-auto lg:w-full bg-white dark:bg-slate-800 ">
               <AddressFields
                 isEdit={isEdit}
                 address={address}

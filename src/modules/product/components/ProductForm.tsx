@@ -58,7 +58,7 @@ const ProductForm = ({
             defaultMessage: 'Name',
           })}
           required
-          className="block w-full max-w-full rounded-md border-slate-200 dark:border-slate-800 text-sm focus:border-slate-800 focus:ring-slate-800 sm:text-sm"
+          className="block w-full max-w-full rounded-md border-slate-300 dark:border-slate-800 text-sm  focus:ring-slate-800 sm:text-sm"
         />
 
         <TextField
@@ -72,7 +72,7 @@ const ProductForm = ({
             id: 'subtitle',
             defaultMessage: 'Subtitle',
           })}
-          className="block w-full max-w-full rounded-md border-slate-200 dark:border-slate-800 text-sm focus:border-slate-800 focus:ring-slate-800 sm:text-sm"
+          className="block w-full max-w-full rounded-md border-slate-300 dark:border-slate-800 text-sm  focus:ring-slate-800 sm:text-sm"
         />
 
         <div className="flex items-center">

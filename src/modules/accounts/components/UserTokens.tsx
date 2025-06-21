@@ -28,7 +28,7 @@ const UserTokens = ({ _id: userId }) => {
   if (loading) return <Loading />;
   return tokens.length ? (
     <div className="bg-white">
-      <div className="mt-5 -mx-px grid grid-cols-1 border-l border-slate-200 sm:mx-0 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-5 -mx-px grid grid-cols-1 border-l border-slate-300 sm:mx-0 sm:grid-cols-2 lg:grid-cols-3">
         {tokens?.map(
           ({
             _id,
@@ -41,7 +41,7 @@ const UserTokens = ({ _id: userId }) => {
           }) => (
             <div
               key={_id}
-              className="group relative border-r border-b border-slate-200 p-4 sm:p-6"
+              className="group relative border-r border-b border-slate-300 p-4 sm:p-6"
             >
               <Link
                 href={`/products?slug=${generateUniqueId(product)}`}

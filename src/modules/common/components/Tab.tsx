@@ -38,7 +38,7 @@ const Tab = ({ children, tabItems, defaultTab, updateRoute = true }) => {
           onChange={(e) => onTabSelected(e.target.value)}
           id="selected-tab"
           name="selected-tab"
-          className="mt-1 block dark:bg-slate-800 dark:text-white w-full rounded-md border-slate-300 py-2 pl-3 pr-10 text-base capitalize focus:border-slate-800 focus:outline-hidden focus:ring-slate-800 sm:text-sm"
+          className="mt-1 block dark:bg-slate-800 dark:text-white w-full rounded-md border-slate-300 py-2 pl-3 pr-10 text-base capitalize  focus:outline-hidden focus:ring-slate-800 sm:text-sm"
           value={tab}
         >
           {tabItems.filter(Boolean).map((value) => (
@@ -61,7 +61,7 @@ const Tab = ({ children, tabItems, defaultTab, updateRoute = true }) => {
                     'cursor-pointer rounded-lg border border-slate-300 dark:border-slate-600 bg-slate-100 text-slate-900 dark:text-slate-100 dark:bg-slate-700 shadow-md':
                       tab === option.id,
                   },
-                  'cursor-pointer relative whitespace-nowrap border border-transparent py-4 px-1 pr-3 pl-2 text-sm dark:text-slate-400 font-medium dark:hover:bg-slate-700 hover:border-slate-200 hover:rounded-lg',
+                  'cursor-pointer relative whitespace-nowrap border border-transparent py-4 px-1 pr-3 pl-2 text-sm dark:text-slate-400 font-medium dark:hover:bg-slate-700 hover:border-slate-300 hover:rounded-lg',
                 )}
               >
                 <div className="flex items-center space-x-1">

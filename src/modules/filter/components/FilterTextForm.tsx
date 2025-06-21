@@ -81,7 +81,7 @@ const FilterTextForm = ({ filterId, selectedLocale = null }) => {
       <FormWrapper>
         <Form
           form={form}
-          className="border-slate-200 dark:border-slate-800 pt-2 lg:shadow-sm"
+          className="border-slate-300 dark:border-slate-800 pt-2 lg:shadow-sm"
         >
           <div>
             <TextField

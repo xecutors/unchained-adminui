@@ -43,7 +43,7 @@ const UserListItem = ({ user }) => {
   if (loading && !currentUser) return <Loading />;
 
   return (
-    <li className="border-b border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700">
+    <li className="border-b border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700">
       <Link href={`/users?userId=${user._id}`} className="block p-4 sm:px-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">

@@ -181,7 +181,7 @@ const ColorLookupTable = {
     },
     border: {
       50: 'border-slate-100',
-      100: 'border-slate-200',
+      100: 'border-slate-300',
       200: 'border-slate-300',
       300: 'border-slate-400',
       400: 'border-slate-800',
@@ -676,9 +676,9 @@ const ColorLookupTable = {
     border: {
       50: 'border-slate-50',
       100: 'border-slate-100',
-      200: 'border-slate-200 dark:border-slate-700',
+      200: 'border-slate-300 dark:border-slate-700',
       300: 'border-slate-300',
-      400: 'border-slate-200 dark:border-slate-700',
+      400: 'border-slate-300 dark:border-slate-700',
       500: 'border-slate-500',
       600: 'border-slate-600',
       700: 'border-slate-700',
