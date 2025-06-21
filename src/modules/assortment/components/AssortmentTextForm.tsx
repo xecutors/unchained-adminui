@@ -83,7 +83,7 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale = null }) => {
         id: 'texts',
         defaultMessage: 'Texts',
       })}
-      className="mt-2 sm:mt-0"
+      className="mt-2 lg:mt-5"
       documentation={
         <FormattedMessage
           id="assortment_text_form_description"

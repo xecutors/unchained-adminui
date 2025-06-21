@@ -54,7 +54,7 @@ const WarehousingForm = ({ productId }) => {
         id: 'warehousing',
         defaultMessage: 'Warehousing',
       })}
-      className="mt-2 sm:mt-0"
+      className="mt-2 lg:mt-5"
       documentation={
         <FormattedMessage
           id="product_warehousing_form_description"

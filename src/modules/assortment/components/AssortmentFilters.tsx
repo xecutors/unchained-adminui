@@ -113,7 +113,7 @@ const AssortmentFilters = ({ assortmentId }) => {
           id: 'assortment_filters_form_header',
           defaultMessage: 'Filters',
         })}
-        className="mt-2 sm:mt-0"
+        className="mt-2 lg:mt-5"
         documentation={
           <FormattedMessage
             id="assortment_filter_form_description"
