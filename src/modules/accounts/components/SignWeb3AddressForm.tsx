@@ -58,16 +58,16 @@ const SignWeb3AddressForm = ({ nonce, address, close }) => {
 
   return (
     <div>
-      <div className="border-b border-gray-200 bg-white mb">
+      <div className="border-b border-slate-200 bg-white mb">
         <div className="-ml-4 -mt-4 flex flex-wrap items-center justify-between sm:flex-nowrap">
           <div className="ml-4 mt-4">
-            <h3 className="text-lg font-medium leading-6 text-gray-900">
+            <h3 className="text-lg font-medium leading-6 text-slate-900">
               {formatMessage({
                 id: 'sign_address_header',
                 defaultMessage: 'Sign address',
               })}
             </h3>
-            <p className="mt-1 text-sm text-gray-500 mb-4">
+            <p className="mt-1 text-sm text-slate-500 mb-4">
               <FormattedMessage
                 id="web3_address_signature_instruction"
                 defaultMessage="<p>Copy the following nonce <b> ({nonce})</b> and past the signature on the space        provided below </p>"

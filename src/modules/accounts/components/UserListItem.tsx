@@ -22,7 +22,7 @@ const UserLastLogin = ({ lastLogin }) => {
     minute: '2-digit',
   });
   return (
-    <div className="text-xs text-gray-500">
+    <div className="text-xs text-slate-500">
       <span className="font-semibold">
         {formatMessage({ id: 'last_login', defaultMessage: 'Last Login: ' })}
       </span>{' '}
@@ -57,7 +57,7 @@ const UserListItem = ({ user }) => {
                 <span className="text-sm font-semibold text-slate-950 dark:text-slate-800 truncate">
                   {formatUsername(user)}
                 </span>
-                <div className="flex items-center space-x-1 text-xs text-gray-500">
+                <div className="flex items-center space-x-1 text-xs text-slate-500">
                   {user.isGuest && (
                     <Badge
                       text={formatMessage({
@@ -78,14 +78,14 @@ const UserListItem = ({ user }) => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col items-end space-y-2 text-gray-600">
+          <div className="flex flex-col items-end space-y-2 text-slate-600">
             <div className="flex items-center space-x-4">
               <div className="flex items-center space-x-1">
-                <ShoppingCartIcon className="w-4 h-4 text-gray-400" />
+                <ShoppingCartIcon className="w-4 h-4 text-slate-400" />
                 <Badge color="yellow" text={user?.cart?.items?.length || 0} />
               </div>
               <div className="flex items-center space-x-1">
-                <ShoppingBagIcon className="w-4 h-4 text-gray-400" />
+                <ShoppingBagIcon className="w-4 h-4 text-slate-400" />
                 <Badge text={user?.orders?.length || 0} />
               </div>
             </div>

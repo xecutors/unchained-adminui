@@ -22,14 +22,14 @@ const ProductListItem = ({ product }) => {
   const [text = {}] = texts || [];
   return (
     <div
-      className="my-5 bg-white dark:bg-slate-800 rounded-lg shadow-md border border-gray-200 dark:border-slate-700 overflow-hidden hover:shadow-md transition-shadow duration-200"
+      className="my-5 bg-white dark:bg-slate-800 rounded-lg shadow-md border border-slate-200 dark:border-slate-700 overflow-hidden hover:shadow-md transition-shadow duration-200"
       style={{
         display: 'grid',
         gridTemplateRows: 'subgrid',
         gridRow: 'span 5',
       }}
     >
-      <div className="aspect-square bg-gray-50 relative">
+      <div className="aspect-square bg-slate-50 relative">
         {media?.length ? (
           <ImageWithFallback
             src={media[0]?.file.url}
@@ -39,7 +39,7 @@ const ProductListItem = ({ product }) => {
             height={300}
           />
         ) : (
-          <div className="flex items-center justify-center h-full text-gray-400">
+          <div className="flex items-center justify-center h-full text-slate-400">
             <div className="text-center">
               <div className="text-6xl mb-2">📦</div>
               <div className="text-sm">No Image</div>
@@ -47,17 +47,17 @@ const ProductListItem = ({ product }) => {
           </div>
         )}
       </div>
-      <h3 className="text-sm font-medium text-gray-900 dark:text-gray-100 px-4 line-clamp-2">
+      <h3 className="text-sm font-medium text-slate-900 dark:text-slate-100 px-4 line-clamp-2">
         {text.title}
       </h3>
-      <p className="text-sm text-gray-600 dark:text-gray-300 px-4">
+      <p className="text-sm text-slate-600 dark:text-slate-300 px-4">
         {commerce?.pricing?.[0]?.currencyCode || 'CHF'}{' '}
         {commerce?.pricing?.[0]?.amount?.toFixed(2) || '0.00'}
       </p>
-      <p className="text-xs text-gray-500 dark:text-gray-400 px-4 pb-4">
+      <p className="text-xs text-slate-500 dark:text-slate-400 px-4 pb-4">
         {product._id || 'auf Lager'}
       </p>
-      <div className="border-t border-gray-100 dark:border-slate-700">
+      <div className="border-t border-slate-100 dark:border-slate-700">
         <Link
           href={`/products?slug=${generateUniqueId(product)}`}
           className="block text-center text-sm text-slate-900 dark:text-slate-200 hover:text-slate-800 dark:hover:text-slate-300 py-3"
@@ -124,7 +124,7 @@ const ToolInvocationRenderer = ({ part }: { part: any }) => {
     }
 
     return (
-      <div className="text-sm text-gray-500">
+      <div className="text-sm text-slate-500">
         Unknown tool response: <pre>{JSON.stringify(parsed, null, 2)}</pre>
       </div>
     );
@@ -154,7 +154,7 @@ const MessageRenderer = ({ message, user }: { message: any; user: IUser }) => {
         className={`px-4 py-3 ${
           isUser
             ? 'bg-slate-200 dark:bg-slate-700 rounded-br-none rounded-xl'
-            : 'text-gray-800 dark:text-gray-200'
+            : 'text-slate-800 dark:text-slate-200'
         }`}
       >
         {message.parts.map((part: any, index: number) => {
@@ -202,7 +202,7 @@ const Copilot = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-slate-900 font-sans">
-      <header className="p-4 mt-1 text-xl font-semibold text-gray-900 dark:text-gray-100">
+      <header className="p-4 mt-1 text-xl font-semibold text-slate-900 dark:text-slate-100">
         Unchained{' '}
         <span className="font-light">
           Copilot<span className="text-xs ml-1"> 1.0</span>
@@ -220,10 +220,10 @@ const Copilot = () => {
       </main>
 
       <div className="sticky bottom-6">
-        <div className="absolute bottom-full left-0 right-0 h-24 bg-gradient-to-t from-gray-100 dark:from-slate-900 to-transparent pointer-events-none" />
+        <div className="absolute bottom-full left-0 right-0 h-24 bg-gradient-to-t from-slate-100 dark:from-slate-900 to-transparent pointer-events-none" />
         <form
           onSubmit={handleSubmit}
-          className="bg-white dark:bg-slate-800 shadow-2xl border border-gray-200 dark:border-slate-700 rounded-md p-3"
+          className="bg-white dark:bg-slate-800 shadow-2xl border border-slate-200 dark:border-slate-700 rounded-md p-3"
         >
           <div className="flex items-center gap-2">
             <input
@@ -234,7 +234,7 @@ const Copilot = () => {
             />
             <button
               type="submit"
-              className="p-2 text-gray-600 dark:text-slate-300 hover:text-gray-900 dark:hover:text-slate-100"
+              className="p-2 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100"
             >
               <PaperAirplaneIcon className="h-6 w-6" strokeWidth={2} />
             </button>

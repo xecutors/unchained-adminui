@@ -28,7 +28,7 @@ const UserTokens = ({ _id: userId }) => {
   if (loading) return <Loading />;
   return tokens.length ? (
     <div className="bg-white">
-      <div className="mt-5 -mx-px grid grid-cols-1 border-l border-gray-200 sm:mx-0 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-5 -mx-px grid grid-cols-1 border-l border-slate-200 sm:mx-0 sm:grid-cols-2 lg:grid-cols-3">
         {tokens?.map(
           ({
             _id,
@@ -41,11 +41,11 @@ const UserTokens = ({ _id: userId }) => {
           }) => (
             <div
               key={_id}
-              className="group relative border-r border-b border-gray-200 p-4 sm:p-6"
+              className="group relative border-r border-b border-slate-200 p-4 sm:p-6"
             >
               <Link
                 href={`/products?slug=${generateUniqueId(product)}`}
-                className="aspect-w-1 aspect-h-1 overflow-hidden rounded-lg bg-gray-200 group-hover:opacity-75"
+                className="aspect-w-1 aspect-h-1 overflow-hidden rounded-lg bg-slate-200 group-hover:opacity-75"
               >
                 <div>
                   <ImageWithFallback
@@ -65,7 +65,7 @@ const UserTokens = ({ _id: userId }) => {
                   />
                 </div>
                 <div className="pt-2">
-                  <h3 className="text-lg font-medium text-gray-900">
+                  <h3 className="text-lg font-medium text-slate-900">
                     {product?.texts?.title}
                   </h3>
                   <p>
@@ -106,7 +106,7 @@ const UserTokens = ({ _id: userId }) => {
                       { chainTokenId },
                     )}
                   </p>
-                  <p className="mt-2 text-base font-medium text-gray-900">
+                  <p className="mt-2 text-base font-medium text-slate-900">
                     {formatPrice(product?.simulatedPrice)}
                   </p>
                   <div className="mt-2 mb-8">
