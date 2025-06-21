@@ -68,7 +68,7 @@ const DetailHeader = ({ user, contact }) => {
                 <dd className="mt-3 flex items-center self-end text-sm font-medium capitalize text-slate-500 sm:mr-6 sm:mt-0">
                   {user?.primaryEmail?.verified ? (
                     <CheckCircleIcon
-                      className="mb-1.5 h-4 w-4 shrink-0 text-green-400"
+                      className="mb-1.5 h-4 w-4 shrink-0 text-emerald-400"
                       aria-hidden="true"
                     />
                   ) : (

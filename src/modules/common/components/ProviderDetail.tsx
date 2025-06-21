@@ -90,7 +90,7 @@ const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess, readOnly }) => {
               {provider?.configurationError ? (
                 <dd className="block">{provider?.configurationError}</dd>
               ) : (
-                <CheckCircleIcon className="ml-2 inline-block h-6 w-6 text-green-500" />
+                <CheckCircleIcon className="ml-2 inline-block h-6 w-6 text-emerald-500" />
               )}
             </div>
           </div>

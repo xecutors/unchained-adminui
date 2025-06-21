@@ -111,7 +111,7 @@ const VerifyEmail = () => {
         <div className="flex justify-center">
           {result.success ? (
             <EnvelopeOpenIcon
-              className="w-24 h-24 text-green-400"
+              className="w-24 h-24 text-emerald-400"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"

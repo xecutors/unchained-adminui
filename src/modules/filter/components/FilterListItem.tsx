@@ -6,7 +6,7 @@ import DeleteButton from '../../common/components/DeleteButton';
 import Table from '../../common/components/Table';
 
 const FILTER_TYPES = {
-  SWITCH: 'blue',
+  SWITCH: 'sky',
   SINGLE_CHOICE: 'lime',
   MULTI_CHOICE: 'cyan',
 };

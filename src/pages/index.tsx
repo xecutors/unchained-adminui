@@ -167,7 +167,7 @@ const MessageRenderer = ({ message, user }: { message: any; user: IUser }) => {
               return null;
             default:
               return (
-                <div key={index} className="text-sm text-yellow-600">
+                <div key={index} className="text-sm text-amber-600">
                   Unknown part: {JSON.stringify(part)}
                 </div>
               );
