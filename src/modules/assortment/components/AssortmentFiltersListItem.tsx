@@ -26,7 +26,7 @@ const AssortmentFiltersListItem = ({ link, onDelete, id }) => {
       }}
       ref={setNodeRef}
       style={style}
-      className="flex items-center justify-between rounded-sm px-2 gap-4 border-b border-slate-300 dark:border-slate-600 last:border-none hover:cursor-pointer"
+      className="group flex items-center justify-between rounded-sm border-b border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 hover:bg-slate-50/80 dark:hover:bg-slate-700/50 transition-all duration-200 ease-in-out hover:shadow-sm px-2 gap-4 last:border-none hover:cursor-pointer"
     >
       <div className="shrink-0 grow-0 basis-20 pl-5 space-y-1 p-2">
         <Badge

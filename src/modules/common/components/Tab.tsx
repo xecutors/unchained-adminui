@@ -50,7 +50,7 @@ const Tab = ({ children, tabItems, defaultTab, updateRoute = true }) => {
       </div>
       <div className="mb-5 hidden lg:block">
         <div className="">
-          <nav className="flex flex-wrap gap-6">
+          <nav className="flex flex-wrap gap-3">
             {tabItems.filter(Boolean).map((option) => (
               <a
                 id={option.id}
@@ -58,10 +58,10 @@ const Tab = ({ children, tabItems, defaultTab, updateRoute = true }) => {
                 onClick={() => onTabSelected(option.id)}
                 className={classNames(
                   {
-                    'cursor-pointer rounded-lg border border-slate-300 dark:border-slate-600 bg-slate-100 text-slate-900 dark:text-slate-100 dark:bg-slate-700 shadow-md':
+                    'cursor-pointer rounded-lg border border-slate-300 dark:border-slate-600 bg-white text-slate-900 dark:text-slate-100 dark:bg-slate-700 shadow-sm':
                       tab === option.id,
                   },
-                  'cursor-pointer relative whitespace-nowrap border border-transparent py-4 px-1 pr-3 pl-2 text-sm dark:text-slate-400 font-medium dark:hover:bg-slate-700 hover:border-slate-300 hover:rounded-lg',
+                  'cursor-pointer relative whitespace-nowrap border border-transparent py-4 px-1 pr-3 pl-2 text-sm dark:text-slate-400 font-medium dark:hover:bg-slate-700 hover:border-slate-200 hover:rounded-lg',
                 )}
               >
                 <div className="flex items-center space-x-1">
