@@ -80,7 +80,7 @@ const OrderDetailDelivery = ({ order }) => {
           </Link>
         </span>
 
-        <div className="mt-3 text-sm font-medium text-slate-500 dark:text-slate-200">
+        <div className="mt-3 text-sm text-slate-400 dark:text-slate-200">
           {formatMessage({
             id: 'method',
             defaultMessage: 'Method',
@@ -97,7 +97,7 @@ const OrderDetailDelivery = ({ order }) => {
           ))}
         </span>
 
-        <div className="mt-3 text-sm font-medium text-slate-500 dark:text-slate-200">
+        <div className="mt-3 text-sm text-slate-400 dark:text-slate-200">
           {formatMessage({
             id: 'status',
             defaultMessage: 'Status',

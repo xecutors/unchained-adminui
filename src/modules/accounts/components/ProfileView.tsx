@@ -164,7 +164,7 @@ const ProfileView = ({ profile, avatar, _id }) => {
             <div className="col-span-2 ml-auto rounded-md px-6 shadow-sm dark:shadow-none lg:w-full bg-white dark:bg-slate-800">
               <div className="py-4">
                 <div className="py-4 sm:grid sm:py-2">
-                  <label className="text-slate-70 block text-sm font-medium">
+                  <label className="text-sm text-slate-400 dark:text-slate-200">
                     {formatMessage({
                       id: 'photo',
                       defaultMessage: 'Photo',
@@ -222,8 +222,8 @@ const ProfileView = ({ profile, avatar, _id }) => {
                   </div>
                 </div>
 
-                <div className="py-4 sm:grid sm:gap-1 sm:py-1">
-                  <label className="text-sm font-medium text-slate-500 dark:text-slate-200">
+                <div className="py-4 sm:grid sm:py-2">
+                  <label className="text-sm text-slate-400 dark:text-slate-200">
                     {!isEdit &&
                       formatMessage({
                         id: 'displayName',
@@ -250,8 +250,8 @@ const ProfileView = ({ profile, avatar, _id }) => {
                   </div>
                 </div>
 
-                <div className="py-4 sm:grid sm:gap-1 sm:py-1">
-                  <label className="text-sm font-medium text-slate-500 dark:text-slate-200">
+                <div className="py-4 sm:grid sm:py-2">
+                  <label className="text-sm text-slate-400 dark:text-slate-200">
                     {!isEdit &&
                       formatMessage({
                         id: 'gender',
@@ -288,8 +288,8 @@ const ProfileView = ({ profile, avatar, _id }) => {
                   </div>
                 </div>
 
-                <div className="py-4 sm:grid sm:gap-1 sm:py-1">
-                  <label className="text-sm font-medium text-slate-500 dark:text-slate-200">
+                <div className="py-4 sm:grid sm:py-2">
+                  <label className="text-sm text-slate-400 dark:text-slate-200">
                     {!isEdit &&
                       formatMessage({
                         id: 'birthday',
@@ -321,8 +321,8 @@ const ProfileView = ({ profile, avatar, _id }) => {
                   </div>
                 </div>
 
-                <div className="py-4 sm:grid sm:gap-1 sm:py-1">
-                  <label className="text-sm font-medium text-slate-500 dark:text-slate-200">
+                <div className="py-4 sm:grid sm:py-2">
+                  <label className="text-sm text-slate-400 dark:text-slate-200">
                     {!isEdit &&
                       formatMessage({
                         id: 'mobile_phone',

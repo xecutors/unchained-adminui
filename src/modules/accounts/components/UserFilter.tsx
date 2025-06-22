@@ -74,7 +74,7 @@ const UserFilter: React.FC = () => {
               defaultMessage: 'Login Date Range',
             })}
           </label>
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center flex-wrap md:flex-nowrap space-y-1 md:space-x-3">
             <label htmlFor="lastLoginStart" className="text-sm">
               {formatMessage({ id: 'from', defaultMessage: 'From' })}
             </label>
