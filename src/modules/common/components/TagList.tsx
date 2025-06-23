@@ -11,10 +11,7 @@ const TagList = ({ defaultValue, onSubmit, enableEdit }) => {
   const { setModal } = useModal();
 
   return (
-    <div className="flex items-center mr-auto ml-1 w-1/2 gap-2">
-      <span className="flex items-center">
-        <TagIcon className="mr-auto h-5 w-5 text-slate-950" />
-      </span>
+    <div className="flex items-center mr-auto gap-2">
       <div className="flex flex-wrap items-center gap-2">
         {defaultValue?.length ? (
           defaultValue.map((tag, key) => (
@@ -35,7 +32,7 @@ const TagList = ({ defaultValue, onSubmit, enableEdit }) => {
         <button
           id="add_tag"
           type="button"
-          className="inline-flex items-center justify-center h-8 w-8 rounded-full text-slate-600 hover:text-slate-900 hover:bg-slate-50 dark:text-slate-400 dark:hover:text-slate-200 dark:hover:bg-slate-800 transition-colors"
+          className="text-xs inline-flex items-center justify-center text-slate-800 hover:text-slate-900 hover:bg-slate-50 dark:text-slate-400 dark:hover:text-slate-200 dark:hover:bg-slate-800 transition-colors"
           onClick={() =>
             setModal(
               <TagListForm
@@ -46,7 +43,7 @@ const TagList = ({ defaultValue, onSubmit, enableEdit }) => {
             )
           }
         >
-          <PencilSquareIcon className="h-4 w-4" />
+          Edit Tags
         </button>
       )}
     </div>

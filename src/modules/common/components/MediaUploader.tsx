@@ -91,7 +91,7 @@ const MediaUploader = ({
           <label className="block text-sm font-medium text-slate-700 dark:text-slate-200" />
           <div
             className={classNames(
-              'mt-1 flex justify-center rounded-md border-1 border-dashed border-slate-300 px-6 pt-5 pb-6',
+              'flex justify-center rounded-md border-1 border-dashed border-slate-300 px-6 py-10',
               {
                 'border-slate-950': dragArea,
               },

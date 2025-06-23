@@ -34,7 +34,7 @@ const ListHeader = ({
           <div className="flex justify-start mt-5">
             <Link
               href={addPath}
-              className="relative inline-flex items-center rounded-sm border border-transparent bg-slate-900 dark:bg-slate-600 px-3 py-3 text-sm font-medium text-white shadow-xs hover:bg-slate-950 dark:hover:bg-slate-500 focus:outline-hidden focus:ring-2 focus:ring-slate-800 dark:focus:ring-slate-400 focus:ring-offset-2"
+              className="relative inline-flex items-center rounded-sm border border-transparent bg-slate-800 dark:bg-slate-600 px-3 py-3 text-sm font-medium text-white shadow-xs hover:bg-slate-950 dark:hover:bg-slate-500 focus:outline-hidden focus:ring-2 focus:ring-slate-800 dark:focus:ring-slate-400 focus:ring-offset-2"
             >
               <PlusIcon className="h-5 w-5" />
               <span className="ml-2">

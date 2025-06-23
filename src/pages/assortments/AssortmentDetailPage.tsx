@@ -73,17 +73,19 @@ const AssortmentDetailPage = ({ assortmentSlug }) => {
             <HeaderDeleteButton onClick={handleOnClick} />
           ) : null}
         </div>
-        
+
         <div className="mt-4 mb-6 flex flex-wrap gap-4 text-sm text-slate-600 dark:text-slate-400">
           {assortment?.created && (
             <div className="flex items-center gap-1">
               <span className="font-medium text-slate-700 dark:text-slate-300">
                 {formatMessage({ id: 'created', defaultMessage: 'Created' })}:
               </span>
-              <span>{formatDateTime(assortment.created, {
-                dateStyle: 'medium',
-                timeStyle: 'short',
-              })}</span>
+              <span>
+                {formatDateTime(assortment.created, {
+                  dateStyle: 'medium',
+                  timeStyle: 'short',
+                })}
+              </span>
             </div>
           )}
 
@@ -92,10 +94,12 @@ const AssortmentDetailPage = ({ assortmentSlug }) => {
               <span className="font-medium text-slate-700 dark:text-slate-300">
                 {formatMessage({ id: 'updated', defaultMessage: 'Updated' })}:
               </span>
-              <span>{formatDateTime(assortment.updated, {
-                dateStyle: 'medium',
-                timeStyle: 'short',
-              })}</span>
+              <span>
+                {formatDateTime(assortment.updated, {
+                  dateStyle: 'medium',
+                  timeStyle: 'short',
+                })}
+              </span>
             </div>
           )}
         </div>

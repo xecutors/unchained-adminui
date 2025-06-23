@@ -4,7 +4,11 @@ interface NoImageSvgProps {
   height?: number;
 }
 
-const NoImageSvg = ({ className = "w-full h-full", width = 200, height = 200 }: NoImageSvgProps) => {
+const NoImageSvg = ({
+  className = 'w-full h-full',
+  width = 200,
+  height = 200,
+}: NoImageSvgProps) => {
   return (
     <svg
       width={width}
@@ -25,9 +29,9 @@ const NoImageSvg = ({ className = "w-full h-full", width = 200, height = 200 }: 
         strokeWidth="3"
         strokeDasharray="8 4"
         fill="transparent"
-        className="text-slate-600 dark:text-slate-400"
+        className="text-slate-800 dark:text-slate-400"
       />
-      
+
       {/* Image icon outline */}
       <rect
         x="40"
@@ -38,9 +42,8 @@ const NoImageSvg = ({ className = "w-full h-full", width = 200, height = 200 }: 
         stroke="currentColor"
         strokeWidth="3"
         fill="transparent"
-        className="text-slate-700 dark:text-slate-300"
       />
-      
+
       {/* Mountain peaks */}
       <path
         d="M50 100 L70 80 L90 95 L110 75 L130 90 L150 70"
@@ -49,9 +52,8 @@ const NoImageSvg = ({ className = "w-full h-full", width = 200, height = 200 }: 
         fill="none"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="text-slate-700 dark:text-slate-300"
       />
-      
+
       {/* Sun/circle */}
       <circle
         cx="130"
@@ -60,15 +62,14 @@ const NoImageSvg = ({ className = "w-full h-full", width = 200, height = 200 }: 
         stroke="currentColor"
         strokeWidth="3"
         fill="transparent"
-        className="text-slate-700 dark:text-slate-300"
       />
-      
+
       {/* No Image text */}
       <text
         x="100"
         y="145"
         textAnchor="middle"
-        className="text-slate-700 dark:text-slate-300 text-sm font-semibold"
+        className="text-slate-800 dark:text-slate-300 text-sm font-semibold"
         fill="currentColor"
       >
         No Image

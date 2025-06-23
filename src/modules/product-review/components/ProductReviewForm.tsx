@@ -38,7 +38,7 @@ const ProductReviewForm = ({
   });
   return (
     <Form form={form}>
-      <div className="px-5 py-2">
+      <div className="py-2">
         <TextField
           name="title"
           id="title"
@@ -61,7 +61,7 @@ const ProductReviewForm = ({
           })}
         />
       </div>
-      <div className="border-t-slate-100 border-t dark:border-t-slate-700 space-y-6 rounded-b-md dark:bg-slate-800 p-5 text-right">
+      <div className="mt-3 p-5 text-right">
         <SubmitButton
           hidden={!hasRole('reviewProduct')}
           label={

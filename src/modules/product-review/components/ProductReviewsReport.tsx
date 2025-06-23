@@ -43,7 +43,7 @@ const ProductReviewsReport = ({ productReviews }) => {
                         ${
                           averageUpVote >= rating * 20
                             ? 'text-amber-400'
-                            : 'text-slate-400'
+                            : 'text-slate-500'
                         }
                         h-5 w-5 shrink-0
                       `}
@@ -83,7 +83,7 @@ const ProductReviewsReport = ({ productReviews }) => {
                           ${
                             totalUpVote > 0
                               ? 'text-amber-400'
-                              : 'text-slate-400'
+                              : 'text-slate-500'
                           }
                           h-5 w-5 shrink-0`}
                   aria-hidden="true"
@@ -124,7 +124,7 @@ const ProductReviewsReport = ({ productReviews }) => {
                           ${
                             totalDownVote > 0
                               ? 'text-amber-400'
-                              : 'text-slate-400'
+                              : 'text-slate-500'
                           }
                           h-5 w-5 shrink-0
                         `}

@@ -25,8 +25,8 @@ const Tab = ({ children, tabItems, defaultTab, updateRoute = true }) => {
   };
 
   return (
-    <div className="py-6">
-      <div className="mb-5 lg:hidden">
+    <div className="mt-5">
+      <div className="lg:hidden">
         <label htmlFor="selected-tab" className="sr-only">
           {formatMessage({
             id: 'select_tab',
@@ -48,7 +48,7 @@ const Tab = ({ children, tabItems, defaultTab, updateRoute = true }) => {
           ))}
         </select>
       </div>
-      <div className="mb-5 hidden lg:block">
+      <div className="mt-5 hidden lg:block">
         <div className="">
           <nav className="flex flex-wrap gap-3">
             {tabItems.filter(Boolean).map((option) => (
@@ -80,7 +80,7 @@ const Tab = ({ children, tabItems, defaultTab, updateRoute = true }) => {
           </nav>
         </div>
       </div>
-      <div className="text-white">
+      <div className="mt-5 text-white">
         {React.cloneElement(children, { selectedView: tab })}
       </div>
     </div>
