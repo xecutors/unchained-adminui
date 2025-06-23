@@ -1,9 +1,13 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import Markdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import remarkGfm from 'remark-gfm';
 import rehypeSanitize from 'rehype-sanitize';
-import { PaperAirplaneIcon, TrashIcon } from '@heroicons/react/24/outline';
+import {
+  PaperAirplaneIcon,
+  TrashIcon,
+  CommandLineIcon,
+} from '@heroicons/react/24/outline';
 
 import ProductDetail from '../modules/product/components/ProductDetail';
 import useCurrentUser from '../modules/accounts/hooks/useCurrentUser';
@@ -154,11 +158,7 @@ const ToolInvocationRenderer = ({ part }: { part: any }) => {
       );
     }
 
-    return (
-      <div className="text-sm text-slate-500">
-        Unknown tool response: <pre>{JSON.stringify(parsed, null, 2)}</pre>
-      </div>
-    );
+    return <UnknownToolResponse data={parsed} />;
   } catch {
     return (
       <div className="text-sm text-red-500">Failed to parse tool result.</div>
@@ -209,11 +209,135 @@ const MessageRenderer = ({ message, user }: { message: any; user: IUser }) => {
   );
 };
 
+const UnknownToolResponse = ({ data }: { data: any }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  return (
+    <div className="relative">
+      <div className="text-sm text-slate-600 dark:text-slate-400 mb-2">
+        Unknown tool response:
+      </div>
+      <div className="mb-5 relative rounded-md bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+        <pre
+          className={`p-4 text-xs overflow-x-auto overflow-y-hidden ${
+            !isExpanded ? 'max-h-[300px]' : ''
+          }`}
+        >
+          <code className="text-slate-800 dark:text-slate-200">
+            {JSON.stringify(data, null, 2)}
+          </code>
+        </pre>
+        {!isExpanded && (
+          <>
+            <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-slate-50 dark:from-slate-800 to-transparent pointer-events-none" />
+            <button
+              onClick={() => setIsExpanded(true)}
+              className="absolute bottom-2 left-1/2 transform -translate-x-1/2 px-4 py-1.5 bg-white dark:bg-slate-700 text-sm text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 rounded-md hover:bg-slate-50 dark:hover:bg-slate-600 transition-colors shadow-sm"
+            >
+              Show full response
+            </button>
+          </>
+        )}
+        {isExpanded && (
+          <button
+            onClick={() => setIsExpanded(false)}
+            className="sticky bottom-2 left-1/2 transform -translate-x-1/2 mt-2 mb-2 px-4 py-1.5 bg-white dark:bg-slate-700 text-sm text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 rounded-md hover:bg-slate-50 dark:hover:bg-slate-600 transition-colors shadow-sm"
+          >
+            Show less
+          </button>
+        )}
+      </div>
+    </div>
+  );
+};
+
+const LoadingIndicator = () => {
+  const [messageIndex, setMessageIndex] = useState(0);
+  const loadingMessages = [
+    'Working...',
+    'Thinking...',
+    'Wrangling...',
+    'Processing...',
+    'Analyzing...',
+    'Computing...',
+    'Pondering...',
+    'Calculating...',
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setMessageIndex((prev) => (prev + 1) % loadingMessages.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="flex justify-start">
+      <div className="flex items-start gap-3 px-4 py-3">
+        <div className="w-8 h-8 bg-gradient-to-br from-slate-600 to-slate-800 dark:from-slate-500 dark:to-slate-700 rounded-lg flex items-center justify-center shadow-sm">
+          <CommandLineIcon className="w-5 h-5 text-white animate-pulse" />
+        </div>
+        <div className="flex-1">
+          <div className="flex items-center gap-2 mb-1">
+            <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
+              Copilot
+            </span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-sm text-slate-500 dark:text-slate-400 italic transition-opacity duration-300">
+              {loadingMessages[messageIndex]}
+            </span>
+            <div className="flex gap-1">
+              <div
+                className="w-2 h-2 bg-slate-300 dark:bg-slate-600 rounded-full animate-bounce"
+                style={{ animationDelay: '0ms' }}
+              />
+              <div
+                className="w-2 h-2 bg-slate-300 dark:bg-slate-600 rounded-full animate-bounce"
+                style={{ animationDelay: '150ms' }}
+              />
+              <div
+                className="w-2 h-2 bg-slate-300 dark:bg-slate-600 rounded-full animate-bounce"
+                style={{ animationDelay: '300ms' }}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const Copilot = () => {
-  const { messages, input, handleInputChange, handleSubmit, clearHistory } = useChatContext();
+  const {
+    messages,
+    input,
+    handleInputChange,
+    handleSubmit,
+    clearHistory,
+    isLoading,
+  } = useChatContext();
   const { shopInfo } = useShopInfo();
   const { currentUser } = useCurrentUser();
   const bottomRef = useRef<HTMLDivElement>(null);
+  const [inputHistory, setInputHistory] = useState<string[]>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('copilot-input-history');
+      return saved ? JSON.parse(saved) : [];
+    }
+    return [];
+  });
+  const [historyIndex, setHistoryIndex] = useState(-1);
+
+  // Save input history to localStorage
+  useEffect(() => {
+    if (inputHistory.length > 0) {
+      localStorage.setItem(
+        'copilot-input-history',
+        JSON.stringify(inputHistory.slice(-50)),
+      ); // Keep last 50 entries
+    }
+  }, [inputHistory]);
   useEffect(() => {
     const el = bottomRef.current;
     if (!el) return;
@@ -263,26 +387,79 @@ const Copilot = () => {
         )}
       </header>
       <main className="flex-1 overflow-y-auto py-6 space-y-4">
-        {messages?.map((message) => (
-          <MessageRenderer
-            key={message.id}
-            message={message}
-            user={currentUser}
-          />
-        ))}
-        <div ref={bottomRef} />
+        {messages?.map((message) => {
+          // Skip empty assistant messages (these might be loading placeholders)
+          if (
+            message.role === 'assistant' &&
+            (!message.parts ||
+              message.parts.length === 0 ||
+              (message.parts.length === 1 &&
+                message.parts[0].type === 'text' &&
+                !message.parts[0].text))
+          ) {
+            return null;
+          }
+          return (
+            <MessageRenderer
+              key={message.id}
+              message={message}
+              user={currentUser}
+            />
+          );
+        })}
+        {isLoading && <LoadingIndicator />}
+        <div
+          ref={bottomRef}
+          className={messages.length > 0 || isLoading ? 'pb-6' : ''}
+        />
       </main>
 
       <div className="sticky bottom-6">
         <div className="absolute bottom-full left-0 right-0 h-24 bg-gradient-to-t from-slate-100 dark:from-slate-900 to-transparent pointer-events-none" />
         <form
-          onSubmit={handleSubmit}
+          onSubmit={(e) => {
+            e.preventDefault();
+            if (input.trim()) {
+              setInputHistory((prev) => [...prev, input]);
+              setHistoryIndex(-1);
+            }
+            handleSubmit(e);
+          }}
           className="bg-white dark:bg-slate-800 shadow-2xl border border-slate-300 dark:border-slate-700 rounded-md p-3"
         >
           <div className="flex items-center gap-2">
             <input
               value={input}
               onChange={handleInputChange}
+              onKeyDown={(e) => {
+                if (e.key === 'ArrowUp') {
+                  e.preventDefault();
+                  if (inputHistory.length > 0) {
+                    const newIndex =
+                      historyIndex === -1
+                        ? inputHistory.length - 1
+                        : Math.max(0, historyIndex - 1);
+                    setHistoryIndex(newIndex);
+                    handleInputChange({
+                      target: { value: inputHistory[newIndex] },
+                    } as any);
+                  }
+                } else if (e.key === 'ArrowDown') {
+                  e.preventDefault();
+                  if (historyIndex !== -1) {
+                    const newIndex = historyIndex + 1;
+                    if (newIndex >= inputHistory.length) {
+                      setHistoryIndex(-1);
+                      handleInputChange({ target: { value: '' } } as any);
+                    } else {
+                      setHistoryIndex(newIndex);
+                      handleInputChange({
+                        target: { value: inputHistory[newIndex] },
+                      } as any);
+                    }
+                  }
+                }
+              }}
               placeholder="Type your message..."
               className="flex-1 border-0 bg-slate-50 dark:bg-slate-700 dark:text-slate-200 dark:placeholder-slate-400 rounded-md px-4 py-2"
             />
