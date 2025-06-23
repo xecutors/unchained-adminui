@@ -16,6 +16,8 @@ interface ChatContextType {
   isLoading: boolean;
   error: any;
   clearHistory: () => void;
+  stop: () => void;
+  addInterruptionMessage: (currentStatus: string) => void;
   status: 'error' | 'submitted' | 'streaming' | 'ready';
 }
 
@@ -57,6 +59,7 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
     error,
     status,
     setMessages,
+    stop,
   } = useChat({
     maxSteps: 5,
     credentials: 'include',
@@ -84,6 +87,23 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
     }
   };
 
+  const addInterruptionMessage = (currentStatus: string) => {
+    const statusMessages = {
+      submitted: 'request processing',
+      streaming: 'response generation',
+      error: 'error handling',
+      ready: 'idle state'
+    };
+    
+    const interruptionMessage: ChatMessage = {
+      id: `interruption-${Date.now()}`,
+      role: 'assistant',
+      content: `⚠️ **Operation Interrupted**\n\nThe current operation was stopped by user request.\n\n**Status at interruption:**\n- Current phase: ${statusMessages[currentStatus] || currentStatus}\n- Remaining tasks may not have been completed\n- You can start a new request at any time\n\n*The system is ready for your next command.*`,
+    };
+    
+    setMessages(prev => [...prev, interruptionMessage]);
+  };
+
   const value: ChatContextType = {
     messages: messages as ChatMessage[],
     input,
@@ -92,6 +112,8 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
     isLoading,
     error,
     clearHistory,
+    stop,
+    addInterruptionMessage,
     status,
   };
 

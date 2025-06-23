@@ -7,7 +7,9 @@ import {
   PaperAirplaneIcon,
   TrashIcon,
   CommandLineIcon,
+  Squares2X2Icon,
   ListBulletIcon,
+  StopIcon,
 } from '@heroicons/react/24/outline';
 
 import ProductDetail from '../modules/product/components/ProductDetail';
@@ -103,7 +105,7 @@ const ProductListItemCompact = ({ product }) => {
   const { formatPrice } = useFormatPrice();
   const { texts, media, commerce } = product;
   const [text = {}] = texts || [];
-  
+
   return (
     <div className="flex items-center gap-4 p-3 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-md transition-shadow duration-200">
       <div className="w-16 h-16 flex-shrink-0 bg-slate-50 dark:bg-slate-700 rounded-md overflow-hidden">
@@ -121,7 +123,7 @@ const ProductListItemCompact = ({ product }) => {
           </div>
         )}
       </div>
-      
+
       <div className="flex-1 min-w-0">
         <h3 className="text-sm font-medium text-slate-900 dark:text-slate-100 truncate">
           {text.title || 'Untitled Product'}
@@ -142,7 +144,7 @@ const ProductListItemCompact = ({ product }) => {
           </span>
         </div>
       </div>
-      
+
       <Link
         href={`/products?slug=${generateUniqueId(product)}`}
         className="px-3 py-1.5 text-sm text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 border border-slate-300 dark:border-slate-600 rounded-md hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
@@ -156,15 +158,17 @@ const ProductListItemCompact = ({ product }) => {
 const ProductList = ({ products }: { products: any[] }) => {
   const [viewMode, setViewMode] = useState<'grid' | 'list'>(() => {
     if (typeof window !== 'undefined') {
-      return (localStorage.getItem('product-view-mode') as 'grid' | 'list') || 'grid';
+      return (
+        (localStorage.getItem('product-view-mode') as 'grid' | 'list') || 'grid'
+      );
     }
     return 'grid';
   });
-  
+
   useEffect(() => {
     localStorage.setItem('product-view-mode', viewMode);
   }, [viewMode]);
-  
+
   return (
     <div>
       <div className="flex justify-end mb-4">
@@ -193,7 +197,7 @@ const ProductList = ({ products }: { products: any[] }) => {
           </button>
         </div>
       </div>
-      
+
       {viewMode === 'grid' ? (
         <div
           className="gap-5"
@@ -274,7 +278,9 @@ const ToolInvocationRenderer = ({ part }: { part: any }) => {
     );
   } catch {
     return (
-      <div className="text-sm text-red-500 mb-4">Failed to parse tool result.</div>
+      <div className="text-sm text-red-500 mb-4">
+        Failed to parse tool result.
+      </div>
     );
   }
 };
@@ -365,11 +371,25 @@ const UnknownToolResponse = ({ data }: { data: any }) => {
 };
 
 const LoadingIndicator = () => {
-  const { status } = useChatContext();
+  const { status, stop, addInterruptionMessage } = useChatContext();
   const loadingMessages = {
     submitted: 'Processing...',
     streaming: 'Generating...',
   };
+
+  const handleStop = () => {
+    const currentStatus = status;
+    stop();
+    // Add interruption message after a brief delay to ensure stop takes effect
+    setTimeout(() => {
+      addInterruptionMessage(currentStatus);
+    }, 100);
+  };
+
+  // Don't render if status is ready (includes after interruption)
+  if (status === 'ready') {
+    return null;
+  }
 
   return (
     <div className="flex justify-start">
@@ -403,6 +423,13 @@ const LoadingIndicator = () => {
             </div>
           </div>
         </div>
+        <button
+          onClick={handleStop}
+          className="ml-2 p-1.5 text-slate-500 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-md transition-colors"
+          title="Stop generation"
+        >
+          <StopIcon className="w-4 h-4" />
+        </button>
       </div>
     </div>
   );
@@ -415,6 +442,8 @@ const Copilot = () => {
     handleInputChange,
     handleSubmit,
     clearHistory,
+    stop,
+    addInterruptionMessage,
     status,
   } = useChatContext();
   const { shopInfo } = useShopInfo();
