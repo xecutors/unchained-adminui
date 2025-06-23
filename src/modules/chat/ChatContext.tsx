@@ -1,10 +1,4 @@
-import React, {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  ReactNode,
-} from 'react';
+import React, { createContext, useContext, useEffect, ReactNode } from 'react';
 import { useChat } from '@ai-sdk/react';
 
 interface ChatMessage {

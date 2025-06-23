@@ -32,12 +32,7 @@ const ProductList = ({
   }
 
   return (
-    <InfiniteScroll
-      loading={loading}
-      hasMore={hasMore}
-      onLoadMore={loadMore}
-      hasData={products?.length > 0}
-    >
+    <InfiniteScroll loading={loading} hasMore={hasMore} onLoadMore={loadMore}>
       <Table className="min-w-full ">
         {products?.map((product) => (
           <Table.Row key={product._id} header enablesort={sortable}>
