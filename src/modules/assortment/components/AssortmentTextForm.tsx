@@ -39,7 +39,7 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale = null }) => {
       assortmentId,
       texts: [
         {
-          locale: selectedLocale,
+          locale: selectedLocale || 'de',
           slug,
           title,
           subtitle,
@@ -66,9 +66,15 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale = null }) => {
   });
 
   useEffect(() => {
-    const value = translatedAssortmentTexts?.find(
+    let value = translatedAssortmentTexts?.find(
       (text) => text.locale === selectedLocale,
     );
+    
+    // If no value found for selectedLocale, use the first available text
+    if (!value && translatedAssortmentTexts?.length > 0) {
+      value = translatedAssortmentTexts[0];
+    }
+    
     if (value) form.formik.setValues(value);
   }, [translatedAssortmentTexts, selectedLocale]);
 

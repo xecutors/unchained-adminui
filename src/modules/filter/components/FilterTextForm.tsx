@@ -30,7 +30,7 @@ const FilterTextForm = ({ filterId, selectedLocale = null }) => {
       filterId,
       texts: [
         {
-          locale: selectedLocale,
+          locale: selectedLocale || 'de',
           title,
           subtitle,
         },
@@ -54,9 +54,15 @@ const FilterTextForm = ({ filterId, selectedLocale = null }) => {
   });
 
   useEffect(() => {
-    const value = translatedFilterTexts?.find(
+    let value = translatedFilterTexts?.find(
       (text) => text.locale === selectedLocale,
     );
+    
+    // If no value found for selectedLocale, use the first available text
+    if (!value && translatedFilterTexts?.length > 0) {
+      value = translatedFilterTexts[0];
+    }
+    
     if (value) form.formik.setValues(value);
   }, [translatedFilterTexts, selectedLocale]);
 
