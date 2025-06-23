@@ -1,25 +1,6 @@
-import React, { createContext, useContext, useEffect, ReactNode } from 'react';
-import { useChat } from '@ai-sdk/react';
-
-interface ChatMessage {
-  id: string;
-  role: 'user' | 'assistant' | 'system';
-  content: string;
-  [key: string]: any;
-}
-
-interface ChatContextType {
-  messages: ChatMessage[];
-  input: string;
-  handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-  isLoading: boolean;
-  error: any;
-  clearHistory: () => void;
-  stop: () => void;
-  addInterruptionMessage: (currentStatus: string) => void;
-  status: 'error' | 'submitted' | 'streaming' | 'ready';
-}
+import React, { createContext, useContext, ReactNode } from 'react';
+import { ChatContextType } from './types';
+import { useChatManager } from './hooks/useChatManager';
 
 const ChatContext = createContext<ChatContextType | undefined>(undefined);
 
@@ -35,86 +16,20 @@ interface ChatProviderProps {
   children: ReactNode;
 }
 
-const CHAT_STORAGE_KEY = 'copilot-chat-history';
-
 export const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
-  // Get initial messages from localStorage
-  const getInitialMessages = () => {
-    if (typeof window === 'undefined') return [];
-    try {
-      const stored = localStorage.getItem(CHAT_STORAGE_KEY);
-      return stored ? JSON.parse(stored) : [];
-    } catch (error) {
-      console.error('Error loading chat history:', error);
-      return [];
-    }
-  };
-
-  const {
-    messages,
-    input,
-    handleInputChange,
-    handleSubmit,
-    isLoading,
-    error,
-    status,
-    setMessages,
-    stop,
-  } = useChat({
-    maxSteps: 5,
-    credentials: 'include',
-    api: 'http://localhost:4010/chat',
-    initialMessages: getInitialMessages(),
-  });
-
-  // Save messages to localStorage whenever they change
-  useEffect(() => {
-    if (messages && messages.length > 0) {
-      try {
-        localStorage.setItem(CHAT_STORAGE_KEY, JSON.stringify(messages));
-      } catch (error) {
-        console.error('Error saving chat history:', error);
-      }
-    }
-  }, [messages]);
-
-  const clearHistory = () => {
-    setMessages([]);
-    try {
-      localStorage.removeItem(CHAT_STORAGE_KEY);
-    } catch (error) {
-      console.error('Error clearing chat history:', error);
-    }
-  };
-
-  const addInterruptionMessage = (currentStatus: string) => {
-    const statusMessages = {
-      submitted: 'request processing',
-      streaming: 'response generation',
-      error: 'error handling',
-      ready: 'idle state'
-    };
-    
-    const interruptionMessage: ChatMessage = {
-      id: `interruption-${Date.now()}`,
-      role: 'assistant',
-      content: `⚠️ **Operation Interrupted**\n\nThe current operation was stopped by user request.\n\n**Status at interruption:**\n- Current phase: ${statusMessages[currentStatus] || currentStatus}\n- Remaining tasks may not have been completed\n- You can start a new request at any time\n\n*The system is ready for your next command.*`,
-    };
-    
-    setMessages(prev => [...prev, interruptionMessage]);
-  };
+  const chatManager = useChatManager();
 
   const value: ChatContextType = {
-    messages: messages as ChatMessage[],
-    input,
-    handleInputChange,
-    handleSubmit,
-    isLoading,
-    error,
-    clearHistory,
-    stop,
-    addInterruptionMessage,
-    status,
+    messages: chatManager.messages,
+    input: chatManager.input,
+    handleInputChange: chatManager.handleInputChange,
+    handleSubmit: chatManager.handleSubmit,
+    isLoading: chatManager.isLoading,
+    error: chatManager.error,
+    clearHistory: chatManager.clearHistory,
+    stop: chatManager.stop,
+    addInterruptionMessage: chatManager.addInterruptionMessage,
+    status: chatManager.status,
   };
 
   return <ChatContext.Provider value={value}>{children}</ChatContext.Provider>;
