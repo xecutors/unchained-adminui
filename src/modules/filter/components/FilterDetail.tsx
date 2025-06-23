@@ -17,25 +17,13 @@ import DisplayExtendedFields from '../../common/components/DisplayExtendedFields
 
 const GetCurrentTab = ({ selectedView, id, ...extendedData }) => {
   if (selectedView === 'text')
-    return (
-      <LocaleWrapper>
-        <FilterTextForm filterId={id} />
-      </LocaleWrapper>
-    );
+    return <FilterTextForm filterId={id} />;
 
   if (selectedView === 'options')
-    return (
-      <LocaleWrapper>
-        <FilterOptions filterId={id} />
-      </LocaleWrapper>
-    );
+    return <FilterOptions filterId={id} />;
   if (selectedView === 'extended')
     return <DisplayExtendedFields data={extendedData} />;
-  return (
-    <LocaleWrapper>
-      <FilterTextForm filterId={id} />
-    </LocaleWrapper>
-  );
+  return <FilterTextForm filterId={id} />;
 };
 
 const FilterDetail = ({ filter, extendedData }) => {
@@ -141,9 +129,11 @@ const FilterDetail = ({ filter, extendedData }) => {
           />
         </div>
       </div>
-      <Tab tabItems={filterOptions} defaultTab="text">
-        <GetCurrentTab id={filter?._id} {...extendedData} />
-      </Tab>
+      <LocaleWrapper>
+        <Tab tabItems={filterOptions} defaultTab="text">
+          <GetCurrentTab id={filter?._id} {...extendedData} />
+        </Tab>
+      </LocaleWrapper>
     </>
   );
 };

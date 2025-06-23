@@ -34,7 +34,7 @@ const PageHeader = ({
           {onDelete && (
             <button
               type="button"
-              className="inline-flex items-center rounded-md border-2 border-rose-100 dark:bg-rose-500 px-4 py-2 text-sm font-medium text-rose-400 hover:text-white shadow-xs hover:shadow-xl hover:bg-rose-600 dark:hover:bg-rose-600 focus:outline-hidden focus:ring-2 focus:ring-rose-500 dark:focus:ring-rose-400 focus:ring-offset-2"
+              className="inline-flex items-center rounded-md border-2 border-rose-100 dark:border-rose-400 px-4 py-2 text-sm font-medium text-rose-400 hover:text-white shadow-xs hover:shadow-xl hover:bg-rose-600 dark:hover:bg-rose-600 focus:outline-hidden focus:ring-2 focus:ring-rose-500 dark:focus:ring-rose-400 focus:ring-offset-2"
               onClick={onDelete}
             >
               {formatMessage({ id: 'delete', defaultMessage: 'Delete' })}

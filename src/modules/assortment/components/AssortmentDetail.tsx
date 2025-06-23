@@ -32,30 +32,18 @@ import DisplayExtendedFields from '../../common/components/DisplayExtendedFields
 
 const GetCurrentTab = ({ id, selectedView, ...extendedData }) => {
   if (selectedView === 'texts')
-    return (
-      <LocaleWrapper>
-        <AssortmentTextForm assortmentId={id} />
-      </LocaleWrapper>
-    );
+    return <AssortmentTextForm assortmentId={id} />;
   if (selectedView === 'links') return <AssortmentLinks assortmentId={id} />;
 
   if (selectedView === 'media')
-    return (
-      <LocaleWrapper>
-        <AssortmentMediaForm assortmentId={id} />
-      </LocaleWrapper>
-    );
+    return <AssortmentMediaForm assortmentId={id} />;
   if (selectedView === 'products')
     return <AssortmentProducts assortmentId={id} />;
   if (selectedView === 'filters')
     return <AssortmentFilters assortmentId={id} />;
   if (selectedView === 'extended')
     return <DisplayExtendedFields data={extendedData} />;
-  return (
-    <LocaleWrapper>
-      <AssortmentTextForm assortmentId={id} />
-    </LocaleWrapper>
-  );
+  return <AssortmentTextForm assortmentId={id} />;
 };
 const AssortmentDetail = ({ assortment, extendedData }) => {
   const { isActive, isBase, isRoot } = assortment || {};
@@ -389,9 +377,11 @@ const AssortmentDetail = ({ assortment, extendedData }) => {
         </div>
       </div>
 
-      <Tab tabItems={assortmentOptions} defaultTab="texts">
-        <GetCurrentTab id={assortment?._id} {...extendedData} />
-      </Tab>
+      <LocaleWrapper>
+        <Tab tabItems={assortmentOptions} defaultTab="texts">
+          <GetCurrentTab id={assortment?._id} {...extendedData} />
+        </Tab>
+      </LocaleWrapper>
     </>
   );
 };
