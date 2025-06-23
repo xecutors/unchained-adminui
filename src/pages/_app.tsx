@@ -18,6 +18,7 @@ import ErrorBoundary from '../modules/common/components/ErrorBoundary';
 import Head from 'next/head';
 import Script from 'next/script';
 import AuthWrapper from '../modules/Auth/AuthWrapper';
+import { ChatProvider } from '../modules/chat/ChatContext';
 
 const handleRouteChange = (url) => {
   matomo.pageView(document.location.origin + url, document.title);
@@ -76,18 +77,20 @@ const UnchainedAdmin = ({ Component, componentName, pageProps, router }) => {
         <ApolloProvider client={apollo}>
           <UnchainedContextWrapper>
             <ThemeWrapper>
-              <ToastContainer
-                position="top-right"
-                autoClose={5000}
-                newestOnTop={false}
-                closeOnClick
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-              />
-              <ModalWrapper>
-                {getLayout(<Component {...pageProps} />)}
-              </ModalWrapper>
+              <ChatProvider>
+                <ToastContainer
+                  position="top-right"
+                  autoClose={5000}
+                  newestOnTop={false}
+                  closeOnClick
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover
+                />
+                <ModalWrapper>
+                  {getLayout(<Component {...pageProps} />)}
+                </ModalWrapper>
+              </ChatProvider>
             </ThemeWrapper>
           </UnchainedContextWrapper>
         </ApolloProvider>

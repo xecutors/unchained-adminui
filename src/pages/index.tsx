@@ -1,10 +1,9 @@
 import React, { useRef, useEffect } from 'react';
-import { useChat } from '@ai-sdk/react';
 import Markdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import remarkGfm from 'remark-gfm';
 import rehypeSanitize from 'rehype-sanitize';
-import { PaperAirplaneIcon } from '@heroicons/react/24/outline';
+import { PaperAirplaneIcon, TrashIcon } from '@heroicons/react/24/outline';
 
 import ProductDetail from '../modules/product/components/ProductDetail';
 import useCurrentUser from '../modules/accounts/hooks/useCurrentUser';
@@ -16,6 +15,7 @@ import Link from 'next/link';
 import generateUniqueId from '../modules/common/utils/getUniqueId';
 import useShopInfo from '../modules/common/hooks/useShopInfo';
 import Badge from '../modules/common/components/Badge';
+import { useChatContext } from '../modules/chat/ChatContext';
 
 const PRODUCT_STATUS = {
   DRAFT: 'yellow',
@@ -210,11 +210,7 @@ const MessageRenderer = ({ message, user }: { message: any; user: IUser }) => {
 };
 
 const Copilot = () => {
-  const { messages, input, handleInputChange, handleSubmit } = useChat({
-    maxSteps: 5,
-    credentials: 'include',
-    api: 'http://localhost:4010/chat',
-  });
+  const { messages, input, handleInputChange, handleSubmit, clearHistory } = useChatContext();
   const { shopInfo } = useShopInfo();
   const { currentUser } = useCurrentUser();
   const bottomRef = useRef<HTMLDivElement>(null);
@@ -249,11 +245,22 @@ const Copilot = () => {
     );
   return (
     <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-slate-900 font-sans">
-      <header className="p-4 mt-1 text-xl font-semibold text-slate-900 dark:text-slate-100">
-        Unchained
-        <span className="font-light ml-1">
-          Copilot<span className="text-xs ml-1"> 1.0</span>
-        </span>
+      <header className="p-4 mt-1 flex items-center justify-between">
+        <div className="text-xl font-semibold text-slate-900 dark:text-slate-100">
+          Unchained
+          <span className="font-light ml-1">
+            Copilot<span className="text-xs ml-1"> 1.0</span>
+          </span>
+        </div>
+        {messages.length > 0 && (
+          <button
+            onClick={clearHistory}
+            className="flex items-center gap-2 px-3 py-1.5 text-sm text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 border border-slate-300 dark:border-slate-600 rounded-md hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
+          >
+            <TrashIcon className="h-4 w-4" />
+            Clear History
+          </button>
+        )}
       </header>
       <main className="flex-1 overflow-y-auto py-6 space-y-4">
         {messages?.map((message) => (
