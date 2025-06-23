@@ -246,24 +246,11 @@ const UnknownToolResponse = ({ data }: { data: any }) => {
 };
 
 const LoadingIndicator = () => {
-  const [messageIndex, setMessageIndex] = useState(0);
-  const loadingMessages = [
-    'Working...',
-    'Thinking...',
-    'Wrangling...',
-    'Processing...',
-    'Analyzing...',
-    'Computing...',
-    'Pondering...',
-    'Calculating...',
-  ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setMessageIndex((prev) => (prev + 1) % loadingMessages.length);
-    }, 2000);
-    return () => clearInterval(interval);
-  }, []);
+  const { status } = useChatContext();
+  const loadingMessages = {
+    submitted: 'Processing...',
+    streaming: 'Generating...',
+  };
 
   return (
     <div className="flex justify-start">
@@ -279,7 +266,7 @@ const LoadingIndicator = () => {
           </div>
           <div className="flex items-center gap-2">
             <span className="text-sm text-slate-500 dark:text-slate-400 italic transition-opacity duration-300">
-              {loadingMessages[messageIndex]}
+              {loadingMessages[status]}
             </span>
             <div className="flex gap-1">
               <div
@@ -309,7 +296,7 @@ const Copilot = () => {
     handleInputChange,
     handleSubmit,
     clearHistory,
-    isLoading,
+    status,
   } = useChatContext();
   const { shopInfo } = useShopInfo();
   const { currentUser } = useCurrentUser();
@@ -401,10 +388,10 @@ const Copilot = () => {
             />
           );
         })}
-        {isLoading && <LoadingIndicator />}
+        {status !== 'ready' && <LoadingIndicator />}
         <div
           ref={bottomRef}
-          className={messages.length > 0 || isLoading ? 'pb-6' : ''}
+          className={messages.length > 0 || status !== 'ready' ? 'pb-6' : ''}
         />
       </main>
 
