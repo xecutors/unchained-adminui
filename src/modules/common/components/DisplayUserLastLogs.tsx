@@ -7,10 +7,10 @@ import {
 
 const KeyValueRow = ({ label, value }) => (
   <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
-    <label className="text-sm font-medium text-slate-600 mb-1 md:mb-0 md:mr-4">
+    <label className="text-sm text-slate-600 mb-1 md:mb-0 md:mr-4">
       {label}
     </label>
-    <span className="text-sm text-left text-slate-900">{value}</span>
+    <span className="text-sm text-right text-slate-900">{value}</span>
   </div>
 );
 
