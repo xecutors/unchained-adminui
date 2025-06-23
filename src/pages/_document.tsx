@@ -3,6 +3,11 @@ import Document, { Html, Head, Main, NextScript } from 'next/document';
 const metaLinks = [
   {
     rel: 'icon',
+    type: 'image/svg+xml',
+    href: `/favicon.svg`,
+  },
+  {
+    rel: 'icon',
     type: 'image/png',
     sizes: '196x196',
     href: `/icons/favicon-196.png`,
