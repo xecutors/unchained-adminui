@@ -26,7 +26,7 @@ const AssortmentSearchFilter = () => {
 
   return (
     <div className="mt-5 grid grid-cols-6 gap-6">
-      <div className="col-span-6 sm:col-span-3">
+      <div className="col-span-6 sm:col-span-3 lg:col-span-2">
         <TagInput
           tagList={router.query?.tags}
           onChange={handleOnChange}
