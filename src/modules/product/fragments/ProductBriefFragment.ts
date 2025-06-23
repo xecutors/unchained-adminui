@@ -27,6 +27,13 @@ const ProductBriefFragment = gql`
         url
       }
     }
+    commerce {
+      pricing {
+        _id
+        amount
+        currencyCode
+      }
+    }
   }
 `;
 

@@ -24,7 +24,7 @@ const CopilotInput: React.FC = () => {
   }, [inputHistory]);
 
   return (
-    <div className="sticky bottom-6">
+    <div className="sticky bottom-6 max-w-4xl mx-auto w-full px-4">
       <div className="absolute bottom-full left-0 right-0 h-24 bg-gradient-to-t from-slate-100 dark:from-slate-900 to-transparent pointer-events-none" />
       <form
         onSubmit={(e) => {
