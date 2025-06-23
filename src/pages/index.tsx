@@ -15,6 +15,23 @@ import ImageWithFallback from '../modules/common/components/ImageWithFallback';
 import Link from 'next/link';
 import generateUniqueId from '../modules/common/utils/getUniqueId';
 import useShopInfo from '../modules/common/hooks/useShopInfo';
+import Badge from '../modules/common/components/Badge';
+
+const PRODUCT_STATUS = {
+  DRAFT: 'yellow',
+  ACTIVE: 'green',
+  DELETED: 'red',
+  null: 'yellow', // Treat null status as draft
+  undefined: 'yellow', // Treat undefined status as draft
+};
+
+const PRODUCT_STATUS_LABELS = {
+  DRAFT: 'Draft',
+  ACTIVE: 'Published',
+  DELETED: 'Deleted',
+  null: 'Draft', // Treat null status as draft
+  undefined: 'Draft', // Treat undefined status as draft
+};
 
 const ProductListItem = ({ product }) => {
   const { formatPrice } = useFormatPrice();
@@ -22,11 +39,11 @@ const ProductListItem = ({ product }) => {
   const [text = {}] = texts || [];
   return (
     <div
-      className="my-5 bg-white dark:bg-slate-800 rounded-lg shadow-md border border-slate-300 dark:border-slate-700 overflow-hidden hover:shadow-md transition-shadow duration-200"
+      className="gap-3 my-5 bg-white dark:bg-slate-800 rounded-lg shadow-md border border-slate-300 dark:border-slate-700 overflow-hidden hover:shadow-md transition-shadow duration-200"
       style={{
         display: 'grid',
         gridTemplateRows: 'subgrid',
-        gridRow: 'span 5',
+        gridRow: 'span 6',
       }}
     >
       <div className="aspect-square bg-slate-50 relative">
@@ -50,11 +67,25 @@ const ProductListItem = ({ product }) => {
       <h3 className="text-sm font-medium text-slate-900 dark:text-slate-100 px-4 line-clamp-2">
         {text.title}
       </h3>
+      <div className="px-4">
+        <Badge
+          text={
+            PRODUCT_STATUS_LABELS[product?.status] ||
+            PRODUCT_STATUS_LABELS[null] ||
+            'Draft'
+          }
+          color={
+            PRODUCT_STATUS[product?.status] || PRODUCT_STATUS[null] || 'yellow'
+          }
+          square
+          dotted
+        />
+      </div>
       <p className="text-sm text-slate-600 dark:text-slate-300 px-4">
         {commerce?.pricing?.[0]?.currencyCode || 'CHF'}{' '}
         {commerce?.pricing?.[0]?.amount?.toFixed(2) || '0.00'}
       </p>
-      <p className="text-xs text-slate-500 dark:text-slate-400 px-4 pb-4">
+      <p className="text-xs text-slate-500 dark:text-slate-400 px-4">
         {product._id || 'auf Lager'}
       </p>
       <div className="border-t border-slate-100 dark:border-slate-700">
@@ -76,7 +107,7 @@ const ProductList = ({ products }: { products: any[] }) => {
       style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
-        gridTemplateRows: 'auto auto auto auto auto',
+        gridTemplateRows: 'auto auto auto auto auto auto',
       }}
     >
       {products.map((product) => (
