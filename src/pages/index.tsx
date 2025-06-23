@@ -7,6 +7,7 @@ import {
   PaperAirplaneIcon,
   TrashIcon,
   CommandLineIcon,
+  ListBulletIcon,
 } from '@heroicons/react/24/outline';
 
 import ProductDetail from '../modules/product/components/ProductDetail';
@@ -98,27 +99,131 @@ const ProductListItem = ({ product }) => {
   );
 };
 
-const ProductList = ({ products }: { products: any[] }) => {
+const ProductListItemCompact = ({ product }) => {
+  const { formatPrice } = useFormatPrice();
+  const { texts, media, commerce } = product;
+  const [text = {}] = texts || [];
+  
   return (
-    <div
-      className="gap-5"
-      style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
-        gridTemplateRows: 'auto auto auto auto auto auto',
-      }}
-    >
-      {products.map((product) => (
-        <ProductListItem key={product._id} product={product} />
-      ))}
+    <div className="flex items-center gap-4 p-3 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-md transition-shadow duration-200">
+      <div className="w-16 h-16 flex-shrink-0 bg-slate-50 dark:bg-slate-700 rounded-md overflow-hidden">
+        {media?.length ? (
+          <ImageWithFallback
+            src={media[0]?.file.url}
+            alt={text?.title}
+            className="w-full h-full object-cover"
+            width={64}
+            height={64}
+          />
+        ) : (
+          <div className="flex items-center justify-center h-full text-slate-400">
+            <span className="text-2xl">📦</span>
+          </div>
+        )}
+      </div>
+      
+      <div className="flex-1 min-w-0">
+        <h3 className="text-sm font-medium text-slate-900 dark:text-slate-100 truncate">
+          {text.title || 'Untitled Product'}
+        </h3>
+        <div className="flex items-center gap-3 mt-1">
+          <Badge
+            text={PRODUCT_STATUS_LABELS[product?.status] || 'Draft'}
+            color={PRODUCT_STATUS[product?.status] || 'yellow'}
+            square
+            dotted
+          />
+          <span className="text-sm font-medium text-slate-900 dark:text-slate-100">
+            {commerce?.pricing?.[0]?.currencyCode || 'CHF'}{' '}
+            {commerce?.pricing?.[0]?.amount?.toFixed(2) || '0.00'}
+          </span>
+          <span className="text-xs text-slate-500 dark:text-slate-400">
+            ID: {product._id}
+          </span>
+        </div>
+      </div>
+      
+      <Link
+        href={`/products?slug=${generateUniqueId(product)}`}
+        className="px-3 py-1.5 text-sm text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 border border-slate-300 dark:border-slate-600 rounded-md hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
+      >
+        Edit
+      </Link>
+    </div>
+  );
+};
+
+const ProductList = ({ products }: { products: any[] }) => {
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>(() => {
+    if (typeof window !== 'undefined') {
+      return (localStorage.getItem('product-view-mode') as 'grid' | 'list') || 'grid';
+    }
+    return 'grid';
+  });
+  
+  useEffect(() => {
+    localStorage.setItem('product-view-mode', viewMode);
+  }, [viewMode]);
+  
+  return (
+    <div>
+      <div className="flex justify-end mb-4">
+        <div className="flex gap-1 p-1 bg-slate-100 dark:bg-slate-700 rounded-lg">
+          <button
+            onClick={() => setViewMode('grid')}
+            className={`p-2 rounded-md transition-colors ${
+              viewMode === 'grid'
+                ? 'bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 shadow-sm'
+                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
+            }`}
+            title="Grid view"
+          >
+            <Squares2X2Icon className="h-4 w-4" />
+          </button>
+          <button
+            onClick={() => setViewMode('list')}
+            className={`p-2 rounded-md transition-colors ${
+              viewMode === 'list'
+                ? 'bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 shadow-sm'
+                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
+            }`}
+            title="List view"
+          >
+            <ListBulletIcon className="h-4 w-4" />
+          </button>
+        </div>
+      </div>
+      
+      {viewMode === 'grid' ? (
+        <div
+          className="gap-5"
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
+            gridTemplateRows: 'span 6',
+          }}
+        >
+          {products.map((product) => (
+            <ProductListItem key={product._id} product={product} />
+          ))}
+        </div>
+      ) : (
+        <div className="space-y-2">
+          {products.map((product) => (
+            <ProductListItemCompact key={product._id} product={product} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
 
 const MarkdownText = ({ text }: { text: string }) => (
-  <Markdown rehypePlugins={[rehypeRaw, remarkGfm, rehypeSanitize] as any}>
-    {text}
-  </Markdown>
+  <div className="prose prose-sm dark:prose-invert max-w-none mb-4 [&>*:last-child]:mb-0">
+    <Markdown rehypePlugins={[rehypeRaw, remarkGfm, rehypeSanitize] as any}>
+      {text}
+    </Markdown>
+  </div>
 );
 
 const ToolInvocationRenderer = ({ part }: { part: any }) => {
@@ -135,27 +240,41 @@ const ToolInvocationRenderer = ({ part }: { part: any }) => {
       'unpublish_product',
     ];
     if (toolName === 'list_products' && parsed?.products?.length) {
-      return <ProductList products={parsed.products} />;
-    }
-
-    if (listViewTools.includes(toolName) && parsed?.product)
-      return <ProductList products={[parsed.product]} />;
-
-    if (toolName === 'get_product' && parsed?.product) {
       return (
-        <ProductDetail
-          key={parsed.product._id}
-          product={{
-            ...parsed.product,
-          }}
-        />
+        <div className="mb-6">
+          <ProductList products={parsed.products} />
+        </div>
       );
     }
 
-    return <UnknownToolResponse data={parsed} />;
+    if (listViewTools.includes(toolName) && parsed?.product)
+      return (
+        <div className="mb-6">
+          <ProductList products={[parsed.product]} />
+        </div>
+      );
+
+    if (toolName === 'get_product' && parsed?.product) {
+      return (
+        <div className="mb-6">
+          <ProductDetail
+            key={parsed.product._id}
+            product={{
+              ...parsed.product,
+            }}
+          />
+        </div>
+      );
+    }
+
+    return (
+      <div className="mb-6">
+        <UnknownToolResponse data={parsed} />
+      </div>
+    );
   } catch {
     return (
-      <div className="text-sm text-red-500">Failed to parse tool result.</div>
+      <div className="text-sm text-red-500 mb-4">Failed to parse tool result.</div>
     );
   }
 };
@@ -211,7 +330,7 @@ const UnknownToolResponse = ({ data }: { data: any }) => {
       <div className="text-sm text-slate-600 dark:text-slate-400 mb-2">
         Unknown tool response:
       </div>
-      <div className="mb-5 relative rounded-md bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+      <div className="mb-4 relative rounded-md bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
         <pre
           className={`p-4 text-xs overflow-x-auto overflow-y-hidden ${
             !isExpanded ? 'max-h-[300px]' : ''
