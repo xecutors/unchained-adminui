@@ -120,17 +120,6 @@ const WorkFilter = ({ workTypes = [] }) => {
         </div>
 
         <div className="w-md flex-1">
-          <div className="mt-4 flex space-x-2 sm:mt-1 md:mt-5 lg:mt-0">
-            <VariableIcon
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-            />
-            <p className="text-xl font-medium leading-5 text-slate-800 dark:text-slate-200 lg:leading-6 ">
-              {formatMessage({ id: 'type', defaultMessage: 'Type' })}
-            </p>
-          </div>
           <div>
             <div className="mt-4">
               <MultipleSelect

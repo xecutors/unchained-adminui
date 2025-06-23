@@ -37,7 +37,7 @@ const AccountView = ({
             'This information will be displayed publicly so be careful what you share.',
         })}
       >
-        <div className="space-y-6 overflow-hidden rounded-md p-3 shadow-sm bg-white dark:bg-slate-800 sm:p-6">
+        <div className="overflow-hidden rounded-md p-3 shadow-sm bg-white dark:bg-slate-800 sm:p-6">
           <UserNameView username={username} _id={_id} />
         </div>
       </SelfDocumentingView>
@@ -47,7 +47,7 @@ const AccountView = ({
           defaultMessage: 'Email addresses',
         })}
       >
-        <div className="space-y-6 overflow-hidden rounded-md border-slate-300 dark:border-slate-800 py-5">
+        <div className="rounded-md border-slate-300 dark:border-slate-800 shadow-xs">
           <EmailAddresses
             emails={emails}
             enableVerification
@@ -81,7 +81,7 @@ const AccountView = ({
             />
           }
         >
-          <div className="space-y-6 overflow-hidden rounded-md border-slate-300 dark:border-slate-800 py-5">
+          <div className="rounded-md border-slate-300 dark:border-slate-800 shaodw-sm">
             <Web3Addresses web3Addresses={web3Addresses} />
           </div>
         </SelfDocumentingView>

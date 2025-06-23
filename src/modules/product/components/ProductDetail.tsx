@@ -291,7 +291,7 @@ const ProductDetail = ({ product, extendedData = {} }) => {
                 icon={
                   <div className="mx-auto flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
                     <XMarkIcon
-                      className="h-6 w-6 text-red-600"
+                      className="h-6 w-6 text-rose-600"
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"
@@ -316,7 +316,6 @@ const ProductDetail = ({ product, extendedData = {} }) => {
 
   return (
     <>
-      <p className="text-sm mt-5">{product?.__typename}</p>
       <div className="mt-5 flex flex-wrap items-center justify-between gap-10">
         <TagList
           defaultValue={product?.tags}
@@ -324,7 +323,7 @@ const ProductDetail = ({ product, extendedData = {} }) => {
           enableEdit={hasRole('editProduct')}
         />
       </div>
-      <div className="mt-5 flex gap-3">
+      <div className="mt-5 flex flex-wrap gap-3">
         <div className="inline-flex items-center gap-2 rounded-md border border-slate-600 dark:border-slate-600 px-4 py-2 text-sm font-medium leading-5 shadow-md bg-white dark:bg-slate-800 h-[38px]">
           <label
             htmlFor="sequence-input"

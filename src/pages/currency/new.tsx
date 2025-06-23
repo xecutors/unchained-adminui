@@ -31,17 +31,7 @@ const AddCurrency = () => {
           defaultMessage: 'New currency',
         })}
       />
-      <div className="mt-6 lg:grid lg:grid-cols-3">
-        <div className="lg:col-span-1 space-y-2">
-          <div className="-my-5 divide-y divide-slate-200 dark:divide-slate-700 dark:text-slate-400 mr-4">
-            {formatMessage({
-              id: 'currency_contract_address_description',
-              defaultMessage:
-                'Contract address is optional and represents address of the 40 character long deployed token contract on the ethereum network. ',
-            })}
-          </div>
-        </div>
-
+      <div className="mt-6 lg:grid lg:grid-cols-3 gap-10">
         <div className="lg:col-span-2">
           <FormWrapper>
             <CurrencyForm
@@ -49,6 +39,15 @@ const AddCurrency = () => {
               onSubmitSuccess={onSubmitSuccess}
             />
           </FormWrapper>
+        </div>
+        <div className="mt-10 lg:mt-44 lg:col-span-1">
+          <div className="-my-5 divide-y divide-slate-200 dark:divide-slate-700 dark:text-slate-400 mr-4">
+            {formatMessage({
+              id: 'currency_contract_address_description',
+              defaultMessage:
+                'Contract address is optional and represents address of the 40 character long deployed token contract on the ethereum network. ',
+            })}
+          </div>
         </div>
       </div>
     </>

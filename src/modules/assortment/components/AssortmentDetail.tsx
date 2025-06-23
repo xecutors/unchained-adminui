@@ -325,7 +325,7 @@ const AssortmentDetail = ({ assortment, extendedData }) => {
           onSubmit={updateAssortmentTags}
           enableEdit={hasRole('editAssortment')}
         />
-        <div className="mt-5 flex gap-3">
+        <div className="mt-5 flex flex-wrap gap-3">
           <div className="inline-flex items-center gap-2 rounded-md border border-slate-600 dark:border-slate-600 px-4 py-2 text-sm font-medium leading-5 shadow-md bg-white dark:bg-slate-800 h-[38px]">
             <label
               htmlFor="sequence"

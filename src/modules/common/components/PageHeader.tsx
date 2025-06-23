@@ -14,7 +14,7 @@ const PageHeader = ({
       <Head>
         <title>Unchained Copilot - {title || headerText} </title>
       </Head>
-      <div className="md:flex md:items-center md:justify-between w-full gap-3">
+      <div className="flex gap-3 flex-wrap items-center justify-between w-full">
         {headerText && (
           <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-200 sm:truncate sm:text-3xl lg:text-4xl xl:text-5xl">
             {headerText}
