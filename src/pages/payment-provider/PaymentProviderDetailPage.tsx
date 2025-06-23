@@ -75,7 +75,7 @@ const PaymentProviderDetailPage = ({ paymentProviderId }) => {
       <BreadCrumbs
         currentPageTitle={getInterfaceLabel(paymentProvider?.interface)}
       />
-      <div className="align-center flex min-w-full justify-between">
+      <div className="items-center flex min-w-full justify-between">
         <PageHeader
           headerText={formatMessage({
             id: 'update_payment_provider_header',

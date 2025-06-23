@@ -68,7 +68,7 @@ const CurrencyDetailPage = ({ currencyId }) => {
       <BreadCrumbs
         currentPageTitle={normalizeCurrencyISOCode(locale, currency?.isoCode)}
       />
-      <div className="align-center flex min-w-full justify-between">
+      <div className="items-center flex min-w-full justify-between gap-3 flex-wrap">
         <PageHeader
           headerText={normalizeCurrencyISOCode(locale, currency?.isoCode)}
         />

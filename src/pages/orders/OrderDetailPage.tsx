@@ -59,7 +59,7 @@ const OrderDetailPage = ({ orderId }) => {
       <BreadCrumbs
         currentPageTitle={order?.orderNumber ? `#${order?.orderNumber}` : ''}
       />
-      <div className="align-center flex min-w-full justify-between">
+      <div className="items-center flex min-w-full justify-between gap-3 flex-wrap">
         <PageHeader
           headerText={formatMessage({
             id: 'order_detail',

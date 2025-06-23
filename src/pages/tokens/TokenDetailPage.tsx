@@ -53,7 +53,7 @@ const TokenDetailPage = ({ tokenId }) => {
   return (
     <>
       <BreadCrumbs currentPageTitle={token?.chainTokenId} />
-      <div className="align-center flex min-w-full justify-between">
+      <div className="items-center flex min-w-full justify-between gap-3 flex-wrap">
         <PageHeader
           headerText={formatMessage(
             {
