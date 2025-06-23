@@ -40,7 +40,7 @@ const ProductTextsForm = ({ productId, selectedLocale = null }) => {
       productId,
       texts: [
         {
-          locale: selectedLocale,
+          locale: selectedLocale || 'de',
           slug,
           title,
           subtitle,
@@ -100,7 +100,7 @@ const ProductTextsForm = ({ productId, selectedLocale = null }) => {
            </ul>"
           values={{
             ul: (chunk) => <ul className="space-y-1">{chunk} </ul>,
-            li: (chunk) => <li>{chunk} </li>,
+            li: (chunk) => <li key={Math.random()}>{chunk} </li>,
           }}
         />
       }

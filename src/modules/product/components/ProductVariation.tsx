@@ -20,7 +20,7 @@ const ProductVariation = ({ productId, selectedLocale = null }) => {
     await createProductVariation({
       productId,
       variation: { key, type },
-      texts: [{ title, locale: selectedLocale }],
+      texts: [{ title, locale: selectedLocale || 'de' }],
     });
     return { success: true };
   };

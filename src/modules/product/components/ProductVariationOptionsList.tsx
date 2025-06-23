@@ -54,7 +54,7 @@ const ProductVariationOptionsList = ({
     await createProductVariationOption({
       productVariationId: variationId,
       option: value,
-      texts: [{ title, locale: selectedLocale }],
+      texts: [{ title, locale: selectedLocale || 'de' }],
     });
     return { success: true };
   };

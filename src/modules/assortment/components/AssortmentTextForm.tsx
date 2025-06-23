@@ -39,7 +39,7 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale = null }) => {
       assortmentId,
       texts: [
         {
-          locale: selectedLocale,
+          locale: selectedLocale || 'de',
           slug,
           title,
           subtitle,

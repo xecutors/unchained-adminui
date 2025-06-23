@@ -32,7 +32,7 @@ const FilterForm = ({
     defaultMessage: 'Filter created successfully!',
   });
   const form = useForm({
-    submit: (val) => onSubmit({ ...val, locale: selectedLocale }),
+    submit: (val) => onSubmit({ ...val, locale: selectedLocale || 'de' }),
     onSubmitSuccess,
     successMessage,
     enableReinitialize: true,

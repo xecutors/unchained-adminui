@@ -21,20 +21,13 @@ const ProductDetailPage = ({ slug }) => {
       <BreadCrumbs
         routeName={slug}
         depth={3}
-        currentPageTitle={
-          ((product as IProduct)?.texts as IProductTexts)?.title
-        }
+        currentPageTitle={product?.texts?.title}
       />
       <div>
         <div className="align-center flex-wrap flex min-w-full justify-between">
           <PageHeader
-            headerText={
-              <>
-                {((product as IProduct)?.texts as IProductTexts)?.title ||
-                  'Untitled Product'}
-              </>
-            }
-            title={`${((product as IProduct)?.texts as IProductTexts)?.title || 'Product'} (${product?._id})`}
+            headerText={product?.texts?.title || 'Untitled Product'}
+            title={`${product?.texts?.title || 'Product'} (${product?._id})`}
           />
           <span className="mt-3 text-md">{product?._id}</span>
         </div>
