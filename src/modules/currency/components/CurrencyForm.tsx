@@ -53,7 +53,7 @@ const CurrencyForm = ({
   });
   return (
     <Form form={form}>
-      <div className="px-5 py-2">
+      <div className="p-5 pb-7">
         <TextField
           name="isoCode"
           id="isoCode"
@@ -63,7 +63,6 @@ const CurrencyForm = ({
           })}
           autoComplete="on"
           required
-          className="my-4"
         />
 
         <TextField
@@ -75,11 +74,11 @@ const CurrencyForm = ({
             defaultMessage: 'Contract Address',
           })}
           autoComplete="on"
-          className="my-4"
+          className="mt-4"
         />
 
         <SelectField
-          className="mt-0 w-full"
+          className="mt-4"
           label={formatMessage({
             id: 'decimals',
             defaultMessage: 'decimals',
@@ -92,7 +91,7 @@ const CurrencyForm = ({
         />
 
         {isEdit && (
-          <div className="my-3 flex items-center">
+          <div className="flex items-center">
             <CheckboxField
               id="is-active"
               name="isActive"

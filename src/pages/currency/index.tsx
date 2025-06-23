@@ -105,9 +105,14 @@ const Currencies = () => {
               },
           { count: currenciesCount ?? 0 },
         )}
+        addPath={hasRole('addCurrency') && '/currency/new'}
+        addButtonText={formatMessage({
+          id: 'add_currency',
+          defaultMessage: 'Add Currency',
+        })}
       />
       <div className="min-w-full overflow-x-auto px-1">
-        <ListHeader addPath={hasRole('addCurrency') && '/currency/new'}>
+        <ListHeader>
           <Toggle
             toggleText={formatMessage({
               id: 'show_inactive',

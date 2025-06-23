@@ -98,6 +98,11 @@ const FiltersListView = () => {
                 },
             { count: filtersCount ?? 0 },
           )}
+          addPath={hasRole('addFilter') && '/filters/new'}
+          addButtonText={formatMessage({
+            id: 'add_filter',
+            defaultMessage: 'Add Filter',
+          })}
         />
       </div>
 

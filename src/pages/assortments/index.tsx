@@ -95,9 +95,14 @@ const AssortmentsView = () => {
               },
           { count: assortmentsCount ?? 0 },
         )}
+        addPath={hasRole('addAssortment') && '/assortments/new'}
+        addButtonText={formatMessage({
+          id: 'add_assortment',
+          defaultMessage: 'Add Assortment',
+        })}
       />
       <div>
-        <ListHeader addPath={hasRole('addAssortment') && '/assortments/new'}>
+        <ListHeader>
           <div className="lg:flex gap-5">
             <Toggle
               toggleKey="includeInactive"

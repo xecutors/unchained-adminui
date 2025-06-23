@@ -1,11 +1,7 @@
-import { PlusIcon } from '@heroicons/react/24/solid';
-import Link from 'next/link';
 import { useIntl } from 'react-intl';
 
 const ListHeader = ({
-  addPath = null,
   children = null,
-  addButtonText = null,
   totalRecords = null,
 }) => {
   const { formatMessage } = useIntl();
@@ -21,30 +17,13 @@ const ListHeader = ({
           )}
         </div>
       ) : null}
-      <div className="space-y-3">
-        {children && (
-          <div className="flex items-center mt-5">
-            <h3 className="text-xs leading-6 text-slate-900 dark:text-slate-200">
-              {children}
-            </h3>
-          </div>
-        )}
-
-        {addPath && (
-          <div className="flex justify-start mt-5">
-            <Link
-              href={addPath}
-              className="relative inline-flex items-center rounded-sm border border-transparent bg-slate-800 dark:bg-slate-600 px-3 py-3 text-sm font-medium text-white shadow-xs hover:bg-slate-950 dark:hover:bg-slate-500 focus:outline-hidden focus:ring-2 focus:ring-slate-800 dark:focus:ring-slate-400 focus:ring-offset-2"
-            >
-              <PlusIcon className="h-5 w-5" />
-              <span className="ml-2">
-                {addButtonText ||
-                  formatMessage({ id: 'add', defaultMessage: 'Add' })}
-              </span>
-            </Link>
-          </div>
-        )}
-      </div>
+      {children && (
+        <div className="flex items-center mt-5">
+          <h3 className="text-xs leading-6 text-slate-900 dark:text-slate-200">
+            {children}
+          </h3>
+        </div>
+      )}
     </div>
   );
 };

@@ -80,10 +80,13 @@ const DeliveryProviders = () => {
               },
           { count: deliveryProvidersCount ?? 0 },
         )}
-      />
-      <ListHeader
         addPath={hasRole('addDeliveryProvider') && '/delivery-provider/new'}
-      >
+        addButtonText={formatMessage({
+          id: 'add_delivery_provider',
+          defaultMessage: 'Add Delivery Provider',
+        })}
+      />
+      <ListHeader>
         <ProvidersFilter
           providerType={deliveryProviderType?.map(({ value }) => value)}
         />
