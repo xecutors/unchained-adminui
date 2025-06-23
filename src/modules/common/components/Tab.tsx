@@ -61,7 +61,7 @@ const Tab = ({ children, tabItems, defaultTab, updateRoute = true }) => {
                     'cursor-pointer rounded-lg border border-slate-300 dark:border-slate-600 bg-white text-slate-900 dark:text-slate-100 dark:bg-slate-700 shadow-sm':
                       tab === option.id,
                   },
-                  'cursor-pointer relative whitespace-nowrap border border-transparent py-4 px-1 pr-3 pl-2 text-sm dark:text-slate-400 font-medium dark:hover:bg-slate-700 hover:border-slate-200 hover:rounded-lg',
+                  'cursor-pointer relative whitespace-nowrap border border-transparent py-3 px-1 pr-3 pl-2 text-sm dark:text-slate-400 font-medium dark:hover:bg-slate-700 hover:border-slate-200 hover:rounded-lg',
                 )}
               >
                 <div className="flex items-center space-x-1">

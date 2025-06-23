@@ -9,8 +9,12 @@ import {
 } from '@heroicons/react/24/solid';
 
 import { toast } from 'react-toastify';
+import { useRouter } from 'next/router';
 import LocaleWrapper from '../../common/components/LocaleWrapper';
 import SelectOptions from '../../common/components/SelectOptions';
+import HeaderDeleteButton from '../../common/components/HeaderDeleteButton';
+import DangerMessage from '../../modal/components/DangerMessage';
+import useRemoveAssortment from '../hooks/useRemoveAssortment';
 import AssortmentTextForm from './AssortmentTextForm';
 import AssortmentMediaForm from './AssortmentMediaForm';
 import AssortmentLinks from './AssortmentLinks';
@@ -59,7 +63,9 @@ const AssortmentDetail = ({ assortment, extendedData }) => {
   const { formatMessage } = useIntl();
   const { updateAssortment } = useUpdateAssortment();
   const { setBaseAssortment } = useSetBaseAssortment();
+  const { removeAssortment } = useRemoveAssortment();
   const { setModal } = useModal();
+  const router = useRouter();
 
   const updateAssortmentSequence = async (e) => {
     if (e.target.value) {
@@ -287,6 +293,30 @@ const AssortmentDetail = ({ assortment, extendedData }) => {
     },
   ];
 
+  const handleDeleteAssortment = async () => {
+    await setModal(
+      <DangerMessage
+        onCancelClick={() => setModal('')}
+        message={formatMessage({
+          id: 'delete_assortment_confirmation',
+          defaultMessage:
+            'This action might cause inconsistencies with other data that relates to it and it is nonreversible. Are you sure you want to delete this assortment?',
+        })}
+        onOkClick={async () => {
+          setModal('');
+          await removeAssortment({ assortmentId: assortment._id });
+          toast.success(
+            formatMessage({
+              id: 'assortment_deleted_success',
+              defaultMessage: 'Deleted successfully',
+            }),
+          );
+          router.push('/assortments');
+        }}
+      />,
+    );
+  };
+
   return (
     <>
       <div>
@@ -295,27 +325,30 @@ const AssortmentDetail = ({ assortment, extendedData }) => {
           onSubmit={updateAssortmentTags}
           enableEdit={hasRole('editAssortment')}
         />
-        <div className="mt-5">
-          <label htmlFor="sequence" className="text-xs">
-            {formatMessage({
-              id: 'sequence',
-              defaultMessage: 'Display Order',
-            })}
-          </label>
-          <input
-            id="sequence"
-            type="number"
-            className="text-center w-16 shadow-xs focus:ring-slate-900 dark:bg-slate-800 dark:border-slate-700 focus:border-slate-900 block text-sm border-slate-300 rounded-md mr-2 font-bold text-slate-900 dark:text-slate-300"
-            defaultValue={assortment?.sequence}
-            onBlur={updateAssortmentSequence}
-          />
-        </div>
         <div className="mt-5 flex gap-3">
+          <div className="inline-flex items-center gap-2 rounded-md border border-slate-600 dark:border-slate-600 px-4 py-2 text-sm font-medium leading-5 shadow-md bg-white dark:bg-slate-800 h-[38px]">
+            <label
+              htmlFor="sequence"
+              className="text-slate-700 dark:text-slate-200 font-medium"
+            >
+              {formatMessage({
+                id: 'sequence',
+                defaultMessage: 'Display Order',
+              })}
+            </label>
+            <input
+              id="sequence"
+              type="number"
+              className="text-center w-12 bg-transparent border border-slate-300 dark:border-slate-600 rounded focus:ring-0 focus:outline-none text-sm font-bold text-slate-900 dark:text-slate-300 px-2 py-1"
+              defaultValue={assortment?.sequence}
+              onBlur={updateAssortmentSequence}
+            />
+          </div>
           <div>
             {isBase ? (
               <span
                 id="is_base"
-                className="py-2.5 px-8 text-sm font-medium text-white bg-emerald-500 white inline-flex items-center shadow-md border rounded-md"
+                className="py-2.5 px-8 text-sm font-medium text-white bg-emerald-500 white inline-flex items-center shadow-md rounded-md h-[38px]"
               >
                 {formatMessage({
                   id: 'base',
@@ -323,15 +356,17 @@ const AssortmentDetail = ({ assortment, extendedData }) => {
                 })}
               </span>
             ) : (
-              <Button
+              <button
                 id="not_base"
-                text={formatMessage({
+                type="button"
+                onClick={setAsBase}
+                className="inline-flex items-center gap-2 justify-center rounded-md border border-slate-600 dark:border-slate-600 px-4 py-2 text-sm font-medium leading-5 text-slate-700 dark:text-slate-200 shadow-md hover:bg-slate-800 hover:text-white dark:hover:bg-slate-700 focus:outline-hidden focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 h-[38px]"
+              >
+                {formatMessage({
                   id: 'not_base',
                   defaultMessage: 'Mark as Base',
                 })}
-                className="py-2.5"
-                onClick={setAsBase}
-              />
+              </button>
             )}
           </div>
           <SelectOptions
@@ -348,6 +383,9 @@ const AssortmentDetail = ({ assortment, extendedData }) => {
               defaultMessage: 'Assortment',
             })}
           />
+          {hasRole('removeAssortment') && (
+            <HeaderDeleteButton onClick={handleDeleteAssortment} />
+          )}
         </div>
       </div>
 

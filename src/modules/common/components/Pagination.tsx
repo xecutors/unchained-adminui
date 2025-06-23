@@ -215,7 +215,7 @@ const Pagination = ({
               defaultMessage: 'Load more',
             })}
             onClick={onLoadMore}
-            className="py-2.5"
+            className="py-2 leading-5"
           />
         ) : (
           <Loading />

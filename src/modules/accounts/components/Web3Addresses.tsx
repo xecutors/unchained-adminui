@@ -139,7 +139,7 @@ const Web3Addresses = ({ web3Addresses }) => {
             />
             <span className="shrink-0 flex items-end">
               <SubmitButton
-                className="py-2.5"
+                className="py-2 leading-5"
                 label={formatMessage({
                   id: 'add_web3_address',
                   defaultMessage: 'Add address',

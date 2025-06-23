@@ -11,8 +11,14 @@ import {
   PuzzlePieceIcon,
 } from '@heroicons/react/24/solid';
 import { toast } from 'react-toastify';
-import { LinkIcon } from '@heroicons/react/24/outline';
+import { LinkIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import LocaleWrapper from '../../common/components/LocaleWrapper';
+import { useRouter } from 'next/router';
+import HeaderDeleteButton from '../../common/components/HeaderDeleteButton';
+import useModal from '../../modal/hooks/useModal';
+import DangerMessage from '../../modal/components/DangerMessage';
+import useRemoveProduct from '../hooks/useRemoveProduct';
+import CustomError from '../../common/CustomError';
 
 import SelectOptions from '../../common/components/SelectOptions';
 import CommerceForm from './CommerceForm';
@@ -82,6 +88,9 @@ const ProductDetail = ({ product, extendedData = {} }) => {
   const { hasRole } = useAuth();
   const { publishProduct } = usePublishProduct();
   const { unPublishProduct } = useUnPublishProduct();
+  const { removeProduct } = useRemoveProduct();
+  const { setModal } = useModal();
+  const router = useRouter();
 
   const { updateProduct } = useUpdateProduct();
 
@@ -250,6 +259,61 @@ const ProductDetail = ({ product, extendedData = {} }) => {
     return true;
   };
 
+  const handleDeleteProduct = async () => {
+    await setModal(
+      <DangerMessage
+        onCancelClick={() => setModal('')}
+        message={formatMessage({
+          id: 'delete_product_confirmation',
+          defaultMessage:
+            'This action might cause inconsistencies with other data that relates to it and it is nonreversible. Are you sure you want to delete this product?',
+        })}
+        onOkClick={async () => {
+          setModal('');
+          try {
+            await removeProduct({ productId: product?._id });
+            toast.success(
+              formatMessage({
+                id: 'product_deleted_success',
+                defaultMessage: 'Deleted successfully',
+              }),
+            );
+            router.push('/products');
+          } catch (e: any) {
+            await setModal(
+              <DangerMessage
+                onCancelClick={() => setModal('')}
+                headerText={formatMessage({
+                  id: 'error',
+                  defaultMessage: 'Error',
+                })}
+                message={e instanceof CustomError ? e.message : e}
+                icon={
+                  <div className="mx-auto flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                    <XMarkIcon
+                      className="h-6 w-6 text-red-600"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                    />
+                  </div>
+                }
+                okText={formatMessage({ id: 'ok', defaultMessage: 'Ok' })}
+                onOkClick={async () => {
+                  setModal('');
+                }}
+              />,
+            );
+          }
+        }}
+      />,
+    );
+  };
+
   return (
     <>
       <p className="text-sm mt-5">{product?.__typename}</p>
@@ -276,11 +340,14 @@ const ProductDetail = ({ product, extendedData = {} }) => {
         />
       </div>
 
-      <div className="mt-5">
+      <div className="mt-5 flex gap-3">
         <SelectOptions
           options={activeOptions}
           type={formatMessage({ id: 'product', defaultMessage: 'Product' })}
         />
+        {status === 'DRAFT' && hasRole('removeProduct') && (
+          <HeaderDeleteButton onClick={handleDeleteProduct} />
+        )}
       </div>
       <Tab tabItems={productOptions} defaultTab="texts">
         <GetCurrentTab id={product?._id} {...extendedData} />
