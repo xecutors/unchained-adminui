@@ -8,6 +8,7 @@ export interface TextFieldProps extends FieldHookProps {
   autoComplete?: 'on' | 'off';
   type?: 'text' | 'email' | 'password' | 'number';
   maxLength?: number;
+  autoFocus?: boolean;
 }
 
 const TextField = ({
@@ -42,6 +43,7 @@ const TextField = ({
         autoComplete={field.autoComplete || 'off'}
         type={field.type || 'text'}
         value={field.value}
+        autoFocus={field.autoFocus}
       />
     </FieldWrapper>
   );

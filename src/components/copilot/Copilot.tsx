@@ -47,7 +47,7 @@ const Copilot: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-slate-900 font-sans">
       <CopilotHeader />
-      <main className="flex-1 overflow-y-auto py-6 space-y-4">
+      <main className="flex-1 overflow-y-auto py-6 space-y-4 max-w-4xl mx-auto w-full px-4">
         {messages?.map((message) => {
           // Skip empty assistant messages (these might be loading placeholders)
           if (

@@ -6,7 +6,7 @@ const CopilotHeader: React.FC = () => {
   const { messages, clearHistory } = useChatContext();
 
   return (
-    <header className="p-4 mt-1 flex items-center justify-between">
+    <header className="p-4 mt-1 flex items-center justify-between max-w-4xl mx-auto w-full">
       <div className="text-xl font-semibold text-slate-900 dark:text-slate-100">
         Unchained
         <span className="font-light ml-1">
