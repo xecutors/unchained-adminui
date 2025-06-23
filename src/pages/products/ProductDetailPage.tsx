@@ -39,7 +39,7 @@ const ProductDetailPage = ({ slug }) => {
           <span className="mt-3 text-md">{product?._id}</span>
         </div>
 
-        <p className="text-md mt-5">{product?.__typename}</p>
+        <p className="text-md mt-5">{product?.['__typename']}</p>
 
         <div className="mt-5 flex flex-wrap gap-3 lg:gap-10 text-slate-600 dark:text-slate-400">
           {product?.created && (
