@@ -65,9 +65,15 @@ const PaymentProviders = () => {
       <PageHeader
         headerText={formatMessage(
           (paymentProvidersCount ?? 0) === 1
-            ? { id: 'payment_provider_count_header_singular', defaultMessage: '1 Payment Provider' }
-            : { id: 'payment_providers_count_header', defaultMessage: '{count} Payment Providers' },
-          { count: paymentProvidersCount ?? 0 }
+            ? {
+                id: 'payment_provider_count_header_singular',
+                defaultMessage: '1 Payment Provider',
+              }
+            : {
+                id: 'payment_providers_count_header',
+                defaultMessage: '{count} Payment Providers',
+              },
+          { count: paymentProvidersCount ?? 0 },
         )}
       />
       <ListHeader

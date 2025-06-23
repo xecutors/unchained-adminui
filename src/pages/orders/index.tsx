@@ -61,7 +61,7 @@ const Orders = () => {
           (ordersCount ?? 0) === 1
             ? { id: 'order_count_header_singular', defaultMessage: '1 Order' }
             : { id: 'orders_count_header', defaultMessage: '{count} Orders' },
-          { count: ordersCount ?? 0 }
+          { count: ordersCount ?? 0 },
         )}
       />
       <div className="mt-5 inline-block min-w-full overflow-x-auto px-1">
@@ -75,7 +75,7 @@ const Orders = () => {
             active={includeCarts}
           />
         </ListHeader>
-        
+
         <LocaleWrapper
           searchComponent={
             <SearchField
@@ -92,7 +92,12 @@ const Orders = () => {
             {loading && orders?.length === 0 ? (
               <Loading />
             ) : (
-              <OrderList loading={loading && orders?.length > 0} orders={orders} showUser sortable />
+              <OrderList
+                loading={loading && orders?.length > 0}
+                orders={orders}
+                showUser
+                sortable
+              />
             )}
           </InfiniteScroll>
         </LocaleWrapper>

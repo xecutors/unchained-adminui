@@ -53,15 +53,14 @@ const WorkQueueView = () => {
   };
   const sortKeys = convertSortFieldsToQueryFormat(sort);
 
-  const { workQueue, loadMore, loading, activeWorkTypes, total, hasMore } = useWorkQueue(
-    {
+  const { workQueue, loadMore, loading, activeWorkTypes, total, hasMore } =
+    useWorkQueue({
       queryString: queryString as string,
       limit,
       ...filter,
       sort: sortKeys as ISortOptionInput[],
       offset,
-    },
-  );
+    });
 
   if (workerId) return <WorkDetailPage workerId={workerId} />;
   return (
@@ -76,9 +75,15 @@ const WorkQueueView = () => {
       <PageHeader
         headerText={formatMessage(
           (total ?? 0) === 1
-            ? { id: 'work_item_count_header_singular', defaultMessage: '1 Work Item' }
-            : { id: 'work_queue_count_header', defaultMessage: '{count} Work Items' },
-          { count: total ?? 0 }
+            ? {
+                id: 'work_item_count_header_singular',
+                defaultMessage: '1 Work Item',
+              }
+            : {
+                id: 'work_queue_count_header',
+                defaultMessage: '{count} Work Items',
+              },
+          { count: total ?? 0 },
         )}
       />
       <WorkFilter workTypes={activeWorkTypes} />
@@ -107,7 +112,11 @@ const WorkQueueView = () => {
             hasMore={hasMore}
             onLoadMore={loadMore}
           >
-            {loading && workQueue?.length === 0 ? <Loading /> : <WorkList workQueue={workQueue} sortable />}
+            {loading && workQueue?.length === 0 ? (
+              <Loading />
+            ) : (
+              <WorkList workQueue={workQueue} sortable />
+            )}
           </InfiniteScroll>
         </LocaleWrapper>
       </div>

@@ -33,10 +33,7 @@ const SortButton = ({ onSort, sortDirection }) => {
   return sortDirection === 'ASC' ? (
     <ChevronUpIcon className="mr-2 w-6 h-6 text-slate-900" onClick={onSort} />
   ) : (
-    <ChevronDownIcon
-      className="mr-2 w-6 h-6 text-slate-900"
-      onClick={onSort}
-    />
+    <ChevronDownIcon className="mr-2 w-6 h-6 text-slate-900" onClick={onSort} />
   );
 };
 

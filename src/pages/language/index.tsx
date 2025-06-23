@@ -48,13 +48,14 @@ const Languages = () => {
 
   const sortKeys = convertSortFieldsToQueryFormat(sort);
 
-  const { languages, languagesCount, loading, loadMore, hasMore } = useLanguages({
-    queryString: queryString as string,
-    limit,
-    includeInactive,
-    offset,
-    sort: sortKeys,
-  });
+  const { languages, languagesCount, loading, loadMore, hasMore } =
+    useLanguages({
+      queryString: queryString as string,
+      limit,
+      includeInactive,
+      offset,
+      sort: sortKeys,
+    });
 
   const { setModal } = useModal();
   const { removeLanguage } = useRemoveLanguage();
@@ -93,16 +94,20 @@ const Languages = () => {
       <PageHeaders
         headerText={formatMessage(
           (languagesCount ?? 0) === 1
-            ? { id: 'language_count_header_singular', defaultMessage: '1 Language' }
-            : { id: 'languages_count_header', defaultMessage: '{count} Languages' },
-          { count: languagesCount ?? 0 }
+            ? {
+                id: 'language_count_header_singular',
+                defaultMessage: '1 Language',
+              }
+            : {
+                id: 'languages_count_header',
+                defaultMessage: '{count} Languages',
+              },
+          { count: languagesCount ?? 0 },
         )}
       />
 
       <div className="min-w-full overflow-x-auto px-1">
-        <ListHeader
-          addPath={hasRole('addLanguage') && '/language/new'}
-        >
+        <ListHeader addPath={hasRole('addLanguage') && '/language/new'}>
           <Toggle
             toggleText={formatMessage({
               id: 'show_inactive',

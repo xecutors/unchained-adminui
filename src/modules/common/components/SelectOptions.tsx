@@ -52,23 +52,20 @@ const SelectOptions = ({
               onMouseLeave={() => setIsHover(false)}
               className={classNames(
                 `inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-white shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2`,
-                select?.bgColor === 'green' && 'bg-emerald-600 hover:bg-emerald-700 focus:ring-emerald-600',
-                select?.bgColor === 'slate' && 'bg-slate-500 hover:bg-slate-600 focus:ring-slate-500',
+                select?.bgColor === 'green' &&
+                  'bg-emerald-600 hover:bg-emerald-700 focus:ring-emerald-600',
+                select?.bgColor === 'slate' &&
+                  'bg-slate-500 hover:bg-slate-600 focus:ring-slate-500',
                 isHover && select?.bgColor === 'green' && 'bg-emerald-700',
                 isHover && select?.bgColor === 'slate' && 'bg-slate-600',
               )}
             >
-              <CheckIcon
-                className="h-4 w-4"
-                aria-hidden="true"
-              />
-              <span>
-                {select?.selectedTitle || select.title}
-              </span>
+              <CheckIcon className="h-4 w-4" aria-hidden="true" />
+              <span>{select?.selectedTitle || select.title}</span>
               <ChevronDownIcon
                 className={classNames(
-                  "h-4 w-4 -mr-1 transition-transform duration-200",
-                  open && "rotate-180"
+                  'h-4 w-4 -mr-1 transition-transform duration-200',
+                  open && 'rotate-180',
                 )}
                 aria-hidden="true"
               />
@@ -90,7 +87,7 @@ const SelectOptions = ({
                         'group hover:bg-slate-900 hover:text-white',
                         option?.disable && 'cursor-not-allowed',
                         option.id === select.id
-                          ? option.bgColor === 'green' 
+                          ? option.bgColor === 'green'
                             ? 'text-white bg-emerald-600'
                             : `text-white bg-${option.bgColor}-500`
                           : 'text-slate-900',

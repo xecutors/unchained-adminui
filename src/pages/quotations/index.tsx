@@ -42,12 +42,13 @@ const Quotations = () => {
 
   const sortKeys = convertSortFieldsToQueryFormat(sort);
 
-  const { quotations, quotationsCount, loading, loadMore, hasMore } = useQuotations({
-    queryString: queryString as string,
-    limit,
-    offset,
-    sort: sortKeys,
-  });
+  const { quotations, quotationsCount, loading, loadMore, hasMore } =
+    useQuotations({
+      queryString: queryString as string,
+      limit,
+      offset,
+      sort: sortKeys,
+    });
 
   if (quotationId) return <QuotationDetailPage quotationId={quotationId} />;
   return (
@@ -56,14 +57,20 @@ const Quotations = () => {
       <PageHeader
         headerText={formatMessage(
           (quotationsCount ?? 0) === 1
-            ? { id: 'quotation_count_header_singular', defaultMessage: '1 Quotation' }
-            : { id: 'quotations_count_header', defaultMessage: '{count} Quotations' },
-          { count: quotationsCount ?? 0 }
+            ? {
+                id: 'quotation_count_header_singular',
+                defaultMessage: '1 Quotation',
+              }
+            : {
+                id: 'quotations_count_header',
+                defaultMessage: '{count} Quotations',
+              },
+          { count: quotationsCount ?? 0 },
         )}
       />
       <div className="min-w-full overflow-x-auto px-1">
         <ListHeader />
-        
+
         <LocaleWrapper
           searchComponent={
             <SearchField

@@ -6993,6 +6993,7 @@ export type IShopInfoQuery = {
   shopInfo: {
     _id: string;
     version?: string | null;
+    chatEnabled?: boolean | null;
     language?: {
       _id: string;
       isoCode?: string | null;

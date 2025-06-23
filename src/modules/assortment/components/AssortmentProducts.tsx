@@ -121,9 +121,7 @@ const AssortmentProducts = ({ assortmentId }) => {
             defaultMessage="<ul> <li>Products that belong to this assortment </li>
           </ul>"
             values={{
-              ul: (chunk) => (
-                <ul className="space-y-1">{chunk} </ul>
-              ),
+              ul: (chunk) => <ul className="space-y-1">{chunk} </ul>,
               li: (chunk) => <li>{chunk} </li>,
             }}
           />
@@ -145,9 +143,7 @@ const AssortmentProducts = ({ assortmentId }) => {
             <li> Drag and drop list items to sort products order </li>
           </ul>"
             values={{
-              ul: (chunk) => (
-                <ul className="space-y-1">{chunk} </ul>
-              ),
+              ul: (chunk) => <ul className="space-y-1">{chunk} </ul>,
               li: (chunk) => <li>{chunk} </li>,
             }}
           />

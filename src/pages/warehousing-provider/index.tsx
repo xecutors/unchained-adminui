@@ -73,9 +73,15 @@ const WarehousingProviders = () => {
       <PageHeader
         headerText={formatMessage(
           (warehousingProvidersCount ?? 0) === 1
-            ? { id: 'warehousing_provider_count_header_singular', defaultMessage: '1 Warehousing Provider' }
-            : { id: 'warehousing_providers_count_header', defaultMessage: '{count} Warehousing Providers' },
-          { count: warehousingProvidersCount ?? 0 }
+            ? {
+                id: 'warehousing_provider_count_header_singular',
+                defaultMessage: '1 Warehousing Provider',
+              }
+            : {
+                id: 'warehousing_providers_count_header',
+                defaultMessage: '{count} Warehousing Providers',
+              },
+          { count: warehousingProvidersCount ?? 0 },
         )}
       />
       <ListHeader

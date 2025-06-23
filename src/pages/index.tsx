@@ -10,11 +10,11 @@ import ProductDetail from '../modules/product/components/ProductDetail';
 import useCurrentUser from '../modules/accounts/hooks/useCurrentUser';
 import { IUser } from '../gql/types';
 import MiniUserAvatar from '../modules/common/components/MiniUserAvatar';
-import { ComputerDesktopIcon } from '@heroicons/react/24/solid';
 import { useFormatPrice } from '../modules/common/utils/utils';
 import ImageWithFallback from '../modules/common/components/ImageWithFallback';
 import Link from 'next/link';
 import generateUniqueId from '../modules/common/utils/getUniqueId';
+import useShopInfo from '../modules/common/hooks/useShopInfo';
 
 const ProductListItem = ({ product }) => {
   const { formatPrice } = useFormatPrice();
@@ -184,6 +184,7 @@ const Copilot = () => {
     credentials: 'include',
     api: 'http://localhost:4010/chat',
   });
+  const { shopInfo } = useShopInfo();
   const { currentUser } = useCurrentUser();
   const bottomRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -199,7 +200,22 @@ const Copilot = () => {
       el.scrollIntoView({ behavior: 'smooth' });
     }
   }, [messages]);
-
+  if (!shopInfo?.chatEnabled)
+    return (
+      <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-slate-900 font-sans">
+        <div className="py-16">
+          <div className="text-center">
+            <h1 className="mt-2 text-4xl font-extrabold tracking-tight text-red-900 dark:text-red-200 sm:text-5xl">
+              Chat is Disabled
+            </h1>
+            <p className="mt-2 text-base text-slate-500 dark:text-slate-200">
+              Copilot chat is currently disabled in this shop. Please check your
+              engine configuration
+            </p>
+          </div>
+        </div>
+      </div>
+    );
   return (
     <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-slate-900 font-sans">
       <header className="p-4 mt-1 text-xl font-semibold text-slate-900 dark:text-slate-100">
