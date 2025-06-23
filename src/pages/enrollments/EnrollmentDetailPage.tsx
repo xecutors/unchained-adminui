@@ -21,7 +21,7 @@ const EnrollmentDetailPage = ({ enrollmentId }) => {
           enrollment?.enrollmentNumber ? `#${enrollment?.enrollmentNumber}` : ''
         }
       />
-      <div className="align-center flex min-w-full justify-between">
+      <div className="items-center flex min-w-full justify-between gap-3 flex-wrap">
         <PageHeader
           headerText={formatMessage({
             id: 'enrollment_detail',

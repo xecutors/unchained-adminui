@@ -42,7 +42,7 @@ const ProviderConfigurationForm = ({
             id: 'update_configuration',
             defaultMessage: 'Update configuration',
           })}
-          className="my-2"
+          className="mt-3"
         />
       </div>
     </Form>

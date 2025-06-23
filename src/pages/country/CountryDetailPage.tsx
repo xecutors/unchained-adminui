@@ -76,7 +76,7 @@ const CountryDetailPage = ({ countryId }) => {
       <BreadCrumbs
         currentPageTitle={normalizeCountryISOCode(locale, country?.isoCode)}
       />
-      <div className="align-center flex min-w-full justify-between">
+      <div className="items-center flex min-w-full justify-between gap-3 flex-wrap">
         <PageHeader
           headerText={normalizeCountryISOCode(locale, country?.isoCode)}
         />

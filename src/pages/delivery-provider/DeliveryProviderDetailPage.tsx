@@ -77,7 +77,7 @@ const DeliveryProviderDetailPage = ({ deliveryProviderId }) => {
       <BreadCrumbs
         currentPageTitle={getInterfaceLabel(deliveryProvider?.interface)}
       />
-      <div className="align-center flex min-w-full justify-between">
+      <div className="items-center flex min-w-full justify-between gap-3 flex-wrap">
         <PageHeader
           headerText={formatMessage({
             id: 'update_delivery_configuration',
