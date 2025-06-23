@@ -31,8 +31,7 @@ import AlertMessage from '../../modal/components/AlertMessage';
 import DisplayExtendedFields from '../../common/components/DisplayExtendedFields';
 
 const GetCurrentTab = ({ id, selectedView, ...extendedData }) => {
-  if (selectedView === 'texts')
-    return <AssortmentTextForm assortmentId={id} />;
+  if (selectedView === 'texts') return <AssortmentTextForm assortmentId={id} />;
   if (selectedView === 'links') return <AssortmentLinks assortmentId={id} />;
 
   if (selectedView === 'media')

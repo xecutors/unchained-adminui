@@ -42,15 +42,12 @@ import ProductTokenizationForm from './ProductTokenizationForm';
 import DisplayExtendedFields from '../../common/components/DisplayExtendedFields';
 
 const GetCurrentTab = ({ id, selectedView = '', ...extendedData }) => {
-  if (selectedView === 'texts')
-    return <ProductTextsForm productId={id} />;
-  if (selectedView === 'media')
-    return <ProductMediaForm productId={id} />;
+  if (selectedView === 'texts') return <ProductTextsForm productId={id} />;
+  if (selectedView === 'media') return <ProductMediaForm productId={id} />;
   if (selectedView === 'commerce') return <CommerceForm productId={id} />;
   if (selectedView === 'supply') return <SupplyForm productId={id} />;
   if (selectedView === 'warehousing') return <WarehousingForm productId={id} />;
-  if (selectedView === 'variations')
-    return <ProductVariation productId={id} />;
+  if (selectedView === 'variations') return <ProductVariation productId={id} />;
   if (selectedView === 'bundled_products')
     return <BundleProducts productId={id} />;
   if (selectedView === 'subscriptions')
