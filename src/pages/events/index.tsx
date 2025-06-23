@@ -78,7 +78,7 @@ const Events = () => {
             (eventsCount ?? 0) === 1
               ? { id: 'event_count_header_singular', defaultMessage: '1 Event' }
               : { id: 'events_count_header', defaultMessage: '{count} Events' },
-            { count: eventsCount ?? 0 }
+            { count: eventsCount ?? 0 },
           )}
         />
         <div className="mt-4 flex space-x-2 sm:mt-1 md:mt-5 lg:mt-0">
@@ -122,7 +122,11 @@ const Events = () => {
             hasMore={hasMore}
             onLoadMore={loadMore}
           >
-            {loading && events?.length === 0 ? <Loading /> : <EventList events={events} sortable />}
+            {loading && events?.length === 0 ? (
+              <Loading />
+            ) : (
+              <EventList events={events} sortable />
+            )}
           </InfiniteScroll>
         </LocaleWrapper>
       </div>

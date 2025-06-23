@@ -21,6 +21,7 @@ const ShopInfoQuery = gql`
           isoCode
         }
       }
+      chatEnabled
       adminUiConfig {
         singleSignOnURL
         externalLinks {

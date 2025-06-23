@@ -74,7 +74,7 @@ const Users = () => {
           (usersCount ?? 0) === 1
             ? { id: 'user_count_header_singular', defaultMessage: '1 User' }
             : { id: 'users_count_header', defaultMessage: '{count} Users' },
-          { count: usersCount ?? 0 }
+          { count: usersCount ?? 0 },
         )}
       />
       <UserFilter />
@@ -101,7 +101,11 @@ const Users = () => {
           hasMore={hasMore}
           onLoadMore={loadMore}
         >
-          {loading && users?.length === 0 ? <Loading /> : <UserList users={users} />}
+          {loading && users?.length === 0 ? (
+            <Loading />
+          ) : (
+            <UserList users={users} />
+          )}
           {!loading && !users?.length && (
             <NoData
               message={formatMessage({

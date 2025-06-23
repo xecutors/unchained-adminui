@@ -15,28 +15,25 @@ const AssortmentListView = ({
 
   const sortKeys = convertSortFieldsToQueryFormat(sort);
 
-  const { assortments, assortmentsCount, loading, loadMore, hasMore } = useAssortments({
-    queryString,
-    includeInactive,
-    includeLeaves,
-    limit,
-    offset,
-    tags,
-    slugs: slug,
-    sort: sortKeys,
-    forceLocale: selectedLocale,
-  });
+  const { assortments, assortmentsCount, loading, loadMore, hasMore } =
+    useAssortments({
+      queryString,
+      includeInactive,
+      includeLeaves,
+      limit,
+      offset,
+      tags,
+      slugs: slug,
+      sort: sortKeys,
+      forceLocale: selectedLocale,
+    });
 
   if (loading && assortments?.length === 0) {
     return <Loading />;
   }
 
   return (
-    <InfiniteScroll
-      loading={loading}
-      hasMore={hasMore}
-      onLoadMore={loadMore}
-    >
+    <InfiniteScroll loading={loading} hasMore={hasMore} onLoadMore={loadMore}>
       <AssortmentList assortments={assortments} sortable={sortable} />
     </InfiniteScroll>
   );
