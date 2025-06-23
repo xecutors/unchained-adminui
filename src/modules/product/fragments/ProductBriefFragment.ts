@@ -27,9 +27,14 @@ const ProductBriefFragment = gql`
         url
       }
     }
-    commerce {
-      pricing {
-        _id
+    ... on SimpleProduct {
+      catalogPrice {
+        amount
+        currencyCode
+      }
+    }
+    ... on PlanProduct {
+      catalogPrice {
         amount
         currencyCode
       }
