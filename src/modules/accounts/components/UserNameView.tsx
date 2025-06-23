@@ -42,12 +42,10 @@ const UserNameView = ({ _id: userId, username }) => {
   return (
     <Form form={form}>
       <dl className="divide-y divide-slate-200">
-        <div className="flex flex-wrap items-center sm:grid sm:grid-cols-3 sm:gap-4">
-          <div className="shrink grow basis-2/5 text-sm text-slate-400 dark:text-slate-200">
+        <div className="flex flex-wrap justify-between items-center sm:gap-4">
+          <div className="flex flex-wrap justify-between items-center sm:gap-4 text-sm text-slate-400 dark:text-slate-200">
             {!isEdit &&
               formatMessage({ id: 'username', defaultMessage: 'Username' })}
-          </div>
-          <div className="shrink mt-1 flex grow basis-3/5 flex-wrap items-center gap-4 text-sm sm:col-span-2 sm:mt-0 sm:gap-0">
             <span className="grow">
               {isEdit ? (
                 <TextField
@@ -65,9 +63,11 @@ const UserNameView = ({ _id: userId, username }) => {
                 </div>
               )}
             </span>
+          </div>
+          <div className="flex flex-wrap items-baseline gap-4 text-sm sm:col-span-2 sm:mt-0 sm:gap-0">
             <FormErrors />
             {hasRole('editUsername') && (
-              <span className="ml-4 mt-1 flex shrink-0 items-center space-x-4">
+              <span className="flex shrink-0 items-center space-x-4">
                 <button
                   data-id="cancel_update"
                   onClick={() => setIsEdit(!isEdit)}

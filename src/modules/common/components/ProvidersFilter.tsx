@@ -28,7 +28,7 @@ const ProvidersFilter = ({ providerType, onProviderFilterChange = null }) => {
       });
   };
   return (
-    <div className="w-100 ml-2 mt-2">
+    <div className="w-100">
       <div className="relative my-2 flex items-start">
         <select
           onChange={setType}
