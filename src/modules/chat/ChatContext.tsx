@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+} from 'react';
 import { useChat } from '@ai-sdk/react';
 
 interface ChatMessage {
@@ -83,7 +89,7 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
   };
 
   const value: ChatContextType = {
-    messages,
+    messages: messages as ChatMessage[],
     input,
     handleInputChange,
     handleSubmit,

@@ -1,9 +1,6 @@
 import { useIntl } from 'react-intl';
 
-const ListHeader = ({
-  children = null,
-  totalRecords = null,
-}) => {
+const ListHeader = ({ children = null, totalRecords = null }) => {
   const { formatMessage } = useIntl();
   return (
     <div className="mt-3">

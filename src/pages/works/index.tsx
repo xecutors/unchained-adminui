@@ -86,8 +86,7 @@ const WorkQueueView = () => {
           { count: total ?? 0 },
         )}
         addPath={
-          (hasRole('allocateWork') || hasRole('addWork')) &&
-          '/works/management'
+          (hasRole('allocateWork') || hasRole('addWork')) && '/works/management'
         }
         addButtonText={formatMessage({
           id: 'manage',

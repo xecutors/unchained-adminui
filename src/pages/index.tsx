@@ -73,14 +73,8 @@ const ProductListItem = ({ product }) => {
       </h3>
       <div className="px-4">
         <Badge
-          text={
-            PRODUCT_STATUS_LABELS[product?.status] ||
-            PRODUCT_STATUS_LABELS[null] ||
-            'Draft'
-          }
-          color={
-            PRODUCT_STATUS[product?.status] || PRODUCT_STATUS[null] || 'yellow'
-          }
+          text={PRODUCT_STATUS_LABELS[product?.status] || 'Draft'}
+          color={PRODUCT_STATUS[product?.status] || 'yellow'}
           square
           dotted
         />

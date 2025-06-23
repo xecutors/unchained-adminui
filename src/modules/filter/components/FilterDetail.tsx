@@ -16,11 +16,9 @@ import useUpdateFilter from '../hooks/useUpdateFilter';
 import DisplayExtendedFields from '../../common/components/DisplayExtendedFields';
 
 const GetCurrentTab = ({ selectedView, id, ...extendedData }) => {
-  if (selectedView === 'text')
-    return <FilterTextForm filterId={id} />;
+  if (selectedView === 'text') return <FilterTextForm filterId={id} />;
 
-  if (selectedView === 'options')
-    return <FilterOptions filterId={id} />;
+  if (selectedView === 'options') return <FilterOptions filterId={id} />;
   if (selectedView === 'extended')
     return <DisplayExtendedFields data={extendedData} />;
   return <FilterTextForm filterId={id} />;
