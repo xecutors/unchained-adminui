@@ -97,14 +97,14 @@ const AddProduct = () => {
         </div>
 
         <div className="lg:col-span-2">
-          <FormWrapper>
-            <LocaleWrapper>
+          <LocaleWrapper>
+            <FormWrapper>
               <ProductForm
                 onSubmit={onSubmit}
                 onSubmitSuccess={onSubmitSuccess}
               />
-            </LocaleWrapper>
-          </FormWrapper>
+            </FormWrapper>
+          </LocaleWrapper>
         </div>
       </div>
     </>
