@@ -12,7 +12,7 @@ const PageHeader = ({
   return (
     <>
       <Head>
-        <title>Admin UI - {title || headerText} </title>
+        <title>Unchained Copilot - {title || headerText} </title>
       </Head>
       <div className="md:flex md:items-center md:justify-between w-full gap-3">
         {headerText && (

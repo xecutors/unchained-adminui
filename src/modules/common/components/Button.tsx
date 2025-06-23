@@ -9,7 +9,7 @@ const Button = ({
   variant = 'primary',
 }) => {
   const baseClasses =
-    'inline-flex items-center rounded-md text-sm font-medium leading-4 shadow-xs focus:outline-hidden focus:ring-2 focus:ring-offset-2 px-3 py-3';
+    'inline-flex items-center rounded-md text-sm font-medium leading-4 shadow-xs focus:outline-hidden focus:ring-2 focus:ring-offset-2 px-6 py-3';
 
   const variantClasses = {
     primary:
