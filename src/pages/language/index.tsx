@@ -5,7 +5,7 @@ import useLanguages from '../../modules/language/hooks/useLanguages';
 import LanguageList from '../../modules/language/components/LanguageList';
 import useRemoveLanguage from '../../modules/language/hooks/useRemoveLanguage';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
-import PageHeaders from '../../modules/common/components/PageHeader';
+import PageHeader from '../../modules/common/components/PageHeader';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
 import Toggle from '../../modules/common/components/Toggle';
@@ -91,7 +91,7 @@ const Languages = () => {
   return (
     <>
       <BreadCrumbs />
-      <PageHeaders
+      <PageHeader
         headerText={formatMessage(
           (languagesCount ?? 0) === 1
             ? {
@@ -104,10 +104,15 @@ const Languages = () => {
               },
           { count: languagesCount ?? 0 },
         )}
+        addPath={hasRole('addLanguage') && '/language/new'}
+        addButtonText={formatMessage({
+          id: 'add_language',
+          defaultMessage: 'Add Language',
+        })}
       />
 
       <div className="min-w-full overflow-x-auto px-1">
-        <ListHeader addPath={hasRole('addLanguage') && '/language/new'}>
+        <ListHeader>
           <Toggle
             toggleText={formatMessage({
               id: 'show_inactive',

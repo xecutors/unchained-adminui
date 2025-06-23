@@ -75,10 +75,13 @@ const PaymentProviders = () => {
               },
           { count: paymentProvidersCount ?? 0 },
         )}
-      />
-      <ListHeader
         addPath={hasRole('addPaymentProvider') && '/payment-provider/new'}
-      >
+        addButtonText={formatMessage({
+          id: 'add_payment_provider',
+          defaultMessage: 'Add Payment Provider',
+        })}
+      />
+      <ListHeader>
         <ProvidersFilter
           providerType={paymentProviderType?.map(({ value }) => value)}
         />

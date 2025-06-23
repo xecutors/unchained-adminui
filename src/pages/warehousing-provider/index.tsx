@@ -83,12 +83,15 @@ const WarehousingProviders = () => {
               },
           { count: warehousingProvidersCount ?? 0 },
         )}
-      />
-      <ListHeader
         addPath={
           hasRole('addWarehousingProvider') && '/warehousing-provider/new'
         }
-      >
+        addButtonText={formatMessage({
+          id: 'add_warehousing_provider',
+          defaultMessage: 'Add Warehousing Provider',
+        })}
+      />
+      <ListHeader>
         <ProvidersFilter
           providerType={warehousingProviderType?.map(({ value }) => value)}
         />

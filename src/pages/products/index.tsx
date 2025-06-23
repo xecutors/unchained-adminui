@@ -68,16 +68,15 @@ const Products = () => {
                 },
             { count: productsCount ?? 0 },
           )}
-        />
-      </div>
-      <div className="min-w-full overflow-x-auto px-1">
-        <ListHeader
           addPath={hasRole('addProduct') && '/products/new'}
           addButtonText={formatMessage({
             id: 'add_product',
-            defaultMessage: 'Add product',
+            defaultMessage: 'Add Product',
           })}
-        >
+        />
+      </div>
+      <div className="min-w-full overflow-x-auto px-1">
+        <ListHeader>
           <Toggle
             toggleText={formatMessage({
               id: 'include_drafts',

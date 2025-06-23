@@ -98,11 +98,16 @@ const FiltersListView = () => {
                 },
             { count: filtersCount ?? 0 },
           )}
+          addPath={hasRole('addFilter') && '/filters/new'}
+          addButtonText={formatMessage({
+            id: 'add_filter',
+            defaultMessage: 'Add Filter',
+          })}
         />
       </div>
 
       <div className="min-w-full overflow-x-auto px-1">
-        <ListHeader addPath={hasRole('addFilter') && '/filters/new'}>
+        <ListHeader>
           <Toggle
             toggleText={formatMessage({
               id: 'include_inactive',

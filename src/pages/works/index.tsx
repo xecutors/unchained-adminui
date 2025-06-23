@@ -85,19 +85,18 @@ const WorkQueueView = () => {
               },
           { count: total ?? 0 },
         )}
+        addPath={
+          (hasRole('allocateWork') || hasRole('addWork')) &&
+          '/works/management'
+        }
+        addButtonText={formatMessage({
+          id: 'manage',
+          defaultMessage: 'Manage',
+        })}
       />
       <WorkFilter workTypes={activeWorkTypes} />
       <div className="min-w-full overflow-x-auto px-1">
-        <ListHeader
-          addPath={
-            (hasRole('allocateWork') || hasRole('addWork')) &&
-            '/works/management'
-          }
-          addButtonText={formatMessage({
-            id: 'manage',
-            defaultMessage: 'Manage',
-          })}
-        />
+        <ListHeader />
 
         <LocaleWrapper
           searchComponent={

@@ -76,9 +76,14 @@ const Users = () => {
             : { id: 'users_count_header', defaultMessage: '{count} Users' },
           { count: usersCount ?? 0 },
         )}
+        addPath="/users/new"
+        addButtonText={formatMessage({
+          id: 'add_user',
+          defaultMessage: 'Add User',
+        })}
       />
       <UserFilter />
-      <ListHeader addPath="/users/new">
+      <ListHeader>
         <Toggle
           toggleKey="includeGuests"
           toggleText={formatMessage({

@@ -1,5 +1,7 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import { useIntl } from 'react-intl';
+import { PlusIcon } from '@heroicons/react/24/solid';
 
 const PageHeader = ({
   headerText = null,
@@ -7,6 +9,8 @@ const PageHeader = ({
   onDelete = null,
   children = null,
   title = null,
+  addPath = null,
+  addButtonText = null,
 }) => {
   const { formatMessage } = useIntl();
   return (
@@ -15,11 +19,25 @@ const PageHeader = ({
         <title>Unchained Copilot - {title || headerText} </title>
       </Head>
       <div className="flex gap-3 flex-wrap items-center justify-between w-full">
-        {headerText && (
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-200 sm:truncate sm:text-3xl lg:text-4xl xl:text-5xl">
-            {headerText}
-          </h2>
-        )}
+        <div className="flex items-center justify-between w-full gap-4">
+          {headerText && (
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-200 sm:truncate sm:text-3xl lg:text-4xl xl:text-5xl">
+              {headerText}
+            </h2>
+          )}
+          {addPath && (
+            <Link
+              href={addPath}
+              className="relative inline-flex items-center rounded-sm border border-transparent bg-slate-800 dark:bg-slate-600 px-3 py-3 text-sm font-medium text-white shadow-xs hover:bg-slate-950 dark:hover:bg-slate-500 focus:outline-hidden focus:ring-2 focus:ring-slate-800 dark:focus:ring-slate-400 focus:ring-offset-2"
+            >
+              <PlusIcon className="h-5 w-5" />
+              <span className="ml-2">
+                {addButtonText ||
+                  formatMessage({ id: 'add', defaultMessage: 'Add' })}
+              </span>
+            </Link>
+          )}
+        </div>
         <div className="flex shrink-0">
           {onEdit && (
             <button

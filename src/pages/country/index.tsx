@@ -109,9 +109,14 @@ const Country = () => {
               },
           { count: countriesCount ?? 0 },
         )}
+        addPath={hasRole('addCountry') && '/country/new'}
+        addButtonText={formatMessage({
+          id: 'add_country',
+          defaultMessage: 'Add Country',
+        })}
       />
       <div className="min-w-full overflow-x-auto px-1">
-        <ListHeader addPath={hasRole('addCountry') && '/country/new'}>
+        <ListHeader>
           <Toggle
             toggleText={formatMessage({
               id: 'show_inactive',
