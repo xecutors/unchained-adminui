@@ -43,7 +43,7 @@ const UserListItem = ({ user }) => {
   if (loading && !currentUser) return <Loading />;
 
   return (
-    <li className="mb-3 group border-2 border-slate-100 dark:border-slate-700 hover:border-slate-100 dark:hover:border-slate-600 transition-all duration-200 ease-in-out shadow-xs hover:shadow-sm rounded-md">
+    <li className="mb-3 bg-white dark:bg-slate-800 group border-2 border-slate-100 dark:border-slate-800 hover:border-slate-100 dark:hover:border-slate-600 transition-all duration-200 ease-in-out shadow-xs hover:shadow-sm rounded-md">
       <Link
         href={`/users?userId=${user._id}`}
         className="block px-2 py-2 sm:px-3 sm:py-3"
@@ -87,11 +87,11 @@ const UserListItem = ({ user }) => {
             </div>
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-1">
-                <ShoppingCartIcon className="w-4 h-4 text-slate-400" />
+                <ShoppingCartIcon className="w-4 h-4 text-slate-500" />
                 <Badge color="yellow" text={user?.cart?.items?.length || 0} />
               </div>
               <div className="flex items-center gap-1">
-                <ShoppingBagIcon className="w-4 h-4 text-slate-400" />
+                <ShoppingBagIcon className="w-4 h-4 text-slate-500" />
                 <Badge text={user?.orders?.length || 0} />
               </div>
             </div>

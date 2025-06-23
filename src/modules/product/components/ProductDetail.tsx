@@ -252,15 +252,15 @@ const ProductDetail = ({ product, extendedData = {} }) => {
 
   return (
     <>
-      <div className="flex flex-wrap items-center justify-between gap-y-1">
-        <h1 className="">{product?.__typename}</h1>
+      <p className="text-sm mt-5">{product?.__typename}</p>
+      <div className="mt-5 flex flex-wrap items-center justify-between gap-10">
         <TagList
           defaultValue={product?.tags}
           onSubmit={onUpdateTags}
           enableEdit={hasRole('editProduct')}
         />
       </div>
-      <div className="mt-5 flex">
+      <div className="mt-5">
         <input
           type="number"
           id="sequence-input"
@@ -268,6 +268,9 @@ const ProductDetail = ({ product, extendedData = {} }) => {
           defaultValue={product?.sequence}
           onBlur={updateProductSequence}
         />
+      </div>
+
+      <div className="mt-5 flex">
         <SelectOptions
           options={activeOptions}
           type={formatMessage({ id: 'product', defaultMessage: 'Product' })}

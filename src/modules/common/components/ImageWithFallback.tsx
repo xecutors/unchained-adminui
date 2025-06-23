@@ -12,8 +12,13 @@ const ImageWithFallback = ({ fallbackSrc = '', src, ...props }) => {
   // If there's an error or no src, show SVG fallback
   if (hasError || !imageSrc) {
     return (
-      <div className={props.className || "w-full h-full flex items-center justify-center bg-slate-50 dark:bg-slate-800"}>
-        <NoImageSvg 
+      <div
+        className={
+          props.className ||
+          'w-full h-full flex items-center justify-center bg-slate-50 dark:bg-slate-800'
+        }
+      >
+        <NoImageSvg
           width={props.width || 200}
           height={props.height || 200}
           className="max-w-full max-h-full"

@@ -90,7 +90,7 @@ const UserNameView = ({ _id: userId, username }) => {
                 {isEdit && (
                   <button
                     type="submit"
-                    className="inline-flex items-center rounded-md border border-transparent bg-slate-900 dark:bg-slate-600 px-4 py-2 text-sm font-medium text-white shadow-xs hover:bg-slate-950 dark:hover:bg-slate-500 focus:outline-hidden focus:ring-2 focus:ring-slate-800 dark:focus:ring-slate-400 focus:ring-offset-2"
+                    className="inline-flex items-center rounded-md border border-transparent bg-slate-800 dark:bg-slate-600 px-4 py-2 text-sm font-medium text-white shadow-xs hover:bg-slate-950 dark:hover:bg-slate-500 focus:outline-hidden focus:ring-2 focus:ring-slate-800 dark:focus:ring-slate-400 focus:ring-offset-2"
                   >
                     {formatMessage({
                       id: 'save',

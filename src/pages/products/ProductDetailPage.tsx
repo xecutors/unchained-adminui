@@ -94,57 +94,66 @@ const ProductDetailPage = ({ slug }) => {
         }
       />
       <div>
-        <div className="align-center flex min-w-full justify-between">
+        <div className="align-center flex-wrap flex min-w-full justify-between">
           <PageHeader
             headerText={
               <>
-                {((product as IProduct)?.texts as IProductTexts)?.title || 'Untitled Product'}
-                <span className="text-lg font-normal text-slate-500 ml-2">
-                  ({product?._id})
-                </span>
+                {((product as IProduct)?.texts as IProductTexts)?.title ||
+                  'Untitled Product'}
               </>
             }
             title={`${((product as IProduct)?.texts as IProductTexts)?.title || 'Product'} (${product?._id})`}
           />
+          <span className="mt-3 text-md">{product?._id}</span>
           {product && product.status === 'DRAFT' && hasRole('removeProduct') ? (
             <HeaderDeleteButton onClick={handleOnClick} />
           ) : null}
         </div>
-        
-        <div className="mt-4 mb-6 flex flex-wrap gap-4 text-sm text-slate-600 dark:text-slate-400">
+
+        <div className="mt-5 flex flex-wrap gap-4 text-xs text-slate-600 dark:text-slate-400">
           {product?.created && (
             <div className="flex items-center gap-1">
-              <span className="font-medium text-slate-700 dark:text-slate-300">
+              <span className="text-slate-700 dark:text-slate-300">
                 {formatMessage({ id: 'created', defaultMessage: 'Created' })}:
               </span>
-              <span>{formatDateTime(product.created, {
-                dateStyle: 'medium',
-                timeStyle: 'short',
-              })}</span>
+              <span className="font-semibold">
+                {formatDateTime(product.created, {
+                  dateStyle: 'medium',
+                  timeStyle: 'short',
+                })}
+              </span>
             </div>
           )}
 
           {product?.published && (
             <div className="flex items-center gap-1">
-              <span className="font-medium text-slate-700 dark:text-slate-300">
-                {formatMessage({ id: 'published', defaultMessage: 'Published' })}:
+              <span className="text-slate-700 dark:text-slate-300">
+                {formatMessage({
+                  id: 'published',
+                  defaultMessage: 'Published',
+                })}
+                :
               </span>
-              <span>{formatDateTime(product.published, {
-                dateStyle: 'medium',
-                timeStyle: 'short',
-              })}</span>
+              <span className="font-semibold">
+                {formatDateTime(product.published, {
+                  dateStyle: 'medium',
+                  timeStyle: 'short',
+                })}
+              </span>
             </div>
           )}
-          
+
           {product?.updated && (
             <div className="flex items-center gap-1">
-              <span className="font-medium text-slate-700 dark:text-slate-300">
+              <span className="text-slate-700 dark:text-slate-300">
                 {formatMessage({ id: 'updated', defaultMessage: 'Updated' })}:
               </span>
-              <span>{formatDateTime(product.updated, {
-                dateStyle: 'medium',
-                timeStyle: 'short',
-              })}</span>
+              <span className="font-semibold">
+                {formatDateTime(product.updated, {
+                  dateStyle: 'medium',
+                  timeStyle: 'short',
+                })}
+              </span>
             </div>
           )}
         </div>

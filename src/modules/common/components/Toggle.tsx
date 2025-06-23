@@ -29,7 +29,7 @@ const Toggle = ({
         disabled={disabled}
         type="button"
         className={classNames(
-          'ml-1 relative inline-flex h-4 w-9 shrink-0 cursor-pointer rounded-full border-1 border-transparent transition-all duration-200 ease-in-out focus:outline-hidden focus:ring-2 focus:ring-slate-400 focus:ring-offset-2',
+          'relative inline-flex h-3.5 w-9 shrink-0 cursor-pointer rounded-full border-1 border-transparent transition-all duration-200 ease-in-out focus:outline-hidden focus:ring-2 focus:ring-slate-400 focus:ring-offset-2',
           {
             'bg-slate-200 dark:bg-slate-700': !toggleState,
             'bg-emerald-500 dark:bg-slate-600 shadow-sm': toggleState,
@@ -44,7 +44,7 @@ const Toggle = ({
 
         <span
           className={classNames(
-            ' pointer-events-none relative inline-block h-3 w-3 transform rounded-full bg-white shadow-sm ring-0 transition-all duration-200 ease-in-out',
+            'ml-0.5 pointer-events-none relative inline-block h-3 w-3 transform rounded-full bg-white shadow-sm ring-0 transition-all duration-200 ease-in-out',
             {
               'translate-x-5 shadow-md': toggleState,
               'translate-x-0': !toggleState,

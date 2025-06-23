@@ -44,7 +44,7 @@ const FilterFormView = ({ filterId, selectedLocale = null }) => {
                 />,
               )
             }
-            className="fixed top-0 right-0 z-10 mb-5 mt-5 mr-2 h-9 rounded-md border border-transparent bg-slate-900 dark:bg-slate-600 px-3 py-1 text-sm font-medium leading-5 text-white shadow-xs hover:bg-slate-950 dark:hover:bg-slate-500 focus:outline-hidden focus:ring-2 focus:ring-slate-800 dark:focus:ring-slate-400 sm:fixed sm:top-auto sm:right-auto"
+            className="fixed top-0 right-0 z-10 mb-5 mt-5 mr-2 h-9 rounded-md border border-transparent bg-slate-800 dark:bg-slate-600 px-3 py-1 text-sm font-medium leading-5 text-white shadow-xs hover:bg-slate-950 dark:hover:bg-slate-500 focus:outline-hidden focus:ring-2 focus:ring-slate-800 dark:focus:ring-slate-400 sm:fixed sm:top-auto sm:right-auto"
           >
             {formatMessage({
               id: 'add_filter_option',
