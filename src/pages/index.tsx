@@ -27,7 +27,7 @@ const PRODUCT_STATUS = {
 
 const PRODUCT_STATUS_LABELS = {
   DRAFT: 'Draft',
-  ACTIVE: 'Published',
+  ACTIVE: 'Active',
   DELETED: 'Deleted',
   null: 'Draft', // Treat null status as draft
   undefined: 'Draft', // Treat undefined status as draft
