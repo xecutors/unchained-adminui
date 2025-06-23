@@ -16,6 +16,7 @@ interface ChatContextType {
   isLoading: boolean;
   error: any;
   clearHistory: () => void;
+  status: 'error' | 'submitted' | 'streaming' | 'ready';
 }
 
 const ChatContext = createContext<ChatContextType | undefined>(undefined);
@@ -54,6 +55,7 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
     handleSubmit,
     isLoading,
     error,
+    status,
     setMessages,
   } = useChat({
     maxSteps: 5,
@@ -90,6 +92,7 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
     isLoading,
     error,
     clearHistory,
+    status,
   };
 
   return <ChatContext.Provider value={value}>{children}</ChatContext.Provider>;
