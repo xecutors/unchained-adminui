@@ -11,7 +11,7 @@ const EventDetailPage = ({ eventId }) => {
   const { event, loading } = useEvent({ eventId: eventId as string });
 
   return (
-    <div className="mt-6 max-w-full">
+    <div className="mt-5 max-w-full">
       <BreadCrumbs />
       <PageHeader
         headerText={formatMessage({

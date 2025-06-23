@@ -63,7 +63,7 @@ const ProductList = ({
             <Table.Cell sortKey="sequence" defaultSortDirection="ASC">
               {formatMessage({
                 id: 'sequence',
-                defaultMessage: 'Sequence',
+                defaultMessage: 'Display Order',
               })}
             </Table.Cell>
           </Table.Row>

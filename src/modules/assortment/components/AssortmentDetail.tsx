@@ -289,57 +289,68 @@ const AssortmentDetail = ({ assortment, extendedData }) => {
 
   return (
     <>
-      <div className="flex flex-wrap gap-2 lg:justify-end">
+      <div>
         <TagList
           defaultValue={assortment?.tags}
           onSubmit={updateAssortmentTags}
           enableEdit={hasRole('editAssortment')}
         />
-        <input
-          id="sequence"
-          type="number"
-          className="w-24 shadow-xs focus:ring-slate-900 dark:bg-slate-800 dark:border-slate-700 focus:border-slate-900 block text-sm border-slate-300 rounded-md mr-2 font-bold text-slate-900 dark:text-slate-300"
-          defaultValue={assortment?.sequence}
-          onBlur={updateAssortmentSequence}
-        />
-        <div>
-          {isBase ? (
-            <span
-              id="is_base"
-              className="py-2.5 px-8 text-sm font-medium text-white bg-emerald-500 white inline-flex items-center shadow-md border rounded-md"
-            >
-              {formatMessage({
-                id: 'base',
-                defaultMessage: 'Base',
-              })}
-            </span>
-          ) : (
-            <Button
-              id="not_base"
-              text={formatMessage({
-                id: 'not_base',
-                defaultMessage: 'Mark as Base',
-              })}
-              className="py-2.5"
-              onClick={setAsBase}
-            />
-          )}
+        <div className="mt-5">
+          <label htmlFor="sequence" className="text-xs">
+            {formatMessage({
+              id: 'sequence',
+              defaultMessage: 'Display Order',
+            })}
+          </label>
+          <input
+            id="sequence"
+            type="number"
+            className="w-24 shadow-xs focus:ring-slate-900 dark:bg-slate-800 dark:border-slate-700 focus:border-slate-900 block text-sm border-slate-300 rounded-md mr-2 font-bold text-slate-900 dark:text-slate-300"
+            defaultValue={assortment?.sequence}
+            onBlur={updateAssortmentSequence}
+          />
         </div>
-        <SelectOptions
-          options={rootOptions}
-          type={formatMessage({
-            id: 'assortment',
-            defaultMessage: 'Assortment',
-          })}
-        />
-        <SelectOptions
-          options={activeOptions}
-          type={formatMessage({
-            id: 'assortment',
-            defaultMessage: 'Assortment',
-          })}
-        />
+        <div className="mt-5 flex gap-3">
+          <div>
+            {isBase ? (
+              <span
+                id="is_base"
+                className="py-2.5 px-8 text-sm font-medium text-white bg-emerald-500 white inline-flex items-center shadow-md border rounded-md"
+              >
+                {formatMessage({
+                  id: 'base',
+                  defaultMessage: 'Base',
+                })}
+              </span>
+            ) : (
+              <Button
+                id="not_base"
+                text={formatMessage({
+                  id: 'not_base',
+                  defaultMessage: 'Mark as Base',
+                })}
+                className="py-2.5"
+                onClick={setAsBase}
+              />
+            )}
+          </div>
+          <SelectOptions
+            options={rootOptions}
+            type={formatMessage({
+              id: 'assortment',
+              defaultMessage: 'Assortment',
+            })}
+          />
+          <SelectOptions
+            options={activeOptions}
+            type={formatMessage({
+              id: 'assortment',
+              defaultMessage: 'Assortment',
+            })}
+          />
+        </div>
       </div>
+
       <Tab tabItems={assortmentOptions} defaultTab="texts">
         <GetCurrentTab id={assortment?._id} {...extendedData} />
       </Tab>

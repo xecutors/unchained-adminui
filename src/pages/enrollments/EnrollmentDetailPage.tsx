@@ -15,7 +15,7 @@ const EnrollmentDetailPage = ({ enrollmentId }) => {
   });
 
   return (
-    <div className="mt-6 max-w-full">
+    <div className="mt-5 max-w-full">
       <BreadCrumbs
         currentPageTitle={
           enrollment?.enrollmentNumber ? `#${enrollment?.enrollmentNumber}` : ''

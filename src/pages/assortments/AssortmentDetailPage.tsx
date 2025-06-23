@@ -50,7 +50,7 @@ const AssortmentDetailPage = ({ assortmentSlug }) => {
   };
 
   return (
-    <div className="mt-6 max-w-full">
+    <div className="mt-5 max-w-full">
       <BreadCrumbs
         routeName={assortmentSlug}
         depth={3}

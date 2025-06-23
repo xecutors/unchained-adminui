@@ -261,16 +261,22 @@ const ProductDetail = ({ product, extendedData = {} }) => {
         />
       </div>
       <div className="mt-5">
+        <label htmlFor="sequence-input" className="text-xs">
+          {formatMessage({
+            id: 'sequence',
+            defaultMessage: 'Display Order',
+          })}
+        </label>
         <input
           type="number"
           id="sequence-input"
-          className="w-24 shadow-xs focus:ring-slate-900 dark:bg-slate-800 dark:border-slate-700 focus:border-slate-900 block text-sm border-slate-300 rounded-md mr-2 font-bold text-slate-900 dark:text-slate-300 dark:text-white"
+          className="text-center w-16 shadow-xs focus:ring-slate-900 dark:bg-slate-800 dark:border-slate-700 focus:border-slate-900 block text-sm border-slate-300 rounded-md mr-2 font-bold text-slate-900 dark:text-slate-300 dark:text-white"
           defaultValue={product?.sequence}
           onBlur={updateProductSequence}
         />
       </div>
 
-      <div className="mt-5 flex">
+      <div className="mt-5">
         <SelectOptions
           options={activeOptions}
           type={formatMessage({ id: 'product', defaultMessage: 'Product' })}

@@ -14,7 +14,7 @@ const QuotationDetailPage = ({ quotationId }) => {
   });
 
   return (
-    <div className="mt-6 max-w-full">
+    <div className="mt-5 max-w-full">
       <BreadCrumbs currentPageTitle={quotation?.quotationNumber ?? ''} />
       <div className="align-center flex min-w-full justify-between">
         <PageHeader
