@@ -49,13 +49,14 @@ const Currencies = () => {
   };
   const sortKeys = convertSortFieldsToQueryFormat(sort);
 
-  const { currencies, currenciesCount, loading, loadMore, hasMore } = useCurrencies({
-    queryString: queryString as string,
-    limit,
-    offset,
-    includeInactive,
-    sort: sortKeys,
-  });
+  const { currencies, currenciesCount, loading, loadMore, hasMore } =
+    useCurrencies({
+      queryString: queryString as string,
+      limit,
+      offset,
+      includeInactive,
+      sort: sortKeys,
+    });
 
   const { setModal } = useModal();
   const { removeCurrency } = useRemoveCurrency();
@@ -94,15 +95,19 @@ const Currencies = () => {
       <PageHeader
         headerText={formatMessage(
           (currenciesCount ?? 0) === 1
-            ? { id: 'currency_count_header_singular', defaultMessage: '1 Currency' }
-            : { id: 'currencies_count_header', defaultMessage: '{count} Currencies' },
-          { count: currenciesCount ?? 0 }
+            ? {
+                id: 'currency_count_header_singular',
+                defaultMessage: '1 Currency',
+              }
+            : {
+                id: 'currencies_count_header',
+                defaultMessage: '{count} Currencies',
+              },
+          { count: currenciesCount ?? 0 },
         )}
       />
       <div className="min-w-full overflow-x-auto px-1">
-        <ListHeader
-          addPath={hasRole('addCurrency') && '/currency/new'}
-        >
+        <ListHeader addPath={hasRole('addCurrency') && '/currency/new'}>
           <Toggle
             toggleText={formatMessage({
               id: 'show_inactive',

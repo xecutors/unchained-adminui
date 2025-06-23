@@ -52,13 +52,14 @@ const Country = () => {
 
   const sortKeys = convertSortFieldsToQueryFormat(sort);
 
-  const { countries, countriesCount, loading, loadMore, hasMore } = useCountries({
-    queryString: queryString as string,
-    limit,
-    includeInactive,
-    offset,
-    sort: sortKeys,
-  });
+  const { countries, countriesCount, loading, loadMore, hasMore } =
+    useCountries({
+      queryString: queryString as string,
+      limit,
+      includeInactive,
+      offset,
+      sort: sortKeys,
+    });
 
   const { setModal } = useModal();
   const { removeCountry } = useRemoveCountry();
@@ -98,15 +99,19 @@ const Country = () => {
       <PageHeader
         headerText={formatMessage(
           (countriesCount ?? 0) === 1
-            ? { id: 'country_count_header_singular', defaultMessage: '1 Country' }
-            : { id: 'countries_count_header', defaultMessage: '{count} Countries' },
-          { count: countriesCount ?? 0 }
+            ? {
+                id: 'country_count_header_singular',
+                defaultMessage: '1 Country',
+              }
+            : {
+                id: 'countries_count_header',
+                defaultMessage: '{count} Countries',
+              },
+          { count: countriesCount ?? 0 },
         )}
       />
       <div className="min-w-full overflow-x-auto px-1">
-        <ListHeader
-          addPath={hasRole('addCountry') && '/country/new'}
-        >
+        <ListHeader addPath={hasRole('addCountry') && '/country/new'}>
           <Toggle
             toggleText={formatMessage({
               id: 'show_inactive',

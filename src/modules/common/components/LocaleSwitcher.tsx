@@ -22,14 +22,16 @@ const LocaleSwitcher = () => {
         {locales?.map((language) => {
           const displayName = (() => {
             try {
-              return new Intl.DisplayNames([locale], {
-                type: 'language',
-              }).of(language) || language;
+              return (
+                new Intl.DisplayNames([locale], {
+                  type: 'language',
+                }).of(language) || language
+              );
             } catch {
               return language;
             }
           })();
-          
+
           return (
             <option key={language} value={language}>
               {displayName}

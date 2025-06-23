@@ -70,9 +70,15 @@ const DeliveryProviders = () => {
       <PageHeader
         headerText={formatMessage(
           (deliveryProvidersCount ?? 0) === 1
-            ? { id: 'delivery_provider_count_header_singular', defaultMessage: '1 Delivery Provider' }
-            : { id: 'delivery_providers_count_header', defaultMessage: '{count} Delivery Providers' },
-          { count: deliveryProvidersCount ?? 0 }
+            ? {
+                id: 'delivery_provider_count_header_singular',
+                defaultMessage: '1 Delivery Provider',
+              }
+            : {
+                id: 'delivery_providers_count_header',
+                defaultMessage: '{count} Delivery Providers',
+              },
+          { count: deliveryProvidersCount ?? 0 },
         )}
       />
       <ListHeader

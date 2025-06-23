@@ -88,17 +88,21 @@ const FiltersListView = () => {
         <PageHeader
           headerText={formatMessage(
             (filtersCount ?? 0) === 1
-              ? { id: 'filter_count_header_singular', defaultMessage: '1 Filter' }
-              : { id: 'filters_count_header', defaultMessage: '{count} Filters' },
-            { count: filtersCount ?? 0 }
+              ? {
+                  id: 'filter_count_header_singular',
+                  defaultMessage: '1 Filter',
+                }
+              : {
+                  id: 'filters_count_header',
+                  defaultMessage: '{count} Filters',
+                },
+            { count: filtersCount ?? 0 },
           )}
         />
       </div>
 
       <div className="min-w-full overflow-x-auto px-1">
-        <ListHeader
-          addPath={hasRole('addFilter') && '/filters/new'}
-        >
+        <ListHeader addPath={hasRole('addFilter') && '/filters/new'}>
           <Toggle
             toggleText={formatMessage({
               id: 'include_inactive',

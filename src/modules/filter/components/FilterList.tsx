@@ -31,11 +31,7 @@ const FilterList = ({
   }
 
   return (
-    <InfiniteScroll
-      loading={loading}
-      hasMore={hasMore}
-      onLoadMore={loadMore}
-    >
+    <InfiniteScroll loading={loading} hasMore={hasMore} onLoadMore={loadMore}>
       <Table className="min-w-full ">
         {filters?.map((filter) => (
           <Table.Row key={filter._id} header>

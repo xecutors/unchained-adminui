@@ -48,12 +48,12 @@ const TokensPage = () => {
           (tokensCount ?? 0) === 1
             ? { id: 'token_count_header_singular', defaultMessage: '1 Token' }
             : { id: 'tokens_count_header', defaultMessage: '{count} Tokens' },
-          { count: tokensCount ?? 0 }
+          { count: tokensCount ?? 0 },
         )}
       />
       <div className="mt-5 inline-block min-w-full overflow-x-auto px-1">
         <ListHeader />
-        
+
         <LocaleWrapper
           searchComponent={
             <SearchField
