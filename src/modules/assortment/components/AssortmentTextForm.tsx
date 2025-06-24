@@ -111,7 +111,7 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale = null }) => {
                     defaultMessage: 'Slug',
                   })}
                   autoComplete="on"
-                  className="mt-1 w-full text-sm font-medium"
+                  className="mt-1 w-full text-sm"
                 />
               </div>
               <div className="col-span-12">
@@ -124,7 +124,7 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale = null }) => {
                   })}
                   required
                   autoComplete="on"
-                  className="mt-1 w-full text-sm font-medium"
+                  className="mt-1 w-full text-sm"
                 />
               </div>
               <div className="col-span-12">
@@ -136,7 +136,7 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale = null }) => {
                     defaultMessage: 'Subtitle',
                   })}
                   autoComplete="on"
-                  className="mt-1 w-full text-sm font-medium"
+                  className="mt-1 w-full text-sm"
                 />
               </div>
               <div className="col-span-12">

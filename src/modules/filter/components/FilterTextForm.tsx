@@ -92,7 +92,7 @@ const FilterTextForm = ({ filterId, selectedLocale = null }) => {
                 defaultMessage: 'Title',
               })}
               autoComplete="on"
-              className="mt-2 px-4 text-sm font-medium"
+              className="mt-2 px-4 text-sm"
             />
           </div>
 
@@ -105,7 +105,7 @@ const FilterTextForm = ({ filterId, selectedLocale = null }) => {
                 defaultMessage: 'Subtitle',
               })}
               autoComplete="on"
-              className="mt-2 px-4 text-sm font-medium"
+              className="mt-2 px-4 text-sm"
             />
           </div>
           <div className="flex">

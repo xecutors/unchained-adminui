@@ -119,7 +119,7 @@ const ProductTextsForm = ({ productId, selectedLocale = null }) => {
                     defaultMessage: 'Slug',
                   })}
                   autoComplete="on"
-                  className="text-sm font-medium"
+                  className="text-sm"
                 />
               </div>
               <div className="col-span-6 sm:col-span-3">
@@ -132,7 +132,7 @@ const ProductTextsForm = ({ productId, selectedLocale = null }) => {
                     defaultMessage: 'Title',
                   })}
                   autoComplete="on"
-                  className="text-sm font-medium"
+                  className="text-sm"
                 />
               </div>
               <div className="col-span-6 sm:col-span-3">
@@ -144,7 +144,7 @@ const ProductTextsForm = ({ productId, selectedLocale = null }) => {
                     defaultMessage: 'Subtitle',
                   })}
                   autoComplete="on"
-                  className="text-sm font-medium"
+                  className="text-sm"
                 />
               </div>
               <div className="col-span-6 sm:col-span-3">
@@ -156,7 +156,7 @@ const ProductTextsForm = ({ productId, selectedLocale = null }) => {
                     defaultMessage: 'Vendor',
                   })}
                   autoComplete="on"
-                  className="text-sm font-medium"
+                  className="text-sm"
                 />
               </div>
               <div className="col-span-6 sm:col-span-3">
@@ -168,7 +168,7 @@ const ProductTextsForm = ({ productId, selectedLocale = null }) => {
                     defaultMessage: 'Brand',
                   })}
                   autoComplete="on"
-                  className="text-sm font-medium"
+                  className="text-sm"
                 />
               </div>
               <div className="col-span-6 sm:col-span-3">
@@ -184,7 +184,7 @@ const ProductTextsForm = ({ productId, selectedLocale = null }) => {
                     defaultMessage: 'Add',
                   })}
                   autoComplete="on"
-                  className="text-sm font-medium"
+                  className="text-sm"
                 />
               </div>
             </div>

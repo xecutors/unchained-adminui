@@ -38,14 +38,14 @@ const OrderDetailItem = ({ item }) => {
 
                 <div className="w-1/2 flex flex-col justify-center sm:mt-0 ml-3 sm:flex-auto">
                   <h3
-                    className="text-base font-medium text-slate-900 dark:text-slate-200 truncate"
+                    className="text-base text-slate-900 dark:text-slate-200 truncate"
                     dangerouslySetInnerHTML={{
                       __html:
                         item?.product?.texts?.title ||
                         item?.product?.texts?.subtitle,
                     }}
                   />
-                  <div className="mt-1 text-sm font-medium">
+                  <div className="mt-1 text-sm">
                     {formatPrice(item?.unitPrice)}
                   </div>
                   <div className="mt-2 text-xs">
