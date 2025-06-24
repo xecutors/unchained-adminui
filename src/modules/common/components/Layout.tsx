@@ -336,7 +336,7 @@ const Layout = ({
               }
             >
               <Bars4Icon
-                className={`h-5 w-5 ${narrowNav ? '' : 'rotate-90'} transition-transform`}
+                className={`h-6 w-6 ${narrowNav ? '' : 'rotate-90'} transition-transform`}
               />
               {!narrowNav && (
                 <span className="ml-2 text-sm">
