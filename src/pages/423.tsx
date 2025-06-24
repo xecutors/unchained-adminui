@@ -46,7 +46,7 @@ const Locked = () => {
         className="m-auto group relative flex justify-center rounded-md border border-transparent bg-slate-800 dark:bg-slate-600 py-2 px-4 text-sm font-medium text-white hover:bg-slate-950 dark:hover:bg-slate-500 focus:outline-hidden focus:ring-2 focus:ring-slate-800 dark:focus:ring-slate-400 focus:ring-offset-2"
         id="submit"
         onClick={async () => {
-          await logOut(apollo);
+          await logOut(apollo, router);
         }}
       >
         {formatMessage({
