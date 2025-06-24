@@ -259,7 +259,10 @@ const Layout = ({
 
           <div className="h-0 flex-1 overflow-y-auto pt-5 pb-4">
             <div className="flex shrink-0 items-center px-2 lg:px-4 2xl:px-6">
-              <Link href="/" className="focus:outline-hidden focus:ring-2 focus:ring-slate-800 rounded-md p-1">
+              <Link
+                href="/"
+                className="focus:outline-hidden focus:ring-2 focus:ring-slate-800 rounded-md p-1"
+              >
                 <div className="dark:brightness-0 dark:invert">
                   <ImageWithFallback
                     src={process.env.NEXT_PUBLIC_LOGO}
@@ -278,7 +281,7 @@ const Layout = ({
               onClick={() => setHideNav(!hideNav)}
             />
           </div>
-          <div className="flex items-center shrink-0 border-t border-slate-300 dark:border-slate-800 p-4">
+          <div className="flex items-center shrink-0 border-t border-slate-300 dark:border-slate-800">
             <UserAvatar avatar={currentUser?.avatar} {...currentUser} />
             <div className="ml-auto">
               <ThemeToggle />
@@ -295,7 +298,10 @@ const Layout = ({
             <div
               className={`flex shrink-0 items-center ${narrowNav ? 'px-2 justify-center' : 'px-2 lg:px-4 2xl:px-6'}`}
             >
-              <Link href="/" className="focus:outline-hidden focus:ring-2 focus:ring-slate-800 rounded-md p-1">
+              <Link
+                href="/"
+                className="focus:outline-hidden focus:ring-2 focus:ring-slate-800 rounded-md p-1"
+              >
                 <div className="dark:brightness-0 dark:invert">
                   <ImageWithFallback
                     src={process.env.NEXT_PUBLIC_LOGO}
@@ -311,11 +317,13 @@ const Layout = ({
             </div>
             <SideNav navigation={defaultNavigation} narrowView={narrowNav} />
           </div>
-          <div className="flex items-center shrink-0 border-t border-slate-300 dark:border-slate-800 px-2 lg:px-4 2xl:px-6 py-4">
+          <div
+            className={`flex items-center shrink-0 border-t border-slate-300 dark:border-slate-800 py-2 ${narrowNav ? 'justify-center px-2' : 'px-2 lg:px-4 2xl:px-6'}`}
+          >
             {!narrowNav && (
               <UserAvatar avatar={currentUser?.avatar} {...currentUser} />
             )}
-            <div className={narrowNav ? 'mx-auto flex items-center justify-center' : 'ml-auto'}>
+            <div className={narrowNav ? '' : 'ml-auto'}>
               <ThemeToggle />
             </div>
           </div>
