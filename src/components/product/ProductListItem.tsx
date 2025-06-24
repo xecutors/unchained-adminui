@@ -39,7 +39,7 @@ const ProductListItem: React.FC<ProductListItemProps> = ({ product }) => {
         gridRow: 'span 6',
       }}
     >
-      <div className="aspect-square bg-slate-50 relative">
+      <div className="aspect-square bg-slate-50 dark:bg-slate-700 relative">
         {media?.length ? (
           <ImageWithFallback
             src={media[0]?.file.url}
