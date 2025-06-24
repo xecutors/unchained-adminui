@@ -13,18 +13,19 @@ export const useCustomMessage = () => {
   const formatCustomMessage = (
     messageDescriptor: { id: string; defaultMessage?: string },
     values?: Record<string, any>,
-    options: UseCustomMessageOptions = {}
+    options: UseCustomMessageOptions = {},
   ): string => {
     const { category = 'general', fallback } = options;
-    
+
     // First check for custom text override
     const customText = getCustomText(messageDescriptor.id, category);
     if (customText) {
       // Simple placeholder replacement for custom texts
       if (values) {
         return Object.entries(values).reduce(
-          (text, [key, value]) => text.replace(new RegExp(`{${key}}`, 'g'), String(value)),
-          customText
+          (text, [key, value]) =>
+            text.replace(new RegExp(`{${key}}`, 'g'), String(value)),
+          customText,
         );
       }
       return customText;
@@ -35,22 +36,26 @@ export const useCustomMessage = () => {
       return formatMessage(messageDescriptor, values);
     } catch (error) {
       console.warn(`Translation missing for key: ${messageDescriptor.id}`);
-      return fallback || messageDescriptor.defaultMessage || messageDescriptor.id;
+      return (
+        fallback || messageDescriptor.defaultMessage || messageDescriptor.id
+      );
     }
   };
 
   const formatHelpMessage = (
     messageDescriptor: { id: string; defaultMessage?: string },
-    values?: Record<string, any>
+    values?: Record<string, any>,
   ): string => {
     return formatCustomMessage(messageDescriptor, values, { category: 'help' });
   };
 
   const formatLabelMessage = (
     messageDescriptor: { id: string; defaultMessage?: string },
-    values?: Record<string, any>
+    values?: Record<string, any>,
   ): string => {
-    return formatCustomMessage(messageDescriptor, values, { category: 'label' });
+    return formatCustomMessage(messageDescriptor, values, {
+      category: 'label',
+    });
   };
 
   return {

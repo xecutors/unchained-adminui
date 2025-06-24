@@ -190,11 +190,15 @@ const ProductReviewsItem = ({
                   : 'text-slate-400 dark:text-slate-500'
               }`}
             />
-            <span className={`text-sm font-medium ${
-              hasAlreadyVoted(voteTypes.UPVOTE)
-                ? 'text-green-700 dark:text-green-300'
-                : 'text-slate-700 dark:text-slate-300'
-            }`}>{review.upVote}</span>
+            <span
+              className={`text-sm font-medium ${
+                hasAlreadyVoted(voteTypes.UPVOTE)
+                  ? 'text-green-700 dark:text-green-300'
+                  : 'text-slate-700 dark:text-slate-300'
+              }`}
+            >
+              {review.upVote}
+            </span>
           </button>
           <button
             type="button"
@@ -213,11 +217,15 @@ const ProductReviewsItem = ({
                   : 'text-slate-400 dark:text-slate-500'
               }`}
             />
-            <span className={`text-sm font-medium ${
-              hasAlreadyVoted(voteTypes.DOWNVOTE)
-                ? 'text-red-700 dark:text-red-300'
-                : 'text-slate-700 dark:text-slate-300'
-            }`}>{review.downVote}</span>
+            <span
+              className={`text-sm font-medium ${
+                hasAlreadyVoted(voteTypes.DOWNVOTE)
+                  ? 'text-red-700 dark:text-red-300'
+                  : 'text-slate-700 dark:text-slate-300'
+              }`}
+            >
+              {review.downVote}
+            </span>
           </button>
         </div>
 
@@ -236,17 +244,18 @@ const ProductReviewsItem = ({
             >
               <FlagIcon
                 className={classNames('h-4 w-4', {
-                  'text-orange-600 dark:text-orange-400': hasAlreadyVoted(voteTypes.REPORT),
-                  'text-slate-400 dark:text-slate-500': !hasAlreadyVoted(voteTypes.REPORT),
+                  'text-orange-600 dark:text-orange-400': hasAlreadyVoted(
+                    voteTypes.REPORT,
+                  ),
+                  'text-slate-400 dark:text-slate-500': !hasAlreadyVoted(
+                    voteTypes.REPORT,
+                  ),
                 })}
               />
             </button>
           )}
           {canDeleteReview && (
-            <DeleteButton
-              onClick={() => onRemove(review._id)}
-              className=""
-            />
+            <DeleteButton onClick={() => onRemove(review._id)} className="" />
           )}
           {review.deleted && (
             <Badge
@@ -262,8 +271,12 @@ const ProductReviewsItem = ({
       </div>
 
       <div className="mt-4 space-y-3">
-        <h3 className="text-base font-semibold text-slate-900 dark:text-slate-100">{review.title}</h3>
-        <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">{review.review}</p>
+        <h3 className="text-base font-semibold text-slate-900 dark:text-slate-100">
+          {review.title}
+        </h3>
+        <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+          {review.review}
+        </p>
       </div>
     </div>
   );

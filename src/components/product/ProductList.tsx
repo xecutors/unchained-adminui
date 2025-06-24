@@ -18,20 +18,23 @@ const ProductList: React.FC<ProductListProps> = ({ products }) => {
     }
     return 'grid';
   });
-  
+
   const [statusFilter, setStatusFilter] = useState<string>('ALL');
 
   useEffect(() => {
     localStorage.setItem('product-view-mode', viewMode);
   }, [viewMode]);
-  
+
   // Filter products based on selected status
-  const filteredProducts = statusFilter === 'ALL' 
-    ? products 
-    : products.filter(p => p.status === statusFilter);
+  const filteredProducts =
+    statusFilter === 'ALL'
+      ? products
+      : products.filter((p) => p.status === statusFilter);
 
   // Get unique statuses from products
-  const availableStatuses = [...new Set(products.map(p => p.status))].filter(Boolean);
+  const availableStatuses = [...new Set(products.map((p) => p.status))].filter(
+    Boolean,
+  );
 
   return (
     <div>
@@ -46,10 +49,11 @@ const ProductList: React.FC<ProductListProps> = ({ products }) => {
                   : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
               }`}
             >
-{formatMessage({ id: 'all', defaultMessage: 'All' })} ({products.length})
+              {formatMessage({ id: 'all', defaultMessage: 'All' })} (
+              {products.length})
             </button>
-            {availableStatuses.map(status => {
-              const count = products.filter(p => p.status === status).length;
+            {availableStatuses.map((status) => {
+              const count = products.filter((p) => p.status === status).length;
               return (
                 <button
                   key={status}
@@ -74,7 +78,10 @@ const ProductList: React.FC<ProductListProps> = ({ products }) => {
                 ? 'bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 shadow-sm'
                 : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
             }`}
-title={formatMessage({ id: 'grid_view', defaultMessage: 'Grid view' })}
+            title={formatMessage({
+              id: 'grid_view',
+              defaultMessage: 'Grid view',
+            })}
           >
             <Squares2X2Icon className="h-4 w-4" />
           </button>
@@ -85,7 +92,10 @@ title={formatMessage({ id: 'grid_view', defaultMessage: 'Grid view' })}
                 ? 'bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 shadow-sm'
                 : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
             }`}
-title={formatMessage({ id: 'list_view', defaultMessage: 'List view' })}
+            title={formatMessage({
+              id: 'list_view',
+              defaultMessage: 'List view',
+            })}
           >
             <ListBulletIcon className="h-4 w-4" />
           </button>

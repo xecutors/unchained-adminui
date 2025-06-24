@@ -44,10 +44,14 @@ const CustomTextManager: React.FC = () => {
   };
 
   const handleDelete = (text: any) => {
-    if (confirm(formatMessage({ 
-      id: 'confirm_delete_custom_text', 
-      defaultMessage: 'Are you sure you want to delete this custom text?' 
-    }))) {
+    if (
+      confirm(
+        formatMessage({
+          id: 'confirm_delete_custom_text',
+          defaultMessage: 'Are you sure you want to delete this custom text?',
+        }),
+      )
+    ) {
       removeCustomText(text.key, text.category);
     }
   };
@@ -89,7 +93,10 @@ const CustomTextManager: React.FC = () => {
             </li>
           ) : (
             customTexts.map((text, index) => (
-              <li key={`${text.key}-${text.category}-${index}`} className="px-6 py-4">
+              <li
+                key={`${text.key}-${text.category}-${index}`}
+                className="px-6 py-4"
+              >
                 <div className="flex items-center justify-between">
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center space-x-3">
@@ -147,7 +154,7 @@ const CustomTextManager: React.FC = () => {
             required
             {...form.getFieldProps('key')}
           />
-          
+
           <div>
             <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               {formatMessage({

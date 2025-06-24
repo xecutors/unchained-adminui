@@ -29,8 +29,8 @@ interface CustomTextProviderProps {
   children: React.ReactNode;
 }
 
-export const CustomTextProvider: React.FC<CustomTextProviderProps> = ({ 
-  children 
+export const CustomTextProvider: React.FC<CustomTextProviderProps> = ({
+  children,
 }) => {
   const { locale } = useIntl();
   const [customTexts, setCustomTexts] = useState<CustomText[]>([]);
@@ -63,9 +63,10 @@ export const CustomTextProvider: React.FC<CustomTextProviderProps> = ({
 
   const getCustomText = (key: string, category = 'general'): string | null => {
     const customText = customTexts.find(
-      (text) => text.key === key && 
-                text.locale === locale && 
-                text.category === category
+      (text) =>
+        text.key === key &&
+        text.locale === locale &&
+        text.category === category,
     );
     return customText?.text || null;
   };
@@ -73,7 +74,7 @@ export const CustomTextProvider: React.FC<CustomTextProviderProps> = ({
   const setCustomText = (key: string, text: string, category = 'general') => {
     const newTexts = [...customTexts];
     const existingIndex = newTexts.findIndex(
-      (t) => t.key === key && t.locale === locale && t.category === category
+      (t) => t.key === key && t.locale === locale && t.category === category,
     );
 
     if (existingIndex >= 0) {
@@ -92,7 +93,7 @@ export const CustomTextProvider: React.FC<CustomTextProviderProps> = ({
 
   const removeCustomText = (key: string, category = 'general') => {
     const newTexts = customTexts.filter(
-      (t) => !(t.key === key && t.locale === locale && t.category === category)
+      (t) => !(t.key === key && t.locale === locale && t.category === category),
     );
     saveCustomTexts(newTexts);
   };

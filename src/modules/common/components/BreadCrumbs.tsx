@@ -12,28 +12,28 @@ const BreadCrumbs = ({
 
   // Mapping of route segments to translation keys
   const routeTranslations = {
-    'products': 'products',
-    'orders': 'orders', 
-    'users': 'users',
-    'assortments': 'assortments',
-    'filters': 'filters',
-    'tokens': 'tokens',
-    'quotations': 'quotations',
-    'enrollments': 'enrollments',
-    'activities': 'activities',
-    'works': 'work_queue',
-    'events': 'events',
-    'currency': 'currencies',
-    'country': 'countries',
-    'language': 'languages',
+    products: 'products',
+    orders: 'orders',
+    users: 'users',
+    assortments: 'assortments',
+    filters: 'filters',
+    tokens: 'tokens',
+    quotations: 'quotations',
+    enrollments: 'enrollments',
+    activities: 'activities',
+    works: 'work_queue',
+    events: 'events',
+    currency: 'currencies',
+    country: 'countries',
+    language: 'languages',
     'delivery-provider': 'delivery_providers',
     'payment-provider': 'payment_providers',
     'warehousing-provider': 'warehousing_provider',
     'custom-texts': 'custom_texts',
-    'system': 'system',
-    'account': 'account',
-    'new': 'new',
-    'edit': 'edit'
+    system: 'system',
+    account: 'account',
+    new: 'new',
+    edit: 'edit',
   };
   const pathArr = router.asPath
 
@@ -59,13 +59,13 @@ const BreadCrumbs = ({
     // remove hyphens incase it hyphen deliminated slug
     const pathSegment = e?.split('?')[0];
     const pathName = routeName ? pathSegment : pathSegment.replace(/-/g, ' ');
-    
+
     // Try to get translation for this route segment
     const translationKey = routeTranslations[pathSegment];
-    const translatedName = translationKey 
+    const translatedName = translationKey
       ? formatMessage({ id: translationKey, defaultMessage: pathName })
       : decodeURIComponent(pathName);
-    
+
     return {
       name: translatedName,
       path: currentRoute.replace(/.$/, ''),
