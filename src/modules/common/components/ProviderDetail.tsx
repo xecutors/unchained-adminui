@@ -27,7 +27,7 @@ const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess, readOnly }) => {
           <div className="mt-6 flex flex-col">
             <div className="max-w-xs">
               <div className="flex flex-col items-start sm:flex-row sm:items-center sm:justify-between">
-                <div className="flex justify-center py-4 sm:py-5">
+                <div className="flex justify-between w-full gap-3">
                   <dt className="my-auto inline-block text-sm text-slate-400 ">
                     {formatMessage({
                       id: 'type_colon',
@@ -39,7 +39,7 @@ const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess, readOnly }) => {
                       PROVIDER_TYPE_CLASSES[provider?.type]
                     }-100 text-${
                       PROVIDER_TYPE_CLASSES[provider?.type]
-                    }-800 ml-4 inline-block rounded-lg border p-2 text-lg font-bold leading-4`}
+                    }-800 inline-block rounded-lg border px-2 text-md`}
                   >
                     {provider?.type}
                   </dd>
