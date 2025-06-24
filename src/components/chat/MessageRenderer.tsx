@@ -29,13 +29,15 @@ const MessageRenderer: React.FC<MessageRendererProps> = ({ message, user }) => {
         className={`${
           isUser
             ? 'bg-slate-200 dark:bg-slate-700 rounded-br-none rounded-xl max-w-md px-3 py-2'
-            : 'text-slate-800 dark:text-slate-200 flex-1 max-w-4xl px-4 py-3'
+            : 'text-slate-800 dark:text-slate-200 flex-1 max-w-4xl py-3'
         }`}
       >
         {message.parts.map((part: any, index: number) => {
           switch (part.type) {
             case 'text':
-              return <MarkdownText key={index} text={part.text} className="mb-0" />;
+              return (
+                <MarkdownText key={index} text={part.text} className="mb-0" />
+              );
             case 'tool-invocation':
               return <ToolInvocationRenderer key={index} part={part} />;
             case 'step-start':
