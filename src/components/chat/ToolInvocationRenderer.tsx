@@ -17,10 +17,10 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
     // Safely extract text from content
     const content = result.content[0];
     const text = content?.text || content;
-    
+
     // If text is not a string, try to stringify it
     const textString = typeof text === 'string' ? text : JSON.stringify(text);
-    
+
     // Check if the response is an error message instead of JSON
     if (textString && textString.startsWith('Error')) {
       return (
@@ -30,7 +30,7 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
         </div>
       );
     }
-    
+
     const parsed = JSON.parse(textString);
     const listViewTools = [
       'create_product',
@@ -82,9 +82,9 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
         <details className="mt-2">
           <summary className="cursor-pointer text-xs">Debug info</summary>
           <pre className="text-xs mt-1 p-2 bg-red-50 dark:bg-red-950 rounded overflow-auto">
-Tool: {toolName}
-Error: {error?.message || 'Unknown error'}
-Content: {JSON.stringify(result?.content, null, 2)}
+            Tool: {toolName}
+            Error: {error?.message || 'Unknown error'}
+            Content: {JSON.stringify(result?.content, null, 2)}
           </pre>
         </details>
       </div>
