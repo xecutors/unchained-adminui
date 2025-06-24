@@ -16,7 +16,7 @@ const WorkList = ({ workQueue, sortable }) => {
             })}
           </Table.Cell>
 
-          <Table.Cell>
+          <Table.Cell sortKey="status">
             {formatMessage({ id: 'status', defaultMessage: 'Status' })}
           </Table.Cell>
 
