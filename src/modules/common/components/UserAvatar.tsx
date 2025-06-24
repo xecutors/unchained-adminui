@@ -6,13 +6,15 @@ import { useApolloClient } from '@apollo/client';
 import { toast } from 'react-toastify';
 import logOut from '../../accounts/hooks/logOut';
 import { UserCircleIcon } from '@heroicons/react/24/outline';
+import { useRouter } from 'next/router';
 
 const UserAvatar = ({ avatar, ...user }) => {
   const { formatMessage } = useIntl();
   const apolloClient = useApolloClient();
+  const router = useRouter();
 
   const onLogout = async () => {
-    await logOut(apolloClient);
+    await logOut(apolloClient, router);
     toast.success(
       formatMessage({
         id: 'logged_out',
