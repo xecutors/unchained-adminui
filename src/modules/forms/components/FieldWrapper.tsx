@@ -35,9 +35,9 @@ const FieldWrapper = ({
         aria-label={label}
         htmlFor={name}
         className={classnames(
-          'mb-2 block text-left text-sm font-light text-slate-500 dark:text-slate-400',
+          'mb-2 block text-left text-sm font-light text-slate-800 dark:text-slate-400',
           {
-            'mt-1 mb-5 rounded-sm border border-red-100 dark:border-none bg-red-50 dark:bg-red-300 p-2 pl-4 text-red-400 dark:text-red-800':
+            'mt-1 mb-5 rounded-sm border border-rose-100 dark:border-none bg-rose-50 dark:bg-rose-300 p-2 pl-4 text-rose-700 dark:text-rose-800':
               !!error,
             'sr-only': hideLabel,
           },

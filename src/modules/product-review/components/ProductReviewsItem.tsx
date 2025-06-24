@@ -119,7 +119,7 @@ const ProductReviewsItem = ({
     <div
       key={review._id}
       className={classNames(
-        'mb-4 rounded-lg border shadow-sm bg-white dark:bg-slate-800 p-4',
+        'mb-4 rounded-lg shadow-sm bg-white dark:bg-slate-800 p-4',
         {
           'border-red-200 bg-red-50 dark:bg-red-950': review.deleted,
         },
