@@ -19,7 +19,7 @@ const SortButton = ({ onSort, sortDirection }) => {
         viewBox="0 0 24 24"
         strokeWidth={1.5}
         stroke="currentColor"
-        className="mr-2 w-6 h-6"
+        className="ml-2 w-6 h-6"
         onClick={onSort}
       >
         <path
@@ -31,9 +31,9 @@ const SortButton = ({ onSort, sortDirection }) => {
     );
 
   return sortDirection === 'ASC' ? (
-    <ChevronUpIcon className="mr-2 w-6 h-6 text-slate-900" onClick={onSort} />
+    <ChevronUpIcon className="ml-2 w-4 h-4 text-slate-700" onClick={onSort} />
   ) : (
-    <ChevronDownIcon className="mr-2 w-6 h-6 text-slate-900" onClick={onSort} />
+    <ChevronDownIcon className="ml-2 w-4 h-4 text-slate-700" onClick={onSort} />
   );
 };
 
@@ -97,7 +97,9 @@ const TableCell = ({
       )}
       {...props}
     >
-      <div className="flex">
+      <div className="flex items-center">
+        <div className="sm:inline">{children}</div>
+
         {Td === 'th' && enablesort && sortKey && (
           <SortButton
             onSort={onSort}
@@ -108,8 +110,6 @@ const TableCell = ({
             }
           />
         )}
-
-        <div className="sm:inline w-full">{children}</div>
       </div>
     </Td>
   );
