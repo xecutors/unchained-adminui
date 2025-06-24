@@ -20,6 +20,7 @@ import Script from 'next/script';
 import AuthWrapper from '../modules/Auth/AuthWrapper';
 import { ChatProvider } from '../modules/chat/ChatContext';
 import CustomTextProvider from '../modules/i18n/components/CustomTextProvider';
+import ImageWithFallback from '../modules/common/components/ImageWithFallback';
 
 const handleRouteChange = (url) => {
   matomo.pageView(document.location.origin + url, document.title);
@@ -31,6 +32,15 @@ const UnchainedAdmin = ({ Component, componentName, pageProps, router }) => {
   const getLayout = Component.getLayout
     ? (page) => (
         <AuthWrapper>
+          <div className="absolute top-4 left-4">
+            <ImageWithFallback
+              src={process.env.NEXT_PUBLIC_LOGO}
+              width={32}
+              height={20}
+              alt="Logo"
+              className="dark:brightness-0 dark:invert"
+            />
+          </div>
           <div className="absolute top-4 right-4">
             <ThemeToggle />
           </div>

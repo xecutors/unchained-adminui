@@ -45,9 +45,9 @@ const PasswordReset = () => {
   return !isValid ? (
     // Error state: Invalid/expired token
     <div className="flex min-h-screen items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="w-full max-w-md space-y-8 text-center">
+      <div className="w-full max-w-md space-y-4 text-center">
         <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-slate-900 dark:text-slate-200">
+          <h2 className="text-center text-3xl text-slate-900 dark:text-slate-200">
             {formatMessage({
               id: 'reset_token_error',
               defaultMessage: 'Reset Token Error',
@@ -55,7 +55,7 @@ const PasswordReset = () => {
           </h2>
         </div>
         <FormWrapper>
-          <div className="mt-8 space-y-6 px-4 pt-3 pb-8 sm:rounded-lg sm:px-10">
+          <div className="space-y-6 px-4 pb-5 pt-3 sm:rounded-lg sm:px-10">
             <div className="text-center">
               <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-red-100 dark:bg-red-900">
                 <svg
@@ -165,9 +165,9 @@ const PasswordReset = () => {
   ) : (
     // Valid token state: Show reset password form
     <div className="flex min-h-screen items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="w-full max-w-md space-y-8 text-center">
+      <div className="w-full max-w-md space-y-4 text-center">
         <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-slate-900 dark:text-slate-200">
+          <h2 className="text-center text-3xl text-slate-900 dark:text-slate-200">
             {formatMessage({
               id: 'reset_password',
               defaultMessage: 'Reset Password',
