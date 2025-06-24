@@ -205,7 +205,7 @@ const CustomTextManager: React.FC = () => {
               <Button
                 type="button"
                 onClick={() => setIsModalOpen(false)}
-                variant="secondary"
+                variant="quaternary"
                 text={formatMessage({
                   id: 'cancel',
                   defaultMessage: 'Cancel',
