@@ -188,7 +188,7 @@ const SubscriptionForm = ({ productId }) => {
               />
             </div>
 
-            <div className="border-t-slate-100 border-t space-y-6 bg-slate-50 dark:bg-slate-500 text-right sm:p-6">
+            <div className="-mx-6 -mb-6 mt-6 border-t-slate-100 border-t space-y-6 bg-slate-50 dark:bg-slate-500 text-right sm:p-6">
               <SubmitButton
                 hidden={!hasRole('addEnrollment')}
                 label={formatMessage({
