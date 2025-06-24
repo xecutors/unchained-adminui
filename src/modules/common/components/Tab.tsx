@@ -55,13 +55,20 @@ const Tab = ({ children, tabItems, defaultTab, updateRoute = true }) => {
               <a
                 id={option.id}
                 key={option.id}
+                tabIndex={0}
                 onClick={() => onTabSelected(option.id)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    onTabSelected(option.id);
+                  }
+                }}
                 className={classNames(
                   {
                     'cursor-pointer rounded-lg border border-slate-300 dark:border-slate-600 bg-white text-slate-900 dark:text-slate-100 dark:bg-slate-700 shadow-sm':
                       tab === option.id,
                   },
-                  'cursor-pointer relative whitespace-nowrap border border-transparent py-3 px-1 pr-3 pl-2 text-sm dark:text-slate-400 font-medium dark:hover:bg-slate-700 hover:border-slate-200 hover:rounded-lg',
+                  'cursor-pointer relative whitespace-nowrap border border-transparent py-3 px-1 pr-3 pl-2 text-sm dark:text-slate-400 font-medium dark:hover:bg-slate-700 hover:border-slate-200 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-slate-800',
                 )}
               >
                 <div className="flex items-center space-x-1">
