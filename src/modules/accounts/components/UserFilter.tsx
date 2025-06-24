@@ -30,11 +30,8 @@ const UserFilter: React.FC = () => {
 
   return (
     <>
-      <div
-        className="mb-4 flex flex-col gap-5 py-4"
-        style={{ maxWidth: '500px' }}
-      >
-        <div className="flex-1">
+      <div className="mt-5 flex flex-wrap gap-10">
+        <div className="flex-1 min-w-[200px]">
           <label className="block text-sm font-medium text-slate-700 dark:text-slate-500 mb-1">
             {formatMessage({
               id: 'email_verified_label',

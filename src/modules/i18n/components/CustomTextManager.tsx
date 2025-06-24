@@ -64,11 +64,11 @@ const CustomTextManager: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 mt-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-lg font-medium text-slate-900 dark:text-slate-100">
+        <h2 className="text-md dark:text-slate-400">
           {formatMessage({
-            id: 'custom_texts',
+            id: 'custom_texts_description',
             defaultMessage: 'Custom Texts',
           })}
         </h2>

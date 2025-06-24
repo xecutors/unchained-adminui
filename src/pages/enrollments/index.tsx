@@ -88,10 +88,10 @@ const EnrollmentListView = () => {
         )}
       />
       <div>
-        <p className="mt-5 text-md font-medium leading-5 text-slate-800 dark:text-slate-200 lg:gap-7 lg:leading-6 ">
+        <p className="mt-5 text-sm text-slate-400 dark:text-slate-200 lg:gap-7 lg:leading-6 ">
           {formatMessage({ id: 'status', defaultMessage: 'Status' })}
         </p>
-        <div className="mt-2 grid grid-cols-2 gap-5 sm:grid-cols-2 lg:grid-cols-5 lg:pr-5">
+        <div className="flex flex-wrap gap-10">
           <StatusFilter
             statuses={ENROLLMENT_STATUS}
             onStatusChange={onStatusChange}
