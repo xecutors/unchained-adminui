@@ -21,7 +21,7 @@ const ProductForm = ({
 }) => {
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
-  
+
   const successMessage = formatMessage({
     id: 'product_added',
     defaultMessage: 'Product added successfully!',
@@ -30,17 +30,19 @@ const ProductForm = ({
   const form = useForm({
     submit: async (values) => {
       const { title, subtitle, type, tags } = values;
-      
+
       if (!title || !type) {
         return { success: false };
       }
 
-      const texts = [{
-        title,
-        subtitle: subtitle || '',
-        slug: title.toLowerCase().replace(/\s+/g, '-'),
-        locale: 'de'
-      }];
+      const texts = [
+        {
+          title,
+          subtitle: subtitle || '',
+          slug: title.toLowerCase().replace(/\s+/g, '-'),
+          locale: 'de',
+        },
+      ];
 
       return await onSubmit({ texts, type, tags: tags || [] });
     },

@@ -7,10 +7,11 @@ import CopilotHeader from './CopilotHeader';
 import CopilotInput from './CopilotInput';
 
 const Copilot: React.FC = () => {
-  const { messages, status } = useChatContext();
+  const { messages, status, reload } = useChatContext();
   const { shopInfo } = useShopInfo();
   const { currentUser } = useCurrentUser();
   const bottomRef = useRef<HTMLDivElement>(null);
+  const loading = status !== 'ready' && status !== 'error';
 
   useEffect(() => {
     const el = bottomRef.current;
@@ -68,12 +69,30 @@ const Copilot: React.FC = () => {
             />
           );
         })}
-        {status !== 'ready' && <LoadingIndicator />}
+        {status === 'error' && (
+          <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-slate-900 font-sans">
+            <div className="py-16 text-center max-w-lg mx-auto">
+              <p className="mt-2 text-sm text-red-400 dark:text-red-300">
+                A error occurred while processing your request, please reload
+                the conversation and submit something shorter.
+              </p>
+              <button
+                onClick={reload}
+                className="mt-6 bg-transparent hover:bg-slate-950 text-slate-950 hover:text-white dark:hover:text-white rounded-sm shadow-sm hover:shadow-lg py-2 px-4 border border-slate-950 dark:border-slate-200 hover:border-transparent"
+              >
+                Retry
+              </button>
+            </div>
+          </div>
+        )}
+        {loading && <LoadingIndicator />}
+
         <div
           ref={bottomRef}
-          className={messages.length > 0 || status !== 'ready' ? 'pb-6' : ''}
+          className={messages.length > 0 || loading ? 'pb-6' : ''}
         />
       </main>
+
       <CopilotInput />
     </div>
   );

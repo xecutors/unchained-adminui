@@ -29,11 +29,15 @@ const CopilotInput: React.FC = () => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          if (input.trim()) {
-            setInputHistory((prev) => [...prev, input]);
-            setHistoryIndex(-1);
+          try {
+            if (input.trim()) {
+              setInputHistory((prev) => [...prev, input]);
+              setHistoryIndex(-1);
+            }
+            handleSubmit(e);
+          } catch (e) {
+            console.error(e);
           }
-          handleSubmit(e);
         }}
         className="bg-white dark:bg-slate-800 shadow-2xl border border-slate-300 dark:border-slate-700 rounded-md p-3"
       >
