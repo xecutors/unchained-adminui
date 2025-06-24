@@ -39,7 +39,7 @@ const UserFilter: React.FC = () => {
             })}
           </label>
           <select
-            className="w-full p-2 border-1 border-slate-300 rounded-lg"
+            className="w-full p-2 border-1 border-slate-300 rounded-lg dark:bg-slate-700 dark:border-slate-500 focus:ring-2 focus:ring-slate-800 dark:focus:ring-slate-400 focus:outline-hidden"
             defaultValue={router.query?.emailVerified || ''}
             onChange={(e) => updateQuery('emailVerified', e.target.value)}
           >
