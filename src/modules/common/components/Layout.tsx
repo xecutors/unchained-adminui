@@ -311,7 +311,7 @@ const Layout = ({
             </div>
             <SideNav navigation={defaultNavigation} narrowView={narrowNav} />
           </div>
-          <div className="flex items-center shrink-0 border-t border-slate-300 dark:border-slate-800 p-4">
+          <div className="flex items-center shrink-0 border-t border-slate-300 dark:border-slate-800 px-2 lg:px-4 2xl:px-6 py-4">
             {!narrowNav && (
               <UserAvatar avatar={currentUser?.avatar} {...currentUser} />
             )}

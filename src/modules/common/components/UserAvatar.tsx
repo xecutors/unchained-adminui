@@ -23,25 +23,25 @@ const UserAvatar = ({ avatar, ...user }) => {
 
   return (
     <a href="#" onClick={onLogout} className="group block shrink-0">
-      <div className="flex items-center">
+      <div className="flex items-center pl-2">
         {avatar ? (
           <ImageWithFallback
             src={avatar?.url}
             loader={defaultNextImageLoader}
             width={36}
             height={36}
-            className="rounded"
+            className="rounded mr-3"
             alt={formatMessage({
               id: 'user_avatar',
               defaultMessage: 'User avatar',
             })}
           />
         ) : (
-          <span className="inline-block h-8 w-8 overflow-hidden rounded-full">
+          <span className="inline-block h-6 w-6 overflow-hidden rounded-full mr-3">
             <UserCircleIcon className="h-full w-full text-slate-700" />
           </span>
         )}
-        <div className="ml-3">
+        <div>
           <p className="text-sm font-medium text-slate-700 dark:text-slate-400 group-hover:text-slate-700 dark:group-hover:text-slate-800">
             {formatUsername(user)}
           </p>
