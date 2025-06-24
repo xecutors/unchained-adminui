@@ -5,7 +5,11 @@ import { IntlProvider } from 'react-intl';
 import { useState, useEffect } from 'react';
 import getMessages from '../utils/getMessages';
 
-const IntlWrapper = ({ children, locale: initialLocale, messages: initialMessages }) => {
+const IntlWrapper = ({
+  children,
+  locale: initialLocale,
+  messages: initialMessages,
+}) => {
   const [locale, setLocale] = useState(initialLocale);
   const [messages, setMessages] = useState(initialMessages);
 

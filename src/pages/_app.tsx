@@ -42,7 +42,7 @@ const UnchainedAdmin = ({ Component, componentName, pageProps, router }) => {
   // Always start with default locale to avoid hydration mismatch
   // The actual locale will be updated after hydration in IntlWrapper
   const getEffectiveLocale = () => {
-    return 'de'; // Default to German to ensure server/client consistency
+    return process.env.NEXT_PUBLIC_DEFAULT_LOCALE || 'de'; // Default to German to ensure server/client consistency
   };
 
   const effectiveLocale = getEffectiveLocale();
@@ -57,52 +57,56 @@ const UnchainedAdmin = ({ Component, componentName, pageProps, router }) => {
   }, [apollo]);
 
   return (
-    <IntlWrapper locale={effectiveLocale} messages={messages} key="intl-provider">
+    <IntlWrapper
+      locale={effectiveLocale}
+      messages={messages}
+      key="intl-provider"
+    >
       <CustomTextProvider>
         <ErrorBoundary>
           <Head>
             <title>Unchained: Admin UI</title>
-          {process.env.NEXT_PUBLIC_MATOMO_SITE_ID ? (
-            <>
-              <Script
-                id="matomo-script"
-                src={`${process.env.NEXT_PUBLIC_MATOMO_URL}/matomo.js`}
-              />
-              <Script
-                id="matomo-config"
-                dangerouslySetInnerHTML={{
-                  __html: `
+            {process.env.NEXT_PUBLIC_MATOMO_SITE_ID ? (
+              <>
+                <Script
+                  id="matomo-script"
+                  src={`${process.env.NEXT_PUBLIC_MATOMO_URL}/matomo.js`}
+                />
+                <Script
+                  id="matomo-config"
+                  dangerouslySetInnerHTML={{
+                    __html: `
   var _paq = window._paq = window._paq || [];
   _paq.push(['trackPageView']);
   _paq.push(['enableLinkTracking']);
   _paq.push(['setTrackerUrl', '${process.env.NEXT_PUBLIC_MATOMO_URL}/matomo.php']);
   _paq.push(['setSiteId', '${process.env.NEXT_PUBLIC_MATOMO_SITE_ID}']);
   `,
-                }}
-              />
-            </>
-          ) : null}
-        </Head>
-        <ApolloProvider client={apollo}>
-          <UnchainedContextWrapper>
-            <ThemeWrapper>
-              <ChatProvider>
-                <ToastContainer
-                  position="top-right"
-                  autoClose={5000}
-                  newestOnTop={false}
-                  closeOnClick
-                  pauseOnFocusLoss
-                  draggable
-                  pauseOnHover
+                  }}
                 />
-                <ModalWrapper>
-                  {getLayout(<Component {...pageProps} />)}
-                </ModalWrapper>
-              </ChatProvider>
-            </ThemeWrapper>
-          </UnchainedContextWrapper>
-        </ApolloProvider>
+              </>
+            ) : null}
+          </Head>
+          <ApolloProvider client={apollo}>
+            <UnchainedContextWrapper>
+              <ThemeWrapper>
+                <ChatProvider>
+                  <ToastContainer
+                    position="top-right"
+                    autoClose={5000}
+                    newestOnTop={false}
+                    closeOnClick
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                  />
+                  <ModalWrapper>
+                    {getLayout(<Component {...pageProps} />)}
+                  </ModalWrapper>
+                </ChatProvider>
+              </ThemeWrapper>
+            </UnchainedContextWrapper>
+          </ApolloProvider>
         </ErrorBoundary>
       </CustomTextProvider>
     </IntlWrapper>

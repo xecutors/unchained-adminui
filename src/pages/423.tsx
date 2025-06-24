@@ -52,7 +52,7 @@ const Locked = () => {
             formatMessage({
               id: 'goodbye_simple',
               defaultMessage: 'Goodbye!',
-            })
+            }),
           );
         }}
       >
