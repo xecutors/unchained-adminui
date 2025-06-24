@@ -29,7 +29,7 @@ const ProductListItem: React.FC<ProductListItemProps> = ({ product }) => {
   const { formatPrice } = useFormatPrice();
   const { texts, media, catalogPrice, commerce } = product;
   const text = Array.isArray(texts) && texts.length > 0 ? texts[0] : {};
-  
+
   // Get price from either catalogPrice or commerce.pricing
   const price = catalogPrice || commerce?.pricing?.[0];
 
@@ -74,8 +74,7 @@ const ProductListItem: React.FC<ProductListItemProps> = ({ product }) => {
       <p className="text-sm text-slate-600 dark:text-slate-300 px-4">
         {price ? (
           <>
-            {price.currencyCode || 'CHF'}{' '}
-            {(price.amount / 100).toFixed(2)}
+            {price.currencyCode || 'CHF'} {(price.amount / 100).toFixed(2)}
           </>
         ) : (
           <span className="text-slate-400">No price</span>
