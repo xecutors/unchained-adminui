@@ -22,30 +22,28 @@ const createLanguageDialectList = (languages, countries) => {
   return result;
 };
 
-const LocaleWrapper = ({ children, searchComponent = null }) => {
+const LocaleWrapper = ({ children, selectedLocale: externalSelectedLocale }) => {
   const { languages, loading } = useLanguages();
   const { countries } = useCountries();
   const { locale } = useIntl();
 
-  const [selectedLocale, setSelectedLocale] = useState(locale);
+  const [selectedLocale, setSelectedLocale] = useState(externalSelectedLocale || locale);
 
   useEffect(() => {
     if (!loading) {
       const baseLanguage = languages
         .filter((l) => l.isBase || l.isoCode === locale)
         ?.map(({ isoCode }) => isoCode);
-      setSelectedLocale(
-        baseLanguage.includes(locale) ? locale : baseLanguage[0],
-      );
+      const newLocale = baseLanguage.includes(locale) ? locale : baseLanguage[0];
+      setSelectedLocale(externalSelectedLocale || newLocale);
     }
-  }, [languages, loading, locale]);
+  }, [languages, loading, locale, externalSelectedLocale]);
 
   const languageDialectList = createLanguageDialectList(languages, countries);
 
   return (
     <div>
-      <div className="my-3 flex justify-between items-center flex-wrap gap-3">
-        {searchComponent && <div>{searchComponent}</div>}
+      <div className="my-3 flex justify-end">
         <div className="w-fit">
           <select
             id="locale-wrapper"
