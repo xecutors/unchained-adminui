@@ -10,7 +10,10 @@ export interface ChatContextType {
   messages: ChatMessage[];
   input: string;
   handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  handleSubmit: (
+    e: React.FormEvent<HTMLFormElement>,
+    attachments?: FileList,
+  ) => void;
   isLoading: boolean;
   error: any;
   clearHistory: () => void;
