@@ -75,7 +75,7 @@ const AssortmentLinkForm = ({ assortmentId }) => {
                 name="tags"
                 id="tags"
                 label={formatMessage({ id: 'tags', defaultMessage: 'Tags' })}
-                className="mt-1 w-full text-sm font-medium"
+                className="mt-1 w-full text-sm"
               />
               <FilterableDropdown
                 name="childAssortmentId"
@@ -94,7 +94,7 @@ const AssortmentLinkForm = ({ assortmentId }) => {
                       !parentAssortmentIds.includes(_id),
                   ),
                 )}
-                className="mt-1 w-full py-2 text-sm font-medium text-slate-500"
+                className="mt-1 w-full py-2 text-sm text-slate-500"
               />
             </div>
           </div>

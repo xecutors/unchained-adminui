@@ -63,7 +63,7 @@ const AssortmentProductForm = ({ assortmentId }) => {
               <TagInputField
                 name="tags"
                 id="tags"
-                className="mt-1 w-full text-sm font-medium"
+                className="mt-1 w-full text-sm"
               />
 
               <FilterableDropdown
@@ -77,7 +77,7 @@ const AssortmentProductForm = ({ assortmentId }) => {
                 required
                 onFilter={setQueryString}
                 queryString={queryString}
-                className="mt-1 w-full py-2 text-sm font-medium text-slate-500"
+                className="mt-1 w-full py-2 text-sm text-slate-500"
               />
             </div>
           </div>

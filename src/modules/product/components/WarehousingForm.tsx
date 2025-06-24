@@ -77,7 +77,7 @@ const WarehousingForm = ({ productId }) => {
                   id: 'sku',
                   defaultMessage: 'SKU',
                 })}
-                className="mb-4 text-sm font-medium"
+                className="mb-4 text-sm"
               />
 
               <TextField
@@ -87,7 +87,7 @@ const WarehousingForm = ({ productId }) => {
                   id: 'baseUnit',
                   defaultMessage: 'Base Unit',
                 })}
-                className="text-sm font-medium "
+                className="text-sm"
               />
             </div>
           </div>

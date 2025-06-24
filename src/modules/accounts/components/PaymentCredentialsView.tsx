@@ -14,9 +14,7 @@ const PaymentCredentialsView = ({ paymentCredentials }) => {
               <li className="py-4" key={paymentCredentialsId}>
                 <div className=" flex items-center space-x-4">
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-medium">
-                      {paymentCredentialsId}
-                    </p>
+                    <p className="truncate text-sm">{paymentCredentialsId}</p>
                     {isPreferred && (
                       <p className="truncate text-sm text-slate-500 dark:text-slate-200">
                         <Badge
