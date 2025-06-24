@@ -355,7 +355,7 @@ const ProfileView = ({ profile, avatar, _id }) => {
           </div>
 
           <div className="my-7 dark:border-t-slate-800 pt-6 lg:grid lg:grid-cols-3">
-            <div className="col-span-1 pl-5 space-y-1 py-3 lg:py-0">
+            <div className="col-span-1 space-y-1 py-3 lg:py-0">
               <div className="space-y-2">
                 <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-slate-200">
                   {formatMessage({
