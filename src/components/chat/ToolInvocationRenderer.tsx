@@ -2,6 +2,7 @@ import React from 'react';
 import ProductDetail from '../../modules/product/components/ProductDetail';
 import { ProductList } from '../product';
 import UnknownToolResponse from './UnknownToolResponse';
+import ProductResultsSummary from './ProductResultsSummary';
 
 interface ToolInvocationRendererProps {
   part: any;
@@ -42,6 +43,10 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
     if (toolName === 'list_products' && parsed?.products?.length) {
       return (
         <div className="mb-6">
+          <ProductResultsSummary 
+            products={parsed.products} 
+            requestedFilters={parsed.filters}
+          />
           <ProductList products={parsed.products} />
         </div>
       );
