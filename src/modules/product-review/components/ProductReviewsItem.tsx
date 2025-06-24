@@ -177,31 +177,47 @@ const ProductReviewsItem = ({
             type="button"
             disabled={!canManageVotes}
             onClick={async () => toggleVote(voteTypes.UPVOTE)}
-            className="flex items-center gap-1 px-2 py-1 rounded-md hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors disabled:opacity-50"
+            className={`flex items-center gap-1 px-2 py-1 rounded-md transition-colors disabled:opacity-50 ${
+              hasAlreadyVoted(voteTypes.UPVOTE)
+                ? 'bg-green-100 dark:bg-green-900 hover:bg-green-200 dark:hover:bg-green-800'
+                : 'hover:bg-slate-100 dark:hover:bg-slate-700'
+            }`}
           >
             <HandThumbUpIcon
               className={`h-5 w-5 ${
                 hasAlreadyVoted(voteTypes.UPVOTE)
-                  ? 'text-green-500'
+                  ? 'text-green-600 dark:text-green-400'
                   : 'text-slate-400 dark:text-slate-500'
               }`}
             />
-            <span className="text-sm font-medium text-slate-700 dark:text-slate-300">{review.upVote}</span>
+            <span className={`text-sm font-medium ${
+              hasAlreadyVoted(voteTypes.UPVOTE)
+                ? 'text-green-700 dark:text-green-300'
+                : 'text-slate-700 dark:text-slate-300'
+            }`}>{review.upVote}</span>
           </button>
           <button
             type="button"
             disabled={!canManageVotes}
             onClick={async () => toggleVote(voteTypes.DOWNVOTE)}
-            className="flex items-center gap-1 px-2 py-1 rounded-md hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors disabled:opacity-50"
+            className={`flex items-center gap-1 px-2 py-1 rounded-md transition-colors disabled:opacity-50 ${
+              hasAlreadyVoted(voteTypes.DOWNVOTE)
+                ? 'bg-red-100 dark:bg-red-900 hover:bg-red-200 dark:hover:bg-red-800'
+                : 'hover:bg-slate-100 dark:hover:bg-slate-700'
+            }`}
           >
             <HandThumbDownIcon
               className={`h-5 w-5 ${
                 hasAlreadyVoted(voteTypes.DOWNVOTE)
-                  ? 'text-red-500'
+                  ? 'text-red-600 dark:text-red-400'
                   : 'text-slate-400 dark:text-slate-500'
               }`}
             />
-            <span className="text-sm font-medium text-slate-700 dark:text-slate-300">{review.downVote}</span>
+            <span className={`text-sm font-medium ${
+              hasAlreadyVoted(voteTypes.DOWNVOTE)
+                ? 'text-red-700 dark:text-red-300'
+                : 'text-slate-700 dark:text-slate-300'
+            }`}>{review.downVote}</span>
           </button>
         </div>
 
@@ -211,12 +227,16 @@ const ProductReviewsItem = ({
               type="button"
               disabled={!canManageVotes}
               onClick={async () => toggleVote(voteTypes.REPORT)}
-              className="p-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors disabled:opacity-50"
+              className={`p-2 rounded-md transition-colors disabled:opacity-50 ${
+                hasAlreadyVoted(voteTypes.REPORT)
+                  ? 'bg-orange-100 dark:bg-orange-900 hover:bg-orange-200 dark:hover:bg-orange-800'
+                  : 'hover:bg-slate-100 dark:hover:bg-slate-700'
+              }`}
               title="Report review"
             >
               <FlagIcon
                 className={classNames('h-4 w-4', {
-                  'text-orange-500': hasAlreadyVoted(voteTypes.REPORT),
+                  'text-orange-600 dark:text-orange-400': hasAlreadyVoted(voteTypes.REPORT),
                   'text-slate-400 dark:text-slate-500': !hasAlreadyVoted(voteTypes.REPORT),
                 })}
               />
