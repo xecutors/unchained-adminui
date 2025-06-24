@@ -85,7 +85,7 @@ const TagInput = ({
               }}
               onChange={(e) => setNewTag(e.target.value)}
               className={classNames(
-                'block w-full rounded-md border-1 border-slate-300 dark:border-slate-700 text-slate-900 dark:bg-slate-900 dark:text-slate-200 py-2 px-4 shadow-xs placeholder:text-slate-400 dark:placeholder:text-white focus:ring-2 focus:ring-slate-800 focus:outline-hidden sm:text-sm',
+                'block w-full rounded-md border-1 border-slate-300 dark:border-slate-700 text-slate-900 dark:bg-slate-900 dark:text-slate-200 py-2 px-4 shadow-xs placeholder:text-slate-400 dark:placeholder:text-slate-400 focus:ring-2 focus:ring-slate-800 focus:outline-hidden sm:text-sm',
                 classes,
               )}
               placeholder={

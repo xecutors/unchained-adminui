@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 import logOut from '../modules/accounts/hooks/logOut';
 import { useApolloClient } from '@apollo/client';
+import { toast } from 'react-toastify';
 
 const Locked = () => {
   const { formatMessage } = useIntl();
@@ -47,6 +48,12 @@ const Locked = () => {
         id="submit"
         onClick={async () => {
           await logOut(apollo, router);
+          toast.success(
+            formatMessage({
+              id: 'goodbye_simple',
+              defaultMessage: 'Goodbye!',
+            })
+          );
         }}
       >
         {formatMessage({
