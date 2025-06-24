@@ -34,7 +34,7 @@ const AssortmentDetailPage = ({ assortmentSlug }) => {
 
         <div className="mt-4 mb-6 flex flex-wrap gap-4 text-sm text-slate-600 dark:text-slate-400">
           {assortment?.created && (
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-1 justify-between flex-wrap">
               <span className="text-slate-800 dark:text-slate-300">
                 {formatMessage({ id: 'created', defaultMessage: 'Created' })}:
               </span>
@@ -48,7 +48,7 @@ const AssortmentDetailPage = ({ assortmentSlug }) => {
           )}
 
           {assortment?.updated && (
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-1 justify-between flex-wrap">
               <span className="text-slate-800 dark:text-slate-300">
                 {formatMessage({ id: 'updated', defaultMessage: 'Updated' })}:
               </span>

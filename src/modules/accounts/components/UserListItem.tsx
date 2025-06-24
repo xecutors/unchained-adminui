@@ -60,7 +60,7 @@ const UserListItem = ({ user }) => {
                 <span className="text-sm font-semibold text-slate-900 dark:text-slate-300 truncate">
                   {formatUsername(user)}
                 </span>
-                <div className="flex items-center gap-1 text-xs text-slate-500">
+                <div className="flex items-center gap-1 justify-between flex-wrap text-xs text-slate-500">
                   {user.isGuest && (
                     <Badge
                       text={formatMessage({
@@ -86,11 +86,11 @@ const UserListItem = ({ user }) => {
               </span>
             </div>
             <div className="flex items-center gap-4">
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-1 justify-between flex-wrap">
                 <ShoppingCartIcon className="w-4 h-4 text-slate-500" />
                 <Badge color="yellow" text={user?.cart?.items?.length || 0} />
               </div>
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-1 justify-between flex-wrap">
                 <ShoppingBagIcon className="w-4 h-4 text-slate-500" />
                 <Badge text={user?.orders?.length || 0} />
               </div>
