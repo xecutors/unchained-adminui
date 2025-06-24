@@ -79,7 +79,7 @@ const WorkFilter = ({ workTypes = [] }) => {
             value={
               router?.query?.start ? parseDate(router?.query?.start) : null
             }
-            containerClassName="w-full rounded-md border dark:bg-slate-800 border-slate-300 dark:border-slate-700 focus:outline-hidden focus:ring-slate-800 sm:text-sm"
+            containerClassName="w-full"
           />
           <label className="mr-2 ml-3 " htmlFor="report-end">
             {formatMessage({ id: 'to', defaultMessage: 'To' })}
@@ -109,7 +109,7 @@ const WorkFilter = ({ workTypes = [] }) => {
                 ? parseDate(router?.query?.end)
                 : parseDate(new Date())
             }
-            containerClassName="w-full rounded-md border dark:bg-slate-800 border-slate-300 dark:border-slate-700 focus:outline-hidden focus:ring-slate-800 sm:text-sm"
+            containerClassName="w-full"
           />
         </div>
       </div>
