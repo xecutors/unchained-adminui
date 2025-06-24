@@ -6,12 +6,12 @@ interface ProductResultsSummaryProps {
   requestedFilters?: any;
 }
 
-const ProductResultsSummary: React.FC<ProductResultsSummaryProps> = ({ 
-  products, 
-  requestedFilters 
+const ProductResultsSummary: React.FC<ProductResultsSummaryProps> = ({
+  products,
+  requestedFilters,
 }) => {
   const { formatMessage } = useIntl();
-  
+
   // Group products by status
   const statusGroups = products.reduce((acc, product) => {
     const status = product.status || 'UNKNOWN';
@@ -19,18 +19,18 @@ const ProductResultsSummary: React.FC<ProductResultsSummaryProps> = ({
     acc[status]++;
     return acc;
   }, {});
-  
+
   const totalCount = products.length;
   const draftCount = statusGroups['DRAFT'] || 0;
   const activeCount = statusGroups['ACTIVE'] || 0;
-  
+
   return (
-    <div className="mb-4 p-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-md">
+    <div className="my-4 p-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-md">
       <div className="flex items-center justify-between mb-2">
         <h4 className="text-sm font-medium text-slate-900 dark:text-slate-100">
           {formatMessage(
             { id: 'products_found', defaultMessage: '{count} products found' },
-            { count: totalCount }
+            { count: totalCount },
           )}
         </h4>
         {requestedFilters?.status && (
@@ -39,13 +39,14 @@ const ProductResultsSummary: React.FC<ProductResultsSummaryProps> = ({
           </span>
         )}
       </div>
-      
+
       <div className="flex gap-4 text-xs">
         {draftCount > 0 && (
           <div className="flex items-center gap-1">
             <span className="w-2 h-2 bg-yellow-500 rounded-full"></span>
             <span className="text-slate-600 dark:text-slate-400">
-              {draftCount} {formatMessage({ id: 'draft', defaultMessage: 'Draft' })}
+              {draftCount}{' '}
+              {formatMessage({ id: 'draft', defaultMessage: 'Draft' })}
             </span>
           </div>
         )}
@@ -53,7 +54,8 @@ const ProductResultsSummary: React.FC<ProductResultsSummaryProps> = ({
           <div className="flex items-center gap-1">
             <span className="w-2 h-2 bg-green-500 rounded-full"></span>
             <span className="text-slate-600 dark:text-slate-400">
-              {activeCount} {formatMessage({ id: 'active', defaultMessage: 'Active' })}
+              {activeCount}{' '}
+              {formatMessage({ id: 'active', defaultMessage: 'Active' })}
             </span>
           </div>
         )}
@@ -69,7 +71,7 @@ const ProductResultsSummary: React.FC<ProductResultsSummaryProps> = ({
           );
         })}
       </div>
-      
+
       {requestedFilters?.status && !statusGroups[requestedFilters.status] && (
         <div className="mt-2 text-xs text-amber-600 dark:text-amber-400">
           ⚠️ No {requestedFilters.status} products found in these results
