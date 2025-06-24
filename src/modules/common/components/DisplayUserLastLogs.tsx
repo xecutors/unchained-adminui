@@ -20,7 +20,7 @@ const LoginInfo = ({ loginData }) => {
 
   if (!loginData) return null;
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden mt-4 p-4">
+    <div className="bg-white rounded-lg shadow-sm overflow-hidden mt-4 p-4">
       <KeyValueRow
         label={formatMessage({ id: 'country', defaultMessage: 'Country' })}
         value={
@@ -72,7 +72,7 @@ const BillingAddressInfo = ({
   const { formatMessage, locale } = useIntl();
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden mt-4 p-4">
+    <div className="bg-white rounded-lg shadow-sm overflow-hidden mt-4 p-4">
       <KeyValueRow
         label={formatMessage({ id: 'fullName', defaultMessage: 'FullName' })}
         value={`${firstName || ''} ${lastName || ''}`}
@@ -113,7 +113,7 @@ const BillingAddressInfo = ({
 };
 
 const DisplayUserLastLogs = ({ lastBillingAddress, lastLogin }) => (
-  <div className="container mx-auto p-4">
+  <div>
     <div className="row">
       <LoginInfo loginData={lastLogin} />
     </div>
