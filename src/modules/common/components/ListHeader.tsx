@@ -15,8 +15,8 @@ const ListHeader = ({ children = null, totalRecords = null }) => {
         </div>
       ) : null}
       {children && (
-        <div className="flex items-center mt-5">
-          <h3 className="text-xs leading-6 text-slate-900 dark:text-slate-200">
+        <div className="flex items-center mt-10">
+          <h3 className="text-xs leading-6 text-slate-500 dark:text-slate-200">
             {children}
           </h3>
         </div>

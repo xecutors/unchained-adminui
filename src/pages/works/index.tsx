@@ -112,7 +112,7 @@ const WorkQueueView = () => {
               <WorkList workQueue={workQueue} sortable />
             )}
           </InfiniteScroll>
-        </LocaleWrapper>
+        </SearchWithTagsAndLocale>
       </div>
     </>
   );
