@@ -47,6 +47,7 @@ const Layout = ({
   const { currentUser } = useCurrentUser();
   const { shopInfo } = useShopInfo();
   const [hideNav, setHideNav] = useState(true);
+  const [narrowNav, setNarrowNav] = useState(false);
 
   const defaultNavigation = [
     {
@@ -284,15 +285,15 @@ const Layout = ({
         </div>
       </div>
 
-      <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col 2xl:w-96 dark:bg-slate-900 dark:text-slate-200">
+      <div className={`hidden md:fixed md:inset-y-0 md:flex md:flex-col dark:bg-slate-900 dark:text-slate-200 ${narrowNav ? 'md:w-16' : 'md:w-64 2xl:w-96'}`}>
         <div className="flex min-h-0 flex-1 flex-col border-r border-slate-300 dark:border-slate-800 bg-white dark:bg-slate-900">
           <div className="flex flex-1 flex-col overflow-y-auto pt-10">
-            <div className="flex shrink-0 items-center px-2 lg:px-4 2xl:px-6">
+            <div className={`flex shrink-0 items-center ${narrowNav ? 'px-2 justify-center' : 'px-2 lg:px-4 2xl:px-6'}`}>
               <Link href="/">
                 <div className="dark:brightness-0 dark:invert">
                   <ImageWithFallback
                     src={process.env.NEXT_PUBLIC_LOGO}
-                    width={41}
+                    width={narrowNav ? 25 : 41}
                     height={25}
                     alt={formatMessage({
                       id: 'unchained_logo',
@@ -302,17 +303,31 @@ const Layout = ({
                 </div>
               </Link>
             </div>
-            <SideNav navigation={defaultNavigation} />
+            <SideNav navigation={defaultNavigation} narrowView={narrowNav} />
           </div>
           <div className="flex shrink-0 border-t border-slate-300 dark:border-slate-800 p-4">
-            <UserAvatar avatar={currentUser?.avatar} {...currentUser} />
-            <div className="ml-auto">
+            {!narrowNav && <UserAvatar avatar={currentUser?.avatar} {...currentUser} />}
+            <div className={narrowNav ? 'mx-auto' : 'ml-auto'}>
               <ThemeToggle />
             </div>
           </div>
+          <div className="flex shrink-0 border-t border-slate-300 dark:border-slate-800 p-2">
+            <button
+              onClick={() => setNarrowNav(!narrowNav)}
+              className="w-full flex items-center justify-center p-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              title={narrowNav ? formatMessage({ id: 'expand_navigation', defaultMessage: 'Expand navigation' }) : formatMessage({ id: 'collapse_navigation', defaultMessage: 'Collapse navigation' })}
+            >
+              <Bars4Icon className={`h-5 w-5 ${narrowNav ? '' : 'rotate-90'} transition-transform`} />
+              {!narrowNav && (
+                <span className="ml-2 text-sm">
+                  {formatMessage({ id: 'collapse', defaultMessage: 'Collapse' })}
+                </span>
+              )}
+            </button>
+          </div>
         </div>
       </div>
-      <div className="flex flex-1 flex-col md:pl-64 2xl:pl-96">
+      <div className={`flex flex-1 flex-col ${narrowNav ? 'md:pl-16' : 'md:pl-64 2xl:pl-96'}`}>
         <div className="flex justify-between items-center sticky top-0 z-10 bg-white dark:bg-slate-800 md:hidden border-b border-slate-300 dark:border-slate-700">
           <button
             type="button"

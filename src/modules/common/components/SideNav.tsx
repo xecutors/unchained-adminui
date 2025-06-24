@@ -6,8 +6,29 @@ import { useIntl } from 'react-intl';
 import useAuth from '../../Auth/useAuth';
 import ThemeToggle from './ThemeToggle';
 
-const ChildrenNav = ({ item, hasRole, onSelected }) => {
+const ChildrenNav = ({ item, hasRole, onSelected, narrowView }) => {
   const router = useRouter();
+
+  if (narrowView) {
+    // In narrow view, show only icon with tooltip for children nav items
+    return item.children?.some(
+      (d) => !d?.requiredRole || hasRole(d?.requiredRole),
+    ) ? (
+      <div key={item.name} className="relative group">
+        <button
+          className="flex w-full justify-center items-center p-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+          title={item.name}
+        >
+          {item?.icon && (
+            <item.icon
+              className="h-6 w-6 text-slate-800 dark:text-slate-300"
+              aria-hidden="true"
+            />
+          )}
+        </button>
+      </div>
+    ) : null;
+  }
 
   return item.children?.some(
     (d) => !d?.requiredRole || hasRole(d?.requiredRole),
@@ -53,7 +74,7 @@ const ChildrenNav = ({ item, hasRole, onSelected }) => {
   ) : null;
 };
 
-const SideNav = ({ navigation, onClick = null }) => {
+const SideNav = ({ navigation, onClick = null, narrowView = false }) => {
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
   const router = useRouter();
@@ -61,7 +82,7 @@ const SideNav = ({ navigation, onClick = null }) => {
   return (
     <div className="mt-8 flex grow flex-col dark:bg-slate-900">
       <nav
-        className="flex-1 space-y-1 bg-white dark:bg-slate-900 px-2 lg:px-4 2xl:px-6"
+        className={`flex-1 space-y-1 bg-white dark:bg-slate-900 ${narrowView ? 'px-2' : 'px-2 lg:px-4 2xl:px-6'}`}
         aria-label="Sidebar"
       >
         {navigation.map((item) =>
@@ -71,26 +92,32 @@ const SideNav = ({ navigation, onClick = null }) => {
               <Link
                 href={item?.href || '#'}
                 className={classNames(
-                  'group flex w-full hover:bg-slate-50 dark:text-slate-400 dark:hover:bg-slate-800 items-center rounded-md py-2 pl-2 text-sm font-medium ',
+                  'group flex w-full hover:bg-slate-50 dark:text-slate-400 dark:hover:bg-slate-800 items-center rounded-md py-2 text-sm font-medium',
                   {
                     'text-slate-900 dark:text-slate-400 bg-slate-50 dark:bg-slate-800':
                       router.asPath === item.href,
+                    'justify-center': narrowView,
+                    'pl-2': !narrowView,
                   },
                 )}
+                title={narrowView ? item.name : undefined}
               >
                 {item?.icon && (
                   <item.icon
                     className={classNames(
-                      'mr-3 h-6 w-6 shrink-0 text-slate-800 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-slate-100',
+                      'h-6 w-6 shrink-0 text-slate-800 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-slate-100',
                       {
                         'text-slate-900 dark:text-slate-100':
                           router.asPath === item.href,
+                        'mr-3': !narrowView,
                       },
                     )}
                     aria-hidden="true"
                   />
                 )}
-                <span className="flex-1 dark:text-slate-400">{item.name}</span>
+                {!narrowView && (
+                  <span className="flex-1 dark:text-slate-400">{item.name}</span>
+                )}
               </Link>
             </div>
           ) : (
@@ -99,6 +126,7 @@ const SideNav = ({ navigation, onClick = null }) => {
               item={item}
               hasRole={hasRole}
               onSelected={onClick}
+              narrowView={narrowView}
             />
           ),
         )}
