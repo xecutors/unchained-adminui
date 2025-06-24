@@ -69,7 +69,7 @@ const ForgotPasswordForm = ({
           <SubmitButton
             className="w-full "
             label={formatMessage({
-              id: 'send_rest_link',
+              id: 'send_reset_link',
               defaultMessage: 'Send reset link',
             })}
           />

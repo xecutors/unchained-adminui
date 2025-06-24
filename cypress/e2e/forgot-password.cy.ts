@@ -54,7 +54,7 @@ describe('Forgot password', () => {
   it('Should [SEND RESET LINK] successfully when provided valid email address', () => {
     cy.get('input[name="email"]').type('admin@unchained.shop');
     cy.get('input[type="submit"]')
-      .should('have.value', localizations.en.send_rest_link)
+      .should('have.value', localizations.en.send_reset_link)
       .click();
 
     cy.wait(
@@ -71,7 +71,7 @@ describe('Forgot password', () => {
   it('Should [FAIL] when provided wrong email', () => {
     cy.get('input[name="email"]').type('wrong@unchained.local');
     cy.get('input[type="submit"]')
-      .should('have.value', localizations.en.send_rest_link)
+      .should('have.value', localizations.en.send_reset_link)
       .click();
 
     cy.wait(
@@ -91,7 +91,7 @@ describe('Forgot password', () => {
 
   it('Should [ERROR] email is not provided', () => {
     cy.get('input[type="submit"]')
-      .should('have.value', localizations.en.send_rest_link)
+      .should('have.value', localizations.en.send_reset_link)
       .click();
 
     cy.get('label[for="email"]').should(
