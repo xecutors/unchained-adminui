@@ -3,6 +3,7 @@ import { IUser } from '../../gql/types';
 import MiniUserAvatar from '../../modules/common/components/MiniUserAvatar';
 import MarkdownText from './MarkdownText';
 import ToolInvocationRenderer from './ToolInvocationRenderer';
+import Image from 'next/image';
 
 interface MessageRendererProps {
   message: any;
@@ -11,7 +12,6 @@ interface MessageRendererProps {
 
 const MessageRenderer: React.FC<MessageRendererProps> = ({ message, user }) => {
   const isUser = message.role === 'user';
-
   return (
     <div className={`flex ${!isUser ? 'justify-start' : 'justify-end'}`}>
       {isUser && (
@@ -36,7 +36,24 @@ const MessageRenderer: React.FC<MessageRendererProps> = ({ message, user }) => {
           switch (part.type) {
             case 'text':
               return (
-                <MarkdownText key={index} text={part.text} className="mb-0" />
+                <>
+                  <MarkdownText key={index} text={part.text} className="mb-0" />
+                  <div>
+                    {message?.experimental_attachments
+                      ?.filter((attachment) =>
+                        attachment?.contentType?.startsWith('image/'),
+                      )
+                      .map((attachment, index) => (
+                        <Image
+                          key={`${part.id}-${index}`}
+                          src={attachment.url}
+                          width={100}
+                          height={50}
+                          alt={attachment.name ?? `attachment-${index}`}
+                        />
+                      ))}
+                  </div>
+                </>
               );
             case 'tool-invocation':
               return <ToolInvocationRenderer key={index} part={part} />;
