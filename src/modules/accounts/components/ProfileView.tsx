@@ -124,11 +124,11 @@ const ProfileView = ({ profile, avatar, _id }) => {
   return (
     <FormWrapper className="shadow-none">
       <Form form={form}>
-        <div className="mt-6 overflow-hidden rounded-md bg-slate-50 dark:bg-slate-900">
+        <div className="overflow-hidden rounded-md bg-slate-50 dark:bg-slate-900">
           <div className="lg:grid lg:grid-cols-3">
             <div className="mb-5 lg:col-span-1 lg:pr-5">
               <div className="space-y-2">
-                <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-slate-200">
+                <h3 className="text-lg text-slate-900 dark:text-slate-200">
                   {formatMessage({
                     id: 'profile',
                     defaultMessage: 'Profile',
@@ -357,7 +357,7 @@ const ProfileView = ({ profile, avatar, _id }) => {
           <div className="my-7 dark:border-t-slate-800 pt-6 lg:grid lg:grid-cols-3">
             <div className="col-span-1 space-y-1 py-3 lg:py-0">
               <div className="space-y-2">
-                <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-slate-200">
+                <h3 className="text-lg text-slate-900 dark:text-slate-200">
                   {formatMessage({
                     id: 'address',
                     defaultMessage: 'Address',

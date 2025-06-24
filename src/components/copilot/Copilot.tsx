@@ -32,7 +32,7 @@ const Copilot: React.FC = () => {
       <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-slate-900 font-sans">
         <div className="py-16">
           <div className="text-center">
-            <h1 className="mt-2 text-4xl font-extrabold tracking-tight text-red-900 dark:text-red-200 sm:text-5xl">
+            <h1 className="mt-2 text-4xl font-extrabold tracking-tight text-rose-900 dark:text-rose-200 sm:text-5xl">
               Chat is Disabled
             </h1>
             <p className="mt-2 text-base text-slate-500 dark:text-slate-200">
@@ -72,13 +72,13 @@ const Copilot: React.FC = () => {
         {status === 'error' && (
           <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-slate-900 font-sans">
             <div className="py-16 text-center max-w-lg mx-auto">
-              <p className="mt-2 text-sm text-red-400 dark:text-red-300">
+              <p className="mt-2 text-sm text-rose-400 dark:text-rose-300">
                 A error occurred while processing your request, please reload
                 the conversation and submit something shorter.
               </p>
               <button
                 onClick={reload}
-                className="mt-6 bg-transparent hover:bg-slate-950 text-slate-950 hover:text-white dark:hover:text-white rounded-sm shadow-sm hover:shadow-lg py-2 px-4 border border-slate-950 dark:border-slate-200 hover:border-transparent"
+                className="mt-6 bg-white hover:bg-slate-950 text-slate-950 hover:text-white dark:hover:text-white rounded-sm shadow-sm hover:shadow-lg py-2 px-4 border border-slate-950 dark:border-slate-200 hover:border-transparent"
               >
                 Retry
               </button>

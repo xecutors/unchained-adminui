@@ -40,7 +40,7 @@ const ProductResultsSummary: React.FC<ProductResultsSummaryProps> = ({
         )}
       </div>
 
-      <div className="flex gap-4 text-xs">
+      <div className="flex gap-4 text-sm">
         {draftCount > 0 && (
           <div className="flex items-center gap-1">
             <span className="w-2 h-2 bg-yellow-500 rounded-full"></span>
@@ -51,8 +51,8 @@ const ProductResultsSummary: React.FC<ProductResultsSummaryProps> = ({
           </div>
         )}
         {activeCount > 0 && (
-          <div className="flex items-center gap-1">
-            <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 bg-emerald-500 rounded-full"></span>
             <span className="text-slate-600 dark:text-slate-400">
               {activeCount}{' '}
               {formatMessage({ id: 'active', defaultMessage: 'Active' })}

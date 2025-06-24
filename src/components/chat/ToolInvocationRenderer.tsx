@@ -25,7 +25,7 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
     // Check if the response is an error message instead of JSON
     if (textString && textString.startsWith('Error')) {
       return (
-        <div className="mt-4 text-sm text-amber-600 dark:text-amber-400 mb-4 p-3 bg-amber-50 dark:bg-amber-950 rounded-md">
+        <div className="mt-4 text-sm border border-amber-200 text-amber-700 dark:text-amber-400 mb-4 p-3 bg-amber-50 dark:bg-amber-950 rounded-md">
           <div className="font-medium mb-1">Tool Response:</div>
           <div>{textString}</div>
         </div>

@@ -11,7 +11,7 @@ interface MarkdownTextProps {
 
 const MarkdownText: React.FC<MarkdownTextProps> = ({ text, className }) => (
   <div
-    className={`prose prose-sm dark:prose-invert max-w-none [&>*:last-child]:mb-0 ${className || 'mb-4'}`}
+    className={`prose dark:prose-invert max-w-none [&>*:last-child]:mb-0 ${className || 'mb-4'}`}
   >
     <Markdown rehypePlugins={[rehypeRaw, remarkGfm, rehypeSanitize] as any}>
       {text}
