@@ -60,7 +60,7 @@ const ErrorFallback = ({ error = null, resetError = null }) => {
               >
                 {formatMessage({
                   id: 'try_again',
-                  defaultMessage: 'try-again',
+                  defaultMessage: 'try_again',
                 })}
                 <span aria-hidden="true"> &rarr;</span>
               </Link>
@@ -68,7 +68,7 @@ const ErrorFallback = ({ error = null, resetError = null }) => {
                 <Button
                   onClick={resetError}
                   text={formatMessage({
-                    id: 'try-again',
+                    id: 'try_again',
                     defaultMessage: 'Try again',
                   })}
                 />

@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl';
 const ListHeader = ({ children = null, totalRecords = null }) => {
   const { formatMessage } = useIntl();
   return (
-    <div className="mt-3">
+    <div className="mt-5">
       {totalRecords !== null ? (
         <div className="text-md text-slate-950 dark:text-slate-100 mb-3">
           {formatMessage(
