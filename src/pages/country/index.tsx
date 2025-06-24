@@ -17,12 +17,11 @@ import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useModal from '../../modules/modal/hooks/useModal';
 
 import useAuth from '../../modules/Auth/useAuth';
-import SearchField from '../../modules/common/components/SearchField';
 import {
   convertSortFieldsToQueryFormat,
   normalizeQuery,
 } from '../../modules/common/utils/utils';
-import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
+import SearchWithTagsAndLocale from '../../modules/common/components/SearchWithTagsAndLocale';
 import CountryDetailPage from './CountryDetailPage';
 
 const Country = () => {
@@ -126,13 +125,9 @@ const Country = () => {
             active={includeInactive}
           />
         </ListHeader>
-        <LocaleWrapper
-          searchComponent={
-            <SearchField
-              defaultValue={queryString}
-              onInputChange={setQueryString}
-            />
-          }
+        <SearchWithTagsAndLocale
+          onSearchChange={setQueryString}
+          defaultSearchValue={queryString}
         >
           <InfiniteScroll
             loading={loading}
@@ -149,7 +144,7 @@ const Country = () => {
               />
             )}
           </InfiniteScroll>
-        </LocaleWrapper>
+        </SearchWithTagsAndLocale>
       </div>
     </>
   );

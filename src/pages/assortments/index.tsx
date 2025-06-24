@@ -7,17 +7,21 @@ import Toggle from '../../modules/common/components/Toggle';
 
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 
-import AssortmentSearchFilter from '../../modules/assortment/components/AssortmentSearchFilter';
 import useAuth from '../../modules/Auth/useAuth';
 import SearchField from '../../modules/common/components/SearchField';
 import AssortmentGraphView from '../../modules/assortment/components/AssortmentGraphView';
 import AssortmentListView from '../../modules/assortment/components/AssortmentListView';
 import { normalizeQuery } from '../../modules/common/utils/utils';
-import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
+import SearchWithTagsAndLocale from '../../modules/common/components/SearchWithTagsAndLocale';
 import useAssortmentsCount from '../../modules/assortment/hooks/useAssortmentsCount';
 import AssortmentDetailPage from './AssortmentDetailPage';
 
-const GetCurrentView = ({ options, queryString, searchComponent }) => {
+const GetCurrentView = ({
+  options,
+  queryString,
+  onSearchChange,
+  defaultSearchValue,
+}) => {
   const { graph, ...rest } = options;
 
   return (
@@ -130,15 +134,10 @@ const AssortmentsView = () => {
             />
           </div>
         </ListHeader>
-        <AssortmentSearchFilter />
         <GetCurrentView
           queryString={queryString}
-          searchComponent={
-            <SearchField
-              onInputChange={setQueryString}
-              defaultValue={queryString}
-            />
-          }
+          onSearchChange={setQueryString}
+          defaultSearchValue={queryString}
           options={{
             graph,
             includeInactive,

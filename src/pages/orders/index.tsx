@@ -6,7 +6,6 @@ import ListHeader from '../../modules/common/components/ListHeader';
 import InfiniteScroll from '../../modules/common/components/InfiniteScroll';
 import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
-import SearchField from '../../modules/common/components/SearchField';
 import Toggle from '../../modules/common/components/Toggle';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 import OrderList from '../../modules/order/components/OrderList';
@@ -15,7 +14,7 @@ import {
   convertSortFieldsToQueryFormat,
   normalizeQuery,
 } from '../../modules/common/utils/utils';
-import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
+import SearchWithTagsAndLocale from '../../modules/common/components/SearchWithTagsAndLocale';
 import OrderDetailPage from './OrderDetailPage';
 
 const Orders = () => {
@@ -76,13 +75,9 @@ const Orders = () => {
           />
         </ListHeader>
 
-        <LocaleWrapper
-          searchComponent={
-            <SearchField
-              defaultValue={queryString}
-              onInputChange={setQueryString}
-            />
-          }
+        <SearchWithTagsAndLocale
+          onSearchChange={setQueryString}
+          defaultSearchValue={queryString}
         >
           <InfiniteScroll
             loading={loading}
@@ -100,7 +95,7 @@ const Orders = () => {
               />
             )}
           </InfiniteScroll>
-        </LocaleWrapper>
+        </SearchWithTagsAndLocale>
       </div>
     </>
   );

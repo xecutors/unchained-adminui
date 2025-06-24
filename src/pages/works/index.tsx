@@ -17,7 +17,7 @@ import {
   normalizeQuery,
 } from '../../modules/common/utils/utils';
 import { ISortOptionInput, IWorkStatus, IWorkType } from '../../gql/types';
-import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
+import SearchWithTagsAndLocale from '../../modules/common/components/SearchWithTagsAndLocale';
 import WorkDetailPage from './WorkDetailPage';
 
 const WorkQueueView = () => {
@@ -97,13 +97,9 @@ const WorkQueueView = () => {
       <div className="min-w-full overflow-x-auto px-1">
         <ListHeader />
 
-        <LocaleWrapper
-          searchComponent={
-            <SearchField
-              defaultValue={queryString}
-              onInputChange={setQueryString}
-            />
-          }
+        <SearchWithTagsAndLocale
+          onSearchChange={setQueryString}
+          defaultSearchValue={queryString}
         >
           <InfiniteScroll
             loading={loading}

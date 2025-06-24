@@ -9,7 +9,6 @@ import PageHeader from '../../modules/common/components/PageHeader';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 import EnrollmentList from '../../modules/enrollment/components/EnrollmentList';
 import useEnrollments from '../../modules/enrollment/hooks/useEnrollments';
-import SearchField from '../../modules/common/components/SearchField';
 import {
   convertSortFieldsToQueryFormat,
   normalizeQuery,
@@ -17,7 +16,7 @@ import {
 
 import useEnrollmentStatusTypes from '../../modules/enrollment/hooks/useEnrollmentStatusTypes';
 import StatusFilter from '../../modules/common/components/StatusFilter';
-import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
+import SearchWithTagsAndLocale from '../../modules/common/components/SearchWithTagsAndLocale';
 import EnrollmentDetailPage from './EnrollmentDetailPage';
 
 const EnrollmentListView = () => {
@@ -103,13 +102,9 @@ const EnrollmentListView = () => {
       <div className="min-w-full overflow-x-auto px-1">
         <ListHeader />
 
-        <LocaleWrapper
-          searchComponent={
-            <SearchField
-              defaultValue={queryString}
-              onInputChange={setQueryString}
-            />
-          }
+        <SearchWithTagsAndLocale
+          onSearchChange={setQueryString}
+          defaultSearchValue={queryString}
         >
           <InfiniteScroll
             loading={loading}
@@ -122,7 +117,7 @@ const EnrollmentListView = () => {
               <EnrollmentList enrollments={enrollments} showUser sortable />
             )}
           </InfiniteScroll>
-        </LocaleWrapper>
+        </SearchWithTagsAndLocale>
       </div>
     </>
   );

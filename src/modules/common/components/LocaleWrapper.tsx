@@ -51,8 +51,7 @@ const LocaleWrapper = ({
 
   return (
     <div>
-      <div className="my-3 flex justify-between items-center flex-wrap gap-3">
-        {searchComponent && <div>{searchComponent}</div>}
+      <div className="my-3 flex justify-end">
         <div className="w-fit">
           <select
             id="locale-wrapper"

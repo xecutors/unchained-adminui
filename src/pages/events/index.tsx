@@ -6,7 +6,6 @@ import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import InfiniteScroll from '../../modules/common/components/InfiniteScroll';
 import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
-import SearchField from '../../modules/common/components/SearchField';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 import EventList from '../../modules/event/components/EventList';
 import useEvents from '../../modules/event/hooks/useEvents';
@@ -18,7 +17,7 @@ import {
   normalizeQuery,
 } from '../../modules/common/utils/utils';
 import ListHeader from '../../modules/common/components/ListHeader';
-import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
+import SearchWithTagsAndLocale from '../../modules/common/components/SearchWithTagsAndLocale';
 import EventDetailPage from './EventDetailPage';
 
 const Events = () => {
@@ -98,13 +97,9 @@ const Events = () => {
       <div className="min-w-full overflow-x-auto px-1">
         <ListHeader />
 
-        <LocaleWrapper
-          searchComponent={
-            <SearchField
-              onInputChange={setQueryString}
-              defaultValue={queryString}
-            />
-          }
+        <SearchWithTagsAndLocale
+          onSearchChange={setQueryString}
+          defaultSearchValue={queryString}
         >
           <InfiniteScroll
             loading={loading}
@@ -117,7 +112,7 @@ const Events = () => {
               <EventList events={events} sortable />
             )}
           </InfiniteScroll>
-        </LocaleWrapper>
+        </SearchWithTagsAndLocale>
       </div>
     </>
   );

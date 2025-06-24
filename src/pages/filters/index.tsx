@@ -12,12 +12,11 @@ import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useModal from '../../modules/modal/hooks/useModal';
 import useRemoveFilter from '../../modules/filter/hooks/useRemoveFilter';
 import useAuth from '../../modules/Auth/useAuth';
-import SearchField from '../../modules/common/components/SearchField';
 import {
   convertSortFieldsToQueryFormat,
   normalizeQuery,
 } from '../../modules/common/utils/utils';
-import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
+import SearchWithTagsAndLocale from '../../modules/common/components/SearchWithTagsAndLocale';
 import useFiltersCount from '../../modules/filter/hooks/useFiltersCount';
 import FilterDetailPage from './FilterDetailPage';
 
@@ -131,7 +130,7 @@ const FiltersListView = () => {
             onRemoveFilter={onRemoveFilter}
             {...{ queryString, limit, includeInactive, offset, sortKeys }}
           />
-        </LocaleWrapper>
+        </SearchWithTagsAndLocale>
       </div>
     </>
   );

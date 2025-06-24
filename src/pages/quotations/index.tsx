@@ -9,9 +9,8 @@ import PageHeader from '../../modules/common/components/PageHeader';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 import QuotationList from '../../modules/quotation/components/QuotationList';
 import useQuotations from '../../modules/quotation/hooks/useQuotations';
-import SearchField from '../../modules/common/components/SearchField';
 import { convertSortFieldsToQueryFormat } from '../../modules/common/utils/utils';
-import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
+import SearchWithTagsAndLocale from '../../modules/common/components/SearchWithTagsAndLocale';
 import QuotationDetailPage from './QuotationDetailPage';
 
 const Quotations = () => {
@@ -71,13 +70,9 @@ const Quotations = () => {
       <div className="min-w-full overflow-x-auto px-1">
         <ListHeader />
 
-        <LocaleWrapper
-          searchComponent={
-            <SearchField
-              defaultValue={queryString}
-              onInputChange={setQueryString}
-            />
-          }
+        <SearchWithTagsAndLocale
+          onSearchChange={setQueryString}
+          defaultSearchValue={queryString}
         >
           <InfiniteScroll
             loading={loading}
@@ -90,7 +85,7 @@ const Quotations = () => {
               <QuotationList sortable quotations={quotations} showUser />
             )}
           </InfiniteScroll>
-        </LocaleWrapper>
+        </SearchWithTagsAndLocale>
       </div>
     </>
   );

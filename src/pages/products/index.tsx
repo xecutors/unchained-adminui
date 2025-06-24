@@ -6,7 +6,6 @@ import ListHeader from '../../modules/common/components/ListHeader';
 import PageHeader from '../../modules/common/components/PageHeader';
 import Toggle from '../../modules/common/components/Toggle';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
-import ProductFilter from '../../modules/product/components/ProductFilter';
 import ProductList from '../../modules/product/components/ProductList';
 import useAuth from '../../modules/Auth/useAuth';
 import SearchField from '../../modules/common/components/SearchField';
@@ -14,7 +13,7 @@ import {
   convertSortFieldsToQueryFormat,
   normalizeQuery,
 } from '../../modules/common/utils/utils';
-import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
+import SearchWithTagsAndLocale from '../../modules/common/components/SearchWithTagsAndLocale';
 import useProductsCount from '../../modules/product/hooks/useProductsCount';
 import ProductDetailPage from './ProductDetailPage';
 
