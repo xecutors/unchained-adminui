@@ -16,7 +16,7 @@ const CopilotHeader: React.FC = () => {
       {messages.length > 0 && (
         <button
           onClick={clearHistory}
-          className="flex items-center gap-2 px-3 py-1.5 text-sm text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 border border-slate-300 dark:border-slate-600 rounded-md hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
+          className="flex items-center gap-2 px-3 py-1.5 text-sm text-slate-600 dark:text-slate-400 hover:text-slate-900 hover:bg-white dark:hover:text-slate-200 border border-slate-300 dark:border-slate-600 rounded-md dark:hover:bg-slate-700 transition-colors"
         >
           <TrashIcon className="h-4 w-4" />
           Clear History

@@ -52,11 +52,11 @@
 
   /* Hide scrollbar */
   .scrollbar-hide {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
   }
   .scrollbar-hide::-webkit-scrollbar {
-    display: none;  /* Chrome, Safari and Opera */
+    display: none; /* Chrome, Safari and Opera */
   }
 
   .node {
@@ -157,4 +157,8 @@ iframe#external-page {
   opacity: 1;
   top: 10px;
   right: 10px;
+}
+
+.shadow-none {
+  box-shadow: none !important;
 }

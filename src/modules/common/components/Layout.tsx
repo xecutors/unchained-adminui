@@ -302,7 +302,7 @@ const Layout = ({
       <div
         className={`hidden md:fixed md:inset-y-0 md:flex md:flex-col dark:bg-slate-900 dark:text-slate-200 ${narrowNav ? 'md:w-16' : 'md:w-64 2xl:w-96'}`}
       >
-        <div className="flex min-h-0 flex-1 flex-col border-r border-slate-300 dark:border-slate-800 bg-white dark:bg-slate-900">
+        <div className="flex min-h-0 flex-1 flex-col border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
           <div className="flex flex-1 flex-col overflow-y-auto scrollbar-hide pt-10">
             <div
               className={`flex shrink-0 items-center ${narrowNav ? 'px-2 justify-center' : 'px-2 lg:px-4 2xl:px-6'}`}
@@ -327,7 +327,7 @@ const Layout = ({
             <SideNav navigation={defaultNavigation} narrowView={narrowNav} />
           </div>
           <div
-            className={`flex items-center shrink-0 py-2 ${narrowNav ? 'justify-center px-2' : 'border-t border-slate-300 dark:border-slate-800 px-2 lg:px-4 2xl:px-6'}`}
+            className={`flex items-center shrink-0 py-2 ${narrowNav ? 'justify-center px-2' : 'border-t border-slate-200 dark:border-slate-800 px-2 lg:px-4 2xl:px-6'}`}
           >
             {!narrowNav && (
               <UserAvatar avatar={currentUser?.avatar} {...currentUser} />
@@ -339,7 +339,9 @@ const Layout = ({
               </div>
             )}
           </div>
-          <div className={`flex shrink-0 p-2 ${narrowNav ? '' : 'border-t border-slate-300 dark:border-slate-800'}`}>
+          <div
+            className={`flex shrink-0 p-2 ${narrowNav ? '' : 'border-t border-slate-200 dark:border-slate-800'}`}
+          >
             {narrowNav ? (
               <button
                 onClick={() => setNarrowNav(!narrowNav)}
@@ -375,7 +377,7 @@ const Layout = ({
       <div
         className={`flex flex-1 flex-col ${narrowNav ? 'md:pl-16' : 'md:pl-64 2xl:pl-96'}`}
       >
-        <div className="flex justify-between items-center sticky top-0 z-10 bg-white dark:bg-slate-800 md:hidden border-b border-slate-300 dark:border-slate-700">
+        <div className="flex justify-between items-center sticky top-0 z-10 bg-white dark:bg-slate-800 md:hidden border-b border-slate-200 dark:border-slate-700">
           <button
             type="button"
             ref={ref}
