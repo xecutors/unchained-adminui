@@ -40,6 +40,7 @@ const Profile = () => {
             }),
           );
           await logOut(apollo, router);
+          // No goodbye message needed for account deletion
         }}
         okText={formatMessage({
           id: 'delete_account',

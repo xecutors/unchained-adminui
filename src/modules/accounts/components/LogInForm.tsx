@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
+import { toast } from 'react-toastify';
 
 import FormWrapper from '../../common/components/FormWrapper';
 import ImageWithFallback from '../../common/components/ImageWithFallback';
@@ -46,7 +47,7 @@ const GetCurrentStep = ({ step }) => {
           <div className="my-1 text-sm sm:my-0 text-left">
             <Link
               href="/account/forgot-password"
-              className="font-medium text-slate-950 hover:text-slate-900 dark:text-slate-800 dark:hover:text-slate-400"
+              className="font-medium text-slate-950 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300"
             >
               {formatMessage({
                 id: 'forget_password',
@@ -99,10 +100,6 @@ const LogInForm = () => {
   const { generateLoginCredentials } = useGenerateLoginCredentials();
 
   const { formatMessage } = useIntl();
-  const successMessage = formatMessage({
-    id: 'welcome',
-    defaultMessage: 'Welcome!',
-  });
 
   const logInWithWebAuth = async (username) => {
     const webAuthnPublicKeyCredentials = await generateLoginCredentials({
@@ -155,14 +152,29 @@ const LogInForm = () => {
     return { success: false };
   };
 
-  const onSubmitSuccess: OnSubmitSuccessType = async () => {
+  const onSubmitSuccess: OnSubmitSuccessType = async (success, userData) => {
+    // Show personalized welcome message
+    const userName =
+      userData?.username ||
+      userData?.displayName ||
+      userData?.profile?.displayName ||
+      'there';
+    toast.success(
+      formatMessage(
+        {
+          id: 'welcome_user',
+          defaultMessage: 'Welcome back, {name}!',
+        },
+        { name: userName },
+      ),
+    );
+
     router.push('/');
     return true;
   };
 
   const form = useForm({
     submit: onSubmit,
-    successMessage,
     onSubmitSuccess,
     getSubmitErrorMessage: (error) => {
       if (error?.message?.includes('Invalid credentials'))
@@ -197,16 +209,6 @@ const LogInForm = () => {
       <div className="flex min-h-screen items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8 text-center">
           <div>
-            <ImageWithFallback
-              className="mx-auto"
-              src={process.env.NEXT_PUBLIC_LOGO}
-              width={60}
-              height={37}
-              alt={formatMessage({
-                id: 'unchained_logo',
-                defaultMessage: 'Unchained Logo',
-              })}
-            />
             <h2 className="mt-6 text-center text-3xl font-extrabold text-slate-900 dark:text-slate-200">
               {formatMessage({
                 id: 'login_header',
@@ -301,7 +303,7 @@ const LogInForm = () => {
                 })}
                 <Link
                   href="/sign-up"
-                  className="ml-2 font-medium text-slate-950 hover:text-slate-900 dark:text-slate-800 dark:hover:text-slate-400"
+                  className="ml-2 font-medium text-slate-950 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-400"
                 >
                   {intl.formatMessage({
                     id: 'sign_up',
@@ -312,6 +314,17 @@ const LogInForm = () => {
             </Form>
             <GoogleOauth />
           </FormWrapper>
+          <div className="flex justify-center dark:brightness-0 dark:invert">
+            <ImageWithFallback
+              src={process.env.NEXT_PUBLIC_LOGO}
+              width={60}
+              height={37}
+              alt={formatMessage({
+                id: 'unchained_logo',
+                defaultMessage: 'Unchained Logo',
+              })}
+            />
+          </div>
         </div>
       </div>
     </>
