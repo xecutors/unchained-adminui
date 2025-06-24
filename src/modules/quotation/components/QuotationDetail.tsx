@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
 
-import { PaperAirplaneIcon, XCircleIcon } from '@heroicons/react/24/solid';
+import { PaperAirplaneIcon, XCircleIcon } from '@heroicons/react/24/outline';
 import StatusProgress from '../../common/components/StatusProgress';
 import useQuotationStatusTypes from '../hooks/useQuotationStatusTypes';
 import Button from '../../common/components/Button';

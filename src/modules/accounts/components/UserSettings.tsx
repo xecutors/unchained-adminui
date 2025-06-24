@@ -7,7 +7,7 @@ import {
   PuzzlePieceIcon,
   ShoppingCartIcon,
   UserIcon,
-} from '@heroicons/react/24/solid';
+} from '@heroicons/react/24/outline';
 import { useIntl } from 'react-intl';
 import DisplayExtendedFields from '../../common/components/DisplayExtendedFields';
 import DisplayUserLastLogs from '../../common/components/DisplayUserLastLogs';

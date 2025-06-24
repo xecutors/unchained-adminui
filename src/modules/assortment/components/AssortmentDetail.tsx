@@ -6,7 +6,7 @@ import {
   ViewColumnsIcon,
   FunnelIcon,
   PuzzlePieceIcon,
-} from '@heroicons/react/24/solid';
+} from '@heroicons/react/24/outline';
 
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';

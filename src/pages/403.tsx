@@ -1,4 +1,4 @@
-import { LockClosedIcon } from '@heroicons/react/24/solid';
+import { LockClosedIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
 import useCurrentUser from '../modules/accounts/hooks/useCurrentUser';

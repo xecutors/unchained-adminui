@@ -1,4 +1,4 @@
-import { CheckBadgeIcon, XCircleIcon } from '@heroicons/react/24/solid';
+import { CheckBadgeIcon, XCircleIcon } from '@heroicons/react/24/outline';
 import classNames from 'classnames';
 
 const ActiveInActive = ({

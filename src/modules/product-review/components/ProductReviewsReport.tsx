@@ -2,7 +2,7 @@ import {
   StarIcon,
   HandThumbDownIcon,
   HandThumbUpIcon,
-} from '@heroicons/react/24/solid';
+} from '@heroicons/react/24/outline';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 const ProductReviewsReport = ({ productReviews }) => {

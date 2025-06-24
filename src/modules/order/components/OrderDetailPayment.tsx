@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl';
 import Link from 'next/link';
-import { PlusIcon } from '@heroicons/react/24/solid';
+import { PlusIcon } from '@heroicons/react/24/outline';
 import { toast } from 'react-toastify';
 
 import AlertMessage from '../../modal/components/AlertMessage';
