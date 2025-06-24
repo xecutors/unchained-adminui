@@ -19,6 +19,7 @@ import Head from 'next/head';
 import Script from 'next/script';
 import AuthWrapper from '../modules/Auth/AuthWrapper';
 import { ChatProvider } from '../modules/chat/ChatContext';
+import CustomTextProvider from '../modules/i18n/components/CustomTextProvider';
 
 const handleRouteChange = (url) => {
   matomo.pageView(document.location.origin + url, document.title);
@@ -38,7 +39,14 @@ const UnchainedAdmin = ({ Component, componentName, pageProps, router }) => {
       )
     : (page) => <Layout componentName={componentName}>{page}</Layout>;
 
-  const messages = getMessages(router.locale);
+  // Always start with default locale to avoid hydration mismatch
+  // The actual locale will be updated after hydration in IntlWrapper
+  const getEffectiveLocale = () => {
+    return 'de'; // Default to German to ensure server/client consistency
+  };
+
+  const effectiveLocale = getEffectiveLocale();
+  const messages = getMessages(effectiveLocale);
 
   useEffect(() => {
     Router.events.on('routeChangeComplete', handleRouteChange);
@@ -49,10 +57,11 @@ const UnchainedAdmin = ({ Component, componentName, pageProps, router }) => {
   }, [apollo]);
 
   return (
-    <IntlWrapper locale={router.locale} messages={messages} key="intl-provider">
-      <ErrorBoundary>
-        <Head>
-          <title>Unchained: Admin UI</title>
+    <IntlWrapper locale={effectiveLocale} messages={messages} key="intl-provider">
+      <CustomTextProvider>
+        <ErrorBoundary>
+          <Head>
+            <title>Unchained: Admin UI</title>
           {process.env.NEXT_PUBLIC_MATOMO_SITE_ID ? (
             <>
               <Script
@@ -94,7 +103,8 @@ const UnchainedAdmin = ({ Component, componentName, pageProps, router }) => {
             </ThemeWrapper>
           </UnchainedContextWrapper>
         </ApolloProvider>
-      </ErrorBoundary>
+        </ErrorBoundary>
+      </CustomTextProvider>
     </IntlWrapper>
   );
 };

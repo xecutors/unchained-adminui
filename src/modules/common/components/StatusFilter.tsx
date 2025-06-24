@@ -1,7 +1,19 @@
 import { useState } from 'react';
+import { useIntl } from 'react-intl';
 
 const StatusFilter = ({ selectedStatuses, onStatusChange, statuses }) => {
+  const { formatMessage } = useIntl();
   const [selectedStatus, setSelectedStatus] = useState(selectedStatuses || []);
+
+  // Function to get translated status text
+  const getStatusTranslation = (status) => {
+    // Convert status to lowercase for translation key
+    const translationKey = status.toLowerCase();
+    return formatMessage({ 
+      id: translationKey, 
+      defaultMessage: status 
+    });
+  };
 
   const statusChangeHandler = (event) => {
     const { value, checked } = event.target;
@@ -34,7 +46,7 @@ const StatusFilter = ({ selectedStatuses, onStatusChange, statuses }) => {
           className="text-sm text-slate-600 dark:text-slate-200"
           htmlFor={status}
         >
-          {status}
+{getStatusTranslation(status)}
         </label>
       </div>
     </div>

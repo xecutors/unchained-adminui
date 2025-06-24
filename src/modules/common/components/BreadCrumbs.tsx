@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useIntl } from 'react-intl';
 
 const BreadCrumbs = ({
   routeName = null,
@@ -7,6 +8,33 @@ const BreadCrumbs = ({
   depth = null,
 }) => {
   const router = useRouter();
+  const { formatMessage } = useIntl();
+
+  // Mapping of route segments to translation keys
+  const routeTranslations = {
+    'products': 'products',
+    'orders': 'orders', 
+    'users': 'users',
+    'assortments': 'assortments',
+    'filters': 'filters',
+    'tokens': 'tokens',
+    'quotations': 'quotations',
+    'enrollments': 'enrollments',
+    'activities': 'activities',
+    'works': 'work_queue',
+    'events': 'events',
+    'currency': 'currencies',
+    'country': 'countries',
+    'language': 'languages',
+    'delivery-provider': 'delivery_providers',
+    'payment-provider': 'payment_providers',
+    'warehousing-provider': 'warehousing_provider',
+    'custom-texts': 'custom_texts',
+    'system': 'system',
+    'account': 'account',
+    'new': 'new',
+    'edit': 'edit'
+  };
   const pathArr = router.asPath
 
     ?.split('/')
@@ -23,17 +51,23 @@ const BreadCrumbs = ({
     currentRoute += `${e}/`;
     if (!e) {
       return {
-        name: 'Home',
+        name: formatMessage({ id: 'home', defaultMessage: 'Home' }),
         path: currentRoute,
       };
     }
     // if routeName is given dont modify the string else
     // remove hyphens incase it hyphen deliminated slug
-    const pathName = routeName
-      ? e?.split('?')[0]
-      : e?.split('?')[0].replace(/-/g, ' ');
+    const pathSegment = e?.split('?')[0];
+    const pathName = routeName ? pathSegment : pathSegment.replace(/-/g, ' ');
+    
+    // Try to get translation for this route segment
+    const translationKey = routeTranslations[pathSegment];
+    const translatedName = translationKey 
+      ? formatMessage({ id: translationKey, defaultMessage: pathName })
+      : decodeURIComponent(pathName);
+    
     return {
-      name: decodeURIComponent(pathName),
+      name: translatedName,
       path: currentRoute.replace(/.$/, ''),
     };
   });

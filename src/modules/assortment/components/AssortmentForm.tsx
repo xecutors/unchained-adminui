@@ -78,7 +78,7 @@ const AssortmentForm = ({
         <span className="block text-sm text-slate-400 dark:text-slate-500">
           {formatMessage({
             id: 'root_description',
-            defaultMessage: 'This makes the assortment is a top level',
+            defaultMessage: 'This makes the assortment a top level category',
           })}
         </span>
       </div>
