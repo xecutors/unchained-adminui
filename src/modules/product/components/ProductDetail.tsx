@@ -306,7 +306,7 @@ const ProductDetail = ({ product, extendedData = {} }) => {
         />
       </div>
       <div className="mt-5 flex flex-wrap gap-3">
-        <div className="inline-flex items-center gap-2 rounded-md border border-slate-600 dark:border-slate-600 px-4 py-2 text-sm font-medium leading-5 shadow-md bg-white dark:bg-slate-800 h-[38px]">
+        <div className="inline-flex items-center gap-2 rounded-md dark:border-slate-600 px-4 py-2 text-sm font-medium leading-5 shadow-sm bg-white dark:bg-slate-800 h-[38px]">
           <label
             htmlFor="sequence-input"
             className="text-slate-700 dark:text-slate-200 font-medium"
