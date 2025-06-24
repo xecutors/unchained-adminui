@@ -294,7 +294,7 @@ const Layout = ({
         className={`hidden md:fixed md:inset-y-0 md:flex md:flex-col dark:bg-slate-900 dark:text-slate-200 ${narrowNav ? 'md:w-16' : 'md:w-64 2xl:w-96'}`}
       >
         <div className="flex min-h-0 flex-1 flex-col border-r border-slate-300 dark:border-slate-800 bg-white dark:bg-slate-900">
-          <div className="flex flex-1 flex-col overflow-y-auto pt-10">
+          <div className="flex flex-1 flex-col overflow-y-auto scrollbar-hide pt-10">
             <div
               className={`flex shrink-0 items-center ${narrowNav ? 'px-2 justify-center' : 'px-2 lg:px-4 2xl:px-6'}`}
             >
