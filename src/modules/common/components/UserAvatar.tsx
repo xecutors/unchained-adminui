@@ -14,16 +14,19 @@ const UserAvatar = ({ avatar, ...user }) => {
   const router = useRouter();
 
   const onLogout = async () => {
-    const userName = user?.username || user?.displayName || user?.profile?.displayName || '';
+    const userName =
+      user?.username || user?.displayName || user?.profile?.displayName || '';
     await logOut(apolloClient, router);
     toast.success(
       formatMessage(
         {
           id: 'goodbye_user',
-          defaultMessage: userName ? 'See you later, {name}!' : 'See you later!',
+          defaultMessage: userName
+            ? 'See you later, {name}!'
+            : 'See you later!',
         },
-        { name: userName }
-      )
+        { name: userName },
+      ),
     );
   };
 

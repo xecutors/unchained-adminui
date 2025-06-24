@@ -9,9 +9,9 @@ const StatusFilter = ({ selectedStatuses, onStatusChange, statuses }) => {
   const getStatusTranslation = (status) => {
     // Convert status to lowercase for translation key
     const translationKey = status.toLowerCase();
-    return formatMessage({ 
-      id: translationKey, 
-      defaultMessage: status 
+    return formatMessage({
+      id: translationKey,
+      defaultMessage: status,
     });
   };
 
@@ -46,7 +46,7 @@ const StatusFilter = ({ selectedStatuses, onStatusChange, statuses }) => {
           className="text-sm text-slate-600 dark:text-slate-200"
           htmlFor={status}
         >
-{getStatusTranslation(status)}
+          {getStatusTranslation(status)}
         </label>
       </div>
     </div>

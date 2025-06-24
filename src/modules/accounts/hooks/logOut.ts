@@ -11,7 +11,7 @@ const logOut = async (apollo, router = null) => {
     `,
   });
   await apollo.resetStore();
-  
+
   // Redirect to login page if router is provided
   if (router) {
     router.push('/log-in');

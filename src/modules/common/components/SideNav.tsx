@@ -11,9 +11,11 @@ const ChildrenNav = ({ item, hasRole, onSelected, narrowView }) => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
-  
+
   // Check if any child is active
-  const isChildActive = item.children?.some(child => router.pathname === child.href);
+  const isChildActive = item.children?.some(
+    (child) => router.pathname === child.href,
+  );
 
   // Handle clicks outside dropdown to close it
   useEffect(() => {
@@ -25,7 +27,8 @@ const ChildrenNav = ({ item, hasRole, onSelected, narrowView }) => {
 
     if (isOpen) {
       document.addEventListener('mousedown', handleClickOutside);
-      return () => document.removeEventListener('mousedown', handleClickOutside);
+      return () =>
+        document.removeEventListener('mousedown', handleClickOutside);
     }
   }, [isOpen]);
 
@@ -37,10 +40,10 @@ const ChildrenNav = ({ item, hasRole, onSelected, narrowView }) => {
       <div key={item.name} className="relative group" ref={dropdownRef}>
         <button
           className={classNames(
-            "flex w-full justify-center items-center p-2 rounded-md transition-colors focus:outline-hidden focus:ring-2 focus:ring-slate-800",
+            'flex w-full justify-center items-center p-2 rounded-md transition-colors focus:outline-hidden focus:ring-2 focus:ring-slate-800',
             isChildActive
-              ? "text-slate-900 dark:text-slate-100 bg-slate-100 dark:bg-slate-800"
-              : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
+              ? 'text-slate-900 dark:text-slate-100 bg-slate-100 dark:bg-slate-800'
+              : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800',
           )}
           title={item.name}
           onClick={() => setIsOpen(!isOpen)}
@@ -48,19 +51,22 @@ const ChildrenNav = ({ item, hasRole, onSelected, narrowView }) => {
           {item?.icon && (
             <item.icon
               className={classNames(
-                "h-6 w-6",
+                'h-6 w-6',
                 isChildActive
-                  ? "text-slate-900 dark:text-slate-100"
-                  : "text-slate-800 dark:text-slate-300"
+                  ? 'text-slate-900 dark:text-slate-100'
+                  : 'text-slate-800 dark:text-slate-300',
               )}
               aria-hidden="true"
             />
           )}
         </button>
-        
+
         {/* Dropdown menu */}
         {isOpen && (
-          <div className="fixed left-16 top-auto w-48 rounded-md shadow-lg bg-white dark:bg-slate-800 ring-1 ring-black ring-opacity-5 z-[100]" style={{top: dropdownRef.current?.getBoundingClientRect().top}}>
+          <div
+            className="fixed left-16 top-auto w-48 rounded-md shadow-lg bg-white dark:bg-slate-800 ring-1 ring-black ring-opacity-5 z-[100]"
+            style={{ top: dropdownRef.current?.getBoundingClientRect().top }}
+          >
             <div className="py-1">
               <div className="px-4 py-2 text-sm font-medium text-slate-900 dark:text-slate-100 border-b border-slate-200 dark:border-slate-700">
                 {item.name}
@@ -156,7 +162,7 @@ const SideNav = ({ navigation, onClick = null, narrowView = false }) => {
                 href={item?.href || '#'}
                 className={classNames(
                   'group flex w-full items-center rounded-md py-2 text-sm font-medium focus:outline-hidden focus:ring-2 focus:ring-slate-800',
-                  (router.asPath === item.href || router.pathname === item.href)
+                  router.asPath === item.href || router.pathname === item.href
                     ? 'text-slate-900 dark:text-slate-100 bg-slate-100 dark:bg-slate-800'
                     : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800',
                   {
@@ -168,16 +174,15 @@ const SideNav = ({ navigation, onClick = null, narrowView = false }) => {
               >
                 {item?.icon && (
                   <item.icon
-                    className={classNames(
-                      'h-6 w-6 shrink-0',
-                      {
-                        'text-slate-900 dark:text-slate-100':
-                          router.asPath === item.href || router.pathname === item.href,
-                        'text-slate-800 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-slate-100':
-                          router.asPath !== item.href && router.pathname !== item.href,
-                        'mr-3': !narrowView,
-                      },
-                    )}
+                    className={classNames('h-6 w-6 shrink-0', {
+                      'text-slate-900 dark:text-slate-100':
+                        router.asPath === item.href ||
+                        router.pathname === item.href,
+                      'text-slate-800 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-slate-100':
+                        router.asPath !== item.href &&
+                        router.pathname !== item.href,
+                      'mr-3': !narrowView,
+                    })}
                     aria-hidden="true"
                   />
                 )}
