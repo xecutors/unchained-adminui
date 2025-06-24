@@ -9,7 +9,7 @@ export const useChatManager = () => {
     messages,
     input,
     handleInputChange,
-    handleSubmit,
+    handleSubmit: originalHandleSubmit,
     isLoading,
     error,
     status,
@@ -54,6 +54,15 @@ export const useChatManager = () => {
     setMessages((prev) => [...prev, interruptionMessage]);
   };
 
+  const handleSubmit = async (
+    e: React.FormEvent<HTMLFormElement>,
+    imageFile?: FileList | null,
+  ) => {
+    e.preventDefault();
+
+    // Call the original handleSubmit (which uses the current input)
+    originalHandleSubmit(e, { experimental_attachments: imageFile });
+  };
   return {
     messages: messages as ChatMessage[],
     input,
