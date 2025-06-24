@@ -276,7 +276,7 @@ const Layout = ({
               onClick={() => setHideNav(!hideNav)}
             />
           </div>
-          <div className="flex shrink-0 border-t border-slate-300 dark:border-slate-800 p-4">
+          <div className="flex items-center shrink-0 border-t border-slate-300 dark:border-slate-800 p-4">
             <UserAvatar avatar={currentUser?.avatar} {...currentUser} />
             <div className="ml-auto">
               <ThemeToggle />
