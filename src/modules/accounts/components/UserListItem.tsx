@@ -6,7 +6,7 @@ import MiniUserAvatar from '../../common/components/MiniUserAvatar';
 import formatUsername from '../../common/utils/formatUsername';
 import useCurrentUser from '../hooks/useCurrentUser';
 import Loading from '../../common/components/Loading';
-import { ShoppingBagIcon, ShoppingCartIcon } from '@heroicons/react/24/solid';
+import { ShoppingBagIcon, ShoppingCartIcon } from '@heroicons/react/24/outline';
 
 const UserLastLogin = ({ lastLogin }) => {
   const { formatMessage, locale } = useIntl();

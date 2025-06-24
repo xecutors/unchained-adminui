@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl';
-import { CheckIcon } from '@heroicons/react/24/solid';
+import { CheckIcon } from '@heroicons/react/24/outline';
 import useFormatDateTime from '../utils/useFormatDateTime';
 import { classNames } from '../utils/utils';
 

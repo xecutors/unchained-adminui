@@ -2,7 +2,7 @@ import {
   FlagIcon,
   HandThumbDownIcon,
   HandThumbUpIcon,
-} from '@heroicons/react/24/solid';
+} from '@heroicons/react/24/outline';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import classNames from 'classnames';

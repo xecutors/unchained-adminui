@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 
 import { useIntl } from 'react-intl';
-import { EyeIcon, PencilIcon } from '@heroicons/react/24/solid';
+import { EyeIcon, PencilIcon } from '@heroicons/react/24/outline';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import remarkGfm from 'remark-gfm';

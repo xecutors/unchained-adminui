@@ -1,4 +1,4 @@
-import { CheckCircleIcon } from '@heroicons/react/24/solid';
+import { CheckCircleIcon } from '@heroicons/react/24/outline';
 import { useIntl } from 'react-intl';
 
 import { getInterfaceLabel } from '../utils/utils';

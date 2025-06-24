@@ -1,4 +1,4 @@
-import { PhotoIcon } from '@heroicons/react/24/solid';
+import { PhotoIcon } from '@heroicons/react/24/outline';
 import classNames from 'classnames';
 
 const NoImage = ({ className = '', containerClassName = '', Icon = null }) => {

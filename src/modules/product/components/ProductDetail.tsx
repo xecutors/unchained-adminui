@@ -1,4 +1,5 @@
 import { useIntl } from 'react-intl';
+import { toast } from 'react-toastify';
 import {
   DocumentTextIcon,
   FilmIcon,
@@ -9,9 +10,9 @@ import {
   PresentationChartLineIcon,
   UsersIcon,
   PuzzlePieceIcon,
-} from '@heroicons/react/24/solid';
-import { toast } from 'react-toastify';
-import { LinkIcon, XMarkIcon } from '@heroicons/react/24/outline';
+  LinkIcon,
+  XMarkIcon,
+} from '@heroicons/react/24/outline';
 import LocaleWrapper from '../../common/components/LocaleWrapper';
 import { useRouter } from 'next/router';
 import HeaderDeleteButton from '../../common/components/HeaderDeleteButton';

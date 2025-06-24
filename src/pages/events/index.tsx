@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl';
 import { useRouter } from 'next/router';
-import { VariableIcon } from '@heroicons/react/24/solid';
+import { VariableIcon } from '@heroicons/react/24/outline';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 
 import InfiniteScroll from '../../modules/common/components/InfiniteScroll';

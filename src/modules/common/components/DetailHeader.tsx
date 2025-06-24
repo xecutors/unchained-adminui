@@ -3,7 +3,7 @@ import {
   CheckCircleIcon,
   XCircleIcon,
   DevicePhoneMobileIcon,
-} from '@heroicons/react/24/solid';
+} from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import formatUsername from '../utils/formatUsername';
 import ImageWithFallback from './ImageWithFallback';

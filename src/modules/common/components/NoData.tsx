@@ -1,4 +1,4 @@
-import { NoSymbolIcon } from '@heroicons/react/24/solid';
+import { NoSymbolIcon } from '@heroicons/react/24/outline';
 import classnames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 

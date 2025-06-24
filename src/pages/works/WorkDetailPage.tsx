@@ -12,7 +12,7 @@ import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useModal from '../../modules/modal/hooks/useModal';
 import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButton';
-import { ArrowPathIcon } from '@heroicons/react/24/solid';
+import { ArrowPathIcon } from '@heroicons/react/24/outline';
 import { useCallback } from 'react';
 
 import { IWorkStatus } from '../../gql/types';
