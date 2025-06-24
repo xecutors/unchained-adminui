@@ -55,10 +55,10 @@ const UserAvatar = ({ avatar, ...user }) => {
           </span>
         )}
         <div>
-          <p className="text-sm font-medium text-slate-700 dark:text-slate-400 group-hover:text-slate-700 dark:group-hover:text-slate-800">
+          <p className="text-sm font-medium text-slate-700 dark:text-slate-400 group-hover:text-slate-700 dark:group-hover:text-slate-300">
             {formatUsername(user)}
           </p>
-          <p className="text-sm font-medium text-slate-500 dark:text-slate-400 group-hover:text-slate-700 dark:group-hover:text-slate-800">
+          <p className="text-sm font-medium text-slate-500 dark:text-slate-400 group-hover:text-slate-700 dark:group-hover:text-slate-300">
             {formatMessage({
               id: 'log_out',
               defaultMessage: 'Log out',
