@@ -5,6 +5,7 @@ import { PlusIcon, TrashIcon, PencilIcon } from '@heroicons/react/24/outline';
 import Button from '../../common/components/Button';
 import Modal from '../../modal/components/Modal';
 import TextField from '../../forms/components/TextField';
+import Form from '../../forms/components/Form';
 import useForm from '../../forms/hooks/useForm';
 
 interface CustomTextFormData {
@@ -78,7 +79,6 @@ const CustomTextManager: React.FC = () => {
             id: 'add_custom_text',
             defaultMessage: 'Add Custom Text',
           })}
-          icon={PlusIcon}
         />
       </div>
 
@@ -132,91 +132,96 @@ const CustomTextManager: React.FC = () => {
         </ul>
       </div>
 
-      <Modal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        title={formatMessage({
-          id: editingText ? 'edit_custom_text' : 'add_custom_text',
-          defaultMessage: editingText ? 'Edit Custom Text' : 'Add Custom Text',
-        })}
-      >
-        <form onSubmit={form.formik.handleSubmit} className="space-y-4">
-          <TextField
-            name="key"
-            label={formatMessage({
-              id: 'text_key',
-              defaultMessage: 'Text Key',
+      <Modal visible={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <div>
+          <h3 className="text-lg font-medium text-slate-900 dark:text-slate-100 mb-4">
+            {formatMessage({
+              id: editingText ? 'edit_custom_text' : 'add_custom_text',
+              defaultMessage: editingText
+                ? 'Edit Custom Text'
+                : 'Add Custom Text',
             })}
-            placeholder={formatMessage({
-              id: 'text_key_placeholder',
-              defaultMessage: 'e.g., welcome_message',
-            })}
-            required
-            {...form.getFieldProps('key')}
-          />
-
-          <div>
-            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-              {formatMessage({
-                id: 'category',
-                defaultMessage: 'Category',
+          </h3>
+          <Form form={form} className="space-y-4">
+            <TextField
+              name="key"
+              label={formatMessage({
+                id: 'text_key',
+                defaultMessage: 'Text Key',
               })}
-            </label>
-            <select
-              {...form.getFieldProps('category')}
-              className="block w-full rounded-md border-1 border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-200 py-2 px-3 shadow-sm focus:outline-hidden focus:ring-2 focus:ring-slate-800"
-            >
-              <option value="general">
-                {formatMessage({ id: 'general', defaultMessage: 'General' })}
-              </option>
-              <option value="help">
-                {formatMessage({ id: 'help', defaultMessage: 'Help' })}
-              </option>
-              <option value="label">
-                {formatMessage({ id: 'label', defaultMessage: 'Label' })}
-              </option>
-            </select>
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-              {formatMessage({
-                id: 'custom_text',
-                defaultMessage: 'Custom Text',
-              })}
-            </label>
-            <textarea
-              {...form.getFieldProps('text')}
-              rows={4}
-              className="block w-full rounded-md border-1 border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-200 py-2 px-3 shadow-sm placeholder:text-slate-400 dark:placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-slate-800"
               placeholder={formatMessage({
-                id: 'custom_text_placeholder',
-                defaultMessage: 'Enter your custom text here...',
+                id: 'text_key_placeholder',
+                defaultMessage: 'e.g., welcome_message',
               })}
               required
             />
-          </div>
 
-          <div className="flex justify-end space-x-3 pt-4">
-            <Button
-              type="button"
-              onClick={() => setIsModalOpen(false)}
-              variant="secondary"
-              text={formatMessage({
-                id: 'cancel',
-                defaultMessage: 'Cancel',
-              })}
-            />
-            <Button
-              type="submit"
-              variant="primary"
-              text={formatMessage({
-                id: 'save',
-                defaultMessage: 'Save',
-              })}
-            />
-          </div>
-        </form>
+            <div>
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                {formatMessage({
+                  id: 'category',
+                  defaultMessage: 'Category',
+                })}
+              </label>
+              <select
+                {...form.formik.getFieldProps('category')}
+                className="block w-full rounded-md border-1 border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-200 py-2 px-3 shadow-sm focus:outline-hidden focus:ring-2 focus:ring-slate-800"
+              >
+                <option value="general">
+                  {formatMessage({
+                    id: 'general',
+                    defaultMessage: 'General',
+                  })}
+                </option>
+                <option value="help">
+                  {formatMessage({ id: 'help', defaultMessage: 'Help' })}
+                </option>
+                <option value="label">
+                  {formatMessage({ id: 'label', defaultMessage: 'Label' })}
+                </option>
+              </select>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                {formatMessage({
+                  id: 'custom_text',
+                  defaultMessage: 'Custom Text',
+                })}
+              </label>
+              <textarea
+                {...form.formik.getFieldProps('text')}
+                rows={4}
+                className="block w-full rounded-md border-1 border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-200 py-2 px-3 shadow-sm placeholder:text-slate-400 dark:placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-slate-800"
+                placeholder={formatMessage({
+                  id: 'custom_text_placeholder',
+                  defaultMessage: 'Enter your custom text here...',
+                })}
+                required
+              />
+            </div>
+
+            <div className="flex justify-end space-x-3 pt-4">
+              <Button
+                type="button"
+                onClick={() => setIsModalOpen(false)}
+                variant="secondary"
+                text={formatMessage({
+                  id: 'cancel',
+                  defaultMessage: 'Cancel',
+                })}
+              />
+              <Button
+                type="submit"
+                variant="primary"
+                text={formatMessage({
+                  id: 'save',
+                  defaultMessage: 'Save',
+                })}
+              />
+            </div>
+          </Form>
+        </div>
       </Modal>
     </div>
   );
