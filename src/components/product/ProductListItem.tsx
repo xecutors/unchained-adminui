@@ -27,8 +27,11 @@ interface ProductListItemProps {
 
 const ProductListItem: React.FC<ProductListItemProps> = ({ product }) => {
   const { formatPrice } = useFormatPrice();
-  const { texts, media, catalogPrice } = product;
+  const { texts, media, catalogPrice, commerce } = product;
   const text = Array.isArray(texts) && texts.length > 0 ? texts[0] : {};
+  
+  // Get price from either catalogPrice or commerce.pricing
+  const price = catalogPrice || commerce?.pricing?.[0];
 
   return (
     <div
@@ -69,8 +72,14 @@ const ProductListItem: React.FC<ProductListItemProps> = ({ product }) => {
         />
       </div>
       <p className="text-sm text-slate-600 dark:text-slate-300 px-4">
-        {catalogPrice?.currencyCode || 'CHF'}{' '}
-        {catalogPrice?.amount ? (catalogPrice.amount / 100).toFixed(2) : '0.00'}
+        {price ? (
+          <>
+            {price.currencyCode || 'CHF'}{' '}
+            {(price.amount / 100).toFixed(2)}
+          </>
+        ) : (
+          <span className="text-slate-400">No price</span>
+        )}
       </p>
       <p className="text-xs text-slate-500 dark:text-slate-400 px-4">
         {product._id || 'auf Lager'}

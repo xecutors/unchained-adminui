@@ -14,8 +14,24 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
   if (!toolName || !result?.content?.length) return null;
 
   try {
-    const [{ text }] = result.content;
-    const parsed = JSON.parse(text);
+    // Safely extract text from content
+    const content = result.content[0];
+    const text = content?.text || content;
+    
+    // If text is not a string, try to stringify it
+    const textString = typeof text === 'string' ? text : JSON.stringify(text);
+    
+    // Check if the response is an error message instead of JSON
+    if (textString && textString.startsWith('Error')) {
+      return (
+        <div className="text-sm text-amber-600 dark:text-amber-400 mb-4 p-3 bg-amber-50 dark:bg-amber-950 rounded-md">
+          <div className="font-medium mb-1">Tool Response:</div>
+          <div>{textString}</div>
+        </div>
+      );
+    }
+    
+    const parsed = JSON.parse(textString);
     const listViewTools = [
       'create_product',
       'remove_product',
@@ -56,10 +72,21 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
         <UnknownToolResponse data={parsed} />
       </div>
     );
-  } catch {
+  } catch (error) {
+    console.error('Tool result parsing error:', error);
+    console.error('Tool name:', toolName);
+    console.error('Result content:', result?.content);
     return (
       <div className="text-sm text-red-500 mb-4">
-        Failed to parse tool result.
+        <div>Failed to parse tool result.</div>
+        <details className="mt-2">
+          <summary className="cursor-pointer text-xs">Debug info</summary>
+          <pre className="text-xs mt-1 p-2 bg-red-50 dark:bg-red-950 rounded overflow-auto">
+Tool: {toolName}
+Error: {error?.message || 'Unknown error'}
+Content: {JSON.stringify(result?.content, null, 2)}
+          </pre>
+        </details>
       </div>
     );
   }

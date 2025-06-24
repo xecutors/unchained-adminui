@@ -29,8 +29,11 @@ const ProductListItemCompact: React.FC<ProductListItemCompactProps> = ({
   product,
 }) => {
   const { formatPrice } = useFormatPrice();
-  const { texts, media, catalogPrice } = product;
+  const { texts, media, catalogPrice, commerce } = product;
   const text = Array.isArray(texts) && texts.length > 0 ? texts[0] : {};
+  
+  // Get price from either catalogPrice or commerce.pricing
+  const price = catalogPrice || commerce?.pricing?.[0];
 
   return (
     <div className="flex items-center gap-4 p-3 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-md transition-shadow duration-200">
@@ -62,8 +65,14 @@ const ProductListItemCompact: React.FC<ProductListItemCompactProps> = ({
             dotted
           />
           <span className="text-sm font-medium text-slate-900 dark:text-slate-100">
-            {catalogPrice?.currencyCode || 'CHF'}{' '}
-            {catalogPrice?.amount ? (catalogPrice.amount / 100).toFixed(2) : '0.00'}
+            {price ? (
+              <>
+                {price.currencyCode || 'CHF'}{' '}
+                {(price.amount / 100).toFixed(2)}
+              </>
+            ) : (
+              <span className="text-slate-400">No price</span>
+            )}
           </span>
           <span className="text-xs text-slate-500 dark:text-slate-400">
             ID: {product._id}
