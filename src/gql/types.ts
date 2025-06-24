@@ -3433,6 +3433,7 @@ export type ISearchResultProductsArgs = {
 export type IShop = {
   _id: Scalars['ID']['output'];
   adminUiConfig: IAdminUiConfig;
+  chatEnabled?: Maybe<Scalars['Boolean']['output']>;
   country?: Maybe<ICountry>;
   language?: Maybe<ILanguage>;
   userRoles: Array<Scalars['String']['output']>;
@@ -4201,6 +4202,8 @@ export type IUserFragment = {
     } | null;
   } | null;
   primaryEmail?: { verified: boolean; address: string } | null;
+  cart?: { _id: string; items?: Array<{ _id: string }> | null } | null;
+  orders: Array<{ _id: string; items?: Array<{ _id: string }> | null }>;
 };
 
 export type IUserFragmentVariables = Exact<{ [key: string]: never }>;
@@ -4314,6 +4317,8 @@ export type IAddEmailMutation = {
       } | null;
     } | null;
     primaryEmail?: { verified: boolean; address: string } | null;
+    cart?: { _id: string; items?: Array<{ _id: string }> | null } | null;
+    orders: Array<{ _id: string; items?: Array<{ _id: string }> | null }>;
   };
 };
 
@@ -4421,6 +4426,8 @@ export type IAddWeb3AddressMutation = {
       } | null;
     } | null;
     primaryEmail?: { verified: boolean; address: string } | null;
+    cart?: { _id: string; items?: Array<{ _id: string }> | null } | null;
+    orders: Array<{ _id: string; items?: Array<{ _id: string }> | null }>;
   };
 };
 
@@ -4528,6 +4535,8 @@ export type IAddWebAuthnCredentialsMutation = {
       } | null;
     } | null;
     primaryEmail?: { verified: boolean; address: string } | null;
+    cart?: { _id: string; items?: Array<{ _id: string }> | null } | null;
+    orders: Array<{ _id: string; items?: Array<{ _id: string }> | null }>;
   };
 };
 
@@ -4670,6 +4679,8 @@ export type ICurrentUserQuery = {
       } | null;
     } | null;
     primaryEmail?: { verified: boolean; address: string } | null;
+    cart?: { _id: string; items?: Array<{ _id: string }> | null } | null;
+    orders: Array<{ _id: string; items?: Array<{ _id: string }> | null }>;
   } | null;
 };
 
@@ -4785,6 +4796,8 @@ export type IEnrollUserMutation = {
       } | null;
     } | null;
     primaryEmail?: { verified: boolean; address: string } | null;
+    cart?: { _id: string; items?: Array<{ _id: string }> | null } | null;
+    orders: Array<{ _id: string; items?: Array<{ _id: string }> | null }>;
   };
 };
 
@@ -4927,6 +4940,8 @@ export type IRemoveEmailMutation = {
       } | null;
     } | null;
     primaryEmail?: { verified: boolean; address: string } | null;
+    cart?: { _id: string; items?: Array<{ _id: string }> | null } | null;
+    orders: Array<{ _id: string; items?: Array<{ _id: string }> | null }>;
   };
 };
 
@@ -5034,6 +5049,8 @@ export type IRemoveWeb3AddressMutation = {
       } | null;
     } | null;
     primaryEmail?: { verified: boolean; address: string } | null;
+    cart?: { _id: string; items?: Array<{ _id: string }> | null } | null;
+    orders: Array<{ _id: string; items?: Array<{ _id: string }> | null }>;
   };
 };
 
@@ -5141,6 +5158,8 @@ export type IRemoveWebAuthCredentialsMutation = {
       } | null;
     } | null;
     primaryEmail?: { verified: boolean; address: string } | null;
+    cart?: { _id: string; items?: Array<{ _id: string }> | null } | null;
+    orders: Array<{ _id: string; items?: Array<{ _id: string }> | null }>;
   };
 };
 
@@ -5266,6 +5285,8 @@ export type ISetPasswordMutation = {
       } | null;
     } | null;
     primaryEmail?: { verified: boolean; address: string } | null;
+    cart?: { _id: string; items?: Array<{ _id: string }> | null } | null;
+    orders: Array<{ _id: string; items?: Array<{ _id: string }> | null }>;
   };
 };
 
@@ -5374,6 +5395,8 @@ export type ISetRolesMutation = {
       } | null;
     } | null;
     primaryEmail?: { verified: boolean; address: string } | null;
+    cart?: { _id: string; items?: Array<{ _id: string }> | null } | null;
+    orders: Array<{ _id: string; items?: Array<{ _id: string }> | null }>;
   };
 };
 
@@ -5491,6 +5514,8 @@ export type ISetUsernameMutation = {
       } | null;
     } | null;
     primaryEmail?: { verified: boolean; address: string } | null;
+    cart?: { _id: string; items?: Array<{ _id: string }> | null } | null;
+    orders: Array<{ _id: string; items?: Array<{ _id: string }> | null }>;
   };
 };
 
@@ -5608,6 +5633,8 @@ export type IUpdateUserProfileMutation = {
       } | null;
     } | null;
     primaryEmail?: { verified: boolean; address: string } | null;
+    cart?: { _id: string; items?: Array<{ _id: string }> | null } | null;
+    orders: Array<{ _id: string; items?: Array<{ _id: string }> | null }>;
   };
 };
 
@@ -5715,6 +5742,8 @@ export type IUserQuery = {
       } | null;
     } | null;
     primaryEmail?: { verified: boolean; address: string } | null;
+    cart?: { _id: string; items?: Array<{ _id: string }> | null } | null;
+    orders: Array<{ _id: string; items?: Array<{ _id: string }> | null }>;
   } | null;
 };
 
@@ -5859,6 +5888,8 @@ export type IUsersQuery = {
       } | null;
     } | null;
     primaryEmail?: { verified: boolean; address: string } | null;
+    cart?: { _id: string; items?: Array<{ _id: string }> | null } | null;
+    orders: Array<{ _id: string; items?: Array<{ _id: string }> | null }>;
   }>;
 };
 
@@ -5985,6 +6016,8 @@ export type IVerifyEmailMutation = {
         } | null;
       } | null;
       primaryEmail?: { verified: boolean; address: string } | null;
+      cart?: { _id: string; items?: Array<{ _id: string }> | null } | null;
+      orders: Array<{ _id: string; items?: Array<{ _id: string }> | null }>;
     } | null;
   } | null;
 };
@@ -6094,6 +6127,8 @@ export type IVerifyWeb3AddressMutation = {
       } | null;
     } | null;
     primaryEmail?: { verified: boolean; address: string } | null;
+    cart?: { _id: string; items?: Array<{ _id: string }> | null } | null;
+    orders: Array<{ _id: string; items?: Array<{ _id: string }> | null }>;
   };
 };
 
@@ -7762,7 +7797,7 @@ export type ICreateFilterMutation = {
 export type ICreateFilterOptionMutationVariables = Exact<{
   filterId: Scalars['ID']['input'];
   option: Scalars['String']['input'];
-  title?: InputMaybe<Scalars['String']['input']>;
+  texts?: InputMaybe<Array<IFilterTextInput>>;
 }>;
 
 export type ICreateFilterOptionMutation = {
