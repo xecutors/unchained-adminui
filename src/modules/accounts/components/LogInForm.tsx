@@ -194,14 +194,14 @@ const LogInForm = () => {
 
   return (
     <>
-      <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div className="flex min-h-screen items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8 text-center">
           <div>
             <ImageWithFallback
               className="mx-auto"
               src={process.env.NEXT_PUBLIC_LOGO}
-              width={160}
-              height={100}
+              width={60}
+              height={37}
               alt={formatMessage({
                 id: 'unchained_logo',
                 defaultMessage: 'Unchained Logo',
@@ -247,7 +247,7 @@ const LogInForm = () => {
                 >
                   <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                     <svg
-                      className="h-5 w-5 text-slate-900 group-hover:text-slate-800"
+                      className="h-5 w-5 text-white group-hover:text-slate-200"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
                       fill="currentColor"
@@ -273,7 +273,7 @@ const LogInForm = () => {
                   >
                     <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                       <svg
-                        className="h-5 w-5 text-slate-900 group-hover:text-slate-800"
+                        className="h-5 w-5 text-white group-hover:text-slate-200"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
                         fill="currentColor"
