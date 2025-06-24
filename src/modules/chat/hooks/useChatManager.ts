@@ -15,6 +15,7 @@ export const useChatManager = () => {
     status,
     setMessages,
     stop,
+    reload,
   } = useChat({
     maxSteps: 5,
     credentials: 'include',
@@ -64,5 +65,6 @@ export const useChatManager = () => {
     clearHistory,
     stop,
     addInterruptionMessage,
+    reload,
   };
 };

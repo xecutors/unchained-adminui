@@ -69,15 +69,13 @@ const ProductTextsForm = ({ productId, selectedLocale = null }) => {
   });
 
   useEffect(() => {
-    let value = translatedTexts?.find(
-      (text) => text.locale === selectedLocale,
-    );
-    
+    let value = translatedTexts?.find((text) => text.locale === selectedLocale);
+
     // If no value found for selectedLocale, use the first available text
     if (!value && translatedTexts?.length > 0) {
       value = translatedTexts[0];
     }
-    
+
     if (value) form.formik.setValues(value);
   }, [translatedTexts, selectedLocale]);
 

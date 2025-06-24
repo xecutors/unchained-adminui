@@ -20,7 +20,8 @@ const AssortmentForm = ({
     defaultMessage: 'Assortment added successfully!',
   });
   const form = useForm({
-    submit: async (data) => onSubmit({ ...data, locale: selectedLocale || 'de' }),
+    submit: async (data) =>
+      onSubmit({ ...data, locale: selectedLocale || 'de' }),
     onSubmitSuccess,
     successMessage,
     enableReinitialize: true,
