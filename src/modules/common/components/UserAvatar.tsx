@@ -22,7 +22,11 @@ const UserAvatar = ({ avatar, ...user }) => {
   };
 
   return (
-    <a href="#" onClick={onLogout} className="group block shrink-0">
+    <a
+      href="#"
+      onClick={onLogout}
+      className="group block shrink-0 focus:outline-hidden focus:ring-2 focus:ring-slate-800 rounded-md"
+    >
       <div className="flex items-center pl-2">
         {avatar ? (
           <ImageWithFallback
