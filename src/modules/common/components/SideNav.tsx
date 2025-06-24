@@ -82,7 +82,7 @@ const SideNav = ({ navigation, onClick = null, narrowView = false }) => {
   return (
     <div className="mt-8 flex grow flex-col dark:bg-slate-900">
       <nav
-        className={`flex-1 space-y-1 bg-white dark:bg-slate-900 ${narrowView ? 'px-2' : 'px-2 lg:px-4 2xl:px-6'}`}
+        className={`pb-8 flex-1 space-y-1 bg-white dark:bg-slate-900 ${narrowView ? 'px-2' : 'px-2 lg:px-4 2xl:px-6'}`}
         aria-label="Sidebar"
       >
         {navigation.map((item) =>
