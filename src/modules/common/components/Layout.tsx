@@ -23,6 +23,7 @@ import useShopInfo from '../hooks/useShopInfo';
 import SideNav from './SideNav';
 import UserAvatar from './UserAvatar';
 import ThemeToggle from './ThemeToggle';
+import LanguageToggle from './LanguageToggle';
 import useOutsideClick from '../hooks/useOutsideClick';
 import ImageWithFallback from './ImageWithFallback';
 import AuthWrapper from '../../Auth/AuthWrapper';
@@ -163,6 +164,14 @@ const Layout = ({
           }),
           requiredRole: 'manageWarehousingProviders',
           href: '/warehousing-provider',
+        },
+        {
+          name: formatMessage({
+            id: 'custom_texts',
+            defaultMessage: 'Custom Texts',
+          }),
+          requiredRole: 'admin',
+          href: '/custom-texts',
         },
       ],
     },
@@ -323,7 +332,10 @@ const Layout = ({
             {!narrowNav && (
               <UserAvatar avatar={currentUser?.avatar} {...currentUser} />
             )}
-            <div className={narrowNav ? '' : 'ml-auto'}>
+            <div
+              className={`flex items-center ${narrowNav ? 'flex-col space-y-2' : 'space-x-2 ml-auto'}`}
+            >
+              <LanguageToggle narrowNav={narrowNav} />
               <ThemeToggle />
             </div>
           </div>
@@ -404,7 +416,8 @@ const Layout = ({
             </div>
           </div>
 
-          <div className="flex items-center gap-4 pr-4">
+          <div className="flex flex-wrap justify-center items-center gap-2 pr-4">
+            <LanguageToggle narrowNav={false} />
             <ThemeToggle />
           </div>
         </div>

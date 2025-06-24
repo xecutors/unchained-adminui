@@ -50,7 +50,7 @@ const NotFound = () => {
             <div className="mt-6">
               <Link
                 href="/"
-                className="text-base font-medium text-slate-950 dark:text-slate-800 hover:text-slate-900 dark:hover:text-slate-400"
+                className="text-base font-medium text-slate-950 dark:text-slate-500 hover:text-slate-900 dark:hover:text-slate-400"
               >
                 {formatMessage({
                   id: 'go_back_home',

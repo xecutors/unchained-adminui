@@ -1,4 +1,5 @@
 import { useEffect, useRef, useCallback } from 'react';
+import { useIntl } from 'react-intl';
 import Loading from './Loading';
 
 interface InfiniteScrollProps {
@@ -16,6 +17,7 @@ const InfiniteScroll = ({
   children,
   threshold = 200,
 }: InfiniteScrollProps) => {
+  const { formatMessage } = useIntl();
   const sentinelRef = useRef<HTMLDivElement>(null);
 
   const handleIntersect = useCallback(
@@ -54,7 +56,10 @@ const InfiniteScroll = ({
       )}
       {!hasMore && !loading && (
         <div className="py-4 text-slate-500 dark:text-slate-400 text-sm mx-1">
-          No more items to load
+{formatMessage({
+            id: 'no_more_items_to_load',
+            defaultMessage: 'No more items to load',
+          })}
         </div>
       )}
     </>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Squares2X2Icon, ListBulletIcon } from '@heroicons/react/24/outline';
+import { useIntl } from 'react-intl';
 import ProductListItem from './ProductListItem';
 import ProductListItemCompact from './ProductListItemCompact';
 
@@ -8,6 +9,7 @@ interface ProductListProps {
 }
 
 const ProductList: React.FC<ProductListProps> = ({ products }) => {
+  const { formatMessage } = useIntl();
   const [viewMode, setViewMode] = useState<'grid' | 'list'>(() => {
     if (typeof window !== 'undefined') {
       return (
@@ -44,7 +46,7 @@ const ProductList: React.FC<ProductListProps> = ({ products }) => {
                   : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
               }`}
             >
-              All ({products.length})
+{formatMessage({ id: 'all', defaultMessage: 'All' })} ({products.length})
             </button>
             {availableStatuses.map(status => {
               const count = products.filter(p => p.status === status).length;
@@ -72,7 +74,7 @@ const ProductList: React.FC<ProductListProps> = ({ products }) => {
                 ? 'bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 shadow-sm'
                 : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
             }`}
-            title="Grid view"
+title={formatMessage({ id: 'grid_view', defaultMessage: 'Grid view' })}
           >
             <Squares2X2Icon className="h-4 w-4" />
           </button>
@@ -83,7 +85,7 @@ const ProductList: React.FC<ProductListProps> = ({ products }) => {
                 ? 'bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 shadow-sm'
                 : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
             }`}
-            title="List view"
+title={formatMessage({ id: 'list_view', defaultMessage: 'List view' })}
           >
             <ListBulletIcon className="h-4 w-4" />
           </button>
