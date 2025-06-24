@@ -315,7 +315,7 @@ const Layout = ({
             {!narrowNav && (
               <UserAvatar avatar={currentUser?.avatar} {...currentUser} />
             )}
-            <div className={narrowNav ? 'mx-auto' : 'ml-auto'}>
+            <div className={narrowNav ? 'mx-auto flex items-center justify-center' : 'ml-auto'}>
               <ThemeToggle />
             </div>
           </div>
