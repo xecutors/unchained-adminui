@@ -87,7 +87,7 @@ const LanguageToggle = ({ narrowNav = false }) => {
 
       {isOpen && (
         <div
-          className={`absolute w-48 rounded-md shadow-lg bg-white dark:bg-slate-800 ring-1 ring-black ring-opacity-5 z-50 ${
+          className={`absolute w-48 rounded-md shadow-lg bg-white dark:bg-slate-800 ring-1 ring-black ring-opacity-5 z-[9999] ${
             narrowNav
               ? 'left-full ml-2 bottom-0'
               : 'right-0 md:left-full md:ml-2 md:bottom-full md:mb-2 mt-2 md:mt-0'
