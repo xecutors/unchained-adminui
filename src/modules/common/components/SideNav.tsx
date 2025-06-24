@@ -4,12 +4,14 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 import { useState, useRef, useEffect } from 'react';
+import { ChevronDownIcon } from '@heroicons/react/24/solid';
 import useAuth from '../../Auth/useAuth';
 import ThemeToggle from './ThemeToggle';
 
 const ChildrenNav = ({ item, hasRole, onSelected, narrowView }) => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const dropdownRef = useRef(null);
 
   // Check if any child is active
@@ -107,8 +109,10 @@ const ChildrenNav = ({ item, hasRole, onSelected, narrowView }) => {
         <>
           <Disclosure.Button
             className={classNames(
-              'flex w-full cursor-pointer hover:bg-slate-50 dark:bg-slate-900 dark:hover:bg-slate-700 dark:text-slate-400 items-center rounded-md py-2 pl-2 pr-1 text-left text-sm font-medium focus:outline-hidden focus:ring-2 focus:ring-slate-800',
+              'group flex w-full cursor-pointer hover:bg-slate-50 dark:bg-slate-900 dark:hover:bg-slate-700 dark:text-slate-400 items-center rounded-md py-2 pl-2 pr-4 text-left text-sm font-medium focus:outline-hidden focus:ring-2 focus:ring-slate-800',
             )}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
           >
             {item?.icon && (
               <item.icon
@@ -117,6 +121,15 @@ const ChildrenNav = ({ item, hasRole, onSelected, narrowView }) => {
               />
             )}
             <span className="flex-1 dark:text-slate-400">{item.name}</span>
+            <ChevronDownIcon 
+              className={classNames(
+                'h-5 w-5 transition-all duration-200 ease-out',
+                (isHovered || open)
+                  ? 'opacity-100 text-slate-600 dark:text-slate-300' 
+                  : 'opacity-0',
+                open ? 'rotate-180' : 'rotate-0'
+              )}
+            />
           </Disclosure.Button>
           <Disclosure.Panel className="pl-6 space-y-1" onClick={onSelected}>
             {item.children
