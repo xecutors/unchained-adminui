@@ -45,7 +45,7 @@ const Table = ({ className = '', ...props }) => {
       )}
       {...props}
     >
-      <thead className="hidden sm:table-header-group bg-slate-50 dark:bg-slate-700 text-sm text-slate-700 dark:text-slate-200">
+      <thead className="hidden sm:table-header-group bg-slate-100 dark:bg-slate-700 text-sm text-slate-700 dark:text-slate-200">
         {rowsWithSort.header}
       </thead>
 

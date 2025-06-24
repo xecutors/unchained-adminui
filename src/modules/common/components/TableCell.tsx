@@ -91,7 +91,7 @@ const TableCell = ({
     <Td
       className={classNames(
         header
-          ? 'px-4 py-3 text-left tracking-wider text-slate-800 dark:text-slate-200'
+          ? 'px-4 py-3 text-left text-slate-500 dark:text-slate-200'
           : 'whitespace-nowrap px-4 py-3 text-slate-500 dark:text-slate-200 border-b dark:border-slate-700 last:border-b-0 sm:border-b-0 text-left flex items-center sm:table-cell',
         className,
       )}
