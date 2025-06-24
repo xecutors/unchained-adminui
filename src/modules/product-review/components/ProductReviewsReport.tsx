@@ -1,8 +1,9 @@
 import {
-  StarIcon,
+  StarIcon as StarIconOutline,
   HandThumbDownIcon,
   HandThumbUpIcon,
 } from '@heroicons/react/24/outline';
+import { StarIcon as StarIconSolid } from '@heroicons/react/24/solid';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 const ProductReviewsReport = ({ productReviews }) => {
@@ -36,20 +37,24 @@ const ProductReviewsReport = ({ productReviews }) => {
       <div className="mt-3 flex items-center">
         <div>
           <div title={`${averageUpVote}`} className="flex items-center">
-            {[0, 1, 2, 3, 4].map((rating) => (
-              <StarIcon
-                key={rating}
-                className={`
+            {[0, 1, 2, 3, 4].map((rating) => {
+              const isFilled = averageUpVote >= rating * 20;
+              const StarComponent = isFilled ? StarIconSolid : StarIconOutline;
+              return (
+                <StarComponent
+                  key={rating}
+                  className={`
                         ${
-                          averageUpVote >= rating * 20
+                          isFilled
                             ? 'text-amber-400'
-                            : 'text-slate-500'
+                            : 'text-slate-300 dark:text-slate-600'
                         }
                         h-5 w-5 shrink-0
                       `}
-                aria-hidden="true"
-              />
-            ))}
+                  aria-hidden="true"
+                />
+              );
+            })}
           </div>
         </div>
         <div className="ml-2 text-sm">
@@ -82,7 +87,7 @@ const ProductReviewsReport = ({ productReviews }) => {
                   className={`
                           ${
                             totalUpVote > 0
-                              ? 'text-amber-400'
+                              ? 'text-emerald-500'
                               : 'text-slate-500'
                           }
                           h-5 w-5 shrink-0`}
@@ -93,7 +98,7 @@ const ProductReviewsReport = ({ productReviews }) => {
                   <div className="h-3 rounded-full border border-slate-300 dark:border-slate-800 bg-slate-50" />
                   {totalUpVote > 0 ? (
                     <div
-                      className="absolute inset-y-0 rounded-full border border-amber-400 bg-amber-400"
+                      className="absolute inset-y-0 rounded-full border border-emerald-500 bg-emerald-500"
                       style={{
                         width: `calc(${averageUpVote}%)`,
                       }}
@@ -123,7 +128,7 @@ const ProductReviewsReport = ({ productReviews }) => {
                   className={`
                           ${
                             totalDownVote > 0
-                              ? 'text-amber-400'
+                              ? 'text-rose-500'
                               : 'text-slate-500'
                           }
                           h-5 w-5 shrink-0
@@ -135,7 +140,7 @@ const ProductReviewsReport = ({ productReviews }) => {
                   <div className="h-3 rounded-full border border-slate-300 dark:border-slate-800 bg-slate-50" />
                   {totalDownVote > 0 ? (
                     <div
-                      className="absolute inset-y-0 rounded-full border border-amber-400 bg-amber-400"
+                      className="absolute inset-y-0 rounded-full border border-rose-500 bg-rose-500"
                       style={{
                         width: `calc(${averageDownVote}%)`,
                       }}
