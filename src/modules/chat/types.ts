@@ -17,6 +17,7 @@ export interface ChatContextType {
   stop: () => void;
   addInterruptionMessage: (currentStatus: string) => void;
   status: 'error' | 'submitted' | 'streaming' | 'ready';
+  reload: () => void;
 }
 
 export type ChatStatus = 'error' | 'submitted' | 'streaming' | 'ready';

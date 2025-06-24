@@ -57,12 +57,12 @@ const FilterTextForm = ({ filterId, selectedLocale = null }) => {
     let value = translatedFilterTexts?.find(
       (text) => text.locale === selectedLocale,
     );
-    
+
     // If no value found for selectedLocale, use the first available text
     if (!value && translatedFilterTexts?.length > 0) {
       value = translatedFilterTexts[0];
     }
-    
+
     if (value) form.formik.setValues(value);
   }, [translatedFilterTexts, selectedLocale]);
 

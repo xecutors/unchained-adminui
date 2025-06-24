@@ -30,6 +30,7 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
     stop: chatManager.stop,
     addInterruptionMessage: chatManager.addInterruptionMessage,
     status: chatManager.status,
+    reload: chatManager.reload,
   };
 
   return <ChatContext.Provider value={value}>{children}</ChatContext.Provider>;

@@ -116,7 +116,9 @@ const SideNav = ({ navigation, onClick = null, narrowView = false }) => {
                   />
                 )}
                 {!narrowView && (
-                  <span className="flex-1 dark:text-slate-400">{item.name}</span>
+                  <span className="flex-1 dark:text-slate-400">
+                    {item.name}
+                  </span>
                 )}
               </Link>
             </div>
