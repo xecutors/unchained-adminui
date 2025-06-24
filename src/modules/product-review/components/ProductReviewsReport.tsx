@@ -1,9 +1,8 @@
 import {
-  StarIcon as StarIconOutline,
   HandThumbDownIcon,
   HandThumbUpIcon,
 } from '@heroicons/react/24/outline';
-import { StarIcon as StarIconSolid } from '@heroicons/react/24/solid';
+import { StarIcon } from '@heroicons/react/24/solid';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 const ProductReviewsReport = ({ productReviews }) => {
@@ -39,9 +38,8 @@ const ProductReviewsReport = ({ productReviews }) => {
           <div title={`${averageUpVote}`} className="flex items-center">
             {[0, 1, 2, 3, 4].map((rating) => {
               const isFilled = averageUpVote >= rating * 20;
-              const StarComponent = isFilled ? StarIconSolid : StarIconOutline;
               return (
-                <StarComponent
+                <StarIcon
                   key={rating}
                   className={`
                         ${

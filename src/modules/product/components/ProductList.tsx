@@ -44,8 +44,8 @@ const ProductList = ({
             </Table.Cell>
             <Table.Cell sortKey="status">
               {formatMessage({
-                id: 'active',
-                defaultMessage: 'Active',
+                id: 'status',
+                defaultMessage: 'Status',
               })}
             </Table.Cell>
 
