@@ -764,6 +764,7 @@
   "sign_address_header": "Sign address",
   "sign_in": "Sign In",
   "sign_up": "Sign up",
+  "sign_in_with_google": "Sign in with Google",
   "sign_up_header": "Create new account",
   "signature_hash": "Signature hash",
   "signature_not_match_error": "Signature does not match",
