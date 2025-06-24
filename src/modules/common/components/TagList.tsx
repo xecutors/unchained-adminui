@@ -43,7 +43,10 @@ const TagList = ({ defaultValue, onSubmit, enableEdit }) => {
             )
           }
         >
-          Edit Tags
+          {formatMessage({
+            id: 'edit_tags',
+            defaultMessage: 'Edit tags',
+          })}
         </button>
       )}
     </div>
