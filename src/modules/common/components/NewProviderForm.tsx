@@ -63,7 +63,7 @@ const NewProviderForm = ({
               className="mt-2"
             />
           </div>
-          <div className="border-t-slate-100 border-t dark:border-t-slate-700 space-y-6 bg-slate-50 dark:bg-slate-800 p-6 px-5 text-right">
+          <div className="border-t-slate-100 border-t dark:border-t-slate-700 space-y-6 bg-slate-50 dark:bg-slate-900 p-6 px-5 text-right">
             <SubmitButton
               hidden={readOnly}
               label={formatMessage({

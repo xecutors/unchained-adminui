@@ -171,7 +171,7 @@ const ProfileView = ({ profile, avatar, _id }) => {
                       defaultMessage: 'Photo',
                     })}
                   </label>
-                  <div className="mt-1 flex items-center space-x-5 text-sm sm:col-span-2 sm:mt-0">
+                  <div className="mt-2 flex items-center space-x-5 text-sm sm:col-span-2">
                     <span className="">
                       <input
                         onChange={onUpdateAvatar}
@@ -193,7 +193,7 @@ const ProfileView = ({ profile, avatar, _id }) => {
                         />
                       ) : (
                         <span className="inline-block h-12 w-12 overflow-hidden rounded-full">
-                          <UserCircleIcon className="h-full w-full text-slate-800" />
+                          <UserCircleIcon className="h-full w-full text-slate-800 dark:text-slate-500" />
                         </span>
                       )}
                     </span>
