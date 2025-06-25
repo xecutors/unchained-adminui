@@ -53,16 +53,7 @@ const TagInput = ({
   }, [tags]);
 
   return (
-    <div className="flow-root">
-      {tagList?.map((tag) => (
-        <Badge
-          key={tag}
-          text={tag}
-          color="slate"
-          onClick={() => onRemoveTag(tag)}
-          className="mr-2 mb-2 mt-1"
-        />
-      ))}
+    <div className="flex items-center flex-wrap gap-5">
       <div>
         <div className="flex items-center h-11 max-w-full gap-2">
           <div className="relative flex grow items-stretch focus-within:z-10">
@@ -116,6 +107,14 @@ const TagInput = ({
           />
         </div>
       </div>
+      {tagList?.map((tag) => (
+        <Badge
+          key={tag}
+          text={tag}
+          color="slate"
+          onClick={() => onRemoveTag(tag)}
+        />
+      ))}
     </div>
   );
 };
