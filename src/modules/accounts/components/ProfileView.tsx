@@ -205,7 +205,7 @@ const ProfileView = ({ profile, avatar, _id }) => {
                               (fileInputRef?.current as any)?.click();
                           }}
                           type="button"
-                          className="rounded-md border border-slate-300 dark:border-slate-700 bg-white py-2 px-3 text-sm font-medium leading-4 text-slate-700 shadow-xs hover:bg-slate-50 focus:outline-hidden focus:ring-2 focus:ring-slate-900 focus:ring-offset-2"
+                          className="rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-600 py-2 px-3 text-sm font-medium leading-4 text-slate-700 dark:text-slate-200 shadow-xs hover:bg-slate-50 focus:outline-hidden focus:ring-2 focus:ring-slate-900 focus:ring-offset-2"
                         >
                           {formatMessage({
                             id: 'change',
