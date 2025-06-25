@@ -87,7 +87,7 @@ const CopilotInput: React.FC = () => {
 
   return (
     <div className="sticky bottom-6 max-w-4xl mx-auto w-full">
-      <div className="absolute bottom-full left-0 right-0 h-24 bg-gradient-to-t from-slate-100 dark:from-slate-900 to-transparent pointer-events-none" />
+      <div className="absolute bottom-full left-0 right-0 h-24 bg-gradient-to-t from-slate-50 dark:from-slate-950 to-transparent pointer-events-none" />
       <form
         onSubmit={onSubmit}
         className="bg-white dark:bg-slate-800 shadow-2xl border border-slate-300 dark:border-slate-700 rounded-md p-3"
