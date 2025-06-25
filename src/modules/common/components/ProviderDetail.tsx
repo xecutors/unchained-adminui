@@ -6,6 +6,7 @@ import useFormatDateTime from '../utils/useFormatDateTime';
 import { PROVIDER_TYPE_CLASSES } from '../data/miscellaneous';
 import ProviderConfigurationForm from './ProviderConfigurationForm';
 import ActiveInActive from './ActiveInActive';
+import Badge from './Badge';
 
 const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess, readOnly }) => {
   const { formatMessage } = useIntl();
@@ -34,14 +35,11 @@ const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess, readOnly }) => {
                       defaultMessage: 'Type:',
                     })}
                   </dt>
-                  <dd
-                    className={`bg-${
-                      PROVIDER_TYPE_CLASSES[provider?.type]
-                    }-100 text-${
-                      PROVIDER_TYPE_CLASSES[provider?.type]
-                    }-800 inline-block rounded-lg border px-2 text-md`}
-                  >
-                    {provider?.type}
+                  <dd>
+                    <Badge
+                      text={provider?.type}
+                      color={PROVIDER_TYPE_CLASSES[provider?.type]}
+                    />
                   </dd>
                 </div>
               </div>
