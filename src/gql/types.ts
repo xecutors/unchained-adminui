@@ -6610,6 +6610,7 @@ export type IAssortmentProductsQuery = {
             tags?: Array<any> | null;
             updated?: any | null;
             published?: any | null;
+            catalogPrice?: { amount: number; currencyCode: string } | null;
             texts?: {
               _id: string;
               slug?: string | null;
@@ -6633,6 +6634,7 @@ export type IAssortmentProductsQuery = {
             tags?: Array<any> | null;
             updated?: any | null;
             published?: any | null;
+            catalogPrice?: { amount: number; currencyCode: string } | null;
             texts?: {
               _id: string;
               slug?: string | null;
@@ -7798,7 +7800,7 @@ export type ICreateFilterMutation = {
 export type ICreateFilterOptionMutationVariables = Exact<{
   filterId: Scalars['ID']['input'];
   option: Scalars['String']['input'];
-  title?: InputMaybe<Scalars['String']['input']>;
+  texts?: InputMaybe<Array<IFilterTextInput>>;
 }>;
 
 export type ICreateFilterOptionMutation = {
@@ -10383,6 +10385,7 @@ export type IUserProductReviewsQuery = {
               tags?: Array<any> | null;
               file?: { _id: string; url?: string | null } | null;
             }>;
+            catalogPrice?: { amount: number; currencyCode: string } | null;
           }
         | {
             _id: string;
@@ -10406,6 +10409,7 @@ export type IUserProductReviewsQuery = {
               tags?: Array<any> | null;
               file?: { _id: string; url?: string | null } | null;
             }>;
+            catalogPrice?: { amount: number; currencyCode: string } | null;
           }
         | {
             _id: string;
@@ -10576,6 +10580,7 @@ type IProductBriefFragment_PlanProduct = {
   tags?: Array<any> | null;
   updated?: any | null;
   published?: any | null;
+  catalogPrice?: { amount: number; currencyCode: string } | null;
   texts?: {
     _id: string;
     slug?: string | null;
@@ -10600,6 +10605,7 @@ type IProductBriefFragment_SimpleProduct = {
   tags?: Array<any> | null;
   updated?: any | null;
   published?: any | null;
+  catalogPrice?: { amount: number; currencyCode: string } | null;
   texts?: {
     _id: string;
     slug?: string | null;
@@ -12057,6 +12063,7 @@ export type IProductBundleItemsQuery = {
                 tags?: Array<any> | null;
                 updated?: any | null;
                 published?: any | null;
+                catalogPrice?: { amount: number; currencyCode: string } | null;
                 texts?: {
                   _id: string;
                   slug?: string | null;
@@ -12080,6 +12087,7 @@ export type IProductBundleItemsQuery = {
                 tags?: Array<any> | null;
                 updated?: any | null;
                 published?: any | null;
+                catalogPrice?: { amount: number; currencyCode: string } | null;
                 texts?: {
                   _id: string;
                   slug?: string | null;
@@ -12570,6 +12578,7 @@ export type IProductsQuery = {
         tags?: Array<any> | null;
         updated?: any | null;
         published?: any | null;
+        catalogPrice?: { amount: number; currencyCode: string } | null;
         texts?: {
           _id: string;
           slug?: string | null;
@@ -12593,6 +12602,7 @@ export type IProductsQuery = {
         tags?: Array<any> | null;
         updated?: any | null;
         published?: any | null;
+        catalogPrice?: { amount: number; currencyCode: string } | null;
         texts?: {
           _id: string;
           slug?: string | null;

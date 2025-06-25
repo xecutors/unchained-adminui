@@ -6,7 +6,6 @@ import {
 } from '@heroicons/react/24/outline';
 
 import { toast } from 'react-toastify';
-import LocaleWrapper from '../../common/components/LocaleWrapper';
 import SelectOptions from '../../common/components/SelectOptions';
 import Tab from '../../common/components/Tab';
 import FilterTextForm from './FilterTextForm';
@@ -14,14 +13,29 @@ import FilterOptions from './FilterOptions';
 import FilterSummary from './FilterSummary';
 import useUpdateFilter from '../hooks/useUpdateFilter';
 import DisplayExtendedFields from '../../common/components/DisplayExtendedFields';
+import LocaleWrapper from '../../common/components/LocaleWrapper';
 
 const GetCurrentTab = ({ selectedView, id, ...extendedData }) => {
-  if (selectedView === 'text') return <FilterTextForm filterId={id} />;
+  if (selectedView === 'text')
+    return (
+      <LocaleWrapper>
+        <FilterTextForm filterId={id} />
+      </LocaleWrapper>
+    );
 
-  if (selectedView === 'options') return <FilterOptions filterId={id} />;
+  if (selectedView === 'options')
+    return (
+      <LocaleWrapper>
+        <FilterOptions filterId={id} />
+      </LocaleWrapper>
+    );
   if (selectedView === 'extended')
     return <DisplayExtendedFields data={extendedData} />;
-  return <FilterTextForm filterId={id} />;
+  return (
+    <LocaleWrapper>
+      <FilterTextForm filterId={id} />
+    </LocaleWrapper>
+  );
 };
 
 const FilterDetail = ({ filter, extendedData }) => {
@@ -127,11 +141,10 @@ const FilterDetail = ({ filter, extendedData }) => {
           />
         </div>
       </div>
-      <LocaleWrapper>
-        <Tab tabItems={filterOptions} defaultTab="text">
-          <GetCurrentTab id={filter?._id} {...extendedData} />
-        </Tab>
-      </LocaleWrapper>
+
+      <Tab tabItems={filterOptions} defaultTab="text">
+        <GetCurrentTab id={filter?._id} {...extendedData} />
+      </Tab>
     </>
   );
 };

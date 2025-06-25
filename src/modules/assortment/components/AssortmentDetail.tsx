@@ -25,7 +25,6 @@ import Tab from '../../common/components/Tab';
 import TagList from '../../common/components/TagList';
 import useSetBaseAssortment from '../hooks/useSetBaseAssortment';
 import useAuth from '../../Auth/useAuth';
-import Button from '../../common/components/Button';
 import useModal from '../../modal/hooks/useModal';
 import AlertMessage from '../../modal/components/AlertMessage';
 import DisplayExtendedFields from '../../common/components/DisplayExtendedFields';
@@ -35,14 +34,22 @@ const GetCurrentTab = ({ id, selectedView, ...extendedData }) => {
   if (selectedView === 'links') return <AssortmentLinks assortmentId={id} />;
 
   if (selectedView === 'media')
-    return <AssortmentMediaForm assortmentId={id} />;
+    return (
+      <LocaleWrapper>
+        <AssortmentMediaForm assortmentId={id} />{' '}
+      </LocaleWrapper>
+    );
   if (selectedView === 'products')
     return <AssortmentProducts assortmentId={id} />;
   if (selectedView === 'filters')
     return <AssortmentFilters assortmentId={id} />;
   if (selectedView === 'extended')
     return <DisplayExtendedFields data={extendedData} />;
-  return <AssortmentTextForm assortmentId={id} />;
+  return (
+    <LocaleWrapper>
+      <AssortmentTextForm assortmentId={id} />
+    </LocaleWrapper>
+  );
 };
 const AssortmentDetail = ({
   assortment,
@@ -382,11 +389,9 @@ const AssortmentDetail = ({
         )}
       </div>
 
-      <LocaleWrapper>
-        <Tab tabItems={assortmentOptions} defaultTab="texts">
-          <GetCurrentTab id={assortment?._id} {...extendedData} />
-        </Tab>
-      </LocaleWrapper>
+      <Tab tabItems={assortmentOptions} defaultTab="texts">
+        <GetCurrentTab id={assortment?._id} {...extendedData} />
+      </Tab>
     </>
   );
 };

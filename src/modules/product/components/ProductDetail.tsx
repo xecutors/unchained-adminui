@@ -47,12 +47,7 @@ const GetCurrentTab = ({ id, selectedView = '', ...extendedData }) => {
   if (selectedView === 'commerce') return <CommerceForm productId={id} />;
   if (selectedView === 'supply') return <SupplyForm productId={id} />;
   if (selectedView === 'warehousing') return <WarehousingForm productId={id} />;
-  if (selectedView === 'variations')
-    return (
-      <LocaleWrapper>
-        <ProductVariation productId={id} />
-      </LocaleWrapper>
-    );
+  if (selectedView === 'variations') return <ProductVariation productId={id} />;
   if (selectedView === 'bundled_products')
     return <BundleProducts productId={id} />;
   if (selectedView === 'subscriptions')
@@ -67,7 +62,11 @@ const GetCurrentTab = ({ id, selectedView = '', ...extendedData }) => {
   if (selectedView === 'extended') {
     return <DisplayExtendedFields data={extendedData} />;
   }
-  return <ProductTextsForm productId={id} />;
+  return (
+    <LocaleWrapper>
+      <ProductTextsForm productId={id} />
+    </LocaleWrapper>
+  );
 };
 const ProductDetail = ({ product, extendedData = {} }) => {
   const { formatMessage } = useIntl();
