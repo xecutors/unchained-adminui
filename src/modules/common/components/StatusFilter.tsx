@@ -33,7 +33,7 @@ const StatusFilter = ({ selectedStatuses, onStatusChange, statuses }) => {
       key={status}
     >
       <input
-        className="h-4 w-4 rounded-sm border-slate-300 text-slate-950 focus:ring-slate-800"
+        className="h-4 w-4 rounded-sm border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-950 focus:ring-slate-800"
         type="checkbox"
         id={status}
         name={status}
