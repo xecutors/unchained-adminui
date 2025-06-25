@@ -1,5 +1,4 @@
 import { useIntl } from 'react-intl';
-import { toast } from 'react-toastify';
 import {
   DocumentTextIcon,
   FilmIcon,
@@ -11,17 +10,9 @@ import {
   UsersIcon,
   PuzzlePieceIcon,
   LinkIcon,
-  XMarkIcon,
 } from '@heroicons/react/24/outline';
 import LocaleWrapper from '../../common/components/LocaleWrapper';
-import { useRouter } from 'next/router';
-import HeaderDeleteButton from '../../common/components/HeaderDeleteButton';
-import useModal from '../../modal/hooks/useModal';
-import DangerMessage from '../../modal/components/DangerMessage';
-import useRemoveProduct from '../hooks/useRemoveProduct';
-import CustomError from '../../common/CustomError';
 
-import SelectOptions from '../../common/components/SelectOptions';
 import CommerceForm from './CommerceForm';
 import ProductTextsForm from './ProductTextsForm';
 import ProductMediaForm from './ProductMediaForm';
@@ -29,8 +20,6 @@ import SubscriptionForm from './SubscriptionForm';
 import SupplyForm from './SupplyForm';
 import ProductVariation from './ProductVariation';
 import WarehousingForm from './WarehousingForm';
-import usePublishProduct from '../hooks/usePublishProduct';
-import useUnPublishProduct from '../hooks/useUnPublishProduct';
 import Tab from '../../common/components/Tab';
 import ProductReviews from '../../product-review/components/ProductReviews';
 import BundleProducts from './BundleProducts';
@@ -68,24 +57,8 @@ const GetCurrentTab = ({ id, selectedView = '', ...extendedData }) => {
 const ProductDetail = ({ product, extendedData = {} }) => {
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
-  const { publishProduct } = usePublishProduct();
-  const { unPublishProduct } = useUnPublishProduct();
-  const { removeProduct } = useRemoveProduct();
-  const { setModal } = useModal();
-  const router = useRouter();
-
   const { updateProduct } = useUpdateProduct();
-
-  const updateProductSequence = async (e) => {
-    if (e.target.value)
-      await updateProduct({
-        productId: product?._id,
-        product: {
-          sequence: parseInt(e.target.value, 10),
-        },
-      });
-  };
-  const { status, __typename } = product || {};
+  const { __typename } = product || {};
 
   const productOptions = [
     {
@@ -180,120 +153,9 @@ const ProductDetail = ({ product, extendedData = {} }) => {
     },
   ].filter((item) => item);
 
-  const activeOptions = [
-    {
-      id: 'active',
-      title: formatMessage({
-        id: 'publish',
-        defaultMessage: 'Publish',
-      }),
-      selectedTitle: formatMessage({
-        id: 'published',
-        defaultMessage: 'Published',
-      }),
-      description: formatMessage({
-        id: 'publish_product_description',
-        defaultMessage: 'Product will be discoverable and can be ordered',
-      }),
-      current: status === 'ACTIVE',
-      onClick: async () => {
-        await publishProduct({ productId: product?._id });
-        toast.success(
-          formatMessage({
-            id: 'product_published',
-            defaultMessage: 'Published successfully ',
-          }),
-        );
-      },
-      bgColor: 'green',
-    },
-    {
-      id: 'draft',
-      title: formatMessage({
-        id: 'draft',
-        defaultMessage: 'Draft',
-      }),
-      description: formatMessage({
-        id: 'draft_product_description',
-        defaultMessage:
-          'Product will not be discoverable and can not be ordered',
-      }),
-      current: status === 'DRAFT',
-      selectedTitle: formatMessage({
-        id: 'not_published',
-        defaultMessage: 'Not published',
-      }),
-      bgColor: 'slate',
-      onClick: async () => {
-        await unPublishProduct({ productId: product?._id });
-        toast.success(
-          formatMessage({
-            id: 'product_drafted',
-            defaultMessage: 'Drafted successfully ',
-          }),
-        );
-      },
-    },
-  ];
-
   const onUpdateTags = async ({ tags }) => {
     await updateProduct({ productId: product?._id, product: { tags } });
     return true;
-  };
-
-  const handleDeleteProduct = async () => {
-    await setModal(
-      <DangerMessage
-        onCancelClick={() => setModal('')}
-        message={formatMessage({
-          id: 'delete_product_confirmation',
-          defaultMessage:
-            'This action might cause inconsistencies with other data that relates to it and it is nonreversible. Are you sure you want to delete this product?',
-        })}
-        onOkClick={async () => {
-          setModal('');
-          try {
-            await removeProduct({ productId: product?._id });
-            toast.success(
-              formatMessage({
-                id: 'product_deleted_success',
-                defaultMessage: 'Deleted successfully',
-              }),
-            );
-            router.push('/products');
-          } catch (e: any) {
-            await setModal(
-              <DangerMessage
-                onCancelClick={() => setModal('')}
-                headerText={formatMessage({
-                  id: 'error',
-                  defaultMessage: 'Error',
-                })}
-                message={e instanceof CustomError ? e.message : e}
-                icon={
-                  <div className="mx-auto flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-rose-100 sm:mx-0 sm:h-10 sm:w-10">
-                    <XMarkIcon
-                      className="h-6 w-6 text-rose-600"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                    />
-                  </div>
-                }
-                okText={formatMessage({ id: 'ok', defaultMessage: 'Ok' })}
-                onOkClick={async () => {
-                  setModal('');
-                }}
-              />,
-            );
-          }
-        }}
-      />,
-    );
   };
 
   return (
@@ -304,33 +166,6 @@ const ProductDetail = ({ product, extendedData = {} }) => {
           onSubmit={onUpdateTags}
           enableEdit={hasRole('editProduct')}
         />
-      </div>
-      <div className="mt-5 flex flex-wrap gap-3">
-        <div className="inline-flex items-center gap-2 rounded-md dark:border-slate-600 px-4 py-2 text-sm font-medium leading-5 shadow-sm bg-white dark:bg-slate-800 h-[38px]">
-          <label
-            htmlFor="sequence-input"
-            className="text-slate-700 dark:text-slate-200 font-medium"
-          >
-            {formatMessage({
-              id: 'sequence',
-              defaultMessage: 'Display Order',
-            })}
-          </label>
-          <input
-            type="number"
-            id="sequence-input"
-            className="text-center w-12 bg-transparent border border-slate-300 dark:border-slate-600 rounded focus:ring-0 focus:outline-none text-sm font-bold text-slate-900 dark:text-slate-300 px-2 py-1"
-            defaultValue={product?.sequence}
-            onBlur={updateProductSequence}
-          />
-        </div>
-        <SelectOptions
-          options={activeOptions}
-          type={formatMessage({ id: 'product', defaultMessage: 'Product' })}
-        />
-        {status === 'DRAFT' && hasRole('removeProduct') && (
-          <HeaderDeleteButton onClick={handleDeleteProduct} />
-        )}
       </div>
       <LocaleWrapper>
         <Tab tabItems={productOptions} defaultTab="texts">

@@ -1,4 +1,5 @@
 import { useIntl } from 'react-intl';
+import { toast } from 'react-toastify';
 import { IProduct, IProductTexts } from '../../gql/types';
 
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
@@ -7,14 +8,157 @@ import PageHeader from '../../modules/common/components/PageHeader';
 import useFormatDateTime from '../../modules/common/utils/useFormatDateTime';
 import ProductDetail from '../../modules/product/components/ProductDetail';
 import useProduct from '../../modules/product/hooks/useProduct';
+import SelectOptions from '../../modules/common/components/SelectOptions';
+import usePublishProduct from '../../modules/product/hooks/usePublishProduct';
+import useUnPublishProduct from '../../modules/product/hooks/useUnPublishProduct';
+import useUpdateProduct from '../../modules/product/hooks/useUpdateProduct';
+import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButton';
+import useRemoveProduct from '../../modules/product/hooks/useRemoveProduct';
+import useModal from '../../modules/modal/hooks/useModal';
+import DangerMessage from '../../modules/modal/components/DangerMessage';
+import CustomError from '../../modules/common/CustomError';
+import { useRouter } from 'next/router';
+import useAuth from '../../modules/Auth/useAuth';
+import { XMarkIcon } from '@heroicons/react/24/outline';
 
 const ProductDetailPage = ({ slug }) => {
   const { formatMessage } = useIntl();
   const { formatDateTime } = useFormatDateTime();
+  const { hasRole } = useAuth();
+  const { publishProduct } = usePublishProduct();
+  const { unPublishProduct } = useUnPublishProduct();
+  const { removeProduct } = useRemoveProduct();
+  const { updateProduct } = useUpdateProduct();
+  const { setModal } = useModal();
+  const router = useRouter();
 
   const { product, loading, extendedData } = useProduct({
     slug,
   });
+
+  const updateProductSequence = async (e) => {
+    if (e.target.value)
+      await updateProduct({
+        productId: product?._id,
+        product: {
+          sequence: parseInt(e.target.value, 10),
+        },
+      });
+  };
+
+  const { status } = product || {};
+
+  const activeOptions = [
+    {
+      id: 'published',
+      title: formatMessage({
+        id: 'published',
+        defaultMessage: 'Published',
+      }),
+      description: formatMessage({
+        id: 'publish_product_description',
+        defaultMessage:
+          'Product will be searchable and is available for orders',
+      }),
+      current: status === 'ACTIVE',
+      selectedTitle: formatMessage({
+        id: 'published',
+        defaultMessage: 'Published',
+      }),
+      onClick: async () => {
+        await publishProduct({ productId: product?._id });
+        toast.success(
+          formatMessage({
+            id: 'product_published',
+            defaultMessage: 'Published successfully ',
+          }),
+        );
+      },
+      bgColor: 'green',
+    },
+    {
+      id: 'draft',
+      title: formatMessage({
+        id: 'draft',
+        defaultMessage: 'Draft',
+      }),
+      description: formatMessage({
+        id: 'draft_product_description',
+        defaultMessage:
+          'Product will not be discoverable and can not be ordered',
+      }),
+      current: status === 'DRAFT',
+      selectedTitle: formatMessage({
+        id: 'not_published',
+        defaultMessage: 'Not published',
+      }),
+      bgColor: 'slate',
+      onClick: async () => {
+        await unPublishProduct({ productId: product?._id });
+        toast.success(
+          formatMessage({
+            id: 'product_drafted',
+            defaultMessage: 'Drafted successfully ',
+          }),
+        );
+      },
+    },
+  ];
+
+  const handleDeleteProduct = async () => {
+    await setModal(
+      <DangerMessage
+        onCancelClick={() => setModal('')}
+        message={formatMessage({
+          id: 'delete_product_confirmation',
+          defaultMessage:
+            'This action might cause inconsistencies with other data that relates to it and it is nonreversible. Are you sure you want to delete this product?',
+        })}
+        onOkClick={async () => {
+          setModal('');
+          try {
+            await removeProduct({ productId: product?._id });
+            toast.success(
+              formatMessage({
+                id: 'product_deleted_success',
+                defaultMessage: 'Deleted successfully',
+              }),
+            );
+            router.push('/products');
+          } catch (e: any) {
+            await setModal(
+              <DangerMessage
+                onCancelClick={() => setModal('')}
+                headerText={formatMessage({
+                  id: 'error',
+                  defaultMessage: 'Error',
+                })}
+                message={e instanceof CustomError ? e.message : e}
+                icon={
+                  <div className="mx-auto flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                    <XMarkIcon
+                      className="h-6 w-6 text-rose-600"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                    />
+                  </div>
+                }
+                okText={formatMessage({ id: 'ok', defaultMessage: 'Ok' })}
+                onOkClick={async () => {
+                  setModal('');
+                }}
+              />,
+            );
+          }
+        }}
+      />,
+    );
+  };
 
   return (
     <div className="mt-5 max-w-full">
@@ -29,12 +173,45 @@ const ProductDetailPage = ({ slug }) => {
             headerText={product?.texts?.title || 'Untitled Product'}
             title={`${product?.texts?.title || 'Product'} (${product?._id})`}
           />
-          <span className="mt-3 text-md">{product?._id}</span>
+          <div className="publish-and-order flex flex-wrap gap-3">
+            <SelectOptions
+              options={activeOptions}
+              type={formatMessage({ id: 'product', defaultMessage: 'Product' })}
+            />
+            <div className="inline-flex items-center gap-2 rounded-md dark:border-slate-600 px-4 py-2 text-sm font-medium leading-5 shadow-xs bg-white dark:bg-slate-800 h-[38px]">
+              <label
+                htmlFor="sequence-input"
+                className="text-slate-700 dark:text-slate-200 font-medium"
+              >
+                {formatMessage({
+                  id: 'sequence',
+                  defaultMessage: 'Display Order',
+                })}
+              </label>
+              <input
+                type="number"
+                id="sequence-input"
+                className="text-center w-12 bg-transparent border border-slate-300 dark:border-slate-600 rounded focus:ring-0 focus:outline-none text-sm font-bold text-slate-900 dark:text-slate-300 px-2 py-1"
+                defaultValue={product?.sequence}
+                onBlur={updateProductSequence}
+              />
+            </div>
+            {status === 'DRAFT' && hasRole('removeProduct') && (
+              <HeaderDeleteButton onClick={handleDeleteProduct} />
+            )}
+          </div>
         </div>
 
-        <p className="text-md mt-5">{product?.['__typename']}</p>
+        <div className="mt-3 flex items-baseline gap-2">
+          <span className="text-sm text-slate-600 dark:text-slate-400">
+            ID:
+          </span>
+          <span className="text-sm font-mono">{product?._id}</span>
+        </div>
 
-        <div className="mt-5 flex flex-wrap gap-3 lg:gap-10 text-slate-600 dark:text-slate-400">
+        <p className="text-md mt-3">{product?.['__typename']}</p>
+
+        <div className="mt-3 flex flex-wrap gap-3 lg:gap-10 text-slate-600 dark:text-slate-400">
           {product?.created && (
             <div className="flex items-baseline gap-2">
               <span className="text-xs text-slate-600 dark:text-slate-300">
@@ -85,7 +262,12 @@ const ProductDetailPage = ({ slug }) => {
       {loading ? (
         <Loading />
       ) : (
-        <ProductDetail product={product} extendedData={extendedData} />
+        <ProductDetail
+          product={product}
+          extendedData={extendedData}
+          updateProductSequence={updateProductSequence}
+          handleDeleteProduct={handleDeleteProduct}
+        />
       )}
     </div>
   );
