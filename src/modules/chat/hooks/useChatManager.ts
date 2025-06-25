@@ -77,8 +77,11 @@ export const useChatManager = () => {
   ) => {
     e.preventDefault();
 
+    // Convert FileList to array of File objects if provided
+    const attachments = imageFile ? Array.from(imageFile) : undefined;
+
     // Call the original handleSubmit (which uses the current input)
-    originalHandleSubmit(e, { experimental_attachments: imageFile });
+    originalHandleSubmit(e, { experimental_attachments: attachments });
   };
   return {
     messages: messages as ChatMessage[],
