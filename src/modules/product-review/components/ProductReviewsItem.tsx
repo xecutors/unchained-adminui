@@ -135,7 +135,7 @@ const ProductReviewsItem = ({
             alt={review?.author?.username}
             width={48}
             height={48}
-            className="h-12 w-12 rounded-full"
+            className="h-12 w-12 rounded-full aspect-square object-cover object-center"
           />
         ) : (
           <ImageWithFallback
@@ -143,7 +143,7 @@ const ProductReviewsItem = ({
             alt={review?.author?.username}
             width={48}
             height={48}
-            className="h-12 w-12 rounded-full"
+            className="h-12 w-12 rounded-full aspect-square object-cover object-center"
           />
         )}
         <div className="ml-4 flex-1">

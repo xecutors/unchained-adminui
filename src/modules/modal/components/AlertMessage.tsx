@@ -11,9 +11,9 @@ const AlertMessage = ({
     <>
       <div>
         {icon || (
-          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100">
+          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-900/30">
             <CheckIcon
-              className="h-6 w-6 text-emerald-600"
+              className="h-6 w-6 text-emerald-600 dark:text-emerald-400"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"

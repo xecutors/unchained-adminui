@@ -15,9 +15,9 @@ const DangerMessage = ({
     <>
       <div className="sm:flex sm:items-start">
         {icon || (
-          <div className="mx-auto flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-rose-100 sm:mx-0 sm:h-10 sm:w-10">
+          <div className="mx-auto flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-rose-100 dark:bg-rose-900/30 sm:mx-0 sm:h-10 sm:w-10">
             <svg
-              className="h-6 w-6 text-rose-600"
+              className="h-6 w-6 text-rose-600 dark:text-rose-400"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
