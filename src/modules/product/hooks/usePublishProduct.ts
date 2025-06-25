@@ -25,6 +25,8 @@ const usePublishProduct = () => {
   }: IPublishProductMutationVariables) => {
     return publishProductMutation({
       variables: { productId },
+      refetchQueries: ['Product'],
+      awaitRefetchQueries: true,
     });
   };
 

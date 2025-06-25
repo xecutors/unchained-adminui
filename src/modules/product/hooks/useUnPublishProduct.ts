@@ -25,6 +25,8 @@ const useUnPublishProduct = () => {
   }: IUnpublishProductMutationVariables) => {
     return unPublishProductMutation({
       variables: { productId },
+      refetchQueries: ['Product'],
+      awaitRefetchQueries: true,
     });
   };
 
