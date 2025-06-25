@@ -4,9 +4,31 @@ import { ChatMessage } from '../types';
 import { chatStorage } from '../utils/chatStorage';
 import { chatUtils } from '../utils/chatUtils';
 
+const convertFilesToAttachments = async (files): Promise<FileList[]> => {
+  const attachments: FileList[] = await Promise.all(
+    Array.from(files).map(
+      (file: File) =>
+        new Promise<FileList>((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => {
+            resolve({
+              name: file.name as any,
+              contentType: file.type,
+              url: reader.result as string, // base64 data URL
+            });
+          };
+          reader.onerror = reject;
+          reader.readAsDataURL(file); // triggers `onload`
+        }),
+    ),
+  );
+
+  return attachments;
+};
+
 export const useChatManager = () => {
   const hasInitialized = useRef(false);
-  
+
   const {
     messages,
     input,
@@ -20,6 +42,7 @@ export const useChatManager = () => {
     reload,
     append,
   } = useChat({
+    streamProtocol: 'data',
     maxSteps: 5,
     credentials: 'include',
     api: 'http://localhost:4010/chat',
@@ -43,20 +66,19 @@ export const useChatManager = () => {
     chatStorage.saveMessages(messages as ChatMessage[]);
   }, [messages]);
 
-  // Auto-initialize chat with introduction when empty
+  /* // Auto-initialize chat with introduction when empty
   useEffect(() => {
     if (!hasInitialized.current && status === 'ready' && messages.length === 0) {
       hasInitialized.current = true;
-      
+
       // Send introduction message automatically
       append({
         role: 'user',
         content: 'Give a brief introduction. Show your main tools in a simple grid - keep it short and actionable.',
       });
     }
-  }, [status, messages.length, append]);
+  }, [status, messages.length, append]); */
 
-  // Clear history function
   const clearHistory = () => {
     setMessages([]);
     chatStorage.clearMessages();
@@ -81,7 +103,9 @@ export const useChatManager = () => {
     const attachments = imageFile ? Array.from(imageFile) : undefined;
 
     // Call the original handleSubmit (which uses the current input)
-    originalHandleSubmit(e, { experimental_attachments: attachments });
+    originalHandleSubmit(e, {
+      experimental_attachments: await convertFilesToAttachments(attachments),
+    });
   };
   return {
     messages: messages as ChatMessage[],
