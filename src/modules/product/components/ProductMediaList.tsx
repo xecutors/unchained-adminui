@@ -23,7 +23,7 @@ const ProductMediaList = ({ medias, selectedLocale, onDeleteMedia, items }) => {
 
         <div className="flow-root dark:bg-slate-800">
           <SortableContext items={items} strategy={verticalListSortingStrategy}>
-            <ul className="rounded-md transition-[background-color] ease-in-out delay-200 ">
+            <ul className="flex flex-col gap-3 rounded-md transition-[background-color] ease-in-out delay-200 ">
               {medias?.length ? (
                 items.map((id) => {
                   const media = Object.values(medias as IProductMedia[]).find(

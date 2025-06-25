@@ -58,7 +58,7 @@ const MediaListItem = ({
       style={style}
       className="flex flex-wrap gap-4 rounded-sm hover:cursor-pointer"
     >
-      <div className="flex-1 basis-1/3">
+      <div className="">
         <a onClick={() => displayImageInModal({ url: media?.file?.url })}>
           <ImageWithFallback
             src={media?.file?.url}
@@ -93,7 +93,7 @@ const MediaListItem = ({
       <div className="my-auto flex-1 basis-1/3">
         <Form form={form}>
           <div className="space-y-2 sm:flex sm:flex-col sm:items-start sm:justify-between">
-            <div className="flex flex-auto flex-col justify-center pl-5 space-y-1 text-sm font-medium text-slate-900 dark:text-slate-200">
+            <div className="flex flex-auto flex-col justify-center space-y-1 text-sm font-medium text-slate-900 dark:text-slate-500">
               <h3>
                 {isEdit ? (
                   <TextField
@@ -160,7 +160,7 @@ const MediaListItem = ({
         </Form>
       </div>
       <span
-        className="flex items-center"
+        className="flex items-center gap-5"
         onClick={(e) => {
           e.stopPropagation();
         }}
@@ -174,7 +174,6 @@ const MediaListItem = ({
           <DraggableIcon />
         </button>
         <DeleteButton
-          className="mt-2 mr-2"
           onClick={async (e) => {
             e.stopPropagation();
             onDelete(media._id);
