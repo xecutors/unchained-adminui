@@ -72,7 +72,7 @@ const AssortmentForm = ({
             id: 'root_node',
             defaultMessage: 'Root node',
           })}
-          className="mr-2 h-4 w-4 rounded-sm border-slate-300 text-slate-950 focus:ring-slate-800"
+          className="mr-2 h-4 w-4 rounded-sm border-slate-300 dark:border-slate-600 bg-white dark:!bg-slate-800 text-slate-950 focus:ring-slate-800"
           containerClassName="flex items-center"
         />
         <span className="block text-sm text-slate-400 dark:text-slate-500">
