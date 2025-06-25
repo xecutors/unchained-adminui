@@ -63,8 +63,8 @@ const EnrollmentDetail = ({ enrollment }: { enrollment: IEnrollment }) => {
 
   const EmailIcon = (
     <div className="flex w-full items-center justify-center">
-      <div className="mx-auto flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10">
-        <InboxIcon className="h-6 w-6 text-slate-900" aria-hidden="true" />
+      <div className="mx-auto flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/30 sm:mx-0 sm:h-10 sm:w-10">
+        <InboxIcon className="h-6 w-6 text-slate-900 dark:text-blue-400" aria-hidden="true" />
       </div>
     </div>
   );
