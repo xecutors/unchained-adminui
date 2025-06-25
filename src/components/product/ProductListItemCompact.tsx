@@ -65,7 +65,10 @@ const ProductListItemCompact: React.FC<ProductListItemCompactProps> = ({
             dotted
           />
           <span className="text-xs text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-600 px-2 py-1 rounded">
-            {((product.__typename || product.type || 'SimpleProduct').replace('Product', '')) || 'Simple'}
+            {(product.__typename || product.type || 'SimpleProduct').replace(
+              'Product',
+              '',
+            ) || 'Simple'}
           </span>
           <span className="text-sm font-medium text-slate-900 dark:text-slate-100">
             {price ? (

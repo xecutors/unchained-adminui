@@ -72,50 +72,50 @@ const UnchainedAdmin = ({ Component, componentName, pageProps, router }) => {
       key="intl-provider"
     >
       <ErrorBoundary>
-          <Head>
-            <title>Unchained: Admin UI</title>
-            {process.env.NEXT_PUBLIC_MATOMO_SITE_ID ? (
-              <>
-                <Script
-                  id="matomo-script"
-                  src={`${process.env.NEXT_PUBLIC_MATOMO_URL}/matomo.js`}
-                />
-                <Script
-                  id="matomo-config"
-                  dangerouslySetInnerHTML={{
-                    __html: `
+        <Head>
+          <title>Unchained: Admin UI</title>
+          {process.env.NEXT_PUBLIC_MATOMO_SITE_ID ? (
+            <>
+              <Script
+                id="matomo-script"
+                src={`${process.env.NEXT_PUBLIC_MATOMO_URL}/matomo.js`}
+              />
+              <Script
+                id="matomo-config"
+                dangerouslySetInnerHTML={{
+                  __html: `
   var _paq = window._paq = window._paq || [];
   _paq.push(['trackPageView']);
   _paq.push(['enableLinkTracking']);
   _paq.push(['setTrackerUrl', '${process.env.NEXT_PUBLIC_MATOMO_URL}/matomo.php']);
   _paq.push(['setSiteId', '${process.env.NEXT_PUBLIC_MATOMO_SITE_ID}']);
   `,
-                  }}
+                }}
+              />
+            </>
+          ) : null}
+        </Head>
+        <ApolloProvider client={apollo}>
+          <UnchainedContextWrapper>
+            <ThemeWrapper>
+              <ChatProvider>
+                <ToastContainer
+                  position="top-right"
+                  autoClose={5000}
+                  newestOnTop={false}
+                  closeOnClick
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover
                 />
-              </>
-            ) : null}
-          </Head>
-          <ApolloProvider client={apollo}>
-            <UnchainedContextWrapper>
-              <ThemeWrapper>
-                <ChatProvider>
-                  <ToastContainer
-                    position="top-right"
-                    autoClose={5000}
-                    newestOnTop={false}
-                    closeOnClick
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                  />
-                  <ModalWrapper>
-                    {getLayout(<Component {...pageProps} />)}
-                  </ModalWrapper>
-                </ChatProvider>
-              </ThemeWrapper>
-            </UnchainedContextWrapper>
-          </ApolloProvider>
-        </ErrorBoundary>
+                <ModalWrapper>
+                  {getLayout(<Component {...pageProps} />)}
+                </ModalWrapper>
+              </ChatProvider>
+            </ThemeWrapper>
+          </UnchainedContextWrapper>
+        </ApolloProvider>
+      </ErrorBoundary>
     </IntlWrapper>
   );
 };
