@@ -104,7 +104,7 @@ const CurrencyForm = ({
           </div>
         )}
       </div>
-      <div className="border-t-slate-100 border-t dark:border-t-slate-700 space-y-6 rounded-b-md bg-slate-50 dark:bg-slate-800 p-5 text-right">
+      <div className="border-t-slate-100 border-t dark:border-t-slate-700 space-y-6 rounded-b-md bg-slate-50 dark:bg-slate-900 p-5 text-right">
         <SubmitButton
           hidden={!hasRole('editCurrency')}
           label={
