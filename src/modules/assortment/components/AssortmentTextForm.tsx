@@ -152,7 +152,7 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale = null }) => {
               </div>
             </div>
 
-            <div className="border-t-slate-100 border-t dark:border-t-slate-700 bg-slate-50 dark:bg-slate-800 px-4 py-5 text-right sm:px-6">
+            <div className="border-t-slate-100 border-t dark:border-t-slate-700 bg-slate-50 dark:bg-slate-900 px-4 py-5 text-right sm:px-6">
               {hasRole('editAssortmentText') && (
                 <SubmitButton
                   label={formatMessage({

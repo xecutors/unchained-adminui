@@ -152,7 +152,7 @@ const SupplyForm = ({ productId }) => {
               </div>
             </div>
           </div>
-          <div className="border-t-slate-100 border-t dark:border-t-slate-700 space-y-6 bg-slate-50 dark:bg-slate-800 text-right sm:p-6">
+          <div className="border-t-slate-100 border-t dark:border-t-slate-700 space-y-6 bg-slate-50 dark:bg-slate-900 text-right sm:p-6">
             <SubmitButton
               hidden={!hasRole('editProductSupply')}
               label={formatMessage({
