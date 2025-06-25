@@ -62,10 +62,7 @@ const Modal = ({
 
   return shouldRender ? (
     <ModalInner intl={intl}>
-      <div 
-        className="fixed inset-0 z-50 overflow-y-auto" 
-        aria-modal="true"
-      >
+      <div className="fixed inset-0 z-50 overflow-y-auto" aria-modal="true">
         <div
           className="flex min-h-screen items-center justify-center px-4 pt-4 pb-20 text-center sm:block sm:p-0"
           tabIndex={-1}
@@ -78,9 +75,9 @@ const Modal = ({
             &#8203;
           </span>
           <div
-            className={`inline-block z-50 transform overflow-hidden rounded-lg bg-white dark:bg-slate-900 px-4 pt-5 pb-4 text-left shadow-xl transition-all duration-200 ease-out sm:my-8 sm:w-full sm:max-w-lg sm:p-6 sm:align-middle ${
-              isAnimating 
-                ? 'opacity-100 scale-100 translate-y-0' 
+            className={`inline-block z-50 transform overflow-hidden rounded-lg bg-white dark:bg-slate-900 px-4 pt-5 pb-4 text-left shadow-xl dark:shadow-2xl transition-all duration-200 ease-out sm:my-8 sm:w-full sm:max-w-lg sm:p-6 sm:align-middle ${
+              isAnimating
+                ? 'opacity-100 scale-100 translate-y-0'
                 : 'opacity-0 scale-95 translate-y-4'
             }`}
             onClick={(e) => {
@@ -115,7 +112,9 @@ const Modal = ({
                 </svg>
               </button>
             </div>
-            {children && React.isValidElement(children) ? React.cloneElement(children, { close }) : children}
+            {children && React.isValidElement(children)
+              ? React.cloneElement(children, { close })
+              : children}
           </div>
         </div>
       </div>
