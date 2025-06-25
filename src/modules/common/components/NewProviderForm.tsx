@@ -34,7 +34,7 @@ const NewProviderForm = ({
   return (
     <FormWrapper>
       <Form form={form}>
-        <div className="mt-6 shadow-sm dark:shadow-none sm:max-w-full sm:rounded-lg">
+        <div className="shadow-sm dark:shadow-none sm:max-w-full sm:rounded-lg">
           <div className="px-4 pt-4 pb-6">
             <SelectField
               onChange={(e) => onProviderChange(e.target.value)}
