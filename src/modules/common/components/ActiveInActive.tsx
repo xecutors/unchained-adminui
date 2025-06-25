@@ -25,7 +25,7 @@ const ActiveInActive = ({
         : inActiveIcon || (
             <XCircleIcon
               className={classNames(
-                'text-red-300 w-6 h-6',
+                'text-rose-300 w-6 h-6',
                 iconClassName,
                 inActiveClassName,
               )}

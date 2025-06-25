@@ -120,7 +120,7 @@ const CustomTextManager: React.FC = () => {
                     </button>
                     <button
                       onClick={() => handleDelete(text)}
-                      className="p-1 text-slate-400 hover:text-red-600 dark:hover:text-red-400"
+                      className="p-1 text-slate-400 hover:text-rose-600 dark:hover:text-rose-400"
                     >
                       <TrashIcon className="h-4 w-4" />
                     </button>

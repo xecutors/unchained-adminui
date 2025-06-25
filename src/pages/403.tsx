@@ -23,10 +23,10 @@ const NotAuthorized = () => {
         <FormWrapper>
           <div className="space-y-6 px-4 pb-5 pt-3 sm:rounded-lg sm:px-10">
             <div className="text-center">
-              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-red-100 dark:bg-red-900">
-                <LockClosedIcon className="h-6 w-6 text-red-600 dark:text-red-400" />
+              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-rose-100 dark:bg-rose-900">
+                <LockClosedIcon className="h-6 w-6 text-rose-600 dark:text-rose-400" />
               </div>
-              <p className="mt-4 text-sm font-semibold uppercase tracking-wide text-red-600 dark:text-red-400">
+              <p className="mt-4 text-sm font-semibold uppercase tracking-wide text-rose-600 dark:text-rose-400">
                 {formatMessage({
                   id: 'error_403',
                   defaultMessage: '403 Unauthorized',

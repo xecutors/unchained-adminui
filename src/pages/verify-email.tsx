@@ -65,10 +65,10 @@ const VerifyEmail = () => {
         <FormWrapper>
           <div className="space-y-6 px-4 pb-5 pt-3 sm:rounded-lg sm:px-10">
             <div className="text-center">
-              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-red-100 dark:bg-red-900">
-                <ClockIcon className="h-6 w-6 text-red-600 dark:text-red-400" />
+              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-rose-100 dark:bg-rose-900">
+                <ClockIcon className="h-6 w-6 text-rose-600 dark:text-rose-400" />
               </div>
-              <p className="mt-4 text-sm font-semibold uppercase tracking-wide text-red-600 dark:text-red-400">
+              <p className="mt-4 text-sm font-semibold uppercase tracking-wide text-rose-600 dark:text-rose-400">
                 {formatMessage({
                   id: 'token_invalid_expired',
                   defaultMessage: 'Token Invalid/Expired',
@@ -168,18 +168,18 @@ const VerifyEmail = () => {
               <div className={`mx-auto flex h-12 w-12 items-center justify-center rounded-full ${
                 result.success 
                   ? 'bg-green-100 dark:bg-green-900' 
-                  : 'bg-red-100 dark:bg-red-900'
+                  : 'bg-rose-100 dark:bg-rose-900'
               }`}>
                 {result.success ? (
                   <EnvelopeOpenIcon className="h-6 w-6 text-green-600 dark:text-green-400" />
                 ) : (
-                  <ClockIcon className="h-6 w-6 text-red-600 dark:text-red-400" />
+                  <ClockIcon className="h-6 w-6 text-rose-600 dark:text-rose-400" />
                 )}
               </div>
               <p className={`mt-4 text-sm font-semibold uppercase tracking-wide ${
                 result.success 
                   ? 'text-green-600 dark:text-green-400' 
-                  : 'text-red-600 dark:text-red-400'
+                  : 'text-rose-600 dark:text-rose-400'
               }`}>
                 {result.success
                   ? formatMessage({

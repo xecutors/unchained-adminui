@@ -90,7 +90,7 @@ const ProductVariationOptionItem = ({
                       defaultMessage: 'Cancel',
                     })}
                     type="button"
-                    className="rounded-md bg-white font-medium text-red-500 hover:text-red-600 focus:outline-hidden focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+                    className="rounded-md bg-white font-medium text-rose-500 hover:text-rose-600 focus:outline-hidden focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
                   >
                     {formatMessage({
                       id: 'cancel',

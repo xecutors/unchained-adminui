@@ -115,7 +115,7 @@ const Modal = ({
                 </svg>
               </button>
             </div>
-            {React.cloneElement(children, { close })}
+            {children && React.isValidElement(children) ? React.cloneElement(children, { close }) : children}
           </div>
         </div>
       </div>

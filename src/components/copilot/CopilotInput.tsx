@@ -138,7 +138,7 @@ const CopilotInput: React.FC = () => {
                       prev.filter((_, index) => index !== i),
                     )
                   }
-                  className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs"
+                  className="absolute -top-2 -right-2 bg-rose-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs"
                 >
                   <XMarkIcon className="h-6 w-6" strokeWidth={2} />
                 </button>

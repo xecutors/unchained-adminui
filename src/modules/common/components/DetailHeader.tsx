@@ -73,7 +73,7 @@ const DetailHeader = ({ user, contact }) => {
                     />
                   ) : (
                     <XCircleIcon
-                      className="mb-1.5 h-4 w-4 shrink-0 text-red-400"
+                      className="mb-1.5 h-4 w-4 shrink-0 text-rose-400"
                       aria-hidden="true"
                     />
                   )}

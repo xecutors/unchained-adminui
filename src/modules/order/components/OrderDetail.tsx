@@ -112,7 +112,7 @@ const OrderDetail = ({ order }) => {
             id="reject_order"
             onClick={onRejectOrder}
             type="button"
-            className="bg-white-300 relative -ml-px inline-flex items-center space-x-2 rounded-md border border-red-500 bg-red-500 px-2 py-1 text-sm font-medium text-white hover:bg-red-700 focus:border-red-400 focus:outline-hidden focus:ring-0 focus:ring-red-400"
+            className="bg-white-300 relative -ml-px inline-flex items-center space-x-2 rounded-md border border-rose-500 bg-rose-500 px-2 py-1 text-sm font-medium text-white hover:bg-rose-700 focus:border-rose-400 focus:outline-hidden focus:ring-0 focus:ring-rose-400"
           >
             {formatMessage({
               id: 'reject_order',

@@ -24,7 +24,7 @@ const TagInputField = ({
         id={field.id}
         name={field.name}
         className={classnames({
-          'border-red-300': !!field.error,
+          'border-rose-300': !!field.error,
         })}
         onChange={(value) => field.setValue(value)}
         placeholder={field.placeholder}
