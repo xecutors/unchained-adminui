@@ -310,7 +310,7 @@ const AssortmentDetail = ({
 
   return (
     <>
-      <div>
+      <div className="mt-5 flex flex-wrap items-center justify-between gap-10">
         <TagList
           defaultValue={assortment?.tags}
           onSubmit={updateAssortmentTags}
