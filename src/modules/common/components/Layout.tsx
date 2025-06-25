@@ -165,14 +165,6 @@ const Layout = ({
           requiredRole: 'manageWarehousingProviders',
           href: '/warehousing-provider',
         },
-        {
-          name: formatMessage({
-            id: 'custom_texts',
-            defaultMessage: 'Custom Texts',
-          }),
-          requiredRole: 'admin',
-          href: '/custom-texts',
-        },
       ],
     },
     {

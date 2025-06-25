@@ -19,7 +19,6 @@ import Head from 'next/head';
 import Script from 'next/script';
 import AuthWrapper from '../modules/Auth/AuthWrapper';
 import { ChatProvider } from '../modules/chat/ChatContext';
-import CustomTextProvider from '../modules/i18n/components/CustomTextProvider';
 import ImageWithFallback from '../modules/common/components/ImageWithFallback';
 
 const handleRouteChange = (url) => {
@@ -72,8 +71,7 @@ const UnchainedAdmin = ({ Component, componentName, pageProps, router }) => {
       messages={messages}
       key="intl-provider"
     >
-      <CustomTextProvider>
-        <ErrorBoundary>
+      <ErrorBoundary>
           <Head>
             <title>Unchained: Admin UI</title>
             {process.env.NEXT_PUBLIC_MATOMO_SITE_ID ? (
@@ -118,7 +116,6 @@ const UnchainedAdmin = ({ Component, componentName, pageProps, router }) => {
             </UnchainedContextWrapper>
           </ApolloProvider>
         </ErrorBoundary>
-      </CustomTextProvider>
     </IntlWrapper>
   );
 };
