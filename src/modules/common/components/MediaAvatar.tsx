@@ -9,7 +9,7 @@ const MediaAvatar = ({ file, className = '' }) => {
     <div className={classNames('h-10 w-10 shrink-0', className)}>
       {file ? (
         <ImageWithFallback
-          className="relative h-10 w-10 rounded-full"
+          className="relative h-10 w-10 rounded-sm"
           src={file.url}
           width={100}
           height={100}

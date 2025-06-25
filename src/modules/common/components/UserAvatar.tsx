@@ -43,7 +43,7 @@ const UserAvatar = ({ avatar, ...user }) => {
             loader={defaultNextImageLoader}
             width={36}
             height={36}
-            className="rounded mr-3"
+            className="rounded-full mr-3 aspect-square object-cover"
             alt={formatMessage({
               id: 'user_avatar',
               defaultMessage: 'User avatar',
