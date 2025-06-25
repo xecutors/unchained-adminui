@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from 'react';
+import { useIntl } from 'react-intl';
 import useCurrentUser from '../../modules/accounts/hooks/useCurrentUser';
 import useShopInfo from '../../modules/common/hooks/useShopInfo';
 import { useChatContext } from '../../modules/chat';
@@ -7,6 +8,7 @@ import CopilotHeader from './CopilotHeader';
 import CopilotInput from './CopilotInput';
 
 const Copilot: React.FC = () => {
+  const { formatMessage } = useIntl();
   const { messages, status, reload } = useChatContext();
   const { shopInfo } = useShopInfo();
   const { currentUser } = useCurrentUser();
@@ -33,11 +35,16 @@ const Copilot: React.FC = () => {
         <div className="py-16">
           <div className="text-center">
             <h1 className="mt-2 text-4xl font-extrabold tracking-tight text-rose-900 dark:text-rose-200 sm:text-5xl">
-              Chat is Disabled
+              {formatMessage({
+                id: 'chat_disabled_title',
+                defaultMessage: 'Chat is Disabled',
+              })}
             </h1>
             <p className="mt-2 text-base text-slate-500 dark:text-slate-200">
-              Copilot chat is currently disabled in this shop. Please check your
-              engine configuration
+              {formatMessage({
+                id: 'chat_disabled_message',
+                defaultMessage: 'Copilot chat is currently disabled in this shop. Please check your engine configuration',
+              })}
             </p>
           </div>
         </div>
