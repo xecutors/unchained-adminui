@@ -90,7 +90,7 @@ const SearchWithTagsAndLocale = ({
           </div>
 
           {/* Tag Input */}
-          <div className="w-fit border-l border-slate-300 dark:border-slate-700 pl-3">
+          <div className="w-fit lg:border-l lg:border-slate-300 lg:dark:border-slate-700 lg:pl-3">
             <TagInput
               buttonText={formatMessage({
                 id: 'apply',
