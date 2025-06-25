@@ -179,21 +179,21 @@ const ProductReviewsItem = ({
             onClick={async () => toggleVote(voteTypes.UPVOTE)}
             className={`flex items-center gap-1 px-2 py-1 rounded-md transition-colors disabled:opacity-50 ${
               hasAlreadyVoted(voteTypes.UPVOTE)
-                ? 'bg-green-100 dark:bg-green-900 hover:bg-green-200 dark:hover:bg-green-800'
+                ? 'bg-emerald-100 dark:bg-emerald-900 hover:bg-emerald-200 dark:hover:bg-emerald-800'
                 : 'hover:bg-slate-100 dark:hover:bg-slate-700'
             }`}
           >
             <HandThumbUpIcon
               className={`h-5 w-5 ${
                 hasAlreadyVoted(voteTypes.UPVOTE)
-                  ? 'text-green-600 dark:text-green-400'
+                  ? 'text-emerald-600 dark:text-emerald-400'
                   : 'text-slate-400 dark:text-slate-500'
               }`}
             />
             <span
               className={`text-sm font-medium ${
                 hasAlreadyVoted(voteTypes.UPVOTE)
-                  ? 'text-green-700 dark:text-green-300'
+                  ? 'text-emerald-700 dark:text-emerald-300'
                   : 'text-slate-700 dark:text-slate-300'
               }`}
             >

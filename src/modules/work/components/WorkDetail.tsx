@@ -32,11 +32,13 @@ const WorkDetail = ({ work }) => {
   };
 
   return (
-    <div className={`my-4 p-2 sm:p-6 lg:p-8 ${getShadowStyle(work?.status)}`}>
+    <div
+      className={`rounded-xl xl:-mx-8 mt-10 p-2 sm:p-6 lg:p-8 ${getShadowStyle(work?.status)}`}
+    >
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 auto-rows-max">
-        <div className="max-h-fit col-span-2 rounded-lg border border-slate-300 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow-md dark:shadow-none sm:p-6 lg:col-span-1 lg:p-8 ">
+        <div className="max-h-fit col-span-2 rounded-lg border border-slate-300 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow-md dark:shadow-none sm:p-6 lg:col-span-1 lg:p-8">
           <div className="mb-2 flex flex-wrap items-center justify-between">
-            <div className="mr-4 text-base text-slate-500 dark:text-slate-200 ">
+            <div className="mr-4 text-base text-slate-500 dark:text-slate-500 ">
               {formatMessage({
                 id: 'work_type',
                 defaultMessage: 'Work type',
@@ -48,23 +50,17 @@ const WorkDetail = ({ work }) => {
           </div>
 
           <div className="mb-2 flex flex-wrap items-center justify-between">
-            <div className="mr-4 text-base text-slate-500 dark:text-slate-200 ">
+            <div className="mr-4 text-base text-slate-500 dark:text-slate-500 ">
               {formatMessage({
                 id: 'work_status',
                 defaultMessage: 'Work Status',
               })}
             </div>
-            <div
-              className={`max-w-prose space-y-5 rounded-full py-1 px-5 text-sm text-${
-                WORK_STATUSES[work?.status]
-              }-800 bg-${WORK_STATUSES[work?.status]}-200`}
-            >
-              {work?.status}
-            </div>
+            <Badge text={work?.status} color={WORK_STATUSES[work?.status]} />
           </div>
 
           <div className="mb-2 flex flex-wrap items-center justify-between">
-            <div className="mr-4 text-base text-slate-500 dark:text-slate-200 ">
+            <div className="mr-4 text-base text-slate-500 dark:text-slate-500 ">
               {formatMessage({
                 id: 'work_priority',
                 defaultMessage: 'Priority',
@@ -76,7 +72,7 @@ const WorkDetail = ({ work }) => {
           </div>
 
           <div className="mb-2 flex flex-wrap items-center justify-between">
-            <div className="mr-4 text-base text-slate-500 dark:text-slate-200 ">
+            <div className="mr-4 text-base text-slate-500 dark:text-slate-500 ">
               {formatMessage({
                 id: 'work_retries',
                 defaultMessage: 'Retries',
@@ -88,7 +84,7 @@ const WorkDetail = ({ work }) => {
           </div>
 
           <div className="mb-2 flex flex-wrap items-center justify-between">
-            <div className="mr-4 text-base text-slate-500 dark:text-slate-200 ">
+            <div className="mr-4 text-base text-slate-500 dark:text-slate-500 ">
               {formatMessage({
                 id: 'worker',
                 defaultMessage: 'Worker',
@@ -107,7 +103,6 @@ const WorkDetail = ({ work }) => {
                     },
                   )}
                   color="purple"
-                  className="bg-purple-200 font-bold"
                 />
               ) : (
                 'n/a'
@@ -117,7 +112,7 @@ const WorkDetail = ({ work }) => {
 
           {work?.retries || work?.original ? (
             <div className="mb-2 flex flex-wrap items-center justify-between">
-              <div className="mr-4 text-base text-slate-500 dark:text-slate-200 ">
+              <div className="mr-4 text-base text-slate-500 dark:text-slate-500 ">
                 {formatMessage({
                   id: 'work_original',
                   defaultMessage: 'Original Work',
@@ -140,7 +135,7 @@ const WorkDetail = ({ work }) => {
         <div className="col-span-2 rounded-lg border border-slate-300 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow-md dark:shadow-none sm:p-6 lg:col-span-1 lg:p-8">
           <div className="grid grid-cols-2 gap-5">
             <div className="sm:col-span-1">
-              <div className="flex text-base text-slate-500 dark:text-slate-200 ">
+              <div className="flex text-base text-slate-500 dark:text-slate-500 ">
                 {formatMessage({
                   id: 'work_created',
                   defaultMessage: 'Created',
@@ -151,7 +146,7 @@ const WorkDetail = ({ work }) => {
               </div>
             </div>
             <div className="sm:col-span-1">
-              <div className="flex text-base text-slate-500 dark:text-slate-200 ">
+              <div className="flex text-base text-slate-500 dark:text-slate-500 ">
                 {formatMessage({
                   id: 'work_scheduled',
                   defaultMessage: 'Scheduled',
@@ -164,7 +159,7 @@ const WorkDetail = ({ work }) => {
               </div>
             </div>
             <div className="sm:col-span-1">
-              <div className="flex text-base text-slate-500 dark:text-slate-200 ">
+              <div className="flex text-base text-slate-500 dark:text-slate-500 ">
                 {formatMessage({
                   id: 'work_started',
                   defaultMessage: 'Started',
@@ -175,7 +170,7 @@ const WorkDetail = ({ work }) => {
               </div>
             </div>
             <div className="sm:col-span-1">
-              <div className="flex text-base text-slate-500 dark:text-slate-200 ">
+              <div className="flex text-base text-slate-500 dark:text-slate-500 ">
                 {formatMessage({
                   id: 'work_finished',
                   defaultMessage: 'Finished',
@@ -186,7 +181,7 @@ const WorkDetail = ({ work }) => {
               </div>
             </div>
             <div className="sm:col-span-1">
-              <div className="flex text-base text-slate-500 dark:text-slate-200 ">
+              <div className="flex text-base text-slate-500 dark:text-slate-500 ">
                 {formatMessage({
                   id: 'duration',
                   defaultMessage: 'Duration',
@@ -196,7 +191,7 @@ const WorkDetail = ({ work }) => {
             </div>
             {work?.deleted && (
               <div className="sm:col-span-1">
-                <div className="flex text-base text-slate-500 dark:text-slate-200 ">
+                <div className="flex text-base text-slate-500 dark:text-slate-500 ">
                   {formatMessage({
                     id: 'deleted',
                     defaultMessage: 'Deleted',
@@ -211,8 +206,8 @@ const WorkDetail = ({ work }) => {
         </div>
 
         {work?.error && (
-          <div className="overflow-hidden rounded-lg shadow-md dark:shadow-none border-2 border-rose-300 dark:border-rose-800 col-span-2 bg-rose-50 dark:bg-rose-950 lg:col-span-2 order-first">
-            <div className="px-4 py-5 sm:px-6 bg-rose-100 dark:bg-rose-900 border-b border-rose-300 dark:border-rose-800">
+          <div className="rounded-lg shadow-md dark:shadow-none border-2 border-rose-300 dark:border-rose-800 col-span-2 lg:col-span-2 order-first overflow-hidden bg-rose-100 dark:bg-rose-800">
+            <div className="px-4 py-5 sm:px-6 border-b border-rose-300 dark:border-rose-800">
               <h3 className="text-lg font-medium leading-6 text-rose-700 dark:text-rose-300 flex items-center gap-2">
                 <svg
                   className="w-6 h-6"
@@ -230,18 +225,20 @@ const WorkDetail = ({ work }) => {
                 {formatMessage({ id: 'error', defaultMessage: 'Error' })}
               </h3>
             </div>
-            <JSONView
-              value={decodeURI(JSON.stringify(work.error, null, 2))}
-              disabled
-              className="block border-none w-full max-w-full resize-none sm:text-sm bg-rose-50 dark:bg-rose-950 text-rose-900 dark:text-rose-100"
-            />
+            <div className="bg-rose-50 dark:bg-rose-950">
+              <JSONView
+                value={decodeURI(JSON.stringify(work.error, null, 2))}
+                disabled
+                className="block border-none w-full max-w-full resize-none sm:text-sm text-rose-900 dark:text-rose-100"
+              />
+            </div>
           </div>
         )}
 
         {work?.input && (
           <div className="overflow-hidden rounded-lg border border-slate-300 dark:border-slate-800 col-span-2 shadow-md dark:shadow-none bg-white dark:bg-slate-900 lg:col-span-1">
             <div className="px-4 py-5 sm:px-6">
-              <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-slate-100">
+              <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-slate-500">
                 {formatMessage({ id: 'input', defaultMessage: 'Input' })}
               </h3>
             </div>
@@ -254,9 +251,9 @@ const WorkDetail = ({ work }) => {
         )}
 
         {work?.result && (
-          <div className="rounded-lg shadow-md dark:shadow-none border border-slate-300 dark:border-slate-800 col-span-2 bg-white dark:bg-slate-900 lg:col-span-1">
+          <div className="overflow-hidden rounded-lg shadow-md dark:shadow-none border border-slate-300 dark:border-slate-800 col-span-2 bg-white dark:bg-slate-900 lg:col-span-1">
             <div className="px-4 py-5 sm:px-6 flex items-center justify-between">
-              <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-slate-100">
+              <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-slate-500">
                 {formatMessage({ id: 'result', defaultMessage: 'Result' })}
               </h3>
               {work?.type === 'BULK_IMPORT' && work?.result?.created && (

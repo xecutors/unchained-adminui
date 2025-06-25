@@ -168,12 +168,12 @@ const VerifyEmail = () => {
               <div
                 className={`mx-auto flex h-12 w-12 items-center justify-center rounded-full ${
                   result.success
-                    ? 'bg-green-100 dark:bg-green-900'
+                    ? 'bg-emerald-100 dark:bg-emerald-900'
                     : 'bg-rose-100 dark:bg-rose-900'
                 }`}
               >
                 {result.success ? (
-                  <EnvelopeOpenIcon className="h-6 w-6 text-green-600 dark:text-green-400" />
+                  <EnvelopeOpenIcon className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
                 ) : (
                   <ClockIcon className="h-6 w-6 text-rose-600 dark:text-rose-400" />
                 )}
@@ -181,7 +181,7 @@ const VerifyEmail = () => {
               <p
                 className={`mt-4 text-sm font-semibold uppercase tracking-wide ${
                   result.success
-                    ? 'text-green-600 dark:text-green-400'
+                    ? 'text-emerald-600 dark:text-emerald-400'
                     : 'text-rose-600 dark:text-rose-400'
                 }`}
               >
