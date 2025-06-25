@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl';
 const FilterSummary = ({ filterKey, filterType }) => {
   const { formatMessage } = useIntl();
   return (
-    <div className="space-y-2 lg:flex lg:space-y-0 lg:space-x-3">
+    <div className="mt-5 space-y-2 lg:flex lg:space-y-0 lg:space-x-3">
       <div className="flex items-center space-x-1">
         <div className="text-sm">
           {formatMessage({ id: 'key', defaultMessage: 'Key' })}
