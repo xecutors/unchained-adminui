@@ -81,7 +81,7 @@ const CommerceForm = ({ productId }) => {
       <div className="mt-5 md:col-span-3 lg:mt-0">
         <FormWrapper>
           <Form className="mt-3 rounded-md" form={form}>
-            <div className="relative max-w-full p-3 sm:p-5">
+            <div className="relative max-w-full p-3 sm:px-5">
               <div className="max-w-full justify-between align-baseline" />
 
               <label className="sr-only flex w-full font-sans text-sm text-black dark:text-slate-200 lg:not-sr-only">
@@ -297,7 +297,7 @@ const CommerceForm = ({ productId }) => {
               </FieldArray>
             </div>
             <FormErrors displayFieldErrors />
-            <div className="mx-6 mb-6">
+            <div className="mx-6 mb-6 text-right">
               <SubmitButton
                 hidden={!hasRole('editProductCommerce')}
                 label={formatMessage({

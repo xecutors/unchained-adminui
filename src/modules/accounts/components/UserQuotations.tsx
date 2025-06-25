@@ -33,7 +33,7 @@ const UserQuotations = ({ _id: userId }) => {
   return (
     <div className="space-y-4 mt-4">
       <SearchField defaultValue={queryString} onInputChange={setQueryString} />
-      <QuotationList quotations={quotations} />;
+      <QuotationList quotations={quotations} />
     </div>
   );
 };

@@ -20,6 +20,7 @@ import CustomError from '../../modules/common/CustomError';
 import { useRouter } from 'next/router';
 import useAuth from '../../modules/Auth/useAuth';
 import { XMarkIcon } from '@heroicons/react/24/outline';
+import Button from '../../modules/common/components/Button';
 
 const ProductDetailPage = ({ slug }) => {
   const { formatMessage } = useIntl();
@@ -168,7 +169,7 @@ const ProductDetailPage = ({ slug }) => {
         currentPageTitle={product?.texts?.title}
       />
       <div>
-        <div className="align-center flex-wrap flex min-w-full justify-between">
+        <div className="items-center flex-wrap flex gap-5 min-w-full justify-between">
           <PageHeader
             headerText={product?.texts?.title || 'Untitled Product'}
             title={`${product?.texts?.title || 'Product'} (${product?._id})`}
@@ -196,13 +197,31 @@ const ProductDetailPage = ({ slug }) => {
                 onBlur={updateProductSequence}
               />
             </div>
+            {status === 'DRAFT' && hasRole('publishProduct') && (
+              <Button
+                variant="primary"
+                text={formatMessage({
+                  id: 'publish',
+                  defaultMessage: 'Publish',
+                })}
+                onClick={async () => {
+                  await publishProduct({ productId: product?._id });
+                  toast.success(
+                    formatMessage({
+                      id: 'product_published',
+                      defaultMessage: 'Published successfully',
+                    }),
+                  );
+                }}
+              />
+            )}
             {status === 'DRAFT' && hasRole('removeProduct') && (
               <HeaderDeleteButton onClick={handleDeleteProduct} />
             )}
           </div>
         </div>
 
-        <div className="mt-3 flex items-baseline gap-2">
+        <div className="mt-5 flex items-baseline gap-2">
           <span className="text-sm text-slate-600 dark:text-slate-400">
             ID:
           </span>

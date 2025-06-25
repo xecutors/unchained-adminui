@@ -32,7 +32,7 @@ const UserEnrollments = ({ _id: userId }) => {
   return (
     <div className="space-y-4 mt-4">
       <SearchField defaultValue={queryString} onInputChange={setQueryString} />
-      <EnrollmentList enrollments={enrollments} />;
+      <EnrollmentList enrollments={enrollments} />
     </div>
   );
 };

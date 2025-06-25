@@ -22,7 +22,7 @@ const AssortmentDetailPage = ({ assortmentSlug }) => {
         currentPageTitle={assortment?.texts?.title}
       />
       <div>
-        <div className="align-center flex-wrap flex min-w-full justify-between">
+        <div className="items-centerflex-wrap flex min-w-full justify-between">
           <PageHeader
             headerText={
               <>{assortment?.texts?.title || 'Untitled Assortment'}</>
