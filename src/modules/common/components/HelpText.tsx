@@ -1,6 +1,6 @@
 import React from 'react';
 import { QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
-import useCustomMessage from '../../i18n/hooks/useCustomMessage';
+import { useIntl } from 'react-intl';
 
 interface HelpTextProps {
   messageKey: string;
@@ -17,9 +17,9 @@ const HelpText: React.FC<HelpTextProps> = ({
   className = '',
   showIcon = true,
 }) => {
-  const { formatHelpMessage } = useCustomMessage();
+  const { formatMessage } = useIntl();
 
-  const helpText = formatHelpMessage(
+  const helpText = formatMessage(
     {
       id: messageKey,
       defaultMessage,

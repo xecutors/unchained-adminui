@@ -29,7 +29,6 @@ const BreadCrumbs = ({
     'delivery-provider': 'delivery_providers',
     'payment-provider': 'payment_providers',
     'warehousing-provider': 'warehousing_provider',
-    'custom-texts': 'custom_texts',
     system: 'system',
     account: 'account',
     new: 'new',
