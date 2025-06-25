@@ -32,12 +32,27 @@ import ProductTokenizationForm from './ProductTokenizationForm';
 import DisplayExtendedFields from '../../common/components/DisplayExtendedFields';
 
 const GetCurrentTab = ({ id, selectedView = '', ...extendedData }) => {
-  if (selectedView === 'texts') return <ProductTextsForm productId={id} />;
-  if (selectedView === 'media') return <ProductMediaForm productId={id} />;
+  if (selectedView === 'texts')
+    return (
+      <LocaleWrapper>
+        <ProductTextsForm productId={id} />
+      </LocaleWrapper>
+    );
+  if (selectedView === 'media')
+    return (
+      <LocaleWrapper>
+        <ProductMediaForm productId={id} />
+      </LocaleWrapper>
+    );
   if (selectedView === 'commerce') return <CommerceForm productId={id} />;
   if (selectedView === 'supply') return <SupplyForm productId={id} />;
   if (selectedView === 'warehousing') return <WarehousingForm productId={id} />;
-  if (selectedView === 'variations') return <ProductVariation productId={id} />;
+  if (selectedView === 'variations')
+    return (
+      <LocaleWrapper>
+        <ProductVariation productId={id} />
+      </LocaleWrapper>
+    );
   if (selectedView === 'bundled_products')
     return <BundleProducts productId={id} />;
   if (selectedView === 'subscriptions')
@@ -167,11 +182,10 @@ const ProductDetail = ({ product, extendedData = {} }) => {
           enableEdit={hasRole('editProduct')}
         />
       </div>
-      <LocaleWrapper>
-        <Tab tabItems={productOptions} defaultTab="texts">
-          <GetCurrentTab id={product?._id} {...extendedData} />
-        </Tab>
-      </LocaleWrapper>
+
+      <Tab tabItems={productOptions} defaultTab="texts">
+        <GetCurrentTab id={product?._id} {...extendedData} />
+      </Tab>
     </>
   );
 };

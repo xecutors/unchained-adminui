@@ -4,7 +4,6 @@ import { useIntl } from 'react-intl';
 
 import useLanguages from '../../language/hooks/useLanguages';
 import useCountries from '../../country/hooks/useCountries';
-import useShopInfo from '../hooks/useShopInfo';
 
 const createLanguageDialectList = (languages, countries) => {
   const result = [];
@@ -12,7 +11,7 @@ const createLanguageDialectList = (languages, countries) => {
   languages.forEach(({ _id: languageId, isoCode: baseIsoCode }) => {
     result.push({ _id: languageId, isoCode: baseIsoCode });
     countries.forEach(({ isoCode: countryIsoCode, _id: countryId }) => {
-      const dialectIsoCode = `${baseIsoCode}-${countryIsoCode.toUpperCase()}`;
+      const dialectIsoCode = `${baseIsoCode}-${countryIsoCode.toLowerCase()}`;
       result.push({
         _id: `${countryId}-${languageId}`,
         isoCode: dialectIsoCode,
@@ -25,29 +24,29 @@ const createLanguageDialectList = (languages, countries) => {
 
 const LocaleWrapper = ({
   children,
-  onlyFull = false,
-  searchComponent = null,
+  selectedLocale: externalSelectedLocale = null,
 }) => {
-  const { languages } = useLanguages();
-  const { shopInfo, loading: shopInfoLoading } = useShopInfo();
+  const { languages, loading } = useLanguages();
   const { countries } = useCountries();
   const { locale } = useIntl();
 
-  const [selectedLocale, setSelectedLocale] = useState(null);
-  useEffect(() => {
-    if (!shopInfoLoading) {
-      const baseLanguage =
-        shopInfo?.language?.isoCode +
-        '-' +
-        shopInfo?.country?.isoCode?.toUpperCase();
-      setSelectedLocale(baseLanguage);
-    }
-  }, [shopInfo, shopInfoLoading, locale]);
+  const [selectedLocale, setSelectedLocale] = useState(
+    externalSelectedLocale || locale,
+  );
 
-  const languageDialectList = createLanguageDialectList(
-    languages,
-    countries,
-  ).filter((l) => !onlyFull || l.isoCode.includes('-'));
+  useEffect(() => {
+    if (!loading) {
+      const baseLanguage = languages
+        .filter((l) => l.isBase || l.isoCode === locale)
+        ?.map(({ isoCode }) => isoCode);
+      const newLocale = baseLanguage.includes(locale)
+        ? locale
+        : baseLanguage[0];
+      setSelectedLocale(externalSelectedLocale || newLocale);
+    }
+  }, [languages, loading, locale, externalSelectedLocale]);
+
+  const languageDialectList = createLanguageDialectList(languages, countries);
 
   return (
     <div>
@@ -63,21 +62,9 @@ const LocaleWrapper = ({
             }}
           >
             {languageDialectList?.map((language) => {
-              const displayName = (() => {
-                try {
-                  return (
-                    new Intl.DisplayNames([selectedLocale], {
-                      type: 'language',
-                    }).of(language.isoCode) || language.isoCode
-                  );
-                } catch {
-                  return language.isoCode;
-                }
-              })();
-
               return (
                 <option key={language._id} value={language.isoCode}>
-                  {displayName}
+                  {language.isoCode}
                 </option>
               );
             })}
