@@ -21,18 +21,15 @@ const FilterOptions = ({ filterId, selectedLocale = null }) => {
 
   const { createFilterOption } = useCreateFilterOption();
   const { hasRole } = useAuth();
-  const onSubmit: OnSubmitType = useCallback(
-    async ({ value, title }) => {
-      await createFilterOption({
-        filterId,
-        option: value,
-        texts: [{ title, locale: selectedLocale }],
-      });
-      setModal('');
-      return { success: true };
-    },
-    [selectedLocale, filterId],
-  );
+  const onSubmit: OnSubmitType = async ({ value, title, subtitle }) => {
+    await createFilterOption({
+      filterId,
+      option: value,
+      texts: [{ title, locale: selectedLocale, subtitle }],
+    });
+    setModal('');
+    return { success: true };
+  };
 
   return (
     <SelfDocumentingView
