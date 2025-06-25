@@ -154,10 +154,6 @@ const CommerceForm = ({ productId }) => {
                                 id: 'max_quantity',
                                 defaultMessage: 'Max Quantity',
                               })}
-                              placeholder={formatMessage({
-                                id: 'max_quantity',
-                                defaultMessage: 'Max Quantity',
-                              })}
                             />
                             <TextField
                               type="number"
@@ -169,10 +165,6 @@ const CommerceForm = ({ productId }) => {
                               label={formatMessage({
                                 id: 'price',
                                 defaultMessage: 'Price  ',
-                              })}
-                              placeholder={formatMessage({
-                                id: 'price',
-                                defaultMessage: 'Price',
                               })}
                             />
                           </div>
