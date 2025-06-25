@@ -33,7 +33,7 @@ const ChoicesField = ({ multiple, options, ...props }: ChoicesFieldProps) => {
     >
       <label
         className={classNames('text-sm', className, {
-          'text-red-600': !!field.error,
+          'text-rose-600': !!field.error,
           'sr-only': hideLabel,
         })}
       >

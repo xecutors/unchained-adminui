@@ -121,7 +121,7 @@ const ProductReviewsItem = ({
       className={classNames(
         'mb-4 rounded-lg shadow-sm bg-white dark:bg-slate-800 p-4',
         {
-          'border-red-200 bg-red-50 dark:bg-red-950': review.deleted,
+          'border-rose-200 bg-rose-50 dark:bg-rose-950': review.deleted,
         },
         {
           'border-slate-200 dark:border-slate-700': !review.deleted,
@@ -206,21 +206,21 @@ const ProductReviewsItem = ({
             onClick={async () => toggleVote(voteTypes.DOWNVOTE)}
             className={`flex items-center gap-1 px-2 py-1 rounded-md transition-colors disabled:opacity-50 ${
               hasAlreadyVoted(voteTypes.DOWNVOTE)
-                ? 'bg-red-100 dark:bg-red-900 hover:bg-red-200 dark:hover:bg-red-800'
+                ? 'bg-rose-100 dark:bg-rose-900 hover:bg-rose-200 dark:hover:bg-rose-800'
                 : 'hover:bg-slate-100 dark:hover:bg-slate-700'
             }`}
           >
             <HandThumbDownIcon
               className={`h-5 w-5 ${
                 hasAlreadyVoted(voteTypes.DOWNVOTE)
-                  ? 'text-red-600 dark:text-red-400'
+                  ? 'text-rose-600 dark:text-rose-400'
                   : 'text-slate-400 dark:text-slate-500'
               }`}
             />
             <span
               className={`text-sm font-medium ${
                 hasAlreadyVoted(voteTypes.DOWNVOTE)
-                  ? 'text-red-700 dark:text-red-300'
+                  ? 'text-rose-700 dark:text-rose-300'
                   : 'text-slate-700 dark:text-slate-300'
               }`}
             >

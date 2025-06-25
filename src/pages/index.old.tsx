@@ -278,7 +278,7 @@ const ToolInvocationRenderer = ({ part }: { part: any }) => {
     );
   } catch {
     return (
-      <div className="text-sm text-red-500 mb-4">
+      <div className="text-sm text-rose-500 mb-4">
         Failed to parse tool result.
       </div>
     );
@@ -434,7 +434,7 @@ const LoadingIndicator = () => {
         </div>
         <button
           onClick={handleStop}
-          className="ml-2 p-1.5 text-slate-500 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-md transition-colors"
+          className="ml-2 p-1.5 text-slate-500 dark:text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-900/20 rounded-md transition-colors"
           title="Stop generation"
         >
           <StopIcon className="w-4 h-4" />
@@ -494,7 +494,7 @@ const Copilot = () => {
       <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-slate-900 font-sans">
         <div className="py-16">
           <div className="text-center">
-            <h1 className="mt-2 text-4xl font-extrabold tracking-tight text-red-900 dark:text-red-200 sm:text-5xl">
+            <h1 className="mt-2 text-4xl font-extrabold tracking-tight text-rose-900 dark:text-rose-200 sm:text-5xl">
               Chat is Disabled
             </h1>
             <p className="mt-2 text-base text-slate-500 dark:text-slate-200">

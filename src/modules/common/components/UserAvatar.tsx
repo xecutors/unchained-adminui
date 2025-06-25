@@ -51,7 +51,7 @@ const UserAvatar = ({ avatar, ...user }) => {
           />
         ) : (
           <span className="inline-block h-6 w-6 overflow-hidden rounded-full mr-3">
-            <UserCircleIcon className="h-full w-full text-slate-700" />
+            <UserCircleIcon className="h-full w-full text-slate-700 dark:text-slate-300" />
           </span>
         )}
         <div>

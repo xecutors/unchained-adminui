@@ -124,7 +124,7 @@ const ProfileView = ({ profile, avatar, _id }) => {
   return (
     <FormWrapper className="shadow-none">
       <Form form={form}>
-        <div className="overflow-hidden rounded-md bg-slate-50 dark:bg-slate-900">
+        <div className="overflow-hidden rounded-md bg-slate-50 dark:bg-slate-950">
           <div className="lg:grid lg:grid-cols-3">
             <div className="mb-5 lg:col-span-1 lg:pr-5">
               <div className="space-y-2">

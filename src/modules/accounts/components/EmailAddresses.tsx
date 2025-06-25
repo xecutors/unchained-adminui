@@ -126,7 +126,7 @@ const EmailAddresses = ({
                 )}
 
                 <DeleteButton
-                  className="ml-2 inline-flex items-center rounded-full hover:bg-red-50"
+                  className="ml-2 inline-flex items-center rounded-full hover:bg-rose-50"
                   onClick={() =>
                     onRemoveEmail({
                       email: address,

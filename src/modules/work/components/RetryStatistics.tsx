@@ -40,7 +40,7 @@ const RetryStatistics = ({ work, children = null }) => {
           />
         </svg>
         {children}
-        <span className="text-red-400 text-sm ml-2">
+        <span className="text-rose-400 text-sm ml-2">
           {`${work?.retries} / ${work?.original?.retries}`}
         </span>
       </span>

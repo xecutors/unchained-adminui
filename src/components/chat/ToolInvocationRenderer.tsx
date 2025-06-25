@@ -82,11 +82,11 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
     console.error('Tool name:', toolName);
     console.error('Result content:', result?.content);
     return (
-      <div className="text-sm text-red-500 mb-4">
+      <div className="text-sm text-rose-500 mb-4">
         <div>Failed to parse tool result.</div>
         <details className="mt-2">
           <summary className="cursor-pointer text-xs">Debug info</summary>
-          <pre className="text-xs mt-1 p-2 bg-red-50 dark:bg-red-950 rounded overflow-auto">
+          <pre className="text-xs mt-1 p-2 bg-rose-50 dark:bg-rose-950 rounded overflow-auto">
             Tool: {toolName}
             Error: {error?.message || 'Unknown error'}
             Content: {JSON.stringify(result?.content, null, 2)}

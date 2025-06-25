@@ -83,8 +83,8 @@ const QuotationDetail = ({ quotation }) => {
           defaultMessage: 'Reject',
         })}
         icon={
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-            <XCircleIcon className="h-6 w-6 text-red-600" />
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-rose-100 sm:mx-0 sm:h-10 sm:w-10">
+            <XCircleIcon className="h-6 w-6 text-rose-600" />
           </div>
         }
       />,
@@ -164,7 +164,7 @@ const QuotationDetail = ({ quotation }) => {
           <Button
             text="Reject"
             onClick={onReject}
-            className="bg-white-300 relative -ml-px inline-flex items-center space-x-2 rounded-md border border-red-500 bg-red-500 px-2 py-2 text-base font-medium text-white hover:bg-red-700 focus:border-red-400 focus:outline-hidden focus:ring-0 focus:ring-red-400"
+            className="bg-white-300 relative -ml-px inline-flex items-center space-x-2 rounded-md border border-rose-500 bg-rose-500 px-2 py-2 text-base font-medium text-white hover:bg-rose-700 focus:border-rose-400 focus:outline-hidden focus:ring-0 focus:ring-rose-400"
           />
         ),
     },

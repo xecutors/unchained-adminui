@@ -543,7 +543,7 @@ describe('Product', () => {
     it('Delete product button should be visible for unpublished/draft product', () => {
       cy.get(`a[href="/products?slug=${DRAFT_PRODUCT_SLUG}"]`).first().click();
       cy.get(
-        'button.my-auto.flex.items-center.justify-center.rounded.border-2.border-red-600.px-3.py-2',
+        'button.my-auto.flex.items-center.justify-center.rounded.border-2.border-rose-600.px-3.py-2',
       )
         .contains(localizations.en.delete)
         .should('be.visible');
@@ -552,7 +552,7 @@ describe('Product', () => {
     it('Delete product button should [NOT] be visible for published product', () => {
       cy.get(`a[href="/products?slug=${ACTIVE_PRODUCT_SLUG}"]`).click();
       cy.get(
-        'button.my-auto.flex.items-center.justify-center.rounded.border-2.border-red-600.px-3.py-2',
+        'button.my-auto.flex.items-center.justify-center.rounded.border-2.border-rose-600.px-3.py-2',
       ).should('not.exist');
     });
 
@@ -596,7 +596,7 @@ describe('Product', () => {
         .first()
         .click();
       cy.get(
-        'button.my-auto.flex.items-center.justify-center.rounded.border-2.border-red-600.px-3.py-2',
+        'button.my-auto.flex.items-center.justify-center.rounded.border-2.border-rose-600.px-3.py-2',
       ).click();
 
       cy.get('button#danger_continue')
@@ -624,7 +624,7 @@ describe('Product', () => {
         .first()
         .click();
       cy.get(
-        'button.my-auto.flex.items-center.justify-center.rounded.border-2.border-red-600.px-3.py-2',
+        'button.my-auto.flex.items-center.justify-center.rounded.border-2.border-rose-600.px-3.py-2',
       ).click();
 
       cy.get('button#danger_cancel')

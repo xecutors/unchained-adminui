@@ -113,7 +113,7 @@ const Web3Addresses = ({ web3Addresses }) => {
 
                 <DeleteButton
                   onClick={() => onRemoveWeb3Address({ address })}
-                  className="ml-2 inline-flex items-center rounded-full bg-white hover:bg-red-50"
+                  className="ml-2 inline-flex items-center rounded-full bg-white hover:bg-rose-50"
                 />
               </div>
             </div>

@@ -115,7 +115,7 @@ const FilterOptionsListItem = ({
                   <button
                     onClick={() => setIsEdit(!isEdit)}
                     type="button"
-                    className="rounded-md font-medium text-red-500 hover:text-red-600 focus:outline-hidden focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+                    className="rounded-md font-medium text-rose-500 hover:text-rose-600 focus:outline-hidden focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
                   >
                     {formatMessage({
                       id: 'cancel',
