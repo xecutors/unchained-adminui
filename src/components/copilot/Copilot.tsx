@@ -29,7 +29,7 @@ const Copilot: React.FC = () => {
 
   if (!shopInfo?.chatEnabled) {
     return (
-      <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-slate-900 font-sans">
+      <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-slate-950 font-sans">
         <div className="py-16">
           <div className="text-center">
             <h1 className="mt-2 text-4xl font-extrabold tracking-tight text-rose-900 dark:text-rose-200 sm:text-5xl">
@@ -45,7 +45,7 @@ const Copilot: React.FC = () => {
     );
   }
   return (
-    <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-slate-900 font-sans">
+    <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-slate-950 font-sans">
       <CopilotHeader />
       <main className="flex-1 overflow-y-auto py-6 space-y-4 max-w-4xl mx-auto w-full px-4">
         {messages?.map((message) => {
