@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
   CameraIcon,
   PaperAirplaneIcon,
@@ -20,15 +20,6 @@ const CopilotInput: React.FC = () => {
 
   const [selectedImages, setSelectedImages] = useState<File[]>([]);
 
-  useEffect(() => {
-    if (inputHistory.length > 0) {
-      localStorage.setItem(
-        'copilot-input-history',
-        JSON.stringify(inputHistory.slice(-50)),
-      );
-    }
-  }, [inputHistory]);
-
   const arrayToFileList = (files: File[]): FileList => {
     const dataTransfer = new DataTransfer();
     files.forEach((file) => dataTransfer.items.add(file));
@@ -48,6 +39,52 @@ const CopilotInput: React.FC = () => {
     }
   };
 
+  const setInputValue = (value: string) =>
+    handleInputChange({
+      target: { value },
+    } as React.ChangeEvent<HTMLInputElement>);
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      let newIndex = historyIndex;
+      if (e.key === 'ArrowUp') {
+        newIndex =
+          historyIndex === -1
+            ? inputHistory.length - 1
+            : Math.max(0, historyIndex - 1);
+      } else if (e.key === 'ArrowDown') {
+        newIndex = historyIndex + 1;
+        if (newIndex >= inputHistory.length) {
+          newIndex = -1;
+        }
+      }
+
+      setHistoryIndex(newIndex);
+      setInputValue(newIndex === -1 ? '' : inputHistory[newIndex]);
+    }
+  };
+
+  const imageUrls = useMemo(
+    () => selectedImages.map((img) => URL.createObjectURL(img)),
+    [selectedImages],
+  );
+  useEffect(() => {
+    return () => imageUrls.forEach(URL.revokeObjectURL);
+  }, [imageUrls]);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (inputHistory.length > 0) {
+        localStorage.setItem(
+          'copilot-input-history',
+          JSON.stringify(inputHistory.slice(-50)),
+        );
+      }
+    }, 500);
+    return () => clearTimeout(timeout);
+  }, [inputHistory]);
+
   return (
     <div className="sticky bottom-6 max-w-4xl mx-auto w-full">
       <div className="absolute bottom-full left-0 right-0 h-24 bg-gradient-to-t from-slate-100 dark:from-slate-900 to-transparent pointer-events-none" />
@@ -59,35 +96,7 @@ const CopilotInput: React.FC = () => {
           <input
             value={input}
             onChange={handleInputChange}
-            onKeyDown={(e) => {
-              if (e.key === 'ArrowUp') {
-                e.preventDefault();
-                if (inputHistory.length > 0) {
-                  const newIndex =
-                    historyIndex === -1
-                      ? inputHistory.length - 1
-                      : Math.max(0, historyIndex - 1);
-                  setHistoryIndex(newIndex);
-                  handleInputChange({
-                    target: { value: inputHistory[newIndex] },
-                  } as any);
-                }
-              } else if (e.key === 'ArrowDown') {
-                e.preventDefault();
-                if (historyIndex !== -1) {
-                  const newIndex = historyIndex + 1;
-                  if (newIndex >= inputHistory.length) {
-                    setHistoryIndex(-1);
-                    handleInputChange({ target: { value: '' } } as any);
-                  } else {
-                    setHistoryIndex(newIndex);
-                    handleInputChange({
-                      target: { value: inputHistory[newIndex] },
-                    } as any);
-                  }
-                }
-              }
-            }}
+            onKeyDown={handleKeyDown}
             placeholder="Type your message..."
             className="flex-1 border-0 bg-slate-50 dark:bg-slate-700 dark:text-slate-200 dark:placeholder-slate-400 rounded-md px-4 py-2 focus:ring-2 focus:ring-slate-400"
           />
@@ -116,18 +125,19 @@ const CopilotInput: React.FC = () => {
 
           <button
             type="submit"
+            disabled={!input.trim() && selectedImages.length === 0}
             className="p-2 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 focus:ring-2 focus:ring-slate-700 focus:outline-hidden rounded-md"
           >
             <PaperAirplaneIcon className="h-6 w-6" strokeWidth={2} />
           </button>
         </div>
 
-        {selectedImages.length > 0 && (
+        {imageUrls.length > 0 && (
           <div className="mt-2 flex gap-3 flex-wrap">
-            {selectedImages.map((img, i) => (
+            {imageUrls.map((img, i) => (
               <div key={i} className="relative">
                 <img
-                  src={URL.createObjectURL(img)}
+                  src={img}
                   alt={`Selected ${i}`}
                   className="h-16 w-16 object-cover rounded-md"
                 />

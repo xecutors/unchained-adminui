@@ -100,7 +100,7 @@ const Locked = () => {
                   defaultMessage: 'Use Another Account',
                 })}
               </button>
-              
+
               <button
                 type="button"
                 onClick={() => window.history.back()}
