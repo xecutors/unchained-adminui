@@ -101,6 +101,8 @@ const form = useForm({
 - **Current State**: Configured for external API at `localhost:4010/chat`
 - **Storage**: Local chat history in `localStorage`
 - **Components**: Modular chat system in `src/components/chat/`
+- **Auto-Introduction**: Automatically sends "Introduce yourself and your tools to the user" when chat is empty
+- **Welcome State**: Shows example prompts and capabilities when no messages exist
 
 ### Build Configuration
 - **Static Export**: No server-side features (API routes disabled)

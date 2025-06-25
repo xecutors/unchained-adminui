@@ -1,10 +1,12 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useChat } from '@ai-sdk/react';
 import { ChatMessage } from '../types';
 import { chatStorage } from '../utils/chatStorage';
 import { chatUtils } from '../utils/chatUtils';
 
 export const useChatManager = () => {
+  const hasInitialized = useRef(false);
+  
   const {
     messages,
     input,
@@ -16,6 +18,7 @@ export const useChatManager = () => {
     setMessages,
     stop,
     reload,
+    append,
   } = useChat({
     maxSteps: 5,
     credentials: 'include',
@@ -40,10 +43,24 @@ export const useChatManager = () => {
     chatStorage.saveMessages(messages as ChatMessage[]);
   }, [messages]);
 
+  // Auto-initialize chat with introduction when empty
+  useEffect(() => {
+    if (!hasInitialized.current && status === 'ready' && messages.length === 0) {
+      hasInitialized.current = true;
+      
+      // Send introduction message automatically
+      append({
+        role: 'user',
+        content: 'Give a brief introduction. Show your main tools in a simple grid - keep it short and actionable.',
+      });
+    }
+  }, [status, messages.length, append]);
+
   // Clear history function
   const clearHistory = () => {
     setMessages([]);
     chatStorage.clearMessages();
+    hasInitialized.current = false; // Reset initialization flag
   };
 
   // Add interruption message

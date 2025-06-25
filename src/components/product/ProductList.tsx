@@ -13,10 +13,10 @@ const ProductList: React.FC<ProductListProps> = ({ products }) => {
   const [viewMode, setViewMode] = useState<'grid' | 'list'>(() => {
     if (typeof window !== 'undefined') {
       return (
-        (localStorage.getItem('product-view-mode') as 'grid' | 'list') || 'grid'
+        (localStorage.getItem('product-view-mode') as 'grid' | 'list') || 'list'
       );
     }
-    return 'grid';
+    return 'list';
   });
 
   const [statusFilter, setStatusFilter] = useState<string>('ALL');
