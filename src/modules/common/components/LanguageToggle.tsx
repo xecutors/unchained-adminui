@@ -2,30 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 import { GlobeAltIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
-import useLanguages from '../../language/hooks/useLanguages';
 
 const LanguageToggle = ({ narrowNav = false }) => {
   const router = useRouter();
   const { locale, formatMessage } = useIntl();
-  const { languages, loading } = useLanguages();
   const [isOpen, setIsOpen] = useState(false);
-  const [availableLocales, setAvailableLocales] = useState<string[]>([
-    'en',
-    'de',
-  ]);
 
-  // Build available locales from database languages
-  useEffect(() => {
-    if (!loading && languages?.length > 0) {
-      const locales = languages
-        .filter((lang) => lang.isActive !== false)
-        .map((lang) => lang.isoCode);
-
-      // Always ensure en and de are available
-      const uniqueLocales = Array.from(new Set(['en', 'de', ...locales]));
-      setAvailableLocales(uniqueLocales);
-    }
-  }, [languages, loading]);
+  // Admin UI only supports these localizations
+  const availableLocales = ['en', 'de'];
 
   const currentLanguage =
     availableLocales.find((loc) => loc === locale) || 'en';
