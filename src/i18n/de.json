@@ -115,6 +115,8 @@
   "chain-token-id": "Chain-Token-ID",
   "change": "Ändern",
   "change_password": "Passwort ändern",
+  "chat_disabled_title": "Chat ist deaktiviert",
+  "chat_disabled_message": "Copilot-Chat ist derzeit in diesem Shop deaktiviert. Bitte überprüfen Sie Ihre Engine-Konfiguration",
   "child_assortment": "Sub-Kategorie",
   "children": "Unterelemente",
   "city": "Stadt",
