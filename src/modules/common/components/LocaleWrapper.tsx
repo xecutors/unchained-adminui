@@ -22,19 +22,26 @@ const createLanguageDialectList = (languages, countries) => {
   return result;
 };
 
-const LocaleWrapper = ({ children, selectedLocale: externalSelectedLocale }) => {
+const LocaleWrapper = ({
+  children,
+  selectedLocale: externalSelectedLocale,
+}) => {
   const { languages, loading } = useLanguages();
   const { countries } = useCountries();
   const { locale } = useIntl();
 
-  const [selectedLocale, setSelectedLocale] = useState(externalSelectedLocale || locale);
+  const [selectedLocale, setSelectedLocale] = useState(
+    externalSelectedLocale || locale,
+  );
 
   useEffect(() => {
     if (!loading) {
       const baseLanguage = languages
         .filter((l) => l.isBase || l.isoCode === locale)
         ?.map(({ isoCode }) => isoCode);
-      const newLocale = baseLanguage.includes(locale) ? locale : baseLanguage[0];
+      const newLocale = baseLanguage.includes(locale)
+        ? locale
+        : baseLanguage[0];
       setSelectedLocale(externalSelectedLocale || newLocale);
     }
   }, [languages, loading, locale, externalSelectedLocale]);

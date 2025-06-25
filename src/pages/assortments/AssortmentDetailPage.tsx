@@ -341,9 +341,9 @@ const AssortmentDetailPage = ({ assortmentSlug }) => {
       {loading ? (
         <Loading />
       ) : (
-        <AssortmentDetail 
-          assortment={assortment} 
-          extendedData={extendedData} 
+        <AssortmentDetail
+          assortment={assortment}
+          extendedData={extendedData}
           hideControls={true}
         />
       )}

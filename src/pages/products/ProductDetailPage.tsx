@@ -98,7 +98,7 @@ const ProductDetailPage = ({ slug }) => {
             `${formatMessage({
               id: 'product_publish_error',
               defaultMessage: 'Failed to publish product',
-            })}: ${errorMessage}`
+            })}: ${errorMessage}`,
           );
         }
       },
@@ -139,7 +139,7 @@ const ProductDetailPage = ({ slug }) => {
               `${formatMessage({
                 id: 'product_unpublish_error',
                 defaultMessage: 'Failed to unpublish product',
-              })}: ${errorMessage}`
+              })}: ${errorMessage}`,
             );
           }
         }

@@ -16,7 +16,12 @@ import SearchWithTagsAndLocale from '../../modules/common/components/SearchWithT
 import useAssortmentsCount from '../../modules/assortment/hooks/useAssortmentsCount';
 import AssortmentDetailPage from './AssortmentDetailPage';
 
-const GetCurrentView = ({ options, queryString, onSearchChange, defaultSearchValue }) => {
+const GetCurrentView = ({
+  options,
+  queryString,
+  onSearchChange,
+  defaultSearchValue,
+}) => {
   const { graph, ...rest } = options;
 
   return (
