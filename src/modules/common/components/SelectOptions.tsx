@@ -52,11 +52,11 @@ const SelectOptions = ({
 }) => {
   const [isHover, setIsHover] = useState(false);
   const [select, setSelected] = useState(
-    options?.filter(({ current }) => current)[0],
+    options?.filter(({ current }) => current)[0] || options?.[0],
   );
   const { formatMessage } = useIntl();
 
-  if (!select?.id) return null;
+  if (!select?.id || !options?.length) return null;
 
   const colorConfig = colorConfigs[select.bgColor] || colorConfigs.green;
 

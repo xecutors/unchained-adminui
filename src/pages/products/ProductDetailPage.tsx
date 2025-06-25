@@ -47,7 +47,7 @@ const ProductDetailPage = ({ slug }) => {
       });
   };
 
-  const { status } = product || {};
+  const status = product?.status || 'DRAFT';
 
   const activeOptions = [
     {
@@ -94,14 +94,17 @@ const ProductDetailPage = ({ slug }) => {
         defaultMessage: 'Not published',
       }),
       bgColor: 'slate',
+      disable: status === 'ACTIVE' && !hasRole('unpublishProduct'),
       onClick: async () => {
-        await unPublishProduct({ productId: product?._id });
-        toast.success(
-          formatMessage({
-            id: 'product_drafted',
-            defaultMessage: 'Drafted successfully ',
-          }),
-        );
+        if (hasRole('unpublishProduct') || hasRole('publishProduct')) {
+          await unPublishProduct({ productId: product?._id });
+          toast.success(
+            formatMessage({
+              id: 'product_drafted',
+              defaultMessage: 'Drafted successfully ',
+            }),
+          );
+        }
       },
     },
   ];
@@ -197,24 +200,6 @@ const ProductDetailPage = ({ slug }) => {
                 onBlur={updateProductSequence}
               />
             </div>
-            {status === 'DRAFT' && hasRole('publishProduct') && (
-              <Button
-                variant="primary"
-                text={formatMessage({
-                  id: 'publish',
-                  defaultMessage: 'Publish',
-                })}
-                onClick={async () => {
-                  await publishProduct({ productId: product?._id });
-                  toast.success(
-                    formatMessage({
-                      id: 'product_published',
-                      defaultMessage: 'Published successfully',
-                    }),
-                  );
-                }}
-              />
-            )}
             {status === 'DRAFT' && hasRole('removeProduct') && (
               <HeaderDeleteButton onClick={handleDeleteProduct} />
             )}
