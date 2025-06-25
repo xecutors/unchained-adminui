@@ -63,7 +63,7 @@ const LanguageForm = ({
         />
 
         {isEdit && (
-          <div className="flex h-5 items-center">
+          <div className="mt-5 flex items-center flex-wrap">
             <CheckboxField
               id="isActive"
               name="isActive"

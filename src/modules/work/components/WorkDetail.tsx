@@ -239,7 +239,7 @@ const WorkDetail = ({ work }) => {
         )}
 
         {work?.input && (
-          <div className="rounded-lg border border-slate-300 dark:border-slate-800 col-span-2 shadow-md dark:shadow-none bg-white dark:bg-slate-900 lg:col-span-1">
+          <div className="overflow-hidden rounded-lg border border-slate-300 dark:border-slate-800 col-span-2 shadow-md dark:shadow-none bg-white dark:bg-slate-900 lg:col-span-1">
             <div className="px-4 py-5 sm:px-6">
               <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-slate-100">
                 {formatMessage({ id: 'input', defaultMessage: 'Input' })}
