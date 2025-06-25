@@ -82,7 +82,7 @@ const LanguageToggle = ({ narrowNav = false }) => {
           defaultMessage: 'Change language',
         })}
       >
-        <GlobeAltIcon className="h-5 w-5" />
+        <GlobeAltIcon className="h-6 w-6" />
       </button>
 
       {isOpen && (
