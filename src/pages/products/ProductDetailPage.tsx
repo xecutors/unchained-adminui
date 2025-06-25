@@ -33,9 +33,25 @@ const ProductDetailPage = ({ slug }) => {
   const { setModal } = useModal();
   const router = useRouter();
 
-  const { product, loading, extendedData } = useProduct({
+  const { product, loading, error, extendedData } = useProduct({
     slug,
   });
+
+  if (error) {
+    console.error('Error loading product:', error);
+    return (
+      <div className="mt-5 max-w-full">
+        <div className="text-center py-8">
+          <p className="text-red-600 dark:text-red-400">
+            {formatMessage({
+              id: 'product_load_error',
+              defaultMessage: 'Failed to load product',
+            })}
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   const updateProductSequence = async (e) => {
     if (e.target.value)
@@ -67,13 +83,24 @@ const ProductDetailPage = ({ slug }) => {
         defaultMessage: 'Published',
       }),
       onClick: async () => {
-        await publishProduct({ productId: product?._id });
-        toast.success(
-          formatMessage({
-            id: 'product_published',
-            defaultMessage: 'Published successfully ',
-          }),
-        );
+        try {
+          await publishProduct({ productId: product?._id });
+          toast.success(
+            formatMessage({
+              id: 'product_published',
+              defaultMessage: 'Published successfully ',
+            }),
+          );
+        } catch (error: any) {
+          console.error('Failed to publish product:', error);
+          const errorMessage = error?.message || 'Unknown error';
+          toast.error(
+            `${formatMessage({
+              id: 'product_publish_error',
+              defaultMessage: 'Failed to publish product',
+            })}: ${errorMessage}`
+          );
+        }
       },
       bgColor: 'green',
     },
@@ -97,13 +124,24 @@ const ProductDetailPage = ({ slug }) => {
       disable: status === 'ACTIVE' && !hasRole('unpublishProduct'),
       onClick: async () => {
         if (hasRole('unpublishProduct') || hasRole('publishProduct')) {
-          await unPublishProduct({ productId: product?._id });
-          toast.success(
-            formatMessage({
-              id: 'product_drafted',
-              defaultMessage: 'Drafted successfully ',
-            }),
-          );
+          try {
+            await unPublishProduct({ productId: product?._id });
+            toast.success(
+              formatMessage({
+                id: 'product_drafted',
+                defaultMessage: 'Drafted successfully ',
+              }),
+            );
+          } catch (error: any) {
+            console.error('Failed to unpublish product:', error);
+            const errorMessage = error?.message || 'Unknown error';
+            toast.error(
+              `${formatMessage({
+                id: 'product_unpublish_error',
+                defaultMessage: 'Failed to unpublish product',
+              })}: ${errorMessage}`
+            );
+          }
         }
       },
     },
