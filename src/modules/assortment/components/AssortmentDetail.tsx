@@ -44,7 +44,11 @@ const GetCurrentTab = ({ id, selectedView, ...extendedData }) => {
     return <DisplayExtendedFields data={extendedData} />;
   return <AssortmentTextForm assortmentId={id} />;
 };
-const AssortmentDetail = ({ assortment, extendedData, hideControls = false }) => {
+const AssortmentDetail = ({
+  assortment,
+  extendedData,
+  hideControls = false,
+}) => {
   const { isActive, isBase, isRoot } = assortment || {};
   const { hasRole } = useAuth();
   const { formatMessage } = useIntl();

@@ -121,13 +121,13 @@ const ChildrenNav = ({ item, hasRole, onSelected, narrowView }) => {
               />
             )}
             <span className="flex-1 dark:text-slate-400">{item.name}</span>
-            <ChevronDownIcon 
+            <ChevronDownIcon
               className={classNames(
                 'h-5 w-5 transition-all duration-200 ease-out',
-                (isHovered || open)
-                  ? 'opacity-100 text-slate-600 dark:text-slate-300' 
+                isHovered || open
+                  ? 'opacity-100 text-slate-600 dark:text-slate-300'
                   : 'opacity-0',
-                open ? 'rotate-180' : 'rotate-0'
+                open ? 'rotate-180' : 'rotate-0',
               )}
             />
           </Disclosure.Button>

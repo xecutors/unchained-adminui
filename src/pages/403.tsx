@@ -8,7 +8,7 @@ import ImageWithFallback from '../modules/common/components/ImageWithFallback';
 const NotAuthorized = () => {
   const { formatMessage } = useIntl();
   const { currentUser } = useCurrentUser();
-  
+
   return (
     <div className="flex min-h-screen items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-4 text-center">
@@ -93,7 +93,7 @@ const NotAuthorized = () => {
                   })}
                 </Link>
               )}
-              
+
               <button
                 type="button"
                 onClick={() => window.history.back()}

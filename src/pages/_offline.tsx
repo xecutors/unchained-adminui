@@ -6,7 +6,7 @@ import ImageWithFallback from '../modules/common/components/ImageWithFallback';
 const Offline = () => {
   const { formatMessage } = useIntl();
   const router = useRouter();
-  
+
   return (
     <div className="flex min-h-screen items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-4 text-center">
@@ -14,7 +14,7 @@ const Offline = () => {
           <h2 className="text-center text-3xl text-slate-900 dark:text-slate-200">
             {formatMessage({
               id: 'offline_mode',
-              defaultMessage: 'You\'re Offline',
+              defaultMessage: "You're Offline",
             })}
           </h2>
         </div>
@@ -48,14 +48,13 @@ const Offline = () => {
                 {formatMessage({
                   id: 'no_internet_access',
                   defaultMessage:
-                    'You aren\'t connected to a working internet connection.',
+                    "You aren't connected to a working internet connection.",
                 })}
               </p>
               <p className="mt-2 text-sm text-slate-400 dark:text-slate-500">
                 {formatMessage({
                   id: 'offline_help_message',
-                  defaultMessage:
-                    'Please check your connection and try again.',
+                  defaultMessage: 'Please check your connection and try again.',
                 })}
               </p>
             </div>
@@ -86,7 +85,7 @@ const Offline = () => {
                   defaultMessage: 'Retry Connection',
                 })}
               </button>
-              
+
               <button
                 type="button"
                 onClick={() => window.history.back()}
