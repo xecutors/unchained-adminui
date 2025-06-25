@@ -31,7 +31,7 @@ const AddCountries = () => {
             defaultMessage: 'New country',
           })}
         />
-        <div className="mt-6  sm:max-w-xl">
+        <div className="mt-6 sm:max-w-xl">
           <FormWrapper>
             <CountryForm
               onSubmitSuccess={onSubmitSuccess}
