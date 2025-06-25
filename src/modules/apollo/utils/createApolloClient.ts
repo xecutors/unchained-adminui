@@ -63,20 +63,19 @@ const createApolloClient = ({
     includeExtensions: true,
   });
 
-  const errorLink = onError(({ response, graphQLErrors, networkError }) => {
+  const errorLink = onError(({ response, graphQLErrors, networkError, operation, forward }) => {
     if (graphQLErrors) {
-      response?.errors.concat(graphQLErrors);
-      graphQLErrors.forEach(({ message, locations, path }) => {
-        console.log(
+      graphQLErrors.forEach(({ message, locations, path, extensions }) => {
+        console.error(
           `[GraphQL error]: Message: ${message}, Location: ${JSON.stringify(
             locations,
-          )}, Path: ${path}`,
+          )}, Path: ${path}, Extensions: ${JSON.stringify(extensions)}, Operation: ${operation.operationName}`,
         );
       });
     }
 
     if (networkError) {
-      console.error(`[Network error]: ${networkError}`);
+      console.error(`[Network error]: ${networkError}, Operation: ${operation.operationName}`);
     }
   });
 
@@ -87,7 +86,10 @@ const createApolloClient = ({
     defaultOptions: {
       watchQuery: {
         fetchPolicy: 'cache-and-network',
-        errorPolicy: 'ignore',
+        errorPolicy: 'all',
+      },
+      mutate: {
+        errorPolicy: 'all',
       },
     },
     ssrMode: typeof window === 'undefined',
