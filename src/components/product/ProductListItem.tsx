@@ -29,6 +29,16 @@ const ProductListItem: React.FC<ProductListItemProps> = ({ product }) => {
   const { formatPrice } = useFormatPrice();
   const { texts, media, catalogPrice, commerce } = product;
   const text = Array.isArray(texts) && texts.length > 0 ? texts[0] : {};
+  
+  // Debug: Log product structure to console for development
+  if (process.env.NODE_ENV === 'development') {
+    console.log('Product data:', { 
+      _id: product._id, 
+      __typename: product.__typename, 
+      type: product.type,
+      keys: Object.keys(product)
+    });
+  }
 
   // Get price from either catalogPrice or commerce.pricing
   const price = catalogPrice || commerce?.pricing?.[0];
@@ -63,13 +73,16 @@ const ProductListItem: React.FC<ProductListItemProps> = ({ product }) => {
       <h3 className="text-sm font-medium text-slate-900 dark:text-slate-100 px-4 line-clamp-2">
         {text.title}
       </h3>
-      <div className="px-4">
+      <div className="px-4 flex items-center gap-2">
         <Badge
           text={PRODUCT_STATUS_LABELS[product?.status] || 'Draft'}
           color={PRODUCT_STATUS[product?.status] || 'yellow'}
           square
           dotted
         />
+        <span className="text-xs text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-600 px-2 py-1 rounded">
+          {((product.__typename || product.type || 'SimpleProduct').replace('Product', '')) || 'Simple'}
+        </span>
       </div>
       <p className="text-sm text-slate-600 dark:text-slate-300 px-4">
         {price ? (

@@ -48,6 +48,65 @@ const Copilot: React.FC = () => {
     <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-slate-950 font-sans">
       <CopilotHeader />
       <main className="flex-1 overflow-y-auto py-6 space-y-4 max-w-4xl mx-auto w-full px-4">
+        {messages.length === 0 && !loading && (
+          <div className="text-center py-16">
+            <div className="w-20 h-20 bg-gradient-to-br from-slate-600 to-slate-800 dark:from-slate-500 dark:to-slate-700 rounded-2xl flex items-center justify-center shadow-lg mx-auto mb-6">
+              <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+            </div>
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-2">
+              Welcome to Copilot
+            </h2>
+            <p className="text-slate-600 dark:text-slate-400 text-lg mb-6">
+              Your AI assistant for managing your Unchained Commerce store
+            </p>
+            <div className="text-sm text-slate-500 dark:text-slate-500 mb-8">
+              Initializing your personal assistant...
+            </div>
+            
+            <div className="max-w-2xl mx-auto">
+              <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">
+                Here are some things you can ask me:
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-left">
+                <div className="p-3 bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700">
+                  <div className="text-sm font-medium text-slate-900 dark:text-slate-100">
+                    📦 "Show me my products"
+                  </div>
+                  <div className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                    List and manage products
+                  </div>
+                </div>
+                <div className="p-3 bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700">
+                  <div className="text-sm font-medium text-slate-900 dark:text-slate-100">
+                    🔍 "Find draft products"
+                  </div>
+                  <div className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                    Search with specific filters
+                  </div>
+                </div>
+                <div className="p-3 bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700">
+                  <div className="text-sm font-medium text-slate-900 dark:text-slate-100">
+                    ✏️ "Create a new product"
+                  </div>
+                  <div className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                    Add products to your catalog
+                  </div>
+                </div>
+                <div className="p-3 bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700">
+                  <div className="text-sm font-medium text-slate-900 dark:text-slate-100">
+                    🚀 "Publish product [ID]"
+                  </div>
+                  <div className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                    Manage product status
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+        
         {messages?.map((message) => {
           // Skip empty assistant messages (these might be loading placeholders)
           if (
@@ -60,6 +119,16 @@ const Copilot: React.FC = () => {
           ) {
             return null;
           }
+          
+          // Hide the auto-introduction prompt from user
+          if (
+            message.role === 'user' && 
+            (message.content.includes('Give a brief introduction') || 
+             message.content.includes('Introduce yourself and your tools'))
+          ) {
+            return null;
+          }
+          
           return (
             <MessageRenderer
               key={message.id}
