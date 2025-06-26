@@ -112,7 +112,7 @@ const FiltersListView = () => {
           />
         </ListHeader>
 
-        <LocaleWrapper>
+        <LocaleWrapper onlyFull>
           <FilterList
             onRemoveFilter={onRemoveFilter}
             {...{ queryString, limit, includeInactive, offset, sortKeys }}

@@ -4,6 +4,7 @@ import { useIntl } from 'react-intl';
 
 import useLanguages from '../../language/hooks/useLanguages';
 import useCountries from '../../country/hooks/useCountries';
+import useShopInfo from '../hooks/useShopInfo';
 
 const createLanguageDialectList = (languages, countries) => {
   const result = [];
@@ -22,25 +23,27 @@ const createLanguageDialectList = (languages, countries) => {
   return result;
 };
 
-const LocaleWrapper = ({ children }) => {
-  const { languages, loading } = useLanguages();
+const LocaleWrapper = ({ children, onlyFull = false }) => {
+  const { languages } = useLanguages();
+  const { shopInfo, loading: shopInfoLoading } = useShopInfo();
   const { countries } = useCountries();
   const { locale } = useIntl();
 
-  const [selectedLocale, setSelectedLocale] = useState(locale);
-
+  const [selectedLocale, setSelectedLocale] = useState(null);
   useEffect(() => {
-    if (!loading) {
-      const baseLanguage = languages
-        .filter((l) => l.isBase || l.isoCode === locale)
-        ?.map(({ isoCode }) => isoCode);
-      setSelectedLocale(
-        baseLanguage.includes(locale) ? locale : baseLanguage[0],
-      );
+    if (!shopInfoLoading) {
+      const baseLanguage =
+        shopInfo?.language?.isoCode +
+        '-' +
+        shopInfo?.country?.isoCode?.toUpperCase();
+      setSelectedLocale(baseLanguage);
     }
-  }, [languages, loading, locale]);
+  }, [shopInfo, shopInfoLoading, locale]);
 
-  const languageDialectList = createLanguageDialectList(languages, countries);
+  const languageDialectList = createLanguageDialectList(
+    languages,
+    countries,
+  ).filter((l) => !onlyFull || l.isoCode.includes('-'));
 
   return (
     <div className="my-3">
