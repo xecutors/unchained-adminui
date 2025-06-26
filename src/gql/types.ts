@@ -11838,6 +11838,12 @@ export type IProductQuery = {
         tags?: Array<any> | null;
         updated?: any | null;
         published?: any | null;
+        texts?: {
+          _id: string;
+          title?: string | null;
+          subtitle?: string | null;
+          description?: string | null;
+        } | null;
         media: Array<{
           _id: string;
           tags?: Array<any> | null;

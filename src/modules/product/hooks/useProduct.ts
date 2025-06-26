@@ -9,6 +9,12 @@ const GetProductQuery = (inlineFragment = '') => gql`
     product(productId: $productId, slug: $slug) {
       ...ProductDetailFragment
       ${inlineFragment}
+      texts {
+          _id
+          title
+          subtitle
+          description
+        }
       ... on SimpleProduct {
         texts {
           _id

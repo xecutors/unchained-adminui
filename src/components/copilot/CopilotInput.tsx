@@ -26,7 +26,7 @@ const CopilotInput: React.FC = () => {
       if (input.trim() || selectedImages.length > 0) {
         setInputHistory((prev) => [...prev, input]);
         setHistoryIndex(-1);
-        await handleSubmit(e, selectedImages as unknown as FileList);
+        await handleSubmit(e, selectedImages);
         setSelectedImages([]);
       }
     } catch (e) {

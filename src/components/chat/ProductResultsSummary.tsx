@@ -65,7 +65,7 @@ const ProductResultsSummary: React.FC<ProductResultsSummaryProps> = ({
             <div key={status} className="flex items-center gap-1">
               <span className="w-2 h-2 bg-slate-500 rounded-full"></span>
               <span className="text-slate-600 dark:text-slate-400">
-                {count} {status}
+                {totalCount} {status}
               </span>
             </div>
           );

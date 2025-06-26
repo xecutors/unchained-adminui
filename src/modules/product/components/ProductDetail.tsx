@@ -181,7 +181,6 @@ const ProductDetail = ({ product, extendedData = {} }) => {
           enableEdit={hasRole('editProduct')}
         />
       </div>
-
       <Tab tabItems={productOptions} defaultTab="texts">
         <GetCurrentTab id={product?._id} {...extendedData} />
       </Tab>
