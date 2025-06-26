@@ -1,29 +1,18 @@
 import express from 'express';
-import type { Express, Request, RequestHandler, Response } from 'express'; // ✅ type-only import
+import type { Express, Request, RequestHandler, Response } from 'express';
 import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
 import path from 'path';
 import {
   experimental_createMCPClient as createMCPClient,
-  InvalidToolArgumentsError,
-  NoSuchToolError,
-  ToolExecutionError,
   streamText,
 } from 'ai';
+import { errorHandler } from './utils';
 
 type StreamTextParams = Parameters<typeof streamText>[0];
 
 export interface ChatConfiguration extends StreamTextParams {
   mcpEndpoint: string;
 }
-
-const errorHandler = (error: any): string => {
-  if (NoSuchToolError.isInstance(error)) return 'NoSuchToolError';
-  if (InvalidToolArgumentsError.isInstance(error))
-    return 'InvalidToolArgumentsError';
-  if (ToolExecutionError.isInstance(error)) return 'ToolExecutionError';
-  if (error?.message?.toLowerCase() === 'forbidden') return 'NetworkError';
-  return `Failed to stream response: ${error?.message || 'Unknown error'}`;
-};
 
 export const expressRouter = express.Router();
 const staticPath = path.join(__dirname, '..', 'out');
