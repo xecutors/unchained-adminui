@@ -304,12 +304,7 @@ const ProductDetailPage = ({ slug }) => {
       {loading ? (
         <Loading />
       ) : (
-        <ProductDetail
-          product={product}
-          extendedData={extendedData}
-          updateProductSequence={updateProductSequence}
-          handleDeleteProduct={handleDeleteProduct}
-        />
+        <ProductDetail product={product} extendedData={extendedData} />
       )}
     </div>
   );

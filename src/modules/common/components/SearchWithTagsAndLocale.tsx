@@ -30,8 +30,8 @@ const SearchWithTagsAndLocale = ({
   children,
   onSearchChange,
   defaultSearchValue,
-  selectedLocale: externalSelectedLocale,
-  onLocaleChange,
+  selectedLocale: externalSelectedLocale = null,
+  onLocaleChange = null,
 }) => {
   const { formatMessage } = useIntl();
   const { languages, loading } = useLanguages();
