@@ -20,18 +20,13 @@ const CopilotInput: React.FC = () => {
 
   const [selectedImages, setSelectedImages] = useState<File[]>([]);
 
-  const arrayToFileList = (files: File[]): FileList => {
-    const dataTransfer = new DataTransfer();
-    files.forEach((file) => dataTransfer.items.add(file));
-    return dataTransfer.files;
-  };
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       if (input.trim() || selectedImages.length > 0) {
         setInputHistory((prev) => [...prev, input]);
         setHistoryIndex(-1);
-        handleSubmit(e, arrayToFileList(selectedImages));
+        await handleSubmit(e, selectedImages as unknown as FileList);
         setSelectedImages([]);
       }
     } catch (e) {
@@ -106,10 +101,8 @@ const CopilotInput: React.FC = () => {
             multiple
             onChange={(e) => {
               if (e.target.files) {
-                setSelectedImages((prev) => [
-                  ...prev,
-                  ...Array.from(e.target.files),
-                ]);
+                const newFiles = Array.from(e.target.files);
+                setSelectedImages((prev) => [...prev, ...newFiles]);
               }
             }}
             className="hidden"
@@ -150,7 +143,7 @@ const CopilotInput: React.FC = () => {
                   }
                   className="absolute -top-2 -right-2 bg-rose-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs"
                 >
-                  <XMarkIcon className="h-6 w-6" strokeWidth={2} />
+                  <XMarkIcon className="h-4 w-4" strokeWidth={2} />
                 </button>
               </div>
             ))}
