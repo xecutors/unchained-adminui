@@ -46,7 +46,13 @@ const setupMCPChatHandler = (
     let client: any;
     try {
       client = await createMCPClient({
-        transport: new StreamableHTTPClientTransport(new URL(mcpEndpoint)),
+        transport: new StreamableHTTPClientTransport(new URL(mcpEndpoint), {
+          requestInit: {
+            headers: {
+              Cookie: req.headers.cookie || '',
+            },
+          },
+        }),
       });
 
       const defaultUnchainedTools = await client.tools();
