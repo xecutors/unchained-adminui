@@ -38,21 +38,6 @@ const MessageRenderer: React.FC<MessageRendererProps> = ({ message, user }) => {
               return (
                 <>
                   <MarkdownText key={index} text={part.text} className="mb-0" />
-                  <div>
-                    {message?.experimental_attachments
-                      ?.filter((attachment) =>
-                        attachment?.contentType?.startsWith('image/'),
-                      )
-                      .map((attachment, index) => (
-                        <Image
-                          key={`${part.id}-${index}`}
-                          src={attachment.url}
-                          width={100}
-                          height={50}
-                          alt={attachment.name ?? `attachment-${index}`}
-                        />
-                      ))}
-                  </div>
                 </>
               );
             case 'tool-invocation':

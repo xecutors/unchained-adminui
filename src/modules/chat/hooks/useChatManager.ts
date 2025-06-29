@@ -3,11 +3,21 @@ import { useChat } from '@ai-sdk/react';
 import { ChatMessage } from '../types';
 import { chatStorage } from '../utils/chatStorage';
 import { chatUtils } from '../utils/chatUtils';
-const fileArrayToFileList = (files: File[]): FileList => {
-  const dataTransfer = new DataTransfer();
-  files.forEach((file) => dataTransfer.items.add(file));
-  return dataTransfer.files;
-};
+
+function formatFileLink(url: string): string {
+  const extension = url.split('.').pop()?.toLowerCase().split('?')[0] || '';
+
+  const imageExtensions = ['png', 'jpg', 'jpeg', 'gif', 'webp', 'bmp', 'svg'];
+
+  const isImage = imageExtensions.includes(extension);
+
+  if (isImage) {
+    return `![image](${url})`;
+  }
+
+  const filename = url.split('/').pop() || 'file';
+  return `[${filename}](${url})`;
+}
 
 export const useChatManager = () => {
   const hasInitialized = useRef(false);
@@ -16,7 +26,6 @@ export const useChatManager = () => {
     messages,
     input,
     handleInputChange,
-    handleSubmit: originalHandleSubmit,
     isLoading,
     error,
     status,
@@ -64,16 +73,24 @@ export const useChatManager = () => {
   };
   const handleSubmit = async (
     e: React.FormEvent<HTMLFormElement>,
-    imageFiles?: File[],
+    imageUrls?: string[],
   ) => {
     e.preventDefault();
 
-    if (imageFiles && imageFiles?.length > 0) {
-      await originalHandleSubmit(e, {
-        experimental_attachments: fileArrayToFileList(imageFiles),
+    const messageText = input.trim();
+    const assets = imageUrls?.map(formatFileLink).join('\n') ?? '';
+
+    const messageContent = [messageText, assets].filter(Boolean).join('\n');
+    handleInputChange({
+      target: { value: '' },
+    } as React.ChangeEvent<HTMLInputElement>);
+
+    if (messageContent) {
+      await append({
+        id: `msg-${Date.now()}`,
+        role: 'user',
+        content: messageContent,
       });
-    } else {
-      await originalHandleSubmit(e);
     }
   };
 

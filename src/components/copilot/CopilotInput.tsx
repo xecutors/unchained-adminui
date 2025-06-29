@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   CameraIcon,
   PaperAirplaneIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline';
 import { useChatContext } from '../../modules/chat';
-
 const CopilotInput: React.FC = () => {
   const { input, handleInputChange, handleSubmit } = useChatContext();
 
@@ -18,20 +17,58 @@ const CopilotInput: React.FC = () => {
   });
   const [historyIndex, setHistoryIndex] = useState(-1);
 
-  const [selectedImages, setSelectedImages] = useState<File[]>([]);
+  const [imageUrls, setImageUrls] = useState<string[]>([]);
+  const [uploading, setUploading] = useState(false);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      if (input.trim() || selectedImages.length > 0) {
+      if (input.trim() || imageUrls.length > 0) {
         setInputHistory((prev) => [...prev, input]);
         setHistoryIndex(-1);
-        await handleSubmit(e, selectedImages);
-        setSelectedImages([]);
+        const imgs = [...imageUrls];
+        setImageUrls([]);
+        await handleSubmit(e, imgs);
       }
     } catch (e) {
       console.error(e);
     }
+  };
+
+  const uploadImage = async (file: File): Promise<string | null> => {
+    const formData = new FormData();
+    formData.append('image', file);
+
+    try {
+      const res = await fetch(
+        `https://api.imgbb.com/1/upload?key=fbb18ca9c7cacdedf1bba2081c2fac90`,
+        {
+          method: 'POST',
+          body: formData,
+        },
+      );
+
+      const data = await res.json();
+      return data?.data?.url;
+    } catch (err) {
+      console.error('Upload failed', err);
+      return null;
+    }
+  };
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) return;
+    setUploading(true);
+
+    const files = Array.from(e.target.files);
+    const uploadedUrls = await Promise.all(
+      files.map((file) => uploadImage(file)),
+    );
+
+    setImageUrls((prev) => [
+      ...prev,
+      ...(uploadedUrls.filter(Boolean) as string[]),
+    ]);
+    setUploading(false);
   };
 
   const setInputValue = (value: string) =>
@@ -60,14 +97,6 @@ const CopilotInput: React.FC = () => {
     }
   };
 
-  const imageUrls = useMemo(
-    () => selectedImages.map((img) => URL.createObjectURL(img)),
-    [selectedImages],
-  );
-  useEffect(() => {
-    return () => imageUrls.forEach(URL.revokeObjectURL);
-  }, [imageUrls]);
-
   useEffect(() => {
     const timeout = setTimeout(() => {
       if (inputHistory.length > 0) {
@@ -82,7 +111,6 @@ const CopilotInput: React.FC = () => {
 
   return (
     <div className="sticky bottom-6 max-w-4xl mx-auto w-full">
-      <div className="absolute bottom-full left-0 right-0 h-24 bg-gradient-to-t from-slate-50 dark:from-slate-950 to-transparent pointer-events-none" />
       <form
         onSubmit={onSubmit}
         className="bg-white dark:bg-slate-800 shadow-2xl border border-slate-300 dark:border-slate-700 rounded-md p-3"
@@ -99,12 +127,7 @@ const CopilotInput: React.FC = () => {
             type="file"
             accept="image/*"
             multiple
-            onChange={(e) => {
-              if (e.target.files) {
-                const newFiles = Array.from(e.target.files);
-                setSelectedImages((prev) => [...prev, ...newFiles]);
-              }
-            }}
+            onChange={handleFileChange}
             className="hidden"
             id="image-upload"
           />
@@ -118,12 +141,16 @@ const CopilotInput: React.FC = () => {
 
           <button
             type="submit"
-            disabled={!input.trim() && selectedImages.length === 0}
+            disabled={!input.trim() && imageUrls.length === 0}
             className="p-2 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 focus:ring-2 focus:ring-slate-700 focus:outline-hidden rounded-md"
           >
             <PaperAirplaneIcon className="h-6 w-6" strokeWidth={2} />
           </button>
         </div>
+
+        {uploading && (
+          <p className="mt-2 text-sm text-slate-500">Uploading...</p>
+        )}
 
         {imageUrls.length > 0 && (
           <div className="mt-2 flex gap-3 flex-wrap">
@@ -137,7 +164,7 @@ const CopilotInput: React.FC = () => {
                 <button
                   type="button"
                   onClick={() =>
-                    setSelectedImages((prev) =>
+                    setImageUrls((prev) =>
                       prev.filter((_, index) => index !== i),
                     )
                   }
@@ -150,7 +177,6 @@ const CopilotInput: React.FC = () => {
           </div>
         )}
       </form>
-      <div className="absolute top-full left-0 right-0 h-6 backdrop-blur-md pointer-events-none" />
     </div>
   );
 };

@@ -12,7 +12,7 @@ export interface ChatContextType {
   handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleSubmit: (
     e: React.FormEvent<HTMLFormElement>,
-    attachments?: File[],
+    attachments?: string[],
   ) => void;
   isLoading: boolean;
   error: any;
