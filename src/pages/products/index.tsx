@@ -85,21 +85,15 @@ const Products = () => {
             active={includeDrafts}
           />
         </ListHeader>
-
-        <LocaleWrapper
-          onlyFull
-          searchComponent={
-            <SearchField
-              onInputChange={setQueryString}
-              defaultValue={queryString}
-            />
-          }
+        <SearchWithTagsAndLocale
+          onSearchChange={setQueryString}
+          defaultSearchValue={queryString}
         >
           <ProductList
             sortable
             {...{ queryString, includeDrafts, limit, offset, tags, sortKeys }}
           />
-        </LocaleWrapper>
+        </SearchWithTagsAndLocale>
       </div>
     </>
   );

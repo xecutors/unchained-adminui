@@ -105,8 +105,8 @@ const FiltersListView = () => {
         />
       </div>
 
-      <div className="min-w-full overflow-x-auto">
-        <ListHeader addPath={hasRole('addFilter') && '/filters/new'}>
+      <div className="min-w-full overflow-x-auto px-1">
+        <ListHeader>
           <Toggle
             toggleText={formatMessage({
               id: 'include_inactive',
@@ -117,14 +117,9 @@ const FiltersListView = () => {
           />
         </ListHeader>
 
-        <LocaleWrapper
-          onlyFull
-          searchComponent={
-            <SearchField
-              defaultValue={queryString}
-              onInputChange={setQueryString}
-            />
-          }
+        <SearchWithTagsAndLocale
+          onSearchChange={setQueryString}
+          defaultSearchValue={queryString}
         >
           <FilterList
             onRemoveFilter={onRemoveFilter}

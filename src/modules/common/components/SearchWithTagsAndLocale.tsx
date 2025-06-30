@@ -8,6 +8,7 @@ import SearchField from './SearchField';
 import TagInput from './TagInput';
 import { normalizeQuery } from '../utils/utils';
 import { isTruthy } from '../utils/normalizeFilterKeys';
+import LocaleWrapper from './LocaleWrapper';
 
 const createLanguageDialectList = (languages, countries) => {
   const result = [];
@@ -88,8 +89,6 @@ const SearchWithTagsAndLocale = ({
               defaultValue={defaultSearchValue}
             />
           </div>
-
-          {/* Tag Input */}
           <div className="w-fit lg:border-l lg:border-slate-300 lg:dark:border-slate-700 lg:pl-3">
             <TagInput
               buttonText={formatMessage({
@@ -101,42 +100,9 @@ const SearchWithTagsAndLocale = ({
             />
           </div>
         </div>
-
-        {/* Locale Selector */}
-        <div className="w-fit">
-          <select
-            id="locale-selector"
-            className="cursor-pointer rounded-md border-1 border-slate-300 dark:border-slate-700 py-3 pr-8 px-4 text-sm text-black dark:text-white dark:bg-slate-800 shadow-xs focus:outline-hidden focus:ring-2 focus:ring-slate-800 w-full lg:w-auto"
-            value={selectedLocale}
-            onChange={(e) => {
-              e.stopPropagation();
-              handleLocaleChange(e.target.value);
-            }}
-          >
-            {languageDialectList?.map((language) => {
-              const displayName = (() => {
-                try {
-                  return (
-                    new Intl.DisplayNames([selectedLocale], {
-                      type: 'language',
-                    }).of(language.isoCode) || language.isoCode
-                  );
-                } catch {
-                  return language.isoCode;
-                }
-              })();
-
-              return (
-                <option key={language._id} value={language.isoCode}>
-                  {displayName}
-                </option>
-              );
-            })}
-          </select>
-        </div>
       </div>
 
-      <div>{React.cloneElement(children, { selectedLocale })}</div>
+      <LocaleWrapper onlyFull>{children}</LocaleWrapper>
     </div>
   );
 };

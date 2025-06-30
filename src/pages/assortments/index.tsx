@@ -8,7 +8,6 @@ import Toggle from '../../modules/common/components/Toggle';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 
 import useAuth from '../../modules/Auth/useAuth';
-import SearchField from '../../modules/common/components/SearchField';
 import AssortmentGraphView from '../../modules/assortment/components/AssortmentGraphView';
 import AssortmentListView from '../../modules/assortment/components/AssortmentListView';
 import { normalizeQuery } from '../../modules/common/utils/utils';
@@ -25,13 +24,16 @@ const GetCurrentView = ({
   const { graph, ...rest } = options;
 
   return (
-    <LocaleWrapper onlyFull searchComponent={searchComponent}>
+    <SearchWithTagsAndLocale
+      onSearchChange={onSearchChange}
+      defaultSearchValue={defaultSearchValue}
+    >
       {graph === 'true' ? (
         <AssortmentGraphView options={rest} />
       ) : (
         <AssortmentListView options={rest} queryString={queryString} sortable />
       )}
-    </LocaleWrapper>
+    </SearchWithTagsAndLocale>
   );
 };
 

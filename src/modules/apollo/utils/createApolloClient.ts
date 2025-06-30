@@ -44,11 +44,7 @@ const resolveUri = () => {
       `${window.location.origin}/graphql`
     );
   }
-<<<<<<< HEAD
-  return process.env.GRAPHQL_ENDPOINT;
-=======
   return process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT || '/graphql';
->>>>>>> dd84f3c3 (Proper env fallbacks to support embedding admin ui on non-4010 ports)
 };
 
 const createApolloClient = ({
