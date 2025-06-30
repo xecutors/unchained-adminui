@@ -45,6 +45,7 @@ const CopilotInput: React.FC = () => {
         {
           method: 'POST',
           body: formData,
+          credentials: 'include',
         },
       );
 
