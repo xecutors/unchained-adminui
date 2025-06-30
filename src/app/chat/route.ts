@@ -11,7 +11,6 @@ import generateImageHandler from '../../../static-servers/generateImageHandler';
 export const maxDuration = 30;
 
 const mcpEndpoint = process.env.MCP_API_URL || 'http://localhost:4010/mcp';
-console.log(process.env.OPENAI_API_KEY);
 
 export async function POST(req: Request) {
   const { messages } = await req.json();
