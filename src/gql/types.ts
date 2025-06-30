@@ -3361,6 +3361,7 @@ export enum IRoleAction {
   UpdateToken = 'updateToken',
   UpdateUser = 'updateUser',
   UpdateUsername = 'updateUsername',
+  UploadTempFile = 'uploadTempFile',
   UploadUserAvatar = 'uploadUserAvatar',
   UseWebAuthn = 'useWebAuthn',
   VerifyEmail = 'verifyEmail',
@@ -3433,7 +3434,6 @@ export type ISearchResultProductsArgs = {
 export type IShop = {
   _id: Scalars['ID']['output'];
   adminUiConfig: IAdminUiConfig;
-  chatEnabled?: Maybe<Scalars['Boolean']['output']>;
   country?: Maybe<ICountry>;
   language?: Maybe<ILanguage>;
   userRoles: Array<Scalars['String']['output']>;
@@ -6995,7 +6995,6 @@ export type IShopInfoQuery = {
   shopInfo: {
     _id: string;
     version?: string | null;
-    chatEnabled?: boolean | null;
     language?: {
       _id: string;
       isoCode?: string | null;

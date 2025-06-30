@@ -20,9 +20,9 @@ import { useFormatPrice } from '../modules/common/utils/utils';
 import ImageWithFallback from '../modules/common/components/ImageWithFallback';
 import Link from 'next/link';
 import generateUniqueId from '../modules/common/utils/getUniqueId';
-import useShopInfo from '../modules/common/hooks/useShopInfo';
 import Badge from '../modules/common/components/Badge';
 import { useChatContext } from '../modules/chat/ChatContext';
+import { useChatEndpointChecker } from '../modules/common/hooks/useChatEndpointChecker';
 
 const PRODUCT_STATUS = {
   DRAFT: 'yellow',
@@ -451,12 +451,11 @@ const Copilot = () => {
     handleInputChange,
     handleSubmit,
     clearHistory,
-    stop,
-    addInterruptionMessage,
     status,
   } = useChatContext();
-  const { shopInfo } = useShopInfo();
+  const { chatEnabled } = useChatEndpointChecker();
   const { currentUser } = useCurrentUser();
+
   const bottomRef = useRef<HTMLDivElement>(null);
   const [inputHistory, setInputHistory] = useState<string[]>(() => {
     if (typeof window !== 'undefined') {
@@ -489,7 +488,7 @@ const Copilot = () => {
       el.scrollIntoView({ behavior: 'smooth' });
     }
   }, [messages]);
-  if (!shopInfo?.chatEnabled)
+  if (!chatEnabled)
     return (
       <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-slate-900 font-sans">
         <div className="py-16">

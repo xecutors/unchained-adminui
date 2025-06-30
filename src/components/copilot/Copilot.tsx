@@ -6,10 +6,12 @@ import { useChatContext } from '../../modules/chat';
 import { MessageRenderer, LoadingIndicator } from '../chat';
 import CopilotHeader from './CopilotHeader';
 import CopilotInput from './CopilotInput';
+import { useChatEndpointChecker } from '../../modules/common/hooks/useChatEndpointChecker';
 
 const Copilot: React.FC = () => {
   const { formatMessage } = useIntl();
   const { messages, status, reload } = useChatContext();
+  const { chatEnabled } = useChatEndpointChecker();
   const { shopInfo } = useShopInfo();
   const { currentUser } = useCurrentUser();
   const bottomRef = useRef<HTMLDivElement>(null);
@@ -29,7 +31,7 @@ const Copilot: React.FC = () => {
     }
   }, [messages]);
 
-  if (!shopInfo?.chatEnabled) {
+  if (!chatEnabled) {
     return (
       <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-slate-950 font-sans">
         <div className="py-16">
