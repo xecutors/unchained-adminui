@@ -24,7 +24,7 @@ const ProductTextsForm = ({ productId, selectedLocale = null }) => {
     id: 'saved',
     defaultMessage: 'Saved',
   });
-
+  console.log(selectedLocale);
   const { updateProductTexts } = useUpdateProductTexts();
 
   const onSubmit: OnSubmitType = async ({
