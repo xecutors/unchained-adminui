@@ -12,7 +12,7 @@ const QuotationDetailHeader = ({ quotation }) => {
   return (
     <section>
       <DetailHeader user={quotation?.user} contact={quotation?.contact} />
-      <div className="mt-2 flex border-b border-slate-200 dark:border-slate-800 pb-2 text-sm">
+      <div className="mt-2 flex border-b border-slate-300 dark:border-slate-800 pb-2 text-sm">
         <dl className="flex flex-wrap items-center gap-1">
           <dt className="hidden capitalize text-slate-500 sm:block">
             {formatMessage({
@@ -26,7 +26,7 @@ const QuotationDetailHeader = ({ quotation }) => {
             {quotation?.quotationNumber ? (
               <Badge
                 text={quotation?.quotationNumber}
-                color="indigo"
+                color="slate"
                 square
                 className="text-lg font-medium sm:text-xl sm:font-bold"
               />

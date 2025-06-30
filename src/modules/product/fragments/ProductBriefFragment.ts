@@ -27,6 +27,18 @@ const ProductBriefFragment = gql`
         url
       }
     }
+    ... on SimpleProduct {
+      catalogPrice {
+        amount
+        currencyCode
+      }
+    }
+    ... on PlanProduct {
+      catalogPrice {
+        amount
+        currencyCode
+      }
+    }
   }
 `;
 

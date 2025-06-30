@@ -3361,6 +3361,7 @@ export enum IRoleAction {
   UpdateToken = 'updateToken',
   UpdateUser = 'updateUser',
   UpdateUsername = 'updateUsername',
+  UploadTempFile = 'uploadTempFile',
   UploadUserAvatar = 'uploadUserAvatar',
   UseWebAuthn = 'useWebAuthn',
   VerifyEmail = 'verifyEmail',
@@ -3433,7 +3434,6 @@ export type ISearchResultProductsArgs = {
 export type IShop = {
   _id: Scalars['ID']['output'];
   adminUiConfig: IAdminUiConfig;
-  chatEnabled?: Maybe<Scalars['Boolean']['output']>;
   country?: Maybe<ICountry>;
   language?: Maybe<ILanguage>;
   userRoles: Array<Scalars['String']['output']>;
@@ -6610,6 +6610,7 @@ export type IAssortmentProductsQuery = {
             tags?: Array<any> | null;
             updated?: any | null;
             published?: any | null;
+            catalogPrice?: { amount: number; currencyCode: string } | null;
             texts?: {
               _id: string;
               slug?: string | null;
@@ -6633,6 +6634,7 @@ export type IAssortmentProductsQuery = {
             tags?: Array<any> | null;
             updated?: any | null;
             published?: any | null;
+            catalogPrice?: { amount: number; currencyCode: string } | null;
             texts?: {
               _id: string;
               slug?: string | null;
@@ -10382,6 +10384,7 @@ export type IUserProductReviewsQuery = {
               tags?: Array<any> | null;
               file?: { _id: string; url?: string | null } | null;
             }>;
+            catalogPrice?: { amount: number; currencyCode: string } | null;
           }
         | {
             _id: string;
@@ -10405,6 +10408,7 @@ export type IUserProductReviewsQuery = {
               tags?: Array<any> | null;
               file?: { _id: string; url?: string | null } | null;
             }>;
+            catalogPrice?: { amount: number; currencyCode: string } | null;
           }
         | {
             _id: string;
@@ -10575,6 +10579,7 @@ type IProductBriefFragment_PlanProduct = {
   tags?: Array<any> | null;
   updated?: any | null;
   published?: any | null;
+  catalogPrice?: { amount: number; currencyCode: string } | null;
   texts?: {
     _id: string;
     slug?: string | null;
@@ -10599,6 +10604,7 @@ type IProductBriefFragment_SimpleProduct = {
   tags?: Array<any> | null;
   updated?: any | null;
   published?: any | null;
+  catalogPrice?: { amount: number; currencyCode: string } | null;
   texts?: {
     _id: string;
     slug?: string | null;
@@ -11831,6 +11837,12 @@ export type IProductQuery = {
         tags?: Array<any> | null;
         updated?: any | null;
         published?: any | null;
+        texts?: {
+          _id: string;
+          title?: string | null;
+          subtitle?: string | null;
+          description?: string | null;
+        } | null;
         media: Array<{
           _id: string;
           tags?: Array<any> | null;
@@ -12056,6 +12068,7 @@ export type IProductBundleItemsQuery = {
                 tags?: Array<any> | null;
                 updated?: any | null;
                 published?: any | null;
+                catalogPrice?: { amount: number; currencyCode: string } | null;
                 texts?: {
                   _id: string;
                   slug?: string | null;
@@ -12079,6 +12092,7 @@ export type IProductBundleItemsQuery = {
                 tags?: Array<any> | null;
                 updated?: any | null;
                 published?: any | null;
+                catalogPrice?: { amount: number; currencyCode: string } | null;
                 texts?: {
                   _id: string;
                   slug?: string | null;
@@ -12569,6 +12583,7 @@ export type IProductsQuery = {
         tags?: Array<any> | null;
         updated?: any | null;
         published?: any | null;
+        catalogPrice?: { amount: number; currencyCode: string } | null;
         texts?: {
           _id: string;
           slug?: string | null;
@@ -12592,6 +12607,7 @@ export type IProductsQuery = {
         tags?: Array<any> | null;
         updated?: any | null;
         published?: any | null;
+        catalogPrice?: { amount: number; currencyCode: string } | null;
         texts?: {
           _id: string;
           slug?: string | null;

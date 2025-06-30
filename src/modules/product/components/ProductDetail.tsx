@@ -9,12 +9,10 @@ import {
   PresentationChartLineIcon,
   UsersIcon,
   PuzzlePieceIcon,
-} from '@heroicons/react/24/solid';
-import { toast } from 'react-toastify';
-import { LinkIcon } from '@heroicons/react/24/outline';
+  LinkIcon,
+} from '@heroicons/react/24/outline';
 import LocaleWrapper from '../../common/components/LocaleWrapper';
 
-import SelectOptions from '../../common/components/SelectOptions';
 import CommerceForm from './CommerceForm';
 import ProductTextsForm from './ProductTextsForm';
 import ProductMediaForm from './ProductMediaForm';
@@ -22,8 +20,6 @@ import SubscriptionForm from './SubscriptionForm';
 import SupplyForm from './SupplyForm';
 import ProductVariation from './ProductVariation';
 import WarehousingForm from './WarehousingForm';
-import usePublishProduct from '../hooks/usePublishProduct';
-import useUnPublishProduct from '../hooks/useUnPublishProduct';
 import Tab from '../../common/components/Tab';
 import ProductReviews from '../../product-review/components/ProductReviews';
 import BundleProducts from './BundleProducts';
@@ -35,7 +31,7 @@ import ProductAssignmentForm from './ProductAssignmentForm';
 import ProductTokenizationForm from './ProductTokenizationForm';
 import DisplayExtendedFields from '../../common/components/DisplayExtendedFields';
 
-const GetCurrentTab = ({ id, selectedView, ...extendedData }) => {
+const GetCurrentTab = ({ id, selectedView = '', ...extendedData }) => {
   if (selectedView === 'texts')
     return (
       <LocaleWrapper>
@@ -51,12 +47,7 @@ const GetCurrentTab = ({ id, selectedView, ...extendedData }) => {
   if (selectedView === 'commerce') return <CommerceForm productId={id} />;
   if (selectedView === 'supply') return <SupplyForm productId={id} />;
   if (selectedView === 'warehousing') return <WarehousingForm productId={id} />;
-  if (selectedView === 'variations')
-    return (
-      <LocaleWrapper>
-        <ProductVariation productId={id} />
-      </LocaleWrapper>
-    );
+  if (selectedView === 'variations') return <ProductVariation productId={id} />;
   if (selectedView === 'bundled_products')
     return <BundleProducts productId={id} />;
   if (selectedView === 'subscriptions')
@@ -77,24 +68,11 @@ const GetCurrentTab = ({ id, selectedView, ...extendedData }) => {
     </LocaleWrapper>
   );
 };
-const ProductDetail = ({ product, extendedData }) => {
+const ProductDetail = ({ product, extendedData = {} }) => {
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
-  const { publishProduct } = usePublishProduct();
-  const { unPublishProduct } = useUnPublishProduct();
-
   const { updateProduct } = useUpdateProduct();
-
-  const updateProductSequence = async (e) => {
-    if (e.target.value)
-      await updateProduct({
-        productId: product?._id,
-        product: {
-          sequence: parseInt(e.target.value, 10),
-        },
-      });
-  };
-  const { status, __typename } = product || {};
+  const { __typename } = product || {};
 
   const productOptions = [
     {
@@ -189,62 +167,6 @@ const ProductDetail = ({ product, extendedData }) => {
     },
   ].filter((item) => item);
 
-  const activeOptions = [
-    {
-      id: 'active',
-      title: formatMessage({
-        id: 'publish',
-        defaultMessage: 'Publish',
-      }),
-      selectedTitle: formatMessage({
-        id: 'published',
-        defaultMessage: 'Published',
-      }),
-      description: formatMessage({
-        id: 'publish_product_description',
-        defaultMessage: 'Product will be discoverable and can be ordered',
-      }),
-      current: status === 'ACTIVE',
-      onClick: async () => {
-        await publishProduct({ productId: product?._id });
-        toast.success(
-          formatMessage({
-            id: 'product_published',
-            defaultMessage: 'Published successfully ',
-          }),
-        );
-      },
-      bgColor: 'green',
-    },
-    {
-      id: 'draft',
-      title: formatMessage({
-        id: 'draft',
-        defaultMessage: 'Draft',
-      }),
-      description: formatMessage({
-        id: 'draft_product_description',
-        defaultMessage:
-          'Product will not be discoverable and can not be ordered',
-      }),
-      current: status === 'DRAFT',
-      selectedTitle: formatMessage({
-        id: 'not_published',
-        defaultMessage: 'Not published',
-      }),
-      bgColor: 'slate',
-      onClick: async () => {
-        await unPublishProduct({ productId: product?._id });
-        toast.success(
-          formatMessage({
-            id: 'product_drafted',
-            defaultMessage: 'Drafted successfully ',
-          }),
-        );
-      },
-    },
-  ];
-
   const onUpdateTags = async ({ tags }) => {
     await updateProduct({ productId: product?._id, product: { tags } });
     return true;
@@ -252,23 +174,11 @@ const ProductDetail = ({ product, extendedData }) => {
 
   return (
     <>
-      <div className="flex flex-wrap items-center justify-between gap-y-1">
-        <h1 className="">{product?.__typename}</h1>
+      <div className="mt-5 flex flex-wrap items-center justify-between gap-10">
         <TagList
           defaultValue={product?.tags}
           onSubmit={onUpdateTags}
           enableEdit={hasRole('editProduct')}
-        />
-        <input
-          type="number"
-          id="sequence-input"
-          className="w-24 shadow-xs focus:ring-indigo-500 dark:bg-slate-800 dark:border-slate-700 focus:border-indigo-500 block text-sm  border-gray-300 rounded-full mr-2 font-bold text-indigo-500"
-          defaultValue={product?.sequence}
-          onBlur={updateProductSequence}
-        />
-        <SelectOptions
-          options={activeOptions}
-          type={formatMessage({ id: 'product', defaultMessage: 'Product' })}
         />
       </div>
       <Tab tabItems={productOptions} defaultTab="texts">

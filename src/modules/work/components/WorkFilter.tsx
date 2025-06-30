@@ -45,116 +45,95 @@ const WorkFilter = ({ workTypes = [] }) => {
 
   return (
     <>
-      <div className="mb-2 justify-between py-4 sm:mb-0 lg:flex">
-        <div className="sm:mr-6">
-          <div className="space-x-2">
-            <div className="text-xl font-medium leading-5 text-slate-800 dark:text-slate-200 lg:leading-6 ">
-              {formatMessage({
-                id: 'filter_by_creation_date',
-                defaultMessage: 'Filter by creation date',
-              })}
-            </div>
-          </div>
-          <div className="max:mb-3 mt-5 ">
-            <div className="flex items-center justify-center">
-              <label className="ml-1 mr-2" htmlFor="work-start">
-                {formatMessage({ id: 'from', defaultMessage: 'From' })}
-              </label>
-              <DateInputField
-                id="work-start"
-                onChange={(value: any) => {
-                  if (value)
-                    router.push({
-                      query: normalizeQuery(
-                        router.query,
-                        new Date(value).toISOString(),
-                        'start',
-                      ),
-                    });
-                  else {
-                    const { start, ...rest } = router.query;
-                    router.push({ query: { ...rest } });
-                  }
-                }}
-                placeholder={formatMessage({
-                  id: 'start_date',
-                  defaultMessage: 'Start date',
-                })}
-                value={
-                  router?.query?.start ? parseDate(router?.query?.start) : null
-                }
-                containerClassName="w-full rounded-md border dark:bg-slate-800 border-slate-300 dark:border-slate-700 focus:outline-hidden focus:ring-indigo-400 sm:text-sm"
-              />
-              <label className="mr-2 ml-3 " htmlFor="report-end">
-                {formatMessage({ id: 'to', defaultMessage: 'To' })}
-              </label>
-              <DateInputField
-                id="work-end"
-                onChange={(value: any) => {
-                  if (value)
-                    router.push({
-                      query: normalizeQuery(
-                        router.query,
-                        new Date(value).toISOString(),
-                        'end',
-                      ),
-                    });
-                  else {
-                    const { end, ...rest } = router.query;
-                    router.push({ query: { ...rest } });
-                  }
-                }}
-                placeholder={formatMessage({
-                  id: 'end_date',
-                  defaultMessage: 'End Date',
-                })}
-                value={
-                  router?.query?.end
-                    ? parseDate(router?.query?.end)
-                    : parseDate(new Date())
-                }
-                containerClassName="w-full rounded-md border dark:bg-slate-800 border-slate-300 dark:border-slate-700 focus:outline-hidden focus:ring-indigo-400 sm:text-sm"
-              />
-            </div>
-          </div>
-        </div>
-
-        <div className="w-md flex-1">
-          <div className="mt-4 flex space-x-2 sm:mt-1 md:mt-5 lg:mt-0">
-            <VariableIcon
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-            />
-            <p className="text-xl font-medium leading-5 text-slate-800 dark:text-slate-200 lg:leading-6 ">
-              {formatMessage({ id: 'type', defaultMessage: 'Type' })}
-            </p>
-          </div>
-          <div>
-            <div className="mt-4">
-              <MultipleSelect
-                label={formatMessage({
-                  id: 'select_type',
-                  defaultMessage: 'Select type',
-                })}
-                tagList={appliedTypes}
-                onChange={typeChangeHandler}
-                options={workTypes.map((type) => ({
-                  label: type,
-                  value: type,
-                }))}
-              />
-            </div>
-          </div>
+      <div className="mt-5 text-md text-slate-600 dark:text-slate-200">
+        {formatMessage({
+          id: 'filter_by_creation_date',
+          defaultMessage: 'Filter by creation date',
+        })}
+      </div>
+      <div className="mt-3">
+        <div className="flex items-center justify-center">
+          <label className="ml-1 mr-2" htmlFor="work-start">
+            {formatMessage({ id: 'from', defaultMessage: 'From' })}
+          </label>
+          <DateInputField
+            id="work-start"
+            onChange={(value: any) => {
+              if (value)
+                router.push({
+                  query: normalizeQuery(
+                    router.query,
+                    new Date(value).toISOString(),
+                    'start',
+                  ),
+                });
+              else {
+                const { start, ...rest } = router.query;
+                router.push({ query: { ...rest } });
+              }
+            }}
+            placeholder={formatMessage({
+              id: 'start_date',
+              defaultMessage: 'Start date',
+            })}
+            value={
+              router?.query?.start ? parseDate(router?.query?.start) : null
+            }
+            containerClassName="w-full"
+          />
+          <label className="mr-2 ml-3 " htmlFor="report-end">
+            {formatMessage({ id: 'to', defaultMessage: 'To' })}
+          </label>
+          <DateInputField
+            id="work-end"
+            onChange={(value: any) => {
+              if (value)
+                router.push({
+                  query: normalizeQuery(
+                    router.query,
+                    new Date(value).toISOString(),
+                    'end',
+                  ),
+                });
+              else {
+                const { end, ...rest } = router.query;
+                router.push({ query: { ...rest } });
+              }
+            }}
+            placeholder={formatMessage({
+              id: 'end_date',
+              defaultMessage: 'End Date',
+            })}
+            value={
+              router?.query?.end
+                ? parseDate(router?.query?.end)
+                : parseDate(new Date())
+            }
+            containerClassName="w-full"
+          />
         </div>
       </div>
-      <hr className="my-4 hidden w-full bg-slate-200 dark:bg-slate-700 sm:block" />
-      <div>
-        <p className="mt-0 text-xl font-medium leading-5 text-slate-800 dark:text-slate-200 lg:gap-7 lg:leading-6 ">
+
+      <div className="mt-5">
+        <MultipleSelect
+          label={formatMessage({
+            id: 'select_type',
+            defaultMessage: 'Select type',
+          })}
+          tagList={appliedTypes}
+          onChange={typeChangeHandler}
+          options={workTypes.map((type) => ({
+            label: type,
+            value: type,
+          }))}
+        />
+      </div>
+
+      <div className="mt-5">
+        <div className="text-md text-slate-800 dark:text-slate-200">
           {formatMessage({ id: 'status', defaultMessage: 'Status' })}
-        </p>
-        <div className="m-1 mt-3 grid grid-cols-2 gap-5 sm:grid-cols-2 lg:grid-cols-5 lg:pr-5">
+        </div>
+        <div className="flex flex-wrap gap-5">
           <StatusFilter
             onStatusChange={onStatusChange}
             selectedStatuses={appliedStatuses}

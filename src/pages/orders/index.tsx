@@ -3,10 +3,9 @@ import { useRouter } from 'next/router';
 
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
-import Pagination from '../../modules/common/components/Pagination';
+import InfiniteScroll from '../../modules/common/components/InfiniteScroll';
 import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
-import SearchField from '../../modules/common/components/SearchField';
 import Toggle from '../../modules/common/components/Toggle';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 import OrderList from '../../modules/order/components/OrderList';
@@ -15,6 +14,7 @@ import {
   convertSortFieldsToQueryFormat,
   normalizeQuery,
 } from '../../modules/common/utils/utils';
+import SearchWithTags from '../../modules/common/components/SearchWithTags';
 import OrderDetailPage from './OrderDetailPage';
 
 const Orders = () => {
@@ -42,7 +42,7 @@ const Orders = () => {
   };
 
   const sortKeys = convertSortFieldsToQueryFormat(sort);
-  const { orders, ordersCount, loading, loadMore } = useOrders({
+  const { orders, ordersCount, loading, loadMore, hasMore } = useOrders({
     limit,
     includeCarts,
     queryString: queryString as string,
@@ -55,20 +55,16 @@ const Orders = () => {
   return (
     <>
       <BreadCrumbs />
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between">
-        <PageHeader
-          headerText={formatMessage({
-            id: 'orders_list_header',
-            defaultMessage: 'Orders',
-          })}
-        />
-        <SearchField
-          defaultValue={queryString}
-          onInputChange={setQueryString}
-        />
-      </div>
-      <div className="mt-5 inline-block min-w-full overflow-x-auto">
-        <ListHeader totalRecords={ordersCount}>
+      <PageHeader
+        headerText={formatMessage(
+          (ordersCount ?? 0) === 1
+            ? { id: 'order_count_header_singular', defaultMessage: '1 Order' }
+            : { id: 'orders_count_header', defaultMessage: '{count} Orders' },
+          { count: ordersCount ?? 0 },
+        )}
+      />
+      <div className="mt-5 inline-block min-w-full overflow-x-auto px-1 pb-5">
+        <ListHeader>
           <Toggle
             toggleText={formatMessage({
               id: 'show_carts',
@@ -78,12 +74,28 @@ const Orders = () => {
             active={includeCarts}
           />
         </ListHeader>
-        {loading ? (
-          <Loading />
-        ) : (
-          <OrderList loading={loading} orders={orders} showUser sortable />
-        )}
-        <Pagination data={orders} total={ordersCount} onLoadMore={loadMore} />
+
+        <SearchWithTags
+          onSearchChange={setQueryString}
+          defaultSearchValue={queryString}
+        >
+          <InfiniteScroll
+            loading={loading}
+            hasMore={hasMore}
+            onLoadMore={loadMore}
+          >
+            {loading && orders?.length === 0 ? (
+              <Loading />
+            ) : (
+              <OrderList
+                loading={loading && orders?.length > 0}
+                orders={orders}
+                showUser
+                sortable
+              />
+            )}
+          </InfiniteScroll>
+        </SearchWithTags>
       </div>
     </>
   );

@@ -27,7 +27,7 @@ const ProductVariationOptionItem = ({
     const data = await updateProductVariationTexts({
       productVariationId: variationId,
       productVariationOptionValue: option.value,
-      texts: [{ title, subtitle, locale: selectedLocale }],
+      texts: [{ title, subtitle, locale: selectedLocale || 'de' }],
     });
     setIsEdit(false);
     return { data, success: true };
@@ -90,7 +90,7 @@ const ProductVariationOptionItem = ({
                       defaultMessage: 'Cancel',
                     })}
                     type="button"
-                    className="rounded-md bg-white font-medium text-red-500 hover:text-red-600 focus:outline-hidden focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+                    className="rounded-md bg-white font-medium text-rose-500 hover:text-rose-600 focus:outline-hidden focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
                   >
                     {formatMessage({
                       id: 'cancel',
@@ -104,7 +104,7 @@ const ProductVariationOptionItem = ({
                       id: 'save',
                       defaultMessage: 'Save',
                     })}
-                    className="rounded-md bg-white font-medium text-indigo-600 hover:text-indigo-500 focus:outline-hidden focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+                    className="rounded-md bg-white font-medium text-slate-950 hover:text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
                   >
                     {formatMessage({
                       id: 'save',

@@ -15,40 +15,53 @@ import { PRODUCT_TYPES } from '../ProductTypes';
 const ProductForm = ({
   onSubmit,
   onSubmitSuccess,
-  selectedLocale,
 }: {
   onSubmit: OnSubmitType;
   onSubmitSuccess: OnSubmitSuccessType;
-  selectedLocale?: string;
 }) => {
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
+
   const successMessage = formatMessage({
     id: 'product_added',
     defaultMessage: 'Product added successfully!',
   });
+
   const form = useForm({
-    submit: ({ title, subtitle, ...rest }) =>
-      onSubmit({
-        texts: [{ title, subtitle, locale: selectedLocale }],
-        ...rest,
-      }),
+    submit: async (values) => {
+      const { title, subtitle, type, tags } = values;
+
+      if (!title || !type) {
+        return { success: false };
+      }
+
+      const texts = [
+        {
+          title,
+          subtitle: subtitle || '',
+          slug: title.toLowerCase().replace(/\s+/g, '-'),
+          locale: 'de',
+        },
+      ];
+
+      return await onSubmit({ texts, type, tags: tags || [] });
+    },
     onSubmitSuccess,
-    enableReinitialize: true,
     successMessage,
     initialValues: {
       title: '',
-      type: '',
+      subtitle: '',
+      type: 'SimpleProduct',
       tags: [],
     },
   });
 
   return (
     <Form form={form}>
-      <div className="p-5 pb-7 sm:max-w-full">
+      <div className="p-5 pb-7 sm:max-w-full flex flex-col gap-3">
         <TextField
           name="title"
-          id="name"
+          id="title"
           label={formatMessage({
             id: 'name',
             defaultMessage: 'Name',
@@ -58,7 +71,7 @@ const ProductForm = ({
             defaultMessage: 'Name',
           })}
           required
-          className="block w-full max-w-full rounded-md border-slate-200 dark:border-slate-800 text-sm focus:border-indigo-400 focus:ring-indigo-400 sm:text-sm"
+          className="block w-full max-w-full rounded-md border-slate-300 dark:border-slate-800 text-sm focus:ring-slate-800 sm:text-sm"
         />
 
         <TextField
@@ -72,26 +85,25 @@ const ProductForm = ({
             id: 'subtitle',
             defaultMessage: 'Subtitle',
           })}
-          className="block w-full max-w-full rounded-md border-slate-200 dark:border-slate-800 text-sm focus:border-indigo-400 focus:ring-indigo-400 sm:text-sm"
+          className="block w-full max-w-full rounded-md border-slate-300 dark:border-slate-800 text-sm focus:ring-slate-800 sm:text-sm"
         />
 
-        <div className="my-5 flex items-center">
-          <SelectField
-            className="mt-1 w-full"
-            label={formatMessage({ id: 'type', defaultMessage: 'Type' })}
-            placeholder={formatMessage({ id: 'type', defaultMessage: 'Type' })}
-            required
-            name="type"
-            options={PRODUCT_TYPES}
-          />
-        </div>
+        <SelectField
+          className="mt-1 w-full"
+          label={formatMessage({ id: 'type', defaultMessage: 'Type' })}
+          placeholder={formatMessage({ id: 'type', defaultMessage: 'Type' })}
+          required
+          name="type"
+          options={PRODUCT_TYPES}
+        />
+
         <TagInputField
           name="tags"
           label={formatMessage({ id: 'tags', defaultMessage: 'Tags' })}
         />
       </div>
 
-      <div className="space-y-6 border-t border-t-indigo-50 dark:border-t-slate-700 bg-slate-50 dark:bg-slate-800 p-5 text-right">
+      <div className="border-t border-t-slate-100 dark:border-t-slate-700 bg-slate-50 dark:bg-slate-900 p-5 text-right">
         <SubmitButton
           hidden={!hasRole('addProduct')}
           label={formatMessage({

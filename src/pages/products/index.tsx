@@ -6,7 +6,6 @@ import ListHeader from '../../modules/common/components/ListHeader';
 import PageHeader from '../../modules/common/components/PageHeader';
 import Toggle from '../../modules/common/components/Toggle';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
-import ProductFilter from '../../modules/product/components/ProductFilter';
 import ProductList from '../../modules/product/components/ProductList';
 import useAuth from '../../modules/Auth/useAuth';
 import SearchField from '../../modules/common/components/SearchField';
@@ -14,9 +13,10 @@ import {
   convertSortFieldsToQueryFormat,
   normalizeQuery,
 } from '../../modules/common/utils/utils';
-import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
+import SearchWithTags from '../../modules/common/components/SearchWithTags';
 import useProductsCount from '../../modules/product/hooks/useProductsCount';
 import ProductDetailPage from './ProductDetailPage';
+import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
 
 const Products = () => {
   const { formatMessage } = useIntl();
@@ -54,26 +54,29 @@ const Products = () => {
   return (
     <>
       <BreadCrumbs />
-      <div className="w-full py-5">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between">
-          <PageHeader
-            headerText={formatMessage({
-              id: 'products_list_header',
-              defaultMessage: 'Products',
-            })}
-          />
-          <SearchField
-            onInputChange={setQueryString}
-            defaultValue={queryString}
-          />
-        </div>
-        <ProductFilter />
-      </div>
-      <div className="min-w-full overflow-x-auto">
-        <ListHeader
+      <div className="w-full">
+        <PageHeader
+          headerText={formatMessage(
+            (productsCount ?? 0) === 1
+              ? {
+                  id: 'product_count_header_singular',
+                  defaultMessage: '1 Product',
+                }
+              : {
+                  id: 'products_count_header',
+                  defaultMessage: '{count} Products',
+                },
+            { count: productsCount ?? 0 },
+          )}
           addPath={hasRole('addProduct') && '/products/new'}
-          totalRecords={productsCount}
-        >
+          addButtonText={formatMessage({
+            id: 'add_product',
+            defaultMessage: 'Add Product',
+          })}
+        />
+      </div>
+      <div className="min-w-full overflow-x-auto px-1">
+        <ListHeader>
           <Toggle
             toggleText={formatMessage({
               id: 'include_drafts',
@@ -83,13 +86,17 @@ const Products = () => {
             active={includeDrafts}
           />
         </ListHeader>
-
-        <LocaleWrapper onlyFull>
-          <ProductList
-            sortable
-            {...{ queryString, includeDrafts, limit, offset, tags, sortKeys }}
-          />
-        </LocaleWrapper>
+        <SearchWithTags
+          onSearchChange={setQueryString}
+          defaultSearchValue={queryString}
+        >
+          <LocaleWrapper onlyFull>
+            <ProductList
+              sortable
+              {...{ queryString, includeDrafts, limit, offset, tags, sortKeys }}
+            />
+          </LocaleWrapper>
+        </SearchWithTags>
       </div>
     </>
   );

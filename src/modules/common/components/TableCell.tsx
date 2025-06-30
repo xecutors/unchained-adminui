@@ -1,4 +1,4 @@
-import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/solid';
+import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
 import classNames from 'classnames';
 import { useRouter } from 'next/router';
 import React from 'react';
@@ -19,7 +19,7 @@ const SortButton = ({ onSort, sortDirection }) => {
         viewBox="0 0 24 24"
         strokeWidth={1.5}
         stroke="currentColor"
-        className="mr-2 w-6 h-6"
+        className="ml-2 w-6 h-6"
         onClick={onSort}
       >
         <path
@@ -31,12 +31,9 @@ const SortButton = ({ onSort, sortDirection }) => {
     );
 
   return sortDirection === 'ASC' ? (
-    <ChevronUpIcon className="mr-2 w-6 h-6 text-indigo-500" onClick={onSort} />
+    <ChevronUpIcon className="ml-2 w-4 h-4 text-slate-700" onClick={onSort} />
   ) : (
-    <ChevronDownIcon
-      className="mr-2 w-6 h-6 text-indigo-500"
-      onClick={onSort}
-    />
+    <ChevronDownIcon className="ml-2 w-4 h-4 text-slate-700" onClick={onSort} />
   );
 };
 
@@ -94,13 +91,15 @@ const TableCell = ({
     <Td
       className={classNames(
         header
-          ? 'px-4 py-3 text-left font-medium tracking-wider text-slate-800 dark:text-slate-200'
+          ? 'px-4 py-3 text-left text-slate-500 dark:text-slate-200'
           : 'whitespace-nowrap px-4 py-3 text-slate-500 dark:text-slate-200 border-b dark:border-slate-700 last:border-b-0 sm:border-b-0 text-left flex items-center sm:table-cell',
         className,
       )}
       {...props}
     >
-      <div className="flex">
+      <div className="flex items-center">
+        <div className="sm:inline">{children}</div>
+
         {Td === 'th' && enablesort && sortKey && (
           <SortButton
             onSort={onSort}
@@ -111,8 +110,6 @@ const TableCell = ({
             }
           />
         )}
-
-        <div className="sm:inline w-full">{children}</div>
       </div>
     </Td>
   );

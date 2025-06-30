@@ -44,14 +44,13 @@ const LocaleWrapper = ({ children, onlyFull = false }) => {
     languages,
     countries,
   ).filter((l) => !onlyFull || l.isoCode.includes('-'));
-
   return (
-    <div className="my-3">
-      <div className="relative mb-2">
-        <div className="w-fit ml-auto">
+    <div>
+      <div className="my-3 flex justify-end">
+        <div className="w-fit">
           <select
             id="locale-wrapper"
-            className="cursor-pointer rounded-md border-slate-300 dark:border-slate-700 py-1 pr-8 text-sm lg:py-1 lg:pr-10 text-black dark:text-slate-400 dark:bg-slate-800"
+            className="cursor-pointer rounded-md border-1 border-slate-300 dark:border-slate-700 py-1 pr-8 text-sm lg:py-1 lg:pr-10 text-black dark:text-white dark:bg-slate-800 shadow-xs  focus:outline-hidden focus:ring-2 focus:ring-slate-800"
             value={selectedLocale}
             onChange={(e) => {
               e.stopPropagation();

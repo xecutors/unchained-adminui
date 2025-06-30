@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
-import Pagination from '../../modules/common/components/Pagination';
+import InfiniteScroll from '../../modules/common/components/InfiniteScroll';
 import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
 import Toggle from '../../modules/common/components/Toggle';
@@ -17,11 +17,11 @@ import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useModal from '../../modules/modal/hooks/useModal';
 
 import useAuth from '../../modules/Auth/useAuth';
-import SearchField from '../../modules/common/components/SearchField';
 import {
   convertSortFieldsToQueryFormat,
   normalizeQuery,
 } from '../../modules/common/utils/utils';
+import SearchWithTags from '../../modules/common/components/SearchWithTags';
 import CountryDetailPage from './CountryDetailPage';
 
 const Country = () => {
@@ -51,13 +51,14 @@ const Country = () => {
 
   const sortKeys = convertSortFieldsToQueryFormat(sort);
 
-  const { countries, countriesCount, loading, loadMore } = useCountries({
-    queryString: queryString as string,
-    limit,
-    includeInactive,
-    offset,
-    sort: sortKeys,
-  });
+  const { countries, countriesCount, loading, loadMore, hasMore } =
+    useCountries({
+      queryString: queryString as string,
+      limit,
+      includeInactive,
+      offset,
+      sort: sortKeys,
+    });
 
   const { setModal } = useModal();
   const { removeCountry } = useRemoveCountry();
@@ -94,23 +95,27 @@ const Country = () => {
   return (
     <>
       <BreadCrumbs />
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between">
-        <PageHeader
-          headerText={formatMessage({
-            id: 'countries',
-            defaultMessage: 'Countries',
-          })}
-        />
-        <SearchField
-          defaultValue={queryString}
-          onInputChange={setQueryString}
-        />
-      </div>
-      <div className="min-w-full overflow-x-auto">
-        <ListHeader
-          addPath={hasRole('addCountry') && '/country/new'}
-          totalRecords={countriesCount}
-        >
+      <PageHeader
+        headerText={formatMessage(
+          (countriesCount ?? 0) === 1
+            ? {
+                id: 'country_count_header_singular',
+                defaultMessage: '1 Country',
+              }
+            : {
+                id: 'countries_count_header',
+                defaultMessage: '{count} Countries',
+              },
+          { count: countriesCount ?? 0 },
+        )}
+        addPath={hasRole('addCountry') && '/country/new'}
+        addButtonText={formatMessage({
+          id: 'add_country',
+          defaultMessage: 'Add Country',
+        })}
+      />
+      <div className="min-w-full overflow-x-auto px-1">
+        <ListHeader>
           <Toggle
             toggleText={formatMessage({
               id: 'show_inactive',
@@ -120,20 +125,26 @@ const Country = () => {
             active={includeInactive}
           />
         </ListHeader>
-        {loading ? (
-          <Loading />
-        ) : (
-          <CountryList
-            sortable
-            countries={countries}
-            onRemoveCountry={onRemoveCountry}
-          />
-        )}
-        <Pagination
-          data={countries}
-          total={countriesCount}
-          onLoadMore={loadMore}
-        />
+        <SearchWithTags
+          onSearchChange={setQueryString}
+          defaultSearchValue={queryString}
+        >
+          <InfiniteScroll
+            loading={loading}
+            hasMore={hasMore}
+            onLoadMore={loadMore}
+          >
+            {loading && countries?.length === 0 ? (
+              <Loading />
+            ) : (
+              <CountryList
+                sortable
+                countries={countries}
+                onRemoveCountry={onRemoveCountry}
+              />
+            )}
+          </InfiniteScroll>
+        </SearchWithTags>
       </div>
     </>
   );

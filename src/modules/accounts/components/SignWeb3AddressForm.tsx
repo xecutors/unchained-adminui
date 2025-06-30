@@ -58,16 +58,16 @@ const SignWeb3AddressForm = ({ nonce, address, close }) => {
 
   return (
     <div>
-      <div className="border-b border-gray-200 bg-white mb">
+      <div className="border-b border-slate-300 bg-white mb">
         <div className="-ml-4 -mt-4 flex flex-wrap items-center justify-between sm:flex-nowrap">
           <div className="ml-4 mt-4">
-            <h3 className="text-lg font-medium leading-6 text-gray-900">
+            <h3 className="text-lg font-medium leading-6 text-slate-900">
               {formatMessage({
                 id: 'sign_address_header',
                 defaultMessage: 'Sign address',
               })}
             </h3>
-            <p className="mt-1 text-sm text-gray-500 mb-4">
+            <p className="mt-1 text-sm text-slate-500 mb-4">
               <FormattedMessage
                 id="web3_address_signature_instruction"
                 defaultMessage="<p>Copy the following nonce <b> ({nonce})</b> and past the signature on the space        provided below </p>"
@@ -108,7 +108,7 @@ const SignWeb3AddressForm = ({ nonce, address, close }) => {
             id="danger_cancel"
             onClick={close}
             type="button"
-            className="mt-3 inline-flex w-full justify-center rounded-md border border-slate-300 bg-white px-4 py-2 text-base font-medium text-slate-700 shadow-xs hover:bg-slate-50 focus:outline-hidden focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+            className="mt-3 inline-flex w-full justify-center rounded-md border border-slate-300 bg-white px-4 py-2 text-base font-medium text-slate-700 shadow-xs hover:bg-slate-50 focus:outline-hidden focus:ring-2 focus:ring-slate-800 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
           >
             {formatMessage({ id: 'cancel', defaultMessage: 'Cancel' })}
           </button>

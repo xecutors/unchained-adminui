@@ -15,7 +15,7 @@ const TokenListItem = ({ token }) => {
         <div className="flex items-center text-sm">
           <Link
             href={`/tokens?tokenId=${token._id}`}
-            className="font-medium text-blue-500 dark:text-blue-400"
+            className="font-medium text-slate-800 dark:text-slate-700"
           >
             {token?._id}
           </Link>
@@ -29,9 +29,9 @@ const TokenListItem = ({ token }) => {
       <Table.Cell>
         <Link
           href={`/users?userId=${token.user._id}`}
-          className="flex items-center text-sm text-blue-500 dark:text-blue-400 hover:text-decoration"
+          className="flex items-center text-sm text-slate-800 dark:text-slate-700 hover:text-decoration"
         >
-          <MediaAvatar file={token.user?.avatar} className="mr-2" />
+          <MediaAvatar file={token.user?.avatar} className="mr-3" />
 
           <span className="font-medium ml-2">{formatUsername(token.user)}</span>
         </Link>
@@ -49,7 +49,7 @@ const TokenListItem = ({ token }) => {
         <div className="flex items-center text-sm">
           <Link
             href={`/orders?orderId=${token.ercMetadata?.orderId}`}
-            className="font-medium text-blue-500 dark:text-blue-400"
+            className="font-medium text-slate-800 dark:text-slate-700"
           >
             {token?.ercMetadata?.orderId}
           </Link>

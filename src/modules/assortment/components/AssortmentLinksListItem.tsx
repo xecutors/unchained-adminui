@@ -17,7 +17,7 @@ const AssortmentLinksListItem = ({ link, onDelete, linkId, isParent, id }) => {
   const router = useRouter();
   return (
     <div
-      className="flex items-center justify-between rounded-sm border-b px-2 text-slate-900 dark:text-slate-200 border-slate-200 dark:border-slate-600 last:border-none hover:cursor-pointer"
+      className="group flex items-center justify-between rounded-sm border-b border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 hover:bg-slate-50/80 dark:hover:bg-slate-700/50 transition-all duration-200 ease-in-out hover:shadow-sm px-2 text-slate-900 dark:text-slate-200 last:border-none hover:cursor-pointer"
       ref={setNodeRef}
       onClick={() => {
         router.push(`/assortments?assortmentSlug=${generateUniqueId(link)}`);

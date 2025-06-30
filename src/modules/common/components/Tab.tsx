@@ -25,8 +25,8 @@ const Tab = ({ children, tabItems, defaultTab, updateRoute = true }) => {
   };
 
   return (
-    <div className="py-6">
-      <div className="mb-5 lg:hidden">
+    <div className="mt-5">
+      <div className="lg:hidden">
         <label htmlFor="selected-tab" className="sr-only">
           {formatMessage({
             id: 'select_tab',
@@ -38,7 +38,7 @@ const Tab = ({ children, tabItems, defaultTab, updateRoute = true }) => {
           onChange={(e) => onTabSelected(e.target.value)}
           id="selected-tab"
           name="selected-tab"
-          className="mt-1 block dark:bg-slate-800 dark:text-white w-full rounded-md border-slate-300 py-2 pl-3 pr-10 text-base capitalize focus:border-indigo-400 focus:outline-hidden focus:ring-indigo-400 sm:text-sm"
+          className="mt-1 block dark:bg-slate-800 dark:text-white w-full rounded-md border-slate-300 py-2 pl-3 pr-10 text-base capitalize  focus:outline-hidden focus:ring-slate-800 sm:text-sm"
           value={tab}
         >
           {tabItems.filter(Boolean).map((value) => (
@@ -48,20 +48,27 @@ const Tab = ({ children, tabItems, defaultTab, updateRoute = true }) => {
           ))}
         </select>
       </div>
-      <div className="mb-5 hidden lg:block">
-        <div className="al border-b border-indigo-100 dark:border-slate-800">
-          <nav className="-mb-px flex flex-wrap gap-6">
+      <div className="mt-5 hidden lg:block">
+        <div className="">
+          <nav className="flex flex-wrap gap-3">
             {tabItems.filter(Boolean).map((option) => (
               <a
                 id={option.id}
                 key={option.id}
+                tabIndex={0}
                 onClick={() => onTabSelected(option.id)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    onTabSelected(option.id);
+                  }
+                }}
                 className={classNames(
                   {
-                    'cursor-pointer rounded-t-lg border border-indigo-200 dark:border-slate-700 border-b-indigo-500 dark:border-b-indigo-500 bg-indigo-100 text-indigo-800 dark:text-slate-200 dark:bg-slate-800':
+                    'cursor-pointer rounded-lg border border-slate-300 dark:border-slate-600 bg-white text-slate-900 dark:text-slate-100 dark:bg-slate-900 shadow-sm dark:hover:border-slate-500 hover:border-slate-400 focus:ring-2 focus:ring-slate-800':
                       tab === option.id,
                   },
-                  'cursor-pointer relative whitespace-nowrap border border-b-2 border-transparent py-4 px-1 pr-3 pl-2 text-sm dark:text-slate-400 font-medium dark:hover:bg-slate-700 hover:border-b-indigo-500 hover:rounded-t-lg',
+                  'cursor-pointer relative whitespace-nowrap border border-transparent py-3 px-1 pr-3 pl-2 text-sm dark:text-slate-400 font-medium dark:hover:bg-slate-800 hover:border-slate-200 dark:hover:border-slate-500 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-slate-800',
                 )}
               >
                 <div className="flex items-center space-x-1">
@@ -70,7 +77,7 @@ const Tab = ({ children, tabItems, defaultTab, updateRoute = true }) => {
                     {option?.title || option?.id}
                   </div>
                   {option?.length ? (
-                    <span className="absolute top-0 right-0 inline-flex translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full bg-indigo-300 px-1 py-0.5 text-sm leading-none text-slate-900">
+                    <span className="absolute top-0 right-0 inline-flex translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full bg-slate-400 px-1 py-0.5 text-sm leading-none text-slate-900">
                       {option?.length}
                     </span>
                   ) : null}
@@ -80,7 +87,7 @@ const Tab = ({ children, tabItems, defaultTab, updateRoute = true }) => {
           </nav>
         </div>
       </div>
-      <div className="text-white">
+      <div className="mt-5 text-white">
         {React.cloneElement(children, { selectedView: tab })}
       </div>
     </div>

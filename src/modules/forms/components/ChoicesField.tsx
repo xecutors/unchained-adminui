@@ -33,7 +33,7 @@ const ChoicesField = ({ multiple, options, ...props }: ChoicesFieldProps) => {
     >
       <label
         className={classNames('text-sm', className, {
-          'text-red-600': !!field.error,
+          'text-rose-600': !!field.error,
           'sr-only': hideLabel,
         })}
       >
@@ -54,7 +54,7 @@ const ChoicesField = ({ multiple, options, ...props }: ChoicesFieldProps) => {
                 value={value}
                 checked={mappableValue.includes(value)}
                 className={classNames(
-                  'mr-2 h-4 w-4 rounded-sm border-slate-300 text-indigo-600 focus:ring-indigo-400',
+                  'mr-2 h-4 w-4 rounded-sm border-slate-300 dark:border-slate-600 bg-white dark:!bg-slate-800 text-slate-950 focus:ring-slate-800',
                   inputClassName,
                 )}
                 disabled={field.disabled}

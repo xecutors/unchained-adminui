@@ -1,12 +1,11 @@
 import { useIntl } from 'react-intl';
 import { useRouter } from 'next/router';
-import { VariableIcon } from '@heroicons/react/24/solid';
+import { VariableIcon } from '@heroicons/react/24/outline';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 
-import Pagination from '../../modules/common/components/Pagination';
+import InfiniteScroll from '../../modules/common/components/InfiniteScroll';
 import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
-import SearchField from '../../modules/common/components/SearchField';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 import EventList from '../../modules/event/components/EventList';
 import useEvents from '../../modules/event/hooks/useEvents';
@@ -18,6 +17,7 @@ import {
   normalizeQuery,
 } from '../../modules/common/utils/utils';
 import ListHeader from '../../modules/common/components/ListHeader';
+import SearchWithTags from '../../modules/common/components/SearchWithTags';
 import EventDetailPage from './EventDetailPage';
 
 const Events = () => {
@@ -57,7 +57,7 @@ const Events = () => {
     }
   };
 
-  const { events, eventsCount, loading, loadMore } = useEvents({
+  const { events, eventsCount, loading, loadMore, hasMore } = useEvents({
     limit,
     types: (query?.types as string)?.split(','),
     offset,
@@ -71,30 +71,15 @@ const Events = () => {
   return (
     <>
       <BreadCrumbs />
-      <div className="w-full py-5">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between">
-          <PageHeader
-            headerText={formatMessage({
-              id: 'events_list_header',
-              defaultMessage: 'Events',
-            })}
-          />
-          <SearchField
-            onInputChange={setQueryString}
-            defaultValue={queryString}
-          />
-        </div>
-        <div className="mt-4 flex space-x-2 sm:mt-1 md:mt-5 lg:mt-0">
-          <VariableIcon
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-          />
-          <p className="text-xl font-medium leading-5 text-slate-800 dark:text-slate-200 lg:leading-6 ">
-            {formatMessage({ id: 'type', defaultMessage: 'Type' })}
-          </p>
-        </div>
+      <div className="w-full">
+        <PageHeader
+          headerText={formatMessage(
+            (eventsCount ?? 0) === 1
+              ? { id: 'event_count_header_singular', defaultMessage: '1 Event' }
+              : { id: 'events_count_header', defaultMessage: '{count} Events' },
+            { count: eventsCount ?? 0 },
+          )}
+        />
         <div>
           <div className="mt-4">
             <MultipleSelect
@@ -109,11 +94,25 @@ const Events = () => {
           </div>
         </div>
       </div>
-      <div className="min-w-full overflow-x-auto">
-        <ListHeader totalRecords={eventsCount} />
+      <div className="min-w-full overflow-x-auto px-1">
+        <ListHeader />
 
-        {loading ? <Loading /> : <EventList events={events} sortable />}
-        <Pagination data={events} total={eventsCount} onLoadMore={loadMore} />
+        <SearchWithTags
+          onSearchChange={setQueryString}
+          defaultSearchValue={queryString}
+        >
+          <InfiniteScroll
+            loading={loading}
+            hasMore={hasMore}
+            onLoadMore={loadMore}
+          >
+            {loading && events?.length === 0 ? (
+              <Loading />
+            ) : (
+              <EventList events={events} sortable />
+            )}
+          </InfiniteScroll>
+        </SearchWithTags>
       </div>
     </>
   );

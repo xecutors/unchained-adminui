@@ -23,16 +23,16 @@ const Toggle = ({
   };
 
   return (
-    <div className={classNames('ml-1', className)}>
+    <div className={classNames('', className)}>
       <button
         id={toggleKey}
         disabled={disabled}
         type="button"
         className={classNames(
-          ' relative inline-flex h-4 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-hidden focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2',
+          'relative inline-flex h-3.5 w-9 shrink-0 cursor-pointer rounded-full border-1 border-transparent transition-all duration-200 ease-in-out focus:outline-hidden focus:ring-2 focus:ring-slate-400 focus:ring-offset-2',
           {
             'bg-slate-200 dark:bg-slate-700': !toggleState,
-            'bg-indigo-500': toggleState,
+            'bg-emerald-500 dark:bg-emerald-600 shadow-sm': toggleState,
           },
         )}
         role="switch"
@@ -44,9 +44,9 @@ const Toggle = ({
 
         <span
           className={classNames(
-            ' pointer-events-none relative inline-block h-3 w-3 transform rounded-full bg-white shadow-sm ring-0 transition duration-200 ease-in-out',
+            'ml-0.5 pointer-events-none relative inline-block h-3 w-3 transform rounded-full bg-white shadow-sm ring-0 transition-all duration-200 ease-in-out',
             {
-              'translate-x-5': toggleState,
+              'translate-x-5 shadow-md': toggleState,
               'translate-x-0': !toggleState,
             },
           )}
@@ -55,8 +55,8 @@ const Toggle = ({
             className={classNames(
               'absolute inset-0 flex h-full w-full items-center justify-center transition-opacity',
               {
-                'opacity-100 duration-200 ease-in': toggleState,
                 'opacity-0 duration-100 ease-out': toggleState,
+                'opacity-100 duration-200 ease-in': !toggleState,
               },
             )}
             aria-hidden="true"
@@ -87,7 +87,7 @@ const Toggle = ({
             aria-hidden="true"
           >
             <svg
-              className="h-3 w-3 text-indigo-600"
+              className="h-3 w-3 text-emerald-500"
               fill="currentColor"
               viewBox="0 0 12 12"
             >

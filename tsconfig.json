@@ -1,9 +1,15 @@
 {
   "compilerOptions": {
-    "typeRoots": ["src/gql/types"],
+    "typeRoots": [
+      "src/gql/types"
+    ],
     // "baseUrl": ".",
     "target": "ESNext",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -17,14 +23,22 @@
     "incremental": true,
     "noImplicitAny": false,
     "isolatedModules": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
-  "exclude": ["node_modules"],
+  "exclude": [
+    "node_modules"
+  ],
   "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
     "**/*.js",
     "**/*.jsx",
-   ]
+    "**/*.ts",
+    "**/*.tsx",
+    "next-env.d.ts",
+    ".next/types/**/*.ts"
+  ]
 }

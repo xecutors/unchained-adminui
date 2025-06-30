@@ -2,7 +2,7 @@ import {
   FlagIcon,
   HandThumbDownIcon,
   HandThumbUpIcon,
-} from '@heroicons/react/24/solid';
+} from '@heroicons/react/24/outline';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import classNames from 'classnames';
@@ -119,13 +119,12 @@ const ProductReviewsItem = ({
     <div
       key={review._id}
       className={classNames(
-        'mb-2 rounded-md px-3 pb-3 pt-1',
+        'mb-4 rounded-lg shadow-sm bg-white dark:bg-slate-800 p-4',
         {
-          'border-2 border-solid border-red-200': review.deleted,
+          'border-rose-200 bg-rose-50 dark:bg-rose-950': review.deleted,
         },
         {
-          'border-2 border-solid border-slate-200 dark:border-slate-800':
-            !review.deleted,
+          'border-slate-200 dark:border-slate-700': !review.deleted,
         },
       )}
     >
@@ -136,7 +135,7 @@ const ProductReviewsItem = ({
             alt={review?.author?.username}
             width={48}
             height={48}
-            className="h-12 w-12 rounded-full"
+            className="h-12 w-12 rounded-full aspect-square object-cover object-center"
           />
         ) : (
           <ImageWithFallback
@@ -144,11 +143,11 @@ const ProductReviewsItem = ({
             alt={review?.author?.username}
             width={48}
             height={48}
-            className="h-12 w-12 rounded-full"
+            className="h-12 w-12 rounded-full aspect-square object-cover object-center"
           />
         )}
-        <div className="ml-4 mr-auto">
-          <h4 className="text-sm font-bold text-slate-600">
+        <div className="ml-4 flex-1">
+          <h4 className="text-sm font-semibold text-slate-900 dark:text-slate-100">
             {showProduct
               ? product?.texts?.title || (
                   <>
@@ -164,7 +163,7 @@ const ProductReviewsItem = ({
                 )
               : formatUsername(review?.author)}
           </h4>
-          <p className="text-sm font-normal text-slate-400">
+          <p className="text-xs text-slate-500 dark:text-slate-400">
             <time dateTime={review.updated || review.created}>
               {formatDateTime(review.updated || review.created, {
                 dateStyle: 'short',
@@ -173,83 +172,111 @@ const ProductReviewsItem = ({
             </time>
           </p>
         </div>
-        <div className="flex items-center">
+        <div className="flex items-center gap-3">
           <button
             type="button"
             disabled={!canManageVotes}
             onClick={async () => toggleVote(voteTypes.UPVOTE)}
+            className={`flex items-center gap-1 px-2 py-1 rounded-md transition-colors disabled:opacity-50 ${
+              hasAlreadyVoted(voteTypes.UPVOTE)
+                ? 'bg-emerald-100 dark:bg-emerald-900 hover:bg-emerald-200 dark:hover:bg-emerald-800'
+                : 'hover:bg-slate-100 dark:hover:bg-slate-700'
+            }`}
           >
             <HandThumbUpIcon
-              className={`h-7 w-7
-            ${
-              hasAlreadyVoted(voteTypes.UPVOTE)
-                ? 'text-yellow-400'
-                : 'text-slate-400'
-            }`}
+              className={`h-5 w-5 ${
+                hasAlreadyVoted(voteTypes.UPVOTE)
+                  ? 'text-emerald-600 dark:text-emerald-400'
+                  : 'text-slate-400 dark:text-slate-500'
+              }`}
             />
-            <span className="mx-2 text-slate-600">{review.upVote}</span>
+            <span
+              className={`text-sm font-medium ${
+                hasAlreadyVoted(voteTypes.UPVOTE)
+                  ? 'text-emerald-700 dark:text-emerald-300'
+                  : 'text-slate-700 dark:text-slate-300'
+              }`}
+            >
+              {review.upVote}
+            </span>
           </button>
           <button
             type="button"
             disabled={!canManageVotes}
             onClick={async () => toggleVote(voteTypes.DOWNVOTE)}
+            className={`flex items-center gap-1 px-2 py-1 rounded-md transition-colors disabled:opacity-50 ${
+              hasAlreadyVoted(voteTypes.DOWNVOTE)
+                ? 'bg-rose-100 dark:bg-rose-900 hover:bg-rose-200 dark:hover:bg-rose-800'
+                : 'hover:bg-slate-100 dark:hover:bg-slate-700'
+            }`}
           >
             <HandThumbDownIcon
-              className={`h-7 w-7
-            ${
-              hasAlreadyVoted(voteTypes.DOWNVOTE)
-                ? 'text-yellow-400'
-                : 'text-slate-400'
-            }            
-          `}
+              className={`h-5 w-5 ${
+                hasAlreadyVoted(voteTypes.DOWNVOTE)
+                  ? 'text-rose-600 dark:text-rose-400'
+                  : 'text-slate-400 dark:text-slate-500'
+              }`}
             />
-            <span className="mx-2 text-slate-600 ">{review.downVote}</span>
+            <span
+              className={`text-sm font-medium ${
+                hasAlreadyVoted(voteTypes.DOWNVOTE)
+                  ? 'text-rose-700 dark:text-rose-300'
+                  : 'text-slate-700 dark:text-slate-300'
+              }`}
+            >
+              {review.downVote}
+            </span>
           </button>
         </div>
 
-        {canDeleteReview ? (
-          <DeleteButton
-            onClick={() => onRemove(review._id)}
-            className="ml-auto"
-          />
-        ) : null}
-        {review.deleted ? (
-          <Badge
-            text={formatMessage({
-              id: 'deleted_text',
-              defaultMessage: 'Deleted',
-            })}
-            color="red"
-            className="ml-auto p-1"
-          />
-        ) : null}
-        {hasRole('voteProductReview') && (
-          <Button
-            disabled={!canManageVotes}
-            text={
+        <div className="flex items-center gap-2 ml-4">
+          {hasRole('voteProductReview') && (
+            <button
+              type="button"
+              disabled={!canManageVotes}
+              onClick={async () => toggleVote(voteTypes.REPORT)}
+              className={`p-2 rounded-md transition-colors disabled:opacity-50 ${
+                hasAlreadyVoted(voteTypes.REPORT)
+                  ? 'bg-orange-100 dark:bg-orange-900 hover:bg-orange-200 dark:hover:bg-orange-800'
+                  : 'hover:bg-slate-100 dark:hover:bg-slate-700'
+              }`}
+              title="Report review"
+            >
               <FlagIcon
-                className={classNames(
-                  'h-5 w-5 border-slate-600  text-slate-400 border-3',
-                  {
-                    'text-yellow-400': hasAlreadyVoted(voteTypes.REPORT),
-                    'text-slate-400': !hasAlreadyVoted(voteTypes.REPORT),
-                    'hover:text-white': canManageVotes,
-                  },
-                )}
+                className={classNames('h-4 w-4', {
+                  'text-orange-600 dark:text-orange-400': hasAlreadyVoted(
+                    voteTypes.REPORT,
+                  ),
+                  'text-slate-400 dark:text-slate-500': !hasAlreadyVoted(
+                    voteTypes.REPORT,
+                  ),
+                })}
               />
-            }
-            onClick={async () => toggleVote(voteTypes.REPORT)}
-            className={classNames('p-0 bg-white', {
-              'hover:bg-slate-300': canManageVotes,
-              'hover:bg-white': !canManageVotes,
-            })}
-          />
-        )}
+            </button>
+          )}
+          {canDeleteReview && (
+            <DeleteButton onClick={() => onRemove(review._id)} className="" />
+          )}
+          {review.deleted && (
+            <Badge
+              text={formatMessage({
+                id: 'deleted_text',
+                defaultMessage: 'Deleted',
+              })}
+              color="red"
+              className="ml-2"
+            />
+          )}
+        </div>
       </div>
 
-      <div className="mt-4 space-y-2 text-base italic text-slate-600 dark:text-slate-600">
-        <h3 className="text-sm font-medium">{review.title}</h3>
-        <p>{review.review}</p>
+      <div className="mt-4 space-y-3">
+        <h3 className="text-base font-semibold text-slate-900 dark:text-slate-100">
+          {review.title}
+        </h3>
+        <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+          {review.review}
+        </p>
       </div>
     </div>
   );

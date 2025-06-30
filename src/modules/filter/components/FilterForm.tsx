@@ -32,7 +32,7 @@ const FilterForm = ({
     defaultMessage: 'Filter created successfully!',
   });
   const form = useForm({
-    submit: (val) => onSubmit({ ...val, locale: selectedLocale }),
+    submit: (val) => onSubmit({ ...val, locale: selectedLocale || 'de' }),
     onSubmitSuccess,
     successMessage,
     enableReinitialize: true,
@@ -146,7 +146,7 @@ const FilterForm = ({
                   <div className="shrink-0">
                     <button
                       type="button"
-                      className="items-right inline-flex rounded-sm border border-transparent bg-indigo-500 px-2 py-2 text-sm font-medium text-white shadow-xs hover:bg-indigo-700 focus:outline-hidden focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+                      className="items-right inline-flex rounded-sm border border-transparent bg-slate-800 px-2 py-2 text-sm font-medium text-white shadow-xs hover:bg-slate-950 focus:outline-hidden focus:ring-2 focus:ring-slate-800 focus:ring-offset-2"
                       onClick={() => push('')}
                     >
                       <svg
@@ -177,7 +177,7 @@ const FilterForm = ({
         </FieldArray>
       </div>
       <FormErrors />
-      <div className="space-y-6 bg-slate-50 dark:bg-slate-800 border-t-indigo-50 dark:border-t-slate-700 p-5 text-right">
+      <div className="space-y-6 bg-slate-50 dark:bg-slate-900 border-t-slate-100 dark:border-t-slate-700 p-5 text-right">
         <SubmitButton
           hidden={!hasRole('addFilter')}
           label={formatMessage({

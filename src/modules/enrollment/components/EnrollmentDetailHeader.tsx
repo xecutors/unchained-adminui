@@ -12,7 +12,7 @@ const EnrollmentDetailHeader = ({ enrollment }) => {
   return (
     <section>
       <DetailHeader user={enrollment?.user} contact={enrollment?.contact} />
-      <div className="mt-2 flex border-b border-slate-200 dark:border-slate-800 pb-2 text-sm">
+      <div className="mt-2 flex border-b border-slate-300 dark:border-slate-800 pb-2 text-sm">
         <dl className="flex flex-wrap items-center gap-1">
           <dt className="hidden capitalize text-slate-500 sm:block">
             {formatMessage({
@@ -25,7 +25,7 @@ const EnrollmentDetailHeader = ({ enrollment }) => {
             <span className="sm:hidden">&#35;&nbsp;</span>
             {enrollment?.enrollmentNumber ? (
               <Badge
-                color="indigo"
+                color="slate"
                 text={enrollment?.enrollmentNumber}
                 className="p-0 text-lg font-medium sm:text-xl sm:font-bold"
               />

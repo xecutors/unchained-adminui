@@ -30,16 +30,16 @@ const UserFilter: React.FC = () => {
 
   return (
     <>
-      <div className="mb-4 lg:flex lg:justify-between py-4">
-        <div className="flex-1  mr-4">
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+      <div className="mt-5 flex flex-wrap gap-10">
+        <div className="flex-1 min-w-[200px]">
+          <label className="block text-sm font-medium text-slate-700 dark:text-slate-500 mb-1">
             {formatMessage({
               id: 'email_verified_label',
               defaultMessage: 'E-Mail verified',
             })}
           </label>
           <select
-            className="w-full p-2 border rounded-lg"
+            className="w-full p-2 border-1 border-slate-300 rounded-lg dark:bg-slate-700 dark:border-slate-500 focus:ring-2 focus:ring-slate-800 dark:focus:ring-slate-400 focus:outline-hidden"
             defaultValue={router.query?.emailVerified || ''}
             onChange={(e) => updateQuery('emailVerified', e.target.value)}
           >
@@ -64,14 +64,14 @@ const UserFilter: React.FC = () => {
           </select>
         </div>
 
-        <div className="flex-1 ">
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+        <div className="flex-1">
+          <label className="block text-sm font-medium text-slate-700 dark:text-slate-500 mb-1">
             {formatMessage({
               id: 'login_date_range',
               defaultMessage: 'Login Date Range',
             })}
           </label>
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center flex-wrap md:flex-nowrap space-y-1 md:space-x-3">
             <label htmlFor="lastLoginStart" className="text-sm">
               {formatMessage({ id: 'from', defaultMessage: 'From' })}
             </label>
@@ -89,7 +89,7 @@ const UserFilter: React.FC = () => {
                   ? parseDate(router.query.start as string)
                   : null
               }
-              containerClassName="w-full  focus:outline-hidden focus:ring-indigo-400"
+              containerClassName="w-full  focus:outline-hidden focus:ring-slate-800"
             />
             <label htmlFor="lastLoginEnd" className="text-sm">
               {formatMessage({ id: 'to', defaultMessage: 'To' })}
@@ -106,7 +106,7 @@ const UserFilter: React.FC = () => {
               value={
                 router.query.end ? parseDate(router.query.end as string) : null
               }
-              containerClassName="w-full  focus:outline-hidden focus:ring-indigo-400"
+              containerClassName="w-full  focus:outline-hidden focus:ring-slate-800"
             />
           </div>
         </div>

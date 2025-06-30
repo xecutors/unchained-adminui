@@ -25,12 +25,12 @@ const ProductFilter = () => {
   };
 
   return (
-    <div className="mt-4 grid grid-cols-6 gap-6">
-      <div className="col-span-6 sm:col-span-3">
+    <div className="mt-5 grid grid-cols-6 gap-6">
+      <div className="col-span-6 sm:col-span-4 lg:col-span-3 xl:col-span-2">
         <TagInput
           buttonText={formatMessage({
-            id: 'add',
-            defaultMessage: 'Add',
+            id: 'apply',
+            defaultMessage: 'Apply',
           })}
           tagList={(router?.query?.tags as string)?.split(',')}
           onChange={handleOnChange}

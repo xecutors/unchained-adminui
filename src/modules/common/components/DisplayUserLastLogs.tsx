@@ -7,10 +7,12 @@ import {
 
 const KeyValueRow = ({ label, value }) => (
   <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
-    <label className="text-sm font-medium text-gray-600 mb-1 md:mb-0 md:mr-4">
+    <label className="text-sm text-slate-600 dark:text-slate-400 mb-1 md:mb-0 md:mr-4">
       {label}
     </label>
-    <span className="text-sm text-left text-gray-900">{value}</span>
+    <span className="text-sm text-right text-slate-900 dark:text-slate-200">
+      {value}
+    </span>
   </div>
 );
 
@@ -20,7 +22,7 @@ const LoginInfo = ({ loginData }) => {
 
   if (!loginData) return null;
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden mt-4 p-4">
+    <div className="bg-white dark:bg-slate-800 rounded-lg shadow-sm overflow-hidden mt-4 p-4">
       <KeyValueRow
         label={formatMessage({ id: 'country', defaultMessage: 'Country' })}
         value={
@@ -72,7 +74,7 @@ const BillingAddressInfo = ({
   const { formatMessage, locale } = useIntl();
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden mt-4 p-4">
+    <div className="bg-white dark:bg-slate-800 rounded-lg shadow-sm overflow-hidden mt-4 p-4">
       <KeyValueRow
         label={formatMessage({ id: 'fullName', defaultMessage: 'FullName' })}
         value={`${firstName || ''} ${lastName || ''}`}
@@ -113,7 +115,7 @@ const BillingAddressInfo = ({
 };
 
 const DisplayUserLastLogs = ({ lastBillingAddress, lastLogin }) => (
-  <div className="container mx-auto p-4">
+  <div>
     <div className="row">
       <LoginInfo loginData={lastLogin} />
     </div>

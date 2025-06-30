@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import UserList from '../../modules/accounts/components/UserList';
 import useUsers from '../../modules/accounts/hooks/useUsers';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
-import Pagination from '../../modules/common/components/Pagination';
+import InfiniteScroll from '../../modules/common/components/InfiniteScroll';
 import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
 import SearchField from '../../modules/common/components/SearchField';
@@ -12,6 +12,7 @@ import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 import ListHeader from '../../modules/common/components/ListHeader';
 import UserFilter from '../../modules/accounts/components/UserFilter';
 import NoData from '../../modules/common/components/NoData';
+import SearchWithTags from '../../modules/common/components/SearchWithTags';
 import UserDetailPage from './UserDetailPage';
 
 const Users = () => {
@@ -51,7 +52,7 @@ const Users = () => {
     end: query?.end as string,
   };
 
-  const { users, usersCount, loading, loadMore } = useUsers({
+  const { users, usersCount, loading, loadMore, hasMore } = useUsers({
     limit,
     includeGuests,
     queryString: queryString as string,
@@ -68,20 +69,21 @@ const Users = () => {
   return (
     <div className="mb-10">
       <BreadCrumbs />
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between">
-        <PageHeader
-          headerText={formatMessage({
-            id: 'users_list_header',
-            defaultMessage: 'Users',
-          })}
-        />
-        <SearchField
-          defaultValue={queryString}
-          onInputChange={setQueryString}
-        />
-      </div>
+      <PageHeader
+        headerText={formatMessage(
+          (usersCount ?? 0) === 1
+            ? { id: 'user_count_header_singular', defaultMessage: '1 User' }
+            : { id: 'users_count_header', defaultMessage: '{count} Users' },
+          { count: usersCount ?? 0 },
+        )}
+        addPath="/users/new"
+        addButtonText={formatMessage({
+          id: 'add_user',
+          defaultMessage: 'Add User',
+        })}
+      />
       <UserFilter />
-      <ListHeader addPath="/users/new" totalRecords={usersCount}>
+      <ListHeader>
         <Toggle
           toggleKey="includeGuests"
           toggleText={formatMessage({
@@ -91,18 +93,30 @@ const Users = () => {
         />
       </ListHeader>
 
-      <div className="my-3 shadow-sm">
-        {loading ? <Loading /> : <UserList users={users} />}
-        {!loading && !users?.length && (
-          <NoData
-            message={formatMessage({
-              id: 'user',
-              defaultMessage: 'User',
-            })}
-          />
-        )}
-      </div>
-      <Pagination data={users} total={usersCount} onLoadMore={loadMore} />
+      <SearchWithTags
+        onSearchChange={setQueryString}
+        defaultSearchValue={queryString}
+      >
+        <InfiniteScroll
+          loading={loading}
+          hasMore={hasMore}
+          onLoadMore={loadMore}
+        >
+          {loading && users?.length === 0 ? (
+            <Loading />
+          ) : (
+            <UserList users={users} />
+          )}
+          {!loading && !users?.length && (
+            <NoData
+              message={formatMessage({
+                id: 'user',
+                defaultMessage: 'User',
+              })}
+            />
+          )}
+        </InfiniteScroll>
+      </SearchWithTags>
     </div>
   );
 };

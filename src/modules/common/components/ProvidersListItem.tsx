@@ -45,7 +45,7 @@ const ProviderListItem = ({
       </Table.Cell>
       {(canEdit || canDelete) && (
         <Table.Cell>
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1 justify-between flex-wrap">
             {canEdit && (
               <Link href={`${providerPath}=${provider?._id}`}>
                 <EditIcon />

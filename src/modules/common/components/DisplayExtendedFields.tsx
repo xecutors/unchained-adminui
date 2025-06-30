@@ -43,7 +43,7 @@ const DisplayData = ({ value }) => {
   if (isURL(value)) {
     if (isImageURL(value)) {
       return (
-        <div className="ring-2 ring-offset-2 ring-indigo-500 group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 overflow-hidden">
+        <div className="ring-2 ring-offset-2 ring-slate-900 group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-slate-50 overflow-hidden">
           <ImageWithFallback
             src={value}
             className="relative h-10 w-10 rounded-full"
@@ -62,7 +62,7 @@ const DisplayData = ({ value }) => {
       <div className="ml-4 shrink-0">
         <a
           href={value}
-          className="font-medium text-blue-600 hover:text-blue-500"
+          className="font-medium text-slate-900 hover:text-slate-800"
           target="_blank"
           rel="noreferrer"
         >
@@ -85,7 +85,7 @@ const DisplayData = ({ value }) => {
 const DisplayLabel = ({ value }) => {
   return (
     <h3 className="text-base font-medium">
-      <span className="text-gray-900">{value}</span>
+      <span className="text-slate-900">{value}</span>
     </h3>
   );
 };
@@ -112,7 +112,7 @@ const DisplayExtendedFields = (props) => {
             {value?.map((item) => (
               <span
                 key={item}
-                className="inline-flex items-center rounded-md bg-gray-100 px-2.5 py-0.5 text-sm font-medium text-gray-800 ml-2"
+                className="inline-flex items-center rounded-md bg-slate-50 px-2.5 py-0.5 text-sm font-medium text-slate-800 ml-2"
               >
                 <DisplayData value={item} />
               </span>

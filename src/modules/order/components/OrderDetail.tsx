@@ -101,7 +101,7 @@ const OrderDetail = ({ order }) => {
             id="confirm_order"
             onClick={onConfirmOrder}
             type="button"
-            className="bg-white-300 relative -ml-px inline-flex items-center space-x-2 rounded-md border border-indigo-500 bg-indigo-500 px-2 py-1 text-sm font-medium text-white hover:bg-indigo-700 focus:border-indigo-400 focus:outline-hidden focus:ring-0 focus:ring-indigo-400"
+            className="bg-white-300 relative -ml-px inline-flex items-center space-x-2 rounded-md border border-slate-900 dark:border-slate-600 bg-slate-800 dark:bg-slate-600 px-2 py-1 text-sm font-medium text-white hover:bg-slate-950 dark:hover:bg-slate-500  dark:focus:border-slate-400 focus:outline-hidden focus:ring-0 focus:ring-slate-800 dark:focus:ring-slate-400"
           >
             {formatMessage({
               id: 'confirm_order',
@@ -112,7 +112,7 @@ const OrderDetail = ({ order }) => {
             id="reject_order"
             onClick={onRejectOrder}
             type="button"
-            className="bg-white-300 relative -ml-px inline-flex items-center space-x-2 rounded-md border border-red-500 bg-red-500 px-2 py-1 text-sm font-medium text-white hover:bg-red-700 focus:border-red-400 focus:outline-hidden focus:ring-0 focus:ring-red-400"
+            className="bg-white-300 relative -ml-px inline-flex items-center space-x-2 rounded-md border border-rose-500 bg-rose-500 px-2 py-1 text-sm font-medium text-white hover:bg-rose-700 focus:border-rose-400 focus:outline-hidden focus:ring-0 focus:ring-rose-400"
           >
             {formatMessage({
               id: 'reject_order',

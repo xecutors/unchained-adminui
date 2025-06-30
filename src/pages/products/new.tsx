@@ -42,15 +42,25 @@ const AddProduct = () => {
           defaultMessage: 'New product',
         })}
       />
-      <div className="mt-6 lg:grid lg:grid-cols-3">
-        <div className="lg:col-span-1 space-y-2">
+      <div className="mt-6 lg:grid lg:grid-cols-3 gap-10">
+        <div className="lg:col-span-2">
+          <FormWrapper>
+            <LocaleWrapper>
+              <ProductForm
+                onSubmit={onSubmit}
+                onSubmitSuccess={onSubmitSuccess}
+              />
+            </LocaleWrapper>
+          </FormWrapper>
+        </div>
+        <div className="mt-10 lg:mt-14 lg:col-span-1 space-y-2">
           <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-slate-200">
             {formatMessage({
               id: 'product_type',
               defaultMessage: 'Product type',
             })}
           </h3>
-          <div className="text-sm divide-y divide-slate-200 dark:divide-slate-800 dark:text-slate-400 mr-4">
+          <div className="text-sm divide-y divide-slate-200 dark:divide-slate-800 dark:text-slate-400 lg:mr-10">
             <div className="my-2 py-2">
               <FormattedMessage
                 id="simple_product_definition"
@@ -94,17 +104,6 @@ const AddProduct = () => {
               />
             </div>
           </div>
-        </div>
-
-        <div className="lg:col-span-2">
-          <FormWrapper>
-            <LocaleWrapper>
-              <ProductForm
-                onSubmit={onSubmit}
-                onSubmitSuccess={onSubmitSuccess}
-              />
-            </LocaleWrapper>
-          </FormWrapper>
         </div>
       </div>
     </>

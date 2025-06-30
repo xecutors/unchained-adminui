@@ -21,11 +21,11 @@ const EventDetail = ({ event }) => {
       <JSONView
         disabled
         value={JSON.stringify(event.payload, null, 2)}
-        className="bg-white dark:bg-slate-900 dark:text-slate-200 mt-1 block w-full max-w-full rounded-md border-2 resize-none border-slate-200 dark:border-slate-800 shadow-xs sm:text-sm"
+        className="bg-white dark:bg-slate-900 dark:text-slate-200 mt-1 block w-full max-w-full rounded-md border-1 resize-none border-slate-300 dark:border-slate-800 shadow-xs sm:text-sm"
       />
     ) : (
       <NoData
-        className="bg-white dark:bg-slate-900 rounded-lg capitalize border border-slate-200 dark:border-slate-800 shadow-md"
+        className="bg-white dark:bg-slate-900 rounded-lg capitalize border border-slate-300 dark:border-slate-800"
         message={formatMessage({
           id: `no_payload`,
           defaultMessage: 'Payload',
@@ -35,12 +35,11 @@ const EventDetail = ({ event }) => {
   };
 
   const headerCSS =
-    'inline-flex items-center justify-between w-full px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-800 shadow-md text-sm font-medium text-slate-700 hover:bg-slate-50 focus:z-10 focus:outline-hidden focus:ring-1 focus:ring-indigo-400 focus:border-indigo-400 ';
+    'inline-flex items-center justify-between w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-800 shadow-md text-sm font-medium text-slate-700 hover:bg-slate-50 focus:z-10 focus:outline-hidden focus:ring-2 focus:ring-slate-800  ';
 
   return (
     <>
-      <div className="mb-5 w-full border-t border-slate-300 dark:border-slate-700" />
-      <div className="rounded-lg border border-slate-200 dark:border-slate-800 p-4 shadow-md sm:p-6 lg:p-8">
+      <div className="mt-5 rounded-lg border border-slate-300 dark:border-slate-800 p-4 shadow-sm sm:p-6 lg:p-8">
         <div className="flex justify-between ">
           <div className="my-1 pb-1 text-sm  font-bold">
             {formatMessage({
@@ -48,7 +47,7 @@ const EventDetail = ({ event }) => {
               defaultMessage: 'Type:',
             })}
             <span className="ml-2">
-              <Badge text={event.type} square className="p-2" color="indigo" />
+              <Badge text={event.type} square className="p-2" color="slate" />
             </span>
           </div>
           <div className="my-1 pb-1 font-mono text-lg">

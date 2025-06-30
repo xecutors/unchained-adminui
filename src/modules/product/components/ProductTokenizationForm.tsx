@@ -70,7 +70,7 @@ const ProductTokenizationForm = ({ productId }) => {
         id: 'texts',
         defaultMessage: 'Texts',
       })}
-      className="mt-2 sm:mt-0"
+      className="mt-2 lg:mt-5"
       documentation={
         <FormattedMessage
           id="tokenized_product_text_form_description"
@@ -122,7 +122,7 @@ const ProductTokenizationForm = ({ productId }) => {
                 defaultMessage: 'Contract Address',
               })}
               required
-              className="block w-full max-w-full rounded-md border-slate-200 dark:border-slate-800 text-sm focus:border-indigo-400 focus:ring-indigo-400 sm:text-sm"
+              className="block w-full max-w-full rounded-md border-slate-300 dark:border-slate-800 text-sm  focus:ring-slate-800 sm:text-sm"
             />
             <TextField
               name="supply"
@@ -137,7 +137,7 @@ const ProductTokenizationForm = ({ productId }) => {
                 defaultMessage: 'Supply',
               })}
               required
-              className="block w-full max-w-full rounded-md border-slate-200 dark:border-slate-800 text-sm focus:border-indigo-400 focus:ring-indigo-400 sm:text-sm"
+              className="block w-full max-w-full rounded-md border-slate-300 dark:border-slate-800 text-sm  focus:ring-slate-800 sm:text-sm"
             />
             <TextField
               name="tokenId"
@@ -150,11 +150,11 @@ const ProductTokenizationForm = ({ productId }) => {
                 id: 'token-id-label',
                 defaultMessage: 'Token ID',
               })}
-              className="block w-full max-w-full rounded-md border-slate-200 dark:border-slate-800 text-sm focus:border-indigo-400 focus:ring-indigo-400 sm:text-sm"
+              className="block w-full max-w-full rounded-md border-slate-300 dark:border-slate-800 text-sm  focus:ring-slate-800 sm:text-sm"
             />
           </div>
 
-          <div className="space-y-6 border-t border-t-indigo-50 dark:border-t-slate-700 bg-slate-50 dark:bg-slate-800 p-5 text-right">
+          <div className="space-y-6 border-t border-t-slate-100 dark:border-t-slate-700 bg-slate-50 dark:bg-slate-900 p-5 text-right">
             <SubmitButton
               hidden={!hasRole('editProduct')}
               label={formatMessage({

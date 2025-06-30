@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
-import Pagination from '../../modules/common/components/Pagination';
+import InfiniteScroll from '../../modules/common/components/InfiniteScroll';
 import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
 import WorkFilter from '../../modules/work/components/WorkFilter';
@@ -17,6 +17,7 @@ import {
   normalizeQuery,
 } from '../../modules/common/utils/utils';
 import { ISortOptionInput, IWorkStatus, IWorkType } from '../../gql/types';
+import SearchWithTags from '../../modules/common/components/SearchWithTags';
 import WorkDetailPage from './WorkDetailPage';
 
 const WorkQueueView = () => {
@@ -52,15 +53,14 @@ const WorkQueueView = () => {
   };
   const sortKeys = convertSortFieldsToQueryFormat(sort);
 
-  const { workQueue, loadMore, loading, activeWorkTypes, total } = useWorkQueue(
-    {
+  const { workQueue, loadMore, loading, activeWorkTypes, total, hasMore } =
+    useWorkQueue({
       queryString: queryString as string,
       limit,
       ...filter,
       sort: sortKeys as ISortOptionInput[],
       offset,
-    },
-  );
+    });
 
   if (workerId) return <WorkDetailPage workerId={workerId} />;
   return (
@@ -72,34 +72,47 @@ const WorkQueueView = () => {
           defaultMessage: 'Work queue',
         })}
       />
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between">
-        <PageHeader
-          headerText={formatMessage({
-            id: 'work_queue_header',
-            defaultMessage: 'Work queue',
-          })}
-        />
-        <SearchField
-          defaultValue={queryString}
-          onInputChange={setQueryString}
-        />
-      </div>
+      <PageHeader
+        headerText={formatMessage(
+          (total ?? 0) === 1
+            ? {
+                id: 'work_item_count_header_singular',
+                defaultMessage: '1 Work Item',
+              }
+            : {
+                id: 'work_queue_count_header',
+                defaultMessage: '{count} Work Items',
+              },
+          { count: total ?? 0 },
+        )}
+        addPath={
+          (hasRole('allocateWork') || hasRole('addWork')) && '/works/management'
+        }
+        addButtonText={formatMessage({
+          id: 'manage',
+          defaultMessage: 'Manage',
+        })}
+      />
       <WorkFilter workTypes={activeWorkTypes} />
-      <div className="min-w-full overflow-x-auto">
-        <ListHeader
-          addPath={
-            (hasRole('allocateWork') || hasRole('addWork')) &&
-            '/works/management'
-          }
-          totalRecords={total}
-          addButtonText={formatMessage({
-            id: 'manage',
-            defaultMessage: 'Manage',
-          })}
-        />
+      <div className="min-w-full overflow-x-auto px-1">
+        <ListHeader />
 
-        {loading ? <Loading /> : <WorkList workQueue={workQueue} sortable />}
-        <Pagination total={total} data={workQueue} onLoadMore={loadMore} />
+        <SearchWithTags
+          onSearchChange={setQueryString}
+          defaultSearchValue={queryString}
+        >
+          <InfiniteScroll
+            loading={loading}
+            hasMore={hasMore}
+            onLoadMore={loadMore}
+          >
+            {loading && workQueue?.length === 0 ? (
+              <Loading />
+            ) : (
+              <WorkList workQueue={workQueue} sortable />
+            )}
+          </InfiniteScroll>
+        </SearchWithTags>
       </div>
     </>
   );

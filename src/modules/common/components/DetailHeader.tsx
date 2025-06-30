@@ -3,7 +3,7 @@ import {
   CheckCircleIcon,
   XCircleIcon,
   DevicePhoneMobileIcon,
-} from '@heroicons/react/24/solid';
+} from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import formatUsername from '../utils/formatUsername';
 import ImageWithFallback from './ImageWithFallback';
@@ -52,7 +52,7 @@ const DetailHeader = ({ user, contact }) => {
             <h3 className="ml-3 text-xl font-bold capitalize">
               <Link
                 href={`/users?userId=${user?._id}`}
-                className="text-blue-500 dark:text-blue-400 hover:text-blue-600 dark:hover:text-blue-300"
+                className="text-slate-800 dark:text-slate-700 hover:text-slate-900 dark:hover:text-slate-600"
               >
                 {formatUsername(user)}
               </Link>
@@ -68,12 +68,12 @@ const DetailHeader = ({ user, contact }) => {
                 <dd className="mt-3 flex items-center self-end text-sm font-medium capitalize text-slate-500 sm:mr-6 sm:mt-0">
                   {user?.primaryEmail?.verified ? (
                     <CheckCircleIcon
-                      className="mb-1.5 h-4 w-4 shrink-0 text-green-400"
+                      className="mb-1.5 h-4 w-4 shrink-0 text-emerald-400"
                       aria-hidden="true"
                     />
                   ) : (
                     <XCircleIcon
-                      className="mb-1.5 h-4 w-4 shrink-0 text-red-400"
+                      className="mb-1.5 h-4 w-4 shrink-0 text-rose-400"
                       aria-hidden="true"
                     />
                   )}

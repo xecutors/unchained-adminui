@@ -82,13 +82,13 @@ const SupplyForm = ({ productId }) => {
         id: 'supply',
         defaultMessage: 'Supply',
       })}
-      className="mt-2 sm:mt-0"
+      className="mt-2 lg:mt-5"
       documentation={
         <FormattedMessage
           id="product_supply_form_description"
           defaultMessage="<ul><li> Information that will be used to identify dimensions of a product  </li> </ul>"
           values={{
-            ul: (chunk) => <ul className="list-disc list-inside">{chunk} </ul>,
+            ul: (chunk) => <ul className="space-y-1">{chunk} </ul>,
             li: (chunk) => <li>{chunk} </li>,
           }}
         />
@@ -108,7 +108,7 @@ const SupplyForm = ({ productId }) => {
                     id: 'weight_gram',
                     defaultMessage: 'Weight (Gram)',
                   })}
-                  className="text-sm font-medium"
+                  className="text-sm"
                 />
               </div>
               <div className="col-span-6 sm:col-span-3">
@@ -121,7 +121,7 @@ const SupplyForm = ({ productId }) => {
                     id: 'length_millimeter',
                     defaultMessage: 'Length (Millimeter)',
                   })}
-                  className="text-sm font-medium"
+                  className="text-sm"
                 />
               </div>
               <div className="col-span-6 sm:col-span-3">
@@ -134,7 +134,7 @@ const SupplyForm = ({ productId }) => {
                     id: 'width',
                     defaultMessage: 'Width (Millimeter)',
                   })}
-                  className="text-sm  font-medium"
+                  className="text-sm "
                 />
               </div>
               <div className="col-span-6 sm:col-span-3">
@@ -147,12 +147,12 @@ const SupplyForm = ({ productId }) => {
                     id: 'height',
                     defaultMessage: 'Height (Millimeter)',
                   })}
-                  className="text-sm  font-medium"
+                  className="text-sm "
                 />
               </div>
             </div>
           </div>
-          <div className="border-t-indigo-50 border-t dark:border-t-slate-700 space-y-6 bg-slate-50 dark:bg-slate-800 text-right sm:p-6">
+          <div className="border-t-slate-100 border-t dark:border-t-slate-700 space-y-6 bg-slate-50 dark:bg-slate-900 text-right sm:p-6">
             <SubmitButton
               hidden={!hasRole('editProductSupply')}
               label={formatMessage({

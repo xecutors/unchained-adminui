@@ -13,6 +13,7 @@ import FormErrors from '../../forms/components/FormErrors';
 import SelectField from '../../forms/components/SelectField';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
+import Button from '../../common/components/Button';
 import useForm, { OnSubmitType } from '../../forms/hooks/useForm';
 import {
   validateProductCommerce,
@@ -76,28 +77,11 @@ const CommerceForm = ({ productId }) => {
   const { values } = form.formik;
   const { pricing } = values;
   return (
-    <div className="flex flex-col ">
-      <div className="md:col-span-1">
-        <div className="px-4 sm:px-0">
-          <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-slate-200">
-            {formatMessage({
-              id: 'texts',
-              defaultMessage: 'Texts',
-            })}
-          </h3>
-          <p className="mt-1 text-sm text-slate-600 dark:text-slate-200">
-            {formatMessage({
-              id: 'product_commerce_info',
-              defaultMessage:
-                'One price list should have a max quantity field empty and no price should have the same max quantity along with currency and country specified',
-            })}
-          </p>
-        </div>
-      </div>
+    <div>
       <div className="mt-5 md:col-span-3 lg:mt-0">
         <FormWrapper>
           <Form className="mt-3 rounded-md" form={form}>
-            <div className="relative max-w-full p-3 sm:p-5">
+            <div className="relative max-w-full p-3 sm:px-5">
               <div className="max-w-full justify-between align-baseline" />
 
               <label className="sr-only flex w-full font-sans text-sm text-black dark:text-slate-200 lg:not-sr-only">
@@ -152,7 +136,7 @@ const CommerceForm = ({ productId }) => {
                       return (
                         <div
                           key={index}
-                          className="relative max-w-full border-b py-3 align-baseline lg:flex"
+                          className="relative max-w-full border-b dark:border-slate-700 py-3 align-baseline lg:flex"
                         >
                           <div className="flex w-full gap-x-2">
                             <TextField
@@ -170,10 +154,6 @@ const CommerceForm = ({ productId }) => {
                                 id: 'max_quantity',
                                 defaultMessage: 'Max Quantity',
                               })}
-                              placeholder={formatMessage({
-                                id: 'max_quantity',
-                                defaultMessage: 'Max Quantity',
-                              })}
                             />
                             <TextField
                               type="number"
@@ -185,10 +165,6 @@ const CommerceForm = ({ productId }) => {
                               label={formatMessage({
                                 id: 'price',
                                 defaultMessage: 'Price  ',
-                              })}
-                              placeholder={formatMessage({
-                                id: 'price',
-                                defaultMessage: 'Price',
                               })}
                             />
                           </div>
@@ -202,7 +178,7 @@ const CommerceForm = ({ productId }) => {
                                   id: 'vat_suspect',
                                   defaultMessage: 'Vat Suspect',
                                 })}
-                                className="mr-2 h-4 w-4 rounded-sm border-slate-300 text-indigo-600 focus:ring-indigo-400 lg:items-center"
+                                className="mr-2 h-4 w-4 rounded-sm border-slate-300 dark:border-slate-600 bg-white dark:!bg-slate-800 text-slate-950 focus:ring-slate-800 lg:items-center"
                                 type="checkbox"
                               />
                             </div>
@@ -216,7 +192,7 @@ const CommerceForm = ({ productId }) => {
                                   defaultMessage: 'Net Price',
                                 })}
                                 hideLabel
-                                className="mr-2 h-4 w-4 justify-between rounded-sm border-slate-300 text-indigo-600 focus:ring-indigo-400 lg:items-center"
+                                className="mr-2 h-4 w-4 justify-between rounded-sm border-slate-300 dark:border-slate-600 bg-white dark:!bg-slate-800 text-slate-950 focus:ring-slate-800 lg:items-center"
                                 type="checkbox"
                               />
                             </div>
@@ -266,7 +242,7 @@ const CommerceForm = ({ productId }) => {
 
                           <div className="absolute top-0 right-0 mt-0 mr-0 shrink-0  pb-1 md:mr-0 lg:mt-6 lg:py-0 lg:px-0 ">
                             <button
-                              className="items-center rounded-full bg-white px-1 py-1 text-sm text-red-500 hover:bg-red-50 focus:outline-hidden focus:ring-0 focus:ring-red-500 focus:ring-offset-2"
+                              className="items-center rounded-full bg-white dark:bg-slate-900 px-1 py-1 text-sm text-rose-500 dark:text-rose-400 hover:bg-rose-50 focus:outline-hidden focus:ring-0 focus:ring-rose-500 focus:ring-offset-2"
                               type="button"
                               onClick={() => removeConfig(index)}
                             >
@@ -289,47 +265,31 @@ const CommerceForm = ({ productId }) => {
                         </div>
                       );
                     })}
-                    <div className="mt-2 flex flex-wrap items-center justify-between sm:flex-nowrap">
-                      <div className=" " />
-                      <div className="mt-2 shrink-0">
-                        <div className="shrink-0">
-                          <button
-                            type="button"
-                            className="items-right inline-flex rounded-full border border-transparent bg-indigo-500 px-2 py-2 text-sm font-medium text-white shadow-xs hover:bg-indigo-700 focus:outline-hidden focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
-                            onClick={() =>
-                              push({
-                                maxQuantity: '',
-                                amount: null,
-                                isTaxable: false,
-                                isNetPrice: false,
-                                currencyCode: defaultCurrencyValue,
-                                countryCode: defaultCountryValue,
-                              })
-                            }
-                          >
-                            <svg
-                              className="h-4 w-4"
-                              xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 0 20 20"
-                              fill="currentColor"
-                              aria-hidden="true"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
-                          </button>
-                        </div>
-                      </div>
+                    <div className="mt-6 shrink-0">
+                      <Button
+                        variant="tertiary"
+                        text={formatMessage({
+                          id: 'add_price_row',
+                          defaultMessage: 'Add Price Row',
+                        })}
+                        onClick={() =>
+                          push({
+                            maxQuantity: '',
+                            amount: null,
+                            isTaxable: false,
+                            isNetPrice: false,
+                            currencyCode: defaultCurrencyValue,
+                            countryCode: defaultCountryValue,
+                          })
+                        }
+                      />
                     </div>
                   </div>
                 )}
               </FieldArray>
             </div>
             <FormErrors displayFieldErrors />
-            <div className="border-t-indigo-50 border-t dark:border-slate-700 space-y-6 bg-slate-50 dark:bg-slate-800 px-5 py-6 text-right">
+            <div className="mx-6 mb-6 text-right">
               <SubmitButton
                 hidden={!hasRole('editProductCommerce')}
                 label={formatMessage({
@@ -340,6 +300,13 @@ const CommerceForm = ({ productId }) => {
             </div>
           </Form>
         </FormWrapper>
+        <p className="mt-6 mb-10 text-sm text-slate-600 dark:text-slate-400">
+          {formatMessage({
+            id: 'product_commerce_info',
+            defaultMessage:
+              'One price list should have a max quantity field empty and no price should have the same max quantity along with currency and country specified',
+          })}
+        </p>
       </div>
     </div>
   );

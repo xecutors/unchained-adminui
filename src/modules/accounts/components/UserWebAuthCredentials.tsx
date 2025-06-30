@@ -69,7 +69,7 @@ const UserWebAuthCredentials = ({ userId }) => {
   return (
     <>
       <div>
-        <ul className="border-slate-200 divide-slate-200">
+        <ul className="border-slate-300 divide-slate-200">
           {webAuthnCredentials?.map((credential) => (
             <RegisteredWebAuthItem
               md5Metadata={credential?.mdsMetadata}
@@ -87,9 +87,9 @@ const UserWebAuthCredentials = ({ userId }) => {
         type="button"
         disabled={userId !== currentUser?._id}
         className={classNames(
-          'inline-flex cursor-pointer ml-4 justify-center rounded-md border border-transparent px-4 py-2 text-center text-sm font-medium leading-5 text-white shadow-xs focus:ring-indigo-400 bg-indigo-500 hover:bg-indigo-700 focus:outline-hidden focus:ring-2 focus:ring-offset-2',
+          'inline-flex cursor-pointer ml-4 justify-center rounded-md border border-transparent px-4 py-2 text-center text-sm font-medium leading-5 text-white shadow-xs focus:ring-slate-800 bg-slate-800 hover:bg-slate-950 focus:outline-hidden focus:ring-2 focus:ring-offset-2',
           {
-            'focus:ring-indigo-200 bg-indigo-300 hover:bg-indigo-200':
+            'focus:ring-slate-300 bg-slate-400 hover:bg-slate-300':
               userId !== currentUser?._id,
           },
         )}

@@ -5,20 +5,20 @@ import useLanguages from '../../modules/language/hooks/useLanguages';
 import LanguageList from '../../modules/language/components/LanguageList';
 import useRemoveLanguage from '../../modules/language/hooks/useRemoveLanguage';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
-import PageHeaders from '../../modules/common/components/PageHeader';
+import PageHeader from '../../modules/common/components/PageHeader';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
 import Toggle from '../../modules/common/components/Toggle';
-import Pagination from '../../modules/common/components/Pagination';
+import InfiniteScroll from '../../modules/common/components/InfiniteScroll';
 import useModal from '../../modules/modal/hooks/useModal';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import Loading from '../../modules/common/components/Loading';
 import useAuth from '../../modules/Auth/useAuth';
-import SearchField from '../../modules/common/components/SearchField';
 import {
   convertSortFieldsToQueryFormat,
   normalizeQuery,
 } from '../../modules/common/utils/utils';
+import SearchWithTags from '../../modules/common/components/SearchWithTags';
 import LanguageDetailPage from './LanguageDetailPage';
 
 const Languages = () => {
@@ -47,13 +47,14 @@ const Languages = () => {
 
   const sortKeys = convertSortFieldsToQueryFormat(sort);
 
-  const { languages, languagesCount, loading, loadMore } = useLanguages({
-    queryString: queryString as string,
-    limit,
-    includeInactive,
-    offset,
-    sort: sortKeys,
-  });
+  const { languages, languagesCount, loading, loadMore, hasMore } =
+    useLanguages({
+      queryString: queryString as string,
+      limit,
+      includeInactive,
+      offset,
+      sort: sortKeys,
+    });
 
   const { setModal } = useModal();
   const { removeLanguage } = useRemoveLanguage();
@@ -89,24 +90,28 @@ const Languages = () => {
   return (
     <>
       <BreadCrumbs />
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between">
-        <PageHeaders
-          headerText={formatMessage({
-            id: 'language_header',
-            defaultMessage: 'Languages',
-          })}
-        />
-        <SearchField
-          defaultValue={queryString}
-          onInputChange={setQueryString}
-        />
-      </div>
+      <PageHeader
+        headerText={formatMessage(
+          (languagesCount ?? 0) === 1
+            ? {
+                id: 'language_count_header_singular',
+                defaultMessage: '1 Language',
+              }
+            : {
+                id: 'languages_count_header',
+                defaultMessage: '{count} Languages',
+              },
+          { count: languagesCount ?? 0 },
+        )}
+        addPath={hasRole('addLanguage') && '/language/new'}
+        addButtonText={formatMessage({
+          id: 'add_language',
+          defaultMessage: 'Add Language',
+        })}
+      />
 
-      <div className="min-w-full overflow-x-auto">
-        <ListHeader
-          addPath={hasRole('addLanguage') && '/language/new'}
-          totalRecords={languagesCount}
-        >
+      <div className="min-w-full overflow-x-auto px-1">
+        <ListHeader>
           <Toggle
             toggleText={formatMessage({
               id: 'show_inactive',
@@ -116,20 +121,26 @@ const Languages = () => {
             active={includeInactive}
           />
         </ListHeader>
-        {loading ? (
-          <Loading />
-        ) : (
-          <LanguageList
-            sortable
-            languages={languages}
-            onRemoveLanguage={onRemoveLanguage}
-          />
-        )}
-        <Pagination
-          data={languages}
-          total={languagesCount}
-          onLoadMore={loadMore}
-        />
+        <SearchWithTags
+          onSearchChange={setQueryString}
+          defaultSearchValue={queryString}
+        >
+          <InfiniteScroll
+            loading={loading}
+            hasMore={hasMore}
+            onLoadMore={loadMore}
+          >
+            {loading && languages?.length === 0 ? (
+              <Loading />
+            ) : (
+              <LanguageList
+                sortable
+                languages={languages}
+                onRemoveLanguage={onRemoveLanguage}
+              />
+            )}
+          </InfiniteScroll>
+        </SearchWithTags>
       </div>
     </>
   );

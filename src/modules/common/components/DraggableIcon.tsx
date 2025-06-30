@@ -2,7 +2,7 @@ const DraggableIcon = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
+      className="h-6 w-4 text-slate-900 group-hover:text-slate-800 dark:text-slate-500 dark:group-hover:text-slate-400"
       viewBox="0 0 20 20"
       fill="currentColor"
       aria-hidden="true"

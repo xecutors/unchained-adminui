@@ -28,8 +28,8 @@ const flatten = (obj, path = '') => {
 
 const FormErrorsPure = ({ submitError = '', fieldErrors = [] }) => {
   return (
-    <div className="mx-4 pl-4 text-left text-red-600">
-      <ul className="list-disc list-inside">
+    <div className="mx-6 mb-5 text-rose-700">
+      <ul className="space-y-1">
         {submitError && (
           <li key="submitError" className="disabled">
             <span dangerouslySetInnerHTML={{ __html: submitError }} />
@@ -39,7 +39,7 @@ const FormErrorsPure = ({ submitError = '', fieldErrors = [] }) => {
           <li key={name} className="disabled">
             <button
               type="button"
-              className="no-button text-red-600"
+              className="no-button text-rose-600 dark:text-rose-400"
               aria-label="Error button"
               onClick={createHandler(name)}
             >

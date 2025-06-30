@@ -6,7 +6,7 @@ import DeleteButton from '../../common/components/DeleteButton';
 import Table from '../../common/components/Table';
 
 const FILTER_TYPES = {
-  SWITCH: 'blue',
+  SWITCH: 'sky',
   SINGLE_CHOICE: 'lime',
   MULTI_CHOICE: 'cyan',
 };
@@ -23,7 +23,7 @@ const FilterListItem = ({ filter, onRemove }) => {
         <div className="flex items-center text-sm text-slate-900">
           <Link
             href={`/filters?filterId=${filter._id}`}
-            className="text-blue-600 dark:text-blue-400"
+            className="text-slate-900 dark:text-slate-300"
           >
             {filter?.texts &&
               (filter?.texts.title || (

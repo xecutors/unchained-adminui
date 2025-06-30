@@ -82,7 +82,7 @@ const SubscriptionForm = ({ productId }) => {
         id: 'subscription',
         defaultMessage: 'Subscription',
       })}
-      className="mt-2 sm:mt-0"
+      className="mt-2 lg:mt-5"
       documentation={
         <FormattedMessage
           id="product_subscription_form_description"
@@ -90,7 +90,7 @@ const SubscriptionForm = ({ productId }) => {
           <li>The price specified in commerce section will be used when calculating fees on each interval. </li>
           <li>Price will not be included for the specified trial period </li> </ul>"
           values={{
-            ul: (chunk) => <ul className="list-disc list-inside">{chunk} </ul>,
+            ul: (chunk) => <ul className="space-y-1">{chunk} </ul>,
             li: (chunk) => <li>{chunk}</li>,
           }}
         />
@@ -188,7 +188,7 @@ const SubscriptionForm = ({ productId }) => {
               />
             </div>
 
-            <div className="border-t-indigo-50 border-t space-y-6 bg-slate-50 dark:bg-slate-500 text-right sm:p-6">
+            <div className="-mx-6 -mb-6 mt-6 border-t-slate-100 border-t space-y-6 bg-slate-50 dark:bg-slate-500 text-right sm:p-6">
               <SubmitButton
                 hidden={!hasRole('addEnrollment')}
                 label={formatMessage({

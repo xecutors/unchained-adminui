@@ -1,5 +1,5 @@
 import Loading from '../../common/components/Loading';
-import Pagination from '../../common/components/Pagination';
+import InfiniteScroll from '../../common/components/InfiniteScroll';
 import { convertSortFieldsToQueryFormat } from '../../common/utils/utils';
 import useAssortments from '../hooks/useAssortments';
 import AssortmentList from './AssortmentList';
@@ -15,29 +15,27 @@ const AssortmentListView = ({
 
   const sortKeys = convertSortFieldsToQueryFormat(sort);
 
-  const { assortments, assortmentsCount, loading, loadMore } = useAssortments({
-    queryString,
-    includeInactive,
-    includeLeaves,
-    limit,
-    offset,
-    tags,
-    slugs: slug,
-    sort: sortKeys,
-    forceLocale: selectedLocale,
-  });
+  const { assortments, assortmentsCount, loading, loadMore, hasMore } =
+    useAssortments({
+      queryString,
+      includeInactive,
+      includeLeaves,
+      limit,
+      offset,
+      tags,
+      slugs: slug,
+      sort: sortKeys,
+      forceLocale: selectedLocale,
+    });
 
-  return loading ? (
-    <Loading />
-  ) : (
-    <>
+  if (loading && assortments?.length === 0) {
+    return <Loading />;
+  }
+
+  return (
+    <InfiniteScroll loading={loading} hasMore={hasMore} onLoadMore={loadMore}>
       <AssortmentList assortments={assortments} sortable={sortable} />
-      <Pagination
-        data={assortments}
-        total={assortmentsCount}
-        onLoadMore={loadMore}
-      />
-    </>
+    </InfiniteScroll>
   );
 };
 

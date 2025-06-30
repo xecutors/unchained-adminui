@@ -6,7 +6,7 @@ const WorkList = ({ workQueue, sortable }) => {
   const { formatMessage } = useIntl();
 
   return (
-    <Table className="min-w-full ">
+    <Table className="min-w-full">
       {workQueue?.map((work) => (
         <Table.Row key={`${work._id}-header`} header enablesort={sortable}>
           <Table.Cell sortKey="type">
@@ -16,7 +16,7 @@ const WorkList = ({ workQueue, sortable }) => {
             })}
           </Table.Cell>
 
-          <Table.Cell>
+          <Table.Cell sortKey="status">
             {formatMessage({ id: 'status', defaultMessage: 'Status' })}
           </Table.Cell>
 

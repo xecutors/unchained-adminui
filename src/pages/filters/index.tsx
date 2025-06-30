@@ -12,14 +12,14 @@ import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useModal from '../../modules/modal/hooks/useModal';
 import useRemoveFilter from '../../modules/filter/hooks/useRemoveFilter';
 import useAuth from '../../modules/Auth/useAuth';
-import SearchField from '../../modules/common/components/SearchField';
 import {
   convertSortFieldsToQueryFormat,
   normalizeQuery,
 } from '../../modules/common/utils/utils';
-import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
+import SearchWithTags from '../../modules/common/components/SearchWithTags';
 import useFiltersCount from '../../modules/filter/hooks/useFiltersCount';
 import FilterDetailPage from './FilterDetailPage';
+import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
 
 const FiltersListView = () => {
   const { query, push } = useRouter();
@@ -84,24 +84,30 @@ const FiltersListView = () => {
   return (
     <>
       <BreadCrumbs />
-      <div className="w-full py-5">
+      <div className="w-full">
         <PageHeader
-          headerText={formatMessage({
-            id: 'filters_list_header',
-            defaultMessage: 'Filters',
+          headerText={formatMessage(
+            (filtersCount ?? 0) === 1
+              ? {
+                  id: 'filter_count_header_singular',
+                  defaultMessage: '1 Filter',
+                }
+              : {
+                  id: 'filters_count_header',
+                  defaultMessage: '{count} Filters',
+                },
+            { count: filtersCount ?? 0 },
+          )}
+          addPath={hasRole('addFilter') && '/filters/new'}
+          addButtonText={formatMessage({
+            id: 'add_filter',
+            defaultMessage: 'Add Filter',
           })}
-        />
-        <SearchField
-          defaultValue={queryString}
-          onInputChange={setQueryString}
         />
       </div>
 
-      <div className="min-w-full overflow-x-auto">
-        <ListHeader
-          addPath={hasRole('addFilter') && '/filters/new'}
-          totalRecords={filtersCount}
-        >
+      <div className="min-w-full overflow-x-auto px-1">
+        <ListHeader>
           <Toggle
             toggleText={formatMessage({
               id: 'include_inactive',
@@ -112,12 +118,17 @@ const FiltersListView = () => {
           />
         </ListHeader>
 
-        <LocaleWrapper onlyFull>
-          <FilterList
-            onRemoveFilter={onRemoveFilter}
-            {...{ queryString, limit, includeInactive, offset, sortKeys }}
-          />
-        </LocaleWrapper>
+        <SearchWithTags
+          onSearchChange={setQueryString}
+          defaultSearchValue={queryString}
+        >
+          <LocaleWrapper onlyFull>
+            <FilterList
+              onRemoveFilter={onRemoveFilter}
+              {...{ queryString, limit, includeInactive, offset, sortKeys }}
+            />
+          </LocaleWrapper>
+        </SearchWithTags>
       </div>
     </>
   );

@@ -10,7 +10,7 @@ const ExternalLink = () => {
     <iframe src={url} title="External Content" id="external-page" />
   ) : (
     <div className="text-center">
-      <h1 className="mt-2 text-4xl font-extrabold tracking-tight text-red-500 dark:text-slate-200 sm:text-5xl">
+      <h1 className="mt-2 text-4xl font-extrabold tracking-tight text-rose-500 dark:text-slate-200 sm:text-5xl">
         {formatMessage({
           id: 'invalid_url',
           defaultMessage: 'Invalid page url',
@@ -19,7 +19,7 @@ const ExternalLink = () => {
       <div className="mt-6">
         <Link
           href="/"
-          className="text-base font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300"
+          className="text-base font-medium text-slate-950 dark:text-slate-800 hover:text-slate-900 dark:hover:text-slate-400"
         >
           {formatMessage({
             id: 'go_back_home',

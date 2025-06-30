@@ -21,18 +21,15 @@ const FilterOptions = ({ filterId, selectedLocale = null }) => {
 
   const { createFilterOption } = useCreateFilterOption();
   const { hasRole } = useAuth();
-  const onSubmit: OnSubmitType = useCallback(
-    async ({ value, title }) => {
-      await createFilterOption({
-        filterId,
-        option: value,
-        texts: [{ title, locale: selectedLocale }],
-      });
-      setModal('');
-      return { success: true };
-    },
-    [selectedLocale, filterId],
-  );
+  const onSubmit: OnSubmitType = async ({ value, title, subtitle }) => {
+    await createFilterOption({
+      filterId,
+      option: value,
+      texts: [{ title, locale: selectedLocale, subtitle }],
+    });
+    setModal('');
+    return { success: true };
+  };
 
   return (
     <SelfDocumentingView
@@ -52,7 +49,7 @@ const FilterOptions = ({ filterId, selectedLocale = null }) => {
                 />,
               )
             }
-            className="fixed top-0 right-0 z-10 mb-5  mt-5 mr-2 h-9 rounded-md border  border-transparent bg-indigo-500 px-3 py-1 text-sm font-medium  leading-5 text-white shadow-xs sm:fixed sm:top-auto sm:right-auto"
+            className="fixed top-0 right-0 z-10 mb-5 mt-5 mr-2 h-9 rounded-md border border-transparent bg-slate-800 dark:bg-slate-600 px-3 py-1 text-sm font-medium leading-5 text-white shadow-xs hover:bg-slate-950 dark:hover:bg-slate-500 focus:outline-hidden focus:ring-2 focus:ring-slate-800 dark:focus:ring-slate-400 sm:fixed sm:top-auto sm:right-auto"
           >
             {formatMessage({
               id: 'add_filter_option',
@@ -62,7 +59,7 @@ const FilterOptions = ({ filterId, selectedLocale = null }) => {
         ) : null
       }
     >
-      <div className="mt-8 w-full border-slate-200 dark:border-slate-800 p-3 sm:mt-0 shadow-md  bg-white dark:bg-slate-900">
+      <div className="mt-8 w-full border-slate-300 dark:border-slate-800 p-3 sm:mt-0 shadow-md  bg-white dark:bg-slate-900">
         <FilterOptionsList
           filterId={filterId}
           options={filterOptions}

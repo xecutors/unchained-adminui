@@ -3,10 +3,9 @@ import {
   DocumentTextIcon,
   ClipboardDocumentListIcon,
   PuzzlePieceIcon,
-} from '@heroicons/react/24/solid';
+} from '@heroicons/react/24/outline';
 
 import { toast } from 'react-toastify';
-import LocaleWrapper from '../../common/components/LocaleWrapper';
 import SelectOptions from '../../common/components/SelectOptions';
 import Tab from '../../common/components/Tab';
 import FilterTextForm from './FilterTextForm';
@@ -14,6 +13,7 @@ import FilterOptions from './FilterOptions';
 import FilterSummary from './FilterSummary';
 import useUpdateFilter from '../hooks/useUpdateFilter';
 import DisplayExtendedFields from '../../common/components/DisplayExtendedFields';
+import LocaleWrapper from '../../common/components/LocaleWrapper';
 
 const GetCurrentTab = ({ selectedView, id, ...extendedData }) => {
   if (selectedView === 'text')
@@ -141,6 +141,7 @@ const FilterDetail = ({ filter, extendedData }) => {
           />
         </div>
       </div>
+
       <Tab tabItems={filterOptions} defaultTab="text">
         <GetCurrentTab id={filter?._id} {...extendedData} />
       </Tab>

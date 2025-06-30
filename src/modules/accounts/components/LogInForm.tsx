@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
+import { toast } from 'react-toastify';
 
 import FormWrapper from '../../common/components/FormWrapper';
 import ImageWithFallback from '../../common/components/ImageWithFallback';
@@ -31,6 +32,7 @@ const GetCurrentStep = ({ step }) => {
             id="password"
             name="password"
             autoComplete="current-password"
+            autoFocus
             required
             label={formatMessage({
               id: 'password',
@@ -45,7 +47,7 @@ const GetCurrentStep = ({ step }) => {
           <div className="my-1 text-sm sm:my-0 text-left">
             <Link
               href="/account/forgot-password"
-              className="font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300"
+              className="font-medium text-slate-950 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300"
             >
               {formatMessage({
                 id: 'forget_password',
@@ -63,6 +65,7 @@ const GetCurrentStep = ({ step }) => {
           className="mt-1"
           type="text"
           autoComplete="on"
+          autoFocus
           required
           label={formatMessage({
             id: 'username_or_email',
@@ -98,10 +101,6 @@ const LogInForm = () => {
   const { generateLoginCredentials } = useGenerateLoginCredentials();
 
   const { formatMessage } = useIntl();
-  const successMessage = formatMessage({
-    id: 'welcome',
-    defaultMessage: 'Welcome!',
-  });
 
   const logInWithWebAuth = async (username) => {
     const webAuthnPublicKeyCredentials = await generateLoginCredentials({
@@ -154,14 +153,29 @@ const LogInForm = () => {
     return { success: false };
   };
 
-  const onSubmitSuccess: OnSubmitSuccessType = async () => {
+  const onSubmitSuccess: OnSubmitSuccessType = async (success, userData) => {
+    // Show personalized welcome message
+    const userName =
+      userData?.username ||
+      userData?.displayName ||
+      userData?.profile?.displayName ||
+      'there';
+    toast.success(
+      formatMessage(
+        {
+          id: 'welcome_user',
+          defaultMessage: 'Welcome back, {name}!',
+        },
+        { name: userName },
+      ),
+    );
+
     router.push('/');
     return true;
   };
 
   const form = useForm({
     submit: onSubmit,
-    successMessage,
     onSubmitSuccess,
     getSubmitErrorMessage: (error) => {
       if (error?.message?.includes('Invalid credentials'))
@@ -193,20 +207,10 @@ const LogInForm = () => {
 
   return (
     <>
-      <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div className="w-full max-w-md space-y-8 text-center">
+      <div className="flex min-h-screen items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div className="w-full max-w-md space-y-4 text-center">
           <div>
-            <ImageWithFallback
-              className="mx-auto"
-              src={process.env.NEXT_PUBLIC_LOGO}
-              width={160}
-              height={100}
-              alt={formatMessage({
-                id: 'unchained_logo',
-                defaultMessage: 'Unchained Logo',
-              })}
-            />
-            <h2 className="mt-6 text-center text-3xl font-extrabold text-slate-900 dark:text-slate-200">
+            <h2 className="text-center text-3xl text-slate-900 dark:text-slate-200">
               {formatMessage({
                 id: 'login_header',
                 defaultMessage: 'Log in to your account',
@@ -216,7 +220,7 @@ const LogInForm = () => {
           <FormWrapper>
             <Form
               form={form}
-              className="mt-8 space-y-6 px-4 pt-3 pb-8 sm:rounded-lg sm:px-10"
+              className="space-y-6 px-4 pb-5 pt-3 sm:rounded-lg sm:px-10"
             >
               <GetCurrentStep step={step} />
 
@@ -228,7 +232,7 @@ const LogInForm = () => {
                     id="previous-button"
                     name="previous-button"
                     onClick={previousStep}
-                    className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-500 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-hidden focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+                    className="group relative flex w-full justify-center rounded-md border border-slate-300 bg-slate-100 dark:bg-slate-700 dark:border-slate-600 py-2 px-4 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600 focus:outline-hidden focus:ring-2 focus:ring-slate-500 dark:focus:ring-slate-400 focus:ring-offset-2"
                   >
                     <span className="absolute inset-y-0 left-0 flex items-center pl-3" />
                     {formatMessage({
@@ -242,11 +246,11 @@ const LogInForm = () => {
                   id="submit"
                   disabled={!form.formik.isValid}
                   name="submit"
-                  className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-500 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-hidden focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+                  className="group relative flex w-full justify-center rounded-md border border-transparent bg-slate-800 dark:bg-slate-600 py-2 px-4 text-sm font-medium text-white hover:bg-slate-950 dark:hover:bg-slate-500 focus:outline-hidden focus:ring-2 focus:ring-slate-800 dark:focus:ring-slate-400 focus:ring-offset-2"
                 >
                   <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                     <svg
-                      className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
+                      className="h-5 w-5 text-white group-hover:text-slate-200"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
                       fill="currentColor"
@@ -268,11 +272,11 @@ const LogInForm = () => {
                   <a
                     type="button"
                     href={singleSignOnURL}
-                    className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-500 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-hidden focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+                    className="group relative flex w-full justify-center rounded-md border border-transparent bg-slate-800 dark:bg-slate-600 py-2 px-4 text-sm font-medium text-white hover:bg-slate-950 dark:hover:bg-slate-500 focus:outline-hidden focus:ring-2 focus:ring-slate-800 dark:focus:ring-slate-400 focus:ring-offset-2"
                   >
                     <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                       <svg
-                        className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
+                        className="h-5 w-5 text-white group-hover:text-slate-200"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
                         fill="currentColor"
@@ -300,7 +304,7 @@ const LogInForm = () => {
                 })}
                 <Link
                   href="/sign-up"
-                  className="ml-2 font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300"
+                  className="ml-2 font-medium text-slate-950 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-400"
                 >
                   {intl.formatMessage({
                     id: 'sign_up',

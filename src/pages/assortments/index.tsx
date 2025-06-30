@@ -7,27 +7,40 @@ import Toggle from '../../modules/common/components/Toggle';
 
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 
-import AssortmentSearchFilter from '../../modules/assortment/components/AssortmentSearchFilter';
 import useAuth from '../../modules/Auth/useAuth';
-import SearchField from '../../modules/common/components/SearchField';
 import AssortmentGraphView from '../../modules/assortment/components/AssortmentGraphView';
 import AssortmentListView from '../../modules/assortment/components/AssortmentListView';
 import { normalizeQuery } from '../../modules/common/utils/utils';
-import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
+import SearchWithTags from '../../modules/common/components/SearchWithTags';
 import useAssortmentsCount from '../../modules/assortment/hooks/useAssortmentsCount';
 import AssortmentDetailPage from './AssortmentDetailPage';
+import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
 
-const GetCurrentView = ({ options, queryString }) => {
+const GetCurrentView = ({
+  options,
+  queryString,
+  onSearchChange,
+  defaultSearchValue,
+}) => {
   const { graph, ...rest } = options;
 
   return (
-    <LocaleWrapper onlyFull>
-      {graph === 'true' ? (
-        <AssortmentGraphView options={rest} />
-      ) : (
-        <AssortmentListView options={rest} queryString={queryString} sortable />
-      )}
-    </LocaleWrapper>
+    <SearchWithTags
+      onSearchChange={onSearchChange}
+      defaultSearchValue={defaultSearchValue}
+    >
+      <LocaleWrapper onlyFull>
+        {graph === 'true' ? (
+          <AssortmentGraphView options={rest} />
+        ) : (
+          <AssortmentListView
+            options={rest}
+            queryString={queryString}
+            sortable
+          />
+        )}
+      </LocaleWrapper>
+    </SearchWithTags>
   );
 };
 
@@ -82,25 +95,28 @@ const AssortmentsView = () => {
   return (
     <>
       <BreadCrumbs />
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between">
-        <PageHeader
-          headerText={formatMessage({
-            id: 'assortments_list_header',
-            defaultMessage: 'Assortments',
-          })}
-        />
-        <SearchField
-          onInputChange={setQueryString}
-          defaultValue={queryString}
-        />
-      </div>
-      <AssortmentSearchFilter />
-      <div className="min-w-full overflow-x-auto">
-        <ListHeader
-          addPath={hasRole('addAssortment') && '/assortments/new'}
-          totalRecords={assortmentsCount}
-        >
-          <div className="flex gap-4">
+      <PageHeader
+        headerText={formatMessage(
+          (assortmentsCount ?? 0) === 1
+            ? {
+                id: 'assortment_count_header_singular',
+                defaultMessage: '1 Assortment',
+              }
+            : {
+                id: 'assortments_count_header',
+                defaultMessage: '{count} Assortments',
+              },
+          { count: assortmentsCount ?? 0 },
+        )}
+        addPath={hasRole('addAssortment') && '/assortments/new'}
+        addButtonText={formatMessage({
+          id: 'add_assortment',
+          defaultMessage: 'Add Assortment',
+        })}
+      />
+      <div>
+        <ListHeader>
+          <div className="lg:flex gap-5">
             <Toggle
               toggleKey="includeInactive"
               toggleText={formatMessage({
@@ -127,9 +143,10 @@ const AssortmentsView = () => {
             />
           </div>
         </ListHeader>
-
         <GetCurrentView
           queryString={queryString}
+          onSearchChange={setQueryString}
+          defaultSearchValue={queryString}
           options={{
             graph,
             includeInactive,

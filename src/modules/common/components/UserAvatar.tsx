@@ -5,52 +5,60 @@ import ImageWithFallback from './ImageWithFallback';
 import { useApolloClient } from '@apollo/client';
 import { toast } from 'react-toastify';
 import logOut from '../../accounts/hooks/logOut';
+import { UserCircleIcon } from '@heroicons/react/24/outline';
+import { useRouter } from 'next/router';
 
 const UserAvatar = ({ avatar, ...user }) => {
   const { formatMessage } = useIntl();
   const apolloClient = useApolloClient();
+  const router = useRouter();
 
   const onLogout = async () => {
-    await logOut(apolloClient);
+    const userName =
+      user?.username || user?.displayName || user?.profile?.displayName || '';
+    await logOut(apolloClient, router);
     toast.success(
-      formatMessage({
-        id: 'logged_out',
-        defaultMessage: 'Logged out',
-      }),
+      formatMessage(
+        {
+          id: 'goodbye_user',
+          defaultMessage: userName
+            ? 'See you later, {name}!'
+            : 'See you later!',
+        },
+        { name: userName },
+      ),
     );
   };
 
   return (
-    <a href="#" onClick={onLogout} className="group block shrink-0">
-      <div className="flex items-center">
+    <a
+      href="#"
+      onClick={onLogout}
+      className="group block shrink-0 focus:outline-hidden focus:ring-2 focus:ring-slate-800 rounded-md"
+    >
+      <div className="flex items-center pl-2">
         {avatar ? (
           <ImageWithFallback
             src={avatar?.url}
             loader={defaultNextImageLoader}
             width={36}
             height={36}
-            className="rounded"
+            className="rounded-full mr-3 aspect-square object-cover"
             alt={formatMessage({
               id: 'user_avatar',
               defaultMessage: 'User avatar',
             })}
           />
         ) : (
-          <span className="inline-block h-8 w-8 overflow-hidden rounded-full bg-slate-100">
-            <svg
-              className="h-full w-full text-slate-300"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-            </svg>
+          <span className="inline-block h-6 w-6 overflow-hidden rounded-full mr-3">
+            <UserCircleIcon className="h-full w-full text-slate-700 dark:text-slate-300" />
           </span>
         )}
-        <div className="ml-3">
-          <p className="text-sm font-medium text-slate-700 dark:text-slate-400 group-hover:text-slate-700 dark:group-hover:text-indigo-400">
+        <div>
+          <p className="text-sm font-medium text-slate-700 dark:text-slate-400 group-hover:text-slate-700 dark:group-hover:text-slate-300">
             {formatUsername(user)}
           </p>
-          <p className="text-sm font-medium text-slate-500 dark:text-slate-400 group-hover:text-slate-700 dark:group-hover:text-indigo-400">
+          <p className="text-sm text-slate-400 dark:text-slate-600 group-hover:text-slate-700 dark:group-hover:text-slate-400">
             {formatMessage({
               id: 'log_out',
               defaultMessage: 'Log out',

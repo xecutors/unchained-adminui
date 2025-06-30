@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useIntl } from 'react-intl';
 
 const BreadCrumbs = ({
   routeName = null,
@@ -7,6 +8,32 @@ const BreadCrumbs = ({
   depth = null,
 }) => {
   const router = useRouter();
+  const { formatMessage } = useIntl();
+
+  // Mapping of route segments to translation keys
+  const routeTranslations = {
+    products: 'products',
+    orders: 'orders',
+    users: 'users',
+    assortments: 'assortments',
+    filters: 'filters',
+    tokens: 'tokens',
+    quotations: 'quotations',
+    enrollments: 'enrollments',
+    activities: 'activities',
+    works: 'work_queue',
+    events: 'events',
+    currency: 'currencies',
+    country: 'countries',
+    language: 'languages',
+    'delivery-provider': 'delivery_providers',
+    'payment-provider': 'payment_providers',
+    'warehousing-provider': 'warehousing_provider',
+    system: 'system',
+    account: 'account',
+    new: 'new',
+    edit: 'edit',
+  };
   const pathArr = router.asPath
 
     ?.split('/')
@@ -23,23 +50,29 @@ const BreadCrumbs = ({
     currentRoute += `${e}/`;
     if (!e) {
       return {
-        name: 'Home',
+        name: formatMessage({ id: 'home', defaultMessage: 'Home' }),
         path: currentRoute,
       };
     }
     // if routeName is given dont modify the string else
     // remove hyphens incase it hyphen deliminated slug
-    const pathName = routeName
-      ? e?.split('?')[0]
-      : e?.split('?')[0].replace(/-/g, ' ');
+    const pathSegment = e?.split('?')[0];
+    const pathName = routeName ? pathSegment : pathSegment.replace(/-/g, ' ');
+
+    // Try to get translation for this route segment
+    const translationKey = routeTranslations[pathSegment];
+    const translatedName = translationKey
+      ? formatMessage({ id: translationKey, defaultMessage: pathName })
+      : decodeURIComponent(pathName);
+
     return {
-      name: decodeURIComponent(pathName),
+      name: translatedName,
       path: currentRoute.replace(/.$/, ''),
     };
   });
   return (
     <nav
-      className="mb-5 hidden sm:flex lg:mt-10 lg:mb-10"
+      className="mb-5 hidden sm:flex lg:mt-5 lg:mb-8"
       aria-label="Breadcrumb"
     >
       <ol className="flex items-center space-x-4">
@@ -63,7 +96,7 @@ const BreadCrumbs = ({
               )}
               <Link
                 href={data.path}
-                className="text-sm font-medium capitalize text-slate-500 dark:text-slate-400 dark:hover:text-slate-300 hover:text-slate-700"
+                className="text-sm font-medium capitalize text-slate-500 dark:text-slate-400 dark:hover:text-slate-300 hover:text-slate-700 focus:outline-hidden focus:ring-2 focus:ring-slate-800 rounded-md px-1 py-1"
               >
                 {i === result.length - 1 && currentPageTitle
                   ? currentPageTitle

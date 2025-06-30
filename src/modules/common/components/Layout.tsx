@@ -10,8 +10,11 @@ import {
   UserIcon,
   Bars4Icon,
   AdjustmentsVerticalIcon,
+  CommandLineIcon,
+  BoltIcon,
+  LinkIcon,
+  QrCodeIcon,
 } from '@heroicons/react/24/outline';
-import { BoltIcon, LinkIcon, QrCodeIcon } from '@heroicons/react/24/solid';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
@@ -20,6 +23,7 @@ import useShopInfo from '../hooks/useShopInfo';
 import SideNav from './SideNav';
 import UserAvatar from './UserAvatar';
 import ThemeToggle from './ThemeToggle';
+import LanguageToggle from './LanguageToggle';
 import useOutsideClick from '../hooks/useOutsideClick';
 import ImageWithFallback from './ImageWithFallback';
 import AuthWrapper from '../../Auth/AuthWrapper';
@@ -46,11 +50,12 @@ const Layout = ({
   const { currentUser } = useCurrentUser();
   const { shopInfo } = useShopInfo();
   const [hideNav, setHideNav] = useState(true);
+  const [narrowNav, setNarrowNav] = useState(false);
 
   const defaultNavigation = [
     {
-      name: formatMessage({ id: 'home', defaultMessage: 'Home' }),
-      icon: HomeIcon,
+      name: formatMessage({ id: 'copilot', defaultMessage: 'Copilot' }),
+      icon: CommandLineIcon,
       href: '/',
     },
     {
@@ -218,18 +223,15 @@ const Layout = ({
         role="dialog"
         aria-modal="true"
       >
-        <div
-          className="fixed inset-0 bg-slate-600 bg-opacity-75"
-          aria-hidden="true"
-        />
+        <div className="fixed inset-0 backdrop-blur-sm" aria-hidden="true" />
 
-        <div className="relative flex w-full max-w-xs flex-1 flex-col bg-white dark:bg-slate-900">
+        <div className="relative flex w-full max-w-xs flex-1 flex-col bg-white dark:bg-slate-900 shadow-xl">
           <div className="absolute top-0 right-0 -mr-12 pt-2">
             <button
               id="close_sidebar"
               type="button"
               onClick={() => setHideNav(!hideNav)}
-              className="ml-1 flex h-10 w-10 items-center justify-center rounded-full focus:outline-hidden focus:ring-2 focus:ring-inset focus:ring-white"
+              className="ml-1 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 dark:bg-slate-800/50 backdrop-blur-sm shadow-lg focus:outline-hidden focus:ring-2 focus:ring-inset focus:ring-white dark:focus:ring-slate-400"
             >
               <span className="sr-only">
                 {formatMessage({
@@ -239,7 +241,7 @@ const Layout = ({
               </span>
 
               <svg
-                className="h-6 w-6 text-white"
+                className="h-6 w-6 text-slate-800 dark:text-slate-200"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -257,17 +259,22 @@ const Layout = ({
           </div>
 
           <div className="h-0 flex-1 overflow-y-auto pt-5 pb-4">
-            <div className="flex shrink-0 items-center px-4">
-              <Link href="/">
-                <ImageWithFallback
-                  src={process.env.NEXT_PUBLIC_LOGO}
-                  width={125}
-                  height={100}
-                  alt={formatMessage({
-                    id: 'unchained_logo',
-                    defaultMessage: 'Unchained Logo',
-                  })}
-                />
+            <div className="flex shrink-0 items-center px-2 lg:px-4 2xl:px-6">
+              <Link
+                href="/"
+                className="focus:outline-hidden focus:ring-2 focus:ring-slate-800 rounded-md p-1"
+              >
+                <div className="dark:brightness-0 dark:invert">
+                  <ImageWithFallback
+                    src={process.env.NEXT_PUBLIC_LOGO}
+                    width={41}
+                    height={25}
+                    alt={formatMessage({
+                      id: 'unchained_logo',
+                      defaultMessage: 'Unchained Logo',
+                    })}
+                  />
+                </div>
               </Link>
             </div>
             <SideNav
@@ -275,42 +282,99 @@ const Layout = ({
               onClick={() => setHideNav(!hideNav)}
             />
           </div>
-          <div className="flex shrink-0 border-t border-slate-200 dark:border-slate-800 p-4">
+          <div className="flex items-center shrink-0 border-t border-slate-300 dark:border-slate-800">
             <UserAvatar avatar={currentUser?.avatar} {...currentUser} />
+            <div className="ml-auto">
+              <ThemeToggle />
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col 2xl:w-96 dark:bg-slate-900 dark:text-slate-200">
+      <div
+        className={`hidden md:fixed md:inset-y-0 md:flex md:flex-col dark:bg-slate-900 dark:text-slate-200 ${narrowNav ? 'md:w-16' : 'md:w-64 2xl:w-96'}`}
+      >
         <div className="flex min-h-0 flex-1 flex-col border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
-          <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
-            <div className="flex shrink-0 items-center px-4">
-              <Link href="/">
-                <ImageWithFallback
-                  src={process.env.NEXT_PUBLIC_LOGO}
-                  width={175}
-                  height={100}
-                  alt={formatMessage({
-                    id: 'unchained_logo',
-                    defaultMessage: 'Unchained Logo',
-                  })}
-                />
+          <div className="flex flex-1 flex-col overflow-y-auto scrollbar-hide pt-10">
+            <div
+              className={`flex shrink-0 items-center ${narrowNav ? 'px-2 justify-center' : 'px-2 lg:px-4 2xl:px-6'}`}
+            >
+              <Link
+                href="/"
+                className="focus:outline-hidden focus:ring-2 focus:ring-slate-800 rounded-md p-1"
+              >
+                <div className="dark:brightness-0 dark:invert">
+                  <ImageWithFallback
+                    src={process.env.NEXT_PUBLIC_LOGO}
+                    width={narrowNav ? 25 : 41}
+                    height={25}
+                    alt={formatMessage({
+                      id: 'unchained_logo',
+                      defaultMessage: 'Unchained Logo',
+                    })}
+                  />
+                </div>
               </Link>
             </div>
-            <SideNav navigation={defaultNavigation} />
+            <SideNav navigation={defaultNavigation} narrowView={narrowNav} />
           </div>
-          <div className="flex shrink-0 border-t border-slate-200 dark:border-slate-800 p-4">
-            <UserAvatar avatar={currentUser?.avatar} {...currentUser} />
+          <div
+            className={`flex items-center shrink-0 py-2 ${narrowNav ? 'justify-center px-2' : 'border-t border-slate-200 dark:border-slate-800 px-2 lg:px-4 2xl:px-6'}`}
+          >
+            {!narrowNav && (
+              <UserAvatar avatar={currentUser?.avatar} {...currentUser} />
+            )}
+            {narrowNav && (
+              <div className="flex items-center flex-col space-y-2">
+                <LanguageToggle narrowNav={narrowNav} />
+                <ThemeToggle />
+              </div>
+            )}
+          </div>
+          <div
+            className={`flex shrink-0 p-2 ${narrowNav ? '' : 'border-t border-slate-200 dark:border-slate-800'}`}
+          >
+            {narrowNav ? (
+              <button
+                onClick={() => setNarrowNav(!narrowNav)}
+                className="w-full flex items-center justify-center p-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus:outline-hidden focus:ring-2 focus:ring-slate-800"
+                title={formatMessage({
+                  id: 'expand_navigation',
+                  defaultMessage: 'Expand navigation',
+                })}
+              >
+                <Bars4Icon className="h-6 w-6 transition-transform" />
+              </button>
+            ) : (
+              <div className="w-full flex items-center justify-center">
+                <button
+                  onClick={() => setNarrowNav(!narrowNav)}
+                  className="flex items-center p-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus:outline-hidden focus:ring-2 focus:ring-slate-800"
+                  title={formatMessage({
+                    id: 'collapse_navigation',
+                    defaultMessage: 'Collapse navigation',
+                  })}
+                >
+                  <Bars4Icon className="h-6 w-6 rotate-90 transition-transform" />
+                </button>
+                <div className="ml-2 flex items-center space-x-2">
+                  <LanguageToggle narrowNav={narrowNav} />
+                  <ThemeToggle />
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
-      <div className="flex flex-1 flex-col md:pl-64 2xl:pl-96">
-        <div className="flex justify-between sticky top-0 z-10 bg-white dark:bg-slate-800 pl-1 pt-1 sm:pl-3 sm:pt-3 md:hidden border-b border-slate-200 dark:border-slate-700">
+      <div
+        className={`flex flex-1 flex-col ${narrowNav ? 'md:pl-16' : 'md:pl-64 2xl:pl-96'}`}
+      >
+        <div className="flex justify-between items-center sticky top-0 z-10 bg-white dark:bg-slate-800 md:hidden border-b border-slate-200 dark:border-slate-700">
           <button
             type="button"
             ref={ref}
             onClick={() => setHideNav(!hideNav)}
-            className="-ml-0.5 -mt-0.5 inline-flex h-12 w-12 items-center justify-center rounded-md text-slate-500 hover:text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-inset focus:ring-indigo-400 dark:text-slate-200"
+            className="-ml-0.5 -mt-0.5 inline-flex h-12 w-12 items-center justify-center rounded-md text-slate-500 hover:text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-inset focus:ring-slate-800 dark:text-slate-200"
           >
             <span className="sr-only">
               {formatMessage({
@@ -318,19 +382,42 @@ const Layout = ({
                 defaultMessage: ' Open sidebar',
               })}
             </span>
-            <Bars4Icon
+            <svg
+              className="h-6 w-6"
               fill="none"
               viewBox="0 0 24 24"
-              className="h-8 w-8"
               stroke="currentColor"
               aria-hidden="true"
-            />
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 8h16M4 16h16"
+              />
+            </svg>
           </button>
-          <div className="flex items-center gap-4 pr-4">
+
+          <div className="flex-1 flex justify-center">
+            <div className="dark:brightness-0 dark:invert">
+              <ImageWithFallback
+                src={process.env.NEXT_PUBLIC_LOGO}
+                width={41}
+                height={25}
+                alt={formatMessage({
+                  id: 'unchained_logo',
+                  defaultMessage: 'Unchained Logo',
+                })}
+              />
+            </div>
+          </div>
+
+          <div className="flex flex-wrap justify-center items-center gap-2 pr-4">
+            <LanguageToggle narrowNav={false} />
             <ThemeToggle />
           </div>
         </div>
-        <main className="container mx-auto max-w-7xl flex-1 px-4 pt-5 pb-10 sm:px-6 md:px-8">
+        <main className="container mx-auto max-w-7xl flex-1 px-4 py-5 md:pt-10 lg:pt-5 sm:px-6 md:px-8">
           <h3 className="ml-8 text-lg font-medium leading-6 text-slate-900">
             {pageHeader}
           </h3>

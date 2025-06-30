@@ -36,13 +36,15 @@ const AddLanguage = () => {
           })}
         />
 
-        <FormWrapper>
-          <LanguageForm
-            defaultValue={{ isoCode: '', isActive: '' }}
-            onSubmit={onSubmit}
-            onSubmitSuccess={onSubmitSuccess}
-          />
-        </FormWrapper>
+        <div className="mt-6 sm:max-w-xl">
+          <FormWrapper>
+            <LanguageForm
+              defaultValue={{ isoCode: '', isActive: '' }}
+              onSubmit={onSubmit}
+              onSubmitSuccess={onSubmitSuccess}
+            />
+          </FormWrapper>
+        </div>
       </div>
     </>
   );

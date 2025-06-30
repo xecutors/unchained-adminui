@@ -12,7 +12,7 @@ import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useModal from '../../modules/modal/hooks/useModal';
 import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButton';
-import { ArrowPathIcon } from '@heroicons/react/24/solid';
+import { ArrowPathIcon } from '@heroicons/react/24/outline';
 import { useCallback } from 'react';
 
 import { IWorkStatus } from '../../gql/types';
@@ -78,9 +78,9 @@ const WorkDetailPage = ({ workerId }) => {
   };
 
   return (
-    <div className="mt-6 max-w-full">
+    <div className="mt-5 max-w-full">
       <BreadCrumbs />
-      <div className="align-center flex min-w-full justify-between">
+      <div className="items-center flex min-w-full justify-between gap-3 flex-wrap">
         <PageHeader
           headerText={formatMessage({
             id: 'work_detail',
@@ -98,7 +98,7 @@ const WorkDetailPage = ({ workerId }) => {
           <button
             type="button"
             aria-describedby="header-delete-button"
-            className="my-auto flex items-center justify-center rounded-sm border-2 border-green-600 px-3 py-2 text-sm font-semibold text-green-600 shadow-xs hover:border-green-800 hover:bg-green-700 hover:text-white focus:outline-hidden focus:ring-2 focus:ring-green-700 focus:ring-offset-2"
+            className="my-auto flex items-center justify-center rounded-sm border-1 border-emerald-600 px-3 py-2 text-sm font-semibold text-emerald-600 shadow-xs hover:border-emerald-800 hover:bg-emerald-700 hover:text-white focus:outline-hidden focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2"
             onClick={retryWork}
           >
             <span className="pr-1">

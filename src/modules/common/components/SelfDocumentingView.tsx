@@ -12,11 +12,12 @@ const SelfDocumentingView = ({
     <>
       <div
         className={classNames(
-          'md:grid md:grid-cols-3 md:gap-6 mt-2 sm:mt-0',
+          'mt-5 lg:grid lg:grid-cols-3 lg:gap-6',
           className,
         )}
       >
-        <div className="md:col-span-1">
+        <div className="lg:col-span-2 lg:mt-0">{children || mainContent}</div>
+        <div className="lg:col-span-1 mt-10 lg:mt-4">
           <div className="px-4 sm:px-0">
             <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-slate-200">
               {documentationLabel}
@@ -26,14 +27,6 @@ const SelfDocumentingView = ({
             </div>
             {sideComponents}
           </div>
-        </div>
-        <div className="mt-5 md:col-span-2 md:mt-0">
-          {children || mainContent}
-        </div>
-      </div>
-      <div className="hidden sm:block" aria-hidden="true">
-        <div className="py-5">
-          <div className="border-t border-slate-200 dark:border-slate-800" />
         </div>
       </div>
     </>

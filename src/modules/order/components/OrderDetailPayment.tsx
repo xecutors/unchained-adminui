@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl';
 import Link from 'next/link';
-import { PlusIcon } from '@heroicons/react/24/solid';
+import { PlusIcon } from '@heroicons/react/24/outline';
 import { toast } from 'react-toastify';
 
 import AlertMessage from '../../modal/components/AlertMessage';
@@ -71,16 +71,16 @@ const OrderDetailPayment = ({ order }) => {
         </span>
       </div>
 
-      <div className="border-t border-indigo-50 dark:border-slate-700 px-4 py-4 sm:px-6">
+      <div className="border-t border-slate-100 dark:border-slate-700 px-4 py-4 sm:px-6">
         <span className="mb-5  block">
           <Link
             href={`/payment-provider?paymentProviderId=${order.payment.provider._id}`}
-            className="font-medium text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300"
+            className="font-medium text-slate-900 dark:text-slate-300 hover:text-slate-800 dark:hover:text-slate-600"
           >
             {getInterfaceLabel(order.payment?.provider?.interface)}
           </Link>
         </span>
-        <div className="mt-3 text-sm font-medium text-slate-500 dark:text-slate-200">
+        <div className="mt-3 text-sm text-slate-400 dark:text-slate-200">
           {formatMessage({
             id: 'method',
             defaultMessage: 'Method',
@@ -96,7 +96,7 @@ const OrderDetailPayment = ({ order }) => {
             />
           ))}
         </span>
-        <div className="mt-3 text-sm font-medium text-slate-500 dark:text-slate-200">
+        <div className="mt-3 text-sm text-slate-400 dark:text-slate-200">
           {formatMessage({
             id: 'delivery_status',
             defaultMessage: 'Status',
@@ -116,7 +116,7 @@ const OrderDetailPayment = ({ order }) => {
                     id="pay"
                     type="button"
                     onClick={markAsPaid}
-                    className="my-2 mr-2 inline-flex h-full items-center justify-center  rounded-sm border border-slate-300 border-transparent bg-blue-600 py-1 px-2 text-xs font-semibold text-white shadow-xs hover:bg-blue-700 focus:outline-hidden focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+                    className="my-2 mr-2 inline-flex h-full items-center justify-center  rounded-sm border border-slate-300 border-transparent bg-slate-800 dark:bg-slate-600 py-1 px-2 text-xs font-semibold text-white shadow-xs hover:bg-slate-950 dark:hover:bg-slate-500 focus:outline-hidden focus:ring-2 focus:ring-slate-700 dark:focus:ring-slate-400 focus:ring-offset-2"
                   >
                     <span className="mr-1">
                       <PlusIcon className="inline-block h-3 w-3 text-white" />

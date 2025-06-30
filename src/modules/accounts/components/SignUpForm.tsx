@@ -45,7 +45,7 @@ const SignUpForm = ({
   });
   return (
     <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="w-full max-w-md space-y-8 text-center">
+      <div className="w-full max-w-md space-y-4 text-center">
         <div>
           <ImageWithFallback
             className="mx-auto"
@@ -57,7 +57,7 @@ const SignUpForm = ({
               defaultMessage: 'Unchained Logo',
             })}
           />
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-slate-900 dark:text-slate-200">
+          <h2 className="text-center text-3xl text-slate-900 dark:text-slate-200">
             {formatMessage({
               id: 'sign_up_header',
               defaultMessage: 'Create new account',
@@ -117,11 +117,11 @@ const SignUpForm = ({
             <div className="my-2">
               <button
                 type="submit"
-                className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-500 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-hidden focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+                className="group relative flex w-full justify-center rounded-md border border-transparent bg-slate-800 dark:bg-slate-600 py-2 px-4 text-sm font-medium text-white hover:bg-slate-950 dark:hover:bg-slate-500 focus:outline-hidden focus:ring-2 focus:ring-slate-800 dark:focus:ring-slate-400 focus:ring-offset-2"
               >
                 <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                   <svg
-                    className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
+                    className="h-5 w-5 text-slate-900 group-hover:text-slate-800"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
                     fill="currentColor"
@@ -149,7 +149,7 @@ const SignUpForm = ({
               })}
               <Link
                 href="/log-in"
-                className=" ml-2 font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300"
+                className=" ml-2 font-medium text-slate-950 hover:text-slate-900 dark:text-slate-800 dark:hover:text-slate-400"
               >
                 {formatMessage({
                   id: 'log_in',

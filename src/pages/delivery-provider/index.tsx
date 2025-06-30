@@ -68,15 +68,25 @@ const DeliveryProviders = () => {
     <>
       <BreadCrumbs />
       <PageHeader
-        headerText={formatMessage({
-          id: 'delivery_providers_header',
-          defaultMessage: 'Delivery providers',
+        headerText={formatMessage(
+          (deliveryProvidersCount ?? 0) === 1
+            ? {
+                id: 'delivery_provider_count_header_singular',
+                defaultMessage: '1 Delivery Provider',
+              }
+            : {
+                id: 'delivery_providers_count_header',
+                defaultMessage: '{count} Delivery Providers',
+              },
+          { count: deliveryProvidersCount ?? 0 },
+        )}
+        addPath={hasRole('addDeliveryProvider') && '/delivery-provider/new'}
+        addButtonText={formatMessage({
+          id: 'add_delivery_provider',
+          defaultMessage: 'Add Delivery Provider',
         })}
       />
-      <ListHeader
-        addPath={hasRole('addDeliveryProvider') && '/delivery-provider/new'}
-        totalRecords={deliveryProvidersCount}
-      >
+      <ListHeader>
         <ProvidersFilter
           providerType={deliveryProviderType?.map(({ value }) => value)}
         />

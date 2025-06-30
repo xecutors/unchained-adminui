@@ -10,16 +10,16 @@ import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import PageHeader from '../../modules/common/components/PageHeader';
 import ListHeader from '../../modules/common/components/ListHeader';
 import Toggle from '../../modules/common/components/Toggle';
-import Pagination from '../../modules/common/components/Pagination';
+import InfiniteScroll from '../../modules/common/components/InfiniteScroll';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useModal from '../../modules/modal/hooks/useModal';
 import Loading from '../../modules/common/components/Loading';
 import useAuth from '../../modules/Auth/useAuth';
-import SearchField from '../../modules/common/components/SearchField';
 import {
   convertSortFieldsToQueryFormat,
   normalizeQuery,
 } from '../../modules/common/utils/utils';
+import SearchWithTags from '../../modules/common/components/SearchWithTags';
 import CurrencyDetailPage from './CurrencyDetailPage';
 
 const Currencies = () => {
@@ -48,13 +48,14 @@ const Currencies = () => {
   };
   const sortKeys = convertSortFieldsToQueryFormat(sort);
 
-  const { currencies, currenciesCount, loading, loadMore } = useCurrencies({
-    queryString: queryString as string,
-    limit,
-    offset,
-    includeInactive,
-    sort: sortKeys,
-  });
+  const { currencies, currenciesCount, loading, loadMore, hasMore } =
+    useCurrencies({
+      queryString: queryString as string,
+      limit,
+      offset,
+      includeInactive,
+      sort: sortKeys,
+    });
 
   const { setModal } = useModal();
   const { removeCurrency } = useRemoveCurrency();
@@ -90,23 +91,27 @@ const Currencies = () => {
   return (
     <>
       <BreadCrumbs />
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between">
-        <PageHeader
-          headerText={formatMessage({
-            id: 'currencies_list_header',
-            defaultMessage: 'Currencies',
-          })}
-        />
-        <SearchField
-          defaultValue={queryString}
-          onInputChange={setQueryString}
-        />
-      </div>
-      <div className="min-w-full overflow-x-auto">
-        <ListHeader
-          addPath={hasRole('addCurrency') && '/currency/new'}
-          totalRecords={currenciesCount}
-        >
+      <PageHeader
+        headerText={formatMessage(
+          (currenciesCount ?? 0) === 1
+            ? {
+                id: 'currency_count_header_singular',
+                defaultMessage: '1 Currency',
+              }
+            : {
+                id: 'currencies_count_header',
+                defaultMessage: '{count} Currencies',
+              },
+          { count: currenciesCount ?? 0 },
+        )}
+        addPath={hasRole('addCurrency') && '/currency/new'}
+        addButtonText={formatMessage({
+          id: 'add_currency',
+          defaultMessage: 'Add Currency',
+        })}
+      />
+      <div className="min-w-full overflow-x-auto px-1">
+        <ListHeader>
           <Toggle
             toggleText={formatMessage({
               id: 'show_inactive',
@@ -117,20 +122,26 @@ const Currencies = () => {
           />
         </ListHeader>
 
-        {loading ? (
-          <Loading />
-        ) : (
-          <CurrencyList
-            currencies={currencies}
-            onRemoveCurrency={onRemove}
-            sortable
-          />
-        )}
-        <Pagination
-          data={currencies}
-          total={currenciesCount}
-          onLoadMore={loadMore}
-        />
+        <SearchWithTags
+          onSearchChange={setQueryString}
+          defaultSearchValue={queryString}
+        >
+          <InfiniteScroll
+            loading={loading}
+            hasMore={hasMore}
+            onLoadMore={loadMore}
+          >
+            {loading && currencies?.length === 0 ? (
+              <Loading />
+            ) : (
+              <CurrencyList
+                currencies={currencies}
+                onRemoveCurrency={onRemove}
+                sortable
+              />
+            )}
+          </InfiniteScroll>
+        </SearchWithTags>
       </div>
     </>
   );

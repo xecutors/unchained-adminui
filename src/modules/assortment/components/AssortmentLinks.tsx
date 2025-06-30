@@ -113,16 +113,14 @@ const AssortmentLinks = ({ assortmentId }) => {
           id: 'assortment_link_form_header',
           defaultMessage: 'Child assortments',
         })}
-        className="mt-2 sm:mt-0"
+        className="mt-2 lg:mt-5"
         documentation={
           <FormattedMessage
             id="assortment_link_form_description"
             defaultMessage="<ul> <li>Assign assortment that are direct child of this assortment </li>
           </ul>"
             values={{
-              ul: (chunk) => (
-                <ul className="list-disc list-inside">{chunk} </ul>
-              ),
+              ul: (chunk) => <ul className="space-y-1">{chunk} </ul>,
               li: (chunk) => <li>{chunk} </li>,
             }}
           />
@@ -144,9 +142,7 @@ const AssortmentLinks = ({ assortmentId }) => {
          <li> Parents are assortments found in the ancestors tree on any level </li>
          <li> Descendants are assortments found in the children tree on any level </li> </ul>"
             values={{
-              ul: (chunk) => (
-                <ul className="list-disc list-inside">{chunk} </ul>
-              ),
+              ul: (chunk) => <ul className="space-y-1">{chunk} </ul>,
               li: (chunk) => <li>{chunk} </li>,
             }}
           />

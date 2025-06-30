@@ -44,7 +44,7 @@ const resolveUri = () => {
       `${window.location.origin}/graphql`
     );
   }
-  return process.env.GRAPHQL_ENDPOINT;
+  return process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT || '/graphql';
 };
 
 const createApolloClient = ({
@@ -63,22 +63,25 @@ const createApolloClient = ({
     includeExtensions: true,
   });
 
-  const errorLink = onError(({ response, graphQLErrors, networkError }) => {
-    if (graphQLErrors) {
-      response?.errors.concat(graphQLErrors);
-      graphQLErrors.forEach(({ message, locations, path }) => {
-        console.log(
-          `[GraphQL error]: Message: ${message}, Location: ${JSON.stringify(
-            locations,
-          )}, Path: ${path}`,
-        );
-      });
-    }
+  const errorLink = onError(
+    ({ response, graphQLErrors, networkError, operation, forward }) => {
+      if (graphQLErrors) {
+        graphQLErrors.forEach(({ message, locations, path, extensions }) => {
+          console.error(
+            `[GraphQL error]: Message: ${message}, Location: ${JSON.stringify(
+              locations,
+            )}, Path: ${path}, Extensions: ${JSON.stringify(extensions)}, Operation: ${operation.operationName}`,
+          );
+        });
+      }
 
-    if (networkError) {
-      console.error(`[Network error]: ${networkError}`);
-    }
-  });
+      if (networkError) {
+        console.error(
+          `[Network error]: ${networkError}, Operation: ${operation.operationName}`,
+        );
+      }
+    },
+  );
 
   const cache = apolloCache(locale);
 
@@ -87,7 +90,10 @@ const createApolloClient = ({
     defaultOptions: {
       watchQuery: {
         fetchPolicy: 'cache-and-network',
-        errorPolicy: 'ignore',
+        errorPolicy: 'all',
+      },
+      mutate: {
+        errorPolicy: 'all',
       },
     },
     ssrMode: typeof window === 'undefined',

@@ -21,7 +21,7 @@ const RegisteredWebAuthItem = ({
       {md5Metadata?.icon && (
         <div className="shrink-0 flex items-center justify-center w-16  text-sm font-medium rounded-l-md">
           <ImageWithFallback
-            className="inline-block h-10 w-10 rounded-full border-2"
+            className="inline-block h-10 w-10 rounded-full border-1"
             src={md5Metadata?.icon}
             loader={defaultNextImageLoader}
             width={36}
@@ -33,7 +33,7 @@ const RegisteredWebAuthItem = ({
           />
         </div>
       )}
-      <div className="flex-1 flex items-center justify-between border-t border-r border-b border-slate-200 dark:bg-slate-800 bg-white rounded-r-md truncate dark:text-slate-200">
+      <div className="flex-1 flex items-center justify-between border-t border-r border-b border-slate-300 dark:bg-slate-800 bg-white rounded-r-md truncate dark:text-slate-200">
         <div className="flex-1 px-4 py-2 text-sm truncate">
           <span className="text-slate-900 dark:text-slate-200 font-medium ">
             {aaguid}

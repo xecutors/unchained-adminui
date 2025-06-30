@@ -8,6 +8,7 @@ export interface TextFieldProps extends FieldHookProps {
   autoComplete?: 'on' | 'off';
   type?: 'text' | 'email' | 'password' | 'number';
   maxLength?: number;
+  autoFocus?: boolean;
 }
 
 const TextField = ({
@@ -25,12 +26,10 @@ const TextField = ({
     <FieldWrapper {...field}>
       <input
         className={classnames(
-          'relative mt-1 block w-full dark:focus:autofill dark:hover:autofill dark:autofill dark:placeholder:text-white dark:bg-slate-900 dark:text-slate-200 appearance-none rounded-md border-2 dark:border-slate-700 px-4 py-2.5 text-sm text-slate-900  focus:border-indigo-400 focus:outline-hidden  focus:ring-1 focus:ring-indigo-400 shadow-xs',
+          'relative mt-1 block w-full dark:focus:autofill dark:hover:autofill dark:autofill dark:placeholder:text-slate-600 dark:bg-slate-900 dark:text-slate-200 appearance-none rounded-md border-1 dark:border-slate-700 px-4 py-2.5 text-sm text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-slate-800 shadow-xs',
           {
-            'border-red-700 placeholder:text-red-300 placeholder-red-300':
-              !!field.error,
-            'border-slate-300 placeholder-slate-400 placeholder:text-slate-400':
-              !field.error,
+            'border-rose-700 placeholder:text-rose-500': !!field.error,
+            'border-slate-300 placeholder-slate-400': !field.error,
           },
         )}
         disabled={field.disabled}
@@ -42,6 +41,7 @@ const TextField = ({
         autoComplete={field.autoComplete || 'off'}
         type={field.type || 'text'}
         value={field.value}
+        autoFocus={field.autoFocus}
       />
     </FieldWrapper>
   );

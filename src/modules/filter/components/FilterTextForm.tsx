@@ -30,7 +30,7 @@ const FilterTextForm = ({ filterId, selectedLocale = null }) => {
       filterId,
       texts: [
         {
-          locale: selectedLocale,
+          locale: selectedLocale || 'de',
           title,
           subtitle,
         },
@@ -72,7 +72,7 @@ const FilterTextForm = ({ filterId, selectedLocale = null }) => {
           defaultMessage="<ul> <li>You can change the language of filter using the dropdown found at top right corner</li>
         </ul>"
           values={{
-            ul: (chunk) => <ul className="list-disc list-inside">{chunk} </ul>,
+            ul: (chunk) => <ul className="space-y-1">{chunk} </ul>,
             li: (chunk) => <li>{chunk} </li>,
           }}
         />
@@ -81,7 +81,7 @@ const FilterTextForm = ({ filterId, selectedLocale = null }) => {
       <FormWrapper>
         <Form
           form={form}
-          className="border-slate-200 dark:border-slate-800 pt-2 lg:shadow-sm"
+          className="border-slate-300 dark:border-slate-800 pt-2 lg:shadow-sm"
         >
           <div>
             <TextField
@@ -92,7 +92,7 @@ const FilterTextForm = ({ filterId, selectedLocale = null }) => {
                 defaultMessage: 'Title',
               })}
               autoComplete="on"
-              className="mt-2 px-4 text-sm font-medium"
+              className="mt-2 px-4 text-sm"
             />
           </div>
 
@@ -105,7 +105,7 @@ const FilterTextForm = ({ filterId, selectedLocale = null }) => {
                 defaultMessage: 'Subtitle',
               })}
               autoComplete="on"
-              className="mt-2 px-4 text-sm font-medium"
+              className="mt-2 px-4 text-sm"
             />
           </div>
           <div className="flex">

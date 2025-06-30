@@ -3,14 +3,14 @@ import { useIntl } from 'react-intl';
 import { useRouter } from 'next/router';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
-import Pagination from '../../modules/common/components/Pagination';
+import InfiniteScroll from '../../modules/common/components/InfiniteScroll';
 import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 import QuotationList from '../../modules/quotation/components/QuotationList';
 import useQuotations from '../../modules/quotation/hooks/useQuotations';
-import SearchField from '../../modules/common/components/SearchField';
 import { convertSortFieldsToQueryFormat } from '../../modules/common/utils/utils';
+import SearchWithTags from '../../modules/common/components/SearchWithTags';
 import QuotationDetailPage from './QuotationDetailPage';
 
 const Quotations = () => {
@@ -41,41 +41,51 @@ const Quotations = () => {
 
   const sortKeys = convertSortFieldsToQueryFormat(sort);
 
-  const { quotations, quotationsCount, loading, loadMore } = useQuotations({
-    queryString: queryString as string,
-    limit,
-    offset,
-    sort: sortKeys,
-  });
+  const { quotations, quotationsCount, loading, loadMore, hasMore } =
+    useQuotations({
+      queryString: queryString as string,
+      limit,
+      offset,
+      sort: sortKeys,
+    });
 
   if (quotationId) return <QuotationDetailPage quotationId={quotationId} />;
   return (
     <>
       <BreadCrumbs />
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between">
-        <PageHeader
-          headerText={formatMessage({
-            id: 'quotation_list_header',
-            defaultMessage: 'Quotations',
-          })}
-        />
-        <SearchField
-          defaultValue={queryString}
-          onInputChange={setQueryString}
-        />
-      </div>
-      <div className="min-w-full overflow-x-auto">
-        <ListHeader totalRecords={quotationsCount} />
-        {loading ? (
-          <Loading />
-        ) : (
-          <QuotationList sortable quotations={quotations} showUser />
+      <PageHeader
+        headerText={formatMessage(
+          (quotationsCount ?? 0) === 1
+            ? {
+                id: 'quotation_count_header_singular',
+                defaultMessage: '1 Quotation',
+              }
+            : {
+                id: 'quotations_count_header',
+                defaultMessage: '{count} Quotations',
+              },
+          { count: quotationsCount ?? 0 },
         )}
-        <Pagination
-          data={quotations}
-          total={quotationsCount}
-          onLoadMore={loadMore}
-        />
+      />
+      <div className="min-w-full overflow-x-auto px-1">
+        <ListHeader />
+
+        <SearchWithTags
+          onSearchChange={setQueryString}
+          defaultSearchValue={queryString}
+        >
+          <InfiniteScroll
+            loading={loading}
+            hasMore={hasMore}
+            onLoadMore={loadMore}
+          >
+            {loading && quotations?.length === 0 ? (
+              <Loading />
+            ) : (
+              <QuotationList sortable quotations={quotations} showUser />
+            )}
+          </InfiniteScroll>
+        </SearchWithTags>
       </div>
     </>
   );

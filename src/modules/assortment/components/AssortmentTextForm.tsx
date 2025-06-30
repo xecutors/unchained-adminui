@@ -39,7 +39,7 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale = null }) => {
       assortmentId,
       texts: [
         {
-          locale: selectedLocale,
+          locale: selectedLocale || 'de',
           slug,
           title,
           subtitle,
@@ -83,7 +83,7 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale = null }) => {
         id: 'texts',
         defaultMessage: 'Texts',
       })}
-      className="mt-2 sm:mt-0"
+      className="mt-2 lg:mt-5"
       documentation={
         <FormattedMessage
           id="assortment_text_form_description"
@@ -91,7 +91,7 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale = null }) => {
          <li> You can change the language of text by using the localization dropdown found at top right corner </li> 
          <li> Description area accepts text that are compatible with markdown or HTML format. Tip: in order to add a line break use \ </li></ul>"
           values={{
-            ul: (chunk) => <ul className="list-disc list-inside">{chunk} </ul>,
+            ul: (chunk) => <ul className="space-y-1">{chunk} </ul>,
             li: (chunk) => <li>{chunk} </li>,
           }}
         />
@@ -111,7 +111,7 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale = null }) => {
                     defaultMessage: 'Slug',
                   })}
                   autoComplete="on"
-                  className="mt-1 w-full text-sm font-medium"
+                  className="mt-1 w-full text-sm"
                 />
               </div>
               <div className="col-span-12">
@@ -124,7 +124,7 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale = null }) => {
                   })}
                   required
                   autoComplete="on"
-                  className="mt-1 w-full text-sm font-medium"
+                  className="mt-1 w-full text-sm"
                 />
               </div>
               <div className="col-span-12">
@@ -136,7 +136,7 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale = null }) => {
                     defaultMessage: 'Subtitle',
                   })}
                   autoComplete="on"
-                  className="mt-1 w-full text-sm font-medium"
+                  className="mt-1 w-full text-sm"
                 />
               </div>
               <div className="col-span-12">
@@ -151,7 +151,7 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale = null }) => {
               </div>
             </div>
 
-            <div className="border-t-indigo-50 border-t dark:border-t-slate-700 bg-slate-50 dark:bg-slate-800 px-4 py-5 text-right sm:px-6">
+            <div className="border-t-slate-100 border-t dark:border-t-slate-700 bg-slate-50 dark:bg-slate-900 px-4 py-5 text-right sm:px-6">
               {hasRole('editAssortmentText') && (
                 <SubmitButton
                   label={formatMessage({

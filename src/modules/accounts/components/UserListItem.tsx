@@ -6,7 +6,7 @@ import MiniUserAvatar from '../../common/components/MiniUserAvatar';
 import formatUsername from '../../common/utils/formatUsername';
 import useCurrentUser from '../hooks/useCurrentUser';
 import Loading from '../../common/components/Loading';
-import { ShoppingBagIcon, ShoppingCartIcon } from '@heroicons/react/24/solid';
+import { ShoppingBagIcon, ShoppingCartIcon } from '@heroicons/react/24/outline';
 
 const UserLastLogin = ({ lastLogin }) => {
   const { formatMessage, locale } = useIntl();
@@ -22,8 +22,8 @@ const UserLastLogin = ({ lastLogin }) => {
     minute: '2-digit',
   });
   return (
-    <div className="text-xs text-gray-500">
-      <span className="font-semibold">
+    <div className="text-sm text-slate-500">
+      <span>
         {formatMessage({ id: 'last_login', defaultMessage: 'Last Login: ' })}
       </span>{' '}
       {formattedDate}, {formattedTime}
@@ -43,10 +43,13 @@ const UserListItem = ({ user }) => {
   if (loading && !currentUser) return <Loading />;
 
   return (
-    <li className="border-b border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700">
-      <Link href={`/users?userId=${user._id}`} className="block p-4 sm:px-6">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-4">
+    <li className="mb-3 bg-white dark:bg-slate-800 group border-2 border-slate-100 dark:border-slate-800 hover:border-slate-100 dark:hover:border-slate-600 transition-all duration-200 ease-in-out shadow-xs hover:shadow-sm rounded-md">
+      <Link
+        href={`/users?userId=${user._id}`}
+        className="block px-2 py-2 sm:px-3 sm:py-3"
+      >
+        <div className="flex items-center justify-between flex-wrap gap-3">
+          <div className="flex items-center">
             <MiniUserAvatar
               url={user?.avatar?.url}
               showName={false}
@@ -54,10 +57,10 @@ const UserListItem = ({ user }) => {
             />
             <div className="flex-1 min-w-0">
               <div className="flex items-center justify-between">
-                <span className="text-sm font-semibold text-indigo-600 dark:text-indigo-400 truncate">
+                <span className="text-sm font-semibold text-slate-900 dark:text-slate-300 truncate">
                   {formatUsername(user)}
                 </span>
-                <div className="flex items-center space-x-1 text-xs text-gray-500">
+                <div className="flex items-center gap-3 justify-between flex-wrap text-xs text-slate-500">
                   {user.isGuest && (
                     <Badge
                       text={formatMessage({
@@ -67,29 +70,31 @@ const UserListItem = ({ user }) => {
                       color="blue"
                     />
                   )}
-                  <ActiveInActive isActive={isVerified} />
-                  <span className="texts-sm font-bold text-slate-500 dark:text-slate-200">
-                    {UserTypes[isVerified.toString()]}
-                  </span>
                 </div>
               </div>
               <div className="text-sm text-slate-500 dark:text-slate-200">
                 <div className="truncate">{user?.primaryEmail?.address}</div>
               </div>
+              <UserLastLogin lastLogin={user?.lastLogin} />
             </div>
           </div>
-          <div className="flex flex-col items-end space-y-2 text-gray-600">
-            <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-1">
-                <ShoppingCartIcon className="w-4 h-4 text-gray-400" />
+          <div className="flex items-end flex-wrap gap-10 text-slate-600">
+            <div className="flex items-center gap-2">
+              <ActiveInActive isActive={isVerified} />
+              <span className="texts-sm font-bold text-slate-500 dark:text-slate-200">
+                {UserTypes[isVerified.toString()]}
+              </span>
+            </div>
+            <div className="flex items-center gap-10">
+              <div className="flex items-center gap-3 justify-between flex-wrap">
+                <ShoppingCartIcon className="w-4 h-4 text-slate-500" />
                 <Badge color="yellow" text={user?.cart?.items?.length || 0} />
               </div>
-              <div className="flex items-center space-x-1">
-                <ShoppingBagIcon className="w-4 h-4 text-gray-400" />
+              <div className="flex items-center gap-3 justify-between flex-wrap">
+                <ShoppingBagIcon className="w-4 h-4 text-slate-500" />
                 <Badge text={user?.orders?.length || 0} />
               </div>
             </div>
-            <UserLastLogin lastLogin={user?.lastLogin} />
           </div>
         </div>
       </Link>

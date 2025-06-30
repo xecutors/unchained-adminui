@@ -18,6 +18,8 @@ import ErrorBoundary from '../modules/common/components/ErrorBoundary';
 import Head from 'next/head';
 import Script from 'next/script';
 import AuthWrapper from '../modules/Auth/AuthWrapper';
+import { ChatProvider } from '../modules/chat/ChatContext';
+import ImageWithFallback from '../modules/common/components/ImageWithFallback';
 
 const handleRouteChange = (url) => {
   matomo.pageView(document.location.origin + url, document.title);
@@ -29,6 +31,15 @@ const UnchainedAdmin = ({ Component, componentName, pageProps, router }) => {
   const getLayout = Component.getLayout
     ? (page) => (
         <AuthWrapper>
+          <div className="absolute top-4 left-4">
+            <ImageWithFallback
+              src={process.env.NEXT_PUBLIC_LOGO}
+              width={32}
+              height={20}
+              alt="Logo"
+              className="dark:brightness-0 dark:invert"
+            />
+          </div>
           <div className="absolute top-4 right-4">
             <ThemeToggle />
           </div>
@@ -37,7 +48,14 @@ const UnchainedAdmin = ({ Component, componentName, pageProps, router }) => {
       )
     : (page) => <Layout componentName={componentName}>{page}</Layout>;
 
-  const messages = getMessages(router.locale);
+  // Always start with default locale to avoid hydration mismatch
+  // The actual locale will be updated after hydration in IntlWrapper
+  const getEffectiveLocale = () => {
+    return process.env.NEXT_PUBLIC_DEFAULT_LOCALE || 'de'; // Default to German to ensure server/client consistency
+  };
+
+  const effectiveLocale = getEffectiveLocale();
+  const messages = getMessages(effectiveLocale);
 
   useEffect(() => {
     Router.events.on('routeChangeComplete', handleRouteChange);
@@ -48,7 +66,11 @@ const UnchainedAdmin = ({ Component, componentName, pageProps, router }) => {
   }, [apollo]);
 
   return (
-    <IntlWrapper locale={router.locale} messages={messages} key="intl-provider">
+    <IntlWrapper
+      locale={effectiveLocale}
+      messages={messages}
+      key="intl-provider"
+    >
       <ErrorBoundary>
         <Head>
           <title>Unchained: Admin UI</title>
@@ -76,18 +98,20 @@ const UnchainedAdmin = ({ Component, componentName, pageProps, router }) => {
         <ApolloProvider client={apollo}>
           <UnchainedContextWrapper>
             <ThemeWrapper>
-              <ToastContainer
-                position="top-right"
-                autoClose={5000}
-                newestOnTop={false}
-                closeOnClick
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-              />
-              <ModalWrapper>
-                {getLayout(<Component {...pageProps} />)}
-              </ModalWrapper>
+              <ChatProvider>
+                <ToastContainer
+                  position="top-right"
+                  autoClose={5000}
+                  newestOnTop={false}
+                  closeOnClick
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover
+                />
+                <ModalWrapper>
+                  {getLayout(<Component {...pageProps} />)}
+                </ModalWrapper>
+              </ChatProvider>
             </ThemeWrapper>
           </UnchainedContextWrapper>
         </ApolloProvider>

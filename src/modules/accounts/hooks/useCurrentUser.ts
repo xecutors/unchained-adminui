@@ -2,6 +2,7 @@ import { useQuery, gql } from '@apollo/client';
 import {
   ICurrentUserQuery,
   ICurrentUserQueryVariables,
+  IUser,
 } from '../../../gql/types';
 import useUnchainedContext from '../../UnchainedContext/useUnchainedContext';
 import UserFragment from '../fragment/UserFragment';
@@ -23,7 +24,7 @@ const useCurrentUser = (params?: ICurrentUserQueryVariables) => {
     ICurrentUserQueryVariables
   >(GetCurrentUserQuery(customProperties?.User));
 
-  const currentUser = data?.me;
+  const currentUser = data?.me as IUser;
   const extendedData = hydrateFragment(
     customProperties?.User,
     currentUser || null,

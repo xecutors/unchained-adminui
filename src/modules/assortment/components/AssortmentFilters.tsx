@@ -113,16 +113,14 @@ const AssortmentFilters = ({ assortmentId }) => {
           id: 'assortment_filters_form_header',
           defaultMessage: 'Filters',
         })}
-        className="mt-2 sm:mt-0"
+        className="mt-2 lg:mt-5"
         documentation={
           <FormattedMessage
             id="assortment_filter_form_description"
             defaultMessage="<ul> <li>Assign filters that will be applied for the assortment </li>
       </ul>"
             values={{
-              ul: (chunk) => (
-                <ul className="list-disc list-inside">{chunk} </ul>
-              ),
+              ul: (chunk) => <ul className="space-y-1">{chunk} </ul>,
               li: (chunk) => <li>{chunk} </li>,
             }}
           />
@@ -143,9 +141,7 @@ const AssortmentFilters = ({ assortmentId }) => {
             <li> Drag and drop list items to sort filters order </li>
           </ul>"
             values={{
-              ul: (chunk) => (
-                <ul className="list-disc list-inside">{chunk} </ul>
-              ),
+              ul: (chunk) => <ul className="space-y-1">{chunk} </ul>,
               li: (chunk) => <li>{chunk} </li>,
             }}
           />

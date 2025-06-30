@@ -27,7 +27,7 @@ const OrderDetailHeader = ({ order }) => {
             <Badge
               text={order.orderNumber}
               square
-              color="indigo"
+              color="slate"
               className="text-lg font-medium sm:text-xl sm:font-bold "
             />
           ) : (

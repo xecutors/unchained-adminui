@@ -16,7 +16,7 @@ const CheckboxField = (props: CommonFieldProps) => {
       className={classNames(
         '',
         {
-          'text-red-600': !!field.error,
+          'text-rose-600': !!field.error,
           checkbox: true,
           disabled: field.disabled,
           required: field.required,
@@ -34,7 +34,7 @@ const CheckboxField = (props: CommonFieldProps) => {
         type="checkbox"
         className={
           (classNames(
-            'h-4 w-4 rounded-xs border-slate-300 text-indigo-600 focus:ring-indigo-400',
+            'h-4 w-4 rounded-xs border-slate-300 dark:border-slate-600 bg-white dark:!bg-slate-800 text-slate-950 focus:ring-slate-800',
           ),
           inputClassName)
         }

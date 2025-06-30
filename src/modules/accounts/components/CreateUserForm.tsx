@@ -59,7 +59,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
 
   return (
     <Form form={form} className="max-w-6xl">
-      <div className="space-y-4 overflow-hidden rounded-md border-b dark:border-none lg:grid lg:grid-cols-3">
+      <div className="space-y-4 overflow-hidden rounded-md lg:grid lg:grid-cols-3">
         <div className="flex justify-between pt-5 sm:col-span-1">
           <div className="space-y-1">
             <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-slate-200">
@@ -68,7 +68,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                 defaultMessage: 'Profile',
               })}
             </h3>
-            <p className="-my-5 divide-y divide-slate-200 dark:divide-slate-700 dark:text-slate-400 mr-4">
+            <p className="divide-y divide-slate-200 dark:divide-slate-700 dark:text-slate-400 mr-4">
               {formatMessage({
                 id: 'profile_notice',
                 defaultMessage:
@@ -79,7 +79,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
           <span className="ml-4 flex shrink-0 items-start space-x-4" />
         </div>
 
-        <div className="mt-1 rounded-md border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800 pt-5 shadow-sm dark:shadow-none lg:col-span-2">
+        <div className="mt-1 rounded-md border-slate-300 dark:border-slate-800 bg-white dark:bg-slate-800 pt-5 shadow-sm dark:shadow-none lg:col-span-2">
           <div className="px-6 space-y-4">
             <div>
               <EmailField
@@ -177,7 +177,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
             </div>
           </div>
 
-          <div className="border-t-indigo-50 border-t dark:border-t-slate-700 bg-slate-50 dark:bg-slate-800 mt-5 pr-5">
+          <div className="border-t-slate-100 border-t dark:border-t-slate-700 bg-slate-50 dark:bg-slate-800 mt-5 pr-5">
             <FormErrors />
             <SaveAndCancelButtons className="justify-end" onCancel={back} />
           </div>
@@ -186,14 +186,14 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
         <div className="mb-6 w-full lg:col-span-3" />
 
         <div className="flex justify-between pt-6 lg:col-span-1">
-          <div className="space-y-1 ">
+          <div className="space-y-1">
             <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-slate-200">
               {formatMessage({
                 id: 'address',
                 defaultMessage: 'Address',
               })}
             </h3>
-            <p className="-my-5 divide-y divide-slate-200 dark:divide-slate-700 dark:text-slate-400 mr-4">
+            <p className="divide-y divide-slate-200 dark:divide-slate-700 dark:text-slate-400 mr-4">
               {formatMessage({
                 id: 'address_notice',
                 defaultMessage:
@@ -339,7 +339,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
               </div>
             </div>
           </div>
-          <div className="border-t border-indigo-50 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 mt-5 pr-5">
+          <div className="border-t border-slate-100 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 mt-5 pr-5">
             <SaveAndCancelButtons className="justify-end" onCancel={back} />
           </div>
         </div>

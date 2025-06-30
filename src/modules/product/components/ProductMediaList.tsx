@@ -12,8 +12,8 @@ const ProductMediaList = ({ medias, selectedLocale, onDeleteMedia, items }) => {
   const { formatMessage } = useIntl();
 
   return (
-    <div className="rounded-md shadow-sm dark:shadow-none lg:col-span-6 px-6 lg:px-0">
-      <div className="mx-auto max-w-7xl overflow-hidden">
+    <div className="rounded-md lg:col-span-6 px-6">
+      <div className="mx-auto overflow-hidden">
         <h2 className="sr-only">
           {formatMessage({
             id: 'product_media',
@@ -23,7 +23,7 @@ const ProductMediaList = ({ medias, selectedLocale, onDeleteMedia, items }) => {
 
         <div className="flow-root dark:bg-slate-800">
           <SortableContext items={items} strategy={verticalListSortingStrategy}>
-            <ul className="space-y-4 p-5 rounded-md transition-[background-color] ease-in-out delay-200 ">
+            <ul className="flex flex-col gap-3 rounded-md transition-[background-color] ease-in-out delay-200 ">
               {medias?.length ? (
                 items.map((id) => {
                   const media = Object.values(medias as IProductMedia[]).find(

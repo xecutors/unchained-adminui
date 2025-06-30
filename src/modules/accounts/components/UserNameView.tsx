@@ -42,12 +42,10 @@ const UserNameView = ({ _id: userId, username }) => {
   return (
     <Form form={form}>
       <dl className="divide-y divide-slate-200">
-        <div className="flex flex-wrap items-center sm:grid sm:grid-cols-3 sm:gap-4">
-          <div className="shrink grow basis-2/5 text-sm font-medium text-slate-500 dark:text-slate-200">
+        <div className="flex flex-wrap justify-between items-center sm:gap-4">
+          <div className="flex flex-wrap justify-between items-center sm:gap-4 text-sm text-slate-400 dark:text-slate-200">
             {!isEdit &&
               formatMessage({ id: 'username', defaultMessage: 'Username' })}
-          </div>
-          <div className="shrink mt-1 flex grow basis-3/5 flex-wrap items-center gap-4 text-sm sm:col-span-2 sm:mt-0 sm:gap-0">
             <span className="grow">
               {isEdit ? (
                 <TextField
@@ -65,16 +63,18 @@ const UserNameView = ({ _id: userId, username }) => {
                 </div>
               )}
             </span>
+          </div>
+          <div className="flex flex-wrap items-baseline gap-4 text-sm sm:col-span-2 sm:mt-0 sm:gap-0">
             <FormErrors />
             {hasRole('editUsername') && (
-              <span className="ml-4 mt-1 flex shrink-0 items-center space-x-4">
+              <span className="flex shrink-0 items-center space-x-4">
                 <button
                   data-id="cancel_update"
                   onClick={() => setIsEdit(!isEdit)}
                   type="button"
                   className={classNames(
-                    isEdit ? '' : 'focus:ring-indigo-400',
-                    'inline-flex items-center rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-xs hover:bg-slate-50 focus:outline-hidden focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2',
+                    isEdit ? '' : 'focus:ring-slate-800',
+                    'inline-flex items-center rounded-md border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-200 shadow-xs hover:bg-slate-50 dark:hover:bg-slate-700 focus:outline-hidden focus:ring-2 focus:ring-slate-800 dark:focus:ring-slate-400 focus:ring-offset-2',
                   )}
                 >
                   {isEdit
@@ -90,7 +90,7 @@ const UserNameView = ({ _id: userId, username }) => {
                 {isEdit && (
                   <button
                     type="submit"
-                    className="inline-flex items-center rounded-md border border-transparent bg-indigo-500 px-4 py-2 text-sm font-medium text-white shadow-xs hover:bg-indigo-700 focus:outline-hidden focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+                    className="inline-flex items-center rounded-md border border-transparent bg-slate-800 dark:bg-slate-600 px-4 py-2 text-sm font-medium text-white shadow-xs hover:bg-slate-950 dark:hover:bg-slate-500 focus:outline-hidden focus:ring-2 focus:ring-slate-800 dark:focus:ring-slate-400 focus:ring-offset-2"
                   >
                     {formatMessage({
                       id: 'save',

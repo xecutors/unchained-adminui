@@ -114,16 +114,14 @@ const AssortmentProducts = ({ assortmentId }) => {
           id: 'assortment_product_form_header',
           defaultMessage: 'Products',
         })}
-        className="mt-2 sm:mt-0"
+        className="mt-2 lg:mt-5"
         documentation={
           <FormattedMessage
             id="assortment_product_form_description"
             defaultMessage="<ul> <li>Products that belong to this assortment </li>
           </ul>"
             values={{
-              ul: (chunk) => (
-                <ul className="list-disc list-inside">{chunk} </ul>
-              ),
+              ul: (chunk) => <ul className="space-y-1">{chunk} </ul>,
               li: (chunk) => <li>{chunk} </li>,
             }}
           />
@@ -145,9 +143,7 @@ const AssortmentProducts = ({ assortmentId }) => {
             <li> Drag and drop list items to sort products order </li>
           </ul>"
             values={{
-              ul: (chunk) => (
-                <ul className="list-disc list-inside">{chunk} </ul>
-              ),
+              ul: (chunk) => <ul className="space-y-1">{chunk} </ul>,
               li: (chunk) => <li>{chunk} </li>,
             }}
           />

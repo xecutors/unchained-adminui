@@ -13,10 +13,13 @@ const PRODUCT_STATUS = {
   DELETED: 'red',
 };
 
-const ProductListItem = ({ product, showAvatar = false }) => {
+const ProductListItem = ({
+  product,
+  showAvatar = false,
+  hideSortIndex = false,
+}) => {
   const { formatMessage } = useIntl();
   const { updateProduct } = useUpdateProduct();
-
   const updateProductSequence = async (e) => {
     if (e.target.value)
       await updateProduct({
@@ -33,13 +36,13 @@ const ProductListItem = ({ product, showAvatar = false }) => {
           {showAvatar && (
             <MediaAvatar
               file={product?.media?.length && product.media[0].file}
-              className="mr-2"
+              className="mr-3"
             />
           )}
           {product?.status !== 'DELETED' ? (
             <Link
               href={`/products?slug=${generateUniqueId(product)}`}
-              className="text-blue-600 dark:text-blue-400"
+              className="text-slate-900 dark:text-slate-300"
             >
               {product?.texts?.title || (
                 <>
@@ -81,17 +84,21 @@ const ProductListItem = ({ product, showAvatar = false }) => {
       </Table.Cell>
 
       <Table.Cell>
-        {product.tags?.map((t) => <Badge key={t} text={t} color="indigo" />)}
+        <div className="flex flex-wrap gap-2">
+          {product.tags?.map((t) => <Badge key={t} text={t} color="slate" />)}
+        </div>
       </Table.Cell>
-      <Table.Cell>
-        <input
-          type="number"
-          id={`${product?._id}-sequence`}
-          className="w-24 shadow-xs focus:ring-indigo-500 dark:bg-slate-800 dark:border-slate-700 focus:border-indigo-500 block text-sm  border-gray-300 rounded-full mr-2 font-bold text-indigo-500"
-          defaultValue={product?.sequence}
-          onBlur={updateProductSequence}
-        />
-      </Table.Cell>
+      {hideSortIndex ? null : (
+        <Table.Cell>
+          <input
+            type="number"
+            id={`${product?._id}-sequence`}
+            className="text-center w-16 shadow-xs focus:ring-slate-900 dark:bg-slate-800 dark:border-slate-700 focus:border-slate-900 block text-sm border-slate-300 rounded-md mr-2 font-bold text-slate-900 dark:text-slate-300"
+            defaultValue={product?.sequence}
+            onBlur={updateProductSequence}
+          />
+        </Table.Cell>
+      )}
     </Table.Row>
   );
 };

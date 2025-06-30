@@ -15,7 +15,7 @@ const DiscountList = ({ discounts }) => {
   const { formatMessage } = useIntl();
   const { formatPrice } = useFormatPrice();
   return (
-    <div className="flex flex-auto flex-col bg-white dark:bg-slate-800 shadow-sm dark:shadow-none sm:rounded-lg">
+    <div className="flex flex-auto flex-col bg-white dark:bg-slate-800 sm:rounded-lg">
       <h2 className="px-4 py-4 text-lg font-medium text-slate-900 dark:text-slate-200 sm:px-6">
         {formatMessage({
           id: 'discount_information',
@@ -72,7 +72,7 @@ const DiscountList = ({ discounts }) => {
             id: 'discounts',
             defaultMessage: 'Discounts',
           })}
-          className="border-t border-indigo-50 dark:border-slate-700 px-4 py-4 sm:px-6"
+          className="border-t border-slate-100 dark:border-slate-700 px-4 py-4 sm:px-6"
         />
       )}
     </div>

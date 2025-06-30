@@ -100,12 +100,12 @@ const CountryForm = ({
                 id: 'active',
                 defaultMessage: 'Active',
               })}
-              className="mr-2 h-4 w-4 rounded-xs border-slate-300 text-indigo-600 focus:ring-indigo-400"
+              className="mr-2 h-4 w-4 rounded-xs border-slate-300 dark:border-slate-600 bg-white dark:!bg-slate-800 text-slate-950 focus:ring-slate-800"
             />
           </div>
         )}
       </div>
-      <div className="space-y-6 border-t border-t-indigo-50 dark:border-t-slate-700 bg-slate-50 dark:bg-slate-800 p-5 text-right">
+      <div className="space-y-6 border-t border-t-slate-100 dark:border-t-slate-700 bg-slate-50 dark:bg-slate-900 p-5 text-right">
         <SubmitButton
           hidden={!hasRole('editCountry')}
           label={

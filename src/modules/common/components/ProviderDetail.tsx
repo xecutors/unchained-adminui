@@ -1,4 +1,4 @@
-import { CheckCircleIcon } from '@heroicons/react/24/solid';
+import { CheckCircleIcon } from '@heroicons/react/24/outline';
 import { useIntl } from 'react-intl';
 
 import { getInterfaceLabel } from '../utils/utils';
@@ -6,6 +6,7 @@ import useFormatDateTime from '../utils/useFormatDateTime';
 import { PROVIDER_TYPE_CLASSES } from '../data/miscellaneous';
 import ProviderConfigurationForm from './ProviderConfigurationForm';
 import ActiveInActive from './ActiveInActive';
+import Badge from './Badge';
 
 const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess, readOnly }) => {
   const { formatMessage } = useIntl();
@@ -13,10 +14,10 @@ const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess, readOnly }) => {
 
   return (
     <div className="my-6">
-      <div className="space-y-8 divide-y divide-slate-200">
-        <div className="space-y-8 divide-y divide-slate-200 sm:space-y-5">
+      <div className="space-y-8">
+        <div className="space-y-8 sm:space-y-5">
           <div className="flex items-center">
-            <h3 className="text-2xl font-medium leading-6 text-slate-900 dark:text-slate-200 mr-2">
+            <h3 className="text-2xl leading-6 text-slate-900 dark:text-slate-200 mr-2">
               {getInterfaceLabel(provider?.interface)}
             </h3>
             <ActiveInActive
@@ -25,20 +26,22 @@ const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess, readOnly }) => {
             />
           </div>
           <div className="mt-6 flex flex-col">
-            <div className="flex flex-col items-start sm:flex-row sm:items-center sm:justify-between">
-              <div className="flex justify-center py-4 sm:py-5">
-                <dt className="my-auto inline-block text-sm font-medium text-slate-400 ">
-                  {formatMessage({ id: 'type_colon', defaultMessage: 'Type:' })}
-                </dt>
-                <dd
-                  className={`bg-${
-                    PROVIDER_TYPE_CLASSES[provider?.type]
-                  }-100 text-${
-                    PROVIDER_TYPE_CLASSES[provider?.type]
-                  }-800 ml-4 inline-block rounded-lg border p-2 text-lg font-bold leading-4`}
-                >
-                  {provider?.type}
-                </dd>
+            <div className="max-w-xs">
+              <div className="flex flex-col items-start sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex justify-between w-full gap-3">
+                  <dt className="my-auto inline-block text-sm text-slate-400 ">
+                    {formatMessage({
+                      id: 'type_colon',
+                      defaultMessage: 'Type:',
+                    })}
+                  </dt>
+                  <dd>
+                    <Badge
+                      text={provider?.type}
+                      color={PROVIDER_TYPE_CLASSES[provider?.type]}
+                    />
+                  </dd>
+                </div>
               </div>
               <div className="flex flex-col justify-center">
                 <div className="flex flex-auto items-center">
@@ -48,21 +51,21 @@ const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess, readOnly }) => {
                       defaultMessage: 'Created:',
                     })}
                   </dt>
-                  <dd className="ml-auto text-base font-medium">
+                  <dd className="ml-auto text-base">
                     {formatDateTime(provider?.created, {
                       dateStyle: 'long',
                       timeStyle: 'short',
                     })}
                   </dd>
                 </div>
-                <div className="flex flex-auto">
+                <div className="flex flex-auto items-center">
                   <dt className="text-sm font-normal text-slate-400 sm:justify-self-end pr-2">
                     {formatMessage({
                       id: 'last_updated',
                       defaultMessage: 'Last Updated:',
                     })}
                   </dt>
-                  <dd className="text-base font-medium">
+                  <dd className="ml-auto text-base">
                     {formatDateTime(provider?.updated, {
                       dateStyle: 'long',
                       timeStyle: 'short',
@@ -90,7 +93,7 @@ const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess, readOnly }) => {
               {provider?.configurationError ? (
                 <dd className="block">{provider?.configurationError}</dd>
               ) : (
-                <CheckCircleIcon className="ml-2 inline-block h-6 w-6 text-green-500" />
+                <CheckCircleIcon className="ml-2 inline-block h-6 w-6 text-emerald-500" />
               )}
             </div>
           </div>

@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
-import { InboxIcon } from '@heroicons/react/24/solid';
+import { InboxIcon } from '@heroicons/react/24/outline';
 
 import useEnrollmentStatusTypes from '../hooks/useEnrollmentStatusTypes';
 import StatusProgress from '../../common/components/StatusProgress';
@@ -63,8 +63,11 @@ const EnrollmentDetail = ({ enrollment }: { enrollment: IEnrollment }) => {
 
   const EmailIcon = (
     <div className="flex w-full items-center justify-center">
-      <div className="mx-auto flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10">
-        <InboxIcon className="h-6 w-6 text-blue-600" aria-hidden="true" />
+      <div className="mx-auto flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/30 sm:mx-0 sm:h-10 sm:w-10">
+        <InboxIcon
+          className="h-6 w-6 text-slate-900 dark:text-blue-400"
+          aria-hidden="true"
+        />
       </div>
     </div>
   );
@@ -154,9 +157,12 @@ const EnrollmentDetail = ({ enrollment }: { enrollment: IEnrollment }) => {
       visible: true,
       Component: enrollment?.status === 'PAUSED' && (
         <Button
-          text="Activate"
+          text={formatMessage({
+            id: 'activate',
+            defaultMessage: 'Activate',
+          })}
           onClick={onActivateEnrollment}
-          className="bg-white-300 relative -ml-px inline-flex items-center space-x-2 rounded-md border border-indigo-500 bg-indigo-500 px-2 py-1 text-base font-medium text-white hover:bg-indigo-700 focus:border-indigo-400 focus:outline-hidden focus:ring-0 focus:ring-indigo-400"
+          className="bg-white-300 relative -ml-px inline-flex items-center space-x-2 rounded-md border border-slate-900 dark:border-slate-600 bg-slate-800 dark:bg-slate-600 px-2 py-1 text-base font-medium text-white hover:bg-slate-950 dark:hover:bg-slate-500  dark:focus:border-slate-400 focus:outline-hidden focus:ring-0 focus:ring-slate-800 dark:focus:ring-slate-400"
         />
       ),
     },
@@ -171,14 +177,14 @@ const EnrollmentDetail = ({ enrollment }: { enrollment: IEnrollment }) => {
             defaultMessage: 'Terminate Enrollment',
           })}
           onClick={onTerminateEnrollment}
-          className="bg-white-300  inline-flex items-center space-x-2 rounded-md border border-red-500 bg-red-500 px-2 py-1 text-base font-medium text-white hover:bg-red-700 focus:border-red-400 focus:outline-hidden focus:ring-0 focus:ring-red-400"
+          className="bg-white-300  inline-flex items-center space-x-2 rounded-md border border-rose-500 bg-rose-500 px-2 py-1 text-base font-medium text-white hover:bg-rose-700 focus:border-rose-400 focus:outline-hidden focus:ring-0 focus:ring-rose-400"
         />
       ),
     },
   };
 
   const headerCSS =
-    'inline-flex items-center justify-between w-full px-4 py-2 rounded-t-md border border-slate-300 bg-slate-100 text-sm font-medium text-slate-700 hover:bg-slate-50 focus:z-10 focus:outline-hidden focus:ring-1 focus:ring-indigo-400 focus:border-indigo-400';
+    'inline-flex items-center justify-between w-full px-4 py-2 rounded-t-md border border-slate-300 bg-slate-50 text-sm font-medium text-slate-700 hover:bg-slate-50 focus:z-10 focus:outline-hidden focus:ring-2 focus:ring-slate-800 ';
 
   const periods = {
     header: (
@@ -237,10 +243,10 @@ const EnrollmentDetail = ({ enrollment }: { enrollment: IEnrollment }) => {
                 </div>
               </div>
 
-              <div className="flex-auto border-t border-slate-200 dark:border-slate-800 pt-4 lg:col-span-6 lg:border-0">
+              <div className="flex-auto border-t border-slate-300 dark:border-slate-800 pt-4 lg:col-span-6 lg:border-0">
                 <JSONView
                   disabled
-                  className="bg-white dark:bg-slate-900 dark:text-slate-200 mt-1 block w-full max-w-full rounded-md border-2 resize-none border-slate-200 dark:border-slate-800 shadow-xs sm:text-sm"
+                  className="bg-white dark:bg-slate-900 dark:text-slate-200 mt-1 block w-full max-w-full rounded-md border-1 resize-none border-slate-300 dark:border-slate-800 shadow-xs sm:text-sm"
                   value={JSON.stringify(
                     (enrollment?.plan.configuration || []).map(
                       ({ __typename, ...rest }: any) => rest,
@@ -253,7 +259,7 @@ const EnrollmentDetail = ({ enrollment }: { enrollment: IEnrollment }) => {
             </div>
 
             <div className="grid grid-cols-1 gap-x-6 gap-y-4 sm:gap-y-8 lg:col-span-2 lg:grid-cols-2 lg:gap-x-8">
-              <div className="border-t border-slate-200 dark:border-slate-800 pt-4">
+              <div className="border-t border-slate-300 dark:border-slate-800 pt-4">
                 <dt className="font-medium text-slate-900">
                   {formatMessage({
                     id: 'payment_provider',
@@ -263,7 +269,7 @@ const EnrollmentDetail = ({ enrollment }: { enrollment: IEnrollment }) => {
                 <dd className="mt-2 text-sm text-slate-500">
                   <Link
                     href={`/payment-provider?paymentProviderId=${enrollment?.payment?.provider?._id}`}
-                    className="text-blue-600 dark:text-blue-400"
+                    className="text-slate-900 dark:text-slate-300"
                   >
                     {getInterfaceLabel(
                       enrollment?.payment?.provider?.interface,
@@ -272,7 +278,7 @@ const EnrollmentDetail = ({ enrollment }: { enrollment: IEnrollment }) => {
                 </dd>
               </div>
 
-              <div className="border-t border-slate-200 dark:border-slate-800 pt-4">
+              <div className="border-t border-slate-300 dark:border-slate-800 pt-4">
                 <dt className="font-medium text-slate-900">
                   {formatMessage({
                     id: 'delivery_provider',
@@ -282,7 +288,7 @@ const EnrollmentDetail = ({ enrollment }: { enrollment: IEnrollment }) => {
                 <dd className="mt-2 text-sm text-slate-500">
                   <Link
                     href={`/delivery-provider?deliveryProviderId=${enrollment?.delivery?.provider._id}`}
-                    className="text-blue-600 dark:text-blue-400"
+                    className="text-slate-900 dark:text-slate-300"
                   >
                     {getInterfaceLabel(
                       enrollment?.delivery?.provider?.interface,
@@ -291,7 +297,7 @@ const EnrollmentDetail = ({ enrollment }: { enrollment: IEnrollment }) => {
                 </dd>
               </div>
               {enrollment?.contact && (
-                <div className="col-span-1 border-t border-slate-200 dark:border-slate-800 pt-4">
+                <div className="col-span-1 border-t border-slate-300 dark:border-slate-800 pt-4">
                   <div className="font-medium text-slate-900">
                     {formatMessage({
                       id: 'contact',
@@ -318,7 +324,7 @@ const EnrollmentDetail = ({ enrollment }: { enrollment: IEnrollment }) => {
               )}
             </div>
 
-            <div className="border-t border-slate-200 dark:border-slate-800 pt-4">
+            <div className="border-t border-slate-300 dark:border-slate-800 pt-4">
               <dt className="font-medium text-slate-900">
                 {formatMessage({
                   id: 'billing_address',

@@ -102,7 +102,7 @@ const Web3Addresses = ({ web3Addresses }) => {
                     onClick={async () => {
                       await onVerifyAddress({ address, nonce });
                     }}
-                    className="inline-flex items-center rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-xs hover:bg-slate-50 focus:outline-hidden focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+                    className="inline-flex items-center rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-xs hover:bg-slate-50 focus:outline-hidden focus:ring-2 focus:ring-slate-800 focus:ring-offset-2"
                   >
                     {formatMessage({
                       id: 'verification_web3_address',
@@ -113,7 +113,7 @@ const Web3Addresses = ({ web3Addresses }) => {
 
                 <DeleteButton
                   onClick={() => onRemoveWeb3Address({ address })}
-                  className="ml-2 inline-flex items-center rounded-full bg-white hover:bg-red-50"
+                  className="ml-2 inline-flex items-center rounded-full bg-white hover:bg-rose-50"
                 />
               </div>
             </div>
@@ -139,7 +139,7 @@ const Web3Addresses = ({ web3Addresses }) => {
             />
             <span className="shrink-0 flex items-end">
               <SubmitButton
-                className="py-2.5"
+                className="py-2 leading-5"
                 label={formatMessage({
                   id: 'add_web3_address',
                   defaultMessage: 'Add address',

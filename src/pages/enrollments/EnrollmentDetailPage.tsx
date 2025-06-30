@@ -15,13 +15,13 @@ const EnrollmentDetailPage = ({ enrollmentId }) => {
   });
 
   return (
-    <div className="mt-6 max-w-full">
+    <div className="mt-5 max-w-full">
       <BreadCrumbs
         currentPageTitle={
           enrollment?.enrollmentNumber ? `#${enrollment?.enrollmentNumber}` : ''
         }
       />
-      <div className="align-center flex min-w-full justify-between">
+      <div className="items-center flex min-w-full justify-between gap-3 flex-wrap">
         <PageHeader
           headerText={formatMessage({
             id: 'enrollment_detail',

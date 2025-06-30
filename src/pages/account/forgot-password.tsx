@@ -34,7 +34,7 @@ const ForgotPassword = () => {
 
   return (
     <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="w-full max-w-md space-y-8 text-center">
+      <div className="w-full max-w-md space-y-4 text-center">
         <div>
           <ImageWithFallback
             className="mx-auto"
@@ -46,7 +46,7 @@ const ForgotPassword = () => {
               defaultMessage: 'Unchained Logo',
             })}
           />
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-slate-900 dark:text-slate-200">
+          <h2 className="text-center text-3xl text-slate-900 dark:text-slate-200">
             {formatMessage({
               id: 'forget_password',
               defaultMessage: 'Forgot your password?',

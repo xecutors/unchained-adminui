@@ -12,7 +12,7 @@ const ExportTokenForm = ({ isOpen, addresses, cancel, onExport }) => {
         role="dialog"
         aria-modal="true"
       >
-        <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+        <div className="fixed inset-0 bg-slate-500 bg-opacity/75 transition-opacity" />
 
         <div className="fixed inset-0 z-10 overflow-y-auto">
           <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
@@ -37,13 +37,13 @@ const ExportTokenForm = ({ isOpen, addresses, cancel, onExport }) => {
                             web3Address.address?.toLowerCase()
                           }
                           type="checkbox"
-                          className="h-4 w-4 rounded-sm border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                          className="h-4 w-4 rounded-sm border-slate-300 dark:border-slate-600 bg-white dark:!bg-slate-800 text-slate-950 focus:ring-slate-900"
                         />
                       </div>
                       <div className="ml-3 text-sm">
                         <label
                           htmlFor="comments"
-                          className="font-medium text-gray-700"
+                          className="font-medium text-slate-700"
                         >
                           {web3Address.address}
                         </label>
@@ -56,7 +56,7 @@ const ExportTokenForm = ({ isOpen, addresses, cancel, onExport }) => {
               <div className="mt-4">
                 <label
                   htmlFor="Address"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-slate-700"
                 >
                   {formatMessage({
                     id: 'or_manually_enter_address',
@@ -70,7 +70,7 @@ const ExportTokenForm = ({ isOpen, addresses, cancel, onExport }) => {
                     value={value}
                     name="Address"
                     id="Address"
-                    className="block w-full rounded-md border-gray-300 shadow-xs focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    className="block w-full rounded-md border-slate-300 shadow-xs focus:border-slate-900 focus:ring-slate-900 sm:text-sm"
                     placeholder="0xF5F72AE7fa1fa990ebaF163208Ed7aD6a3f42DEA"
                   />
                 </div>
@@ -80,14 +80,14 @@ const ExportTokenForm = ({ isOpen, addresses, cancel, onExport }) => {
                 <button
                   type="button"
                   onClick={() => onExport(value)}
-                  className="inline-flex w-full justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-xs hover:bg-indigo-700 focus:outline-hidden focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:col-start-2 sm:text-sm"
+                  className="inline-flex w-full justify-center rounded-md border border-transparent bg-slate-950 px-4 py-2 text-base font-medium text-white shadow-xs hover:bg-slate-950 focus:outline-hidden focus:ring-2 focus:ring-slate-900 focus:ring-offset-2 sm:col-start-2 sm:text-sm"
                 >
                   {formatMessage({ id: 'export', defaultMessage: 'Export' })}
                 </button>
                 <button
                   type="button"
                   onClick={cancel}
-                  className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-xs hover:bg-gray-50 focus:outline-hidden focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:col-start-1 sm:mt-0 sm:text-sm"
+                  className="mt-3 inline-flex w-full justify-center rounded-md border border-slate-300 bg-white px-4 py-2 text-base font-medium text-slate-700 shadow-xs hover:bg-slate-50 focus:outline-hidden focus:ring-2 focus:ring-slate-900 focus:ring-offset-2 sm:col-start-1 sm:mt-0 sm:text-sm"
                 >
                   {formatMessage({ id: 'cancel', defaultMessage: 'Cancel' })}
                 </button>

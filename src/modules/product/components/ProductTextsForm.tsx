@@ -24,7 +24,7 @@ const ProductTextsForm = ({ productId, selectedLocale = null }) => {
     id: 'saved',
     defaultMessage: 'Saved',
   });
-
+  console.log(selectedLocale);
   const { updateProductTexts } = useUpdateProductTexts();
 
   const onSubmit: OnSubmitType = async ({
@@ -40,7 +40,7 @@ const ProductTextsForm = ({ productId, selectedLocale = null }) => {
       productId,
       texts: [
         {
-          locale: selectedLocale,
+          locale: selectedLocale || 'de',
           slug,
           title,
           subtitle,
@@ -90,7 +90,7 @@ const ProductTextsForm = ({ productId, selectedLocale = null }) => {
         id: 'texts',
         defaultMessage: 'Texts',
       })}
-      className="mt-2 sm:mt-0"
+      className="mt-2 lg:mt-5"
       documentation={
         <FormattedMessage
           id="product_text_form_description"
@@ -99,8 +99,8 @@ const ProductTextsForm = ({ productId, selectedLocale = null }) => {
            <li> Description area accepts text that are compatible with markdown or HTML. Tip: in order to add a line break use \ </li>
            </ul>"
           values={{
-            ul: (chunk) => <ul className="list-disc list-inside">{chunk} </ul>,
-            li: (chunk) => <li>{chunk} </li>,
+            ul: (chunk) => <ul className="space-y-1">{chunk} </ul>,
+            li: (chunk) => <li key={Math.random()}>{chunk} </li>,
           }}
         />
       }
@@ -119,7 +119,7 @@ const ProductTextsForm = ({ productId, selectedLocale = null }) => {
                     defaultMessage: 'Slug',
                   })}
                   autoComplete="on"
-                  className="text-sm font-medium"
+                  className="text-sm"
                 />
               </div>
               <div className="col-span-6 sm:col-span-3">
@@ -132,7 +132,7 @@ const ProductTextsForm = ({ productId, selectedLocale = null }) => {
                     defaultMessage: 'Title',
                   })}
                   autoComplete="on"
-                  className="text-sm font-medium"
+                  className="text-sm"
                 />
               </div>
               <div className="col-span-6 sm:col-span-3">
@@ -144,7 +144,7 @@ const ProductTextsForm = ({ productId, selectedLocale = null }) => {
                     defaultMessage: 'Subtitle',
                   })}
                   autoComplete="on"
-                  className="text-sm font-medium"
+                  className="text-sm"
                 />
               </div>
               <div className="col-span-6 sm:col-span-3">
@@ -156,7 +156,7 @@ const ProductTextsForm = ({ productId, selectedLocale = null }) => {
                     defaultMessage: 'Vendor',
                   })}
                   autoComplete="on"
-                  className="text-sm font-medium"
+                  className="text-sm"
                 />
               </div>
               <div className="col-span-6 sm:col-span-3">
@@ -168,7 +168,7 @@ const ProductTextsForm = ({ productId, selectedLocale = null }) => {
                     defaultMessage: 'Brand',
                   })}
                   autoComplete="on"
-                  className="text-sm font-medium"
+                  className="text-sm"
                 />
               </div>
               <div className="col-span-6 sm:col-span-3">
@@ -184,7 +184,7 @@ const ProductTextsForm = ({ productId, selectedLocale = null }) => {
                     defaultMessage: 'Add',
                   })}
                   autoComplete="on"
-                  className="text-sm font-medium"
+                  className="text-sm"
                 />
               </div>
             </div>
@@ -199,14 +199,17 @@ const ProductTextsForm = ({ productId, selectedLocale = null }) => {
               />
             </div>
           </div>
-          <div className="border-t-indigo-50 border-t dark:border-t-slate-700 bg-slate-50 dark:bg-slate-800 px-4 py-5 text-right sm:px-6">
-            <SubmitButton
-              hidden={!hasRole('editProductTexts')}
-              label={formatMessage({
-                id: 'save',
-                defaultMessage: 'Save',
-              })}
-            />
+          <div className="sticky bottom-0">
+            <div className="absolute -top-5 left-0 right-0 h-5 bg-gradient-to-t from-slate-50 dark:from-slate-800 to-transparent pointer-events-none border-b border-slate-100 dark:border-slate-700" />
+            <div className="border-t-slate-100 border-t dark:border-t-slate-700 bg-slate-50 dark:bg-slate-900 px-4 py-5 text-right sm:px-6">
+              <SubmitButton
+                hidden={!hasRole('editProductTexts')}
+                label={formatMessage({
+                  id: 'save',
+                  defaultMessage: 'Save',
+                })}
+              />
+            </div>
           </div>
         </Form>
       </FormWrapper>

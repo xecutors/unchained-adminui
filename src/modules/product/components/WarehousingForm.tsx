@@ -54,13 +54,13 @@ const WarehousingForm = ({ productId }) => {
         id: 'warehousing',
         defaultMessage: 'Warehousing',
       })}
-      className="mt-2 sm:mt-0"
+      className="mt-2 lg:mt-5"
       documentation={
         <FormattedMessage
           id="product_warehousing_form_description"
           defaultMessage="<ul><li> Information regarding product storage </li> </ul>"
           values={{
-            ul: (chunk) => <ul className="list-disc list-inside">{chunk} </ul>,
+            ul: (chunk) => <ul className="space-y-1">{chunk} </ul>,
             li: (chunk) => <li>{chunk} </li>,
           }}
         />
@@ -77,7 +77,7 @@ const WarehousingForm = ({ productId }) => {
                   id: 'sku',
                   defaultMessage: 'SKU',
                 })}
-                className="mb-4 text-sm font-medium"
+                className="mb-4 text-sm"
               />
 
               <TextField
@@ -87,11 +87,11 @@ const WarehousingForm = ({ productId }) => {
                   id: 'baseUnit',
                   defaultMessage: 'Base Unit',
                 })}
-                className="text-sm font-medium "
+                className="text-sm"
               />
             </div>
           </div>
-          <div className="border-t-indigo-50 border-t dark:border-t-slate-700 space-y-6 bg-slate-50 dark:bg-slate-800 text-right sm:p-6">
+          <div className="border-t-slate-100 border-t dark:border-t-slate-700 space-y-6 bg-slate-50 dark:bg-slate-900 text-right sm:p-6">
             <SubmitButton
               hidden={!hasRole('editProductWarehousing')}
               label={formatMessage({

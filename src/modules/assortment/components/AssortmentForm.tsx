@@ -20,7 +20,8 @@ const AssortmentForm = ({
     defaultMessage: 'Assortment added successfully!',
   });
   const form = useForm({
-    submit: async (data) => onSubmit({ ...data, locale: selectedLocale }),
+    submit: async (data) =>
+      onSubmit({ ...data, locale: selectedLocale || 'de' }),
     onSubmitSuccess,
     successMessage,
     enableReinitialize: true,
@@ -71,18 +72,18 @@ const AssortmentForm = ({
             id: 'root_node',
             defaultMessage: 'Root node',
           })}
-          className="mr-2 h-4 w-4 rounded-sm border-slate-300 text-indigo-600 focus:ring-indigo-400"
+          className="mr-2 h-4 w-4 rounded-sm border-slate-300 dark:border-slate-600 bg-white dark:!bg-slate-800 text-slate-950 focus:ring-slate-800"
           containerClassName="flex items-center"
         />
         <span className="block text-sm text-slate-400 dark:text-slate-500">
           {formatMessage({
             id: 'root_description',
-            defaultMessage: 'This makes the assortment is a top level',
+            defaultMessage: 'This makes the assortment a top level category',
           })}
         </span>
       </div>
       <FormErrors />
-      <div className="border-t-indigo-50 border-t dark:border-t-slate-700 space-y-6 bg-slate-50 dark:bg-slate-800 p-5 text-right">
+      <div className="border-t-slate-100 border-t dark:border-t-slate-700 space-y-6 bg-slate-50 dark:bg-slate-900 p-5 text-right">
         <SubmitButton
           hidden={!hasRole('addAssortment')}
           label={formatMessage({

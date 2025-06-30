@@ -6,11 +6,15 @@ import {
   ViewColumnsIcon,
   FunnelIcon,
   PuzzlePieceIcon,
-} from '@heroicons/react/24/solid';
+} from '@heroicons/react/24/outline';
 
 import { toast } from 'react-toastify';
+import { useRouter } from 'next/router';
 import LocaleWrapper from '../../common/components/LocaleWrapper';
 import SelectOptions from '../../common/components/SelectOptions';
+import HeaderDeleteButton from '../../common/components/HeaderDeleteButton';
+import DangerMessage from '../../modal/components/DangerMessage';
+import useRemoveAssortment from '../hooks/useRemoveAssortment';
 import AssortmentTextForm from './AssortmentTextForm';
 import AssortmentMediaForm from './AssortmentMediaForm';
 import AssortmentLinks from './AssortmentLinks';
@@ -21,7 +25,6 @@ import Tab from '../../common/components/Tab';
 import TagList from '../../common/components/TagList';
 import useSetBaseAssortment from '../hooks/useSetBaseAssortment';
 import useAuth from '../../Auth/useAuth';
-import Button from '../../common/components/Button';
 import useModal from '../../modal/hooks/useModal';
 import AlertMessage from '../../modal/components/AlertMessage';
 import DisplayExtendedFields from '../../common/components/DisplayExtendedFields';
@@ -38,7 +41,7 @@ const GetCurrentTab = ({ id, selectedView, ...extendedData }) => {
   if (selectedView === 'media')
     return (
       <LocaleWrapper>
-        <AssortmentMediaForm assortmentId={id} />
+        <AssortmentMediaForm assortmentId={id} />{' '}
       </LocaleWrapper>
     );
   if (selectedView === 'products')
@@ -53,13 +56,19 @@ const GetCurrentTab = ({ id, selectedView, ...extendedData }) => {
     </LocaleWrapper>
   );
 };
-const AssortmentDetail = ({ assortment, extendedData }) => {
+const AssortmentDetail = ({
+  assortment,
+  extendedData,
+  hideControls = false,
+}) => {
   const { isActive, isBase, isRoot } = assortment || {};
   const { hasRole } = useAuth();
   const { formatMessage } = useIntl();
   const { updateAssortment } = useUpdateAssortment();
   const { setBaseAssortment } = useSetBaseAssortment();
+  const { removeAssortment } = useRemoveAssortment();
   const { setModal } = useModal();
+  const router = useRouter();
 
   const updateAssortmentSequence = async (e) => {
     if (e.target.value) {
@@ -287,59 +296,104 @@ const AssortmentDetail = ({ assortment, extendedData }) => {
     },
   ];
 
+  const handleDeleteAssortment = async () => {
+    await setModal(
+      <DangerMessage
+        onCancelClick={() => setModal('')}
+        message={formatMessage({
+          id: 'delete_assortment_confirmation',
+          defaultMessage:
+            'This action might cause inconsistencies with other data that relates to it and it is nonreversible. Are you sure you want to delete this assortment?',
+        })}
+        onOkClick={async () => {
+          setModal('');
+          await removeAssortment({ assortmentId: assortment._id });
+          toast.success(
+            formatMessage({
+              id: 'assortment_deleted_success',
+              defaultMessage: 'Deleted successfully',
+            }),
+          );
+          router.push('/assortments');
+        }}
+      />,
+    );
+  };
+
   return (
     <>
-      <div className="-ml-2 flex flex-wrap gap-2 lg:justify-end">
+      <div className="mt-5 flex flex-wrap items-center justify-between gap-10">
         <TagList
           defaultValue={assortment?.tags}
           onSubmit={updateAssortmentTags}
           enableEdit={hasRole('editAssortment')}
         />
-        <input
-          id="sequence"
-          type="number"
-          className="w-24 shadow-xs focus:ring-indigo-500 dark:bg-slate-800 dark:border-slate-700 focus:border-indigo-500 block text-sm  border-slate-300 rounded-full mr-2 font-bold text-indigo-500"
-          defaultValue={assortment?.sequence}
-          onBlur={updateAssortmentSequence}
-        />
-        <div>
-          {isBase ? (
-            <span
-              id="is_base"
-              className="py-2.5 px-8 text-sm font-medium text-white bg-green-500 white inline-flex items-center shadow-md border rounded-md"
-            >
-              {formatMessage({
-                id: 'base',
-                defaultMessage: 'Base',
+        {!hideControls && (
+          <div className="mt-5 flex flex-wrap gap-3">
+            <div className="inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium leading-5 shadow-sm bg-white dark:bg-slate-800 h-[38px]">
+              <label
+                htmlFor="sequence"
+                className="text-slate-700 dark:text-slate-200 font-medium"
+              >
+                {formatMessage({
+                  id: 'sequence',
+                  defaultMessage: 'Display Order',
+                })}
+              </label>
+              <input
+                id="sequence"
+                type="number"
+                className="text-center w-12 bg-transparent border border-slate-300 dark:border-slate-600 rounded focus:ring-0 focus:outline-none text-sm font-bold text-slate-900 dark:text-slate-300 px-2 py-1"
+                defaultValue={assortment?.sequence}
+                onBlur={updateAssortmentSequence}
+              />
+            </div>
+            <div>
+              {isBase ? (
+                <span
+                  id="is_base"
+                  className="py-2.5 px-8 text-sm font-medium text-white bg-emerald-500 white inline-flex items-center shadow-md rounded-md h-[38px]"
+                >
+                  {formatMessage({
+                    id: 'base',
+                    defaultMessage: 'Base',
+                  })}
+                </span>
+              ) : (
+                <button
+                  id="not_base"
+                  type="button"
+                  onClick={setAsBase}
+                  className="inline-flex items-center gap-2 justify-center rounded-md border border-slate-600 dark:border-slate-600 px-4 py-2 text-sm font-medium leading-5 text-slate-700 dark:text-slate-200 shadow-md hover:bg-slate-800 hover:text-white dark:hover:bg-slate-700 focus:outline-hidden focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 h-[38px]"
+                >
+                  {formatMessage({
+                    id: 'not_base',
+                    defaultMessage: 'Mark as Base',
+                  })}
+                </button>
+              )}
+            </div>
+            <SelectOptions
+              options={rootOptions}
+              type={formatMessage({
+                id: 'assortment',
+                defaultMessage: 'Assortment',
               })}
-            </span>
-          ) : (
-            <Button
-              id="not_base"
-              text={formatMessage({
-                id: 'not_base',
-                defaultMessage: 'Mark as Base',
-              })}
-              className="py-2.5"
-              onClick={setAsBase}
             />
-          )}
-        </div>
-        <SelectOptions
-          options={rootOptions}
-          type={formatMessage({
-            id: 'assortment',
-            defaultMessage: 'Assortment',
-          })}
-        />
-        <SelectOptions
-          options={activeOptions}
-          type={formatMessage({
-            id: 'assortment',
-            defaultMessage: 'Assortment',
-          })}
-        />
+            <SelectOptions
+              options={activeOptions}
+              type={formatMessage({
+                id: 'assortment',
+                defaultMessage: 'Assortment',
+              })}
+            />
+            {hasRole('removeAssortment') && (
+              <HeaderDeleteButton onClick={handleDeleteAssortment} />
+            )}
+          </div>
+        )}
       </div>
+
       <Tab tabItems={assortmentOptions} defaultTab="texts">
         <GetCurrentTab id={assortment?._id} {...extendedData} />
       </Tab>

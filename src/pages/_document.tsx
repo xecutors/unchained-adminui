@@ -3,6 +3,11 @@ import Document, { Html, Head, Main, NextScript } from 'next/document';
 const metaLinks = [
   {
     rel: 'icon',
+    type: 'image/svg+xml',
+    href: `/favicon.svg`,
+  },
+  {
+    rel: 'icon',
     type: 'image/png',
     sizes: '196x196',
     href: `/icons/favicon-196.png`,
@@ -210,7 +215,7 @@ class MyDocument extends Document {
             id="role-config-script"
           />
         </Head>
-        <body className="h-full bg-slate-100 dark:bg-slate-900 dark:text-slate-200">
+        <body className="h-full bg-slate-50 dark:bg-slate-950 dark:text-slate-200">
           <noscript
             dangerouslySetInnerHTML={{
               __html: `

@@ -9,7 +9,7 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
     <dl className="space-y-4 -mb-6">
       <div>
         {!isEdit && (
-          <label className="text-sm font-medium text-slate-500 dark:text-slate-200">
+          <label className="text-sm text-slate-400 dark:text-slate-200">
             {formatMessage({
               id: 'full_name',
               defaultMessage: 'Full name',
@@ -21,7 +21,7 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
             <div className="flex w-full gap-2">
               <TextField
                 className="w-full"
-                labelClassName="text-sm font-medium text-slate-500 dark:text-slate-200"
+                labelClassName="text-sm text-slate-400 dark:text-slate-200"
                 name="firstName"
                 label={formatMessage({
                   id: 'first_name',
@@ -34,7 +34,7 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
               />
               <TextField
                 className="w-full"
-                labelClassName="text-sm font-medium text-slate-500 dark:text-slate-200"
+                labelClassName="text-sm text-slate-400 dark:text-slate-200"
                 name="lastName"
                 label={formatMessage({
                   id: 'last_Name',
@@ -54,7 +54,7 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
         </div>
       </div>
       <div>
-        <label className="text-sm font-medium text-slate-500 dark:text-slate-200">
+        <label className="text-sm text-slate-400 dark:text-slate-200">
           {!isEdit &&
             formatMessage({
               id: 'company',
@@ -81,7 +81,7 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
         </div>
       </div>
       <div>
-        <label className="text-sm font-medium text-slate-500 dark:text-slate-200">
+        <label className="text-sm text-slate-400 dark:text-slate-200">
           {!isEdit &&
             formatMessage({
               id: 'address_line_1',
@@ -108,7 +108,7 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
         </div>
       </div>
       <div>
-        <label className="text-sm font-medium text-slate-500 dark:text-slate-200">
+        <label className="text-sm text-slate-400 dark:text-slate-200">
           {!isEdit &&
             formatMessage({
               id: 'address_line_2',
@@ -137,7 +137,7 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
 
       <div className="grid grid-cols-1 gap-x-2 sm:grid-cols-2">
         <div>
-          <label className="text-sm font-medium text-slate-500 dark:text-slate-200">
+          <label className="text-sm text-slate-400 dark:text-slate-200">
             {!isEdit &&
               formatMessage({
                 id: 'region',
@@ -166,7 +166,7 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
         </div>
 
         <div>
-          <label className="text-sm font-medium text-slate-500 dark:text-slate-200">
+          <label className="text-sm text-slate-400 dark:text-slate-200">
             {!isEdit &&
               formatMessage({
                 id: 'postal_code',
@@ -194,7 +194,7 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
         </div>
 
         <div className="mt-4">
-          <label className="text-sm font-medium text-slate-500 dark:text-slate-200">
+          <label className="text-sm text-slate-400 dark:text-slate-200">
             {!isEdit &&
               formatMessage({
                 id: 'city',
@@ -222,7 +222,7 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
         </div>
 
         <div className="mt-4">
-          <label className="text-sm font-medium text-slate-500 dark:text-slate-200">
+          <label className="text-sm text-slate-400 dark:text-slate-200">
             {!isEdit &&
               formatMessage({
                 id: 'country_code',
@@ -250,7 +250,7 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
         </div>
       </div>
 
-      <div className="border-t border-t-indigo-50 dark:border-t-slate-700 mt-3 -mx-6 -mb-6 bg-slate-50 dark:bg-slate-800 flex shrink-0 items-center justify-end space-x-4 pr-5">
+      <div className="border-t border-t-slate-100 dark:border-t-slate-700 mt-3 -mx-6 -mb-6 bg-slate-50 dark:bg-slate-800 flex shrink-0 items-center justify-end space-x-4 pr-5">
         {isEdit ? (
           <SaveAndCancelButtons onCancel={() => setIsEdit(!isEdit)} />
         ) : null}

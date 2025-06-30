@@ -1,4 +1,5 @@
 import { useIntl } from 'react-intl';
+import { useRouter } from 'next/router';
 
 import useCurrentUser from '../../modules/accounts/hooks/useCurrentUser';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
@@ -14,6 +15,7 @@ import logOut from '../../modules/accounts/hooks/logOut';
 
 const Profile = () => {
   const { formatMessage } = useIntl();
+  const router = useRouter();
   const { currentUser, extendedData } = useCurrentUser();
   const { deleteUser } = useDeleteUser();
   const { setModal } = useModal();
@@ -37,7 +39,8 @@ const Profile = () => {
               defaultMessage: 'Account deleted successfully',
             }),
           );
-          await logOut(apollo);
+          await logOut(apollo, router);
+          // No goodbye message needed for account deletion
         }}
         okText={formatMessage({
           id: 'delete_account',
