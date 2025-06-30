@@ -3,6 +3,7 @@ import ProductDetail from '../../modules/product/components/ProductDetail';
 import { ProductList } from '../product';
 import UnknownToolResponse from './UnknownToolResponse';
 import ProductResultsSummary from './ProductResultsSummary';
+import Image from 'next/image';
 
 interface ToolInvocationRendererProps {
   part: any;
@@ -51,7 +52,11 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
         </div>
       );
     }
-
+    if (toolName === 'generateImage' && parsed) {
+      return (
+        <Image alt="" src={parsed?.imageUrl as any} width={1200} height={50} />
+      );
+    }
     if (listViewTools.includes(toolName) && parsed?.product)
       return (
         <div className="mb-6">

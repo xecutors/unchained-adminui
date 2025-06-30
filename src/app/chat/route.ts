@@ -1,17 +1,17 @@
 import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
 import {
   experimental_createMCPClient as createMCPClient,
-  experimental_generateImage,
   streamText,
-  tool,
 } from 'ai';
+import { anthropic } from '@ai-sdk/anthropic';
 import { openai } from '@ai-sdk/openai';
-import { z } from 'zod';
+import generateImageHandler from '../../../static-servers/generateImageHandler';
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
 
 const mcpEndpoint = process.env.MCP_API_URL || 'http://localhost:4010/mcp';
+console.log(process.env.OPENAI_API_KEY);
 
 export async function POST(req: Request) {
   const { messages } = await req.json();
@@ -26,33 +26,21 @@ export async function POST(req: Request) {
     }),
   });
   const mcpTools = await client.tools();
-
   const result = streamText({
+    maxTokens: 8000,
+    maxSteps: 1,
     system:
       'do not include the data in your summary, just write a summary about it in one short paragraph and never list all the fields of a result, just summarize paragraph about your findings, if necessary',
-    model: openai('gpt-4o'),
-    providerOptions: {
-      openai: { responseModalities: ['TEXT', 'IMAGE'] },
-    },
-
+    model: anthropic('claude-4-sonnet-20250514'),
     messages,
     tools: {
       ...mcpTools,
-      generateImage: tool({
-        description: 'Generate an image',
-        parameters: z.object({
-          prompt: z.string().describe('The prompt to generate the image from'),
-        }),
-        execute: async ({ prompt }) => {
-          const { image } = await experimental_generateImage({
-            model: openai.image('dall-e-3'),
-            prompt,
-          });
-          // in production, save this image to blob storage and return a URL
-          // TODO: Generate an URL here
-          return { image: image.base64, prompt };
-        },
+      generateImage: generateImageHandler(req)({
+        model: openai.image('dall-e-3'),
       }),
+    },
+    onError: async (e) => {
+      console.log(e);
     },
     onFinish: async () => {
       await client?.close();

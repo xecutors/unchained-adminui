@@ -4,14 +4,17 @@ import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/
 import path from 'path';
 import {
   experimental_createMCPClient as createMCPClient,
+  ImageModel,
   streamText,
 } from 'ai';
 import { errorHandler } from './utils';
+import generateImageHandler from './generateImageHandler';
 
 type StreamTextParams = Parameters<typeof streamText>[0];
 
 export interface ChatConfiguration extends StreamTextParams {
   mcpEndpoint: string;
+  imageModel?: ImageModel;
 }
 
 export const expressRouter = express.Router();
@@ -30,7 +33,12 @@ const setupMCPChatHandler = (
     throw new Error('Model is required');
   }
 
-  const { tools = {}, mcpEndpoint, ...restChatConfig } = chatConfiguration;
+  const {
+    tools = {},
+    mcpEndpoint,
+    imageModel,
+    ...restChatConfig
+  } = chatConfiguration;
 
   const mcpChatHandler: RequestHandler = async (
     req: Request,
@@ -56,11 +64,21 @@ const setupMCPChatHandler = (
       });
 
       const defaultUnchainedTools = await client.tools();
+      const customTools: Record<string, any> = { ...tools };
+
+      if (imageModel) {
+        customTools.generateImage = generateImageHandler(req)({
+          model: imageModel,
+        });
+      }
 
       const result = streamText({
         ...restChatConfig,
         messages,
-        tools: { ...defaultUnchainedTools, ...tools },
+        tools: {
+          ...defaultUnchainedTools,
+          ...customTools,
+        },
         onFinish: async () => {
           await client?.close();
         },

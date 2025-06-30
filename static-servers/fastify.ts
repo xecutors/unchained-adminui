@@ -10,12 +10,15 @@ import { errorHandler } from './utils';
 import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
 import {
   experimental_createMCPClient as createMCPClient,
+  ImageModel,
   streamText,
 } from 'ai';
+import generateImageHandler from './generateImageHandler';
 type StreamTextParams = Parameters<typeof streamText>[0];
 
 export interface ChatConfiguration extends StreamTextParams {
   mcpEndpoint: string;
+  imageModel?: ImageModel;
 }
 
 const staticPath = path.join(__dirname, '..', 'out');
@@ -48,7 +51,12 @@ const setupMCPChatHandler = (chatConfiguration: ChatConfiguration) => {
     throw new Error('Model is required');
   }
 
-  const { tools = {}, mcpEndpoint, ...restChatConfig } = chatConfiguration;
+  const {
+    tools = {},
+    mcpEndpoint,
+    imageModel,
+    ...restChatConfig
+  } = chatConfiguration;
 
   const mcpChatHandler: RouteHandlerMethod = async (
     req: FastifyRequest,
@@ -68,11 +76,18 @@ const setupMCPChatHandler = (chatConfiguration: ChatConfiguration) => {
       });
 
       const defaultUnchainedTools = await client.tools();
+      const customTools: Record<string, any> = { ...tools };
+
+      if (imageModel) {
+        customTools.generateImage = generateImageHandler(req)({
+          model: imageModel,
+        });
+      }
 
       const result = streamText({
         ...restChatConfig,
         messages,
-        tools: { ...defaultUnchainedTools, ...tools },
+        tools: { ...defaultUnchainedTools, ...customTools },
         onFinish: async () => {
           await client?.close();
         },
