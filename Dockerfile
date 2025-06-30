@@ -11,8 +11,8 @@ COPY package-lock.json /usr/src/app/
 ENV NEXT_TELEMETRY_DISABLED="1"
 ENV NEXT_PUBLIC_ALLOW_ENDPOINT_SWITCH="1"
 ENV TZ="Europe/Amsterdam"
-ENV NODE_ENV="development"
-RUN npm ci
+ENV NODE_ENV="production"
+RUN NODE_ENV="development" npm ci
 
 # Build app
 COPY . /usr/src/app/

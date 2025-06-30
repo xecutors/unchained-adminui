@@ -20,8 +20,8 @@
     }
   },
   "scripts": {
-    "dev": "NEXT_PUBLIC_GRAPHQL_ENDPOINT=http://localhost:4010/graphql NODE_OPTIONS='--inspect' next dev ",
-    "build": "node ./generate-permissions.js &&  next build && npm run build:lib",
+    "dev": "NODE_OPTIONS='--inspect' next dev ",
+    "build": "node ./generate-permissions.js && NODE_ENV=production next build && npm run build:lib",
     "build:lib": "tsc -p tsconfig.build.json",
     "start": "next start",
     "lint": "next lint",

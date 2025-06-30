@@ -41,7 +41,7 @@ const CopilotInput: React.FC = () => {
 
     try {
       const res = await fetch(
-        `https://api.imgbb.com/1/upload?key=fbb18ca9c7cacdedf1bba2081c2fac90`,
+        process.env.NEXT_PUBLIC_FILE_UPLOAD_URL || '/temp-upload',
         {
           method: 'POST',
           body: formData,
@@ -49,7 +49,7 @@ const CopilotInput: React.FC = () => {
       );
 
       const data = await res.json();
-      return data?.data?.url;
+      return data?.url;
     } catch (err) {
       console.error('Upload failed', err);
       return null;

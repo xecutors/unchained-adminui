@@ -11,7 +11,7 @@ import { z } from 'zod';
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
 
-const mcpEndpoint = 'http://localhost:4010/mcp';
+const mcpEndpoint = process.env.MCP_API_URL || 'http://localhost:4010/mcp';
 
 export async function POST(req: Request) {
   const { messages } = await req.json();
