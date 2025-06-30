@@ -9,8 +9,9 @@ import FilterOptionForm from './FilterOptionForm';
 
 import FilterOptionsList from './FilterOptionsList';
 import useAuth from '../../Auth/useAuth';
+import { useCallback } from 'react';
 
-const FilterFormView = ({ filterId, selectedLocale = null }) => {
+const FilterOptions = ({ filterId, selectedLocale = null }) => {
   const { formatMessage } = useIntl();
   const { filterOptions } = useFilterOptions({
     filterId,
@@ -20,11 +21,18 @@ const FilterFormView = ({ filterId, selectedLocale = null }) => {
 
   const { createFilterOption } = useCreateFilterOption();
   const { hasRole } = useAuth();
-  const onSubmit: OnSubmitType = async ({ value, title }) => {
-    await createFilterOption({ filterId, option: value, title });
-    setModal('');
-    return { success: true };
-  };
+  const onSubmit: OnSubmitType = useCallback(
+    async ({ value, title }) => {
+      await createFilterOption({
+        filterId,
+        option: value,
+        texts: [{ title, locale: selectedLocale }],
+      });
+      setModal('');
+      return { success: true };
+    },
+    [selectedLocale, filterId],
+  );
 
   return (
     <SelfDocumentingView
@@ -65,4 +73,4 @@ const FilterFormView = ({ filterId, selectedLocale = null }) => {
   );
 };
 
-export default FilterFormView;
+export default FilterOptions;

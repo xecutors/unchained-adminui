@@ -26,7 +26,7 @@ const useUpdateProductTexts = () => {
   }: IUpdateProductTextsMutationVariables) => {
     return updateProductTextsMutation({
       variables: { productId, texts },
-      refetchQueries: ['Product'],
+      refetchQueries: ['TranslatedProductTexts'],
     });
   };
 

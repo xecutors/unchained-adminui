@@ -32,6 +32,7 @@ const useUpdateAssortmentMediaTexts = () => {
   }: IUpdateAssortmentMediaTextsMutationVariables) => {
     return updateAssortmentMediaTextsMutation({
       variables: { assortmentMediaId, texts },
+      refetchQueries: ['TranslatedAssortmentMediaTexts'],
     });
   };
 

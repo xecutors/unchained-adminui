@@ -18,6 +18,8 @@ import useRemoveProductMedia from '../hooks/useRemoveProductMedia';
 
 import ProductMediaList from './ProductMediaList';
 import useReOrderProductMedia from '../hooks/useReOrderProductMedia';
+import useTranslatedProductTexts from '../hooks/useTranslatedProductTexts';
+import { useEffect } from 'react';
 
 const ProductMediaForm = ({ productId, selectedLocale = null }) => {
   const { productMedia } = useProductMedia({ productId });

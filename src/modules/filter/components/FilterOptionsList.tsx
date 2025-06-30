@@ -6,7 +6,7 @@ import useModal from '../../modal/hooks/useModal';
 import DangerMessage from '../../modal/components/DangerMessage';
 import FilterOptionsListItem from './FilterOptionsListItem';
 
-const FilterListView = ({ filterId, options, selectedLocale = null }) => {
+const FilterOptionsList = ({ filterId, options, selectedLocale = null }) => {
   const { formatMessage } = useIntl();
   const { setModal } = useModal();
   const { removeFilterOption } = useRemoveFilterOption();
@@ -44,7 +44,7 @@ const FilterListView = ({ filterId, options, selectedLocale = null }) => {
         {options.map((option) => (
           <FilterOptionsListItem
             filterId={filterId}
-            key={option._id}
+            key={`${option._id}${selectedLocale}`}
             option={option}
             onDelete={onRemoveFilterOption}
             selectedLocale={selectedLocale}
@@ -55,4 +55,4 @@ const FilterListView = ({ filterId, options, selectedLocale = null }) => {
   );
 };
 
-export default FilterListView;
+export default FilterOptionsList;
