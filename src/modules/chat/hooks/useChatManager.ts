@@ -37,7 +37,7 @@ export const useChatManager = () => {
     streamProtocol: 'data',
     maxSteps: 5,
     credentials: 'include',
-    api: 'http://localhost:4010/chat',
+    api: '/chat',
     initialMessages: chatStorage.loadMessages(),
     onError: (error) => {
       console.error('Chat error:', error);

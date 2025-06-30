@@ -47,6 +47,7 @@
     "Mikael Araya Mengistu <mikael@unchained.shop> (http://www.unchained.shop)"
   ],
   "devDependencies": {
+    "@ai-sdk/openai": "^1.3.22",
     "@ai-sdk/react": "^1.2.12",
     "@apollo/client": "^3.13.8",
     "@dnd-kit/core": "^6.3.1",
@@ -103,7 +104,8 @@
     "remark-gfm": "^4.0.1",
     "tailwindcss": "^4.1.11",
     "typescript": "^5.8.3",
-    "validator": "^13.15.15"
+    "validator": "^13.15.15",
+    "zod": "^3.25.67"
   },
   "peerDependencies": {
     "@fastify/static": "^8.2.0",
