@@ -16,9 +16,10 @@ import {
   convertSortFieldsToQueryFormat,
   normalizeQuery,
 } from '../../modules/common/utils/utils';
-import SearchWithTagsAndLocale from '../../modules/common/components/SearchWithTagsAndLocale';
+import SearchWithTags from '../../modules/common/components/SearchWithTags';
 import useFiltersCount from '../../modules/filter/hooks/useFiltersCount';
 import FilterDetailPage from './FilterDetailPage';
+import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
 
 const FiltersListView = () => {
   const { query, push } = useRouter();
@@ -117,15 +118,17 @@ const FiltersListView = () => {
           />
         </ListHeader>
 
-        <SearchWithTagsAndLocale
+        <SearchWithTags
           onSearchChange={setQueryString}
           defaultSearchValue={queryString}
         >
-          <FilterList
-            onRemoveFilter={onRemoveFilter}
-            {...{ queryString, limit, includeInactive, offset, sortKeys }}
-          />
-        </SearchWithTagsAndLocale>
+          <LocaleWrapper onlyFull>
+            <FilterList
+              onRemoveFilter={onRemoveFilter}
+              {...{ queryString, limit, includeInactive, offset, sortKeys }}
+            />
+          </LocaleWrapper>
+        </SearchWithTags>
       </div>
     </>
   );

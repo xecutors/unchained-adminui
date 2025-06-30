@@ -18,7 +18,7 @@ import {
   convertSortFieldsToQueryFormat,
   normalizeQuery,
 } from '../../modules/common/utils/utils';
-import SearchWithTagsAndLocale from '../../modules/common/components/SearchWithTagsAndLocale';
+import SearchWithTags from '../../modules/common/components/SearchWithTags';
 import LanguageDetailPage from './LanguageDetailPage';
 
 const Languages = () => {
@@ -121,7 +121,7 @@ const Languages = () => {
             active={includeInactive}
           />
         </ListHeader>
-        <SearchWithTagsAndLocale
+        <SearchWithTags
           onSearchChange={setQueryString}
           defaultSearchValue={queryString}
         >
@@ -140,7 +140,7 @@ const Languages = () => {
               />
             )}
           </InfiniteScroll>
-        </SearchWithTagsAndLocale>
+        </SearchWithTags>
       </div>
     </>
   );

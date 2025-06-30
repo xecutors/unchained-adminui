@@ -19,7 +19,7 @@ import {
   convertSortFieldsToQueryFormat,
   normalizeQuery,
 } from '../../modules/common/utils/utils';
-import SearchWithTagsAndLocale from '../../modules/common/components/SearchWithTagsAndLocale';
+import SearchWithTags from '../../modules/common/components/SearchWithTags';
 import CurrencyDetailPage from './CurrencyDetailPage';
 
 const Currencies = () => {
@@ -122,7 +122,7 @@ const Currencies = () => {
           />
         </ListHeader>
 
-        <SearchWithTagsAndLocale
+        <SearchWithTags
           onSearchChange={setQueryString}
           defaultSearchValue={queryString}
         >
@@ -141,7 +141,7 @@ const Currencies = () => {
               />
             )}
           </InfiniteScroll>
-        </SearchWithTagsAndLocale>
+        </SearchWithTags>
       </div>
     </>
   );

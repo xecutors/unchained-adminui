@@ -7,7 +7,7 @@ import TokenList from '../../modules/token/components/TokenList';
 import NoData from '../../modules/common/components/NoData';
 import { useRouter } from 'next/router';
 import ListHeader from '../../modules/common/components/ListHeader';
-import SearchWithTagsAndLocale from '../../modules/common/components/SearchWithTagsAndLocale';
+import SearchWithTags from '../../modules/common/components/SearchWithTags';
 import TokenDetailPage from './TokenDetailPage';
 
 const TokensPage = () => {
@@ -53,11 +53,11 @@ const TokensPage = () => {
       <div className="mt-5 inline-block min-w-full overflow-x-auto px-1 pb-5">
         <ListHeader />
 
-        <SearchWithTagsAndLocale
+        <SearchWithTags
           onSearchChange={setQueryString}
           defaultSearchValue={queryString}
         >
-          <div>
+          <>
             {loading ? <Loading /> : <TokenList tokens={tokens} />}
             {!loading && !tokens?.length && (
               <NoData
@@ -67,8 +67,8 @@ const TokensPage = () => {
                 })}
               />
             )}
-          </div>
-        </SearchWithTagsAndLocale>
+          </>
+        </SearchWithTags>
       </div>
     </>
   );

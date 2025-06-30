@@ -10,7 +10,7 @@ import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 import QuotationList from '../../modules/quotation/components/QuotationList';
 import useQuotations from '../../modules/quotation/hooks/useQuotations';
 import { convertSortFieldsToQueryFormat } from '../../modules/common/utils/utils';
-import SearchWithTagsAndLocale from '../../modules/common/components/SearchWithTagsAndLocale';
+import SearchWithTags from '../../modules/common/components/SearchWithTags';
 import QuotationDetailPage from './QuotationDetailPage';
 
 const Quotations = () => {
@@ -70,7 +70,7 @@ const Quotations = () => {
       <div className="min-w-full overflow-x-auto px-1">
         <ListHeader />
 
-        <SearchWithTagsAndLocale
+        <SearchWithTags
           onSearchChange={setQueryString}
           defaultSearchValue={queryString}
         >
@@ -85,7 +85,7 @@ const Quotations = () => {
               <QuotationList sortable quotations={quotations} showUser />
             )}
           </InfiniteScroll>
-        </SearchWithTagsAndLocale>
+        </SearchWithTags>
       </div>
     </>
   );

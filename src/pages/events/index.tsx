@@ -17,7 +17,7 @@ import {
   normalizeQuery,
 } from '../../modules/common/utils/utils';
 import ListHeader from '../../modules/common/components/ListHeader';
-import SearchWithTagsAndLocale from '../../modules/common/components/SearchWithTagsAndLocale';
+import SearchWithTags from '../../modules/common/components/SearchWithTags';
 import EventDetailPage from './EventDetailPage';
 
 const Events = () => {
@@ -97,7 +97,7 @@ const Events = () => {
       <div className="min-w-full overflow-x-auto px-1">
         <ListHeader />
 
-        <SearchWithTagsAndLocale
+        <SearchWithTags
           onSearchChange={setQueryString}
           defaultSearchValue={queryString}
         >
@@ -112,7 +112,7 @@ const Events = () => {
               <EventList events={events} sortable />
             )}
           </InfiniteScroll>
-        </SearchWithTagsAndLocale>
+        </SearchWithTags>
       </div>
     </>
   );

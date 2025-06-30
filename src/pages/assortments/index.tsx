@@ -11,9 +11,10 @@ import useAuth from '../../modules/Auth/useAuth';
 import AssortmentGraphView from '../../modules/assortment/components/AssortmentGraphView';
 import AssortmentListView from '../../modules/assortment/components/AssortmentListView';
 import { normalizeQuery } from '../../modules/common/utils/utils';
-import SearchWithTagsAndLocale from '../../modules/common/components/SearchWithTagsAndLocale';
+import SearchWithTags from '../../modules/common/components/SearchWithTags';
 import useAssortmentsCount from '../../modules/assortment/hooks/useAssortmentsCount';
 import AssortmentDetailPage from './AssortmentDetailPage';
+import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
 
 const GetCurrentView = ({
   options,
@@ -24,16 +25,22 @@ const GetCurrentView = ({
   const { graph, ...rest } = options;
 
   return (
-    <SearchWithTagsAndLocale
+    <SearchWithTags
       onSearchChange={onSearchChange}
       defaultSearchValue={defaultSearchValue}
     >
-      {graph === 'true' ? (
-        <AssortmentGraphView options={rest} />
-      ) : (
-        <AssortmentListView options={rest} queryString={queryString} sortable />
-      )}
-    </SearchWithTagsAndLocale>
+      <LocaleWrapper onlyFull>
+        {graph === 'true' ? (
+          <AssortmentGraphView options={rest} />
+        ) : (
+          <AssortmentListView
+            options={rest}
+            queryString={queryString}
+            sortable
+          />
+        )}
+      </LocaleWrapper>
+    </SearchWithTags>
   );
 };
 

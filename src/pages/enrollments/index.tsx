@@ -16,7 +16,7 @@ import {
 
 import useEnrollmentStatusTypes from '../../modules/enrollment/hooks/useEnrollmentStatusTypes';
 import StatusFilter from '../../modules/common/components/StatusFilter';
-import SearchWithTagsAndLocale from '../../modules/common/components/SearchWithTagsAndLocale';
+import SearchWithTags from '../../modules/common/components/SearchWithTags';
 import EnrollmentDetailPage from './EnrollmentDetailPage';
 
 const EnrollmentListView = () => {
@@ -102,7 +102,7 @@ const EnrollmentListView = () => {
       <div className="min-w-full overflow-x-auto px-1">
         <ListHeader />
 
-        <SearchWithTagsAndLocale
+        <SearchWithTags
           onSearchChange={setQueryString}
           defaultSearchValue={queryString}
         >
@@ -117,7 +117,7 @@ const EnrollmentListView = () => {
               <EnrollmentList enrollments={enrollments} showUser sortable />
             )}
           </InfiniteScroll>
-        </SearchWithTagsAndLocale>
+        </SearchWithTags>
       </div>
     </>
   );

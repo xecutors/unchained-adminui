@@ -12,7 +12,7 @@ import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 import ListHeader from '../../modules/common/components/ListHeader';
 import UserFilter from '../../modules/accounts/components/UserFilter';
 import NoData from '../../modules/common/components/NoData';
-import SearchWithTagsAndLocale from '../../modules/common/components/SearchWithTagsAndLocale';
+import SearchWithTags from '../../modules/common/components/SearchWithTags';
 import UserDetailPage from './UserDetailPage';
 
 const Users = () => {
@@ -93,7 +93,7 @@ const Users = () => {
         />
       </ListHeader>
 
-      <SearchWithTagsAndLocale
+      <SearchWithTags
         onSearchChange={setQueryString}
         defaultSearchValue={queryString}
       >
@@ -116,7 +116,7 @@ const Users = () => {
             />
           )}
         </InfiniteScroll>
-      </SearchWithTagsAndLocale>
+      </SearchWithTags>
     </div>
   );
 };

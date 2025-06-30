@@ -1,14 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useIntl } from 'react-intl';
 import { useRouter } from 'next/router';
-
-import useLanguages from '../../language/hooks/useLanguages';
-import useCountries from '../../country/hooks/useCountries';
 import SearchField from './SearchField';
 import TagInput from './TagInput';
 import { normalizeQuery } from '../utils/utils';
 import { isTruthy } from '../utils/normalizeFilterKeys';
-import LocaleWrapper from './LocaleWrapper';
 
 const createLanguageDialectList = (languages, countries) => {
   const result = [];
@@ -27,43 +23,10 @@ const createLanguageDialectList = (languages, countries) => {
   return result;
 };
 
-const SearchWithTagsAndLocale = ({
-  children,
-  onSearchChange,
-  defaultSearchValue,
-  selectedLocale: externalSelectedLocale = null,
-  onLocaleChange = null,
-}) => {
+const SearchWithTags = ({ children, onSearchChange, defaultSearchValue }) => {
   const { formatMessage } = useIntl();
-  const { languages, loading } = useLanguages();
-  const { countries } = useCountries();
-  const { locale } = useIntl();
+
   const { query, push } = useRouter();
-
-  const [selectedLocale, setSelectedLocale] = useState(
-    externalSelectedLocale || locale,
-  );
-
-  useEffect(() => {
-    if (!loading) {
-      const baseLanguage = languages
-        .filter((l) => l.isBase || l.isoCode === locale)
-        ?.map(({ isoCode }) => isoCode);
-      const newLocale = baseLanguage.includes(locale)
-        ? locale
-        : baseLanguage[0];
-      setSelectedLocale(externalSelectedLocale || newLocale);
-    }
-  }, [languages, loading, locale, externalSelectedLocale]);
-
-  const languageDialectList = createLanguageDialectList(languages, countries);
-
-  const handleLocaleChange = (newLocale) => {
-    setSelectedLocale(newLocale);
-    if (onLocaleChange) {
-      onLocaleChange(newLocale);
-    }
-  };
 
   const handleTagChange = (value) => {
     if (isTruthy(value)) {
@@ -102,9 +65,9 @@ const SearchWithTagsAndLocale = ({
         </div>
       </div>
 
-      <LocaleWrapper onlyFull>{children}</LocaleWrapper>
+      {children}
     </div>
   );
 };
 
-export default SearchWithTagsAndLocale;
+export default SearchWithTags;

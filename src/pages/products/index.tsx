@@ -13,9 +13,10 @@ import {
   convertSortFieldsToQueryFormat,
   normalizeQuery,
 } from '../../modules/common/utils/utils';
-import SearchWithTagsAndLocale from '../../modules/common/components/SearchWithTagsAndLocale';
+import SearchWithTags from '../../modules/common/components/SearchWithTags';
 import useProductsCount from '../../modules/product/hooks/useProductsCount';
 import ProductDetailPage from './ProductDetailPage';
+import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
 
 const Products = () => {
   const { formatMessage } = useIntl();
@@ -85,15 +86,17 @@ const Products = () => {
             active={includeDrafts}
           />
         </ListHeader>
-        <SearchWithTagsAndLocale
+        <SearchWithTags
           onSearchChange={setQueryString}
           defaultSearchValue={queryString}
         >
-          <ProductList
-            sortable
-            {...{ queryString, includeDrafts, limit, offset, tags, sortKeys }}
-          />
-        </SearchWithTagsAndLocale>
+          <LocaleWrapper onlyFull>
+            <ProductList
+              sortable
+              {...{ queryString, includeDrafts, limit, offset, tags, sortKeys }}
+            />
+          </LocaleWrapper>
+        </SearchWithTags>
       </div>
     </>
   );
