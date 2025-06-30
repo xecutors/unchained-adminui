@@ -41,7 +41,7 @@ const CopilotInput: React.FC = () => {
 
     try {
       const res = await fetch(
-        process.env.NEXT_PUBLIC_FILE_UPLOAD_URL || '/temp-upload',
+        process.env.TEMP_FILE_UPLOAD_URL || 'http://localhost:4010/temp-upload',
         {
           method: 'POST',
           body: formData,
