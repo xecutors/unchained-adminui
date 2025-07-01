@@ -4,6 +4,7 @@ import { ProductList } from '../product';
 import UnknownToolResponse from './UnknownToolResponse';
 import ProductResultsSummary from './ProductResultsSummary';
 import Image from 'next/image';
+import ShopInfoCard from './ShopInfo';
 
 interface ToolInvocationRendererProps {
   part: any;
@@ -51,6 +52,9 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
           <ProductList products={parsed.products} />
         </div>
       );
+    }
+    if (toolName === 'shop_info' && parsed) {
+      return <ShopInfoCard shopInfo={parsed} />;
     }
     if (toolName === 'generateImage' && parsed) {
       return (

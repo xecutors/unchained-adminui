@@ -3,7 +3,6 @@ import { IUser } from '../../gql/types';
 import MiniUserAvatar from '../../modules/common/components/MiniUserAvatar';
 import MarkdownText from './MarkdownText';
 import ToolInvocationRenderer from './ToolInvocationRenderer';
-import Image from 'next/image';
 
 interface MessageRendererProps {
   message: any;

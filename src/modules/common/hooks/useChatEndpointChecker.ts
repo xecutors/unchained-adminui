@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 export function useChatEndpointChecker() {
   const [loading, setLoading] = useState(false);
