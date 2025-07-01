@@ -15,7 +15,7 @@ import replaceIntlPlaceholder from '../utils/replaceIntlPlaceholder';
 
 describe('Currencies', () => {
   beforeEach(() => {
-    cy.intercept('POST', '/api/graphql', (req) => {
+    cy.intercept('POST', '/graphql', (req) => {
       if (hasOperationName(req, CurrencyOperations.GetCurrencyList)) {
         aliasQuery(req, CurrencyOperations.GetCurrencyList);
         req.reply(CurrencyListResponse);

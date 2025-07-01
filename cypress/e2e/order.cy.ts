@@ -34,7 +34,7 @@ const DEFAULT_ORDERS_FILTER = {
 
 describe('Order', () => {
   beforeEach(() => {
-    cy.intercept('POST', '/api/graphql', (req) => {
+    cy.intercept('POST', '/graphql', (req) => {
       if (hasOperationName(req, OrderOperations.GetOrderList)) {
         aliasQuery(req, OrderOperations.GetOrderList);
         req.reply(OrderListResponse);

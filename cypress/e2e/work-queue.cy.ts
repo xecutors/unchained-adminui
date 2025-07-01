@@ -15,7 +15,7 @@ import replaceIntlPlaceholder from '../utils/replaceIntlPlaceholder';
 // add search test
 describe('WorkQueue', () => {
   beforeEach(() => {
-    cy.intercept('POST', '/api/graphql', (req) => {
+    cy.intercept('POST', '/graphql', (req) => {
       if (hasOperationName(req, WorkOperations.GetWorkQueue)) {
         aliasQuery(req, WorkOperations.GetWorkQueue);
         req.reply(WorkQueueResponse);

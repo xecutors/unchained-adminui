@@ -14,7 +14,7 @@ import hasOperationName from '../utils/hasOperationName';
 
 describe('Languages', () => {
   beforeEach(() => {
-    cy.intercept('POST', '/api/graphql', (req) => {
+    cy.intercept('POST', '/graphql', (req) => {
       if (hasOperationName(req, LanguageOperations.GetLanguagesList)) {
         aliasQuery(req, LanguageOperations.GetLanguagesList);
         req.reply(LanguagesResponse);

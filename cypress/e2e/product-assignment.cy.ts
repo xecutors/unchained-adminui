@@ -27,7 +27,7 @@ describe('Product Assignment', () => {
     },
   };
   beforeEach(() => {
-    cy.intercept('POST', '/api/graphql', (req) => {
+    cy.intercept('POST', '/graphql', (req) => {
       CurrentProductResponse.data.product.__typename = 'ConfigurableProduct';
       if (hasOperationName(req, ProductOperations.GetProductList)) {
         aliasQuery(req, ProductOperations.GetProductList);

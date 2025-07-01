@@ -63,7 +63,7 @@ Cypress.Commands.add('mount', (component, options: any) => {
 
   return mount(
     <MockedProvider>
-      <IntlProvider messages={{}} locale="de">
+      <IntlProvider messages={{}} locale="en">
         {component as any}
       </IntlProvider>
     </MockedProvider>,

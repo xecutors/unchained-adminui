@@ -32,7 +32,7 @@ const UpdateFilterOptionVariables = {
 
 describe('Filter', () => {
   beforeEach(() => {
-    cy.intercept('POST', '/api/graphql', (req) => {
+    cy.intercept('POST', '/graphql', (req) => {
       if (hasOperationName(req, LanguageOperations.GetLanguagesList)) {
         aliasQuery(req, LanguageOperations.GetLanguagesList);
         req.reply(LanguagesResponse);

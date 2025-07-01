@@ -15,7 +15,7 @@ import hasOperationName from '../utils/hasOperationName';
 
 describe('Countries', () => {
   beforeEach(() => {
-    cy.intercept('POST', '/api/graphql', (req) => {
+    cy.intercept('POST', '/graphql', (req) => {
       if (hasOperationName(req, CountryOperations.GetCountryList)) {
         aliasQuery(req, CountryOperations.GetCountryList);
         req.reply(CountryListResponse);

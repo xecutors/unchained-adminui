@@ -49,7 +49,10 @@ import { aliasQuery } from '../utils/aliasQuery';
 import { AuthenticationOperations } from '../mock/authorization';
 
 beforeEach(() => {
-  cy.intercept('POST', '/api/graphql', (req) => {
+  cy.intercept('OPTIONS', '/chat', (req) => {
+    req.reply(200);
+  })
+  cy.intercept('POST', '/graphql', (req) => {
     if (hasOperationName(req, OrderOperations.GetOrderList)) {
       aliasQuery(req, `global${OrderOperations.GetOrderList}`);
       req.reply(OrderListResponse);

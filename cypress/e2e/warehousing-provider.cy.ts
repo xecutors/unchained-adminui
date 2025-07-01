@@ -19,7 +19,7 @@ import replaceIntlPlaceholder from '../utils/replaceIntlPlaceholder';
 
 describe('Warehousing Provider', () => {
   beforeEach(() => {
-    cy.intercept('POST', '/api/graphql', (req) => {
+    cy.intercept('POST', '/graphql', (req) => {
       const { body } = req;
       if (
         hasOperationName(req, WarehousingProviderOperations.GetProvidersList)

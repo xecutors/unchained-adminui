@@ -12,7 +12,7 @@ import replaceIntlPlaceholder from '../utils/replaceIntlPlaceholder';
 
 describe('Sign Up', () => {
   beforeEach(() => {
-    cy.intercept('POST', '/api/graphql', (req) => {
+    cy.intercept('POST', '/graphql', (req) => {
       const { body } = req;
       if (hasOperationName(req, AuthenticationOperations.CreateUser)) {
         aliasMutation(req, AuthenticationOperations.CreateUser);

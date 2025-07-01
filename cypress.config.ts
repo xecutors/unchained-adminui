@@ -12,6 +12,7 @@ export default defineConfig({
     defaultCommandTimeout: 5000,
     projectId: 'jo7evx',
     baseUrl: 'http://localhost:3000',
+    supportFile: false,
     retries: {
       openMode: 2,
       runMode: 3,

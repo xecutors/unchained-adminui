@@ -29,7 +29,7 @@ describe('Product Media', () => {
     },
   };
   beforeEach(() => {
-    cy.intercept('POST', '/api/graphql', (req) => {
+    cy.intercept('POST', '/graphql', (req) => {
       if (hasOperationName(req, ProductOperations.GetProductList)) {
         aliasQuery(req, ProductOperations.GetProductList);
         req.reply(ProductListResponse);

@@ -26,7 +26,7 @@ describe('Product Subscription', () => {
     },
   };
   beforeEach(() => {
-    cy.intercept('POST', '/api/graphql', (req) => {
+    cy.intercept('POST', '/graphql', (req) => {
       CurrentProductResponse.data.product.__typename = 'BundleProduct';
       if (hasOperationName(req, ProductOperations.GetProductList)) {
         aliasQuery(req, ProductOperations.GetProductList);

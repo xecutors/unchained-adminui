@@ -19,7 +19,7 @@ import replaceIntlPlaceholder from '../utils/replaceIntlPlaceholder';
 
 describe('Assortment', () => {
   beforeEach(() => {
-    cy.intercept('POST', '/api/graphql', (req) => {
+    cy.intercept('POST', '/graphql', (req) => {
       if (hasOperationName(req, AssortmentOperation.GetAssortmentList)) {
         aliasQuery(req, AssortmentOperation.GetAssortmentList);
         req.reply(AssortmentListResponse);

@@ -27,7 +27,7 @@ describe('Product Text', () => {
     },
   };
   beforeEach(() => {
-    cy.intercept('POST', '/api/graphql', (req) => {
+    cy.intercept('POST', '/graphql', (req) => {
       if (hasOperationName(req, LanguageOperations.GetLanguagesList)) {
         req.reply(LanguagesResponse);
       }

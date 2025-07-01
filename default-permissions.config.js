@@ -250,7 +250,7 @@ module.exports = () => {
     '/oauth',
     '/account/forgot-password',
     '/reset-password',
-    '/api/graphql',
+    '/graphql',
     '/404',
     '/423',
     '/_offline',
@@ -265,7 +265,7 @@ module.exports = () => {
     '/oauth',
     '/account/forgot-password',
     '/reset-password',
-    '/api/graphql',
+    '/graphql',
   ];
 
   const isAdmin = (user) => {

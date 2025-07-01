@@ -36,7 +36,7 @@ const productSearchQuery = {
 describe('Assortment Detail Products', () => {
   const { assortment } = SingleAssortmentResponse.data;
   beforeEach(() => {
-    cy.intercept('POST', '/api/graphql', (req) => {
+    cy.intercept('POST', '/graphql', (req) => {
       if (hasOperationName(req, AssortmentOperation.GetAssortmentList)) {
         aliasQuery(req, AssortmentOperation.GetAssortmentList);
         req.reply(AssortmentListResponse);

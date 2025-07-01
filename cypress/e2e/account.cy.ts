@@ -14,7 +14,12 @@ import replaceIntlPlaceholder from '../utils/replaceIntlPlaceholder';
 
 describe('Account', () => {
   beforeEach(() => {
-    cy.intercept('POST', '/api/graphql', (req) => {
+    cy.intercept('POST', '/graphql', (req) => {
+
+      if (hasOperationName(req, AccountOperations.CurrentUser)) {
+        req.reply(CurrentUserResponse);
+      }
+
       if (hasOperationName(req, AccountOperations.UpdateUserProfile)) {
         aliasMutation(req, AccountOperations.UpdateUserProfile);
         req.reply(UpdateUserResponse);
@@ -48,23 +53,17 @@ describe('Account', () => {
       }
     });
     cy.visit('/');
-    cy.get('a[href="/account"]')
+    cy.get('a[href="/account/"]')
       .contains(localizations.en.account)
       .click({ force: true });
 
-    cy.location('pathname').should('eq', '/account');
+    cy.location('pathname').should('eq', '/account/');
     cy.get('h2').should('contain.text', localizations.en.account);
   });
 
   context('General', () => {
     const { me: currentUser } = CurrentUserResponse.data;
-    beforeEach(() => {
-      cy.intercept('POST', '/api/graphql', (req) => {
-        if (hasOperationName(req, AccountOperations.CurrentUser)) {
-          req.reply(CurrentUserResponse);
-        }
-      });
-    });
+
     it('Should [INITIALIZE ACCOUNT] successfully', () => {
       cy.get('[data-id="cancel_update"]').first().click();
 
@@ -163,7 +162,7 @@ describe('Account', () => {
 
   context('Password', () => {
     beforeEach(() => {
-      cy.intercept('POST', '/api/graphql', (req) => {
+      cy.intercept('POST', '/graphql', (req) => {
         if (hasOperationName(req, AccountOperations.CurrentUser)) {
           req.reply(CurrentUserResponse);
         }
@@ -192,7 +191,7 @@ describe('Account', () => {
         },
       );
 
-      cy.location('pathname').should('eq', '/account');
+      cy.location('pathname').should('eq', '/account/');
     });
     it('Should [ERROR] when required fields are not provided in change password', () => {
       cy.get('input#oldPassword').type('password').clear().blur();
@@ -255,13 +254,13 @@ describe('Account', () => {
         localizations.en.password_change_failed,
       );
 
-      cy.location('pathname').should('eq', '/account');
+      cy.location('pathname').should('eq', '/account/');
     });
   });
 
   context('Email', () => {
     beforeEach(() => {
-      cy.intercept('POST', '/api/graphql', (req) => {
+      cy.intercept('POST', '/graphql', (req) => {
         if (hasOperationName(req, AccountOperations.CurrentUser)) {
           req.reply(CurrentUserResponse);
         }
@@ -294,7 +293,7 @@ describe('Account', () => {
         expect(response.body).to.deep.eq(SendVerificationEmailResponse);
       });
 
-      cy.location('pathname').should('eq', '/account');
+      cy.location('pathname').should('eq', '/account/');
     });
 
     it('Should [DELETE EMAIL] successfully', () => {
@@ -317,7 +316,7 @@ describe('Account', () => {
         },
       );
 
-      cy.location('pathname').should('eq', '/account');
+      cy.location('pathname').should('eq', '/account/');
     });
 
     it('Should [ADD EMAIL] successfully', () => {
@@ -339,7 +338,7 @@ describe('Account', () => {
         },
       );
 
-      cy.location('pathname').should('eq', '/account');
+      cy.location('pathname').should('eq', '/account/');
     });
 
     it('Should [ERROR] when required fields are not provided in add email', () => {

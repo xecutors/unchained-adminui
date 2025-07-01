@@ -11,7 +11,7 @@ import hasOperationName from '../utils/hasOperationName';
 
 describe('Events ', () => {
   beforeEach(() => {
-    cy.intercept('POST', '/api/graphql', (req) => {
+    cy.intercept('POST', '/graphql', (req) => {
       if (hasOperationName(req, EventOperations.GetEventList)) {
         aliasQuery(req, EventOperations.GetEventList);
         req.reply(EventsListResponse);
