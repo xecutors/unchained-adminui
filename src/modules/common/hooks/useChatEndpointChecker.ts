@@ -1,20 +1,24 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 
 export function useChatEndpointChecker() {
   const [loading, setLoading] = useState(false);
+  const [chatEnabled, setChatEnabled] = useState(false);
 
-  const chatEnabled = useMemo(async () => {
-    setLoading(true);
-    try {
-      const res = await fetch(process.env.NEXT_PUBLIC_CHAT_URL || '/chat', {
-        method: 'OPTIONS',
-      });
-      return res.ok;
-    } catch (err) {
-      return false;
-    } finally {
-      setLoading(false);
-    }
+  useEffect(() => {
+    const checkChatEndpoint = async () => {
+      try {
+        const res = await fetch(process.env.NEXT_PUBLIC_CHAT_URL || '/chat', {
+          method: 'OPTIONS',
+        });
+        setChatEnabled(res.ok);
+      } catch {
+        setChatEnabled(false);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    checkChatEndpoint();
   }, []);
 
   return { chatEnabled, loading };
