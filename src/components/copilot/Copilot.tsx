@@ -1,7 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { useIntl } from 'react-intl';
 import useCurrentUser from '../../modules/accounts/hooks/useCurrentUser';
-import useShopInfo from '../../modules/common/hooks/useShopInfo';
 import { useChatContext } from '../../modules/chat';
 import { MessageRenderer, LoadingIndicator } from '../chat';
 import CopilotHeader from './CopilotHeader';
@@ -12,7 +11,6 @@ const Copilot: React.FC = () => {
   const { formatMessage } = useIntl();
   const { messages, status, reload } = useChatContext();
   const { chatEnabled } = useChatEndpointChecker();
-  const { shopInfo } = useShopInfo();
   const { currentUser } = useCurrentUser();
   const bottomRef = useRef<HTMLDivElement>(null);
   const loading = status !== 'ready' && status !== 'error';
