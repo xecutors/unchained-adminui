@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import fs from 'fs';
 
 fetch('http://localhost:4010/graphql', {
@@ -25,7 +24,6 @@ fetch('http://localhost:4010/graphql', {
   .then((result) => {
     const possibleTypes = {};
 
-    // eslint-disable-next-line no-underscore-dangle
     result.data.__schema.types.forEach((supertype) => {
       if (supertype.possibleTypes) {
         possibleTypes[supertype.name] = supertype.possibleTypes.map(
