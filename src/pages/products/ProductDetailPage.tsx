@@ -120,7 +120,7 @@ const ProductDetailPage = ({ slug }) => {
         id: 'not_published',
         defaultMessage: 'Not published',
       }),
-      bgColor: 'slate',
+      bgColor: 'amber',
       disable: status === 'ACTIVE' && !hasRole('unpublishProduct'),
       onClick: async () => {
         if (hasRole('unpublishProduct') || hasRole('publishProduct')) {
