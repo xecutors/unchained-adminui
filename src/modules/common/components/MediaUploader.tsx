@@ -128,6 +128,7 @@ const MediaUploader = ({
               id="file-upload"
               name="file-upload"
               type="file"
+              multiple
               className="sr-only"
               onChange={handleSelect}
             />
