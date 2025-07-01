@@ -37,6 +37,10 @@ const setupMCPChatHandler = (
     req: Request,
     res: Response,
   ): Promise<void> => {
+    if (req.method === 'OPTIONS') {
+      res.status(200).end();
+      return;
+    }
     if (req.method !== 'POST') {
       res.status(405).json({ error: 'Method Not Allowed. Use POST.' });
       return;
