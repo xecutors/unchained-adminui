@@ -1,3 +1,4 @@
-import { fastifyRouter } from './fastify';
-import { expressRouter } from './express';
-export { fastifyRouter, expressRouter };
+export * from './utils';
+import generateImageHandler from './generateImageHandler';
+
+export { generateImageHandler };

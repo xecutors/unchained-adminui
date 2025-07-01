@@ -1,22 +1,13 @@
 import express from 'express';
 import type { Express, Request, RequestHandler, Response } from 'express';
 import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
-import path from 'path';
+import path from 'node:path';
 import {
   experimental_createMCPClient as createMCPClient,
-  ImageModel,
   streamText,
 } from 'ai';
-import { errorHandler } from './utils';
+import { ChatConfiguration, errorHandler } from './utils';
 import generateImageHandler from './generateImageHandler';
-
-type StreamTextParams = Parameters<typeof streamText>[0];
-
-export interface ChatConfiguration extends StreamTextParams {
-  mcpEndpoint: string;
-  imageModel?: ImageModel;
-  uploadUrl?: string;
-}
 
 export const expressRouter = express.Router();
 const staticPath = path.join(__dirname, '..', 'out');
@@ -36,9 +27,9 @@ const setupMCPChatHandler = (
 
   const {
     tools = {},
-    mcpEndpoint,
+    unchainedMCPUrl = `${process.env.ROOT_URL}/mcp`,
     model,
-    imageModel,
+    imageGenerationTool,
     ...restChatConfig
   } = chatConfiguration;
 
@@ -56,7 +47,7 @@ const setupMCPChatHandler = (
     let client: any;
     try {
       client = await createMCPClient({
-        transport: new StreamableHTTPClientTransport(new URL(mcpEndpoint), {
+        transport: new StreamableHTTPClientTransport(new URL(unchainedMCPUrl), {
           requestInit: {
             headers: {
               Cookie: req.headers.cookie || '',
@@ -68,11 +59,9 @@ const setupMCPChatHandler = (
       const defaultUnchainedTools = await client.tools();
       const customTools: Record<string, any> = { ...tools };
 
-      if (imageModel) {
-        customTools.generateImage = generateImageHandler(req)({
-          ...restChatConfig,
-          model: imageModel,
-        });
+      if (imageGenerationTool) {
+        customTools.generateImage =
+          generateImageHandler(req)(imageGenerationTool);
       }
 
       const result = streamText({

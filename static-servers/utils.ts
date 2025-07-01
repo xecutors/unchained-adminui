@@ -1,8 +1,17 @@
 import {
+  ImageModel,
   InvalidToolArgumentsError,
   NoSuchToolError,
   ToolExecutionError,
+  streamText,
 } from 'ai';
+
+type StreamTextParams = Parameters<typeof streamText>[0];
+
+export interface ChatConfiguration extends StreamTextParams {
+  unchainedMCPUrl?: string;
+  imageGenerationTool?: { model: ImageModel; uploadUrl?: string };
+}
 
 export const errorHandler = (error: any): string => {
   if (NoSuchToolError.isInstance(error)) return 'NoSuchToolError';

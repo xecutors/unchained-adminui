@@ -6,7 +6,7 @@ import {
   FastifyRequest,
 } from 'fastify';
 import fastifyStatic from '@fastify/static';
-import { errorHandler } from './utils';
+import { ChatConfiguration, errorHandler } from './utils';
 import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
 import {
   experimental_createMCPClient as createMCPClient,
@@ -14,12 +14,6 @@ import {
   streamText,
 } from 'ai';
 import generateImageHandler from './generateImageHandler';
-type StreamTextParams = Parameters<typeof streamText>[0];
-
-export interface ChatConfiguration extends StreamTextParams {
-  mcpEndpoint: string;
-  imageModel?: ImageModel;
-}
 
 const staticPath = path.join(__dirname, '..', 'out');
 
@@ -53,8 +47,8 @@ const setupMCPChatHandler = (chatConfiguration: ChatConfiguration) => {
 
   const {
     tools = {},
-    mcpEndpoint,
-    imageModel,
+    unchainedMCPUrl = `${process.env.ROOT_URL}/mcp`,
+    imageGenerationTool,
     ...restChatConfig
   } = chatConfiguration;
 
@@ -66,7 +60,7 @@ const setupMCPChatHandler = (chatConfiguration: ChatConfiguration) => {
       if (req.method === 'OPTIONS') return res.send();
       const { messages } = req.body as any;
       client = await createMCPClient({
-        transport: new StreamableHTTPClientTransport(new URL(mcpEndpoint), {
+        transport: new StreamableHTTPClientTransport(new URL(unchainedMCPUrl), {
           requestInit: {
             headers: {
               Cookie: req.headers.cookie || '',
@@ -78,10 +72,9 @@ const setupMCPChatHandler = (chatConfiguration: ChatConfiguration) => {
       const defaultUnchainedTools = await client.tools();
       const customTools: Record<string, any> = { ...tools };
 
-      if (imageModel) {
-        customTools.generateImage = generateImageHandler(req)({
-          model: imageModel,
-        });
+      if (imageGenerationTool) {
+        customTools.generateImage =
+          generateImageHandler(req)(imageGenerationTool);
       }
 
       const result = streamText({

@@ -10,13 +10,13 @@ import generateImageHandler from '../../../static-servers/generateImageHandler';
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
 
-const mcpEndpoint = process.env.MCP_API_URL || 'http://localhost:4010/mcp';
+const unchainedMCPUrl = process.env.MCP_API_URL || 'http://localhost:4010/mcp';
 
 export async function POST(req: Request) {
   const { messages } = await req.json();
 
   const client = await createMCPClient({
-    transport: new StreamableHTTPClientTransport(new URL(mcpEndpoint), {
+    transport: new StreamableHTTPClientTransport(new URL(unchainedMCPUrl), {
       requestInit: {
         headers: {
           Cookie: req.headers.get('cookie') || '',
