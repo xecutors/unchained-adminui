@@ -1,4 +1,4 @@
-FROM node:22-alpine AS bundler
+FROM node:24-alpine AS bundler
 
 # Create app directory
 RUN mkdir -p /usr/src/app
@@ -9,7 +9,6 @@ COPY package.json /usr/src/app/
 COPY package-lock.json /usr/src/app/
 
 ENV NEXT_TELEMETRY_DISABLED="1"
-ENV NEXT_PUBLIC_ALLOW_ENDPOINT_SWITCH="1"
 ENV TZ="Europe/Amsterdam"
 ENV NODE_ENV="production"
 RUN NODE_ENV="development" npm ci
@@ -22,7 +21,7 @@ RUN npm run build
 RUN rm -Rf node_modules
 
 
-FROM node:22-alpine AS runtime
+FROM node:24-alpine AS runtime
 
 COPY --from=bundler /usr/src/app /usr/src
 

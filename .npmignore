@@ -36,7 +36,6 @@ codegen.ts
 generate-permissions.js
 custom-formatter.js
 possibleTypesGenerator.js
-apollo.config.js
 default-permissions.config.js
 loadPermissionConfig.js
 expressServer.ts

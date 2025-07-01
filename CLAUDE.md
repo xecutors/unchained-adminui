@@ -39,7 +39,7 @@ npm run compile-translation  # Compile translations
 - **Formik** for form management
 
 ### GraphQL Integration
-- **Schema Endpoint**: `http://localhost:4010/graphql` (configurable via `GRAPHQL_ENDPOINT`)
+- **Schema Endpoint**: `http://localhost:4010/graphql` (configurable via `NEXT_PUBLIC_GRAPHQL_ENDPOINT`)
 - **Code Generation**: Auto-generates TypeScript types from GraphQL schema via `codegen.ts`
 - **Type Prefix**: All generated types prefixed with `I` (e.g., `IUser`, `IProduct`)
 - **Apollo Cache**: Custom cache policies in `src/modules/apollo/utils/typepolicies.ts`
@@ -126,7 +126,5 @@ const form = useForm({
 ## Environment Variables
 
 ```bash
-GRAPHQL_ENDPOINT=http://localhost:4010/graphql
 NEXT_PUBLIC_LOGO=url_to_logo
-NEXT_PUBLIC_CHAT_ENABLED=false  # Feature flag for chat
 ```

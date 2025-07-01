@@ -17,7 +17,6 @@ import useForm, {
 import useGenerateLoginCredentials from '../hooks/useGenerateLoginCredentials';
 import useLoginWithPassword from '../hooks/useLoginWithPassword';
 import useLoginWithWebAuthn from '../hooks/useLoginWithWebAuthn';
-import GoogleOauth from './GoogleOauth';
 import { useCallback, useState } from 'react';
 import useUnchainedContext from '../../UnchainedContext/useUnchainedContext';
 
@@ -313,7 +312,6 @@ const LogInForm = () => {
                 </Link>
               </div>
             </Form>
-            <GoogleOauth />
           </FormWrapper>
         </div>
       </div>

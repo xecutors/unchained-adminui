@@ -5,15 +5,11 @@ export function useChatEndpointChecker() {
   const [isChecking, setIsChecking] = useState(false);
 
   const check = useCallback(async () => {
-    const url = process?.env?.ENGINE_ENDPOINT || '' + '/chat';
-    if (!url) {
-      setIsAvailable(false);
-      return false;
-    }
-
     setIsChecking(true);
     try {
-      const res = await fetch(url, { method: 'OPTIONS' });
+      const res = await fetch(process.env.NEXT_PUBLIC_CHAT_URL || '/chat', {
+        method: 'OPTIONS',
+      });
       const ok = res.ok;
       setIsAvailable(ok);
       return ok;

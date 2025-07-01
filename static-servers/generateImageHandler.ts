@@ -4,8 +4,13 @@ import { z } from 'zod';
 
 const generateImageHandler =
   (req: any) =>
-  ({ model }: { model: ImageModel }) => {
-    if (!model) return null;
+  ({
+    model,
+    uploadUrl = `${process.env.ROOT_URL}/temp-upload`,
+  }: {
+    model: ImageModel;
+    uploadUrl?: string;
+  }) => {
     return tool({
       description: 'Generate an image based on the prompt',
       parameters: z.object({
@@ -18,7 +23,7 @@ const generateImageHandler =
       execute: async ({ prompt, size = '1024x1024' }) => {
         try {
           const { image } = await experimental_generateImage({
-            model: model,
+            model,
             prompt,
             size,
           });
@@ -34,10 +39,6 @@ const generateImageHandler =
 
           const formData = new FormData();
           formData.append('image', file);
-
-          const uploadUrl =
-            process.env.TEMP_FILE_UPLOAD_URL ||
-            'http://localhost:4010/temp-upload';
 
           const uploadRes = await fetch(uploadUrl, {
             method: 'POST',

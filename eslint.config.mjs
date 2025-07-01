@@ -26,7 +26,7 @@ export default defineConfig([
     '**/.vscode/',
     '**/coverage/',
     '**/*.log',
-    '**/*.env*',
+    '**/*.env*local',
     '**/*.tsbuildinfo',
     '**/*.d.ts',
     '**/*.js',

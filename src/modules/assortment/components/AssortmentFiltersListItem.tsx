@@ -50,7 +50,9 @@ const AssortmentFiltersListItem = ({ link, onDelete, id }) => {
       </div>
       <div className="basis-1/4 pl-5 space-y-1 p-2">
         <div className="flex flex-wrap gap-2">
-          {tags?.map((tag) => <Badge color="slate" text={tag} key={tag} />)}
+          {tags?.map((tag) => (
+            <Badge color="slate" text={tag} key={tag} />
+          ))}
         </div>
       </div>
       <div

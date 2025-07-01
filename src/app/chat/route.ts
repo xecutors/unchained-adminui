@@ -36,6 +36,7 @@ export async function POST(req: Request) {
       ...mcpTools,
       generateImage: generateImageHandler(req)({
         model: openai.image('dall-e-3'),
+        uploadUrl: process.env.NEXT_PUBLIC_TEMP_FILE_UPLOAD_URL,
       }),
     },
     onError: async (e) => {

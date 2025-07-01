@@ -85,7 +85,9 @@ const ProductListItem = ({
 
       <Table.Cell>
         <div className="flex flex-wrap gap-2">
-          {product.tags?.map((t) => <Badge key={t} text={t} color="slate" />)}
+          {product.tags?.map((t) => (
+            <Badge key={t} text={t} color="slate" />
+          ))}
         </div>
       </Table.Cell>
       {hideSortIndex ? null : (

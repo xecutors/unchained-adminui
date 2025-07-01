@@ -1,9 +1,7 @@
 /* eslint-disable no-undef */
-require('./node_env');
-const fs = require('fs');
+import fs from 'fs';
 
-const { GRAPHQL_ENDPOINT } = process.env;
-fetch(GRAPHQL_ENDPOINT, {
+fetch('http://localhost:4010/graphql', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify({
@@ -37,7 +35,7 @@ fetch(GRAPHQL_ENDPOINT, {
     });
 
     fs.writeFile(
-      './modules/apollo/possibleTypes.json',
+      './src/modules/apollo/possibleTypes.json',
       JSON.stringify(possibleTypes),
       (err) => {
         if (err) {

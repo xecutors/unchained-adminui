@@ -15,6 +15,7 @@ type StreamTextParams = Parameters<typeof streamText>[0];
 export interface ChatConfiguration extends StreamTextParams {
   mcpEndpoint: string;
   imageModel?: ImageModel;
+  uploadUrl?: string;
 }
 
 export const expressRouter = express.Router();
@@ -36,6 +37,7 @@ const setupMCPChatHandler = (
   const {
     tools = {},
     mcpEndpoint,
+    model,
     imageModel,
     ...restChatConfig
   } = chatConfiguration;
@@ -68,12 +70,14 @@ const setupMCPChatHandler = (
 
       if (imageModel) {
         customTools.generateImage = generateImageHandler(req)({
+          ...restChatConfig,
           model: imageModel,
         });
       }
 
       const result = streamText({
         ...restChatConfig,
+        model,
         messages,
         tools: {
           ...defaultUnchainedTools,
