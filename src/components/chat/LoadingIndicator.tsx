@@ -1,34 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { CommandLineIcon, StopIcon } from '@heroicons/react/24/outline';
+import React from 'react';
+import { CommandLineIcon } from '@heroicons/react/24/outline';
 import { useChatContext } from '../../modules/chat';
 
 const LoadingIndicator: React.FC = () => {
-  const { status, stop, addInterruptionMessage } = useChatContext();
-  const [isStopped, setIsStopped] = useState(false);
+  const { status } = useChatContext();
   const loadingMessages = {
     submitted: 'Processing...',
     streaming: 'Generating...',
   };
 
-  // Reset stopped state when a new operation starts
-  useEffect(() => {
-    if (status === 'submitted' || status === 'streaming') {
-      setIsStopped(false);
-    }
-  }, [status]);
-
-  const handleStop = () => {
-    const currentStatus = status;
-    setIsStopped(true); // Immediately hide the loading indicator
-    stop();
-    // Add interruption message after a brief delay to ensure stop takes effect
-    setTimeout(() => {
-      addInterruptionMessage(currentStatus);
-    }, 100);
-  };
-
-  // Don't render if status is ready or if manually stopped
-  if (status === 'ready' || isStopped) {
+  // Don't render if status is ready
+  if (status === 'ready') {
     return null;
   }
 
@@ -64,13 +46,6 @@ const LoadingIndicator: React.FC = () => {
             </div>
           </div>
         </div>
-        <button
-          onClick={handleStop}
-          className="ml-2 p-1.5 text-slate-500 dark:text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-900/20 rounded-md transition-colors"
-          title="Stop generation"
-        >
-          <StopIcon className="w-4 h-4" />
-        </button>
       </div>
     </div>
   );

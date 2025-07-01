@@ -1,12 +1,21 @@
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import {
   CameraIcon,
   PaperAirplaneIcon,
   XMarkIcon,
+  StopIcon,
 } from '@heroicons/react/24/outline';
 import { useChatContext } from '../../modules/chat';
 const CopilotInput: React.FC = () => {
-  const { input, handleInputChange, handleSubmit } = useChatContext();
+  const {
+    input,
+    handleInputChange,
+    handleSubmit,
+    status,
+    stop,
+    addInterruptionMessage,
+  } = useChatContext();
 
   const [inputHistory, setInputHistory] = useState<string[]>(() => {
     if (typeof window !== 'undefined') {
@@ -19,6 +28,24 @@ const CopilotInput: React.FC = () => {
 
   const [imageUrls, setImageUrls] = useState<string[]>([]);
   const [uploading, setUploading] = useState(false);
+  const [isStopped, setIsStopped] = useState(false);
+
+  // Reset stopped state when a new operation starts
+  useEffect(() => {
+    if (status === 'submitted' || status === 'streaming') {
+      setIsStopped(false);
+    }
+  }, [status]);
+
+  const handleStop = () => {
+    const currentStatus = status;
+    setIsStopped(true);
+    stop();
+    // Add interruption message after a brief delay to ensure stop takes effect
+    setTimeout(() => {
+      addInterruptionMessage(currentStatus);
+    }, 100);
+  };
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -134,19 +161,31 @@ const CopilotInput: React.FC = () => {
           />
           <label
             htmlFor="image-upload"
-            className="p-2 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 cursor-pointer"
+            className="p-2 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 cursor-pointer focus:ring-2 focus:ring-sky-300 focus:outline-hidden rounded"
             title="Upload images"
+            tabIndex={0}
           >
             <CameraIcon className="h-6 w-6" strokeWidth={2} />
           </label>
 
-          <button
-            type="submit"
-            disabled={!input.trim() && imageUrls.length === 0}
-            className="p-2 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 focus:ring-2 focus:ring-slate-700 focus:outline-hidden rounded-md"
-          >
-            <PaperAirplaneIcon className="h-6 w-6" strokeWidth={2} />
-          </button>
+          {(status === 'submitted' || status === 'streaming') && !isStopped ? (
+            <button
+              type="button"
+              onClick={handleStop}
+              className="p-2 bg-slate-900 dark:bg-slate-700 text-white rounded transition-colors"
+              title="Stop generation"
+            >
+              <StopIcon className="h-6 w-6" strokeWidth={2} />
+            </button>
+          ) : (
+            <button
+              type="submit"
+              disabled={!input.trim() && imageUrls.length === 0}
+              className="p-2 bg-slate-900 dark:bg-slate-700 text-white hover:bg-slate-800 dark:hover:bg-slate-800 disabled:bg-slate-200 disabled:text-slate-900 dark:disabled:bg-slate-600 disabled:cursor-not-allowed focus:ring-2 focus:ring-sky-300 focus:outline-hidden rounded transition-colors"
+            >
+              <PaperAirplaneIcon className="h-6 w-6" strokeWidth={2} />
+            </button>
+          )}
         </div>
 
         {uploading && (
@@ -156,10 +195,12 @@ const CopilotInput: React.FC = () => {
         {imageUrls.length > 0 && (
           <div className="mt-2 flex gap-3 flex-wrap">
             {imageUrls.map((img, i) => (
-              <div key={i} className="relative">
-                <img
+              <div key={img} className="relative">
+                <Image
                   src={img}
                   alt={`Selected ${i}`}
+                  width={64}
+                  height={64}
                   className="h-16 w-16 object-cover rounded-md"
                 />
                 <button
