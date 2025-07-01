@@ -179,6 +179,10 @@ const ProductTextsForm = ({ productId, selectedLocale = null }) => {
                     id: 'labels',
                     defaultMessage: 'Labels',
                   })}
+                  placeholder={formatMessage({
+                    id: 'label',
+                    defaultMessage: 'Label',
+                  })}
                   buttonText={formatMessage({
                     id: 'add',
                     defaultMessage: 'Add',
