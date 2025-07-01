@@ -77,12 +77,6 @@ const Layout = ({
       href: '/products',
     },
     {
-      name: formatMessage({ id: 'tokens', defaultMessage: 'Tokens' }),
-      icon: QrCodeIcon,
-      href: '/tokens',
-      requiredRole: 'viewTokens',
-    },
-    {
       name: formatMessage({ id: 'assortments', defaultMessage: 'Assortments' }),
       icon: RectangleStackIcon,
       href: '/assortments',
@@ -102,6 +96,16 @@ const Layout = ({
     },
     {
       name: formatMessage({
+        id: 'enrollments',
+        defaultMessage: 'Enrollments',
+      }),
+
+      href: '/enrollments',
+      requiredRole: 'viewEnrollments',
+      icon: CalendarIcon,
+    },
+    {
+      name: formatMessage({
         id: 'quotations',
         defaultMessage: 'Quotations',
       }),
@@ -110,14 +114,10 @@ const Layout = ({
       requiredRole: 'viewQuotations',
     },
     {
-      name: formatMessage({
-        id: 'enrollments',
-        defaultMessage: 'Enrollments',
-      }),
-
-      href: '/enrollments',
-      requiredRole: 'viewEnrollments',
-      icon: CalendarIcon,
+      name: formatMessage({ id: 'tokens', defaultMessage: 'Tokens' }),
+      icon: QrCodeIcon,
+      href: '/tokens',
+      requiredRole: 'viewTokens',
     },
     {
       name: formatMessage({ id: 'system', defaultMessage: 'System settings' }),
