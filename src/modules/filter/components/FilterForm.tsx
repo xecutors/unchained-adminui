@@ -81,10 +81,6 @@ const FilterForm = ({
             id: 'title',
             defaultMessage: 'Title',
           })}
-          placeholder={formatMessage({
-            id: 'title',
-            defaultMessage: 'Title',
-          })}
           required
           className="mb-5"
         />
@@ -96,10 +92,6 @@ const FilterForm = ({
             id: 'key',
             defaultMessage: 'Key',
           })}
-          placeholder={formatMessage({
-            id: 'key',
-            defaultMessage: 'Key',
-          })}
           required
           className="mb-5"
         />
@@ -107,7 +99,6 @@ const FilterForm = ({
         <SelectField
           className="mb-5"
           label={formatMessage({ id: 'type', defaultMessage: 'Type' })}
-          placeholder={formatMessage({ id: 'type', defaultMessage: 'Type' })}
           required
           name="type"
           options={convertArrayOfObjectToObject(filterTypes, 'label', 'value')}
@@ -123,10 +114,6 @@ const FilterForm = ({
                     className="mb-3 flex justify-between align-baseline"
                   >
                     <TextField
-                      placeholder={formatMessage({
-                        id: 'option',
-                        defaultMessage: 'Option',
-                      })}
                       name={`options[${index}]`}
                       id={`options[${index}]`}
                       required

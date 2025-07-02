@@ -75,10 +75,6 @@ const CountryForm = ({
             id: 'iso_code',
             defaultMessage: 'ISO code',
           })}
-          placeholder={formatMessage({
-            id: 'iso_code',
-            defaultMessage: 'ISO code',
-          })}
           required
           autoComplete="on"
         />
@@ -89,10 +85,6 @@ const CountryForm = ({
               name="defaultCurrencyCode"
               id="defaultCurrencyCode"
               label={formatMessage({
-                id: 'default_currency',
-                defaultMessage: 'Default currency',
-              })}
-              placeholder={formatMessage({
                 id: 'default_currency',
                 defaultMessage: 'Default currency',
               })}

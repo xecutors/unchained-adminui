@@ -25,7 +25,6 @@ const TagListForm = ({ tags, onSubmit, onCancel }) => {
         <TagInputField
           name="tags"
           id="tags"
-          placeholder={formatMessage({ id: 'tags', defaultMessage: 'Tags' })}
           label={formatMessage({ id: 'tags', defaultMessage: 'Tags' })}
           tagList={tags}
         />

@@ -13,7 +13,6 @@ const TagInputField = ({
   const field = useField({
     validators: [...validators, validateRequiredTag(props?.required)],
     label: 'Tags',
-    placeholder: 'Tags',
     ...props,
   });
 

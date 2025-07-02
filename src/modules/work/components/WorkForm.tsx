@@ -79,10 +79,6 @@ const WorkForm = () => {
             <SelectField
               className="w-full py-2 text-sm text-slate-900 sm:mt-0"
               label={formatMessage({ id: 'type', defaultMessage: 'Type' })}
-              placeholder={formatMessage({
-                id: 'type',
-                defaultMessage: 'Type',
-              })}
               labelClassName="text-sm font-medium text-slate-500 mb-1"
               name="type"
               required
@@ -102,10 +98,6 @@ const WorkForm = () => {
                 defaultMessage: 'Priority',
               })}
               labelClassName="text-sm font-medium text-slate-500 mb-1"
-              placeholder={formatMessage({
-                id: 'priority',
-                defaultMessage: 'Priority',
-              })}
               type="number"
               className="w-full py-2 text-sm text-slate-900 sm:mt-0"
             />
@@ -118,10 +110,6 @@ const WorkForm = () => {
                 defaultMessage: 'Retries',
               })}
               labelClassName="text-sm  font-medium text-slate-500 mb-1"
-              placeholder={formatMessage({
-                id: 'retries',
-                defaultMessage: 'Retries',
-              })}
               type="number"
               className="w-full py-2 text-sm text-slate-900 sm:mt-0"
             />
@@ -136,10 +124,6 @@ const WorkForm = () => {
                 defaultMessage: 'Original Work Id',
               })}
               labelClassName="text-sm font-medium text-slate-500 mb-1"
-              placeholder={formatMessage({
-                id: 'original_work_id',
-                defaultMessage: 'Original Work Id',
-              })}
               autoComplete="on"
               className="w-full py-2 text-sm text-slate-900 sm:mt-0"
             />
@@ -153,10 +137,6 @@ const WorkForm = () => {
               className="w-full py-2 text-sm text-slate-900 dark:text-slate-200 dark:bg-slate-900 sm:mt-0 "
               containerClassName="w-full py-2 text-sm text-slate-900 sm:mt-0"
               name="scheduled"
-              placeholder={formatMessage({
-                id: 'scheduled',
-                defaultMessage: 'Scheduled',
-              })}
               locale={locale}
               showTimeInput
               timeFormat="p"
@@ -170,10 +150,6 @@ const WorkForm = () => {
               className="dark:text-slate-200"
               labelClassName="font-sm text-slate-500 mb-1"
               label={formatMessage({
-                id: 'input',
-                defaultMessage: 'Input',
-              })}
-              placeholder={formatMessage({
                 id: 'input',
                 defaultMessage: 'Input',
               })}
