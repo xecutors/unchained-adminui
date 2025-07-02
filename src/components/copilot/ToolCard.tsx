@@ -60,12 +60,32 @@ export const ToolCard: React.FC<ToolCardProps> = ({ tool }) => {
     if (name === 'unpublish_product')
       return '"Unpublish the winter collection"';
     if (name === 'remove_product') return '"Delete product OLD123"';
+    if (name === 'remove_product_media') return '"Remove product images"';
+    if (name === 'add_product_media') return '"Add images to product"';
+    if (name === 'update_product_media') return '"Update product images"';
     if (name === 'shop_info') return '"Show shop configuration"';
     if (name === 'generateimage') return '"Generate a hero banner image"';
     if (name.includes('order')) return '"Show recent orders"';
     if (name.includes('customer')) return '"Find customer by email"';
+    if (name.includes('assortment')) return '"Manage product categories"';
+    if (name.includes('media') && name.includes('remove'))
+      return '"Remove media files"';
+    if (name.includes('media') && name.includes('add'))
+      return '"Add media files"';
+    if (name.includes('media')) return '"Manage media files"';
 
-    return `"Use ${toolName}"`;
+    // Improved fallback: convert tool name to readable format
+    const readableName = toolName.replace(/_/g, ' ').toLowerCase();
+    return `"Help me with ${readableName}"`;
+  };
+
+  // Convert tool name to proper title case
+  const formatToolName = (toolName: string): string => {
+    return toolName
+      .replace(/_/g, ' ')
+      .split(' ')
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(' ');
   };
 
   return (
@@ -76,7 +96,7 @@ export const ToolCard: React.FC<ToolCardProps> = ({ tool }) => {
         </div>
         <div className="flex-1 min-w-0">
           <h3 className="text-sm font-medium text-slate-900 dark:text-slate-100 truncate">
-            {tool.name.replace(/_/g, ' ')}
+            {formatToolName(tool.name)}
           </h3>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">
             {tool.description}
