@@ -63,12 +63,21 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
         <div className="mb-6">
           <AssortmentResultsSummary
             assortments={parsed.assortments}
-            requestedFilters={parsed.filters}
+            requestedFilters={parsed?.filters}
           />
-          <AssortmentList assortments={parsed.assortments} />
+          <AssortmentList assortments={parsed?.assortments} />
         </div>
       );
     }
+
+    if (toolName === 'assortment_children' && parsed?.assortments?.length) {
+      return (
+        <div className="mb-6">
+          <AssortmentList assortments={parsed?.assortments} />
+        </div>
+      );
+    }
+
     if (toolName === 'shop_info' && parsed) {
       return <ShopInfoCard shopInfo={parsed} />;
     }
@@ -100,6 +109,18 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
               ...parsed.product,
             }}
           />
+        </div>
+      );
+    }
+
+    if (toolName === 'assortment_products') {
+      return (
+        <div className="mb-6">
+          <ProductResultsSummary
+            products={parsed.products}
+            requestedFilters={parsed?.filters}
+          />
+          <ProductList products={parsed.products} />
         </div>
       );
     }
