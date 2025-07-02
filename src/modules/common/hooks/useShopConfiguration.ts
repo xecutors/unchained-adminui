@@ -10,7 +10,7 @@ import {
 const BASIC_SHOP_STATUS_QUERY = gql`
   query BasicShopStatus {
     countriesCount
-    currenciesCount  
+    currenciesCount
     languagesCount
     productsCount
     assortmentsCount
@@ -26,13 +26,14 @@ const useShopConfiguration = () => {
   const [error, setError] = useState<Error | null>(null);
 
   // Try to get basic counts, but don't fail if GraphQL is unavailable
-  const { 
-    data: shopData, 
-    loading: graphqlLoading, 
-    error: graphqlError 
+  const {
+    data: shopData,
+    loading: graphqlLoading,
+    error: graphqlError,
   } = useQuery(BASIC_SHOP_STATUS_QUERY, {
     fetchPolicy: 'cache-and-network',
     errorPolicy: 'ignore', // Don't fail on GraphQL errors
+    skip: true, // Skip GraphQL queries to prevent 500 errors
   });
 
   // Update localStorage based on GraphQL data when available
@@ -53,7 +54,7 @@ const useShopConfiguration = () => {
     for (const [stepId, hasData] of Object.entries(validationResults)) {
       if (hasData) {
         const currentConfig = getShopConfiguration();
-        const step = currentConfig.steps.find(s => s.id === stepId);
+        const step = currentConfig.steps.find((s) => s.id === stepId);
         if (step && !step.isComplete) {
           markStepComplete(stepId);
           hasChanges = true;
@@ -101,7 +102,7 @@ const useShopConfiguration = () => {
       setError(null);
       const newConfig = getShopConfiguration();
       setConfiguration(newConfig);
-      
+
       // Trigger GraphQL validation if available
       if (shopData) {
         validateWithGraphQL();
@@ -118,7 +119,8 @@ const useShopConfiguration = () => {
   return {
     configuration,
     loading: loading || graphqlLoading,
-    error: error || (graphqlError ? new Error('GraphQL validation failed') : null),
+    error:
+      error || (graphqlError ? new Error('GraphQL validation failed') : null),
     refetch,
   };
 };

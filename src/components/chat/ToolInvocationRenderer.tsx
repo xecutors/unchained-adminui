@@ -1,6 +1,7 @@
 import React from 'react';
 import ProductDetail from '../../modules/product/components/ProductDetail';
 import { ProductList } from '../product';
+import { AssortmentList, AssortmentResultsSummary } from '../assortment';
 import UnknownToolResponse from './UnknownToolResponse';
 import ProductResultsSummary from './ProductResultsSummary';
 import Image from 'next/image';
@@ -40,6 +41,8 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
       'remove_product',
       'publish_product',
       'unpublish_product',
+      'create_assortment',
+      'update_assortment',
     ];
 
     if (toolName === 'list_products' && parsed?.products?.length) {
@@ -50,6 +53,18 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
             requestedFilters={parsed.filters}
           />
           <ProductList products={parsed.products} />
+        </div>
+      );
+    }
+
+    if (toolName === 'list_assortments' && parsed?.assortments?.length) {
+      return (
+        <div className="mb-6">
+          <AssortmentResultsSummary
+            assortments={parsed.assortments}
+            requestedFilters={parsed.filters}
+          />
+          <AssortmentList assortments={parsed.assortments} />
         </div>
       );
     }
@@ -65,6 +80,13 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
       return (
         <div className="mb-6">
           <ProductList products={[parsed.product]} />
+        </div>
+      );
+
+    if (listViewTools.includes(toolName) && parsed?.assortment)
+      return (
+        <div className="mb-6">
+          <AssortmentList assortments={[parsed.assortment]} />
         </div>
       );
 

@@ -23,11 +23,10 @@ const ShopSetupChecklist: React.FC<ShopSetupChecklistProps> = ({
   className,
 }) => {
   const { formatMessage } = useIntl();
-  const { configuration, loading, error, refetch } =
-    useShopConfiguration();
+  const { configuration, loading, error, refetch } = useShopConfiguration();
   const [expandedSections, setExpandedSections] = useState({
-    essential: true,
-    commerce: true,
+    essential: false,
+    commerce: false,
     content: false,
   });
   const [isDismissed, setIsDismissed] = useState(false);

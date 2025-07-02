@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Tool } from '../../modules/chat/hooks/useAvailableTools';
 import ToolCard from './ToolCard';
-import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
+import { MagnifyingGlassIcon, ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
 
 interface ToolGridProps {
   groupedTools: Record<string, Tool[]>;
@@ -17,28 +17,31 @@ export const ToolGrid: React.FC<ToolGridProps> = ({
   lastUpdated,
 }) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>({});
 
   // Filter tools based on search term and category
   const filterTools = (tools: Tool[]): Tool[] => {
     return tools.filter((tool) => {
-      const matchesSearch =
-        searchTerm === '' ||
-        tool.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        tool.description.toLowerCase().includes(searchTerm.toLowerCase());
-
-      return matchesSearch;
+      if (searchTerm === '') return true;
+      
+      const searchLower = searchTerm.toLowerCase();
+      const toolName = tool.name.toLowerCase();
+      const toolDescription = tool.description.toLowerCase();
+      
+      // Check for matches in name and description
+      const nameMatch = toolName.includes(searchLower);
+      const descriptionMatch = toolDescription.includes(searchLower);
+      
+      // Also check for word-based matches (e.g., "create product" matches "create_product")
+      const nameWords = toolName.replace(/_/g, ' ');
+      const wordMatch = nameWords.includes(searchLower);
+      
+      return nameMatch || descriptionMatch || wordMatch;
     });
   };
 
   // Get filtered grouped tools
   const getFilteredGroups = (): Record<string, Tool[]> => {
-    if (selectedCategory) {
-      return {
-        [selectedCategory]: filterTools(groupedTools[selectedCategory] || []),
-      };
-    }
-
     const filtered: Record<string, Tool[]> = {};
     Object.entries(groupedTools).forEach(([category, tools]) => {
       const filteredTools = filterTools(tools);
@@ -52,6 +55,13 @@ export const ToolGrid: React.FC<ToolGridProps> = ({
   const filteredGroups = getFilteredGroups();
   const totalTools = Object.values(groupedTools).flat().length;
   const categories = Object.keys(groupedTools);
+
+  const toggleCategory = (category: string) => {
+    setExpandedCategories(prev => ({
+      ...prev,
+      [category]: !prev[category]
+    }));
+  };
 
   if (loading) {
     return <ToolGridSkeleton />;
@@ -90,34 +100,6 @@ export const ToolGrid: React.FC<ToolGridProps> = ({
           </div>
         </div>
 
-        {/* Category filter pills */}
-        {categories.length > 1 && (
-          <div className="flex flex-wrap gap-2">
-            <button
-              onClick={() => setSelectedCategory(null)}
-              className={`px-3 py-1 text-xs font-medium rounded-full transition-colors ${
-                selectedCategory === null
-                  ? 'bg-slate-800 text-white dark:bg-slate-200 dark:text-slate-900'
-                  : 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
-              }`}
-            >
-              All Categories
-            </button>
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`px-3 py-1 text-xs font-medium rounded-full transition-colors ${
-                  selectedCategory === category
-                    ? 'bg-slate-800 text-white dark:bg-slate-200 dark:text-slate-900'
-                    : 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
-                }`}
-              >
-                {category} ({groupedTools[category].length})
-              </button>
-            ))}
-          </div>
-        )}
       </div>
 
       {/* Tool categories */}
@@ -129,18 +111,45 @@ export const ToolGrid: React.FC<ToolGridProps> = ({
             </p>
           </div>
         ) : (
-          Object.entries(filteredGroups).map(([category, tools]) => (
-            <div key={category}>
-              <h3 className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-3">
-                {category}
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                {tools.map((tool) => (
-                  <ToolCard key={tool.name} tool={tool} />
-                ))}
+          Object.entries(filteredGroups).map(([category, tools]) => {
+            // Auto-expand categories when searching and results are found
+            const isExpanded = expandedCategories[category] || (searchTerm !== '' && tools.length > 0);
+            
+            return (
+              <div key={category} className="border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden">
+                <button
+                  onClick={() => toggleCategory(category)}
+                  className="w-full p-4 bg-slate-50 dark:bg-slate-800/50 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-left"
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <h3 className="text-sm font-semibold text-slate-700 dark:text-slate-300">
+                        {category}
+                      </h3>
+                      <span className="text-xs text-slate-500 dark:text-slate-500 bg-slate-200 dark:bg-slate-700 px-2 py-1 rounded-full">
+                        {tools.length}
+                      </span>
+                    </div>
+                    {isExpanded ? (
+                      <ChevronUpIcon className="w-4 h-4 text-slate-400" />
+                    ) : (
+                      <ChevronDownIcon className="w-4 h-4 text-slate-400" />
+                    )}
+                  </div>
+                </button>
+                
+                {isExpanded && (
+                  <div className="p-4 bg-white dark:bg-slate-800">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      {tools.map((tool) => (
+                        <ToolCard key={tool.name} tool={tool} />
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
-            </div>
-          ))
+            );
+          })
         )}
       </div>
     </div>

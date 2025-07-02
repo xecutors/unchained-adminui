@@ -119,6 +119,18 @@ function getDefaultTools(): Tool[] {
       category: 'Product Management',
     },
     {
+      name: 'list_assortments',
+      description: 'List and search assortments (categories) in your catalog',
+      parameters: {},
+      category: 'Assortment Management',
+    },
+    {
+      name: 'get_assortment',
+      description: 'Get detailed information about a specific assortment',
+      parameters: {},
+      category: 'Assortment Management',
+    },
+    {
       name: 'shop_info',
       description: 'Get information about your shop configuration',
       parameters: {},
