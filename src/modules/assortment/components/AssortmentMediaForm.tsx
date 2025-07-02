@@ -1,3 +1,4 @@
+import React from 'react';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import {
@@ -20,14 +21,71 @@ import useReorderAssortmentMedia from '../hooks/useReorderAssortmentMedia';
 import AssortmentMediaList from './AssortmentMediaList';
 
 const AssortmentMediaForm = ({ assortmentId, selectedLocale = null }) => {
-  const { assortmentMedia } = useAssortmentMedia({ assortmentId });
+  // All hooks must be called first, before any conditional returns
+  const { assortmentMedia, loading, error } = useAssortmentMedia({
+    assortmentId,
+  });
   const { formatMessage } = useIntl();
   const { setModal } = useModal();
   const { removeAssortmentMedia } = useRemoveAssortmentMedia();
   const { reorderAssortmentMedia } = useReorderAssortmentMedia();
   const { addAssortmentMedia } = useAddAssortmentMedia();
 
-  const items = assortmentMedia?.map((media) => media._id);
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 5,
+      },
+    }),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    }),
+  );
+
+  const items = (assortmentMedia || []).map((media) => media._id);
+
+  // Safety check for required components after all hooks
+  if (!MediaUploader || !DndContext || !AssortmentMediaList) {
+    console.error('Required components not loaded:', {
+      MediaUploader: !!MediaUploader,
+      DndContext: !!DndContext,
+      AssortmentMediaList: !!AssortmentMediaList,
+    });
+    return (
+      <div className="mx-auto mt-5 max-w-full bg-white dark:bg-slate-800 py-6 shadow-sm dark:shadow-none lg:rounded-sm">
+        <div className="flex items-center justify-center p-8">
+          <div className="text-rose-500">
+            Component loading error. Please refresh the page.
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Add loading and error handling after all hooks
+  if (loading) {
+    return (
+      <div className="mx-auto mt-5 max-w-full bg-white dark:bg-slate-800 py-6 shadow-sm dark:shadow-none lg:rounded-sm">
+        <div className="flex items-center justify-center p-8">
+          <div className="text-slate-500 dark:text-slate-400">
+            Loading media...
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="mx-auto mt-5 max-w-full bg-white dark:bg-slate-800 py-6 shadow-sm dark:shadow-none lg:rounded-sm">
+        <div className="flex items-center justify-center p-8">
+          <div className="text-rose-500">
+            Error loading media: {error.message}
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   const onAddMedia = async (media) => {
     try {
@@ -113,17 +171,6 @@ const AssortmentMediaForm = ({ assortmentId, selectedLocale = null }) => {
       );
     }
   };
-
-  const sensors = useSensors(
-    useSensor(PointerSensor, {
-      activationConstraint: {
-        distance: 5,
-      },
-    }),
-    useSensor(KeyboardSensor, {
-      coordinateGetter: sortableKeyboardCoordinates,
-    }),
-  );
 
   return (
     <div className="mx-auto mt-5 max-w-full bg-white dark:bg-slate-800 py-6 shadow-sm dark:shadow-none lg:grid lg:grid-cols-12 lg:gap-4 lg:rounded-sm">

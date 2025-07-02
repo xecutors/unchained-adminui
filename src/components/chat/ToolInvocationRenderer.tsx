@@ -1,7 +1,8 @@
 import React from 'react';
 import ProductDetail from '../../modules/product/components/ProductDetail';
 import { ProductList } from '../product';
-import { AssortmentList, AssortmentResultsSummary } from '../assortment';
+import AssortmentList from '../assortment/AssortmentList';
+import AssortmentResultsSummary from '../assortment/AssortmentResultsSummary';
 import UnknownToolResponse from './UnknownToolResponse';
 import ProductResultsSummary from './ProductResultsSummary';
 import Image from 'next/image';

@@ -13,10 +13,11 @@ import { useRouter } from 'next/router';
 import LocaleWrapper from '../../common/components/LocaleWrapper';
 import SelectOptions from '../../common/components/SelectOptions';
 import HeaderDeleteButton from '../../common/components/HeaderDeleteButton';
+import ErrorBoundary from '../../common/components/ErrorBoundary';
 import DangerMessage from '../../modal/components/DangerMessage';
 import useRemoveAssortment from '../hooks/useRemoveAssortment';
 import AssortmentTextForm from './AssortmentTextForm';
-import AssortmentMediaForm from './AssortmentMediaForm';
+import SafeAssortmentMediaForm from './SafeAssortmentMediaForm';
 import AssortmentLinks from './AssortmentLinks';
 import AssortmentProducts from './AssortmentProducts';
 import AssortmentFilters from './AssortmentFilters';
@@ -41,7 +42,9 @@ const GetCurrentTab = ({ id, selectedView, ...extendedData }) => {
   if (selectedView === 'media')
     return (
       <LocaleWrapper>
-        <AssortmentMediaForm assortmentId={id} />{' '}
+        <ErrorBoundary>
+          <SafeAssortmentMediaForm assortmentId={id} />
+        </ErrorBoundary>
       </LocaleWrapper>
     );
   if (selectedView === 'products')

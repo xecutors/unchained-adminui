@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { Tool } from '../../modules/chat/hooks/useAvailableTools';
 import ToolCard from './ToolCard';
-import { MagnifyingGlassIcon, ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
+import {
+  MagnifyingGlassIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+} from '@heroicons/react/24/outline';
 
 interface ToolGridProps {
   groupedTools: Record<string, Tool[]>;
@@ -17,25 +21,27 @@ export const ToolGrid: React.FC<ToolGridProps> = ({
   lastUpdated,
 }) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>({});
+  const [expandedCategories, setExpandedCategories] = useState<
+    Record<string, boolean>
+  >({});
 
   // Filter tools based on search term and category
   const filterTools = (tools: Tool[]): Tool[] => {
     return tools.filter((tool) => {
       if (searchTerm === '') return true;
-      
+
       const searchLower = searchTerm.toLowerCase();
       const toolName = tool.name.toLowerCase();
       const toolDescription = tool.description.toLowerCase();
-      
+
       // Check for matches in name and description
       const nameMatch = toolName.includes(searchLower);
       const descriptionMatch = toolDescription.includes(searchLower);
-      
+
       // Also check for word-based matches (e.g., "create product" matches "create_product")
       const nameWords = toolName.replace(/_/g, ' ');
       const wordMatch = nameWords.includes(searchLower);
-      
+
       return nameMatch || descriptionMatch || wordMatch;
     });
   };
@@ -57,9 +63,9 @@ export const ToolGrid: React.FC<ToolGridProps> = ({
   const categories = Object.keys(groupedTools);
 
   const toggleCategory = (category: string) => {
-    setExpandedCategories(prev => ({
+    setExpandedCategories((prev) => ({
       ...prev,
-      [category]: !prev[category]
+      [category]: !prev[category],
     }));
   };
 
@@ -99,7 +105,6 @@ export const ToolGrid: React.FC<ToolGridProps> = ({
             />
           </div>
         </div>
-
       </div>
 
       {/* Tool categories */}
@@ -113,10 +118,15 @@ export const ToolGrid: React.FC<ToolGridProps> = ({
         ) : (
           Object.entries(filteredGroups).map(([category, tools]) => {
             // Auto-expand categories when searching and results are found
-            const isExpanded = expandedCategories[category] || (searchTerm !== '' && tools.length > 0);
-            
+            const isExpanded =
+              expandedCategories[category] ||
+              (searchTerm !== '' && tools.length > 0);
+
             return (
-              <div key={category} className="border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden">
+              <div
+                key={category}
+                className="border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden"
+              >
                 <button
                   onClick={() => toggleCategory(category)}
                   className="w-full p-4 bg-slate-50 dark:bg-slate-800/50 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-left"
@@ -137,7 +147,7 @@ export const ToolGrid: React.FC<ToolGridProps> = ({
                     )}
                   </div>
                 </button>
-                
+
                 {isExpanded && (
                   <div className="p-4 bg-white dark:bg-slate-800">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
