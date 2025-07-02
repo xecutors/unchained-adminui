@@ -98,7 +98,12 @@ const CurrencyForm = ({
                 defaultMessage: 'Active',
               })}
               active={form.formik.values.isActive}
-              onToggle={() => form.formik.setFieldValue('isActive', !form.formik.values.isActive)}
+              onToggle={() =>
+                form.formik.setFieldValue(
+                  'isActive',
+                  !form.formik.values.isActive,
+                )
+              }
             />
           </div>
         )}

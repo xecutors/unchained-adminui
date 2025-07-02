@@ -43,22 +43,24 @@ export const useAvailableTools = (): UseAvailableToolsReturn => {
       }
 
       const data: ToolsResponse = await response.json();
-      
+
       if (data.error && !data.tools) {
         throw new Error(data.error);
       }
 
       setTools(data.tools || []);
       setLastUpdated(new Date(data.timestamp));
-      
+
       if (data.error) {
         // We have cached data but also an error
         console.warn('Using cached tools data:', data.error);
       }
     } catch (err) {
       console.error('Error fetching tools:', err);
-      setError(err instanceof Error ? err.message : 'Failed to fetch available tools');
-      
+      setError(
+        err instanceof Error ? err.message : 'Failed to fetch available tools',
+      );
+
       // Set default tools as fallback
       setTools(getDefaultTools());
     } finally {

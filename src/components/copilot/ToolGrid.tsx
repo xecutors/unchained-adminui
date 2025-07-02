@@ -10,22 +10,23 @@ interface ToolGridProps {
   lastUpdated: Date | null;
 }
 
-export const ToolGrid: React.FC<ToolGridProps> = ({ 
-  groupedTools, 
-  loading, 
+export const ToolGrid: React.FC<ToolGridProps> = ({
+  groupedTools,
+  loading,
   error,
-  lastUpdated 
+  lastUpdated,
 }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   // Filter tools based on search term and category
   const filterTools = (tools: Tool[]): Tool[] => {
-    return tools.filter(tool => {
-      const matchesSearch = searchTerm === '' || 
+    return tools.filter((tool) => {
+      const matchesSearch =
+        searchTerm === '' ||
         tool.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         tool.description.toLowerCase().includes(searchTerm.toLowerCase());
-      
+
       return matchesSearch;
     });
   };
@@ -34,10 +35,10 @@ export const ToolGrid: React.FC<ToolGridProps> = ({
   const getFilteredGroups = (): Record<string, Tool[]> => {
     if (selectedCategory) {
       return {
-        [selectedCategory]: filterTools(groupedTools[selectedCategory] || [])
+        [selectedCategory]: filterTools(groupedTools[selectedCategory] || []),
       };
     }
-    
+
     const filtered: Record<string, Tool[]> = {};
     Object.entries(groupedTools).forEach(([category, tools]) => {
       const filteredTools = filterTools(tools);
@@ -75,7 +76,7 @@ export const ToolGrid: React.FC<ToolGridProps> = ({
               </span>
             )}
           </div>
-          
+
           {/* Search input */}
           <div className="relative">
             <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
@@ -102,7 +103,7 @@ export const ToolGrid: React.FC<ToolGridProps> = ({
             >
               All Categories
             </button>
-            {categories.map(category => (
+            {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
@@ -124,7 +125,7 @@ export const ToolGrid: React.FC<ToolGridProps> = ({
         {Object.entries(filteredGroups).length === 0 ? (
           <div className="text-center py-8">
             <p className="text-slate-500 dark:text-slate-400">
-              No tools found matching "{searchTerm}"
+              No tools found matching &quot;{searchTerm}&quot;
             </p>
           </div>
         ) : (
@@ -134,7 +135,7 @@ export const ToolGrid: React.FC<ToolGridProps> = ({
                 {category}
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                {tools.map(tool => (
+                {tools.map((tool) => (
                   <ToolCard key={tool.name} tool={tool} />
                 ))}
               </div>
@@ -152,12 +153,15 @@ const ToolGridSkeleton: React.FC = () => {
     <div className="space-y-6">
       <div className="animate-pulse">
         <div className="h-10 bg-slate-200 dark:bg-slate-700 rounded-lg w-48 mb-6"></div>
-        {[1, 2, 3].map(i => (
+        {[1, 2, 3].map((i) => (
           <div key={i} className="mb-6">
             <div className="h-5 bg-slate-200 dark:bg-slate-700 rounded w-32 mb-3"></div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              {[1, 2, 3, 4].map(j => (
-                <div key={j} className="p-4 bg-slate-100 dark:bg-slate-800 rounded-lg">
+              {[1, 2, 3, 4].map((j) => (
+                <div
+                  key={j}
+                  className="p-4 bg-slate-100 dark:bg-slate-800 rounded-lg"
+                >
                   <div className="flex items-start gap-3">
                     <div className="w-9 h-9 bg-slate-200 dark:bg-slate-700 rounded-lg"></div>
                     <div className="flex-1">
@@ -180,8 +184,18 @@ const ToolGridError: React.FC<{ error: string }> = ({ error }) => {
   return (
     <div className="text-center py-8">
       <div className="inline-flex items-center justify-center w-16 h-16 bg-rose-100 dark:bg-rose-900/20 rounded-full mb-4">
-        <svg className="w-8 h-8 text-rose-600 dark:text-rose-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+        <svg
+          className="w-8 h-8 text-rose-600 dark:text-rose-400"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+          />
         </svg>
       </div>
       <h3 className="text-lg font-medium text-slate-900 dark:text-slate-100 mb-2">
@@ -191,7 +205,8 @@ const ToolGridError: React.FC<{ error: string }> = ({ error }) => {
         {error}
       </p>
       <p className="text-xs text-slate-500 dark:text-slate-500 mt-4">
-        Using default tool set. Full capabilities will be available when connected to the backend.
+        Using default tool set. Full capabilities will be available when
+        connected to the backend.
       </p>
     </div>
   );

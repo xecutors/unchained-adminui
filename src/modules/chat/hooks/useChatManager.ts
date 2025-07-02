@@ -41,17 +41,20 @@ export const useChatManager = () => {
     initialMessages: chatStorage.loadMessages(),
     onError: (error) => {
       console.error('Chat error:', error);
-      
+
       let errorContent = '';
-      
+
       if (error.message?.includes('fetch')) {
         errorContent = `🚫 **Connection Error**\n\nCannot connect to the chat API server at \`localhost:4010\`.\n\n**To enable chat functionality:**\n1. Start the Unchained Commerce backend on localhost:4010\n2. Ensure the MCP (Model Context Protocol) server is running\n3. Check that the GraphQL endpoint is accessible\n\n**Current status:**\n- Chat interface: ✅ Ready\n- Backend integration: ❌ Required\n\n*Please start the Unchained Commerce backend to use this feature.*`;
-      } else if (error.message?.includes('stream') || error.message?.includes('data')) {
+      } else if (
+        error.message?.includes('stream') ||
+        error.message?.includes('data')
+      ) {
         errorContent = `⚠️ **Stream Processing Error**\n\nThere was an error processing the AI response stream.\n\n**Possible causes:**\n1. MCP server at \`localhost:4010/mcp\` is not responding correctly\n2. Missing or invalid API keys for Claude model\n3. Network connectivity issues\n\n**Error details:** ${error.message}\n\n*Please check the backend configuration and try again.*`;
       } else {
         errorContent = `❌ **Chat Error**\n\nAn unexpected error occurred: ${error.message}\n\n*Please try again or check the console for more details.*`;
       }
-      
+
       const errorMessage: ChatMessage = {
         id: `error-${Date.now()}`,
         role: 'assistant',
