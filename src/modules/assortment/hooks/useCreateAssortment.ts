@@ -32,7 +32,7 @@ const useCreateAssortment = () => {
   }: ICreateAssortmentInput & { texts: IAssortmentTextInput[] }) => {
     return createAssortmentMutation({
       variables: { assortment: { isRoot, tags }, texts },
-      refetchQueries: ['Assortments'],
+      refetchQueries: ['Assortments', 'TranslatedAssortmentTexts'],
     });
   };
   const newAssortment = data?.createAssortment;

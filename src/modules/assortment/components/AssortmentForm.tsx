@@ -23,12 +23,12 @@ const AssortmentForm = ({
   const form = useForm({
     submit: async (data) =>
       onSubmit({ ...data, locale: selectedLocale || 'de' }),
-    onSubmitSuccess: (data) => {
+    onSubmitSuccess: (success, data) => {
       // Mark assortments step as complete when first assortment is created
       markStepComplete('assortments');
 
       if (onSubmitSuccess) {
-        return onSubmitSuccess(data);
+        return onSubmitSuccess(success, data);
       }
       return true;
     },
@@ -37,6 +37,7 @@ const AssortmentForm = ({
     initialValues: {
       isRoot: true,
       title: '',
+      subtitle: '',
       tags: [],
     },
   });

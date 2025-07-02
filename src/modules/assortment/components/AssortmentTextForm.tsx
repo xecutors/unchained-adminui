@@ -69,13 +69,15 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale = null }) => {
     const value = translatedAssortmentTexts?.find(
       (text) => text.locale === selectedLocale,
     );
-    form.formik.setValues({
-      slug: '',
-      title: '',
-      subtitle: '',
-      ...(value || {}),
-    });
-  }, [translatedAssortmentTexts, selectedLocale]);
+    if (value || !loading) {
+      form.formik.setValues({
+        slug: value?.slug || '',
+        title: value?.title || '',
+        subtitle: value?.subtitle || '',
+        description: value?.description || '',
+      });
+    }
+  }, [translatedAssortmentTexts, selectedLocale, loading]);
 
   return (
     <SelfDocumentingView
