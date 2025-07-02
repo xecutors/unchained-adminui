@@ -32,9 +32,11 @@ export const useAvailableTools = (): UseAvailableToolsReturn => {
   const fetchTools = async () => {
     setLoading(true);
     setError(null);
-    const normalizedToolsUrl = '/chat/tools';
+    const normalizedToolsUrl = process.env.NEXT_PUBLIC_CHAT_URL
+      ? `${process.env.NEXT_PUBLIC_CHAT_URL}/tools`
+      : '/chat/tools';
     try {
-      const response = await fetch(normalizedToolsUrl, {
+      const response = await fetch('/chat/tools', {
         credentials: 'include',
       });
 
