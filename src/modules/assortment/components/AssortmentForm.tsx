@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl';
 import useAuth from '../../Auth/useAuth';
-import CheckboxField from '../../forms/components/CheckboxField';
+import Toggle from '../../common/components/Toggle';
 import Form from '../../forms/components/Form';
 import FormErrors from '../../forms/components/FormErrors';
 import SubmitButton from '../../forms/components/SubmitButton';
@@ -64,18 +64,15 @@ const AssortmentForm = ({
         />
       </div>
       <div className="mx-5 mb-5">
-        <CheckboxField
-          id="isRoot"
-          name="isRoot"
-          type="checkbox"
-          label={formatMessage({
+        <Toggle
+          toggleText={formatMessage({
             id: 'root_node',
             defaultMessage: 'Root node',
           })}
-          className="mr-2 h-4 w-4 rounded-sm border-slate-300 dark:border-slate-600 bg-white dark:!bg-slate-800 text-slate-950 focus:ring-slate-800"
-          containerClassName="flex items-center"
+          active={form.formik.values.isRoot}
+          onToggle={() => form.formik.setFieldValue('isRoot', !form.formik.values.isRoot)}
         />
-        <span className="block text-sm text-slate-400 dark:text-slate-500">
+        <span className="block text-sm text-slate-400 dark:text-slate-500 mt-2">
           {formatMessage({
             id: 'root_description',
             defaultMessage: 'This makes the assortment a top level category',

@@ -51,14 +51,14 @@ const AddFilter = () => {
           })}
         />
         <div className="mt-6">
-          <FormWrapper>
-            <LocaleWrapper>
+          <LocaleWrapper>
+            <FormWrapper>
               <FilterForm
                 onSubmit={onSubmit}
                 onSubmitSuccess={onSubmitSuccess}
               />
-            </LocaleWrapper>
-          </FormWrapper>
+            </FormWrapper>
+          </LocaleWrapper>
         </div>
       </div>
     </>
