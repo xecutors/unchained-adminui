@@ -6,8 +6,10 @@ import { MessageRenderer, LoadingIndicator } from '../chat';
 import CopilotHeader from './CopilotHeader';
 import CopilotInput from './CopilotInput';
 import ToolGrid from './ToolGrid';
+import ShopSetupChecklist from './ShopSetupChecklist';
 import { useChatEndpointChecker } from '../../modules/common/hooks/useChatEndpointChecker';
 import { useAvailableTools } from '../../modules/chat/hooks/useAvailableTools';
+import useShopConfiguration from '../../modules/common/hooks/useShopConfiguration';
 
 const Copilot: React.FC = () => {
   const { formatMessage } = useIntl();
@@ -20,6 +22,17 @@ const Copilot: React.FC = () => {
     error: toolsError,
     lastUpdated,
   } = useAvailableTools();
+  const { configuration: shopConfig, error: shopConfigError } =
+    useShopConfiguration();
+
+  // Debug logging
+  console.log('Copilot render:', {
+    shopConfig,
+    shopConfigError,
+    shouldShowChecklist:
+      !shopConfigError && shopConfig && !shopConfig.isFullyConfigured,
+    messagesLength: messages.length,
+  });
   const bottomRef = useRef<HTMLDivElement>(null);
   const loading = status !== 'ready' && status !== 'error';
 
@@ -91,17 +104,31 @@ const Copilot: React.FC = () => {
               Initializing your personal assistant...
             </div>
 
-            <div className="max-w-4xl mx-auto">
-              <h3 className="text-center text-lg font-semibold text-slate-900 dark:text-slate-100 mb-6">
-                Available Tools & Capabilities
-              </h3>
+            <div className="max-w-4xl mx-auto space-y-8">
+              {/* Shop Setup Checklist - Show only if not fully configured and no errors */}
+              {!shopConfigError &&
+                shopConfig &&
+                !shopConfig.isFullyConfigured && (
+                  <div>
+                    <h3 className="text-center text-lg font-semibold text-slate-900 dark:text-slate-100 mb-6">
+                      Get Your Shop Ready
+                    </h3>
+                    <ShopSetupChecklist className="mb-8" />
+                  </div>
+                )}
 
-              <ToolGrid
-                groupedTools={groupedTools}
-                loading={toolsLoading}
-                error={toolsError}
-                lastUpdated={lastUpdated}
-              />
+              <div>
+                <h3 className="text-center text-lg font-semibold text-slate-900 dark:text-slate-100 mb-6">
+                  Available Tools & Capabilities
+                </h3>
+
+                <ToolGrid
+                  groupedTools={groupedTools}
+                  loading={toolsLoading}
+                  error={toolsError}
+                  lastUpdated={lastUpdated}
+                />
+              </div>
             </div>
           </div>
         )}

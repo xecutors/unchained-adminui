@@ -1,5 +1,6 @@
 import { useIntl } from 'react-intl';
 import useAuth from '../../Auth/useAuth';
+import { markStepComplete } from '../../common/utils/shopConfigTracker';
 import Toggle from '../../common/components/Toggle';
 import Form from '../../forms/components/Form';
 
@@ -29,7 +30,17 @@ const CurrencyForm = ({
 
   const form = useForm({
     submit: onSubmit,
-    onSubmitSuccess,
+    onSubmitSuccess: (data) => {
+      // Mark currencies step as complete when first currency is created
+      if (!isEdit) {
+        markStepComplete('currencies');
+      }
+
+      if (onSubmitSuccess) {
+        return onSubmitSuccess(data);
+      }
+      return true;
+    },
     successMessage: isEdit ? currencyUpdatedMessage : currencyAddedMessage,
     getSubmitErrorMessage: (error) => {
       if (error?.message?.includes('duplicate key')) {
@@ -98,7 +109,12 @@ const CurrencyForm = ({
                 defaultMessage: 'Active',
               })}
               active={form.formik.values.isActive}
-              onToggle={() => form.formik.setFieldValue('isActive', !form.formik.values.isActive)}
+              onToggle={() =>
+                form.formik.setFieldValue(
+                  'isActive',
+                  !form.formik.values.isActive,
+                )
+              }
             />
           </div>
         )}

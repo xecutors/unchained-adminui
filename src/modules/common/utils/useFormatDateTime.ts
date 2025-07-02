@@ -4,13 +4,15 @@ import { useIntl } from 'react-intl';
 
 const useFormatDateTime = () => {
   const { locale: intlLocale } = useIntl();
-  
+
   const formatDateTime = (date, options: Intl.DateTimeFormatOptions = {}) => {
     if (!date || !Date.parse(date)) return 'n/a';
     try {
       // Use the admin UI locale from IntlProvider
-      const locale = intlLocale || 
-        (typeof navigator !== 'undefined' && navigator.language) || 'de-ch';
+      const locale =
+        intlLocale ||
+        (typeof navigator !== 'undefined' && navigator.language) ||
+        'de-ch';
       return Intl.DateTimeFormat(locale, options).format(
         new Date(date).getTime(),
       );
@@ -40,8 +42,10 @@ const useFormatDateTime = () => {
     };
 
     // Use the admin UI locale from IntlProvider
-    const locale = intlLocale ||
-      (typeof navigator !== 'undefined' && navigator.language) || 'de-ch';
+    const locale =
+      intlLocale ||
+      (typeof navigator !== 'undefined' && navigator.language) ||
+      'de-ch';
     return new Intl.DateTimeFormat(locale)
       .formatToParts(new Date())
       .map(getPatternForPart)

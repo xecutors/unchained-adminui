@@ -1,5 +1,6 @@
 import { useIntl } from 'react-intl';
 import useAuth from '../../Auth/useAuth';
+import { markStepComplete } from '../../common/utils/shopConfigTracker';
 import Toggle from '../../common/components/Toggle';
 import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
@@ -25,7 +26,17 @@ const LanguageForm = ({
   });
   const form = useForm({
     submit: onSubmit,
-    onSubmitSuccess,
+    onSubmitSuccess: (data) => {
+      // Mark languages step as complete when first language is created
+      if (!isEdit) {
+        markStepComplete('languages');
+      }
+
+      if (onSubmitSuccess) {
+        return onSubmitSuccess(data);
+      }
+      return true;
+    },
     successMessage: isEdit ? languageUpdatedMessage : languageAddedMessage,
     getSubmitErrorMessage: (error) => {
       if (error?.message?.includes('duplicate')) {
@@ -70,7 +81,12 @@ const LanguageForm = ({
                 defaultMessage: 'Active',
               })}
               active={form.formik.values.isActive}
-              onToggle={() => form.formik.setFieldValue('isActive', !form.formik.values.isActive)}
+              onToggle={() =>
+                form.formik.setFieldValue(
+                  'isActive',
+                  !form.formik.values.isActive,
+                )
+              }
             />
           </div>
         )}

@@ -70,7 +70,9 @@ const AssortmentForm = ({
             defaultMessage: 'Root node',
           })}
           active={form.formik.values.isRoot}
-          onToggle={() => form.formik.setFieldValue('isRoot', !form.formik.values.isRoot)}
+          onToggle={() =>
+            form.formik.setFieldValue('isRoot', !form.formik.values.isRoot)
+          }
         />
         <span className="block text-sm text-slate-400 dark:text-slate-500 mt-2">
           {formatMessage({
