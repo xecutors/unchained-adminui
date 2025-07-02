@@ -81,7 +81,7 @@ const BreadCrumbs = ({
             <div className="flex items-center">
               {i !== 0 && (
                 <svg
-                  className="mr-4 h-5 w-5 shrink-0 text-slate-400"
+                  className="mr-4 h-5 w-5 shrink-0"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
                   fill="currentColor"
@@ -96,7 +96,7 @@ const BreadCrumbs = ({
               )}
               <Link
                 href={data.path}
-                className="text-sm font-medium capitalize text-slate-500 dark:text-slate-400 dark:hover:text-slate-300 hover:text-slate-700 focus:outline-hidden focus:ring-2 focus:ring-slate-800 rounded-md px-1 py-1"
+                className="text-sm font-medium capitalize text-slate-500 dark:text-slate-400 dark:hover:text-slate-300 pink:text-pink-400 hover:text-slate-700 focus:outline-hidden focus:ring-2 focus:ring-slate-800 rounded-md px-1 py-1"
               >
                 {i === result.length - 1 && currentPageTitle
                   ? currentPageTitle

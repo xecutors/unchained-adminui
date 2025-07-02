@@ -83,7 +83,7 @@ const AssortmentForm = ({
         </span>
       </div>
       <FormErrors />
-      <div className="border-t-slate-100 border-t dark:border-t-slate-700 space-y-6 bg-slate-50 dark:bg-slate-900 p-5 text-right">
+      <div className="border-t-slate-100 border-t dark:border-t-slate-700 space-y-6 bg-slate-50 dark:bg-slate-900 pink:border-t-pink-400 pink:bg-pink-200 p-5 text-right">
         <SubmitButton
           hidden={!hasRole('addAssortment')}
           label={formatMessage({

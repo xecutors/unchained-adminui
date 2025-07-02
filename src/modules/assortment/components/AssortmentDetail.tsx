@@ -333,7 +333,7 @@ const AssortmentDetail = ({
             <div className="inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium leading-5 shadow-sm bg-white dark:bg-slate-800 h-[38px]">
               <label
                 htmlFor="sequence"
-                className="text-slate-700 dark:text-slate-200 font-medium"
+                className="text-slate-700 dark:text-slate-200 pink:text-pink-700 font-medium"
               >
                 {formatMessage({
                   id: 'sequence',
@@ -364,7 +364,7 @@ const AssortmentDetail = ({
                   id="not_base"
                   type="button"
                   onClick={setAsBase}
-                  className="inline-flex items-center gap-2 justify-center rounded-md border border-slate-600 dark:border-slate-600 px-4 py-2 text-sm font-medium leading-5 text-slate-700 dark:text-slate-200 shadow-md hover:bg-slate-800 hover:text-white dark:hover:bg-slate-700 focus:outline-hidden focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 h-[38px]"
+                  className="inline-flex items-center gap-2 justify-center rounded-md border border-slate-600 dark:border-slate-600 px-4 py-2 text-sm font-medium leading-5 text-slate-700 dark:text-slate-200 pink:text-pink-700 shadow-md hover:bg-slate-800 hover:text-white dark:hover:bg-slate-700 focus:outline-hidden focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 h-[38px]"
                 >
                   {formatMessage({
                     id: 'not_base',

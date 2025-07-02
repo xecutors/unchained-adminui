@@ -53,7 +53,7 @@ const MediaUploader = ({
   return (
     <>
       {!onlyDragAndDrop && (
-        <div className="text-slate-500 dark:text-slate-200">
+        <div className="text-slate-500 dark:text-slate-200 pink:text-pink-500">
           <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-slate-200">
             {formatMessage({ id: 'avatar', defaultMessage: 'Avatar' })}
           </h3>
@@ -81,7 +81,7 @@ const MediaUploader = ({
           onDragOver={handleDragOver}
           onDragEnter={handleDragEnter}
           onDragLeave={handleDragLeave}
-          className="text-slate-500 dark:text-slate-200"
+          className="text-slate-500 dark:text-slate-200 pink:text-pink-500"
         >
           <label htmlFor="file-upload" className="block">
             <div
@@ -94,7 +94,7 @@ const MediaUploader = ({
             >
               <div className="pl-5 space-y-1 text-center pointer-events-none">
                 <svg
-                  className="mx-auto h-12 w-12 text-slate-400 dark:text-slate-200"
+                  className="mx-auto h-12 w-12 text-slate-400 dark:text-slate-200 pink:text-pink-400"
                   stroke="currentColor"
                   fill="none"
                   viewBox="0 0 48 48"

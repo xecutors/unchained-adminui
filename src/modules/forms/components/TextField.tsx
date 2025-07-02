@@ -26,10 +26,11 @@ const TextField = ({
     <FieldWrapper {...field}>
       <input
         className={classnames(
-          'relative mt-1 block w-full dark:focus:autofill dark:hover:autofill dark:autofill dark:placeholder:text-slate-600 dark:bg-slate-900 dark:text-slate-200 appearance-none rounded-md border-1 dark:border-slate-700 px-4 py-2.5 text-sm text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-slate-800 shadow-xs',
+          'relative mt-1 block w-full dark:focus:autofill dark:hover:autofill dark:autofill dark:placeholder:text-slate-600 pink:placeholder:text-pink-800 dark:bg-slate-900 pink:bg-pink-50 dark:text-slate-200 pink:text-pink-950 appearance-none rounded-md border-1 dark:border-slate-700 pink:border-pink-400 px-4 py-2.5 text-sm text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-slate-800 pink:focus:ring-pink-600 shadow-xs',
           {
             'border-rose-700 placeholder:text-rose-500': !!field.error,
-            'border-slate-300 placeholder-slate-400': !field.error,
+            'border-slate-300 pink:border-pink-300 placeholder-slate-400 pink:placeholder-pink-400':
+              !field.error,
           },
         )}
         disabled={field.disabled}

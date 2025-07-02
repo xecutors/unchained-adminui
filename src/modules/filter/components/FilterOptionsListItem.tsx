@@ -80,7 +80,7 @@ const FilterOptionsListItem = ({
                   option?.texts?.title
                 )}
               </div>
-              <div className="truncate text-sm text-slate-500 dark:text-slate-200">
+              <div className="truncate text-sm text-slate-500 dark:text-slate-200 pink:text-pink-500">
                 {isEdit ? (
                   <TextField
                     className="mt-0 rounded-xs py-0 px-2"

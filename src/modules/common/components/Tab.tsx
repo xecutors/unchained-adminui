@@ -65,10 +65,10 @@ const Tab = ({ children, tabItems, defaultTab, updateRoute = true }) => {
                 }}
                 className={classNames(
                   {
-                    'cursor-pointer rounded-lg border border-slate-300 dark:border-slate-600 bg-white text-slate-900 dark:text-slate-100 dark:bg-slate-900 shadow-sm dark:hover:border-slate-500 hover:border-slate-400 focus:ring-2 focus:ring-slate-800':
+                    'cursor-pointer rounded-lg border border-slate-300 dark:border-slate-600 bg-white pink:bg-pink-100 text-slate-900 dark:text-slate-100 pink:text-pink-800 dark:bg-slate-900 shadow-sm dark:hover:border-slate-500 hover:border-slate-400 focus:ring-2 focus:ring-slate-800':
                       tab === option.id,
                   },
-                  'cursor-pointer relative whitespace-nowrap border border-transparent py-3 px-1 pr-3 pl-2 text-sm dark:text-slate-400 font-medium dark:hover:bg-slate-800 hover:border-slate-200 dark:hover:border-slate-500 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-slate-800',
+                  'cursor-pointer relative whitespace-nowrap border border-transparent py-3 px-1 pr-3 pl-2 text-sm dark:text-slate-400 pink:text-pink-700 font-medium dark:hover:bg-slate-800 hover:border-slate-200 dark:hover:border-slate-500 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-slate-800',
                 )}
               >
                 <div className="flex items-center space-x-1">

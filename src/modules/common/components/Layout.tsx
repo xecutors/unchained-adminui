@@ -27,6 +27,7 @@ import LanguageToggle from './LanguageToggle';
 import useOutsideClick from '../hooks/useOutsideClick';
 import ImageWithFallback from './ImageWithFallback';
 import AuthWrapper from '../../Auth/AuthWrapper';
+import { sortTailwindClasses } from '../utils/classOrder';
 
 const QuotationIcon = ({ className }) => (
   <svg
@@ -225,13 +226,13 @@ const Layout = ({
       >
         <div className="fixed inset-0 backdrop-blur-sm" aria-hidden="true" />
 
-        <div className="relative flex w-full max-w-xs flex-1 flex-col bg-white dark:bg-slate-900 shadow-xl">
+        <div className="relative flex w-full max-w-xs flex-1 flex-col bg-white dark:bg-slate-900 pink:bg-pink-50 shadow-xl">
           <div className="absolute top-0 right-0 -mr-12 pt-2">
             <button
               id="close_sidebar"
               type="button"
               onClick={() => setHideNav(!hideNav)}
-              className="ml-1 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 dark:bg-slate-800/50 backdrop-blur-sm shadow-lg focus:outline-hidden focus:ring-2 focus:ring-inset focus:ring-white dark:focus:ring-slate-400"
+              className="ml-1 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 dark:bg-slate-800/50 pink:bg-pink-200/50 backdrop-blur-sm shadow-lg focus:outline-hidden focus:ring-2 focus:ring-inset focus:ring-white dark:focus:ring-slate-400 pink:focus:ring-pink-400"
             >
               <span className="sr-only">
                 {formatMessage({
@@ -241,7 +242,7 @@ const Layout = ({
               </span>
 
               <svg
-                className="h-6 w-6 text-slate-800 dark:text-slate-200"
+                className="h-6 w-6 text-slate-800 dark:text-slate-200 pink:text-pink-800"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -258,13 +259,27 @@ const Layout = ({
             </button>
           </div>
 
-          <div className="h-0 flex-1 overflow-y-auto pt-5 pb-4">
-            <div className="flex shrink-0 items-center px-2 lg:px-4 2xl:px-6">
+          <div
+            className={sortTailwindClasses(
+              'h-0 flex-1 overflow-y-auto pt-5 pb-4',
+            )}
+          >
+            <div
+              className={sortTailwindClasses(
+                'flex shrink-0 items-center px-2 lg:px-4 2xl:px-6 pink:bg-pink-100',
+              )}
+            >
               <Link
                 href="/"
-                className="focus:outline-hidden focus:ring-2 focus:ring-slate-800 rounded-md p-1"
+                className={sortTailwindClasses(
+                  'rounded-md p-1 focus:outline-hidden focus:ring-2 focus:ring-slate-800 pink:focus:ring-pink-500',
+                )}
               >
-                <div className="dark:brightness-0 dark:invert">
+                <div
+                  className={sortTailwindClasses(
+                    'dark:brightness-0 dark:invert pink:sepia pink:saturate-[5] pink:hue-rotate-[315deg] pink:brightness-[0.8]',
+                  )}
+                >
                   <ImageWithFallback
                     src={process.env.NEXT_PUBLIC_LOGO}
                     width={41}
@@ -282,7 +297,7 @@ const Layout = ({
               onClick={() => setHideNav(!hideNav)}
             />
           </div>
-          <div className="flex items-center shrink-0 border-t border-slate-300 dark:border-slate-800">
+          <div className="flex items-center shrink-0 border-t border-slate-300 dark:border-slate-800 pink:border-pink-200 pink:bg-pink-100">
             <UserAvatar avatar={currentUser?.avatar} {...currentUser} />
             <div className="ml-auto">
               <ThemeToggle />
@@ -292,18 +307,22 @@ const Layout = ({
       </div>
 
       <div
-        className={`hidden md:fixed md:inset-y-0 md:flex md:flex-col dark:bg-slate-900 dark:text-slate-200 ${narrowNav ? 'md:w-16' : 'md:w-64 2xl:w-96'}`}
+        className={`hidden md:fixed md:inset-y-0 md:flex md:flex-col dark:bg-slate-900 pink:bg-pink-50 dark:text-slate-200 ${narrowNav ? 'md:w-16' : 'md:w-64 2xl:w-96'}`}
       >
-        <div className="flex min-h-0 flex-1 flex-col border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+        <div className="flex min-h-0 flex-1 flex-col border-r border-slate-200 dark:border-slate-800 pink:border-pink-200 bg-white dark:bg-slate-900 pink:bg-pink-50">
           <div className="flex flex-1 flex-col overflow-y-auto scrollbar-hide pt-10">
             <div
               className={`flex shrink-0 items-center ${narrowNav ? 'px-2 justify-center' : 'px-2 lg:px-4 2xl:px-6'}`}
             >
               <Link
                 href="/"
-                className="focus:outline-hidden focus:ring-2 focus:ring-slate-800 rounded-md p-1"
+                className="focus:outline-hidden focus:ring-2 focus:ring-slate-800 pink:focus:ring-pink-500 rounded-md p-1"
               >
-                <div className="dark:brightness-0 dark:invert">
+                <div
+                  className={sortTailwindClasses(
+                    'dark:brightness-0 dark:invert pink:sepia pink:saturate-[5] pink:hue-rotate-[315deg] pink:brightness-[0.8]',
+                  )}
+                >
                   <ImageWithFallback
                     src={process.env.NEXT_PUBLIC_LOGO}
                     width={narrowNav ? 25 : 41}
@@ -319,7 +338,7 @@ const Layout = ({
             <SideNav navigation={defaultNavigation} narrowView={narrowNav} />
           </div>
           <div
-            className={`flex items-center shrink-0 py-2 ${narrowNav ? 'justify-center px-2' : 'border-t border-slate-200 dark:border-slate-800 px-2 lg:px-4 2xl:px-6'}`}
+            className={`flex items-center shrink-0 py-2 ${narrowNav ? 'justify-center px-2 pink:bg-pink-100' : 'border-t border-slate-200 dark:border-slate-800 pink:border-pink-200 pink:bg-pink-100 px-2 lg:px-4 2xl:px-6'}`}
           >
             {!narrowNav && (
               <UserAvatar avatar={currentUser?.avatar} {...currentUser} />
@@ -332,12 +351,12 @@ const Layout = ({
             )}
           </div>
           <div
-            className={`flex shrink-0 p-2 ${narrowNav ? '' : 'border-t border-slate-200 dark:border-slate-800'}`}
+            className={`flex shrink-0 p-2 pink:bg-pink-100 ${narrowNav ? '' : 'border-t border-slate-200 dark:border-slate-800 pink:border-pink-200'}`}
           >
             {narrowNav ? (
               <button
                 onClick={() => setNarrowNav(!narrowNav)}
-                className="w-full flex items-center justify-center p-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus:outline-hidden focus:ring-2 focus:ring-slate-800"
+                className="w-full flex items-center justify-center p-2 text-slate-600 dark:text-slate-400 pink:text-pink-600 hover:text-slate-900 dark:hover:text-slate-200 pink:hover:text-pink-900 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 pink:hover:bg-pink-50 transition-colors focus:outline-hidden focus:ring-2 focus:ring-slate-800 pink:focus:ring-pink-500"
                 title={formatMessage({
                   id: 'expand_navigation',
                   defaultMessage: 'Expand navigation',
@@ -349,7 +368,7 @@ const Layout = ({
               <div className="w-full flex items-center justify-center">
                 <button
                   onClick={() => setNarrowNav(!narrowNav)}
-                  className="flex items-center p-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus:outline-hidden focus:ring-2 focus:ring-slate-800"
+                  className="flex items-center p-2 text-slate-600 dark:text-slate-400 pink:text-pink-600 hover:text-slate-900 dark:hover:text-slate-200 pink:hover:text-pink-900 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 pink:hover:bg-pink-100 transition-colors focus:outline-hidden focus:ring-2 focus:ring-slate-800 pink:focus:ring-pink-500"
                   title={formatMessage({
                     id: 'collapse_navigation',
                     defaultMessage: 'Collapse navigation',
@@ -369,12 +388,12 @@ const Layout = ({
       <div
         className={`flex flex-1 flex-col ${narrowNav ? 'md:pl-16' : 'md:pl-64 2xl:pl-96'}`}
       >
-        <div className="flex justify-between items-center sticky top-0 z-10 bg-white dark:bg-slate-800 md:hidden border-b border-slate-200 dark:border-slate-700">
+        <div className="flex justify-between items-center sticky top-0 z-10 bg-white dark:bg-slate-800 md:hidden border-b border-slate-200 dark:border-slate-700 pink:border-pink-200">
           <button
             type="button"
             ref={ref}
             onClick={() => setHideNav(!hideNav)}
-            className="-ml-0.5 -mt-0.5 inline-flex h-12 w-12 items-center justify-center rounded-md text-slate-500 hover:text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-inset focus:ring-slate-800 dark:text-slate-200"
+            className="-ml-0.5 -mt-0.5 inline-flex h-12 w-12 items-center justify-center rounded-md text-slate-500 pink:text-pink-500 hover:text-slate-900 pink:hover:text-pink-900 focus:outline-hidden focus:ring-2 focus:ring-inset focus:ring-slate-800 pink:focus:ring-pink-800 dark:text-slate-200"
           >
             <span className="sr-only">
               {formatMessage({
@@ -399,7 +418,7 @@ const Layout = ({
           </button>
 
           <div className="flex-1 flex justify-center">
-            <div className="dark:brightness-0 dark:invert">
+            <div className="dark:brightness-0 dark:invert pink:sepia pink:saturate-[5] pink:hue-rotate-[315deg] pink:brightness-[0.8]">
               <ImageWithFallback
                 src={process.env.NEXT_PUBLIC_LOGO}
                 width={41}
@@ -418,7 +437,7 @@ const Layout = ({
           </div>
         </div>
         <main className="container mx-auto max-w-7xl flex-1 px-4 py-5 md:pt-10 lg:pt-5 sm:px-6 md:px-8">
-          <h3 className="ml-8 text-lg font-medium leading-6 text-slate-900">
+          <h3 className="ml-8 text-lg font-medium leading-6 text-slate-900 pink:text-pink-900">
             {pageHeader}
           </h3>
           {React.cloneElement(children)}

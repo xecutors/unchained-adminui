@@ -43,7 +43,7 @@ const UserNameView = ({ _id: userId, username }) => {
     <Form form={form}>
       <dl className="divide-y divide-slate-200">
         <div className="flex flex-wrap justify-between items-center sm:gap-4">
-          <div className="flex flex-wrap justify-between items-center sm:gap-4 text-sm text-slate-400 dark:text-slate-200">
+          <div className="flex flex-wrap justify-between items-center sm:gap-4 text-sm text-slate-400 dark:text-slate-200 pink:text-pink-400">
             {!isEdit &&
               formatMessage({ id: 'username', defaultMessage: 'Username' })}
             <span className="grow">
@@ -74,7 +74,7 @@ const UserNameView = ({ _id: userId, username }) => {
                   type="button"
                   className={classNames(
                     isEdit ? '' : 'focus:ring-slate-800',
-                    'inline-flex items-center rounded-md border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-200 shadow-xs hover:bg-slate-50 dark:hover:bg-slate-700 focus:outline-hidden focus:ring-2 focus:ring-slate-800 dark:focus:ring-slate-400 focus:ring-offset-2',
+                    'inline-flex items-center rounded-md border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-200 pink:text-pink-700 shadow-xs hover:bg-slate-50 dark:hover:bg-slate-700 focus:outline-hidden focus:ring-2 focus:ring-slate-800 dark:focus:ring-slate-400 focus:ring-offset-2',
                   )}
                 >
                   {isEdit

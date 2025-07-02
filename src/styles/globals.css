@@ -4,6 +4,7 @@
 @plugin '@tailwindcss/typography';
 
 @custom-variant dark (&:is(.dark *));
+@custom-variant pink (&:is(.pink *));
 
 @theme {
   --color-blue-ribbon-50: #f7f7fe;
@@ -48,6 +49,12 @@
   body,
   a {
     color: rgb(51 65 85);
+  }
+
+  .pink html,
+  .pink body {
+    background-color: var(--color-pink-50);
+    color: var(--color-pink-900);
   }
 
   /* Hide scrollbar */
@@ -195,6 +202,36 @@ iframe#external-page {
 }
 
 .dark .Toastify__progress-bar--error {
+  background: var(--color-rose-600);
+}
+
+/* Pink theme styles for toast notifications */
+.pink .Toastify__toast {
+  background-color: var(--color-pink-100);
+  color: var(--color-pink-900);
+}
+
+.pink .Toastify__toast-body {
+  color: var(--color-pink-900);
+}
+
+.pink .Toastify__close-button {
+  color: var(--color-pink-600);
+}
+
+.pink .Toastify__close-button:hover {
+  color: var(--color-pink-800);
+}
+
+.pink .Toastify__progress-bar {
+  background: var(--color-pink-400);
+}
+
+.pink .Toastify__progress-bar--success {
+  background: var(--color-emerald-500);
+}
+
+.pink .Toastify__progress-bar--error {
   background: var(--color-rose-600);
 }
 

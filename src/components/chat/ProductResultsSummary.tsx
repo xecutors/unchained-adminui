@@ -25,7 +25,7 @@ const ProductResultsSummary: React.FC<ProductResultsSummaryProps> = ({
   const activeCount = statusGroups['ACTIVE'] || 0;
 
   return (
-    <div className="my-4 p-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-md">
+    <div className="my-4 p-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 pink:bg-pink-100 pink:border-pink-300 rounded-md">
       <div className="flex items-center justify-between mb-2">
         <h4 className="text-sm font-medium text-slate-900 dark:text-slate-100">
           {formatMessage(

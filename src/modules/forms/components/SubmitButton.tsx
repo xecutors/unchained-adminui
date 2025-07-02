@@ -34,13 +34,13 @@ const SubmitButton = ({
   return (
     <input
       className={classNames(
-        'inline-flex cursor-pointer justify-center rounded-sm border border-slate-300 px-4 py-2 text-center text-sm font-medium leading-5 shadow-sm hover:shadow-md focus:ring-slate-800 dark:focus:ring-slate-400',
+        'inline-flex cursor-pointer justify-center rounded-sm border border-slate-300 pink:border-pink-300 px-4 py-2 text-center text-sm font-medium leading-5 shadow-sm hover:shadow-md focus:ring-slate-800 dark:focus:ring-slate-400 pink:focus:ring-pink-500',
         className,
         {
           'bg-rose-50 dark:bg-slate-800 dark:text-rose-300 cursor-not-allowed border-rose-300 dark:border-rose-600 text-rose-900':
             disabled,
 
-          'bg-slate-800 dark:bg-slate-600 text-white hover:bg-slate-900 dark:hover:bg-slate-500 focus:outline-hidden focus:ring-2 focus:ring-offset-2 border-transparent':
+          'bg-slate-800 dark:bg-slate-600 pink:bg-pink-600 text-white hover:bg-slate-900 dark:hover:bg-slate-500 pink:hover:bg-pink-700 focus:outline-hidden focus:ring-2 focus:ring-offset-2 border-transparent':
             !disabled,
           hidden,
         },

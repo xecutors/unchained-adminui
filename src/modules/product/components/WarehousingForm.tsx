@@ -91,7 +91,7 @@ const WarehousingForm = ({ productId }) => {
               />
             </div>
           </div>
-          <div className="border-t-slate-100 border-t dark:border-t-slate-700 space-y-6 bg-slate-50 dark:bg-slate-900 text-right sm:p-6">
+          <div className="border-t-slate-100 border-t dark:border-t-slate-700 space-y-6 bg-slate-50 dark:bg-slate-900 pink:border-t-pink-400 pink:bg-pink-200 text-right sm:p-6">
             <SubmitButton
               hidden={!hasRole('editProductWarehousing')}
               label={formatMessage({

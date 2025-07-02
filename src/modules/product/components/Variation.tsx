@@ -89,7 +89,7 @@ const Variation = ({ type, variation, selectedLocale, onDelete }) => {
                     variation?.texts?.title
                   )}
                 </p>
-                <p className="truncate text-sm font-normal text-slate-500 dark:text-slate-200">
+                <p className="truncate text-sm font-normal text-slate-500 dark:text-slate-200 pink:text-pink-500">
                   {isEdit ? (
                     <TextField
                       className="mt-0 py-1"

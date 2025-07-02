@@ -48,6 +48,13 @@ const colorConfigs: Record<string, ColorConfig> = {
     dropdown: 'text-slate-700 bg-slate-50 border border-slate-200',
     description: 'text-slate-600',
   },
+  pink: {
+    button: 'bg-pink-50 text-pink-700 border border-pink-200',
+    hover: 'hover:bg-pink-100',
+    focus: 'focus:ring-pink-500',
+    dropdown: 'text-pink-700 bg-pink-50 border border-pink-200',
+    description: 'text-pink-600',
+  },
 };
 
 const SelectOptions = ({
@@ -74,6 +81,8 @@ const SelectOptions = ({
         return 'bg-emerald-100';
       case 'amber':
         return 'bg-amber-100';
+      case 'pink':
+        return 'bg-pink-100';
       default:
         return 'bg-slate-100';
     }
@@ -134,7 +143,7 @@ const SelectOptions = ({
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Listbox.Options className="mt-1 absolute right-0 z-10 w-64 origin-top-right divide-y divide-slate-200 overflow-hidden rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-hidden">
+              <Listbox.Options className="mt-1 absolute right-0 z-10 w-64 origin-top-right divide-y divide-slate-200 pink:divide-pink-200 overflow-hidden rounded-md bg-white pink:bg-pink-50 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-hidden">
                 {options.map((option) => (
                   <Listbox.Option
                     key={option.title}
@@ -165,14 +174,14 @@ const SelectOptions = ({
                             </span>
                             {option.id === select.id && (
                               <CheckIcon
-                                className="h-4 w-4 text-slate-600"
+                                className="h-4 w-4 text-slate-600 pink:text-pink-600"
                                 aria-hidden="true"
                               />
                             )}
                           </div>
                           <div
                             className={classNames(
-                              'mt-2 ms-1 text-sm text-slate-600',
+                              'mt-2 ms-1 text-sm text-slate-600 pink:text-pink-600',
                             )}
                           >
                             {option?.description}

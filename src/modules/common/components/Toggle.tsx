@@ -29,10 +29,11 @@ const Toggle = ({
         disabled={disabled}
         type="button"
         className={classNames(
-          'relative inline-flex h-3.5 w-9 shrink-0 cursor-pointer rounded-full border-1 border-transparent transition-all duration-200 ease-in-out focus:outline-hidden focus:ring-2 focus:ring-slate-400 focus:ring-offset-2',
+          'relative inline-flex h-3.5 w-9 shrink-0 cursor-pointer rounded-full border-1 border-transparent transition-all duration-200 ease-in-out focus:outline-hidden focus:ring-2 focus:ring-slate-400 pink:focus:ring-pink-400 focus:ring-offset-2',
           {
-            'bg-slate-200 dark:bg-slate-700': !toggleState,
-            'bg-emerald-500 dark:bg-emerald-600 shadow-sm': toggleState,
+            'bg-slate-200 dark:bg-slate-700 pink:bg-pink-200': !toggleState,
+            'bg-emerald-500 dark:bg-emerald-600 pink:bg-pink-500 shadow-sm':
+              toggleState,
           },
         )}
         role="switch"
@@ -62,7 +63,7 @@ const Toggle = ({
             aria-hidden="true"
           >
             <svg
-              className="h-3 w-3 text-slate-400"
+              className="h-3 w-3 text-slate-400 pink:text-pink-400"
               fill="none"
               viewBox="0 0 12 12"
             >
@@ -87,7 +88,7 @@ const Toggle = ({
             aria-hidden="true"
           >
             <svg
-              className="h-3 w-3 text-emerald-500"
+              className="h-3 w-3 text-emerald-500 pink:text-pink-600"
               fill="currentColor"
               viewBox="0 0 12 12"
             >
@@ -97,7 +98,7 @@ const Toggle = ({
         </span>
       </button>
       <span className="ml-3" id="annual-billing-label">
-        <span className="text-sm font-medium text-slate-900 dark:text-slate-200">
+        <span className="text-sm font-medium text-slate-900 dark:text-slate-200 pink:text-pink-600">
           {toggleText}
         </span>
       </span>

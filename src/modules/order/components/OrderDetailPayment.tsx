@@ -80,7 +80,7 @@ const OrderDetailPayment = ({ order }) => {
             {getInterfaceLabel(order.payment?.provider?.interface)}
           </Link>
         </span>
-        <div className="mt-3 text-sm text-slate-400 dark:text-slate-200">
+        <div className="mt-3 text-sm text-slate-400 dark:text-slate-200 pink:text-pink-400">
           {formatMessage({
             id: 'method',
             defaultMessage: 'Method',
@@ -96,7 +96,7 @@ const OrderDetailPayment = ({ order }) => {
             />
           ))}
         </span>
-        <div className="mt-3 text-sm text-slate-400 dark:text-slate-200">
+        <div className="mt-3 text-sm text-slate-400 dark:text-slate-200 pink:text-pink-400">
           {formatMessage({
             id: 'delivery_status',
             defaultMessage: 'Status',

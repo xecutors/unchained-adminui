@@ -124,17 +124,17 @@ const ProfileView = ({ profile, avatar, _id }) => {
   return (
     <FormWrapper className="shadow-none">
       <Form form={form}>
-        <div className="overflow-hidden rounded-md bg-slate-50 dark:bg-slate-950">
+        <div className="overflow-hidden rounded-md dark:bg-slate-950">
           <div className="lg:grid lg:grid-cols-3">
-            <div className="mb-5 lg:col-span-1 lg:pr-5">
+            <div className="mb-5 lg:col-span-1 lg:pr-5 pink:bg-white">
               <div className="space-y-2">
-                <h3 className="text-lg text-slate-900 dark:text-slate-200">
+                <h3 className="text-lg text-slate-900 dark:text-slate-200 pink:text-pink-700">
                   {formatMessage({
                     id: 'profile',
                     defaultMessage: 'Profile',
                   })}
                 </h3>
-                <p className="mt-3 divide-y divide-slate-200 text-slate-600 dark:divide-slate-700 dark:text-slate-400 mr-4">
+                <p className="mt-3 divide-y divide-slate-200 text-slate-600 pink:text-pink-600 dark:divide-slate-700 dark:text-slate-400 mr-4">
                   {formatMessage({
                     id: 'profile_notice',
                     defaultMessage:
@@ -165,7 +165,7 @@ const ProfileView = ({ profile, avatar, _id }) => {
             <div className="col-span-2 ml-auto rounded-md px-6 shadow-sm dark:shadow-none lg:w-full bg-white dark:bg-slate-800">
               <div className="py-4">
                 <div className="py-4 sm:grid sm:py-2">
-                  <label className="text-sm text-slate-400 dark:text-slate-200">
+                  <label className="text-sm text-slate-400 dark:text-slate-200 pink:text-pink-400">
                     {formatMessage({
                       id: 'photo',
                       defaultMessage: 'Photo',
@@ -193,7 +193,7 @@ const ProfileView = ({ profile, avatar, _id }) => {
                         />
                       ) : (
                         <span className="inline-block h-12 w-12 overflow-hidden rounded-full">
-                          <UserCircleIcon className="h-full w-full text-slate-800 dark:text-slate-500" />
+                          <UserCircleIcon className="h-full w-full text-slate-800 dark:text-slate-500 pink:text-pink-600" />
                         </span>
                       )}
                     </span>
@@ -205,7 +205,7 @@ const ProfileView = ({ profile, avatar, _id }) => {
                               (fileInputRef?.current as any)?.click();
                           }}
                           type="button"
-                          className="rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-600 py-2 px-3 text-sm font-medium leading-4 text-slate-700 dark:text-slate-200 shadow-xs hover:bg-slate-50 focus:outline-hidden focus:ring-2 focus:ring-slate-900 focus:ring-offset-2"
+                          className="rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-600 py-2 px-3 text-sm font-medium leading-4 text-slate-700 dark:text-slate-200 pink:text-pink-700 shadow-xs hover:bg-slate-50 focus:outline-hidden focus:ring-2 focus:ring-slate-900 focus:ring-offset-2"
                         >
                           {formatMessage({
                             id: 'change',
@@ -218,7 +218,7 @@ const ProfileView = ({ profile, avatar, _id }) => {
                 </div>
 
                 <div className="py-4 sm:grid sm:py-2">
-                  <label className="text-sm text-slate-400 dark:text-slate-200">
+                  <label className="text-sm text-slate-400 dark:text-slate-200 pink:text-pink-400">
                     {!isEdit &&
                       formatMessage({
                         id: 'displayName',
@@ -246,7 +246,7 @@ const ProfileView = ({ profile, avatar, _id }) => {
                 </div>
 
                 <div className="py-4 sm:grid sm:py-2">
-                  <label className="text-sm text-slate-400 dark:text-slate-200">
+                  <label className="text-sm text-slate-400 dark:text-slate-200 pink:text-pink-400">
                     {!isEdit &&
                       formatMessage({
                         id: 'gender',
@@ -284,7 +284,7 @@ const ProfileView = ({ profile, avatar, _id }) => {
                 </div>
 
                 <div className="py-4 sm:grid sm:py-2">
-                  <label className="text-sm text-slate-400 dark:text-slate-200">
+                  <label className="text-sm text-slate-400 dark:text-slate-200 pink:text-pink-400">
                     {!isEdit &&
                       formatMessage({
                         id: 'birthday',
@@ -317,7 +317,7 @@ const ProfileView = ({ profile, avatar, _id }) => {
                 </div>
 
                 <div className="py-4 sm:grid sm:py-2">
-                  <label className="text-sm text-slate-400 dark:text-slate-200">
+                  <label className="text-sm text-slate-400 dark:text-slate-200 pink:text-pink-400">
                     {!isEdit &&
                       formatMessage({
                         id: 'mobile_phone',

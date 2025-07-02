@@ -30,7 +30,7 @@ const AlertMessage = ({
             {headerText}
           </h3>
           <div className="mt-2">
-            <p className="text-sm text-slate-500 dark:text-slate-200">
+            <p className="text-sm text-slate-500 dark:text-slate-200 pink:text-pink-500">
               {message}
             </p>
           </div>

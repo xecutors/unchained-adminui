@@ -54,7 +54,7 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                       </p>
                     </div>
                     {currentId >= timeline[value].id ? (
-                      <div className="whitespace-nowrap text-right text-sm text-slate-500 dark:text-slate-200 ml-4">
+                      <div className="whitespace-nowrap text-right text-sm text-slate-500 dark:text-slate-200 pink:text-pink-500 ml-4">
                         {data[timeline?.[value]?.content]
                           ? formatDateTime(data[timeline?.[value]?.content], {
                               dateStyle: 'short',

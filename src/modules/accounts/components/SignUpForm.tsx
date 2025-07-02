@@ -142,7 +142,7 @@ const SignUpForm = ({
               </button>
             </div>
 
-            <div className="text-sm text-slate-400 dark:text-slate-200">
+            <div className="text-sm text-slate-400 dark:text-slate-200 pink:text-pink-400">
               {formatMessage({
                 id: 'already_got_a_user',
                 defaultMessage: 'Already got a user?',

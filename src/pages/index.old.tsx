@@ -496,7 +496,7 @@ const Copilot = () => {
             <h1 className="mt-2 text-4xl font-extrabold tracking-tight text-rose-900 dark:text-rose-200 sm:text-5xl">
               Chat is Disabled
             </h1>
-            <p className="mt-2 text-base text-slate-500 dark:text-slate-200">
+            <p className="mt-2 text-base text-slate-500 dark:text-slate-200 pink:text-pink-500">
               Copilot chat is currently disabled in this shop. Please check your
               engine configuration
             </p>

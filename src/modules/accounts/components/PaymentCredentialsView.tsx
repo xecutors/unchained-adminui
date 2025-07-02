@@ -16,7 +16,7 @@ const PaymentCredentialsView = ({ paymentCredentials }) => {
                   <div className="min-w-0 flex-1">
                     <p className="truncate text-sm">{paymentCredentialsId}</p>
                     {isPreferred && (
-                      <p className="truncate text-sm text-slate-500 dark:text-slate-200">
+                      <p className="truncate text-sm text-slate-500 dark:text-slate-200 pink:text-pink-500">
                         <Badge
                           text={formatMessage({
                             id: 'preferred',

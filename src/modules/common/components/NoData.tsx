@@ -6,12 +6,12 @@ const NoData = ({ message, className = '', Icon = null }) => {
   return (
     <div
       className={classnames(
-        'rounded-md flex w-full flex-col items-center justify-center min-h-[176px] py-8 border-1 border-dashed border-slate-300 dark:border-slate-700 text-slate-500 dark:text-slate-400',
+        'rounded-md flex w-full flex-col items-center justify-center min-h-[176px] py-8 border-1 border-dashed border-slate-300 dark:border-slate-700 pink:border-pink-700 text-slate-500 dark:text-slate-400 pink:text-pink-500',
         className,
       )}
     >
       <div className="grid items-center justify-center">
-        <div className="flex items-center justify-center text-slate-400 dark:text-slate-200">
+        <div className="flex items-center justify-center text-slate-400 dark:text-slate-200 pink:text-pink-400">
           {Icon || <NoSymbolIcon className="h-8 w-8" />}
         </div>
 

@@ -12,7 +12,7 @@ const SearchField = ({ inputText = null, onInputChange, defaultValue }) => {
       <div className="relative">
         <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
           <svg
-            className="h-5 w-5 text-slate-400 dark:text-slate-200"
+            className="h-5 w-5 text-slate-400 dark:text-slate-200 pink:text-pink-400"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
@@ -30,7 +30,7 @@ const SearchField = ({ inputText = null, onInputChange, defaultValue }) => {
           id="search"
           defaultValue={defaultValue}
           name="search"
-          className="block w-full rounded-md border-1 border-slate-300 dark:border-slate-700 text-slate-900 dark:bg-slate-900 dark:text-slate-200 py-3 pl-10 px-4 shadow-xs placeholder:text-slate-400 dark:placeholder:text-slate-400 focus:ring-2 focus:ring-slate-800 focus:outline-hidden sm:text-sm"
+          className="block w-full rounded-md border-1 border-slate-300 dark:border-slate-700 text-slate-900 dark:bg-slate-900 dark:text-slate-200 pink:text-pink-900 pink:bg-pink-50 pink:border-pink-300 pink:placeholder:text-pink-300 py-3 pl-10 px-4 shadow-xs placeholder:text-slate-400 dark:placeholder:text-slate-400 focus:ring-2 focus:ring-slate-800 focus:outline-hidden sm:text-sm"
           placeholder={formatMessage({
             id: 'search',
             defaultMessage: 'Search',

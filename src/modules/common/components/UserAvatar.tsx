@@ -51,14 +51,14 @@ const UserAvatar = ({ avatar, ...user }) => {
           />
         ) : (
           <span className="inline-block h-6 w-6 overflow-hidden rounded-full mr-3">
-            <UserCircleIcon className="h-full w-full text-slate-700 dark:text-slate-300" />
+            <UserCircleIcon className="h-full w-full text-slate-700 dark:text-slate-300 pink:text-pink-700" />
           </span>
         )}
         <div>
-          <p className="text-sm font-medium text-slate-700 dark:text-slate-400 group-hover:text-slate-700 dark:group-hover:text-slate-300">
+          <p className="text-sm font-medium text-slate-700 dark:text-slate-400 pink:text-pink-500 group-hover:text-slate-700 dark:group-hover:text-slate-300 pink:group-hover:text-pink-700">
             {formatUsername(user)}
           </p>
-          <p className="text-sm text-slate-400 dark:text-slate-600 group-hover:text-slate-700 dark:group-hover:text-slate-400">
+          <p className="text-sm text-slate-400 dark:text-slate-600 pink:text-pink-400 group-hover:text-slate-700 dark:group-hover:text-slate-400">
             {formatMessage({
               id: 'log_out',
               defaultMessage: 'Log out',

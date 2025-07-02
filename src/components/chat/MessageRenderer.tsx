@@ -27,7 +27,7 @@ const MessageRenderer: React.FC<MessageRendererProps> = ({ message, user }) => {
       <div
         className={`${
           isUser
-            ? 'bg-slate-200 dark:bg-slate-700 rounded-br-none rounded-xl max-w-md px-3 py-2'
+            ? 'bg-slate-200 dark:bg-slate-700 pink:bg-pink-200 pink:text-pink-50 rounded-br-none rounded-xl max-w-md px-3 py-2'
             : 'text-slate-800 dark:text-slate-200 flex-1 max-w-4xl py-3'
         }`}
       >

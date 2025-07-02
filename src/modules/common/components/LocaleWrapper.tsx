@@ -50,7 +50,7 @@ const LocaleWrapper = ({ children, onlyFull = false }) => {
         <div className="w-fit">
           <select
             id="locale-wrapper"
-            className="cursor-pointer rounded-md border-1 border-slate-300 dark:border-slate-700 py-1 pr-8 text-sm lg:py-1 lg:pr-10 text-black dark:text-white dark:bg-slate-800 shadow-xs  focus:outline-hidden focus:ring-2 focus:ring-slate-800"
+            className="cursor-pointer rounded-md border-1 border-slate-300 dark:border-slate-700 pink:border-pink-300 py-1 pr-8 text-sm lg:py-1 lg:pr-10 text-black dark:text-white pink:text-pink-900 dark:bg-slate-800 pink:bg-pink-50 shadow-xs  focus:outline-hidden focus:ring-2 focus:ring-slate-800 pink:focus:ring-pink-500"
             value={selectedLocale}
             onChange={(e) => {
               e.stopPropagation();

@@ -21,14 +21,14 @@ const PageHeader = ({
       <div className="flex gap-3 flex-wrap items-center justify-between">
         <div className="flex items-center justify-between w-full gap-4">
           {headerText && (
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-200 sm:truncate sm:text-3xl lg:text-4xl xl:text-5xl">
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-200 pink:text-pink-600 sm:truncate sm:text-3xl lg:text-4xl xl:text-5xl">
               {headerText}
             </h2>
           )}
           {addPath && (
             <Link
               href={addPath}
-              className="relative inline-flex items-center rounded-sm border border-transparent bg-slate-800 dark:bg-slate-600 px-3 py-3 text-sm font-medium text-white shadow-xs hover:bg-slate-950 dark:hover:bg-slate-500 focus:outline-hidden focus:ring-2 focus:ring-slate-800 dark:focus:ring-slate-400 focus:ring-offset-2"
+              className="relative inline-flex items-center rounded-sm border border-transparent bg-slate-800 dark:bg-slate-600 pink:bg-pink-600 px-3 py-3 text-sm font-medium text-white shadow-xs hover:bg-slate-950 dark:hover:bg-slate-500 pink:hover:bg-pink-700 focus:outline-hidden focus:ring-2 focus:ring-slate-800 dark:focus:ring-slate-400 pink:focus:ring-pink-500 focus:ring-offset-2"
             >
               <PlusIcon className="h-5 w-5" />
               <span className="ml-2">
@@ -40,7 +40,7 @@ const PageHeader = ({
           {onEdit && (
             <button
               type="button"
-              className="inline-flex items-center rounded-md border border-slate-300 dark:border-slate-600 bg-slate-800 dark:bg-slate-600 px-4 py-2 text-sm font-medium text-white shadow-xs hover:shadow-xl hover:bg-slate-950 dark:hover:bg-slate-500 focus:outline-hidden focus:ring-2 focus:ring-slate-800 dark:focus:ring-slate-400 focus:ring-offset-2"
+              className="inline-flex items-center rounded-md border border-slate-300 dark:border-slate-600 pink:border-pink-600 bg-slate-800 dark:bg-slate-600 pink:bg-pink-600 px-4 py-2 text-sm font-medium text-white shadow-xs hover:shadow-xl hover:bg-slate-950 dark:hover:bg-slate-500 pink:hover:bg-pink-700 focus:outline-hidden focus:ring-2 focus:ring-slate-800 dark:focus:ring-slate-400 pink:focus:ring-pink-500 focus:ring-offset-2"
               onClick={onEdit}
             >
               {formatMessage({ id: 'edit', defaultMessage: 'Edit' })}

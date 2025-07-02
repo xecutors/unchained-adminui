@@ -42,7 +42,7 @@ const DangerMessage = ({
               formatMessage({ id: 'warning', defaultMessage: 'Warning!' })}
           </h3>
           <div className="mt-2">
-            <p className="text-sm text-slate-500 dark:text-slate-200">
+            <p className="text-sm text-slate-500 dark:text-slate-200 pink:text-pink-500">
               {message ||
                 formatMessage({
                   id: 'are_you_sure',
