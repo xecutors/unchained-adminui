@@ -13,8 +13,9 @@ const ProductResultsSummary: React.FC<ProductResultsSummaryProps> = ({
   const { formatMessage } = useIntl();
 
   // Group products by status
+
   const statusGroups = products.reduce((acc, product) => {
-    const status = product.status || 'UNKNOWN';
+    const status = product.status || 'DRAFT';
     if (!acc[status]) acc[status] = 0;
     acc[status]++;
     return acc;

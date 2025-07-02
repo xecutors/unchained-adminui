@@ -58,7 +58,7 @@ const setupMCPChatHandler = (chatConfiguration: ChatConfiguration) => {
   ) => {
     try {
       if (req.method === 'OPTIONS') return res.send();
-      const { messages } = req.body as any;
+
       client = await createMCPClient({
         transport: new StreamableHTTPClientTransport(new URL(unchainedMCPUrl), {
           requestInit: {
@@ -77,6 +77,18 @@ const setupMCPChatHandler = (chatConfiguration: ChatConfiguration) => {
           generateImageHandler(req)(imageGenerationTool);
       }
 
+      if (req.method === 'GET') {
+        const now = Date.now();
+        res.status(200).send({
+          tools: {
+            ...defaultUnchainedTools,
+            ...customTools,
+          },
+        });
+        return;
+      }
+
+      const { messages } = req.body as any;
       const result = streamText({
         ...restChatConfig,
         messages,
@@ -112,6 +124,12 @@ export const connectChat = (
   app.route({
     url: '/chat',
     method: ['POST', 'OPTIONS'],
+    handler,
+  });
+
+  app.route({
+    url: '/chat/tools',
+    method: ['GET', 'OPTIONS'],
     handler,
   });
 };

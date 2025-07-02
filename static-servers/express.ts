@@ -41,12 +41,10 @@ const setupMCPChatHandler = (
       res.status(200).end();
       return;
     }
-    if (req.method !== 'POST') {
+    if (req.method !== 'POST' && req.method !== 'GET') {
       res.status(405).json({ error: 'Method Not Allowed. Use POST.' });
       return;
     }
-
-    const { messages } = req.body;
 
     let client: any;
     try {
@@ -68,6 +66,17 @@ const setupMCPChatHandler = (
           generateImageHandler(req)(imageGenerationTool);
       }
 
+      if (req.method === 'GET') {
+        const now = Date.now();
+        res.status(200).json({
+          tools: {
+            ...defaultUnchainedTools,
+            ...customTools,
+          },
+        });
+        return;
+      }
+      const { messages } = req.body;
       const result = streamText({
         ...restChatConfig,
         model,
@@ -103,4 +112,5 @@ export const connectChat = (
   }
   app.post('/chat', express.json({ limit: '10mb' }), handler);
   app.options('/chat', handler);
+  app.get('/chat/tools', handler);
 };

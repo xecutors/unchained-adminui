@@ -32,9 +32,9 @@ export const useAvailableTools = (): UseAvailableToolsReturn => {
   const fetchTools = async () => {
     setLoading(true);
     setError(null);
-
+    const normalizedToolsUrl = '/chat/tools';
     try {
-      const response = await fetch('/tools', {
+      const response = await fetch(normalizedToolsUrl, {
         credentials: 'include',
       });
 
