@@ -22,7 +22,8 @@ const ProductListItem: React.FC<ProductListItemProps> = ({ product }) => {
   const { formatMessage } = useIntl();
   const { formatPrice } = useFormatPrice();
   const { texts, media, catalogPrice, commerce } = product;
-  const text = Array.isArray(texts) && texts.length > 0 ? texts[0] : {};
+
+  const text = Array.isArray(texts) && texts.length > 0 ? texts[0] : texts;
 
   // Get price from either catalogPrice or commerce.pricing
   const price = catalogPrice || commerce?.pricing?.[0];
