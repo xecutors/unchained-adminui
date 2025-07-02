@@ -145,10 +145,6 @@ const EmailAddresses = ({
               className="mt-0"
               name="email"
               required
-              placeholder={formatMessage({
-                id: 'email',
-                defaultMessage: 'Email',
-              })}
               label={formatMessage({
                 id: 'email',
                 defaultMessage: 'Email',

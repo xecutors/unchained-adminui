@@ -74,10 +74,6 @@ const ChangePassword = () => {
             id: 'current_password',
             defaultMessage: 'Current password',
           })}
-          placeholder={formatMessage({
-            id: 'current_password',
-            defaultMessage: 'Current password',
-          })}
           name="oldPassword"
           id="oldPassword"
           required
@@ -85,10 +81,6 @@ const ChangePassword = () => {
         />
         <PasswordField
           label={formatMessage({
-            id: 'new_password',
-            defaultMessage: 'New password',
-          })}
-          placeholder={formatMessage({
             id: 'new_password',
             defaultMessage: 'New password',
           })}

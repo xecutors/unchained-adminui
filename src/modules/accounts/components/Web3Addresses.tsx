@@ -128,10 +128,6 @@ const Web3Addresses = ({ web3Addresses }) => {
               name="address"
               required
               validators={[validateWeb3Address]}
-              placeholder={formatMessage({
-                id: 'web3_address',
-                defaultMessage: 'Web3 Address',
-              })}
               label={formatMessage({
                 id: 'web3_address',
                 defaultMessage: 'Web3 Address',

@@ -90,10 +90,6 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                   id: 'email',
                   defaultMessage: 'Email',
                 })}
-                placeholder={formatMessage({
-                  id: 'email',
-                  defaultMessage: 'Email',
-                })}
               />
             </div>
 
@@ -115,10 +111,6 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                   id: 'display_name',
                   defaultMessage: 'Display name',
                 })}
-                placeholder={formatMessage({
-                  id: 'display_name',
-                  defaultMessage: 'Display name',
-                })}
               />
             </div>
 
@@ -126,10 +118,6 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
               <SelectField
                 className="mt-0 w-full"
                 label={formatMessage({
-                  id: 'gender',
-                  defaultMessage: 'Gender',
-                })}
-                placeholder={formatMessage({
                   id: 'gender',
                   defaultMessage: 'Gender',
                 })}
@@ -152,10 +140,6 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                   id: 'birthday',
                   defaultMessage: 'Birthday',
                 })}
-                placeholder={formatMessage({
-                  id: 'birthday',
-                  defaultMessage: 'Birthday',
-                })}
                 className="mt-0 w-full"
                 name="birthday"
                 validators={[validateBirthdate]}
@@ -166,10 +150,6 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                 className="mt-0 w-full"
                 name="phoneMobile"
                 label={formatMessage({
-                  id: 'mobile_phone',
-                  defaultMessage: 'Mobile phone',
-                })}
-                placeholder={formatMessage({
                   id: 'mobile_phone',
                   defaultMessage: 'Mobile phone',
                 })}
@@ -214,20 +194,11 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                     id: 'first_name',
                     defaultMessage: 'First name',
                   })}
-                  l
-                  placeholder={formatMessage({
-                    id: 'first_name',
-                    defaultMessage: 'First name',
-                  })}
                 />
                 <TextField
                   className="ml-2 mt-0 w-full"
                   name="lastName"
                   label={formatMessage({
-                    id: 'last_Name',
-                    defaultMessage: 'Last name',
-                  })}
-                  placeholder={formatMessage({
                     id: 'last_Name',
                     defaultMessage: 'Last name',
                   })}
@@ -242,10 +213,6 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                   id: 'company',
                   defaultMessage: 'Company',
                 })}
-                placeholder={formatMessage({
-                  id: 'company',
-                  defaultMessage: 'Company',
-                })}
               />
             </div>
             <div>
@@ -256,10 +223,6 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                   id: 'address_line_1',
                   defaultMessage: 'Address line 1 (Street, House no)',
                 })}
-                placeholder={formatMessage({
-                  id: 'address_line_1',
-                  defaultMessage: 'Address line 1 (Street, House no)',
-                })}
               />
             </div>
             <div>
@@ -267,10 +230,6 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                 className="mt-0 w-full"
                 name="addressLine2"
                 label={formatMessage({
-                  id: 'address_line_2',
-                  defaultMessage: 'Address line 2',
-                })}
-                placeholder={formatMessage({
                   id: 'address_line_2',
                   defaultMessage: 'Address line 2',
                 })}
@@ -286,10 +245,6 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                     id: 'region_Code',
                     defaultMessage: 'Region',
                   })}
-                  placeholder={formatMessage({
-                    id: 'region_Code',
-                    defaultMessage: 'Region',
-                  })}
                 />
               </div>
 
@@ -298,10 +253,6 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                   className="mt-0 w-full"
                   name="postalCode"
                   label={formatMessage({
-                    id: 'postal_code',
-                    defaultMessage: 'Postal/ZIP code',
-                  })}
-                  placeholder={formatMessage({
                     id: 'postal_code',
                     defaultMessage: 'Postal/ZIP code',
                   })}
@@ -317,10 +268,6 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                     id: 'city',
                     defaultMessage: 'City',
                   })}
-                  placeholder={formatMessage({
-                    id: 'city',
-                    defaultMessage: 'City',
-                  })}
                 />
               </div>
               <div>
@@ -328,10 +275,6 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                   className="mt-0 w-full"
                   name="countryCode"
                   label={formatMessage({
-                    id: 'country_code',
-                    defaultMessage: 'Country code',
-                  })}
-                  placeholder={formatMessage({
                     id: 'country_code',
                     defaultMessage: 'Country code',
                   })}

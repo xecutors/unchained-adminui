@@ -97,33 +97,31 @@ const FilterOptionsListItem = ({
             </div>
             <div>
               {isEdit ? (
-                <div className="flex gap-4">
-                  <button
+                <div className="flex gap-2">
+                  <Button
+                    variant="secondary"
                     onClick={() => setIsEdit(!isEdit)}
-                    type="button"
-                    className=" inline-flex w-full justify-center rounded-md border border-slate-300 bg-white px-4 py-2 text-base font-medium text-slate-700 shadow-xs hover:bg-slate-50 focus:outline-hidden focus:ring-2 focus:ring-slate-800 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-                  >
-                    {formatMessage({
+                    text={formatMessage({
                       id: 'cancel',
                       defaultMessage: 'Cancel',
                     })}
-                  </button>
-                  <button
+                  />
+                  <Button
+                    variant="primary"
                     disabled={!form.formik.isValid}
-                    type="submit"
-                    className="inline-flex cursor-pointer justify-center rounded-sm border px-4 py-2 text-center text-sm font-medium leading-5 shadow-sm hover:shadow-md focus:ring-slate-800 dark:focus:ring-slate-400 bg-slate-800 dark:bg-slate-600 text-white hover:bg-slate-900 dark:hover:bg-slate-500 focus:outline-hidden focus:ring-2 focus:ring-offset-2 border-transparent"
-                  >
-                    {formatMessage({
+                    onClick={form.formik.handleSubmit}
+                    text={formatMessage({
                       id: 'save',
                       defaultMessage: 'Save',
                     })}
-                  </button>
+                  />
                 </div>
               ) : (
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => setIsEdit(!isEdit)}
-                    role="button"
+                    type="button"
+                    className="p-1 rounded-full text-slate-500 hover:text-slate-700 hover:bg-slate-100 dark:text-slate-400 dark:hover:text-slate-200 dark:hover:bg-slate-700 transition-colors"
                     aria-label={formatMessage({
                       id: 'edit',
                       defaultMessage: 'Edit',
@@ -131,7 +129,6 @@ const FilterOptionsListItem = ({
                   >
                     <EditIcon />
                   </button>
-                  b
                   <DeleteButton
                     onClick={() => onDelete(option?.value)}
                     className="ml-1 mr-1"
