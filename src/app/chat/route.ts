@@ -6,6 +6,7 @@ import {
 import { anthropic } from '@ai-sdk/anthropic';
 import { openai } from '@ai-sdk/openai';
 import generateImageHandler from '../../../static-servers/generateImageHandler';
+import { errorHandler } from '../../../static-servers';
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
@@ -47,5 +48,7 @@ export async function POST(req: Request) {
     },
   });
 
-  return result.toDataStreamResponse();
+  return result.toDataStreamResponse({
+    getErrorMessage: errorHandler,
+  });
 }
