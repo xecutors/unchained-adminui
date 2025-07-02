@@ -1,5 +1,6 @@
-import { CheckBadgeIcon, XCircleIcon } from '@heroicons/react/24/outline';
+import { CheckBadgeIcon } from '@heroicons/react/24/outline';
 import classNames from 'classnames';
+import { useIntl } from 'react-intl';
 
 const ActiveInActive = ({
   isActive,
@@ -10,26 +11,35 @@ const ActiveInActive = ({
   containerClassName = '',
   iconClassName = '',
 }) => {
+  const { formatMessage } = useIntl();
   return (
     <span className={classNames('', containerClassName)}>
       {isActive
         ? activeIcon || (
-            <CheckBadgeIcon
+            <span
               className={classNames(
-                'text-emerald-500 dark:text-emerald-400 w-6 h-6',
-                iconClassName,
+                'inline-flex items-center border rounded-full px-2.5 py-0.5 text-sm font-medium bg-emerald-50 dark:bg-green-900/30 text-emerald-700 dark:text-green-300 border-emerald-200 dark:border-green-800 uppercase',
                 activeClassName,
               )}
-            />
+            >
+              {formatMessage({
+                id: 'active',
+                defaultMessage: 'Active',
+              })}
+            </span>
           )
         : inActiveIcon || (
-            <XCircleIcon
+            <span
               className={classNames(
-                'text-rose-500 dark:text-rose-400 w-6 h-6',
-                iconClassName,
+                'inline-flex items-center border rounded-full px-2.5 py-0.5 text-sm font-medium bg-amber-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300 border-amber-400 dark:border-yellow-800 uppercase',
                 inActiveClassName,
               )}
-            />
+            >
+              {formatMessage({
+                id: 'inactive',
+                defaultMessage: 'Inactive',
+              })}
+            </span>
           )}
     </span>
   );

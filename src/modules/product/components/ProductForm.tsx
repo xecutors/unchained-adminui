@@ -66,10 +66,6 @@ const ProductForm = ({
             id: 'name',
             defaultMessage: 'Name',
           })}
-          placeholder={formatMessage({
-            id: 'name',
-            defaultMessage: 'Name',
-          })}
           required
           className="block w-full max-w-full rounded-md border-slate-300 dark:border-slate-800 text-sm focus:ring-slate-800 sm:text-sm"
         />
@@ -78,10 +74,6 @@ const ProductForm = ({
           name="subtitle"
           id="subtitle"
           label={formatMessage({
-            id: 'subtitle',
-            defaultMessage: 'Subtitle',
-          })}
-          placeholder={formatMessage({
             id: 'subtitle',
             defaultMessage: 'Subtitle',
           })}
