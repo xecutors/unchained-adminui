@@ -1,6 +1,6 @@
 import {
   ChartBarIcon,
-  CogIcon,
+  Cog8ToothIcon,
   TagIcon,
   HomeIcon,
   InboxIcon,
@@ -14,6 +14,7 @@ import {
   BoltIcon,
   LinkIcon,
   QrCodeIcon,
+  CubeIcon,
 } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import React, { useState } from 'react';
@@ -73,7 +74,7 @@ const Layout = ({
         defaultMessage: 'Products',
       }),
       requiredRole: 'manageProducts',
-      icon: TagIcon,
+      icon: CubeIcon,
       href: '/products',
     },
     {
@@ -121,7 +122,7 @@ const Layout = ({
     },
     {
       name: formatMessage({ id: 'system', defaultMessage: 'System settings' }),
-      icon: CogIcon,
+      icon: Cog8ToothIcon,
       children: [
         {
           name: formatMessage({
