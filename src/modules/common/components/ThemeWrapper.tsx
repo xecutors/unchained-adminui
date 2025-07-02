@@ -6,23 +6,34 @@ const ThemeWrapper = ({ children }) => {
   const [theme, setTheme] = useLocalStorage('theme', 'light');
 
   useEffect(() => {
+    const html = document.getElementsByTagName('html')[0];
+    // Remove all theme classes first
+    html.classList.remove('dark', 'pink');
+    
     if (
       localStorage.theme === 'dark' ||
       (!('theme' in localStorage) &&
         window.matchMedia('(prefers-color-scheme: dark)').matches)
     ) {
-      document.getElementsByTagName('html')[0].classList.add('dark');
-    } else {
-      document.getElementsByTagName('html')[0].classList.remove('dark');
+      html.classList.add('dark');
+    } else if (localStorage.theme === 'pink') {
+      html.classList.add('pink');
     }
+    // For 'light' theme, no class is needed (default)
   }, []);
 
   useEffect(() => {
+    const html = document.getElementsByTagName('html')[0];
+    // Remove all theme classes first
+    html.classList.remove('dark', 'pink');
+    
     if (theme === 'dark') {
-      document.getElementsByTagName('html')[0].classList.add('dark');
+      html.classList.add('dark');
       localStorage.theme = 'dark';
+    } else if (theme === 'pink') {
+      html.classList.add('pink');
+      localStorage.theme = 'pink';
     } else {
-      document.getElementsByTagName('html')[0].classList.remove('dark');
       localStorage.theme = 'light';
     }
   }, [theme]);
