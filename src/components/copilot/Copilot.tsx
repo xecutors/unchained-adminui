@@ -5,13 +5,21 @@ import { useChatContext } from '../../modules/chat';
 import { MessageRenderer, LoadingIndicator } from '../chat';
 import CopilotHeader from './CopilotHeader';
 import CopilotInput from './CopilotInput';
+import ToolGrid from './ToolGrid';
 import { useChatEndpointChecker } from '../../modules/common/hooks/useChatEndpointChecker';
+import { useAvailableTools } from '../../modules/chat/hooks/useAvailableTools';
 
 const Copilot: React.FC = () => {
   const { formatMessage } = useIntl();
   const { messages, status, reload } = useChatContext();
   const { chatEnabled } = useChatEndpointChecker();
   const { currentUser } = useCurrentUser();
+  const {
+    groupedTools,
+    loading: toolsLoading,
+    error: toolsError,
+    lastUpdated,
+  } = useAvailableTools();
   const bottomRef = useRef<HTMLDivElement>(null);
   const loading = status !== 'ready' && status !== 'error';
 
@@ -57,7 +65,7 @@ const Copilot: React.FC = () => {
       <CopilotHeader />
       <main className="flex-1 overflow-y-auto py-6 space-y-4 max-w-4xl mx-auto w-full px-4">
         {messages.length === 0 && !loading && (
-          <div className="text-center py-16">
+          <div className="py-16">
             <div className="w-20 h-20 bg-gradient-to-br from-slate-600 to-slate-800 dark:from-slate-500 dark:to-slate-700 rounded-2xl flex items-center justify-center shadow-lg mx-auto mb-6">
               <svg
                 className="w-10 h-10 text-white"
@@ -73,54 +81,27 @@ const Copilot: React.FC = () => {
                 />
               </svg>
             </div>
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-2">
+            <h2 className="text-center text-2xl font-bold text-slate-900 dark:text-slate-100 mb-2">
               Welcome to Copilot
             </h2>
-            <p className="text-slate-600 dark:text-slate-400 text-lg mb-6">
+            <p className="text-center text-slate-600 dark:text-slate-400 text-lg mb-6">
               Your AI assistant for managing your Unchained Commerce store
             </p>
-            <div className="text-sm text-slate-500 dark:text-slate-500 mb-8">
+            <div className="text-center text-sm text-slate-500 dark:text-slate-500 mb-8">
               Initializing your personal assistant...
             </div>
 
-            <div className="max-w-2xl mx-auto">
-              <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">
-                Here are some things you can ask me:
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-left">
-                <div className="p-3 bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700">
-                  <div className="text-sm font-medium text-slate-900 dark:text-slate-100">
-                    📦 &quot;Show me my products&quot;
-                  </div>
-                  <div className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                    List and manage products
-                  </div>
-                </div>
-                <div className="p-3 bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700">
-                  <div className="text-sm font-medium text-slate-900 dark:text-slate-100">
-                    🔍 &quot;Find draft products&quot;
-                  </div>
-                  <div className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                    Search with specific filters
-                  </div>
-                </div>
-                <div className="p-3 bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700">
-                  <div className="text-sm font-medium text-slate-900 dark:text-slate-100">
-                    ✏️ &quot;Create a new product&quot;
-                  </div>
-                  <div className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                    Add products to your catalog
-                  </div>
-                </div>
-                <div className="p-3 bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700">
-                  <div className="text-sm font-medium text-slate-900 dark:text-slate-100">
-                    🚀 &quot;Publish product [ID]&quot;
-                  </div>
-                  <div className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                    Manage product status
-                  </div>
-                </div>
-              </div>
+            <div className="max-w-4xl mx-auto">
+              <h3 className="text-center text-lg font-semibold text-slate-900 dark:text-slate-100 mb-6">
+                Available Tools & Capabilities
+              </h3>
+
+              <ToolGrid
+                groupedTools={groupedTools}
+                loading={toolsLoading}
+                error={toolsError}
+                lastUpdated={lastUpdated}
+              />
             </div>
           </div>
         )}

@@ -22,7 +22,7 @@ export default function ShopInfoCard({ shopInfo }: { shopInfo: ShopInfo }) {
   ];
 
   return (
-    <div className="inline-block rounded-xl border border-gray-200 bg-white text-sm text-gray-700 shadow-sm p-4 space-y-2">
+    <div className="my-5 inline-block rounded-xl border border-gray-200 bg-white text-sm text-gray-700 shadow-sm p-4 space-y-2">
       <h3 className="text-base font-medium text-gray-900 mb-2">Shop Info</h3>
       <ul className="grid grid-cols-2 gap-x-3 gap-y-1">
         {items.map(({ label, value }) => (
