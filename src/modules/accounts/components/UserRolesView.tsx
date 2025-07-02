@@ -34,7 +34,7 @@ const UserRolesView = ({ roles, userId }) => {
   });
 
   return (
-    <Form form={form}>
+    <Form form={form} className="flex justify-between gap-4">
       <ChoicesField
         key="user-roles"
         name="updatedRoles"
