@@ -234,10 +234,6 @@ const ProfileView = ({ profile, avatar, _id }) => {
                           id: 'displayName',
                           defaultMessage: 'Display Name',
                         })}
-                        placeholder={formatMessage({
-                          id: 'displayName',
-                          defaultMessage: 'Display Name',
-                        })}
                       />
                     ) : (
                       <span className="grow">{profile?.displayName}</span>
@@ -258,10 +254,6 @@ const ProfileView = ({ profile, avatar, _id }) => {
                       <SelectField
                         className="mt-0 w-full"
                         label={formatMessage({
-                          id: 'gender',
-                          defaultMessage: 'Gender',
-                        })}
-                        placeholder={formatMessage({
                           id: 'gender',
                           defaultMessage: 'Gender',
                         })}
@@ -298,10 +290,6 @@ const ProfileView = ({ profile, avatar, _id }) => {
                           id: 'birthday',
                           defaultMessage: 'Birthday',
                         })}
-                        placeholder={formatMessage({
-                          id: 'birthday',
-                          defaultMessage: 'Birthday',
-                        })}
                         className="mt-0 w-full"
                         name="birthday"
                         validators={[validateBirthdate]}
@@ -330,10 +318,6 @@ const ProfileView = ({ profile, avatar, _id }) => {
                         className="mt-0 w-full"
                         name="phoneMobile"
                         label={formatMessage({
-                          id: 'mobile_phone',
-                          defaultMessage: 'Mobile phone',
-                        })}
-                        placeholder={formatMessage({
                           id: 'mobile_phone',
                           defaultMessage: 'Mobile phone',
                         })}

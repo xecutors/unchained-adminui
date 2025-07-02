@@ -27,20 +27,12 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
                   id: 'first_name',
                   defaultMessage: 'First name',
                 })}
-                placeholder={formatMessage({
-                  id: 'first_name',
-                  defaultMessage: 'First name',
-                })}
               />
               <TextField
                 className="w-full"
                 labelClassName="text-sm text-slate-400 dark:text-slate-200"
                 name="lastName"
                 label={formatMessage({
-                  id: 'last_Name',
-                  defaultMessage: 'Last name',
-                })}
-                placeholder={formatMessage({
                   id: 'last_Name',
                   defaultMessage: 'Last name',
                 })}
@@ -70,10 +62,6 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
                 id: 'company',
                 defaultMessage: 'Company',
               })}
-              placeholder={formatMessage({
-                id: 'company',
-                defaultMessage: 'Company',
-              })}
             />
           ) : (
             <span className="grow">{address?.company}</span>
@@ -97,10 +85,6 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
                 id: 'address_line_1',
                 defaultMessage: 'Address line 1 (Street, House no)',
               })}
-              placeholder={formatMessage({
-                id: 'address_line_1',
-                defaultMessage: 'Address line 1 (Street, House no)',
-              })}
             />
           ) : (
             <span className="grow">{address?.addressLine}</span>
@@ -121,10 +105,6 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
               className="mt-0 w-full"
               name="addressLine2"
               label={formatMessage({
-                id: 'address_line_2',
-                defaultMessage: 'Address line 2',
-              })}
-              placeholder={formatMessage({
                 id: 'address_line_2',
                 defaultMessage: 'Address line 2',
               })}
@@ -154,10 +134,6 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
                   id: 'region_Code',
                   defaultMessage: 'Region',
                 })}
-                placeholder={formatMessage({
-                  id: 'region_Code',
-                  defaultMessage: 'Region',
-                })}
               />
             ) : (
               address?.regionCode
@@ -179,10 +155,6 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
                 className="mt-0 w-full"
                 name="postalCode"
                 label={formatMessage({
-                  id: 'postal_code',
-                  defaultMessage: 'Postal/ZIP code',
-                })}
-                placeholder={formatMessage({
                   id: 'postal_code',
                   defaultMessage: 'Postal/ZIP code',
                 })}
@@ -210,10 +182,6 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
                   id: 'city',
                   defaultMessage: 'City',
                 })}
-                placeholder={formatMessage({
-                  id: 'city',
-                  defaultMessage: 'City',
-                })}
               />
             ) : (
               address?.city
@@ -235,10 +203,6 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
                 className="mt-0 w-full"
                 name="countryCode"
                 label={formatMessage({
-                  id: 'country_code',
-                  defaultMessage: 'Country code',
-                })}
-                placeholder={formatMessage({
                   id: 'country_code',
                   defaultMessage: 'Country code',
                 })}
