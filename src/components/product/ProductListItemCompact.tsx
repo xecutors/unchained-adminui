@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { useIntl } from 'react-intl';
 import { useFormatPrice } from '../../modules/common/utils/utils';
 import ImageWithFallback from '../../modules/common/components/ImageWithFallback';
 import Badge from '../../modules/common/components/Badge';
@@ -13,14 +14,6 @@ const PRODUCT_STATUS = {
   undefined: 'yellow',
 };
 
-const PRODUCT_STATUS_LABELS = {
-  DRAFT: 'Draft',
-  ACTIVE: 'Active',
-  DELETED: 'Deleted',
-  null: 'Draft',
-  undefined: 'Draft',
-};
-
 interface ProductListItemCompactProps {
   product: any;
 }
@@ -28,12 +21,26 @@ interface ProductListItemCompactProps {
 const ProductListItemCompact: React.FC<ProductListItemCompactProps> = ({
   product,
 }) => {
+  const { formatMessage } = useIntl();
   const { formatPrice } = useFormatPrice();
   const { texts, media, catalogPrice, commerce } = product;
   const text = Array.isArray(texts) && texts.length > 0 ? texts[0] : {};
 
   // Get price from either catalogPrice or commerce.pricing
   const price = catalogPrice || commerce?.pricing?.[0];
+
+  const getStatusLabel = (status: string) => {
+    switch (status) {
+      case 'ACTIVE':
+        return formatMessage({ id: 'active', defaultMessage: 'Active' });
+      case 'DRAFT':
+        return formatMessage({ id: 'draft', defaultMessage: 'Draft' });
+      case 'DELETED':
+        return formatMessage({ id: 'deleted', defaultMessage: 'Deleted' });
+      default:
+        return formatMessage({ id: 'draft', defaultMessage: 'Draft' });
+    }
+  };
 
   return (
     <div className="flex items-center gap-4 p-3 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-md transition-shadow duration-200">
@@ -59,7 +66,7 @@ const ProductListItemCompact: React.FC<ProductListItemCompactProps> = ({
         </h3>
         <div className="flex items-center gap-3 mt-1">
           <Badge
-            text={PRODUCT_STATUS_LABELS[product?.status] || 'Draft'}
+            text={getStatusLabel(product?.status)}
             color={PRODUCT_STATUS[product?.status] || 'yellow'}
             square
             dotted
@@ -87,7 +94,7 @@ const ProductListItemCompact: React.FC<ProductListItemCompactProps> = ({
         href={`/products?slug=${generateUniqueId(product)}`}
         className="px-3 py-1.5 text-sm text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 border border-slate-300 dark:border-slate-600 rounded-md hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
       >
-        Edit
+        {formatMessage({ id: 'edit', defaultMessage: 'Edit' })}
       </Link>
     </div>
   );

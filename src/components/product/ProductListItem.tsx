@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { useIntl } from 'react-intl';
 import { useFormatPrice } from '../../modules/common/utils/utils';
 import ImageWithFallback from '../../modules/common/components/ImageWithFallback';
 import Badge from '../../modules/common/components/Badge';
@@ -13,25 +14,31 @@ const PRODUCT_STATUS = {
   undefined: 'yellow',
 };
 
-const PRODUCT_STATUS_LABELS = {
-  DRAFT: 'Draft',
-  ACTIVE: 'Active',
-  DELETED: 'Deleted',
-  null: 'Draft',
-  undefined: 'Draft',
-};
-
 interface ProductListItemProps {
   product: any;
 }
 
 const ProductListItem: React.FC<ProductListItemProps> = ({ product }) => {
+  const { formatMessage } = useIntl();
   const { formatPrice } = useFormatPrice();
   const { texts, media, catalogPrice, commerce } = product;
   const text = Array.isArray(texts) && texts.length > 0 ? texts[0] : {};
 
   // Get price from either catalogPrice or commerce.pricing
   const price = catalogPrice || commerce?.pricing?.[0];
+
+  const getStatusLabel = (status: string) => {
+    switch (status) {
+      case 'ACTIVE':
+        return formatMessage({ id: 'active', defaultMessage: 'Active' });
+      case 'DRAFT':
+        return formatMessage({ id: 'draft', defaultMessage: 'Draft' });
+      case 'DELETED':
+        return formatMessage({ id: 'deleted', defaultMessage: 'Deleted' });
+      default:
+        return formatMessage({ id: 'draft', defaultMessage: 'Draft' });
+    }
+  };
 
   return (
     <div
@@ -65,7 +72,7 @@ const ProductListItem: React.FC<ProductListItemProps> = ({ product }) => {
       </h3>
       <div className="px-4 flex items-center gap-2">
         <Badge
-          text={PRODUCT_STATUS_LABELS[product?.status] || 'Draft'}
+          text={getStatusLabel(product?.status)}
           color={PRODUCT_STATUS[product?.status] || 'yellow'}
           square
           dotted
@@ -92,7 +99,7 @@ const ProductListItem: React.FC<ProductListItemProps> = ({ product }) => {
           href={`/products?slug=${generateUniqueId(product)}`}
           className="block text-center text-sm text-slate-900 dark:text-slate-200 hover:text-slate-800 dark:hover:text-slate-300 py-3"
         >
-          Edit
+          {formatMessage({ id: 'edit', defaultMessage: 'Edit' })}
         </Link>
       </div>
     </div>

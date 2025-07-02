@@ -84,7 +84,14 @@ const AssortmentList: React.FC<AssortmentListProps> = ({
 
       {/* Assortment List */}
       {viewMode === 'grid' ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div
+          className="gap-5"
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
+            gridTemplateRows: 'span 6',
+          }}
+        >
           {assortments.map((assortment) => (
             <AssortmentListItem key={assortment._id} assortment={assortment} />
           ))}

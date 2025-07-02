@@ -2,12 +2,8 @@ import React from 'react';
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
 import classNames from 'classnames';
-import {
-  FolderIcon,
-  EyeIcon,
-  EyeSlashIcon,
-  ChevronRightIcon,
-} from '@heroicons/react/24/outline';
+import { FolderIcon } from '@heroicons/react/24/outline';
+import Badge from '../../modules/common/components/Badge';
 import generateUniqueId from '../../modules/common/utils/getUniqueId';
 
 interface AssortmentListItemCompactProps {
@@ -22,19 +18,16 @@ const AssortmentListItemCompact: React.FC<AssortmentListItemCompactProps> = ({
   const { formatMessage } = useIntl();
 
   const getStatusBadge = (isActive: boolean) => {
-    if (isActive) {
-      return (
-        <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300">
-          <EyeIcon className="w-3 h-3" />
-          {formatMessage({ id: 'active', defaultMessage: 'Active' })}
-        </span>
-      );
-    }
     return (
-      <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
-        <EyeSlashIcon className="w-3 h-3" />
-        {formatMessage({ id: 'inactive', defaultMessage: 'Inactive' })}
-      </span>
+      <Badge
+        text={formatMessage({
+          id: isActive ? 'active' : 'inactive',
+          defaultMessage: isActive ? 'Active' : 'Inactive',
+        })}
+        color={isActive ? 'green' : 'red'}
+        square
+        dotted
+      />
     );
   };
 
@@ -138,11 +131,11 @@ const AssortmentListItemCompact: React.FC<AssortmentListItemCompactProps> = ({
 
             {/* Action */}
             <div className="flex-shrink-0">
-              <Link href={`/assortments/${generateUniqueId(assortment)}`}>
-                <span className="inline-flex items-center gap-1 px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-700 rounded-lg transition-colors">
-                  {formatMessage({ id: 'edit', defaultMessage: 'Edit' })}
-                  <ChevronRightIcon className="w-4 h-4" />
-                </span>
+              <Link
+                href={`/assortments?assortmentSlug=${generateUniqueId(assortment)}`}
+                className="px-3 py-1.5 text-sm text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 border border-slate-300 dark:border-slate-600 rounded-md hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
+              >
+                {formatMessage({ id: 'edit', defaultMessage: 'Edit' })}
               </Link>
             </div>
           </div>

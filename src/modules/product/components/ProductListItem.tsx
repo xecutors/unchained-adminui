@@ -29,6 +29,19 @@ const ProductListItem = ({
         },
       });
   };
+
+  const getStatusLabel = (status: string) => {
+    switch (status) {
+      case 'ACTIVE':
+        return formatMessage({ id: 'active', defaultMessage: 'Active' });
+      case 'DRAFT':
+        return formatMessage({ id: 'draft', defaultMessage: 'Draft' });
+      case 'DELETED':
+        return formatMessage({ id: 'deleted', defaultMessage: 'Deleted' });
+      default:
+        return formatMessage({ id: 'draft', defaultMessage: 'Draft' });
+    }
+  };
   return (
     <Table.Row>
       <Table.Cell>
@@ -76,7 +89,7 @@ const ProductListItem = ({
 
       <Table.Cell className="whitespace-nowrap px-6">
         <Badge
-          text={product?.status}
+          text={getStatusLabel(product?.status)}
           color={PRODUCT_STATUS[product?.status]}
           square
           dotted
