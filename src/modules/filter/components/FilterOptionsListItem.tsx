@@ -57,15 +57,12 @@ const FilterOptionsListItem = ({
         <li className="py-2 px-2">
           <div className="flex justify-between items-center gap-2">
             <div className="flex items-center flex-wrap gap-3">
-              <span className="grow-1">
-                <Badge
-                  text={option?.value}
-                  color="slate"
-                  square
-                  className="break-all"
-                />
-              </span>
-
+              <Badge
+                text={option?.value}
+                color="slate"
+                square
+                className="break-all"
+              />
               <div className="flex flex-wrap gap-3">
                 <div className="truncate text-sm text-slate-900 dark:text-slate-200">
                   {isEdit ? (

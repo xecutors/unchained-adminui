@@ -46,7 +46,7 @@ const LocaleWrapper = ({ children, onlyFull = false }) => {
   ).filter((l) => !onlyFull || l.isoCode.includes('-'));
   return (
     <>
-      <div className="w-fit my-3">
+      <div className="w-fit mt-5 mb-3">
         <select
           id="locale-wrapper"
           className="cursor-pointer rounded-md border-1 border-slate-300 dark:border-slate-700 py-1 pr-8 text-sm lg:py-1 lg:pr-10 text-black dark:text-white dark:bg-slate-800 shadow-xs  focus:outline-hidden focus:ring-2 focus:ring-slate-800"

@@ -105,7 +105,12 @@ const TagInput = ({
           }
         />
       </div>
-      <div className="mt-4 flex items-center flex-wrap gap-5">
+      <div
+        className={classNames(
+          'flex items-center flex-wrap gap-5',
+          tagList.length > 0 && 'mt-4',
+        )}
+      >
         {tagList?.map((tag) => (
           <Badge
             key={tag}
