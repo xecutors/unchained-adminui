@@ -45,30 +45,28 @@ const LocaleWrapper = ({ children, onlyFull = false }) => {
     countries,
   ).filter((l) => !onlyFull || l.isoCode.includes('-'));
   return (
-    <div>
-      <div className="my-3 flex justify-end">
-        <div className="w-fit">
-          <select
-            id="locale-wrapper"
-            className="cursor-pointer rounded-md border-1 border-slate-300 dark:border-slate-700 py-1 pr-8 text-sm lg:py-1 lg:pr-10 text-black dark:text-white dark:bg-slate-800 shadow-xs  focus:outline-hidden focus:ring-2 focus:ring-slate-800"
-            value={selectedLocale}
-            onChange={(e) => {
-              e.stopPropagation();
-              setSelectedLocale(e.target.value);
-            }}
-          >
-            {languageDialectList?.map((language) => {
-              return (
-                <option key={language._id} value={language.isoCode}>
-                  {language.isoCode}
-                </option>
-              );
-            })}
-          </select>
-        </div>
+    <>
+      <div className="w-fit my-3">
+        <select
+          id="locale-wrapper"
+          className="cursor-pointer rounded-md border-1 border-slate-300 dark:border-slate-700 py-1 pr-8 text-sm lg:py-1 lg:pr-10 text-black dark:text-white dark:bg-slate-800 shadow-xs  focus:outline-hidden focus:ring-2 focus:ring-slate-800"
+          value={selectedLocale}
+          onChange={(e) => {
+            e.stopPropagation();
+            setSelectedLocale(e.target.value);
+          }}
+        >
+          {languageDialectList?.map((language) => {
+            return (
+              <option key={language._id} value={language.isoCode}>
+                {language.isoCode}
+              </option>
+            );
+          })}
+        </select>
       </div>
       <div>{React.cloneElement(children, { selectedLocale })}</div>
-    </div>
+    </>
   );
 };
 
