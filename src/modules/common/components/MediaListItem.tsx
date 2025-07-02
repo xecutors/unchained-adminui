@@ -139,22 +139,11 @@ const MediaListItem = ({
             </div>
             <FormErrors />
 
-            {isEdit ? (
+            {isEdit && (
               <SaveAndCancelButtons
                 className="justify-end"
                 onCancel={() => onEdit(!isEdit)}
               />
-            ) : (
-              <button
-                id="edit"
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onEdit(!isEdit);
-                }}
-              >
-                <EditIcon />
-              </button>
             )}
           </div>
         </Form>
@@ -165,6 +154,18 @@ const MediaListItem = ({
           e.stopPropagation();
         }}
       >
+        {!isEdit && (
+          <button
+            id="edit"
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              onEdit(!isEdit);
+            }}
+          >
+            <EditIcon />
+          </button>
+        )}
         <button
           type="button"
           {...attributes}
