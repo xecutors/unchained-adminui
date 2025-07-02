@@ -127,6 +127,28 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
+/* Checkbox styling */
+input[type="checkbox"]:not(:checked) {
+  background-color: white !important;
+  border-color: rgb(203 213 225) !important; /* slate-300 */
+}
+
+input[type="checkbox"]:checked {
+  background-color: rgb(15 23 42) !important; /* slate-900 */
+  border-color: rgb(15 23 42) !important;
+}
+
+.dark input[type="checkbox"]:not(:checked) {
+  background-color: rgb(30 41 59) !important; /* slate-800 */
+  border-color: rgb(71 85 105) !important; /* slate-600 */
+}
+
+.dark input[type="checkbox"]:checked {
+  background-color: rgb(30 41 59) !important; /* slate-800 */
+  border-color: rgb(30 41 59) !important;
+}
+
+
 .whistle {
   width: 20%;
   fill: rgb(251 113 133); /* rose-400 */

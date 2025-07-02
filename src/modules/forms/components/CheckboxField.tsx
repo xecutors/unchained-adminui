@@ -32,12 +32,11 @@ const CheckboxField = (props: CommonFieldProps) => {
         onChange={field.onChange}
         onBlur={field.onBlur}
         type="checkbox"
-        className={
-          (classNames(
-            'h-4 w-4 rounded-xs border-slate-300 dark:border-slate-600 bg-white dark:!bg-slate-800 text-slate-950 focus:ring-slate-800',
-          ),
-          inputClassName)
-        }
+        className={classNames(
+          'h-4 w-4 rounded-xs border-slate-300 dark:border-slate-600 bg-white dark:!bg-slate-800 text-indigo-600 dark:text-slate-200 focus:ring-slate-800',
+          inputClassName,
+          props.className
+        )}
         {...checkboxProps}
       />
       <label

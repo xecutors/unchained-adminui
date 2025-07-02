@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl';
 import useAuth from '../../Auth/useAuth';
-import CheckboxField from '../../forms/components/CheckboxField';
+import Toggle from '../../common/components/Toggle';
 import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
@@ -64,15 +64,13 @@ const LanguageForm = ({
 
         {isEdit && (
           <div className="mt-5 flex items-center flex-wrap">
-            <CheckboxField
-              id="isActive"
-              name="isActive"
-              type="checkbox"
-              label={formatMessage({
+            <Toggle
+              toggleText={formatMessage({
                 id: 'active',
-                defaultMessage: ' Active',
+                defaultMessage: 'Active',
               })}
-              className="mr-2 h-4 w-4 rounded-xs border-slate-300 dark:border-slate-600 bg-white dark:!bg-slate-800 text-slate-900 focus:ring-slate-800"
+              active={form.formik.values.isActive}
+              onToggle={() => form.formik.setFieldValue('isActive', !form.formik.values.isActive)}
             />
           </div>
         )}

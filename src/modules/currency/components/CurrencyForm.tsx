@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl';
 import useAuth from '../../Auth/useAuth';
-import CheckboxField from '../../forms/components/CheckboxField';
+import Toggle from '../../common/components/Toggle';
 import Form from '../../forms/components/Form';
 
 import SubmitButton from '../../forms/components/SubmitButton';
@@ -92,14 +92,13 @@ const CurrencyForm = ({
 
         {isEdit && (
           <div className="mt-5 flex items-center">
-            <CheckboxField
-              id="is-active"
-              name="isActive"
-              label={formatMessage({
+            <Toggle
+              toggleText={formatMessage({
                 id: 'active',
                 defaultMessage: 'Active',
               })}
-              className="mr-2 h-4 w-4 rounded-sm border-slate-300 dark:border-slate-600 bg-white dark:!bg-slate-800 text-slate-950 focus:ring-slate-800"
+              active={form.formik.values.isActive}
+              onToggle={() => form.formik.setFieldValue('isActive', !form.formik.values.isActive)}
             />
           </div>
         )}
