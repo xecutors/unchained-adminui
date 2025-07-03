@@ -33,7 +33,7 @@ const useShopConfiguration = () => {
   } = useQuery(BASIC_SHOP_STATUS_QUERY, {
     fetchPolicy: 'cache-and-network',
     errorPolicy: 'ignore', // Don't fail on GraphQL errors
-    skip: true, // Skip GraphQL queries to prevent 500 errors
+    skip: false, // Enable GraphQL queries to get real data
   });
 
   // Update localStorage based on GraphQL data when available
