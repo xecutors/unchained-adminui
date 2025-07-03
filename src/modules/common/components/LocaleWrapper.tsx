@@ -50,7 +50,7 @@ const LocaleWrapper = ({ children, onlyFull = false }) => {
         <select
           id="locale-wrapper"
           className="cursor-pointer rounded-md border-1 border-slate-300 dark:border-slate-700 py-1 pr-8 text-sm lg:py-1 lg:pr-10 text-black dark:text-white dark:bg-slate-800 shadow-xs  focus:outline-hidden focus:ring-2 focus:ring-slate-800"
-          value={selectedLocale}
+          value={selectedLocale || ''}
           onChange={(e) => {
             e.stopPropagation();
             setSelectedLocale(e.target.value);
@@ -65,7 +65,7 @@ const LocaleWrapper = ({ children, onlyFull = false }) => {
           })}
         </select>
       </div>
-      <div>{React.cloneElement(children, { selectedLocale })}</div>
+      <div>{React.cloneElement(children, { selectedLocale: selectedLocale || '' })}</div>
     </>
   );
 };

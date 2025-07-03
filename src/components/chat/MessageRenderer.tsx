@@ -102,9 +102,7 @@ const MessageRenderer: React.FC<MessageRendererProps> = ({ message, user }) => {
           switch (part.type) {
             case 'text':
               return (
-                <>
-                  <MarkdownText key={index} text={part.text} className="mb-0" />
-                </>
+                <MarkdownText key={index} text={part.text} className="mb-0" />
               );
             case 'tool-invocation':
               return <ToolInvocationRenderer key={index} part={part} hideProducts={true} />;
