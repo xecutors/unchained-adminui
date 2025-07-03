@@ -103,16 +103,6 @@ const DEFAULT_STEPS: Omit<ConfigurationStep, 'isComplete' | 'completedAt'>[] = [
     estimatedTime: '3 min',
     icon: 'folder',
   },
-  {
-    id: 'filters',
-    title: 'Product Filters',
-    description: 'Create filters to help customers find products',
-    isRequired: false,
-    setupUrl: '/filters/new',
-    category: 'content',
-    estimatedTime: '3 min',
-    icon: 'funnel',
-  },
 ];
 
 /**
@@ -314,7 +304,6 @@ export function autoMarkStepFromRoute(pathname: string): void {
     '/warehousing-provider': 'warehousing',
     '/products': 'products',
     '/assortments': 'assortments',
-    '/filters': 'filters',
   };
 
   const stepId = routeToStepMap[pathname];
