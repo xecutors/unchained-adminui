@@ -274,7 +274,7 @@ const AssortmentDetailPage = ({ assortmentSlug }) => {
               {isBase ? (
                 <span
                   id="is_base"
-                  className="py-2.5 px-8 text-sm font-medium text-white bg-emerald-500 white inline-flex items-center shadow-md rounded-md h-[38px]"
+                  className="py-2.5 px-8 text-sm font-medium text-white bg-sky-500 white inline-flex items-center shadow-md rounded-md h-[38px]"
                 >
                   {formatMessage({
                     id: 'base',

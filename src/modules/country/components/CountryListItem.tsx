@@ -32,6 +32,7 @@ const CountryListItem = ({ country, onRemove, enableEdit, enableDelete }) => {
                 defaultMessage: 'Base',
               })}
               className="ml-2 "
+              color="sky"
               square
             />
           )}
@@ -50,7 +51,7 @@ const CountryListItem = ({ country, onRemove, enableEdit, enableDelete }) => {
       <Table.Cell className="whitespace-nowrap">
         <Badge
           text={STATUS[country.isActive]}
-          color={country.isActive ? 'green' : 'red'}
+          color={country.isActive ? 'emerald' : 'red'}
           square
         />
       </Table.Cell>

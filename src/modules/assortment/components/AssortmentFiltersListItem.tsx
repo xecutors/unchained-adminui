@@ -30,7 +30,7 @@ const AssortmentFiltersListItem = ({ link, onDelete, id }) => {
     >
       <div className="shrink-0 grow-0 basis-20 pl-5 space-y-1 p-2">
         <Badge
-          color={filter?.isActive ? 'green' : 'slate'}
+          color={filter?.isActive ? 'emerald' : 'slate'}
           text={
             filter?.isActive
               ? formatMessage({ id: 'active', defaultMessage: 'Active' })

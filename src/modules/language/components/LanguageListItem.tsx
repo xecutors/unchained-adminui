@@ -24,6 +24,7 @@ const LanguageListItem = ({ language, onRemove, enableEdit, enableDelete }) => {
                 defaultMessage: 'Base',
               })}
               className="ml-2 text-sm"
+              color="sky"
               square
             />
           )}
@@ -37,7 +38,7 @@ const LanguageListItem = ({ language, onRemove, enableEdit, enableDelete }) => {
       <Table.Cell>
         <Badge
           text={STATUS[language.isActive]}
-          color={language.isActive ? 'green' : 'red'}
+          color={language.isActive ? 'emerald' : 'red'}
           square
         />
       </Table.Cell>

@@ -81,7 +81,7 @@ const AssortmentListItem = ({ assortment, showAvatar }) => {
                 id: 'assortment_base',
                 defaultMessage: 'Base',
               })}
-              color="emerald"
+              color="sky"
             />
           )}
         </div>
