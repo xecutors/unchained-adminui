@@ -14,7 +14,9 @@ const UnifiedAssortmentList: React.FC<UnifiedAssortmentListProps> = ({
   assortmentSections,
 }) => {
   // Combine all assortments from all sections
-  const allAssortments = assortmentSections.flatMap((section) => section.assortments);
+  const allAssortments = assortmentSections.flatMap(
+    (section) => section.assortments,
+  );
 
   // Combine all filters (if any)
   const combinedFilters = assortmentSections.reduce((acc, section) => {
