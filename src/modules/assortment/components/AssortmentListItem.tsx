@@ -53,7 +53,7 @@ const AssortmentListItem = ({ assortment, showAvatar }) => {
       <Table.Cell className="whitespace-nowrap">
         <Badge
           text={STATUS[assortment.isActive]}
-          color={assortment.isActive ? 'green' : 'red'}
+          color={assortment.isActive ? 'green' : 'yellow'}
           square
         />
       </Table.Cell>

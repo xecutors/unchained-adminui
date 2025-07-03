@@ -30,7 +30,7 @@ const categoryColors: Record<string, string> = {
   'Product Management':
     'bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300',
   'Order Management':
-    'bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300',
+    'bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-300',
   'Customer Management':
     'bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300',
   'Shop Configuration':

@@ -24,7 +24,7 @@ const AssortmentListItem: React.FC<AssortmentListItemProps> = ({
           id: isActive ? 'active' : 'inactive',
           defaultMessage: isActive ? 'Active' : 'Inactive',
         })}
-        color={isActive ? 'green' : 'red'}
+        color={isActive ? 'green' : 'yellow'}
         square
         dotted
       />

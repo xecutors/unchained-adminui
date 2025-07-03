@@ -48,6 +48,20 @@ const colorConfigs: Record<string, ColorConfig> = {
     dropdown: 'text-slate-700 bg-slate-50 border border-slate-200',
     description: 'text-slate-600',
   },
+  stone: {
+    button: 'bg-stone-50 text-stone-700 border border-stone-200',
+    hover: 'hover:bg-stone-100',
+    focus: 'focus:ring-stone-500',
+    dropdown: 'text-stone-700 bg-stone-50 border border-stone-200',
+    description: 'text-stone-600',
+  },
+  emerald: {
+    button: 'bg-emerald-50 text-emerald-700 border border-emerald-200',
+    hover: 'hover:bg-emerald-100',
+    focus: 'focus:ring-emerald-500',
+    dropdown: 'text-emerald-700 bg-emerald-50 border border-emerald-200',
+    description: 'text-emerald-600',
+  },
 };
 
 const SelectOptions = ({
@@ -65,7 +79,7 @@ const SelectOptions = ({
 
   if (!select?.id || !options?.length) return null;
 
-  const colorConfig = colorConfigs[select.bgColor] || colorConfigs.green;
+  const colorConfig = colorConfigs[select.bgColor] || colorConfigs.emerald;
 
   const getHoverColor = () => {
     if (!isHover) return '';
@@ -74,18 +88,22 @@ const SelectOptions = ({
         return 'bg-emerald-100';
       case 'amber':
         return 'bg-amber-100';
+      case 'stone':
+        return 'bg-stone-100';
+      case 'emerald':
+        return 'bg-emerald-100';
       default:
         return 'bg-slate-100';
     }
   };
 
   const getOptionClasses = (option: SelectOptionsProp) => {
-    const config = colorConfigs[option.bgColor] || colorConfigs.green;
+    const config = colorConfigs[option.bgColor] || colorConfigs.emerald;
     return config.dropdown;
   };
 
   const getDescriptionClasses = (option: SelectOptionsProp) => {
-    const config = colorConfigs[option.bgColor] || colorConfigs.green;
+    const config = colorConfigs[option.bgColor] || colorConfigs.emerald;
     return config.description;
   };
 

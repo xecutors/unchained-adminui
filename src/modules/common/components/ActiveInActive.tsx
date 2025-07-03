@@ -18,7 +18,7 @@ const ActiveInActive = ({
         ? activeIcon || (
             <span
               className={classNames(
-                'inline-flex items-center border rounded-full px-2.5 py-0.5 text-sm font-medium bg-emerald-50 dark:bg-green-900/30 text-emerald-700 dark:text-green-300 border-emerald-200 dark:border-green-800 uppercase',
+                'inline-flex items-center border rounded-full px-2.5 py-0.5 text-sm font-medium bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800 uppercase',
                 activeClassName,
               )}
             >

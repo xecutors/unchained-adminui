@@ -106,7 +106,7 @@ const AssortmentDetailPage = ({ assortmentSlug }) => {
         defaultMessage: 'Will be visible on search',
       }),
       current: isActive,
-      bgColor: 'green',
+      bgColor: 'emerald',
       onClick: async () => {
         await setActive(true);
         toast.success(
@@ -132,7 +132,7 @@ const AssortmentDetailPage = ({ assortmentSlug }) => {
         defaultMessage: 'Will not be visible on search',
       }),
       current: !isActive,
-      bgColor: 'slate',
+      bgColor: 'amber',
       onClick: async () => {
         await setActive(false);
         toast.success(
@@ -161,7 +161,7 @@ const AssortmentDetailPage = ({ assortmentSlug }) => {
         defaultMessage: 'Can not be assigned as a child of another assortment ',
       }),
       current: isRoot,
-      bgColor: 'green',
+      bgColor: 'stone',
       onClick: async () => {
         await setIsRoot(true);
         toast.success(
@@ -187,7 +187,7 @@ const AssortmentDetailPage = ({ assortmentSlug }) => {
         defaultMessage: 'Can be assigned as a child of another assortment ',
       }),
       current: !isRoot,
-      bgColor: 'slate',
+      bgColor: 'emerald',
       onClick: async () => {
         await setIsRoot(false);
         toast.success(

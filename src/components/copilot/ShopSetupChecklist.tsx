@@ -83,7 +83,7 @@ const ShopSetupChecklist: React.FC<ShopSetupChecklistProps> = ({
     return (
       <div
         className={classNames(
-          'p-6 bg-gradient-to-r from-emerald-50 to-green-50 dark:from-emerald-900/20 dark:to-green-900/20 rounded-lg border border-emerald-200 dark:border-emerald-700/50',
+          'p-6 bg-gradient-to-r from-emerald-50 to-emerald-50 dark:from-emerald-900/20 dark:to-emerald-900/20 rounded-lg border border-emerald-200 dark:border-emerald-700/50',
           className,
         )}
       >
