@@ -1,6 +1,7 @@
 import { experimental_generateImage, ImageModel, tool } from 'ai';
 import { fileTypeFromBuffer } from 'file-type';
 import { z } from 'zod';
+import fs from 'fs';
 
 const generateImageHandler =
   (req: any) =>
@@ -16,7 +17,19 @@ const generateImageHandler =
       parameters: z.object({
         prompt: z.string().describe('The prompt to generate the image from'),
         size: z
-          .enum(['1024x1024', '1024x1792', '1792x1024'])
+          .enum([
+            '512x512',
+            '768x768',
+            '1024x1024',
+            '512x896',
+            '640x1120',
+            '768x1344',
+            '1024x1792',
+            '896x512',
+            '1120x640',
+            '1344x768',
+            '1792x1024',
+          ])
           .optional()
           .describe('The size of the image (default is 1024x1024).'),
       }),
@@ -34,9 +47,7 @@ const generateImageHandler =
           const mime = fileType?.mime || 'image/png';
 
           const filename = `image-${Date.now()}.${extension}`;
-          const blob = new Blob([buffer], { type: mime });
-          const file = new File([blob], filename, { type: mime });
-
+          const file = new File([buffer], filename, { type: mime });
           const formData = new FormData();
           formData.append('image', file);
 

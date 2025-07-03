@@ -18,6 +18,8 @@ export const errorHandler = (error: any): string => {
   if (InvalidToolArgumentsError.isInstance(error))
     return 'InvalidToolArgumentsError';
   if (ToolExecutionError.isInstance(error)) return 'ToolExecutionError';
-  if (error?.message?.toLowerCase() === 'forbidden') return 'NetworkError';
+  if (error?.message?.toLowerCase()?.includes('forbidden'))
+    return 'NetworkError';
+  if (error?.message?.toLowerCase()?.includes('limit')) return 'LimitExceeded';
   return `Failed to stream response: ${error?.message || 'Unknown error'}`;
 };
