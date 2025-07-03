@@ -10,10 +10,12 @@ import ShopInfoCard from './ShopInfo';
 
 interface ToolInvocationRendererProps {
   part: any;
+  hideProducts?: boolean;
 }
 
 const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
   part,
+  hideProducts = false,
 }) => {
   const { toolName, result } = part.toolInvocation ?? {};
   if (!toolName || !result?.content?.length) return null;
@@ -39,6 +41,11 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
     const parsed = JSON.parse(textString);
     const listViewTools = [
       'create_product',
+      'update_product',
+      'update_product_price',
+      'set_product_price',
+      'modify_product_price',
+      'change_product_price',
       'remove_product',
       'publish_product',
       'unpublish_product',
@@ -46,7 +53,7 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
       'update_assortment',
     ];
 
-    if (toolName === 'list_products' && parsed?.products?.length) {
+    if (toolName === 'list_products' && parsed?.products?.length && !hideProducts) {
       return (
         <div className="mb-6">
           <ProductResultsSummary
@@ -86,7 +93,7 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
         <Image alt="" src={parsed?.imageUrl as any} width={1200} height={50} />
       );
     }
-    if (listViewTools.includes(toolName) && parsed?.product)
+    if (listViewTools.includes(toolName) && parsed?.product && !hideProducts)
       return (
         <div className="mb-6">
           <ProductList products={[parsed.product]} />
@@ -113,7 +120,7 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
       );
     }
 
-    if (toolName === 'assortment_products') {
+    if (toolName === 'assortment_products' && !hideProducts) {
       return (
         <div className="mb-6">
           <ProductResultsSummary
@@ -121,6 +128,24 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
             requestedFilters={parsed?.filters}
           />
           <ProductList products={parsed.products} />
+        </div>
+      );
+    }
+
+    // Check if any tool returned product data and show it
+    if (parsed?.product && !listViewTools.includes(toolName) && !hideProducts) {
+      return (
+        <div className="mb-6">
+          <ProductList products={[parsed.product]} />
+        </div>
+      );
+    }
+
+    // Check if any tool returned assortment data and show it
+    if (parsed?.assortment && !listViewTools.includes(toolName)) {
+      return (
+        <div className="mb-6">
+          <AssortmentList assortments={[parsed.assortment]} />
         </div>
       );
     }

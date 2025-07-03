@@ -43,7 +43,7 @@ const ProductListItemCompact: React.FC<ProductListItemCompactProps> = ({
   };
 
   return (
-    <div className="flex items-center gap-4 p-3 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-md transition-shadow duration-200">
+    <div className="flex items-center gap-4 p-3 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-md transition-shadow duration-200 max-w-full overflow-hidden">
       <div className="w-16 h-16 flex-shrink-0 bg-slate-50 dark:bg-slate-700 rounded-md overflow-hidden">
         {media?.length ? (
           <ImageWithFallback
@@ -84,7 +84,7 @@ const ProductListItemCompact: React.FC<ProductListItemCompactProps> = ({
               <span className="text-slate-400">No price</span>
             )}
           </span>
-          <span className="text-xs text-slate-500 dark:text-slate-400">
+          <span className="text-xs text-slate-500 dark:text-slate-400 truncate">
             ID: {product._id}
           </span>
         </div>
@@ -92,7 +92,7 @@ const ProductListItemCompact: React.FC<ProductListItemCompactProps> = ({
 
       <Link
         href={`/products?slug=${generateUniqueId(product)}`}
-        className="px-3 py-1.5 text-sm text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 border border-slate-300 dark:border-slate-600 rounded-md hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
+        className="px-3 py-1.5 text-sm text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 border border-slate-300 dark:border-slate-600 rounded-md hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors flex-shrink-0"
       >
         {formatMessage({ id: 'edit', defaultMessage: 'Edit' })}
       </Link>

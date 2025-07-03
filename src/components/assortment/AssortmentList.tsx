@@ -19,10 +19,10 @@ const AssortmentList: React.FC<AssortmentListProps> = ({
     if (typeof window !== 'undefined') {
       return (
         (localStorage.getItem('assortmentViewMode') as 'grid' | 'list') ||
-        'grid'
+        'list'
       );
     }
-    return 'grid';
+    return 'list';
   });
 
   const handleViewModeChange = (mode: 'grid' | 'list') => {

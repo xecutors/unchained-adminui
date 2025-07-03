@@ -104,10 +104,10 @@ const ProductList: React.FC<ProductListProps> = ({ products }) => {
 
       {viewMode === 'grid' ? (
         <div
-          className="gap-5"
+          className="gap-4 max-w-full overflow-hidden"
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
             gridTemplateRows: 'span 6',
           }}
         >
@@ -116,7 +116,7 @@ const ProductList: React.FC<ProductListProps> = ({ products }) => {
           ))}
         </div>
       ) : (
-        <div className="space-y-2">
+        <div className="space-y-2 max-w-full overflow-hidden">
           {filteredProducts.map((product) => (
             <ProductListItemCompact key={product._id} product={product} />
           ))}

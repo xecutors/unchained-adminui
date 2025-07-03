@@ -401,7 +401,7 @@ const LoadingIndicator = () => {
   }
 
   return (
-    <div className="flex justify-start">
+    <>
       <div className="flex items-start gap-3 px-4 py-3">
         <div className="w-8 h-8 bg-gradient-to-br from-slate-600 to-slate-800 dark:from-slate-500 dark:to-slate-700 rounded-lg flex items-center justify-center shadow-sm">
           <CommandLineIcon className="w-5 h-5 text-white animate-pulse" />
@@ -440,7 +440,7 @@ const LoadingIndicator = () => {
           <StopIcon className="w-4 h-4" />
         </button>
       </div>
-    </div>
+    </>
   );
 };
 
