@@ -53,7 +53,7 @@ const AssortmentListItem = ({ assortment, showAvatar }) => {
       <Table.Cell className="whitespace-nowrap">
         <Badge
           text={STATUS[assortment.isActive]}
-          color={assortment.isActive ? 'green' : 'yellow'}
+          color={assortment.isActive ? 'emerald' : 'yellow'}
           square
         />
       </Table.Cell>
@@ -66,7 +66,7 @@ const AssortmentListItem = ({ assortment, showAvatar }) => {
                 id: 'root_assortment',
                 defaultMessage: 'Root',
               })}
-              color="green"
+              color="stone"
               square
             />
           )}
@@ -81,7 +81,7 @@ const AssortmentListItem = ({ assortment, showAvatar }) => {
                 id: 'assortment_base',
                 defaultMessage: 'Base',
               })}
-              color="green"
+              color="emerald"
             />
           )}
         </div>

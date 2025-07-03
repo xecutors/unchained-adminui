@@ -22,7 +22,7 @@ const PaymentCredentialsView = ({ paymentCredentials }) => {
                             id: 'preferred',
                             defaultMessage: 'Preferred',
                           })}
-                          color="green"
+                          color="sky"
                           square
                         />
                       </p>
@@ -35,7 +35,7 @@ const PaymentCredentialsView = ({ paymentCredentials }) => {
                           id: 'active',
                           defaultMessage: 'Active',
                         })}
-                        color="green"
+                        color="emerald"
                         square
                       />
                     ) : (
@@ -44,7 +44,7 @@ const PaymentCredentialsView = ({ paymentCredentials }) => {
                           id: 'in_active',
                           defaultMessage: 'In-Active',
                         })}
-                        color="red"
+                        color="amber"
                         square
                       />
                     )}
@@ -56,7 +56,7 @@ const PaymentCredentialsView = ({ paymentCredentials }) => {
                           id: 'valid',
                           defaultMessage: 'Valid',
                         })}
-                        color="green"
+                        color="emerald"
                         square
                       />
                     ) : (
