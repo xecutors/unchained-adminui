@@ -45,10 +45,7 @@ const ShopSetupChecklist: React.FC<ShopSetupChecklistProps> = ({
     }
   };
 
-  const handleStepClick = (step: ConfigurationStep) => {
-    // Could add analytics or other tracking here
-    console.log('Setup step clicked:', step.id);
-  };
+  const handleStepClick = (step: ConfigurationStep) => {};
 
   if (loading) {
     return (

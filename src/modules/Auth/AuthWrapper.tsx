@@ -53,7 +53,6 @@ const AuthWrapper = ({ children }) => {
     }
 
     if (nextPathname && router.pathname !== nextPathname) {
-      console.log('Redirecting to:', nextPathname);
       router.replace(nextPathname);
     }
   }, [

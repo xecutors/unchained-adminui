@@ -38,20 +38,18 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
 
     const parsed = JSON.parse(textString);
     const listViewTools = [
-      'create_product',
-      'update_product',
-      'update_product_price',
-      'set_product_price',
-      'modify_product_price',
-      'change_product_price',
-      'remove_product',
-      'publish_product',
-      'unpublish_product',
-      'create_assortment',
-      'update_assortment',
+      'product_create',
+      'product_update',
+      'product_updateCommerce',
+      'product_remove',
+      'product_publish',
+      'product_unpublish',
+      'assortment_create',
+      'assortment_update',
+      'assortment_remove',
     ];
 
-    if (toolName === 'list_products' && parsed?.products?.length) {
+    if (toolName === 'product_list' && parsed?.products?.length) {
       return (
         <div className="mb-6">
           <ProductResultsSummary
@@ -63,7 +61,7 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
       );
     }
 
-    if (toolName === 'list_assortments' && parsed?.assortments?.length) {
+    if (toolName === 'assortment_list' && parsed?.assortments?.length) {
       return (
         <div className="mb-6">
           <AssortmentResultsSummary
@@ -75,7 +73,7 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
       );
     }
 
-    if (toolName === 'assortment_children' && parsed?.assortments?.length) {
+    if (toolName === 'assortment_getChildren' && parsed?.assortments?.length) {
       return (
         <div className="mb-6">
           <CopilotAssortmentList assortments={parsed?.assortments} />
@@ -105,7 +103,7 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
         </div>
       );
 
-    if (toolName === 'get_product' && parsed?.product) {
+    if (toolName === 'product_get' && parsed?.product) {
       return (
         <div className="mb-6">
           <ProductDetail
@@ -118,7 +116,7 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
       );
     }
 
-    if (toolName === 'assortment_products') {
+    if (toolName === 'assortment_getProducts') {
       return (
         <div className="mb-6">
           <ProductResultsSummary
