@@ -8,7 +8,7 @@ import { OnSubmitSuccessType } from '../modules/forms/hooks/useForm';
 const SignUpPage = () => {
   const { push } = useRouter();
   const { createUser } = useCreateUser();
-  const [authenticateWithDevice, setAuthenticateWithDevice] = useState(true);
+  const [authenticateWithDevice, setAuthenticateWithDevice] = useState(false);
   const { generateWebAuthCredentials } = useGenerateWebAuthCredentials();
   const registerWithWebAuth = async (username) => {
     const webAuthnPublicKeyCredentials = await generateWebAuthCredentials({
