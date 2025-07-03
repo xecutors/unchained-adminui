@@ -135,5 +135,6 @@ export const useChatManager = () => {
     stop,
     addInterruptionMessage,
     reload,
+    append,
   };
 };

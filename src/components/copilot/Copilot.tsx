@@ -1,5 +1,6 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
+import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
 import useCurrentUser from '../../modules/accounts/hooks/useCurrentUser';
 import { useChatContext } from '../../modules/chat';
 import { MessageRenderer, LoadingIndicator } from '../chat';
@@ -11,7 +12,16 @@ import { useAvailableTools } from '../../modules/chat/hooks/useAvailableTools';
 
 const Copilot: React.FC = () => {
   const { formatMessage } = useIntl();
-  const { messages, status, reload } = useChatContext();
+  const chatContext = useChatContext();
+  const {
+    messages,
+    status,
+    reload,
+    handleSubmit,
+    handleInputChange,
+    input,
+    append,
+  } = chatContext;
   const { chatEnabled } = useChatEndpointChecker();
   const { currentUser } = useCurrentUser();
   const {
@@ -22,6 +32,40 @@ const Copilot: React.FC = () => {
   } = useAvailableTools();
   const bottomRef = useRef<HTMLDivElement>(null);
   const loading = status !== 'ready' && status !== 'error';
+  const [showTools, setShowTools] = useState(false);
+  const hasInitialized = useRef(false);
+
+  // Auto-send introduction message when copilot opens
+  useEffect(() => {
+    // Only check when chat is ready and enabled
+    if (status !== 'ready' || !chatEnabled) return;
+
+    // Check if we already have messages
+    if (messages.length > 0) return;
+
+    // Check if we've already initialized
+    if (hasInitialized.current) return;
+
+    hasInitialized.current = true;
+
+    // Use append directly instead of simulating form submission
+    const introMessage =
+      'Hello! Please introduce yourself and explain what you can help me with in managing my Unchained Commerce store. Be friendly and informative about your current capabilities.';
+
+    const timer = setTimeout(async () => {
+      try {
+        await append({
+          id: `intro-${Date.now()}`,
+          role: 'user',
+          content: introMessage,
+        });
+      } catch (error) {
+        console.error('Failed to append introduction:', error);
+      }
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [status, chatEnabled, messages.length, append]);
 
   useEffect(() => {
     const el = bottomRef.current;
@@ -64,78 +108,90 @@ const Copilot: React.FC = () => {
     <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-slate-950 font-sans">
       <CopilotHeader />
       <main className="flex-1 overflow-y-auto py-6 space-y-4 max-w-4xl mx-auto w-full px-4">
-        {messages.length === 0 && !loading && (
-          <div className="py-16">
-            <div className="w-20 h-20 bg-gradient-to-br from-slate-600 to-slate-800 dark:from-slate-500 dark:to-slate-700 rounded-2xl flex items-center justify-center shadow-lg mx-auto mb-6">
-              <svg
-                className="w-10 h-10 text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                />
-              </svg>
-            </div>
-            <h2 className="text-center text-2xl font-bold text-slate-900 dark:text-slate-100 mb-2">
-              Welcome to Copilot
-            </h2>
-            <p className="text-center text-slate-600 dark:text-slate-400 text-lg mb-6">
-              Your AI assistant for managing your Unchained Commerce store
-            </p>
-            <div className="text-center text-sm text-slate-500 dark:text-slate-500 mb-8">
-              Initializing your personal assistant...
-            </div>
+        {(() => {
+          let visibleMessageIndex = 0;
+          return messages?.map((message, index) => {
+            // Skip empty assistant messages (these might be loading placeholders)
+            if (
+              message.role === 'assistant' &&
+              (!message.parts ||
+                message.parts.length === 0 ||
+                (message.parts.length === 1 &&
+                  message.parts[0].type === 'text' &&
+                  !message.parts[0].text))
+            ) {
+              return null;
+            }
 
-            <div className="max-w-4xl mx-auto">
-              <h3 className="text-center text-lg font-semibold text-slate-900 dark:text-slate-100 mb-6">
-                Available Tools & Capabilities
-              </h3>
+            // Hide the auto-introduction prompt from user
+            if (
+              message.role === 'user' &&
+              (message?.content?.includes('Give a brief introduction') ||
+                message?.content?.includes(
+                  'Introduce yourself and your tools',
+                ) ||
+                message?.content?.includes(
+                  'Please introduce yourself and explain',
+                ))
+            ) {
+              return null;
+            }
 
-              <ToolGrid
-                groupedTools={groupedTools}
-                loading={toolsLoading}
-                error={toolsError}
-                lastUpdated={lastUpdated}
-              />
-            </div>
-          </div>
-        )}
+            // This is a visible message
+            const isFirstVisibleMessage = visibleMessageIndex === 0;
+            visibleMessageIndex++;
 
-        {messages?.map((message) => {
-          // Skip empty assistant messages (these might be loading placeholders)
-          if (
-            message.role === 'assistant' &&
-            (!message.parts ||
-              message.parts.length === 0 ||
-              (message.parts.length === 1 &&
-                message.parts[0].type === 'text' &&
-                !message.parts[0].text))
-          ) {
-            return null;
-          }
+            return (
+              <React.Fragment key={message.id}>
+                <MessageRenderer message={message} user={currentUser} />
+                {/* Show tools button after the first visible message */}
+                {isFirstVisibleMessage && !loading && (
+                  <div className="py-4">
+                    <div>
+                      {/* Tools toggle button */}
+                      <div className="mb-6">
+                        <button
+                          onClick={() => setShowTools(!showTools)}
+                          className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
+                        >
+                          {showTools ? (
+                            <>
+                              <ChevronUpIcon className="w-4 h-4" />
+                              {formatMessage({
+                                id: 'hide_capabilities',
+                                defaultMessage: 'Hide Available Tools',
+                              })}
+                            </>
+                          ) : (
+                            <>
+                              <ChevronDownIcon className="w-4 h-4" />
+                              {formatMessage({
+                                id: 'show_capabilities',
+                                defaultMessage: 'Show Available Tools',
+                              })}
+                            </>
+                          )}
+                        </button>
+                      </div>
 
-          // Hide the auto-introduction prompt from user
-          if (
-            message.role === 'user' &&
-            (message?.content?.includes('Give a brief introduction') ||
-              message?.content?.includes('Introduce yourself and your tools'))
-          ) {
-            return null;
-          }
-
-          return (
-            <MessageRenderer
-              key={message.id}
-              message={message}
-              user={currentUser}
-            />
-          );
-        })}
+                      {/* Tools grid - collapsible */}
+                      {showTools && (
+                        <div className="mt-8">
+                          <ToolGrid
+                            groupedTools={groupedTools}
+                            loading={toolsLoading}
+                            error={toolsError}
+                            lastUpdated={lastUpdated}
+                          />
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </React.Fragment>
+            );
+          });
+        })()}
         {status === 'error' && (
           <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-slate-900 font-sans">
             <div className="py-16 text-center max-w-lg mx-auto">
