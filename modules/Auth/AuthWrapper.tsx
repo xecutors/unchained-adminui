@@ -52,7 +52,7 @@ const AuthWrapper = ({ children }) => {
       ) {
         nextPathname = '/423';
       }
-    } else if (!checkAccess(currentUser)) {
+    } else if (!checkAccess(currentUser, router.pathname)) {
       nextPathname = '/log-in';
     }
 
