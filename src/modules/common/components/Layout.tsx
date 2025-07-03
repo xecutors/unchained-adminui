@@ -55,6 +55,11 @@ const Layout = ({
 
   const defaultNavigation = [
     {
+      name: formatMessage({ id: 'home', defaultMessage: 'Home' }),
+      icon: HomeIcon,
+      href: '/home',
+    },
+    {
       name: formatMessage({ id: 'copilot', defaultMessage: 'Copilot' }),
       icon: CommandLineIcon,
       href: '/',

@@ -12,6 +12,7 @@ const BreadCrumbs = ({
 
   // Mapping of route segments to translation keys
   const routeTranslations = {
+    home: 'home',
     products: 'products',
     orders: 'orders',
     users: 'users',
