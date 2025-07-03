@@ -46,46 +46,44 @@ const AssortmentMediaList = ({
           })}
         </h2>
 
-        <div className="flow-root">
-          <SortableContext items={items} strategy={verticalListSortingStrategy}>
-            <ul className="space-y-4 p-5 transition-[background-color] ease-in-out delay-200">
-              {medias.length ? (
-                items
-                  .map((id) => {
-                    const media = Object.values(
-                      medias as IAssortmentMedia[],
-                    ).find((md) => md._id === id);
+        <SortableContext items={items} strategy={verticalListSortingStrategy}>
+          <ul className="space-y-4 transition-[background-color] ease-in-out delay-200">
+            {medias.length ? (
+              items
+                .map((id) => {
+                  const media = Object.values(
+                    medias as IAssortmentMedia[],
+                  ).find((md) => md._id === id);
 
-                    // Safety check to ensure media exists
-                    if (!media) {
-                      console.warn(
-                        `Media with ID ${id} not found in medias array`,
-                      );
-                      return null;
-                    }
-
-                    return (
-                      <AssortmentMediaListItem
-                        id={id}
-                        key={media._id}
-                        media={media}
-                        locale={selectedLocale}
-                        onDelete={onDeleteMedia}
-                      />
+                  // Safety check to ensure media exists
+                  if (!media) {
+                    console.warn(
+                      `Media with ID ${id} not found in medias array`,
                     );
-                  })
-                  .filter(Boolean) // Remove null entries
-              ) : (
-                <NoData
-                  message={formatMessage({
-                    id: 'media',
-                    defaultMessage: 'Media',
-                  })}
-                />
-              )}
-            </ul>
-          </SortableContext>
-        </div>
+                    return null;
+                  }
+
+                  return (
+                    <AssortmentMediaListItem
+                      id={id}
+                      key={media._id}
+                      media={media}
+                      locale={selectedLocale}
+                      onDelete={onDeleteMedia}
+                    />
+                  );
+                })
+                .filter(Boolean) // Remove null entries
+            ) : (
+              <NoData
+                message={formatMessage({
+                  id: 'media',
+                  defaultMessage: 'Media',
+                })}
+              />
+            )}
+          </ul>
+        </SortableContext>
       </div>
     </div>
   );
