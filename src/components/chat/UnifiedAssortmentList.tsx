@@ -1,6 +1,6 @@
 import React from 'react';
-import AssortmentList from '../assortment/AssortmentList';
-import AssortmentResultsSummary from '../assortment/AssortmentResultsSummary';
+import AssortmentList from '../../modules/chat/components/CopilotAssortmentList';
+import AssortmentResultsSummary from '../../modules/chat/components/AssortmentResultsSummary';
 
 interface UnifiedAssortmentListProps {
   assortmentSections: Array<{

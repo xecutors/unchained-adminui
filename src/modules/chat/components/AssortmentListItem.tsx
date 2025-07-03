@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { useIntl } from 'react-intl';
 import classNames from 'classnames';
 import { FolderIcon, CalendarIcon } from '@heroicons/react/24/outline';
-import Badge from '../../modules/common/components/Badge';
-import generateUniqueId from '../../modules/common/utils/getUniqueId';
+import Badge from '../../common/components/Badge';
+import generateUniqueId from '../../common/utils/getUniqueId';
 
 interface AssortmentListItemProps {
   assortment: any;

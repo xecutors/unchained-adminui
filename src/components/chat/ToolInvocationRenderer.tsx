@@ -1,8 +1,8 @@
 import React from 'react';
 import ProductDetail from '../../modules/product/components/ProductDetail';
 import { ProductList } from '../product';
-import AssortmentList from '../assortment/AssortmentList';
-import AssortmentResultsSummary from '../assortment/AssortmentResultsSummary';
+import CopilotAssortmentList from '../../modules/chat/components/CopilotAssortmentList';
+import AssortmentResultsSummary from '../../modules/chat/components/AssortmentResultsSummary';
 import UnknownToolResponse from './UnknownToolResponse';
 import ProductResultsSummary from './ProductResultsSummary';
 import Image from 'next/image';
@@ -70,7 +70,7 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
             assortments={parsed.assortments}
             requestedFilters={parsed?.filters}
           />
-          <AssortmentList assortments={parsed?.assortments} />
+          <CopilotAssortmentList assortments={parsed?.assortments} />
         </div>
       );
     }
@@ -78,7 +78,7 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
     if (toolName === 'assortment_children' && parsed?.assortments?.length) {
       return (
         <div className="mb-6">
-          <AssortmentList assortments={parsed?.assortments} />
+          <CopilotAssortmentList assortments={parsed?.assortments} />
         </div>
       );
     }
@@ -101,7 +101,7 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
     if (listViewTools.includes(toolName) && parsed?.assortment)
       return (
         <div className="mb-6">
-          <AssortmentList assortments={[parsed.assortment]} />
+          <CopilotAssortmentList assortments={[parsed.assortment]} />
         </div>
       );
 
@@ -143,7 +143,7 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
     if (parsed?.assortment && !listViewTools.includes(toolName)) {
       return (
         <div className="mb-6">
-          <AssortmentList assortments={[parsed.assortment]} />
+          <CopilotAssortmentList assortments={[parsed.assortment]} />
         </div>
       );
     }
