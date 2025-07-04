@@ -245,6 +245,7 @@ module.exports = () => {
     '/enrollments/[enrollmentId]': ACTION_ROLES.enrollment.showEnrollment,
   };
   const UnrestrictedPages = [
+    '/install',
     '/log-in',
     '/sign-up',
     '/oauth',
@@ -264,8 +265,8 @@ module.exports = () => {
     '/sign-up',
     '/oauth',
     '/account/forgot-password',
-    '/reset-password',
-    '/graphql',
+    '/reset-password',    
+    '/install',
   ];
 
   const isAdmin = (user) => {

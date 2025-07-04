@@ -5894,6 +5894,15 @@ export type IUsersQuery = {
   }>;
 };
 
+export type IUsersCountQueryVariables = Exact<{
+  includeGuests?: InputMaybe<Scalars['Boolean']['input']>;
+  queryString?: InputMaybe<Scalars['String']['input']>;
+  lastLogin?: InputMaybe<IDateFilterInput>;
+  emailVerified?: InputMaybe<Scalars['Boolean']['input']>;
+}>;
+
+export type IUsersCountQuery = { usersCount: number };
+
 export type IValidateVerifyEmailTokenQueryVariables = Exact<{
   token: Scalars['String']['input'];
 }>;

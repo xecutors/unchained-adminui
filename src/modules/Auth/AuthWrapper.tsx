@@ -1,16 +1,20 @@
 import { useRouter } from 'next/router';
-import React, { useCallback, useEffect, useMemo } from 'react';
-import getConfig from 'next/config';
+import React, { useEffect, useMemo } from 'react';
 import useCurrentUser from '../accounts/hooks/useCurrentUser';
 import AuthContext from './AuthContext';
 
 import loadRoleConfig from '../common/utils/loadRoleConfig';
 import Loading from '../common/components/Loading';
+import useUsersCount from '../accounts/hooks/useUsersCount';
 
 const AuthWrapper = ({ children }) => {
   const router = useRouter();
   const { currentUser, loading } = useCurrentUser();
-
+  const {
+    loading: usersCountLoading,
+    usersCount,
+    error: userCountError,
+  } = useUsersCount();
   const {
     checkAccess,
     isUserAuthenticated,
@@ -33,8 +37,7 @@ const AuthWrapper = ({ children }) => {
   }, [currentUser, checkRole, isUserAdmin]);
 
   useEffect(() => {
-    if (loading) return;
-
+    if (loading || usersCountLoading) return;
     let nextPathname = undefined;
     if (isUserAuthenticated(currentUser)) {
       if (!checkAccess(currentUser, router.pathname)) {
@@ -48,10 +51,11 @@ const AuthWrapper = ({ children }) => {
       ) {
         nextPathname = '/423';
       }
+    } else if (!usersCountLoading && !userCountError && usersCount === 0) {
+      nextPathname = '/install';
     } else if (!checkAccess(currentUser, router.pathname)) {
       nextPathname = '/log-in';
     }
-
     if (nextPathname && router.pathname !== nextPathname) {
       router.replace(nextPathname);
     }
@@ -63,6 +67,7 @@ const AuthWrapper = ({ children }) => {
     isPublicOnlyPage,
     router,
     checkAccess,
+    usersCountLoading,
   ]);
 
   return (
