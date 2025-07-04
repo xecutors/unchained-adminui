@@ -38,7 +38,7 @@ const LanguageListItem = ({ language, onRemove, enableEdit, enableDelete }) => {
       <Table.Cell>
         <Badge
           text={STATUS[language.isActive]}
-          color={language.isActive ? 'emerald' : 'red'}
+          color={language.isActive ? 'emerald' : 'amber'}
           square
         />
       </Table.Cell>

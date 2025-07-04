@@ -51,7 +51,7 @@ const CountryListItem = ({ country, onRemove, enableEdit, enableDelete }) => {
       <Table.Cell className="whitespace-nowrap">
         <Badge
           text={STATUS[country.isActive]}
-          color={country.isActive ? 'emerald' : 'red'}
+          color={country.isActive ? 'emerald' : 'amber'}
           square
         />
       </Table.Cell>

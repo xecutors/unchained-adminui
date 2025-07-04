@@ -53,7 +53,7 @@ const FilterListItem = ({ filter, onRemove }) => {
       <Table.Cell>
         <Badge
           text={STATUS[filter.isActive]}
-          color={filter.isActive ? 'green' : 'red'}
+          color={filter.isActive ? 'emerald' : 'amber'}
           square
         />
       </Table.Cell>

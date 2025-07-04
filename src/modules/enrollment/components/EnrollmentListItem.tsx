@@ -11,8 +11,8 @@ import formatUsername from '../../common/utils/formatUsername';
 const ENROLLMENT_STATUS = {
   INITIAL: 'orange',
   PAUSED: 'yellow',
-  TERMINATED: 'red',
-  ACTIVE: 'green',
+  TERMINATED: 'amber',
+  ACTIVE: 'emerald',
 };
 
 const EnrollmentListItem = ({ enrollment, showUser }) => {
@@ -50,7 +50,7 @@ const EnrollmentListItem = ({ enrollment, showUser }) => {
                 id: 'expired',
                 defaultMessage: 'Expired',
               })}
-              color="red"
+              color="amber"
             />
           ) : (
             formatDateTime(enrollment.expires, {

@@ -9,8 +9,8 @@ import useUpdateProduct from '../hooks/useUpdateProduct';
 
 const PRODUCT_STATUS = {
   DRAFT: 'yellow',
-  ACTIVE: 'green',
-  DELETED: 'red',
+  ACTIVE: 'emerald',
+  DELETED: 'amber',
 };
 
 const ProductListItem = ({

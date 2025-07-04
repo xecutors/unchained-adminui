@@ -26,7 +26,7 @@ const CurrencyListItem = ({ currency, onRemove, enableEdit, enableDelete }) => {
       <Table.Cell>
         <Badge
           text={STATUS[currency.isActive]}
-          color={currency.isActive ? 'green' : 'red'}
+          color={currency.isActive ? 'emerald' : 'amber'}
           square
         />
       </Table.Cell>

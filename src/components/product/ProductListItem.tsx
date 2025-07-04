@@ -8,8 +8,8 @@ import generateUniqueId from '../../modules/common/utils/getUniqueId';
 
 const PRODUCT_STATUS = {
   DRAFT: 'yellow',
-  ACTIVE: 'green',
-  DELETED: 'red',
+  ACTIVE: 'emerald',
+  DELETED: 'amber',
   null: 'yellow',
   undefined: 'yellow',
 };

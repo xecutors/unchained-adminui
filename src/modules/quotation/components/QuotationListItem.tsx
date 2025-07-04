@@ -11,8 +11,8 @@ const QUOTATION_STATUS = {
   REQUESTED: 'orange',
   PROCESSING: 'yellow',
   PROPOSED: 'cyan',
-  REJECTED: 'red',
-  FULLFILLED: 'green',
+  REJECTED: 'amber',
+  FULLFILLED: 'emerald',
 };
 
 const QuotationListItem = ({ quotation, showUser }) => {
@@ -48,7 +48,7 @@ const QuotationListItem = ({ quotation, showUser }) => {
                 id: 'expired',
                 defaultMessage: 'Expired',
               })}
-              color="red"
+              color="amber"
             />
           ) : (
             formatDateTime(quotation?.expires, {

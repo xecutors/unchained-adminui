@@ -16,7 +16,6 @@ const HomePage = () => {
 
   return (
     <>
-      <BreadCrumbs />
       <PageHeader
         headerText={formatMessage({
           id: 'home',
