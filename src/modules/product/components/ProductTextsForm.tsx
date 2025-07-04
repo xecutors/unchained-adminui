@@ -15,7 +15,11 @@ import SelfDocumentingView from '../../common/components/SelfDocumentingView';
 import MarkdownTextAreaField from '../../forms/components/MarkdownTextAreaField';
 import TagInputField from '../../forms/components/TagInputField';
 
-const ProductTextsForm = ({ productId, selectedLocale = null }) => {
+const ProductTextsForm = ({
+  productId,
+  selectedLocale = null,
+  disabled = false,
+}) => {
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
 
@@ -54,6 +58,7 @@ const ProductTextsForm = ({ productId, selectedLocale = null }) => {
   };
 
   const form = useForm({
+    disabled,
     submit: onSubmit,
     successMessage,
     initialValues: {

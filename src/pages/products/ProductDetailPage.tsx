@@ -1,6 +1,5 @@
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
-import { IProduct, IProductTexts } from '../../gql/types';
 
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import Loading from '../../modules/common/components/Loading';
@@ -20,7 +19,6 @@ import CustomError from '../../modules/common/CustomError';
 import { useRouter } from 'next/router';
 import useAuth from '../../modules/Auth/useAuth';
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import Button from '../../modules/common/components/Button';
 
 const ProductDetailPage = ({ slug }) => {
   const { formatMessage } = useIntl();
@@ -36,6 +34,12 @@ const ProductDetailPage = ({ slug }) => {
   const { product, loading, error, extendedData } = useProduct({
     slug,
   });
+  const { query, push } = useRouter();
+  if (loading) return <Loading />;
+  if (!product) {
+    push('/404');
+    return null;
+  }
 
   if (error) {
     console.error('Error loading product:', error);
@@ -209,17 +213,43 @@ const ProductDetailPage = ({ slug }) => {
         depth={3}
         currentPageTitle={product?.texts?.title}
       />
+      {status === 'DELETED' && (
+        <div className="mb-4 rounded-md border border-red-300 bg-red-50 p-4 text-sm text-red-800 dark:border-red-700 dark:bg-red-900/30 dark:text-red-300">
+          {formatMessage({
+            id: 'product_deleted_notice',
+            defaultMessage:
+              'This product has been deleted and is no longer active. Some actions may be restricted.',
+          })}
+        </div>
+      )}
       <div>
         <div className="items-center flex-wrap flex gap-5 min-w-full justify-between">
           <PageHeader
-            headerText={product?.texts?.title || 'Untitled Product'}
+            headerText={
+              <>
+                {product?.texts?.title || 'Untitled Product'}
+                {status === 'DELETED' && (
+                  <span className="ml-3 rounded bg-red-100 px-2 py-1 text-xs font-semibold text-red-800 dark:bg-red-900/40 dark:text-red-300">
+                    {formatMessage({
+                      id: 'deleted_status',
+                      defaultMessage: 'Deleted',
+                    })}
+                  </span>
+                )}
+              </>
+            }
             title={`${product?.texts?.title || 'Product'} (${product?._id})`}
           />
           <div className="publish-and-order flex flex-wrap gap-3">
-            <SelectOptions
-              options={activeOptions}
-              type={formatMessage({ id: 'product', defaultMessage: 'Product' })}
-            />
+            {status !== 'DELETED' && (
+              <SelectOptions
+                options={activeOptions}
+                type={formatMessage({
+                  id: 'product',
+                  defaultMessage: 'Product',
+                })}
+              />
+            )}
             <div className="inline-flex items-center gap-2 rounded-md dark:border-slate-600 px-4 py-2 text-sm font-medium leading-5 shadow-xs bg-white dark:bg-slate-800 h-[38px]">
               <label
                 htmlFor="sequence-input"
@@ -301,7 +331,7 @@ const ProductDetailPage = ({ slug }) => {
           )}
         </div>
       </div>
-      {loading ? (
+      {loading && product ? (
         <Loading />
       ) : (
         <ProductDetail product={product} extendedData={extendedData} />

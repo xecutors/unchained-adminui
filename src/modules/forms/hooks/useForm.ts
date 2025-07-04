@@ -28,6 +28,7 @@ const useForm = ({
   successMessage,
   enableReinitialize,
   validate,
+  disabled = false,
 }: {
   submit: OnSubmitType;
 
@@ -38,6 +39,7 @@ const useForm = ({
   initialErrors?: FormikErrors<FormikValues>;
   enableReinitialize?: boolean;
   successMessage?: string;
+  disabled?: boolean;
   validate?: (
     values: FormikValues,
   ) => void | object | Promise<FormikErrors<FormikValues>>;
@@ -149,7 +151,7 @@ const useForm = ({
     submitError,
     formik,
     setSubmitError,
-    disabled: false,
+    disabled,
   };
 };
 export default useForm;

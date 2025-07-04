@@ -31,11 +31,16 @@ import ProductAssignmentForm from './ProductAssignmentForm';
 import ProductTokenizationForm from './ProductTokenizationForm';
 import DisplayExtendedFields from '../../common/components/DisplayExtendedFields';
 
-const GetCurrentTab = ({ id, selectedView = '', ...extendedData }) => {
+const GetCurrentTab = ({
+  id,
+  selectedView = '',
+  disableAll = false,
+  ...extendedData
+}) => {
   if (selectedView === 'texts')
     return (
       <LocaleWrapper>
-        <ProductTextsForm productId={id} />
+        <ProductTextsForm productId={id} disabled={disableAll} />
       </LocaleWrapper>
     );
   if (selectedView === 'media')
@@ -182,7 +187,11 @@ const ProductDetail = ({ product, extendedData = {} }) => {
         />
       </div>
       <Tab tabItems={productOptions} defaultTab="texts">
-        <GetCurrentTab id={product?._id} {...extendedData} />
+        <GetCurrentTab
+          disableAll={product?.status === 'DELETED'}
+          id={product?._id}
+          {...extendedData}
+        />
       </Tab>
     </>
   );
