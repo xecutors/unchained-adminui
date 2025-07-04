@@ -26,14 +26,14 @@ const LanguageForm = ({
   });
   const form = useForm({
     submit: onSubmit,
-    onSubmitSuccess: (data) => {
+    onSubmitSuccess: (result, values) => {
       // Mark languages step as complete when first language is created
       if (!isEdit) {
         markStepComplete('languages');
       }
 
       if (onSubmitSuccess) {
-        return onSubmitSuccess(data);
+        return onSubmitSuccess(result, values);
       }
       return true;
     },

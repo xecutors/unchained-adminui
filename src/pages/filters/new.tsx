@@ -36,7 +36,7 @@ const AddFilter = () => {
   };
 
   const onSubmitSuccess: OnSubmitSuccessType = (_, { _id }) => {
-    router.push(`/filters?filterId=${_id}`);
+    router.replace(`/filters?filterId=${_id}`);
     return null;
   };
 

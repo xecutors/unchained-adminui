@@ -13,7 +13,7 @@ import useProductTokenization from '../hooks/useProductTokenization';
 import useSmartContractStandards from '../hooks/useSmartContractStandards';
 import useUpdateProductTokenization from '../hooks/useUpdateProductTokenization';
 
-const ProductTokenizationForm = ({ productId }) => {
+const ProductTokenizationForm = ({ productId, disabled = false }) => {
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
   const { smartContractStandards } = useSmartContractStandards();
@@ -44,6 +44,7 @@ const ProductTokenizationForm = ({ productId }) => {
   });
 
   const form = useForm({
+    disabled,
     submit: onSubmit,
     successMessage,
     initialValues: {

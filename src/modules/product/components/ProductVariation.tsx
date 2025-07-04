@@ -8,7 +8,11 @@ import ProductVariationForm from './ProductVariationForm';
 
 import ProductVariationsList from './ProductVariationsList';
 
-const ProductVariation = ({ productId, selectedLocale = null }) => {
+const ProductVariation = ({
+  productId,
+  selectedLocale = null,
+  disabled = false,
+}) => {
   const { createProductVariation } = useCreateProductVariation();
   const { formatMessage } = useIntl();
 
@@ -30,7 +34,7 @@ const ProductVariation = ({ productId, selectedLocale = null }) => {
     <div className="mt-6 overflow-hidden rounded-md">
       <div className="lg:grid lg:grid-cols-12">
         <div className="mb-5 lg:col-span-5 lg:pr-5 ">
-          <ProductVariationForm onSubmit={onSubmit} />
+          <ProductVariationForm onSubmit={onSubmit} disabled={disabled} />
         </div>
         <div className="lg:col-span-7 lg:w-full">
           <div className="flex flex-col gap-y-2">

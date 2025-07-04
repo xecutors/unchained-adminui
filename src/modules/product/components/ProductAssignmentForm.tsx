@@ -46,7 +46,7 @@ const normalizeProduct = ({ _id, texts }: any) => ({
   label: texts?.title,
 });
 
-const ProductAssignmentForm = ({ proxyId }) => {
+const ProductAssignmentForm = ({ proxyId, disabled = false }) => {
   const { formatMessage } = useIntl();
   const { addProductAssignment } = useAddProductAssignment();
   const { removeProductAssignment } = useRemoveProductAssignment();
@@ -170,6 +170,7 @@ const ProductAssignmentForm = ({ proxyId }) => {
                     defaultMessage: 'Search product',
                   })}
                   isLoading={loading}
+                  isDisabled={disabled}
                   onChange={handleProductAssignment(columns) as any}
                   onInputChange={debouncedQuery}
                   value={queryString}

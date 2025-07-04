@@ -18,7 +18,7 @@ import useAuth from '../../modules/Auth/useAuth';
 const PaymentProviderDetailPage = ({ paymentProviderId }) => {
   const { formatMessage } = useIntl();
   const { setModal } = useModal();
-  const { push: routerPush } = useRouter();
+  const { push: routerPush, replace } = useRouter();
   const { hasRole } = useAuth();
 
   const { updatePaymentProvider } = useUpdatePaymentProvider();
@@ -37,7 +37,7 @@ const PaymentProviderDetailPage = ({ paymentProviderId }) => {
   };
 
   const onSubmitSuccess = () => {
-    routerPush('/payment-provider');
+    replace('/payment-provider');
   };
 
   const handleOnClick = async () => {

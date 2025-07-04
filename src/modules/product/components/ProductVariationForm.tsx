@@ -11,7 +11,13 @@ import TextField from '../../forms/components/TextField';
 import useForm, { OnSubmitType } from '../../forms/hooks/useForm';
 import useProductVariationTypes from '../hooks/useProductVariationTypes';
 
-const ProductVariationForm = ({ onSubmit }: { onSubmit: OnSubmitType }) => {
+const ProductVariationForm = ({
+  onSubmit,
+  disabled = false,
+}: {
+  onSubmit: OnSubmitType;
+  disabled?: boolean;
+}) => {
   const { formatMessage } = useIntl();
 
   const { variationTypes } = useProductVariationTypes();
@@ -22,6 +28,7 @@ const ProductVariationForm = ({ onSubmit }: { onSubmit: OnSubmitType }) => {
   });
 
   const form = useForm({
+    disabled,
     submit: onSubmit,
     successMessage,
     initialValues: {

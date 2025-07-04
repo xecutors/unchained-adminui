@@ -12,7 +12,7 @@ import useForm from '../../forms/hooks/useForm';
 import useProductWarehousing from '../hooks/useProductWarehousing';
 import useUpdateProductWarehousing from '../hooks/useUpdateProductWarehousing';
 
-const WarehousingForm = ({ productId }) => {
+const WarehousingForm = ({ productId, disabled = false }) => {
   const { formatMessage } = useIntl();
   const { product } = useProductWarehousing({ productId });
   const { hasRole } = useAuth();
@@ -35,6 +35,7 @@ const WarehousingForm = ({ productId }) => {
   };
 
   const form = useForm({
+    disabled,
     submit: onSubmit,
     successMessage,
     initialValues: {

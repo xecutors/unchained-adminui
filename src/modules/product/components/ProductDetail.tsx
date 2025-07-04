@@ -49,20 +49,24 @@ const GetCurrentTab = ({
         <ProductMediaForm productId={id} />
       </LocaleWrapper>
     );
-  if (selectedView === 'commerce') return <CommerceForm productId={id} />;
-  if (selectedView === 'supply') return <SupplyForm productId={id} />;
-  if (selectedView === 'warehousing') return <WarehousingForm productId={id} />;
-  if (selectedView === 'variations') return <ProductVariation productId={id} />;
+  if (selectedView === 'commerce')
+    return <CommerceForm productId={id} disabled={disableAll} />;
+  if (selectedView === 'supply')
+    return <SupplyForm productId={id} disabled={disableAll} />;
+  if (selectedView === 'warehousing')
+    return <WarehousingForm productId={id} disabled={disableAll} />;
+  if (selectedView === 'variations')
+    return <ProductVariation productId={id} disabled={disableAll} />;
   if (selectedView === 'bundled_products')
-    return <BundleProducts productId={id} />;
+    return <BundleProducts productId={id} disabled={disableAll} />;
   if (selectedView === 'subscriptions')
-    return <SubscriptionForm productId={id} />;
+    return <SubscriptionForm productId={id} disabled={disableAll} />;
   if (selectedView === 'reviews') return <ProductReviews productId={id} />;
   if (selectedView === 'assignments')
-    return <ProductAssignmentForm proxyId={id} />;
+    return <ProductAssignmentForm proxyId={id} disabled={disableAll} />;
 
   if (selectedView === 'token') {
-    return <ProductTokenizationForm productId={id} />;
+    return <ProductTokenizationForm productId={id} disabled={disableAll} />;
   }
   if (selectedView === 'extended') {
     return <DisplayExtendedFields data={extendedData} />;

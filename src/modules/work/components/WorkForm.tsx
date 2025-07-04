@@ -29,7 +29,7 @@ const WorkForm = () => {
   });
 
   const onSubmitSuccess: OnSubmitSuccessType = (_, { _id }) => {
-    router.push(`/works?workerId=${_id}`);
+    router.replace(`/works?workerId=${_id}`);
     return true;
   };
 

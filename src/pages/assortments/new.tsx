@@ -15,7 +15,7 @@ const AddAssortments = () => {
   const { createAssortment } = useCreateAssortment();
 
   const onSubmitSuccess = (success, data) => {
-    router.push(`/assortments?assortmentSlug=${generateUniqueId(data)}`);
+    router.replace(`/assortments?assortmentSlug=${generateUniqueId(data)}`);
   };
 
   const onSubmit = async ({ title, subtitle, isRoot, tags, locale }) => {

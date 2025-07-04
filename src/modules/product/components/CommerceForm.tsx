@@ -33,7 +33,7 @@ const normalizeCatalogPrices = (prices = []) => {
   }));
 };
 
-const CommerceForm = ({ productId }) => {
+const CommerceForm = ({ productId, disabled = false }) => {
   const { formatMessage } = useIntl();
   const { catalogPrices } = useProductCatalogPrices({ productId });
   const { hasRole } = useAuth();
@@ -55,6 +55,7 @@ const CommerceForm = ({ productId }) => {
     defaultMessage: 'Saved',
   });
   const form = useForm({
+    disabled,
     submit: onSubmit,
     successMessage,
     enableReinitialize: true,

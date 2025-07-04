@@ -17,7 +17,7 @@ import useAuth from '../../modules/Auth/useAuth';
 
 const DeliveryProviderDetailPage = ({ deliveryProviderId }) => {
   const { formatMessage } = useIntl();
-  const { push: routerPush } = useRouter();
+  const { push: routerPush, replace } = useRouter();
   const { setModal } = useModal();
   const { hasRole } = useAuth();
 
@@ -39,7 +39,7 @@ const DeliveryProviderDetailPage = ({ deliveryProviderId }) => {
   };
 
   const onSubmitSuccess = () => {
-    routerPush('/delivery-provider');
+    replace('/delivery-provider');
   };
 
   const handleOnClick = async () => {

@@ -30,14 +30,13 @@ const CurrencyForm = ({
 
   const form = useForm({
     submit: onSubmit,
-    onSubmitSuccess: (data) => {
-      // Mark currencies step as complete when first currency is created
+    onSubmitSuccess: (result, values) => {
       if (!isEdit) {
         markStepComplete('currencies');
       }
 
       if (onSubmitSuccess) {
-        return onSubmitSuccess(data);
+        return onSubmitSuccess(result, values);
       }
       return true;
     },

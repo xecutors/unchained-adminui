@@ -11,7 +11,7 @@ import { validateInteger } from '../../forms/lib/validators';
 import useProductSupply from '../hooks/useProductSupply';
 import useUpdateProductSupply from '../hooks/useUpdateProductSupply';
 
-const SupplyForm = ({ productId }) => {
+const SupplyForm = ({ productId, disabled = false }) => {
   const { formatMessage } = useIntl();
   const successMessage = formatMessage({
     id: 'saved',
@@ -35,6 +35,7 @@ const SupplyForm = ({ productId }) => {
   };
 
   const form = useForm({
+    disabled,
     submit: onSubmit,
     getSubmitErrorMessage: (error) => {
       if (

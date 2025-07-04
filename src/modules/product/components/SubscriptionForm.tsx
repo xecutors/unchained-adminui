@@ -15,7 +15,7 @@ import useProductPlan from '../hooks/useProductPlan';
 import useProductPlanConfigurationOptions from '../hooks/useProductPlanConfigurationOptions';
 import useUpdateProductPlan from '../hooks/useUpdateProductPlan';
 
-const SubscriptionForm = ({ productId }) => {
+const SubscriptionForm = ({ productId, disabled = false }) => {
   const { formatMessage } = useIntl();
   const { configurationIntervals, usageCalculationTypes } =
     useProductPlanConfigurationOptions();
@@ -48,6 +48,7 @@ const SubscriptionForm = ({ productId }) => {
   };
 
   const form = useForm({
+    disabled,
     submit: onSubmit,
     successMessage,
     initialValues: {

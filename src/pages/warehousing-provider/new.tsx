@@ -38,7 +38,7 @@ const NewPaymentProvider = () => {
   const router = useRouter();
 
   const onSubmitSuccess = (_, { _id }) => {
-    router.push(`/warehousing-provider?warehousingProviderId==${_id}`);
+    router.replace(`/warehousing-provider?warehousingProviderId==${_id}`);
   };
 
   return (

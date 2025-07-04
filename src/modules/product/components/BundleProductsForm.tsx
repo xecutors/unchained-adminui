@@ -18,7 +18,10 @@ const normalizeProduct = (products = []) => {
     image: media?.length ? media[0]?.file.url : null,
   }));
 };
-const BundleProductsForm = ({ productId: currentProductId }) => {
+const BundleProductsForm = ({
+  productId: currentProductId,
+  disabled = false,
+}) => {
   const [queryString, setQueryString] = useState('');
   const { createProductBundleItem } = useCreateProductBundleItem();
   const { hasRole } = useAuth();
@@ -42,6 +45,7 @@ const BundleProductsForm = ({ productId: currentProductId }) => {
     defaultMessage: 'Bundle product added successfully',
   });
   const form = useForm({
+    disabled,
     submit: onSubmit,
     successMessage,
     onSubmitSuccess: () => {

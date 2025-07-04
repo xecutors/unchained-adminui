@@ -35,7 +35,7 @@ const NewDeliveryProvider = () => {
   const router = useRouter();
 
   const onSubmitSuccess = (_, { _id }) => {
-    router.push(`/delivery-provider?deliveryProviderId=${_id}`);
+    router.replace(`/delivery-provider?deliveryProviderId=${_id}`);
   };
 
   return (

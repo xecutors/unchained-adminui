@@ -33,14 +33,14 @@ const CountryForm = ({
   const { currencies } = useCurrencies();
   const form = useForm({
     submit: onSubmit,
-    onSubmitSuccess: (data) => {
+    onSubmitSuccess: (result, values) => {
       // Mark countries step as complete when first country is created
       if (!isEdit) {
         markStepComplete('countries');
       }
 
       if (onSubmitSuccess) {
-        return onSubmitSuccess(data);
+        return onSubmitSuccess(result, values);
       }
       return true;
     },
