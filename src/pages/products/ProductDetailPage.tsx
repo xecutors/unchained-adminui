@@ -34,9 +34,8 @@ const ProductDetailPage = ({ slug }) => {
   const { product, loading, error, extendedData } = useProduct({
     slug,
   });
-  const { query, push } = useRouter();
-  if (loading) return <Loading />;
-  if (!product) {
+  const { push } = useRouter();
+  if (!product && !loading) {
     push('/404');
     return null;
   }
