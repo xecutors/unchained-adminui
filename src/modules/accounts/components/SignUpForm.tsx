@@ -9,6 +9,8 @@ import PasswordField from '../../forms/components/PasswordField';
 import TextField from '../../forms/components/TextField';
 
 import useForm from '../../forms/hooks/useForm';
+import Toggle from '../../common/components/Toggle';
+import { useEffect, useState } from 'react';
 const SignUpForm = ({
   onSubmit,
   onSubmitSuccess,
@@ -16,6 +18,7 @@ const SignUpForm = ({
   onAuthenticateWithDeviceChange,
 }) => {
   const { formatMessage } = useIntl();
+  const [webauthnSupported, setWebauthnSupported] = useState(false);
 
   const form = useForm({
     getSubmitErrorMessage: (error) => {
@@ -43,6 +46,13 @@ const SignUpForm = ({
       plainPassword: null,
     },
   });
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.PublicKeyCredential) {
+      setWebauthnSupported(true);
+    }
+  }, []);
+
   return (
     <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-4 text-center">
@@ -110,6 +120,17 @@ const SignUpForm = ({
                     />
                   </div>
                 </>
+              )}
+              {webauthnSupported && (
+                <Toggle
+                  onToggle={onAuthenticateWithDeviceChange}
+                  toggleText={formatMessage({
+                    id: 'use_authenticator',
+                    defaultMessage: 'Use authenticator',
+                  })}
+                  className="ml-2 my-3"
+                  active={authenticateWithDevice}
+                />
               )}
             </div>
             <FormErrors />
