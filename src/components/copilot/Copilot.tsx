@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, useLayoutEffect } from 'react';
 import { useIntl } from 'react-intl';
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
 import useCurrentUser from '../../modules/accounts/hooks/useCurrentUser';
@@ -13,15 +13,7 @@ import { useAvailableTools } from '../../modules/chat/hooks/useAvailableTools';
 const Copilot: React.FC = () => {
   const { formatMessage } = useIntl();
   const chatContext = useChatContext();
-  const {
-    messages,
-    status,
-    reload,
-    handleSubmit,
-    handleInputChange,
-    input,
-    append,
-  } = chatContext;
+  const { messages, status, reload, append } = chatContext;
   const { chatEnabled } = useChatEndpointChecker();
   const { currentUser } = useCurrentUser();
   const {
@@ -67,20 +59,12 @@ const Copilot: React.FC = () => {
     return () => clearTimeout(timer);
   }, [status, chatEnabled, messages.length, append]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const el = bottomRef.current;
-    if (!el) return;
+    if (!el || messages.length === 0) return;
 
-    const { top, bottom } = el.getBoundingClientRect();
-    const inView =
-      top >= 0 &&
-      bottom <= (window.innerHeight || document.documentElement.clientHeight);
-
-    if (!inView) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
-  }, [messages]);
-
+    el.scrollIntoView({ behavior: 'smooth' });
+  }, [messages.length]);
   if (!chatEnabled) {
     return (
       <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-slate-950 font-sans">

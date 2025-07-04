@@ -9,29 +9,65 @@ import PasswordField from '../../forms/components/PasswordField';
 import TextField from '../../forms/components/TextField';
 
 import useForm from '../../forms/hooks/useForm';
+import Toggle from '../../common/components/Toggle';
+import { useEffect, useState } from 'react';
 const SignUpForm = ({
   onSubmit,
   onSubmitSuccess,
   authenticateWithDevice,
   onAuthenticateWithDeviceChange,
+  disableLoginRedirectLink = false,
+  submitButtonText = null,
+  formHeaderText = null,
 }) => {
   const { formatMessage } = useIntl();
+  const [webauthnSupported, setWebauthnSupported] = useState(false);
 
   const form = useForm({
     getSubmitErrorMessage: (error) => {
-      if (error?.message?.toLowerCase().includes('email already exists'))
+      if (error?.message?.toLowerCase().includes('email already exists')) {
+        form.formik.setFieldError(
+          'email',
+          formatMessage({
+            id: 'email_exists_error',
+            defaultMessage: 'Email already exists',
+          }),
+        );
         return formatMessage({
           id: 'email_exists_error',
           defaultMessage: 'Email already exists',
         });
+      }
       if (
         error?.message?.includes('challenge mismatch') ||
         error?.message?.includes('already exists')
-      )
+      ) {
+        form.formik.setFieldError(
+          'username',
+          formatMessage({
+            id: 'username_or_email_taken',
+            defaultMessage:
+              'Username taken, Please provided different username',
+          }),
+        );
         return formatMessage({
           id: 'username_or_email_taken',
           defaultMessage: 'Username taken, Please provided different username',
         });
+      }
+      if (error?.extensions?.code.includes('PasswordInvalidError')) {
+        form.formik.setFieldError(
+          'plainPassword',
+          formatMessage({
+            id: 'password_insecure',
+            defaultMessage: 'Password is invalid, maybe too insecure',
+          }),
+        );
+        return formatMessage({
+          id: 'password_insecure',
+          defaultMessage: 'Password is invalid, maybe too insecure',
+        });
+      }
 
       return error?.message || '';
     },
@@ -43,6 +79,13 @@ const SignUpForm = ({
       plainPassword: null,
     },
   });
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.PublicKeyCredential) {
+      setWebauthnSupported(true);
+    }
+  }, []);
+
   return (
     <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-4 text-center">
@@ -58,10 +101,11 @@ const SignUpForm = ({
             })}
           />
           <h2 className="text-center text-3xl text-slate-900 dark:text-slate-200">
-            {formatMessage({
-              id: 'sign_up_header',
-              defaultMessage: 'Create new account',
-            })}
+            {formHeaderText ||
+              formatMessage({
+                id: 'sign_up_header',
+                defaultMessage: 'Create new account',
+              })}
           </h2>
         </div>
         <FormWrapper>
@@ -111,6 +155,17 @@ const SignUpForm = ({
                   </div>
                 </>
               )}
+              {webauthnSupported && (
+                <Toggle
+                  onToggle={onAuthenticateWithDeviceChange}
+                  toggleText={formatMessage({
+                    id: 'use_authenticator',
+                    defaultMessage: 'Use authenticator',
+                  })}
+                  className="ml-2 my-3"
+                  active={authenticateWithDevice}
+                />
+              )}
             </div>
             <FormErrors />
 
@@ -135,28 +190,30 @@ const SignUpForm = ({
                   </svg>
                 </span>
 
-                {formatMessage({
-                  id: 'sign_up',
-                  defaultMessage: 'Sign up',
-                })}
+                {submitButtonText ||
+                  formatMessage({
+                    id: 'sign_up',
+                    defaultMessage: 'Sign up',
+                  })}
               </button>
             </div>
-
-            <div className="text-sm text-slate-400 dark:text-slate-200">
-              {formatMessage({
-                id: 'already_got_a_user',
-                defaultMessage: 'Already got a user?',
-              })}
-              <Link
-                href="/log-in"
-                className=" ml-2 font-medium text-slate-950 hover:text-slate-900 dark:text-slate-800 dark:hover:text-slate-400"
-              >
+            {!disableLoginRedirectLink && (
+              <div className="text-sm text-slate-400 dark:text-slate-200">
                 {formatMessage({
-                  id: 'log_in',
-                  defaultMessage: 'Log in',
+                  id: 'already_got_a_user',
+                  defaultMessage: 'Already got a user?',
                 })}
-              </Link>
-            </div>
+                <Link
+                  href="/log-in"
+                  className=" ml-2 font-medium text-slate-950 hover:text-slate-900 dark:text-slate-800 dark:hover:text-slate-400"
+                >
+                  {formatMessage({
+                    id: 'log_in',
+                    defaultMessage: 'Log in',
+                  })}
+                </Link>
+              </div>
+            )}
           </Form>
         </FormWrapper>
       </div>

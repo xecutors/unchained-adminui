@@ -98,7 +98,7 @@ const HomePage = () => {
                   })}
                 </span>
                 <span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-slate-100 text-slate-800 dark:bg-slate-900/30 dark:text-slate-400">
-                  {shopInfo?.version || '3.4.0'}
+                  {shopInfo?.version || 'n/a'}
                 </span>
               </div>
               <div className="flex items-center justify-between">
@@ -109,8 +109,8 @@ const HomePage = () => {
                   })}
                 </span>
                 <span className="text-sm text-slate-900 dark:text-slate-100">
-                  {shopInfo?.language?.name || 'German'} (
-                  {shopInfo?.language?.isoCode || 'de'})
+                  {shopInfo?.language?.name || 'n/a'} (
+                  {shopInfo?.language?.isoCode || 'n/a'})
                 </span>
               </div>
               <div className="flex items-center justify-between">
@@ -122,10 +122,10 @@ const HomePage = () => {
                 </span>
                 <span className="text-sm text-slate-900 dark:text-slate-100 flex items-center gap-2">
                   <span className="text-base">
-                    {shopInfo?.country?.flagEmoji || '🇨🇭'}
+                    {shopInfo?.country?.flagEmoji || 'n/a'}
                   </span>
-                  {shopInfo?.country?.name || 'Switzerland'} (
-                  {shopInfo?.country?.isoCode || 'CH'})
+                  {shopInfo?.country?.name || 'n/a'} (
+                  {shopInfo?.country?.isoCode || 'n/a'})
                 </span>
               </div>
               <div className="flex items-center justify-between">
@@ -136,7 +136,7 @@ const HomePage = () => {
                   })}
                 </span>
                 <span className="text-sm text-slate-900 dark:text-slate-100">
-                  {shopInfo?.currency?.isoCode || 'CHF'}
+                  {shopInfo?.country?.defaultCurrency?.isoCode || 'n/a'}
                 </span>
               </div>
             </div>

@@ -3398,6 +3398,7 @@ export enum IRoleAction {
   ViewTokens = 'viewTokens',
   ViewTranslations = 'viewTranslations',
   ViewUser = 'viewUser',
+  ViewUserCount = 'viewUserCount',
   ViewUserEnrollments = 'viewUserEnrollments',
   ViewUserOrders = 'viewUserOrders',
   ViewUserPrivateInfos = 'viewUserPrivateInfos',
@@ -5893,6 +5894,15 @@ export type IUsersQuery = {
   }>;
 };
 
+export type IUsersCountQueryVariables = Exact<{
+  includeGuests?: InputMaybe<Scalars['Boolean']['input']>;
+  queryString?: InputMaybe<Scalars['String']['input']>;
+  lastLogin?: InputMaybe<IDateFilterInput>;
+  emailVerified?: InputMaybe<Scalars['Boolean']['input']>;
+}>;
+
+export type IUsersCountQuery = { usersCount: number };
+
 export type IValidateVerifyEmailTokenQueryVariables = Exact<{
   token: Scalars['String']['input'];
 }>;
@@ -6987,6 +6997,48 @@ export type IConfirmMediaUploadMutation = {
     size: number;
     url?: string | null;
   };
+};
+
+export type IBasicShopStatusQueryVariables = Exact<{ [key: string]: never }>;
+
+export type IBasicShopStatusQuery = {
+  countriesCount: number;
+  currenciesCount: number;
+  languagesCount: number;
+  productsCount: number;
+  assortmentsCount: number;
+  filtersCount: number;
+};
+
+export type IShopConfigurationStatusQueryVariables = Exact<{
+  [key: string]: never;
+}>;
+
+export type IShopConfigurationStatusQuery = {
+  countriesCount: number;
+  currenciesCount: number;
+  languagesCount: number;
+  productsCount: number;
+  assortmentsCount: number;
+  filtersCount: number;
+  paymentProvidersCount: number;
+  deliveryProvidersCount: number;
+  warehousingProvidersCount: number;
+  paymentProviders: Array<{
+    _id: string;
+    isActive?: boolean | null;
+    configurationError?: IPaymentProviderError | null;
+  }>;
+  deliveryProviders: Array<{
+    _id: string;
+    isActive?: boolean | null;
+    configurationError?: IDeliveryProviderError | null;
+  }>;
+  warehousingProviders: Array<{
+    _id: string;
+    isActive?: boolean | null;
+    configurationError?: IWarehousingProviderError | null;
+  }>;
 };
 
 export type IShopInfoQueryVariables = Exact<{ [key: string]: never }>;

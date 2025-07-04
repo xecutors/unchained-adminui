@@ -1,8 +1,8 @@
 import React from 'react';
 import ProductDetail from '../../modules/product/components/ProductDetail';
 import { ProductList } from '../product';
-import AssortmentList from '../assortment/AssortmentList';
-import AssortmentResultsSummary from '../assortment/AssortmentResultsSummary';
+import CopilotAssortmentList from '../../modules/chat/components/CopilotAssortmentList';
+import AssortmentResultsSummary from '../../modules/chat/components/AssortmentResultsSummary';
 import UnknownToolResponse from './UnknownToolResponse';
 import ProductResultsSummary from './ProductResultsSummary';
 import Image from 'next/image';
@@ -10,12 +10,10 @@ import ShopInfoCard from './ShopInfo';
 
 interface ToolInvocationRendererProps {
   part: any;
-  hideProducts?: boolean;
 }
 
 const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
   part,
-  hideProducts = false,
 }) => {
   const { toolName, result } = part.toolInvocation ?? {};
   if (!toolName || !result?.content?.length) return null;
@@ -40,20 +38,18 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
 
     const parsed = JSON.parse(textString);
     const listViewTools = [
-      'create_product',
-      'update_product',
-      'update_product_price',
-      'set_product_price',
-      'modify_product_price',
-      'change_product_price',
-      'remove_product',
-      'publish_product',
-      'unpublish_product',
-      'create_assortment',
-      'update_assortment',
+      'product_create',
+      'product_update',
+      'product_updateCommerce',
+      'product_remove',
+      'product_publish',
+      'product_unpublish',
+      'assortment_create',
+      'assortment_update',
+      'assortment_remove',
     ];
 
-    if (toolName === 'list_products' && parsed?.products?.length && !hideProducts) {
+    if (toolName === 'product_list' && parsed?.products?.length) {
       return (
         <div className="mb-6">
           <ProductResultsSummary
@@ -65,22 +61,22 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
       );
     }
 
-    if (toolName === 'list_assortments' && parsed?.assortments?.length && !hideProducts) {
+    if (toolName === 'assortment_list' && parsed?.assortments?.length) {
       return (
         <div className="mb-6">
           <AssortmentResultsSummary
             assortments={parsed.assortments}
             requestedFilters={parsed?.filters}
           />
-          <AssortmentList assortments={parsed?.assortments} />
+          <CopilotAssortmentList assortments={parsed?.assortments} />
         </div>
       );
     }
 
-    if (toolName === 'assortment_children' && parsed?.assortments?.length && !hideProducts) {
+    if (toolName === 'assortment_getChildren' && parsed?.assortments?.length) {
       return (
         <div className="mb-6">
-          <AssortmentList assortments={parsed?.assortments} />
+          <CopilotAssortmentList assortments={parsed?.assortments} />
         </div>
       );
     }
@@ -93,7 +89,7 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
         <Image alt="" src={parsed?.imageUrl as any} width={1200} height={50} />
       );
     }
-    if (listViewTools.includes(toolName) && parsed?.product && !hideProducts)
+    if (listViewTools.includes(toolName) && parsed?.product)
       return (
         <div className="mb-6">
           <ProductList products={[parsed.product]} />
@@ -103,11 +99,11 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
     if (listViewTools.includes(toolName) && parsed?.assortment)
       return (
         <div className="mb-6">
-          <AssortmentList assortments={[parsed.assortment]} />
+          <CopilotAssortmentList assortments={[parsed.assortment]} />
         </div>
       );
 
-    if (toolName === 'get_product' && parsed?.product) {
+    if (toolName === 'product_get' && parsed?.product) {
       return (
         <div className="mb-6">
           <ProductDetail
@@ -120,7 +116,7 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
       );
     }
 
-    if (toolName === 'assortment_products' && !hideProducts) {
+    if (toolName === 'assortment_getProducts') {
       return (
         <div className="mb-6">
           <ProductResultsSummary
@@ -133,7 +129,7 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
     }
 
     // Check if any tool returned product data and show it
-    if (parsed?.product && !listViewTools.includes(toolName) && !hideProducts) {
+    if (parsed?.product && !listViewTools.includes(toolName)) {
       return (
         <div className="mb-6">
           <ProductList products={[parsed.product]} />
@@ -142,10 +138,10 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
     }
 
     // Check if any tool returned assortment data and show it
-    if (parsed?.assortment && !listViewTools.includes(toolName) && !hideProducts) {
+    if (parsed?.assortment && !listViewTools.includes(toolName)) {
       return (
         <div className="mb-6">
-          <AssortmentList assortments={[parsed.assortment]} />
+          <CopilotAssortmentList assortments={[parsed.assortment]} />
         </div>
       );
     }
