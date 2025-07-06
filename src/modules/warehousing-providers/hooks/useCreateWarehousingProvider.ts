@@ -28,6 +28,7 @@ const useCreateWarehousingProvider = () => {
   }: ICreateWarehousingProviderMutationVariables) => {
     return createWarehousingProviderMutation({
       variables: { warehousingProvider: { adapterKey, type } },
+      refetchQueries: ['WarehousingProviders', 'ShopStatus'],
     });
   };
 

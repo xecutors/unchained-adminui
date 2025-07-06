@@ -25,7 +25,7 @@ const useRemoveWarehousingProvider = () => {
       variables: {
         warehousingProviderId,
       },
-      refetchQueries: ['WarehousingProviders'],
+      refetchQueries: ['WarehousingProviders', 'ShopStatus'],
     });
   };
 

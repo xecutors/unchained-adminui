@@ -29,6 +29,7 @@ const useCreateDeliveryProvider = () => {
   }: ICreateDeliveryProviderMutationVariables) => {
     return createDeliveryProviderMutation({
       variables: { deliveryProvider: { adapterKey, type } },
+      refetchQueries: ['DeliveryProviders', 'ShopStatus'],
     });
   };
 

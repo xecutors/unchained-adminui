@@ -25,7 +25,7 @@ const useRemoveCountry = () => {
   }: IRemoveCountryMutationVariables) => {
     return removeCountryMutation({
       variables: { countryId },
-      refetchQueries: ['Countries'],
+      refetchQueries: ['Countries', 'ShopStatus'],
     });
   };
 

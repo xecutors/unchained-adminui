@@ -25,7 +25,7 @@ const useRemovePaymentProvider = () => {
       variables: {
         paymentProviderId,
       },
-      refetchQueries: ['PaymentProviders'],
+      refetchQueries: ['PaymentProviders', 'ShopStatus'],
     });
   };
 

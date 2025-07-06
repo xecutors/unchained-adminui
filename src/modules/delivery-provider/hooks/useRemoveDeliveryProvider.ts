@@ -25,7 +25,7 @@ const useRemoveDeliveryProvider = () => {
       variables: {
         deliveryProviderId,
       },
-      refetchQueries: ['DeliveryProviders'],
+      refetchQueries: ['DeliveryProviders', 'ShopStatus'],
     });
   };
 

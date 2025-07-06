@@ -8,11 +8,10 @@ import {
   RocketLaunchIcon,
   CheckCircleIcon,
 } from '@heroicons/react/24/outline';
-import useShopConfiguration, {
-  ConfigurationStep,
-} from '../../modules/common/hooks/useShopConfiguration';
+import useShopConfiguration from '../../modules/common/hooks/useShopConfiguration';
 import ProgressIndicator from './ProgressIndicator';
 import SetupStepCard from './SetupStepCard';
+import { Step } from '../../modules/common/utils/getSetupStepsConfigurationsMeta';
 
 interface ShopSetupChecklistProps {
   onDismiss?: () => void;
@@ -30,8 +29,7 @@ const ShopSetupChecklist: React.FC<ShopSetupChecklistProps> = ({
     commerce: false,
     content: false,
   });
-  const { isFullyConfigured, commerceStepsComplete, completedRequiredSteps } =
-    configuration;
+  const { isFullyConfigured } = configuration;
   const [isDismissed, setIsDismissed] = useState(false);
 
   const toggleSection = (section: keyof typeof expandedSections) => {
@@ -114,16 +112,10 @@ const ShopSetupChecklist: React.FC<ShopSetupChecklistProps> = ({
     );
   }
 
-  const essentialSteps = configuration.essentialSteps;
-  const commerceSteps = configuration.commerceSteps;
-  const contentSteps = configuration.contentSteps;
-
-  const getCategoryProgress = (steps: ConfigurationStep) => {
-    if (Object.keys(steps).length === 0) return 100;
-    const completed = Object.entries(steps).filter(
-      ([step, val]) => val.isComplete,
-    ).length;
-    return Math.round((completed / Object.keys(steps).length) * 100);
+  const getCategoryProgress = (steps: Step[]) => {
+    if (steps.length === 0) return 100;
+    const completed = steps.filter((step) => step.isComplete).length;
+    return Math.round((completed / steps.length) * 100);
   };
 
   const getCategoryTitle = (category: string) => {
@@ -172,7 +164,7 @@ const ShopSetupChecklist: React.FC<ShopSetupChecklistProps> = ({
 
   const renderSection = (
     category: keyof typeof expandedSections,
-    steps: ConfigurationStep,
+    steps: Step[],
     isComplete: boolean = false,
   ) => {
     const isExpanded = expandedSections[category];
@@ -211,7 +203,7 @@ const ShopSetupChecklist: React.FC<ShopSetupChecklistProps> = ({
 
         {isExpanded && (
           <div className="p-4 space-y-3 bg-white dark:bg-slate-800">
-            {Object.values(steps).map((step) => (
+            {steps.map((step) => (
               <SetupStepCard key={step.icon} step={step} />
             ))}
           </div>
@@ -258,12 +250,8 @@ const ShopSetupChecklist: React.FC<ShopSetupChecklistProps> = ({
                   })}
                 </span>
                 <span className="font-medium text-slate-900 dark:text-slate-100">
-                  {
-                    Object.entries(configuration.steps).filter(
-                      ([s, v]) => v.isComplete,
-                    ).length
-                  }{' '}
-                  of {Object.keys(configuration.steps).length} complete
+                  {configuration.completedSteps.length} of{' '}
+                  {Object.keys(configuration.steps).length} complete
                 </span>
               </div>
               <ProgressIndicator
@@ -285,17 +273,17 @@ const ShopSetupChecklist: React.FC<ShopSetupChecklistProps> = ({
       <div className="p-6 space-y-4">
         {renderSection(
           'essential',
-          essentialSteps,
+          configuration.essentialSteps,
           configuration.essentialStepsComplete,
         )}
         {renderSection(
           'commerce',
-          commerceSteps,
+          configuration.commerceSteps,
           configuration.commerceStepsComplete,
         )}
         {renderSection(
           'content',
-          contentSteps,
+          configuration.contentSteps,
           configuration.contentStepsComplete,
         )}
 

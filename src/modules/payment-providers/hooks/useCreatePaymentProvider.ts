@@ -27,6 +27,7 @@ const useCreatePaymentProvider = () => {
   }: ICreatePaymentProviderMutationVariables) => {
     return createPaymentProviderMutation({
       variables: { paymentProvider },
+      refetchQueries: ['PaymentProviders', 'ShopStatus'],
     });
   };
   const newPaymentProvider = data?.createPaymentProvider;

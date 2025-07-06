@@ -31,6 +31,7 @@ const useCreateCurrency = () => {
           decimals: parseInt((decimals || '2') as string, 10),
         },
       },
+      refetchQueries: ['Currencies', 'ShopStatus'],
     });
   };
   const newCurrency = data?.createCurrency;

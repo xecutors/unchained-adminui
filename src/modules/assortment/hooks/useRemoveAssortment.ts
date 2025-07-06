@@ -23,7 +23,7 @@ const useRemoveAssortment = () => {
   }: IRemoveAssortmentMutationVariables) => {
     return removeAssortmentMutation({
       variables: { assortmentId },
-      refetchQueries: ['Assortments'],
+      refetchQueries: ['Assortments', 'ShopStatus'],
     });
   };
 

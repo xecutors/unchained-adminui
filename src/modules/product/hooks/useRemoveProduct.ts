@@ -23,7 +23,7 @@ const useRemoveProduct = () => {
   }: IRemoveProductMutationVariables) => {
     return removeProductMutation({
       variables: { productId },
-      refetchQueries: ['Products'],
+      refetchQueries: ['Products', 'ShopStatus'],
     });
   };
 
