@@ -15,10 +15,7 @@ import {
   FunnelIcon,
   ClockIcon,
 } from '@heroicons/react/24/outline';
-import {
-  ConfigurationStep,
-  Step,
-} from '../../modules/common/utils/shopConfigTracker';
+import { Step } from '../../modules/common/hooks/useShopConfiguration';
 
 interface SetupStepCardProps {
   step: Step;
@@ -59,7 +56,6 @@ const SetupStepCard: React.FC<SetupStepCardProps> = ({ step, onStepClick }) => {
       onClick={!step.isComplete ? handleClick : undefined}
     >
       <div className="flex items-start gap-3">
-        {/* Icon or Checkmark */}
         <div
           className={classNames(
             'flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center',
@@ -82,7 +78,6 @@ const SetupStepCard: React.FC<SetupStepCardProps> = ({ step, onStepClick }) => {
           )}
         </div>
 
-        {/* Content */}
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between gap-2">
             <div className="flex-1">

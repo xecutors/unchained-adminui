@@ -28,13 +28,13 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({
 
   const getProgressColor = (progress: number) => {
     if (progress < 30) return 'bg-rose-500';
-    if (progress < 70) return 'bg-amber-500';
+    if (progress < 99) return 'bg-amber-500';
     return 'bg-emerald-500';
   };
 
   const getProgressColorBg = (progress: number) => {
     if (progress < 30) return 'bg-rose-100 dark:bg-rose-900/20';
-    if (progress < 70) return 'bg-amber-100 dark:bg-amber-900/20';
+    if (progress < 99) return 'bg-amber-100 dark:bg-amber-900/20';
     return 'bg-emerald-100 dark:bg-emerald-900/20';
   };
 

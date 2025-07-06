@@ -30,6 +30,8 @@ const ShopSetupChecklist: React.FC<ShopSetupChecklistProps> = ({
     commerce: false,
     content: false,
   });
+  const { isFullyConfigured, commerceStepsComplete, completedRequiredSteps } =
+    configuration;
   const [isDismissed, setIsDismissed] = useState(false);
 
   const toggleSection = (section: keyof typeof expandedSections) => {
@@ -74,7 +76,7 @@ const ShopSetupChecklist: React.FC<ShopSetupChecklistProps> = ({
     return null;
   }
 
-  if (configuration?.isFullyConfigured) {
+  if (isFullyConfigured) {
     return (
       <div
         className={classNames(
@@ -171,15 +173,10 @@ const ShopSetupChecklist: React.FC<ShopSetupChecklistProps> = ({
   const renderSection = (
     category: keyof typeof expandedSections,
     steps: ConfigurationStep,
+    isComplete: boolean = false,
   ) => {
     const isExpanded = expandedSections[category];
     const progress = getCategoryProgress(steps);
-    const requiredSteps = Object.entries(steps).filter(
-      ([step, val]) => val.isRequired,
-    );
-    const hasIncompleteRequired = requiredSteps.some(
-      ([step, val]) => !val.isComplete,
-    );
 
     return (
       <div className="border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden">
@@ -192,9 +189,7 @@ const ShopSetupChecklist: React.FC<ShopSetupChecklistProps> = ({
               <div className="flex items-center gap-3">
                 <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-100">
                   {getCategoryTitle(category)}
-                  {hasIncompleteRequired && (
-                    <span className="text-rose-500 ml-1">*</span>
-                  )}
+                  {!isComplete && <span className="text-rose-500 ml-1">*</span>}
                 </h3>
                 <ProgressIndicator
                   progress={progress}
@@ -288,9 +283,21 @@ const ShopSetupChecklist: React.FC<ShopSetupChecklistProps> = ({
 
       {/* Content */}
       <div className="p-6 space-y-4">
-        {renderSection('essential', essentialSteps)}
-        {renderSection('commerce', commerceSteps)}
-        {renderSection('content', contentSteps)}
+        {renderSection(
+          'essential',
+          essentialSteps,
+          configuration.essentialStepsComplete,
+        )}
+        {renderSection(
+          'commerce',
+          commerceSteps,
+          configuration.commerceStepsComplete,
+        )}
+        {renderSection(
+          'content',
+          contentSteps,
+          configuration.contentStepsComplete,
+        )}
 
         {/* Footer note */}
         <div className="pt-4 border-t border-slate-200 dark:border-slate-700">

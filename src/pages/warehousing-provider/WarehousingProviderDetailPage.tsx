@@ -27,7 +27,6 @@ const WarehousingProviderDetailPage = ({ warehousingProviderId }) => {
   const { warehousingProvider, loading } = useWarehousingProvider({
     warehousingProviderId: warehousingProviderId as string,
   });
-
   const onSubmit = async ({ configuration: config }) => {
     await updateWarehousingProvider({
       warehousingProvider: {

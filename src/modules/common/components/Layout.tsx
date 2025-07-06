@@ -57,12 +57,12 @@ const Layout = ({
     {
       name: formatMessage({ id: 'home', defaultMessage: 'Home' }),
       icon: HomeIcon,
-      href: '/home',
+      href: '/',
     },
     {
       name: formatMessage({ id: 'copilot', defaultMessage: 'Copilot' }),
       icon: CommandLineIcon,
-      href: '/',
+      href: '/copilot',
     },
     {
       name: formatMessage({

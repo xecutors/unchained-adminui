@@ -11,7 +11,6 @@ import Badge from './Badge';
 const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess, readOnly }) => {
   const { formatMessage } = useIntl();
   const { formatDateTime } = useFormatDateTime();
-
   return (
     <div className="my-6">
       <div className="space-y-8">
