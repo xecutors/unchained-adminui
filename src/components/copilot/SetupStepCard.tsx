@@ -15,7 +15,7 @@ import {
   FunnelIcon,
   ClockIcon,
 } from '@heroicons/react/24/outline';
-import { Step } from '../../modules/common/hooks/useShopConfiguration';
+import { Step } from '../../modules/common/utils/getSetupStepsConfigurationsMeta';
 
 interface SetupStepCardProps {
   step: Step;
