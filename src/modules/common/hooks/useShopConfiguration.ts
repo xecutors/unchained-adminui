@@ -1,12 +1,6 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { useQuery, gql } from '@apollo/client';
-import {
-  getShopConfiguration,
-  markStepComplete,
-  type ShopConfiguration,
-} from '../utils/shopConfigTracker';
 
-// Simple GraphQL query to check basic shop configuration
 const BASIC_SHOP_STATUS_QUERY = gql`
   query BasicShopStatus {
     countriesCount
@@ -15,113 +9,232 @@ const BASIC_SHOP_STATUS_QUERY = gql`
     productsCount
     assortmentsCount
     filtersCount
+    deliveryProvidersCount
+    paymentProvidersCount
+    warehousingProvidersCount
   }
 `;
 
+export interface Step {
+  id: string;
+  title: string;
+  description: string;
+  isComplete: boolean;
+  isRequired: boolean;
+  setupUrl: string;
+  category: 'essential' | 'commerce' | 'content';
+  estimatedTime: string;
+  icon: string;
+  completedAt?: string;
+}
+export interface ConfigurationStep {
+  [key: string]: Step;
+}
+
+export interface ShopConfiguration {
+  steps: ConfigurationStep;
+  overallProgress: number;
+  isFullyConfigured: boolean;
+  essentialStepsComplete: boolean;
+  commerceStepsComplete: boolean;
+  contentStepsComplete: boolean;
+  lastUpdated: string;
+  essentialSteps: { [key: string]: Step };
+  commerceSteps: { [key: string]: Step };
+  completedRequiredSteps: { [key: string]: Step };
+  requiredSteps: { [key: string]: Step };
+  contentSteps: { [key: string]: Step };
+}
+
+const filterStepsByCategory = (
+  steps: ConfigurationStep,
+  category: Step['category'],
+) => Object.entries(steps).filter(([, step]) => step.category === category);
+
+const initializeConfig = (): ShopConfiguration => {
+  const DEFAULT_STEPS: ConfigurationStep = {
+    countries: {
+      id: 'countries',
+      title: 'Countries',
+      description: 'Configure at least one country for your shop',
+      isRequired: true,
+      setupUrl: '/country',
+      category: 'essential',
+      estimatedTime: '2 min',
+      icon: 'globe',
+      isComplete: false,
+    },
+    currencies: {
+      id: 'currencies',
+      title: 'Currencies',
+      description: 'Set up currencies for pricing and payments',
+      isRequired: true,
+      setupUrl: '/currency',
+      category: 'essential',
+      estimatedTime: '2 min',
+      icon: 'currency',
+      isComplete: false,
+    },
+    languages: {
+      id: 'languages',
+      title: 'Languages',
+      description: 'Configure languages for content localization',
+      isRequired: true,
+      setupUrl: '/language',
+      category: 'essential',
+      estimatedTime: '2 min',
+      icon: 'language',
+      isComplete: false,
+    },
+    paymentProviders: {
+      id: 'payment',
+      title: 'Payment Processing',
+      description: 'Invoice payment provider is already configured',
+      isRequired: false,
+      setupUrl: '/payment-provider',
+      category: 'commerce',
+      estimatedTime: '10 min',
+      icon: 'credit-card',
+      isComplete: false,
+    },
+    deliveryProviders: {
+      id: 'delivery',
+      title: 'Shipping & Delivery',
+      description: 'Delivery methods are already configured',
+      isRequired: false,
+      setupUrl: '/delivery-provider',
+      category: 'commerce',
+      estimatedTime: '10 min',
+      icon: 'truck',
+      isComplete: false,
+    },
+
+    warehousingProviders: {
+      id: 'warehousing',
+      title: 'Warehousing',
+      description: 'Warehousing providers are already configured',
+      isRequired: false,
+      setupUrl: '/warehousing-provider',
+      category: 'commerce',
+      estimatedTime: '10 min',
+      icon: 'warehouse',
+      isComplete: false,
+    },
+    products: {
+      id: 'products',
+      title: 'Products',
+      description: 'Create your first products',
+      isRequired: false,
+      setupUrl: '/products/new',
+      category: 'content',
+      estimatedTime: '5 min',
+      icon: 'cube',
+      isComplete: false,
+    },
+    assortments: {
+      id: 'assortments',
+      title: 'Categories',
+      description: 'Organize products into categories',
+      isRequired: false,
+      setupUrl: '/assortments/new',
+      category: 'content',
+      estimatedTime: '3 min',
+      icon: 'folder',
+      isComplete: false,
+    },
+  };
+  return calculateConfiguration(DEFAULT_STEPS);
+};
+
+export const calculateConfiguration = (
+  steps: ConfigurationStep,
+): ShopConfiguration => {
+  const completedSteps = Object.entries(steps).filter(
+    ([_, val]) => val.isComplete,
+  );
+  const requiredSteps = Object.entries(steps).filter(
+    ([_, val]) => val.isRequired,
+  );
+  const completedRequiredSteps = requiredSteps.filter(
+    ([_, val]) => val.isComplete,
+  );
+
+  const essentialSteps = filterStepsByCategory(steps, 'essential');
+  const commerceSteps = filterStepsByCategory(steps, 'commerce');
+  const contentSteps = filterStepsByCategory(steps, 'content');
+
+  const essentialStepsComplete = essentialSteps.every(
+    ([_, val]) => val.isComplete,
+  );
+  const commerceStepsComplete = commerceSteps
+    .filter(([_, val]) => val.isRequired)
+    .every(([_, val]) => val.isComplete);
+  const contentStepsComplete = contentSteps.every(([_, val]) => val.isComplete);
+
+  const overallProgress =
+    Object.keys(steps).length > 0
+      ? Math.round((completedSteps.length / Object.keys(steps).length) * 100)
+      : 0;
+
+  const isFullyConfigured =
+    completedRequiredSteps.length === requiredSteps.length;
+  const config = {
+    steps,
+    overallProgress,
+    isFullyConfigured,
+    essentialStepsComplete,
+    commerceStepsComplete,
+    contentStepsComplete,
+    essentialSteps: Object.fromEntries(essentialSteps),
+    commerceSteps: Object.fromEntries(commerceSteps),
+    completedRequiredSteps: Object.fromEntries(completedRequiredSteps),
+    requiredSteps: Object.fromEntries(requiredSteps),
+    contentSteps: Object.fromEntries(contentSteps),
+    lastUpdated: new Date().toISOString(),
+  };
+  return config;
+};
+
+const STEP_KEYS = [
+  'countries',
+  'currencies',
+  'languages',
+  'products',
+  'assortments',
+  'deliveryProviders',
+  'paymentProviders',
+  'warehousingProviders',
+];
+
 const useShopConfiguration = () => {
   const [configuration, setConfiguration] = useState<ShopConfiguration>(() =>
-    getShopConfiguration(),
+    initializeConfig(),
   );
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<Error | null>(null);
 
-  // Try to get basic counts, but don't fail if GraphQL is unavailable
-  const {
-    data: shopData,
-    loading: graphqlLoading,
-    error: graphqlError,
-  } = useQuery(BASIC_SHOP_STATUS_QUERY, {
+  const { data, loading, error } = useQuery(BASIC_SHOP_STATUS_QUERY, {
     fetchPolicy: 'cache-and-network',
-    errorPolicy: 'ignore', // Don't fail on GraphQL errors
-    skip: false, // Enable GraphQL queries to get real data
+    errorPolicy: 'ignore',
   });
 
-  // Update localStorage based on GraphQL data when available
-  const validateWithGraphQL = useCallback(() => {
-    if (!shopData || graphqlError) return;
-
-    const validationResults = {
-      countries: (shopData.countriesCount || 0) > 0,
-      currencies: (shopData.currenciesCount || 0) > 0,
-      languages: (shopData.languagesCount || 0) > 0,
-      products: (shopData.productsCount || 0) > 0,
-      assortments: (shopData.assortmentsCount || 0) > 0,
-      filters: (shopData.filtersCount || 0) > 0,
-    };
-
-    // Auto-mark steps that have data but aren't marked complete
-    let hasChanges = false;
-    for (const [stepId, hasData] of Object.entries(validationResults)) {
-      if (hasData) {
-        const currentConfig = getShopConfiguration();
-        const step = currentConfig.steps.find((s) => s.id === stepId);
-        if (step && !step.isComplete) {
-          markStepComplete(stepId);
-          hasChanges = true;
-        }
-      }
-    }
-
-    if (hasChanges) {
-      setConfiguration(getShopConfiguration());
-    }
-  }, [shopData, graphqlError]);
-
-  // Run validation when GraphQL data is available
   useEffect(() => {
-    if (shopData && !graphqlLoading && !graphqlError) {
-      validateWithGraphQL();
-    }
-  }, [shopData, graphqlLoading, graphqlError, validateWithGraphQL]);
+    if (!data || loading) return;
 
-  // Listen for manual configuration updates
-  useEffect(() => {
-    const handleConfigUpdate = (event: CustomEvent) => {
-      setConfiguration(event.detail.config);
-    };
+    const updatedSteps = { ...(configuration?.steps || {}) };
 
-    if (typeof window !== 'undefined') {
-      window.addEventListener(
-        'shopConfigUpdated',
-        handleConfigUpdate as EventListener,
-      );
-
-      return () => {
-        window.removeEventListener(
-          'shopConfigUpdated',
-          handleConfigUpdate as EventListener,
-        );
+    for (const key of STEP_KEYS) {
+      updatedSteps[key] = {
+        ...updatedSteps[key],
+        isComplete: Boolean(data?.[`${key}Count`] > 0),
       };
     }
-  }, []);
 
-  // Refresh configuration from localStorage and re-validate
-  const refetch = async () => {
-    try {
-      setLoading(true);
-      setError(null);
-      const newConfig = getShopConfiguration();
-      setConfiguration(newConfig);
-
-      // Trigger GraphQL validation if available
-      if (shopData) {
-        validateWithGraphQL();
-      }
-    } catch (err) {
-      setError(
-        err instanceof Error ? err : new Error('Failed to load configuration'),
-      );
-    } finally {
-      setLoading(false);
-    }
-  };
+    setConfiguration(calculateConfiguration(updatedSteps));
+  }, [data, loading]);
 
   return {
     configuration,
-    loading: loading || graphqlLoading,
-    error:
-      error || (graphqlError ? new Error('GraphQL validation failed') : null),
-    refetch,
+    loading,
+    error,
   };
 };
 

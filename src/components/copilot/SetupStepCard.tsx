@@ -15,11 +15,14 @@ import {
   FunnelIcon,
   ClockIcon,
 } from '@heroicons/react/24/outline';
-import { ConfigurationStep } from '../../modules/common/utils/shopConfigTracker';
+import {
+  ConfigurationStep,
+  Step,
+} from '../../modules/common/utils/shopConfigTracker';
 
 interface SetupStepCardProps {
-  step: ConfigurationStep;
-  onStepClick?: (step: ConfigurationStep) => void;
+  step: Step;
+  onStepClick?: (step: Step) => void;
 }
 
 const iconMap = {

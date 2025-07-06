@@ -35,16 +35,15 @@ const SelectField = (props: SelectFieldProps) => {
           onBlur={field.onBlur}
           value={field.value}
         >
-          {(!!field.placeholder || !field.required) && (
-            <option
-              className="dark:text-slate-200"
-              value=""
-              disabled={field.required}
-              hidden={field.required}
-            >
-              {field.placeholder || field.label}
-            </option>
-          )}
+          <option
+            className="dark:text-slate-200"
+            value=""
+            disabled={field.required}
+            hidden={field.required}
+          >
+            {field.placeholder || field.label}
+          </option>
+
           {Object.entries(options).map(([value, display]: any) => (
             <option className="dark:text-slate-200" key={value} value={value}>
               {display}

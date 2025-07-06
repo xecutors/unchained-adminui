@@ -1,6 +1,5 @@
 import { useIntl } from 'react-intl';
 import useAuth from '../../Auth/useAuth';
-import { markStepComplete } from '../../common/utils/shopConfigTracker';
 import Toggle from '../../common/components/Toggle';
 import Form from '../../forms/components/Form';
 import FormErrors from '../../forms/components/FormErrors';
@@ -23,15 +22,7 @@ const AssortmentForm = ({
   const form = useForm({
     submit: async (data) =>
       onSubmit({ ...data, locale: selectedLocale || 'de' }),
-    onSubmitSuccess: (success, data) => {
-      // Mark assortments step as complete when first assortment is created
-      markStepComplete('assortments');
-
-      if (onSubmitSuccess) {
-        return onSubmitSuccess(success, data);
-      }
-      return true;
-    },
+    onSubmitSuccess,
     successMessage,
     enableReinitialize: true,
     initialValues: {

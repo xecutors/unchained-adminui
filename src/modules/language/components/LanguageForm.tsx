@@ -1,6 +1,5 @@
 import { useIntl } from 'react-intl';
 import useAuth from '../../Auth/useAuth';
-import { markStepComplete } from '../../common/utils/shopConfigTracker';
 import Toggle from '../../common/components/Toggle';
 import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
@@ -26,17 +25,7 @@ const LanguageForm = ({
   });
   const form = useForm({
     submit: onSubmit,
-    onSubmitSuccess: (result, values) => {
-      // Mark languages step as complete when first language is created
-      if (!isEdit) {
-        markStepComplete('languages');
-      }
-
-      if (onSubmitSuccess) {
-        return onSubmitSuccess(result, values);
-      }
-      return true;
-    },
+    onSubmitSuccess,
     successMessage: isEdit ? languageUpdatedMessage : languageAddedMessage,
     getSubmitErrorMessage: (error) => {
       if (error?.message?.includes('duplicate')) {

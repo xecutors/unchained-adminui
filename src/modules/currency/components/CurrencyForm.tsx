@@ -1,6 +1,5 @@
 import { useIntl } from 'react-intl';
 import useAuth from '../../Auth/useAuth';
-import { markStepComplete } from '../../common/utils/shopConfigTracker';
 import Toggle from '../../common/components/Toggle';
 import Form from '../../forms/components/Form';
 
@@ -30,16 +29,7 @@ const CurrencyForm = ({
 
   const form = useForm({
     submit: onSubmit,
-    onSubmitSuccess: (result, values) => {
-      if (!isEdit) {
-        markStepComplete('currencies');
-      }
-
-      if (onSubmitSuccess) {
-        return onSubmitSuccess(result, values);
-      }
-      return true;
-    },
+    onSubmitSuccess,
     successMessage: isEdit ? currencyUpdatedMessage : currencyAddedMessage,
     getSubmitErrorMessage: (error) => {
       if (error?.message?.includes('duplicate key')) {

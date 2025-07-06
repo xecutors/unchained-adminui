@@ -1,6 +1,5 @@
 import { useIntl } from 'react-intl';
 import useAuth from '../../Auth/useAuth';
-import { markStepComplete } from '../../common/utils/shopConfigTracker';
 import convertArrayOfObjectToObject from '../../common/convertArrayOfObjectToObject';
 import useCurrencies from '../../currency/hooks/useCurrencies';
 import Toggle from '../../common/components/Toggle';
@@ -33,17 +32,7 @@ const CountryForm = ({
   const { currencies } = useCurrencies();
   const form = useForm({
     submit: onSubmit,
-    onSubmitSuccess: (result, values) => {
-      // Mark countries step as complete when first country is created
-      if (!isEdit) {
-        markStepComplete('countries');
-      }
-
-      if (onSubmitSuccess) {
-        return onSubmitSuccess(result, values);
-      }
-      return true;
-    },
+    onSubmitSuccess,
     successMessage: isEdit ? countryUpdatedMessage : countryAddedMessage,
     getSubmitErrorMessage: (error) => {
       if (error?.message?.includes('duplicate key')) {
