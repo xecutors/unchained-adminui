@@ -89,6 +89,7 @@ const Products = () => {
         <SearchWithTags
           onSearchChange={setQueryString}
           defaultSearchValue={queryString}
+          showTagFilter
         >
           <LocaleWrapper onlyFull>
             <ProductList
