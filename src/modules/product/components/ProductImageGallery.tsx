@@ -8,7 +8,10 @@ interface ProductImageGalleryProps {
   canEdit?: boolean;
 }
 
-const ProductImageGallery = ({ media = [], onEditMedia }: ProductImageGalleryProps) => {
+const ProductImageGallery = ({
+  media = [],
+  onEditMedia,
+}: ProductImageGalleryProps) => {
   const handleImageClick = (mediaId: string) => {
     if (onEditMedia) {
       onEditMedia(mediaId);
@@ -20,7 +23,7 @@ const ProductImageGallery = ({ media = [], onEditMedia }: ProductImageGalleryPro
       <div className="flex gap-3 overflow-x-auto pb-2">
         {media.map((item) => (
           <div key={item._id} className="relative flex-shrink-0 group">
-            <div 
+            <div
               className="w-16 h-16 bg-slate-100 dark:bg-slate-800 rounded-lg overflow-hidden cursor-pointer border border-slate-200 dark:border-slate-700"
               onClick={() => handleImageClick(item._id)}
             >

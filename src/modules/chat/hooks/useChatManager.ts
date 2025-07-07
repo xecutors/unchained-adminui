@@ -121,7 +121,8 @@ export const useChatManager = () => {
     } catch (error) {
       console.error('Error in handleSubmit:', error);
 
-      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      const errorMessage =
+        error instanceof Error ? error.message : 'Unknown error';
 
       // Check for authentication errors first
       if (

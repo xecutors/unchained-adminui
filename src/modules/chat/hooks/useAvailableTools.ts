@@ -74,7 +74,8 @@ export const useAvailableTools = (): UseAvailableToolsReturn => {
         err instanceof Error ? err.message : 'Failed to fetch available tools';
 
       // Check if this is a development environment endpoint issue
-      const isEndpointNotFound = errorMessage.includes('non-JSON response') ||
+      const isEndpointNotFound =
+        errorMessage.includes('non-JSON response') ||
         errorMessage.includes('404') ||
         errorMessage.includes('Internal Server Error') ||
         errorMessage.includes('Failed to fetch') ||
