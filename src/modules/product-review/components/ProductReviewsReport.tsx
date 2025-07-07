@@ -61,7 +61,7 @@ const ProductReviewsReport = ({ productReviews }) => {
             defaultMessage="<div> Based on <cta> {total} </cta> reviews</div>"
             values={{
               div: (chunks) => <div>{chunks}</div>,
-              cta: (chunks) => <b className="font-bold">{chunks}</b>,
+              cta: (chunks) => <b className="font-semibold">{chunks}</b>,
               total: productReviews.length,
             }}
           />

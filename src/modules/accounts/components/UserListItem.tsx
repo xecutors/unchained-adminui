@@ -81,7 +81,7 @@ const UserListItem = ({ user }) => {
           <div className="flex items-end flex-wrap gap-10 text-slate-600">
             <div className="flex items-center gap-2">
               <ActiveInActive isActive={isVerified} />
-              <span className="texts-sm font-bold text-slate-500 dark:text-slate-200">
+              <span className="texts-sm font-semibold text-slate-500 dark:text-slate-200">
                 {UserTypes[isVerified.toString()]}
               </span>
             </div>

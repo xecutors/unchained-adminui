@@ -346,7 +346,7 @@ const AssortmentDetail = ({
               <input
                 id="sequence"
                 type="number"
-                className="text-center w-12 bg-transparent border border-slate-300 dark:border-slate-600 rounded focus:ring-0 focus:outline-none text-sm font-bold text-slate-900 dark:text-slate-300 px-2 py-1"
+                className="text-center w-12 bg-transparent border border-slate-300 dark:border-slate-600 rounded focus:ring-0 focus:outline-none text-sm font-semibold text-slate-900 dark:text-slate-300 px-2 py-1"
                 defaultValue={assortment?.sequence}
                 onBlur={updateAssortmentSequence}
               />

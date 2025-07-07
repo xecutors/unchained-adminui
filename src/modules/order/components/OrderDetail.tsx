@@ -32,6 +32,8 @@ const OrderDetail = ({ order }) => {
 
   if (!order) return null;
 
+  const isCart = order?.status === 'OPEN' || !order?.orderNumber;
+
   const onConfirmOrder = async () => {
     await setModal(
       <AlertMessage
@@ -147,9 +149,11 @@ const OrderDetail = ({ order }) => {
         <OrderDetailHeader order={order} />
       </div>
 
-      <div className="mt-10">
-        <OrderDetailAddresses order={order} />
-      </div>
+      {!isCart && (
+        <div className="mt-10">
+          <OrderDetailAddresses order={order} />
+        </div>
+      )}
 
       <div className="mt-20 lg:grid lg:grid-cols-2 lg:gap-10">
         <div>
@@ -172,14 +176,18 @@ const OrderDetail = ({ order }) => {
         />
       </div>
 
-      <div className="mt-10 lg:mt-30 lg:grid lg:grid-cols-2 lg:gap-10">
-        <OrderDetailDelivery order={order} />
-        <OrderDetailPayment order={order} />
-      </div>
+      {!isCart && (
+        <div className="mt-10 lg:mt-30 lg:grid lg:grid-cols-2 lg:gap-10">
+          <OrderDetailDelivery order={order} />
+          <OrderDetailPayment order={order} />
+        </div>
+      )}
 
-      <div className="mt-10 lg:mt-30">
-        <DiscountList discounts={order?.discounts} />
-      </div>
+      {!isCart && (
+        <div className="mt-10 lg:mt-30">
+          <DiscountList discounts={order?.discounts} />
+        </div>
+      )}
     </div>
   );
 };

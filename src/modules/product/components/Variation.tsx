@@ -52,7 +52,7 @@ const Variation = ({ type, variation, selectedLocale, onDelete }) => {
                   className="justify-start"
                 />
               </div>
-              <div className="mt-1 font-bold">{variation?.key}</div>
+              <div className="mt-1 font-semibold">{variation?.key}</div>
             </div>
 
             <div

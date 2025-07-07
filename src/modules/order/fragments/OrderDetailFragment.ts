@@ -33,6 +33,13 @@ const OrderDetailFragment = gql`
         _id
         url
       }
+      profile {
+        displayName
+        address {
+          firstName
+          lastName
+        }
+      }
     }
     discounts {
       _id

@@ -34,7 +34,7 @@ const DetailHeader = ({ user, contact }) => {
       <div>
         <div className="flex items-center justify-between gap-3 flex-wrap">
           <span className="flex items-center">
-            <h3 className="ml-3 text-xl font-bold capitalize">
+            <h3 className="text-xl font-semibold capitalize">
               <Link
                 href={`/users?userId=${user?._id}`}
                 className="text-slate-800 dark:text-slate-700 hover:text-slate-900 dark:hover:text-slate-600"

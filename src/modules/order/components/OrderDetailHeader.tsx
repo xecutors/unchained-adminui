@@ -8,39 +8,63 @@ const OrderDetailHeader = ({ order }) => {
   const { formatMessage, locale } = useIntl();
   const { formatDateTime } = useFormatDateTime();
   if (!order) return null;
+  
+  const isCart = order?.status === 'OPEN' || !order?.orderNumber;
   return (
     <div>
       <div className="flex justify-between items-baseline flex-wrap mb-10">
         <div className="flex items-center justify-between gap-5 flex-wrap">
           <h2 className="text-2xl font-medium text-slate-900 dark:text-slate-200 sm:truncate sm:text-3xl lg:text-4xl xl:text-5xl">
-            {formatMessage({
-              id: 'order_number',
-              defaultMessage: 'Order',
-            })}
-            {order?.orderNumber ? `${order.orderNumber}` : ''}
-          </h2>
-          <span id="order_number_badge" className="inline-flex">
-            {!order?.orderNumber && (
-              <Badge
-                text={formatMessage({ id: 'cart', defaultMessage: 'Cart' })}
-                color="yellow"
-                className="text-lg font-medium sm:text-xl sm:font-bold"
-              />
+            {isCart ? (
+              <>
+                {formatMessage({
+                  id: 'cart',
+                  defaultMessage: 'Warenkorb',
+                })}
+                {` ${order._id}`}
+              </>
+            ) : (
+              <>
+                {formatMessage({
+                  id: 'order_number',
+                  defaultMessage: 'Order',
+                })}
+                {order?.orderNumber ? `${order.orderNumber}` : ''}
+              </>
             )}
-          </span>
+          </h2>
         </div>
         <div>
           <span className="mr-1 text-slate-400 dark:text-slate-500">
-            {formatMessage({
-              id: 'order_placed',
-              defaultMessage: 'Order placed',
-            })}
+            {isCart ? (
+              formatMessage({
+                id: 'cart_created',
+                defaultMessage: 'Warenkorb erstellt',
+              })
+            ) : (
+              formatMessage({
+                id: 'order_placed',
+                defaultMessage: 'Order placed',
+              })
+            )}
           </span>
-          {order?.ordered ? formatDateTime(order.ordered) : null}
+          {isCart ? formatDateTime(order.created) : (order?.ordered ? formatDateTime(order.ordered) : null)}
         </div>
       </div>
 
-      <DetailHeader user={order?.user} contact={order?.contact} />
+      {!isCart && <DetailHeader user={order?.user} contact={order?.contact} />}
+      
+      {isCart && order?.user && (
+        <div className="mt-5">
+          <span className="text-lg text-slate-600 dark:text-slate-400">
+            {order.user.profile?.displayName || 
+             (order.user.profile?.address?.firstName && order.user.profile?.address?.lastName 
+               ? `${order.user.profile.address.firstName} ${order.user.profile.address.lastName}`
+               : order.user.username) || 
+             'Guest'}
+          </span>
+        </div>
+      )}
 
       {/* <div className="mt-5 flex gap-5 justify-between">
         <div className="flex gap-1">

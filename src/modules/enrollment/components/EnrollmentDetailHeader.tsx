@@ -21,13 +21,13 @@ const EnrollmentDetailHeader = ({ enrollment }) => {
             })}
             &#35; &nbsp;
           </dt>
-          <dd className="inline-flex text-lg font-medium text-slate-900 sm:flex-none sm:text-xl sm:font-bold">
+          <dd className="inline-flex text-lg font-medium text-slate-900 sm:flex-none sm:text-xl sm:font-semibold">
             <span className="sm:hidden">&#35;&nbsp;</span>
             {enrollment?.enrollmentNumber ? (
               <Badge
                 color="slate"
                 text={enrollment?.enrollmentNumber}
-                className="p-0 text-lg font-medium sm:text-xl sm:font-bold"
+                className="p-0 text-lg font-medium sm:text-xl sm:font-semibold"
               />
             ) : (
               <Badge
@@ -36,7 +36,7 @@ const EnrollmentDetailHeader = ({ enrollment }) => {
                   defaultMessage: 'Initial',
                 })}
                 color="yellow"
-                className="p-0 text-lg font-medium sm:text-xl sm:font-bold"
+                className="p-0 text-lg font-medium sm:text-xl sm:font-semibold"
               />
             )}
           </dd>

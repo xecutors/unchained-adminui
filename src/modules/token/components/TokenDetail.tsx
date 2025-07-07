@@ -42,7 +42,7 @@ const TokenDetail = ({ token }) => {
           />
         </Link>
         <div className="mt-4">
-          <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100">
+          <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100">
             {token?.product?.texts?.title || 'Untitled Product'}
           </h3>
           <p className="mt-2 text-lg font-semibold text-slate-800 dark:text-slate-300">
@@ -53,7 +53,7 @@ const TokenDetail = ({ token }) => {
               id: 'item_quantity',
               defaultMessage: 'Quantity:',
             })}{' '}
-            <span className="font-bold">{token?.quantity}</span>
+            <span className="font-semibold">{token?.quantity}</span>
           </p>
         </div>
       </div>

@@ -228,7 +228,7 @@ const ShopSetupChecklist: React.FC<ShopSetupChecklistProps> = ({
             </div>
           </div>
           <div className="flex-1">
-            <h2 className="text-lg font-bold text-slate-900 dark:text-slate-100 mb-2">
+            <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100 mb-2">
               {formatMessage({
                 id: 'complete_shop_setup',
                 defaultMessage: 'Complete Your Shop Setup',

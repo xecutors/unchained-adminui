@@ -21,14 +21,14 @@ const QuotationDetailHeader = ({ quotation }) => {
             })}
             &#35; &nbsp;
           </dt>
-          <dd className="inline-flex text-lg font-medium text-slate-900 sm:text-xl sm:font-bold">
+          <dd className="inline-flex text-lg font-medium text-slate-900 sm:text-xl sm:font-semibold">
             <span className="sm:hidden">&#35;&nbsp;</span>
             {quotation?.quotationNumber ? (
               <Badge
                 text={quotation?.quotationNumber}
                 color="slate"
                 square
-                className="text-lg font-medium sm:text-xl sm:font-bold"
+                className="text-lg font-medium sm:text-xl sm:font-semibold"
               />
             ) : (
               <Badge
@@ -37,7 +37,7 @@ const QuotationDetailHeader = ({ quotation }) => {
                   defaultMessage: 'Requested',
                 })}
                 color="yellow"
-                className="text-lg font-medium sm:text-xl sm:font-bold"
+                className="text-lg font-medium sm:text-xl sm:font-semibold"
               />
             )}
           </dd>

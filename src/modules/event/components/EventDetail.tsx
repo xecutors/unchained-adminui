@@ -41,7 +41,7 @@ const EventDetail = ({ event }) => {
     <>
       <div className="mt-5 rounded-lg border border-slate-300 dark:border-slate-800 p-4 shadow-sm sm:p-6 lg:p-8">
         <div className="flex justify-between ">
-          <div className="my-1 pb-1 text-sm  font-bold">
+          <div className="my-1 pb-1 text-sm  font-semibold">
             {formatMessage({
               id: 'type_colon',
               defaultMessage: 'Type:',
@@ -51,7 +51,7 @@ const EventDetail = ({ event }) => {
             </span>
           </div>
           <div className="my-1 pb-1 font-mono text-lg">
-            <span className="ml-2 font-bold">
+            <span className="ml-2 font-semibold">
               {formatDateTime(event?.created)}
             </span>
           </div>
