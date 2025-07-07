@@ -43,7 +43,7 @@ const ProductListItem = ({
     }
   };
   const productUrl = `/products?slug=${generateUniqueId(product)}`;
-  
+
   return (
     <Table.Row className="group">
       <Table.Cell>

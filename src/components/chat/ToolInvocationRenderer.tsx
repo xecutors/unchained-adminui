@@ -6,6 +6,8 @@ import UnknownToolResponse from './UnknownToolResponse';
 import ProductResultsSummary from './ProductResultsSummary';
 import Image from 'next/image';
 import ShopInfoCard from './ShopInfo';
+import TextsList from './TextsList';
+import { AssortmentListItemCompact } from '../assortment';
 
 interface ToolInvocationRendererProps {
   part: any;
@@ -36,20 +38,55 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
     }
 
     const parsed = JSON.parse(textString);
-    const listViewTools = [
+
+    const SingleProductReturnTools = [
+      'product_get',
       'product_create',
       'product_update',
       'product_updateCommerce',
       'product_remove',
       'product_publish',
       'product_unpublish',
+      'product_updateWarehousing',
+      'product_updateSupply',
+      'product_updateTokenization',
+      'product_updatePlan',
+    ];
+    const TextsReturnTools = [
+      'product_updateTexts',
+      'productMedia_updateTexts',
+      'product_getTexts',
+      'productMedia_getTexts',
+      'productVariation_getTexts',
+      'assortmentMedia_updateTexts',
+      'assortmentMedia_getTexts',
+      'assortment_getTexts',
+      'assortment_updateTexts',
+    ];
+
+    const MultipleProductReturnTools = [
+      'product_list',
+      'assortment_getProducts',
+    ];
+
+    const MultipleAssortmentReturnTools = [
+      'assortment_getChildren',
+      'assortment_list',
+    ];
+
+    const SingleAssortmentReturnTools = [
       'assortment_create',
       'assortment_update',
       'assortment_remove',
-      'product_get',
+      'assortment_setBase',
+      'assortment_get',
+      'assortment_searchProducts',
     ];
 
-    if (toolName === 'product_list' && parsed?.products?.length) {
+    if (
+      MultipleProductReturnTools.includes(toolName) &&
+      parsed?.products?.length
+    ) {
       return (
         <div className="mb-6">
           <ProductResultsSummary
@@ -61,21 +98,16 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
       );
     }
 
-    if (toolName === 'assortment_list' && parsed?.assortments?.length) {
+    if (
+      MultipleAssortmentReturnTools.includes(toolName) &&
+      parsed?.assortments
+    ) {
       return (
         <div className="mb-6">
           <AssortmentResultsSummary
             assortments={parsed.assortments}
             requestedFilters={parsed?.filters}
           />
-          <CopilotAssortmentList assortments={parsed?.assortments} />
-        </div>
-      );
-    }
-
-    if (toolName === 'assortment_getChildren' && parsed?.assortments?.length) {
-      return (
-        <div className="mb-6">
           <CopilotAssortmentList assortments={parsed?.assortments} />
         </div>
       );
@@ -89,46 +121,23 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
         <Image alt="" src={parsed?.imageUrl as any} width={1200} height={50} />
       );
     }
-    if (listViewTools.includes(toolName) && parsed?.product)
+    if (SingleProductReturnTools.includes(toolName) && parsed?.product)
       return (
         <div className="mb-6">
           <ProductListItemCompact product={parsed.product} />
         </div>
       );
-
-    if (listViewTools.includes(toolName) && parsed?.assortment)
+    if (TextsReturnTools.includes(toolName) && parsed?.texts)
       return (
         <div className="mb-6">
-          <CopilotAssortmentList assortments={[parsed.assortment]} />
+          <TextsList texts={parsed.texts} />
         </div>
       );
 
-    if (toolName === 'assortment_getProducts') {
+    if (parsed?.assortment && SingleAssortmentReturnTools.includes(toolName)) {
       return (
         <div className="mb-6">
-          <ProductResultsSummary
-            products={parsed.products}
-            requestedFilters={parsed?.filters}
-          />
-          <ProductList products={parsed.products} />
-        </div>
-      );
-    }
-
-    // Check if any tool returned product data and show it
-    if (parsed?.product && !listViewTools.includes(toolName)) {
-      return (
-        <div className="mb-6">
-          <ProductListItemCompact product={parsed.product} />
-        </div>
-      );
-    }
-
-    // Check if any tool returned assortment data and show it
-    if (parsed?.assortment && !listViewTools.includes(toolName)) {
-      return (
-        <div className="mb-6">
-          <CopilotAssortmentList assortments={[parsed.assortment]} />
+          <AssortmentListItemCompact assortment={parsed?.assortment} />
         </div>
       );
     }
