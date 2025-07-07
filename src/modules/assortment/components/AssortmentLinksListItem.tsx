@@ -33,7 +33,7 @@ const AssortmentLinksListItem = ({ link, onDelete, linkId, isParent, id }) => {
             <div className="flex flex-wrap gap-5">
               <h3 className="text-lg flex-auto">{link?.texts?.title}</h3>
               {link?.texts?.title && (
-                <p className="flex-auto text-xs text-slate-600 my-auto">
+                <p className="flex-auto text-xs text-slate-600 dark:text-slate-400 my-auto">
                   {link?.texts?.subtitle}
                 </p>
               )}
