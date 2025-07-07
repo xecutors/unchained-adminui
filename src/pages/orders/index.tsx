@@ -16,6 +16,7 @@ import {
 } from '../../modules/common/utils/utils';
 import SearchWithTags from '../../modules/common/components/SearchWithTags';
 import OrderDetailPage from './OrderDetailPage';
+import AnimatedCounter from '../../modules/common/components/AnimatedCounter';
 
 const Orders = () => {
   const { formatMessage } = useIntl();
@@ -60,7 +61,7 @@ const Orders = () => {
           (ordersCount ?? 0) === 1
             ? { id: 'order_count_header_singular', defaultMessage: '1 Order' }
             : { id: 'orders_count_header', defaultMessage: '{count} Orders' },
-          { count: ordersCount ?? 0 },
+          { count: <AnimatedCounter value={ordersCount ?? 0} /> },
         )}
       />
       <div className="mt-5 inline-block min-w-full overflow-x-auto px-1 pb-5">

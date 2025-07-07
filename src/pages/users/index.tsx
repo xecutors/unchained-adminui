@@ -14,6 +14,7 @@ import UserFilter from '../../modules/accounts/components/UserFilter';
 import NoData from '../../modules/common/components/NoData';
 import SearchWithTags from '../../modules/common/components/SearchWithTags';
 import UserDetailPage from './UserDetailPage';
+import AnimatedCounter from '../../modules/common/components/AnimatedCounter';
 
 const Users = () => {
   const { formatMessage } = useIntl();
@@ -74,7 +75,7 @@ const Users = () => {
           (usersCount ?? 0) === 1
             ? { id: 'user_count_header_singular', defaultMessage: '1 User' }
             : { id: 'users_count_header', defaultMessage: '{count} Users' },
-          { count: usersCount ?? 0 },
+          { count: <AnimatedCounter value={usersCount ?? 0} /> },
         )}
         addPath="/users/new"
         addButtonText={formatMessage({

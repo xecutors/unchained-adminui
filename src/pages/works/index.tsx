@@ -19,6 +19,7 @@ import {
 import { ISortOptionInput, IWorkStatus, IWorkType } from '../../gql/types';
 import SearchWithTags from '../../modules/common/components/SearchWithTags';
 import WorkDetailPage from './WorkDetailPage';
+import AnimatedCounter from '../../modules/common/components/AnimatedCounter';
 
 const WorkQueueView = () => {
   const { query, push } = useRouter();
@@ -83,7 +84,7 @@ const WorkQueueView = () => {
                 id: 'work_queue_count_header',
                 defaultMessage: '{count} Work Items',
               },
-          { count: total ?? 0 },
+          { count: <AnimatedCounter value={total ?? 0} /> },
         )}
         addPath={
           (hasRole('allocateWork') || hasRole('addWork')) && '/works/management'

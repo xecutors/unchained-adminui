@@ -17,6 +17,7 @@ import SearchWithTags from '../../modules/common/components/SearchWithTags';
 import useProductsCount from '../../modules/product/hooks/useProductsCount';
 import ProductDetailPage from './ProductDetailPage';
 import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
+import AnimatedCounter from '../../modules/common/components/AnimatedCounter';
 
 const Products = () => {
   const { formatMessage } = useIntl();
@@ -66,7 +67,7 @@ const Products = () => {
                   id: 'products_count_header',
                   defaultMessage: '{count} Products',
                 },
-            { count: productsCount ?? 0 },
+            { count: <AnimatedCounter value={productsCount ?? 0} /> },
           )}
           addPath={hasRole('addProduct') && '/products/new'}
           addButtonText={formatMessage({

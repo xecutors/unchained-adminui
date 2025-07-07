@@ -23,6 +23,7 @@ import {
 } from '../../modules/common/utils/utils';
 import SearchWithTags from '../../modules/common/components/SearchWithTags';
 import CountryDetailPage from './CountryDetailPage';
+import AnimatedCounter from '../../modules/common/components/AnimatedCounter';
 
 const Country = () => {
   const { formatMessage } = useIntl();
@@ -106,7 +107,7 @@ const Country = () => {
                 id: 'countries_count_header',
                 defaultMessage: '{count} Countries',
               },
-          { count: countriesCount ?? 0 },
+          { count: <AnimatedCounter value={countriesCount ?? 0} /> },
         )}
         addPath={hasRole('addCountry') && '/country/new'}
         addButtonText={formatMessage({

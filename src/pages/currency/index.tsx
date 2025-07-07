@@ -21,6 +21,7 @@ import {
 } from '../../modules/common/utils/utils';
 import SearchWithTags from '../../modules/common/components/SearchWithTags';
 import CurrencyDetailPage from './CurrencyDetailPage';
+import AnimatedCounter from '../../modules/common/components/AnimatedCounter';
 
 const Currencies = () => {
   const { formatMessage } = useIntl();
@@ -102,7 +103,7 @@ const Currencies = () => {
                 id: 'currencies_count_header',
                 defaultMessage: '{count} Currencies',
               },
-          { count: currenciesCount ?? 0 },
+          { count: <AnimatedCounter value={currenciesCount ?? 0} /> },
         )}
         addPath={hasRole('addCurrency') && '/currency/new'}
         addButtonText={formatMessage({

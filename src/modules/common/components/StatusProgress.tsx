@@ -73,7 +73,7 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
         </ul>
       </div>
 
-      <div>
+      <div className=" p-4 bg-white shadow-sm dark:shadow-none dark:border dark:border-slate-700 sm:rounded-lg dark:bg-slate-900">
         <p className="font-medium flex items-center justify-between">
           <span className="text-2xl">
             {data?.status === 'CONFIRMED' ? (

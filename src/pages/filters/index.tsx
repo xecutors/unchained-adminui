@@ -20,6 +20,7 @@ import SearchWithTags from '../../modules/common/components/SearchWithTags';
 import useFiltersCount from '../../modules/filter/hooks/useFiltersCount';
 import FilterDetailPage from './FilterDetailPage';
 import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
+import AnimatedCounter from '../../modules/common/components/AnimatedCounter';
 
 const FiltersListView = () => {
   const { query, push } = useRouter();
@@ -96,7 +97,7 @@ const FiltersListView = () => {
                   id: 'filters_count_header',
                   defaultMessage: '{count} Filters',
                 },
-            { count: filtersCount ?? 0 },
+            { count: <AnimatedCounter value={filtersCount ?? 0} /> },
           )}
           addPath={hasRole('addFilter') && '/filters/new'}
           addButtonText={formatMessage({

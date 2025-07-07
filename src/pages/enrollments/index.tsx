@@ -18,6 +18,7 @@ import useEnrollmentStatusTypes from '../../modules/enrollment/hooks/useEnrollme
 import StatusFilter from '../../modules/common/components/StatusFilter';
 import SearchWithTags from '../../modules/common/components/SearchWithTags';
 import EnrollmentDetailPage from './EnrollmentDetailPage';
+import AnimatedCounter from '../../modules/common/components/AnimatedCounter';
 
 const EnrollmentListView = () => {
   const { formatMessage } = useIntl();
@@ -84,7 +85,7 @@ const EnrollmentListView = () => {
                 id: 'enrollments_count_header',
                 defaultMessage: '{count} Enrollments',
               },
-          { count: enrollmentsCount ?? 0 },
+          { count: <AnimatedCounter value={enrollmentsCount ?? 0} /> },
         )}
       />
       <div>

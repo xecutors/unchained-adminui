@@ -20,6 +20,7 @@ import {
 } from '../../modules/common/utils/utils';
 import SearchWithTags from '../../modules/common/components/SearchWithTags';
 import LanguageDetailPage from './LanguageDetailPage';
+import AnimatedCounter from '../../modules/common/components/AnimatedCounter';
 
 const Languages = () => {
   const { formatMessage } = useIntl();
@@ -101,7 +102,7 @@ const Languages = () => {
                 id: 'languages_count_header',
                 defaultMessage: '{count} Languages',
               },
-          { count: languagesCount ?? 0 },
+          { count: <AnimatedCounter value={languagesCount ?? 0} /> },
         )}
         addPath={hasRole('addLanguage') && '/language/new'}
         addButtonText={formatMessage({

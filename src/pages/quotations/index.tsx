@@ -12,6 +12,7 @@ import useQuotations from '../../modules/quotation/hooks/useQuotations';
 import { convertSortFieldsToQueryFormat } from '../../modules/common/utils/utils';
 import SearchWithTags from '../../modules/common/components/SearchWithTags';
 import QuotationDetailPage from './QuotationDetailPage';
+import AnimatedCounter from '../../modules/common/components/AnimatedCounter';
 
 const Quotations = () => {
   const { formatMessage } = useIntl();
@@ -64,7 +65,7 @@ const Quotations = () => {
                 id: 'quotations_count_header',
                 defaultMessage: '{count} Quotations',
               },
-          { count: quotationsCount ?? 0 },
+          { count: <AnimatedCounter value={quotationsCount ?? 0} /> },
         )}
       />
       <div className="min-w-full overflow-x-auto px-1">

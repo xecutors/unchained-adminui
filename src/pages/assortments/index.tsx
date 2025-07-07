@@ -15,6 +15,7 @@ import SearchWithTags from '../../modules/common/components/SearchWithTags';
 import useAssortmentsCount from '../../modules/assortment/hooks/useAssortmentsCount';
 import AssortmentDetailPage from './AssortmentDetailPage';
 import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
+import AnimatedCounter from '../../modules/common/components/AnimatedCounter';
 
 const GetCurrentView = ({
   options,
@@ -106,7 +107,7 @@ const AssortmentsView = () => {
                 id: 'assortments_count_header',
                 defaultMessage: '{count} Assortments',
               },
-          { count: assortmentsCount ?? 0 },
+          { count: <AnimatedCounter value={assortmentsCount ?? 0} /> },
         )}
         addPath={hasRole('addAssortment') && '/assortments/new'}
         addButtonText={formatMessage({

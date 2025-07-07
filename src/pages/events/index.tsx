@@ -19,6 +19,7 @@ import {
 import ListHeader from '../../modules/common/components/ListHeader';
 import SearchWithTags from '../../modules/common/components/SearchWithTags';
 import EventDetailPage from './EventDetailPage';
+import AnimatedCounter from '../../modules/common/components/AnimatedCounter';
 
 const Events = () => {
   const { formatMessage } = useIntl();
@@ -77,7 +78,7 @@ const Events = () => {
             (eventsCount ?? 0) === 1
               ? { id: 'event_count_header_singular', defaultMessage: '1 Event' }
               : { id: 'events_count_header', defaultMessage: '{count} Events' },
-            { count: eventsCount ?? 0 },
+            { count: <AnimatedCounter value={eventsCount ?? 0} /> },
           )}
         />
         <div>
