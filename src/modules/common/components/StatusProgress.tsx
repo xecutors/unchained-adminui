@@ -46,7 +46,7 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                   <div className="ml-4 flex min-w-0 flex-1 items-center justify-between">
                     <div className="flex-auto">
                       <p className="text-sm text-slate-500">
-                        <span className="flex w-full items-center justify-between font-medium capitalize text-slate-900 dark:text-slate-200">
+                        <span className="flex w-full items-center justify-between text-slate-900 dark:text-slate-200">
                           {value}
                           {timeline[value]?.Component &&
                             timeline[value].Component}
@@ -72,19 +72,12 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
         </ul>
       </div>
 
-      <div className="hidden py-2 px-2 sm:block sm:px-2 lg:p-2">
-        <h4 className="sr-only">
-          {formatMessage({
-            id: 'status',
-            defaultMessage: 'Status',
-          })}
-        </h4>
+      <div>
         <p className="font-medium flex items-center justify-between">
-          <span className="text-xl capitalize">
+          <span className="text-2xl uppercase">
             {data?.status?.toLowerCase()}
           </span>
           <span>
-            &nbsp;on&nbsp;
             {data[content]
               ? formatDateTime(data[content], {
                   dateStyle: 'full',
@@ -101,8 +94,8 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                   <span
                     className={classNames(
                       currentId >= timeline[value].id
-                        ? 'bg-slate-800'
-                        : 'bg-slate-200',
+                        ? 'bg-emerald-600'
+                        : 'bg-slate-200 dark:bg-slate-700',
                       'absolute top-0 left-0 -ml-px h-2 w-full',
                     )}
                     aria-hidden="true"
@@ -111,17 +104,17 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                 <div
                   className={classNames(
                     currentId >= timeline[value].id
-                      ? 'text-slate-950'
-                      : 'text-slate-600',
-                    'text-center',
+                      ? 'text-slate-900'
+                      : 'opacity-50',
+                    'text-start',
                   )}
                 >
-                  <span className="flex flex-col gap-1 items-center justify-center capitalize">
+                  <span className="text-slate-900 dark:text-slate-400">
                     {timeline[value]?.Component
                       ? timeline[value].Component
                       : value}
                   </span>
-                  <span className="block text-slate-900 dark:text-slate-200">
+                  <span className="block text-slate-900 dark:text-slate-100">
                     {currentId >= timeline?.[value]?.id
                       ? formatDateTime(data[timeline?.[value]?.content], {
                           dateStyle: 'short',

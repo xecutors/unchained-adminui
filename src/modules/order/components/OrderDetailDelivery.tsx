@@ -52,35 +52,33 @@ const OrderDetailDelivery = ({ order }) => {
   };
 
   return (
-    <div className="bg-white dark:bg-slate-800 shadow-sm dark:shadow-none sm:rounded-lg">
-      <div className="flex items-center justify-between px-4 sm:px-6">
-        <h2 className="py-4 text-lg font-medium">
+    <div>
+      <div className="flex items-baseline gap-2">
+        <h2 className="pt-4 text-2xl">
           {formatMessage({
             id: 'delivered',
             defaultMessage: 'Delivered',
           })}
         </h2>
-        <span className="mr-2 block rounded-full py-1 text-xs font-semibold leading-5">
-          {formatPrice(order?.delivery.fee)}
-        </span>
-        <span className="font-medium">
+        <span className="block">{formatPrice(order?.delivery.fee)}</span>
+        <span>
           {formatDateTime(order?.delivery?.delivered, {
             timeStyle: 'short',
             dateStyle: 'medium',
           })}
         </span>
       </div>
-      <div className="border-t border-slate-100 dark:border-slate-700 px-4 py-4 sm:px-6">
+      <div>
         <span className="mb-5 block">
           <Link
             href={`/delivery-provider?deliveryProviderId=${order?.delivery?.provider._id}`}
-            className="font-medium text-slate-900 dark:text-slate-300 hover:text-slate-800 dark:hover:text-slate-600"
+            className="text-slate-500 dark:text-slate-300 hover:text-slate-800 dark:hover:text-slate-600"
           >
             {getInterfaceLabel(order?.delivery?.provider?.interface)}
           </Link>
         </span>
 
-        <div className="mt-3 text-sm text-slate-400 dark:text-slate-200">
+        <div className="mt-3 text-sm text-slate-500 dark:text-slate-200">
           {formatMessage({
             id: 'method',
             defaultMessage: 'Method',
@@ -97,7 +95,7 @@ const OrderDetailDelivery = ({ order }) => {
           ))}
         </span>
 
-        <div className="mt-3 text-sm text-slate-400 dark:text-slate-200">
+        <div className="mt-3 text-sm text-slate-500 dark:text-slate-200">
           {formatMessage({
             id: 'status',
             defaultMessage: 'Status',

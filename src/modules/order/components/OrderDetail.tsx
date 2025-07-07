@@ -141,15 +141,22 @@ const OrderDetail = ({ order }) => {
   };
 
   return (
-    <div className="space-y-4 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-10 md:mt-10 dark:text-slate-200">
+    <div className="space-y-4 lg:gap-10 dark:text-slate-200">
       <div>
         <OrderDetailHeader order={order} />
       </div>
-      <div className="lg:col-span-2">
+
+      <div className="mt-10">
         <OrderDetailBilling order={order} />
       </div>
 
-      <div className="lg:col-span-2 bg-white dark:bg-slate-800 p-4 shadow-sm dark:shadow-none rounded-md">
+      <div className="mt-10 flex gap-10 flex-wrap">
+        {order?.items.map((item) => {
+          return <OrderDetailItem key={item._id} item={item} />;
+        })}
+      </div>
+
+      <div className="mt-10">
         <StatusProgress
           data={order}
           statusTypes={orderStatusType}
@@ -157,18 +164,12 @@ const OrderDetail = ({ order }) => {
         />
       </div>
 
-      <div>
-        {order?.items.map((item) => {
-          return <OrderDetailItem key={item._id} item={item} />;
-        })}
-      </div>
-      <div>
+      <div className="mt-10 lg:mt-30 lg:grid lg:grid-cols-2 lg:gap-10">
         <OrderDetailDelivery order={order} />
-      </div>
-      <div>
         <OrderDetailPayment order={order} />
       </div>
-      <div>
+
+      <div className="mt-10 lg:mt-30">
         <DiscountList discounts={order?.discounts} />
       </div>
     </div>

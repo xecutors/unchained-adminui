@@ -561,6 +561,7 @@
   "order_confirmed_success": "Bestellung erfolgreich bestätigt",
   "order_count_header_singular": "1 Bestellung",
   "order_date": "Bestelldatum",
+  "order_placed": "Bestellung aufgegeben",
   "order_deleted": "Bestellung erfolgreich gelöscht",
   "order_detail": "Bestelldetails",
   "order_detail_title": "Bestellung Details",

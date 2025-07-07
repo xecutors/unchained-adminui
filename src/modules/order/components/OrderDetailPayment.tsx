@@ -52,18 +52,16 @@ const OrderDetailPayment = ({ order }) => {
   };
 
   return (
-    <div className="bg-white dark:bg-slate-800 shadow-sm dark:shadow-none sm:rounded-lg">
-      <div className="flex items-center justify-between px-4 sm:px-6">
-        <h2 className="py-4 text-lg font-medium text-slate-900 dark:text-slate-200">
+    <div>
+      <div className="flex items-baseline gap-2">
+        <h2 className="pt-4 text-2xl text-slate-900 dark:text-slate-200">
           {formatMessage({
             id: 'paid',
             defaultMessage: 'Paid',
           })}
         </h2>
-        <span className="mr-2 block rounded-full py-1 text-xs font-semibold leading-5">
-          {formatPrice(order.payment.fee)}
-        </span>
-        <span className="font-medium">
+        <span className="block">{formatPrice(order.payment.fee)}</span>
+        <span>
           {formatDateTime(order.payment.paid, {
             timeStyle: 'short',
             dateStyle: 'medium',
@@ -71,22 +69,22 @@ const OrderDetailPayment = ({ order }) => {
         </span>
       </div>
 
-      <div className="border-t border-slate-100 dark:border-slate-700 px-4 py-4 sm:px-6">
-        <span className="mb-5  block">
+      <div>
+        <span className="mb-5 block">
           <Link
             href={`/payment-provider?paymentProviderId=${order.payment.provider._id}`}
-            className="font-medium text-slate-900 dark:text-slate-300 hover:text-slate-800 dark:hover:text-slate-600"
+            className="text-slate-500 dark:text-slate-300 hover:text-slate-800 dark:hover:text-slate-600"
           >
             {getInterfaceLabel(order.payment?.provider?.interface)}
           </Link>
         </span>
-        <div className="mt-3 text-sm text-slate-400 dark:text-slate-200">
+        <div className="mt-3 text-sm text-slate-500 dark:text-slate-200">
           {formatMessage({
             id: 'method',
             defaultMessage: 'Method',
           })}
         </div>
-        <span className="c mr-2 block rounded-full py-1 text-xs font-semibold leading-5">
+        <span className="mr-2 block rounded-full py-1 text-xs font-semibold leading-5">
           {paymentProviderType.map((type) => (
             <StatusInformation
               key={type.value}
@@ -96,7 +94,7 @@ const OrderDetailPayment = ({ order }) => {
             />
           ))}
         </span>
-        <div className="mt-3 text-sm text-slate-400 dark:text-slate-200">
+        <div className="mt-3 text-sm text-slate-500 dark:text-slate-200">
           {formatMessage({
             id: 'delivery_status',
             defaultMessage: 'Status',
@@ -116,7 +114,7 @@ const OrderDetailPayment = ({ order }) => {
                     id="pay"
                     type="button"
                     onClick={markAsPaid}
-                    className="my-2 mr-2 inline-flex h-full items-center justify-center  rounded-sm border border-slate-300 border-transparent bg-slate-800 dark:bg-slate-600 py-1 px-2 text-xs font-semibold text-white shadow-xs hover:bg-slate-950 dark:hover:bg-slate-500 focus:outline-hidden focus:ring-2 focus:ring-slate-700 dark:focus:ring-slate-400 focus:ring-offset-2"
+                    className="my-2 mr-2 inline-flex h-full items-center justify-center rounded-sm border border-transparent bg-slate-800 dark:bg-slate-600 py-1 px-2 text-xs font-semibold text-white shadow-xs hover:bg-slate-950 dark:hover:bg-slate-500 focus:outline-hidden focus:ring-2 focus:ring-slate-700 dark:focus:ring-slate-400 focus:ring-offset-2"
                   >
                     <span className="mr-1">
                       <PlusIcon className="inline-block h-3 w-3 text-white" />

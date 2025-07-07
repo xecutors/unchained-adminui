@@ -60,29 +60,6 @@ const OrderDetailPage = ({ orderId }) => {
         currentPageTitle={order?.orderNumber ? `#${order?.orderNumber}` : ''}
       />
       <div className="items-center flex min-w-full justify-between gap-3 flex-wrap">
-        <PageHeader
-          headerText={formatMessage({
-            id: 'order_detail',
-            defaultMessage: 'Order Detail',
-          })}
-          title={
-            order?.orderNumber
-              ? formatMessage(
-                  {
-                    id: 'order_detail_title',
-                    defaultMessage: 'Order {id}',
-                  },
-                  { id: order?.orderNumber },
-                )
-              : formatMessage(
-                  {
-                    id: 'cart_detail_title',
-                    defaultMessage: 'Cart {id}',
-                  },
-                  { id: order?._id },
-                )
-          }
-        />
         {order && isDeletable(order.status) && hasRole('removeOrder') ? (
           <HeaderDeleteButton onClick={handleOnClick} />
         ) : null}

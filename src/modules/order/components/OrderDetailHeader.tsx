@@ -9,56 +9,52 @@ const OrderDetailHeader = ({ order }) => {
   const { formatDateTime } = useFormatDateTime();
   if (!order) return null;
   return (
-    <div className="bg-white dark:bg-slate-800 rounded-md shadow-sm dark:shadow-none p-4 space-y-5 ">
-      <div className="flex items-center justify-between">
-        <span className="text-sm block mr-3">
-          {formatMessage({
-            id: 'order_number',
-            defaultMessage: 'Order #',
-          })}
-          &nbsp;
-        </span>
-        <span
-          id="order_number_badge"
-          className="inline-flex text-lg font-medium text-slate-900 dark:text-slate-200 sm:text-xl sm:font-bold"
-        >
-          <span className="sm:hidden">&#35;&nbsp;</span>
-          {order?.orderNumber ? (
-            <Badge
-              text={order.orderNumber}
-              square
-              color="slate"
-              className="text-lg font-medium sm:text-xl sm:font-bold "
-            />
-          ) : (
-            <Badge
-              text={formatMessage({ id: 'cart', defaultMessage: 'Cart' })}
-              color="yellow"
-              className="text-lg font-medium sm:text-xl sm:font-bold"
-            />
-          )}
-        </span>
-      </div>
-      <DetailHeader user={order?.user} contact={order?.contact} />
-      <div className="flex justify-between">
+    <div>
+      <div className="flex justify-between items-baseline flex-wrap mb-10">
+        <div className="flex items-center justify-between gap-5 flex-wrap">
+          <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-200 sm:truncate sm:text-3xl lg:text-4xl xl:text-5xl">
+            {formatMessage({
+              id: 'order_number',
+              defaultMessage: 'Order',
+            })}
+            {order?.orderNumber ? `${order.orderNumber}` : ''}
+          </h2>
+          <span id="order_number_badge" className="inline-flex">
+            {!order?.orderNumber && (
+              <Badge
+                text={formatMessage({ id: 'cart', defaultMessage: 'Cart' })}
+                color="yellow"
+                className="text-lg font-medium sm:text-xl sm:font-bold"
+              />
+            )}
+          </span>
+        </div>
         <div>
-          <span className="text-sm mr-3">
-            {formatMessage({ id: 'date', defaultMessage: 'Date' })}
+          <span className="mr-1 text-slate-400 dark:text-slate-500">
+            {formatMessage({
+              id: 'order_placed',
+              defaultMessage: 'Order placed',
+            })}
           </span>
           {order?.ordered ? formatDateTime(order.ordered) : null}
         </div>
-        <div className="">
+      </div>
+
+      <DetailHeader user={order?.user} contact={order?.contact} />
+
+      {/* <div className="mt-5 flex gap-5 justify-between">
+        <div className="flex gap-1">
           <span>{order?.country?.flagEmoji}</span>
-          <span className="mr-1">
+          <span className="mx-1">
             {normalizeCurrencyISOCode(locale, order?.currency?.isoCode)}
           </span>
           <span>
             {order?.currency?.isoCode && (
-              <Badge text={order?.currency?.isoCode} color="amber" square />
+              <Badge text={order?.currency?.isoCode} color="slate" square />
             )}
           </span>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

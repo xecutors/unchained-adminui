@@ -560,6 +560,7 @@
   "order_confirmed_success": "Order confirmed successfully",
   "order_count_header_singular": "1 Order",
   "order_date": "Order date",
+  "order_placed": "Order placed",
   "order_deleted": "Order deleted successfully",
   "order_detail": "Order Detail",
   "order_detail_title": "Order {id}",
