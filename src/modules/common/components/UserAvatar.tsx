@@ -21,11 +21,9 @@ const UserAvatar = ({ avatar, ...user }) => {
       formatMessage(
         {
           id: 'goodbye_user',
-          defaultMessage: userName
-            ? 'See you later, {name}!'
-            : 'See you later!',
+          defaultMessage: 'See you later, {name}!',
         },
-        { name: userName },
+        { name: userName || '' },
       ),
     );
   };

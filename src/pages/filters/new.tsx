@@ -24,15 +24,23 @@ const AddFilter = () => {
     options,
     locale,
   }) => {
-    const { data, errors } = await createFilter({
-      filter: {
-        options,
-        key,
-        type,
-      },
-      texts: [{ title, locale }],
-    });
-    return { success: !errors?.length, data: data?.createFilter };
+    try {
+      const { data, errors } = await createFilter({
+        filter: {
+          options,
+          key,
+          type,
+        },
+        texts: [{ title, locale }],
+      });
+      return {
+        success: !errors?.length,
+        data: data?.createFilter,
+        errors,
+      };
+    } catch (error) {
+      return { success: false, error };
+    }
   };
 
   const onSubmitSuccess: OnSubmitSuccessType = (_, { _id }) => {
@@ -51,14 +59,14 @@ const AddFilter = () => {
           })}
         />
         <div className="mt-6">
-          <LocaleWrapper>
-            <FormWrapper>
+          <FormWrapper>
+            <LocaleWrapper>
               <FilterForm
                 onSubmit={onSubmit}
                 onSubmitSuccess={onSubmitSuccess}
               />
-            </FormWrapper>
-          </LocaleWrapper>
+            </LocaleWrapper>
+          </FormWrapper>
         </div>
       </div>
     </>

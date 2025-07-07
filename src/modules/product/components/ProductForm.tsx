@@ -15,9 +15,11 @@ import { PRODUCT_TYPES } from '../ProductTypes';
 const ProductForm = ({
   onSubmit,
   onSubmitSuccess,
+  selectedLocale = null,
 }: {
   onSubmit: OnSubmitType;
   onSubmitSuccess: OnSubmitSuccessType;
+  selectedLocale?: string | null;
 }) => {
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
@@ -40,7 +42,7 @@ const ProductForm = ({
           title,
           subtitle: subtitle || '',
           slug: title.toLowerCase().replace(/\s+/g, '-'),
-          locale: 'de',
+          locale: selectedLocale,
         },
       ];
 
