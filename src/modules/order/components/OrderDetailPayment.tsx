@@ -60,13 +60,17 @@ const OrderDetailPayment = ({ order }) => {
             defaultMessage: 'Paid',
           })}
         </h2>
-        <span className="block">{formatPrice(order.payment.fee)}</span>
-        <span>
-          {formatDateTime(order.payment.paid, {
-            timeStyle: 'short',
-            dateStyle: 'medium',
-          })}
-        </span>
+        {order?.payment?.fee?.currencyCode && (
+          <span className="block">{formatPrice(order.payment.fee)}</span>
+        )}
+        {order?.payment?.paid && (
+          <span>
+            {formatDateTime(order.payment.paid, {
+              timeStyle: 'short',
+              dateStyle: 'medium',
+            })}
+          </span>
+        )}
       </div>
 
       <div>

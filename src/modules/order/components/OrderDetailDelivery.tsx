@@ -60,13 +60,17 @@ const OrderDetailDelivery = ({ order }) => {
             defaultMessage: 'Delivered',
           })}
         </h2>
-        <span className="block">{formatPrice(order?.delivery.fee)}</span>
-        <span>
-          {formatDateTime(order?.delivery?.delivered, {
-            timeStyle: 'short',
-            dateStyle: 'medium',
-          })}
-        </span>
+        {order?.delivery?.fee?.currencyCode && (
+          <span className="block">{formatPrice(order.delivery.fee)}</span>
+        )}
+        {order?.delivery?.delivered && (
+          <span>
+            {formatDateTime(order.delivery.delivered, {
+              timeStyle: 'short',
+              dateStyle: 'medium',
+            })}
+          </span>
+        )}
       </div>
       <div>
         <span className="mb-5 block">

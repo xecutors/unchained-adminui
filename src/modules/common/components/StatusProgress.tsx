@@ -77,15 +77,19 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
         <p className="font-medium flex items-center justify-between">
           <span className="text-2xl">
             {data?.status === 'CONFIRMED' ? (
-              <Badge text={data?.status} color="lime" className="px-4 py-2" />
+              <Badge text={data?.status} color="lime" className="rounded-md" />
             ) : data?.status === 'PENDING' ? (
-              <Badge text={data?.status} color="amber" className="px-4 py-2" />
+              <Badge text={data?.status} color="amber" className="rounded-md" />
             ) : data?.status === 'OPEN' ? (
-              <Badge text={data?.status} color="sky" className="px-4 py-2" />
+              <Badge text={data?.status} color="sky" className="rounded-md" />
             ) : data?.status === 'FULLFILLED' ? (
-              <Badge text={data?.status} color="emerald" className="px-4 py-2" />
+              <Badge
+                text={data?.status}
+                color="emerald"
+                className="rounded-md"
+              />
             ) : data?.status === 'REJECTED' ? (
-              <Badge text={data?.status} color="rose" className="px-4 py-2" />
+              <Badge text={data?.status} color="rose" className="rounded-md" />
             ) : (
               <span className="uppercase">{data?.status?.toLowerCase()}</span>
             )}

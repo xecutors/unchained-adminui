@@ -12,9 +12,9 @@ const OrderDetailBilling = ({ order }) => {
     >
       <div>
         <div className="text-xl mb-5 block">
-          {order?.billingAddress?.firstName ||
-            order?.billingAddress?.lastName ||
-            'n/a'}
+          {order?.billingAddress?.firstName && order?.billingAddress?.lastName
+            ? `${order.billingAddress.firstName} ${order.billingAddress.lastName}`
+            : order?.billingAddress?.firstName || order?.billingAddress?.lastName || 'n/a'}
         </div>
         <div className="mb-2 text-xl">
           {formatMessage({
