@@ -2,10 +2,13 @@ import React from 'react';
 import Link from 'next/link';
 import Badge from '../../modules/common/components/Badge';
 import generateUniqueId from '../../modules/common/utils/getUniqueId';
+import { GlobeAltIcon } from '@heroicons/react/24/outline';
 
 interface ProductText {
   _id: string;
-  productId: string;
+  productId?: string;
+  assortmentId?: string;
+  filterId?: string;
   locale: string;
   slug: string;
   title: string;
@@ -38,7 +41,7 @@ export const TextItemCompact: React.FC<Props> = ({ text }) => {
   return (
     <div className="flex items-start gap-4 p-4 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-md transition-shadow duration-200">
       <div className="w-16 h-16 flex-shrink-0 bg-slate-50 dark:bg-slate-700 rounded-md flex items-center justify-center text-2xl text-slate-400">
-        🌐
+        <GlobeAltIcon className="w-6 h-6" />
       </div>
 
       <div className="flex-1 min-w-0 space-y-1">
@@ -69,7 +72,7 @@ export const TextItemCompact: React.FC<Props> = ({ text }) => {
       </div>
 
       <Link
-        href={`/products?slug=${generateUniqueId({ texts: text, _id: text.productId })}`}
+        href={`/products?slug=${generateUniqueId({ texts: text, _id: text?.productId || text?.assortmentId })}`}
         className="mt-2 px-3 py-1.5 text-sm text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 border border-slate-300 dark:border-slate-600 rounded-md hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
       >
         Edit

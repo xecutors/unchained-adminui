@@ -252,9 +252,6 @@
   "billing_interval_unit": {
     "defaultMessage": "Billing interval unit"
   },
-  "billing_summary": {
-    "defaultMessage": "Billing Summary"
-  },
   "billing_unit": {
     "defaultMessage": "Billing Unit"
   },
@@ -287,9 +284,6 @@
   },
   "cart": {
     "defaultMessage": "Cart"
-  },
-  "cart_detail_title": {
-    "defaultMessage": "Cart {id}"
   },
   "chain-id": {
     "defaultMessage": "Chain ID {chainId}"
@@ -359,6 +353,9 @@
   },
   "confirm_password": {
     "defaultMessage": "Confirm password"
+  },
+  "confirmed": {
+    "defaultMessage": "CONFIRMED"
   },
   "connection_status": {
     "defaultMessage": "No Connection"
@@ -662,6 +659,9 @@
   },
   "deliveryProviders_deleted": {
     "defaultMessage": "DeliveryProviders deleted successfully"
+  },
+  "delivery_address": {
+    "defaultMessage": "Delivery address"
   },
   "delivery_processing": {
     "defaultMessage": "Shipping & Delivery"
@@ -993,6 +993,9 @@
   "from": {
     "defaultMessage": "From"
   },
+  "fulfilled": {
+    "defaultMessage": "FULFILLED"
+  },
   "fullName": {
     "defaultMessage": "FullName"
   },
@@ -1098,6 +1101,9 @@
   },
   "invalidated": {
     "defaultMessage": "Invalidated"
+  },
+  "invoice": {
+    "defaultMessage": "INVOICE"
   },
   "ip": {
     "defaultMessage": "IP Address"
@@ -1220,10 +1226,10 @@
     "defaultMessage": "Mark as Paid"
   },
   "mark_as_paid_question": {
-    "defaultMessage": "This will change the order payment status as Paid."
+    "defaultMessage": "This will change the order payment status to Paid."
   },
   "mark_as_paid_question_header": {
-    "defaultMessage": "Mark as paid ?"
+    "defaultMessage": "Mark as paid?"
   },
   "max_quantity": {
     "defaultMessage": "Max Quantity"
@@ -1336,6 +1342,9 @@
   "ok": {
     "defaultMessage": "Ok"
   },
+  "open": {
+    "defaultMessage": "OPEN"
+  },
   "open_sidebar": {
     "defaultMessage": "Open sidebar"
   },
@@ -1366,12 +1375,6 @@
   "order_deleted": {
     "defaultMessage": "Order deleted successfully"
   },
-  "order_detail": {
-    "defaultMessage": "Order Detail"
-  },
-  "order_detail_title": {
-    "defaultMessage": "Order {id}"
-  },
   "order_id": {
     "defaultMessage": "Order"
   },
@@ -1383,6 +1386,9 @@
   },
   "order_payment_fees": {
     "defaultMessage": "Fees"
+  },
+  "order_placed": {
+    "defaultMessage": "Order placed"
   },
   "order_reject_success": {
     "defaultMessage": "Order rejected successfully"
@@ -1427,7 +1433,7 @@
     "defaultMessage": "Password changed successfully."
   },
   "pay": {
-    "defaultMessage": "PAY"
+    "defaultMessage": "Mark paid"
   },
   "payload": {
     "defaultMessage": "Payload"
@@ -1453,14 +1459,14 @@
   "payment_providers": {
     "defaultMessage": "Payment providers"
   },
+  "pending": {
+    "defaultMessage": "PENDING"
+  },
   "periods": {
     "defaultMessage": "Periods"
   },
   "permission_missing": {
     "defaultMessage": "You don't have the required permission"
-  },
-  "phone": {
-    "defaultMessage": "Phone"
   },
   "photo": {
     "defaultMessage": "Photo"
@@ -1543,9 +1549,6 @@
   "product_subscription_form_description": {
     "defaultMessage": "<ul><li> Information that will be used to calculate price of a subscription based product </li> <li>The price specified in commerce section will be used when calculating fees on each interval. </li> <li>Price will not be included for the specified trial period </li> </ul>"
   },
-  "product_supply_form_description": {
-    "defaultMessage": "<ul><li> Information that will be used to identify dimensions of a product </li> </ul>"
-  },
   "product_text_form_description": {
     "defaultMessage": "<ul> <li>A Slug is the unique identifying part of a web address, typically at the end of the URL. </li> <li> You can change the language of text by using the localization dropdown found at top right corner </li> <li> Description area accepts text that are compatible with markdown or HTML. Tip: in order to add a line break use \\ </li> </ul>"
   },
@@ -1566,9 +1569,6 @@
   },
   "product_variation_option_deleted": {
     "defaultMessage": "Variation option deleted successfully"
-  },
-  "product_warehousing_form_description": {
-    "defaultMessage": "<ul><li> Information regarding product storage </li> </ul>"
   },
   "products": {
     "defaultMessage": "Products"
@@ -1593,9 +1593,6 @@
   },
   "published": {
     "defaultMessage": "Published"
-  },
-  "purchased_products": {
-    "defaultMessage": "Purchased products"
   },
   "quantity": {
     "defaultMessage": "Quantity"
@@ -1656,6 +1653,9 @@
   },
   "reject_order_alert_header": {
     "defaultMessage": "Reject order?"
+  },
+  "rejected": {
+    "defaultMessage": "REJECTED"
   },
   "reorder_original": {
     "defaultMessage": "Reorder to original location"
@@ -1815,6 +1815,9 @@
   },
   "shipping": {
     "defaultMessage": "Shipping"
+  },
+  "shipping_method": {
+    "defaultMessage": "SHIPPING"
   },
   "shortcuts": {
     "defaultMessage": "Shortcuts"
@@ -2002,6 +2005,9 @@
   "unauthorized_page": {
     "defaultMessage": "Access Forbidden"
   },
+  "unchained_admin_ui": {
+    "defaultMessage": "Unchained AdminUI"
+  },
   "unchained_logo": {
     "defaultMessage": "Unchained Logo"
   },
@@ -2178,12 +2184,6 @@
   },
   "warehousing": {
     "defaultMessage": "Warehousing"
-  },
-  "warehousing_processing": {
-    "defaultMessage": "Warehousing"
-  },
-  "warehousing_processing_config_description": {
-    "defaultMessage": "Warehousing providers are already configured"
   },
   "warehousing_provider": {
     "defaultMessage": "Warehousing provider"

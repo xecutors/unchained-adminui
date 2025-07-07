@@ -1,4 +1,11 @@
+import { InformationCircleIcon } from '@heroicons/react/24/outline';
 import React from 'react';
+import { useIntl } from 'react-intl';
+import {
+  normalizeCountryISOCode,
+  normalizeCurrencyISOCode,
+  normalizeLanguageISOCode,
+} from '../../modules/common/utils/utils';
 
 type ShopInfo = {
   version: string;
@@ -12,26 +19,57 @@ type ShopInfo = {
   };
 };
 
-export default function ShopInfoCard({ shopInfo }: { shopInfo: ShopInfo }) {
+const ShopInfoCard = ({ shopInfo }: { shopInfo: ShopInfo }) => {
+  const { formatMessage, locale } = useIntl();
   const items = [
-    { label: 'Default Locale', value: shopInfo?.defaultLanguageIsoCode },
-    { label: 'Language', value: shopInfo?.language?.isoCode },
-    { label: 'Country', value: shopInfo?.country?.isoCode },
-    { label: 'Currency', value: shopInfo?.country?.defaultCurrencyCode },
-    { label: 'Version', value: shopInfo?.version },
+    {
+      label: formatMessage({
+        id: 'default_system_locale',
+        defaultMessage: 'Default Locale',
+      }),
+      value: normalizeLanguageISOCode(locale, shopInfo?.defaultLanguageIsoCode),
+    },
+    {
+      label: formatMessage({ id: 'language', defaultMessage: 'Language' }),
+      value: normalizeLanguageISOCode(locale, shopInfo?.language?.isoCode),
+    },
+    {
+      label: formatMessage({ id: 'country', defaultMessage: 'Country' }),
+      value: normalizeCountryISOCode(locale, shopInfo?.country?.isoCode),
+    },
+    {
+      label: formatMessage({ id: 'currency', defaultMessage: 'Currency' }),
+      value: normalizeCurrencyISOCode(
+        locale,
+        shopInfo?.country?.defaultCurrencyCode,
+      ),
+    },
+    {
+      label: formatMessage({ id: 'version', defaultMessage: 'Version' }),
+      value: shopInfo?.version,
+    },
   ];
 
   return (
-    <div className="my-5 inline-block rounded-xl border border-gray-200 bg-white text-sm text-gray-700 shadow-sm p-4 space-y-2">
-      <h3 className="text-base font-medium text-gray-900 mb-2">Shop Info</h3>
-      <ul className="grid grid-cols-2 gap-x-3 gap-y-1">
-        {items.map(({ label, value }) => (
-          <li key={label} className="flex flex-col">
-            <span className="text-gray-500">{label}</span>
-            <span className="font-medium text-gray-800">{value}</span>
-          </li>
-        ))}
-      </ul>
+    <div className="flex items-center gap-4 p-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
+      <div className="w-12 h-12 flex-shrink-0 bg-slate-100 dark:bg-slate-700 rounded-md flex items-center justify-center text-blue-500">
+        <InformationCircleIcon className="w-6 h-6" />
+      </div>
+      <div className="flex-1 min-w-0">
+        <h3 className="text-base font-semibold text-slate-900 dark:text-slate-100 mb-1">
+          {formatMessage({ id: 'shop_info', defaultMessage: 'Shop Info' })}
+        </h3>
+        <dl className="grid grid-cols-2 gap-x-4 gap-y-1 text-sm text-slate-700 dark:text-slate-300">
+          {items.map(({ label, value }) => (
+            <div key={label} className="flex flex-col">
+              <dt className="text-slate-500 dark:text-slate-400">{label}</dt>
+              <dd className="font-medium truncate">{value || '—'}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
     </div>
   );
-}
+};
+
+export default ShopInfoCard;
