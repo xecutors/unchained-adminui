@@ -2,6 +2,7 @@ import React from 'react';
 import { BanknotesIcon } from '@heroicons/react/24/outline';
 import { useIntl } from 'react-intl';
 import { normalizeCurrencyISOCode } from '../../modules/common/utils/utils';
+import useFormatDateTime from '../../modules/common/utils/useFormatDateTime';
 
 type Currency = {
   _id: string;
@@ -14,6 +15,7 @@ type Currency = {
 
 export const CurrencyItemCompact = ({ currency }: { currency: Currency }) => {
   const { locale, formatMessage } = useIntl();
+  const { formatDateTime } = useFormatDateTime();
   return (
     <div className="flex items-center gap-4 p-4 bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow duration-200">
       <div className="w-12 h-12 flex-shrink-0 bg-slate-100 dark:bg-slate-700 rounded-md flex items-center justify-center text-emerald-500">
@@ -57,7 +59,7 @@ export const CurrencyItemCompact = ({ currency }: { currency: Currency }) => {
 
         <div className="text-xs text-slate-500 dark:text-slate-400">
           {formatMessage({ id: 'created', defaultMessage: 'Created' })}:{' '}
-          {new Date(currency.created).toLocaleString()}
+          {formatDateTime(currency.created)}
         </div>
         <div className="text-xs text-slate-500 dark:text-slate-400">
           {formatMessage({ id: 'id', defaultMessage: 'ID' })}: {currency._id}

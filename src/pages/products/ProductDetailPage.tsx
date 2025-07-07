@@ -338,9 +338,9 @@ const ProductDetailPage = ({ slug }) => {
         </div>
       </div>
 
-      <ProductImageGallery 
+      <ProductImageGallery
         productId={product?._id}
-        media={product?.media || []}
+        media={product?.media || ([] as any)}
         onEditMedia={(mediaId) => {
           // Navigate to media tab
           router.push(

@@ -302,7 +302,7 @@ describe('Order', () => {
       );
 
       cy.location('pathname').should('eq', `/orders?orderId=${order._id}`);
-      cy.get('h2').should('contain.text', localizations.en.order_detail);
+      cy.get('h2').should('contain.text', localizations.en.order);
     });
 
     it('Show Navigate to [ORDER DETAIL] page successfully', () => {
@@ -500,7 +500,7 @@ describe('Order', () => {
     );
 
     cy.location('pathname').should('eq', `/orders?orderId=${order._id}`);
-    cy.get('h2').should('contain.text', localizations.en.order_detail);
+    cy.get('h2').should('contain.text', localizations.en.order);
 
     cy.get('span#order_number_badge').within(() => {
       cy.get('span#badge').should('contain', localizations.en.cart);

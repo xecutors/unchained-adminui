@@ -46,7 +46,9 @@ export const useAvailableTools = (): UseAvailableToolsReturn => {
 
       const contentType = response.headers.get('content-type');
       if (!contentType || !contentType.includes('application/json')) {
-        throw new Error('Tools endpoint returned non-JSON response (likely HTML error page)');
+        throw new Error(
+          'Tools endpoint returned non-JSON response (likely HTML error page)',
+        );
       }
 
       let data: ToolsResponse;
@@ -68,18 +70,22 @@ export const useAvailableTools = (): UseAvailableToolsReturn => {
         console.warn('Using cached tools data:', data.error);
       }
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Failed to fetch available tools';
-      
+      const errorMessage =
+        err instanceof Error ? err.message : 'Failed to fetch available tools';
+
       // Check if this is a development environment endpoint issue
-      const isEndpointNotFound = errorMessage.includes('non-JSON response') || 
-                                errorMessage.includes('404') ||
-                                errorMessage.includes('Internal Server Error') ||
-                                errorMessage.includes('Failed to fetch') ||
-                                errorMessage.includes('TypeError: Failed to fetch') ||
-                                err instanceof TypeError;
-      
+      const isEndpointNotFound =
+        errorMessage.includes('non-JSON response') ||
+        errorMessage.includes('404') ||
+        errorMessage.includes('Internal Server Error') ||
+        errorMessage.includes('Failed to fetch') ||
+        errorMessage.includes('TypeError: Failed to fetch') ||
+        err instanceof TypeError;
+
       if (process.env.NODE_ENV === 'development' && isEndpointNotFound) {
-        console.warn('Chat tools endpoint not available, using default tools. This is expected if the backend chat service is not running.');
+        console.warn(
+          'Chat tools endpoint not available, using default tools. This is expected if the backend chat service is not running.',
+        );
         setError(null); // Don't show error in development for endpoint issues
       } else {
         console.error('Error fetching tools:', err);

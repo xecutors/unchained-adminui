@@ -31,9 +31,10 @@ const SubmitButton = ({
 
   const disabled =
     disabledProp || contextDisabled || formik.isSubmitting || hasError;
-  
+
   const isSubmitting = formik.isSubmitting && !hasError;
-  const hasErrorOrDisabled = (disabledProp || contextDisabled || hasError) && !formik.isSubmitting;
+  const hasErrorOrDisabled =
+    (disabledProp || contextDisabled || hasError) && !formik.isSubmitting;
   return (
     <input
       className={classNames(
