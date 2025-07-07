@@ -63,7 +63,10 @@ const Layout = ({
 
   const onLogout = async () => {
     const userName =
-      currentUser?.username || currentUser?.displayName || currentUser?.profile?.displayName || '';
+      currentUser?.username ||
+      currentUser?.profile?.displayName ||
+      currentUser?.name ||
+      '';
     await logOut(apolloClient, router);
     toast.success(
       formatMessage(
@@ -71,7 +74,7 @@ const Layout = ({
           id: 'goodbye_user',
           defaultMessage: 'See you later, {name}!',
         },
-        { name: userName || '' },
+        { name: userName },
       ),
     );
   };
@@ -325,7 +328,10 @@ const Layout = ({
               <button
                 onClick={onLogout}
                 className="p-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus:outline-hidden focus:ring-2 focus:ring-slate-800"
-                title={formatMessage({ id: 'log_out', defaultMessage: 'Log out' })}
+                title={formatMessage({
+                  id: 'log_out',
+                  defaultMessage: 'Log out',
+                })}
               >
                 <ArrowRightEndOnRectangleIcon className="h-5 w-5" />
               </button>
@@ -374,7 +380,10 @@ const Layout = ({
                   <UserIcon className="h-6 w-6 shrink-0 mr-3 text-slate-800 dark:text-slate-300" />
                   <div className="flex-1">
                     <div className="text-sm font-medium dark:text-slate-400">
-                      {formatMessage({ id: 'account', defaultMessage: 'Account' })}
+                      {formatMessage({
+                        id: 'account',
+                        defaultMessage: 'Account',
+                      })}
                     </div>
                     <div className="text-xs text-slate-500 dark:text-slate-400">
                       {formatUsername(currentUser)}
@@ -384,7 +393,10 @@ const Layout = ({
                 <button
                   onClick={onLogout}
                   className="p-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus:outline-hidden focus:ring-2 focus:ring-slate-800 ml-auto"
-                  title={formatMessage({ id: 'log_out', defaultMessage: 'Log out' })}
+                  title={formatMessage({
+                    id: 'log_out',
+                    defaultMessage: 'Log out',
+                  })}
                 >
                   <ArrowRightEndOnRectangleIcon className="h-5 w-5" />
                 </button>
