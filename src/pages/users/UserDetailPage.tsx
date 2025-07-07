@@ -11,6 +11,7 @@ import useModal from '../../modules/modal/hooks/useModal';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import { toast } from 'react-toastify';
 import useAuth from '../../modules/Auth/useAuth';
+import formatUsername from '../../modules/common/utils/formatUsername';
 
 const UserDetailPage = ({ userId }) => {
   const { formatMessage } = useIntl();
@@ -52,7 +53,7 @@ const UserDetailPage = ({ userId }) => {
     <div className=" max-w-6xl">
       <BreadCrumbs currentPageTitle={user ? `${user?.name}` : ''} />
       <PageHeader
-        headerText={formatMessage({
+        headerText={formatUsername(user) || formatMessage({
           id: 'users_setting_list_header',
           defaultMessage: 'User settings',
         })}
