@@ -6,6 +6,7 @@ import {
   normalizeCurrencyISOCode,
 } from '../../modules/common/utils/utils';
 import getFlagEmoji from '../../modules/common/utils/getFlagEmoji';
+import useFormatDateTime from '../../modules/common/utils/useFormatDateTime';
 
 type Country = {
   _id: string;
@@ -18,6 +19,7 @@ type Country = {
 
 export const CountryItemCompact = ({ country }: { country: Country }) => {
   const { formatMessage, locale } = useIntl();
+  const { formatDateTime } = useFormatDateTime();
   const flag = getFlagEmoji(country.isoCode);
   return (
     <div className="flex items-center gap-4 p-4 bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow duration-200">
@@ -62,7 +64,7 @@ export const CountryItemCompact = ({ country }: { country: Country }) => {
             id: 'updated',
             defaultMessage: 'Updated',
           })}
-          : {new Date(country.updated).toLocaleString()}
+          : {formatDateTime(country.updated)}
         </div>
         <div className="text-xs text-slate-500 dark:text-slate-400">
           {formatMessage({
