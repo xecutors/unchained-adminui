@@ -17,7 +17,7 @@ const OrderListItem = ({ order, showUser }) => {
       <Table.Cell>
         <Link
           href={`/orders?orderId=${order._id}`}
-          className="flex items-center text-sm font-medium text-slate-800 dark:text-slate-700 group-hover:text-slate-900 dark:group-hover:text-slate-600"
+          className="flex items-center gap-3 text-sm font-medium text-slate-800 dark:text-slate-700 group-hover:text-slate-900 dark:group-hover:text-slate-600"
         >
           {order?.orderNumber || (
             <>

@@ -59,7 +59,7 @@ const OrderDetailPage = ({ orderId }) => {
       <BreadCrumbs
         currentPageTitle={order?.orderNumber ? `#${order?.orderNumber}` : ''}
       />
-      <div className="items-center flex min-w-full justify-between gap-3 flex-wrap">
+      <div className="items-center flex min-w-full justify-end gap-3 flex-wrap">
         {order && isDeletable(order.status) && hasRole('removeOrder') ? (
           <HeaderDeleteButton onClick={handleOnClick} />
         ) : null}
