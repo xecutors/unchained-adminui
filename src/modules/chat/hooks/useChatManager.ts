@@ -37,7 +37,7 @@ export const useChatManager = () => {
     streamProtocol: 'data',
     maxSteps: 5,
     credentials: 'include',
-    api: '/chat',
+    api: process.env.NEXT_PUBLIC_CHAT_URL || '/chat',
     initialMessages: chatStorage.loadMessages(),
     onError: (error) => {
       console.error('Chat error:', error);
@@ -45,10 +45,18 @@ export const useChatManager = () => {
       let errorContent = '';
 
       if (
-        error.message?.includes('fetch') ||
-        error.message?.includes('Failed to fetch')
+        error.message?.includes('401') ||
+        error.message?.includes('invalid_token') ||
+        error.message?.includes('Unauthorized')
       ) {
-        errorContent = `🚫 **Connection Error**\n\nCannot connect to the chat API server at \`localhost:4010\`.\n\n**To enable chat functionality:**\n1. Start the Unchained Commerce backend on localhost:4010\n2. Ensure the MCP (Model Context Protocol) server is running\n3. Check that the GraphQL endpoint is accessible\n\n**Current status:**\n- Chat interface: ✅ Ready\n- Backend integration: ❌ Required\n\n*Please start the Unchained Commerce backend to use this feature.*`;
+        errorContent = `🔐 **Authentication Error**\n\nYour session has expired or the authentication token is invalid.\n\n**To fix this:**\n1. **Refresh the page** (Ctrl+R / Cmd+R) to renew your session\n2. If the problem persists, log out and log back in\n3. Check that you have proper permissions for chat functionality\n\n**Quick action:** Click [here to refresh the page](javascript:window.location.reload())\n\n*This happens when your session expires after being idle for too long.*`;
+      } else if (
+        error.message?.includes('fetch') ||
+        error.message?.includes('Failed to fetch') ||
+        error.message?.includes('NetworkError')
+      ) {
+        const chatUrl = process.env.NEXT_PUBLIC_CHAT_URL || '/chat';
+        errorContent = `🚫 **Connection Error**\n\nCannot connect to the chat API server at \`${chatUrl}\`.\n\n**To enable chat functionality:**\n1. Start the Unchained Commerce backend on localhost:4010\n2. Ensure the chat/MCP endpoint is properly configured\n3. Check that NEXT_PUBLIC_CHAT_URL is set correctly\n\n**Current configuration:**\n- Chat URL: \`${chatUrl}\`\n- Backend expected: \`http://localhost:4010/chat\`\n\n*Please start the Unchained Commerce backend to use this feature.*`;
       } else if (
         error.message?.includes('stream') ||
         error.message?.includes('data') ||

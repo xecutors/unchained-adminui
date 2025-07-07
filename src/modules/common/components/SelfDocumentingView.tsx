@@ -21,7 +21,7 @@ const SelfDocumentingView = ({
             <h3 className="text-lg text-slate-900 dark:text-slate-200">
               {documentationLabel}
             </h3>
-            <div className="mt-1 text-sm text-slate-600 dark:text-slate-200">
+            <div className="mt-1 text-sm text-slate-600 dark:text-slate-500">
               {documentation}
             </div>
             {sideComponents}

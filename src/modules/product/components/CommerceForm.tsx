@@ -291,7 +291,7 @@ const CommerceForm = ({ productId, disabled = false }) => {
               </FieldArray>
             </div>
             <FormErrors displayFieldErrors />
-            <div className="-mx-6 p-6 bg-slate-50 text-right">
+            <div className="-mx-6 p-6 bg-slate-50 dark:bg-slate-900 text-right">
               <SubmitButton
                 className="mx-6"
                 hidden={!hasRole('editProductCommerce')}

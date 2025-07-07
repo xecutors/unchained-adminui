@@ -36,7 +36,7 @@ export const useAvailableTools = (): UseAvailableToolsReturn => {
       ? `${process.env.NEXT_PUBLIC_CHAT_URL}/tools`
       : '/chat/tools';
     try {
-      const response = await fetch('/chat/tools', {
+      const response = await fetch(normalizedToolsUrl, {
         credentials: 'include',
       });
 
@@ -44,7 +44,17 @@ export const useAvailableTools = (): UseAvailableToolsReturn => {
         throw new Error(`Failed to fetch tools: ${response.statusText}`);
       }
 
-      const data: ToolsResponse = await response.json();
+      const contentType = response.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        throw new Error('Tools endpoint returned non-JSON response (likely HTML error page)');
+      }
+
+      let data: ToolsResponse;
+      try {
+        data = await response.json();
+      } catch (jsonError) {
+        throw new Error('Invalid JSON response from tools endpoint');
+      }
 
       if (data.error && !data.tools) {
         throw new Error(data.error);
@@ -58,10 +68,20 @@ export const useAvailableTools = (): UseAvailableToolsReturn => {
         console.warn('Using cached tools data:', data.error);
       }
     } catch (err) {
-      console.error('Error fetching tools:', err);
-      setError(
-        err instanceof Error ? err.message : 'Failed to fetch available tools',
-      );
+      const errorMessage = err instanceof Error ? err.message : 'Failed to fetch available tools';
+      
+      // Check if this is a development environment endpoint issue
+      const isEndpointNotFound = errorMessage.includes('non-JSON response') || 
+                                errorMessage.includes('404') ||
+                                errorMessage.includes('Internal Server Error');
+      
+      if (process.env.NODE_ENV === 'development' && isEndpointNotFound) {
+        console.warn('Chat tools endpoint not available, using default tools. This is expected if the backend chat service is not running.');
+        setError(null); // Don't show error in development for endpoint issues
+      } else {
+        console.error('Error fetching tools:', err);
+        setError(errorMessage);
+      }
 
       // Set default tools as fallback
       setTools(getDefaultTools());

@@ -28,39 +28,49 @@ type ColorConfig = {
 
 const colorConfigs: Record<string, ColorConfig> = {
   green: {
-    button: 'bg-emerald-50 text-emerald-700 border border-emerald-200',
-    hover: 'hover:bg-emerald-100',
+    button:
+      'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-700',
+    hover: 'hover:bg-emerald-100 dark:hover:bg-emerald-900/50',
     focus: 'focus:ring-emerald-500',
-    dropdown: 'text-emerald-700 bg-emerald-50 border border-emerald-200',
-    description: 'text-emerald-600',
+    dropdown:
+      'text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-700',
+    description: 'text-emerald-600 dark:text-emerald-400',
   },
   amber: {
-    button: 'bg-amber-50 text-amber-700 border border-amber-200',
-    hover: 'hover:bg-amber-100',
+    button:
+      'bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-700',
+    hover: 'hover:bg-amber-100 dark:hover:bg-amber-900/50',
     focus: 'focus:ring-amber-500',
-    dropdown: 'text-amber-700 bg-amber-50 border border-amber-200',
-    description: 'text-amber-600',
+    dropdown:
+      'text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-700',
+    description: 'text-amber-600 dark:text-amber-400',
   },
   slate: {
-    button: 'bg-slate-50 text-slate-700 border border-slate-200',
-    hover: 'hover:bg-slate-100',
+    button:
+      'bg-slate-50 dark:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-600',
+    hover: 'hover:bg-slate-100 dark:hover:bg-slate-600',
     focus: 'focus:ring-slate-500',
-    dropdown: 'text-slate-700 bg-slate-50 border border-slate-200',
-    description: 'text-slate-600',
+    dropdown:
+      'text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600',
+    description: 'text-slate-600 dark:text-slate-400',
   },
   stone: {
-    button: 'bg-stone-50 text-stone-700 border border-stone-200',
-    hover: 'hover:bg-stone-100',
+    button:
+      'bg-stone-50 dark:bg-stone-800 text-stone-700 dark:text-stone-300 border border-stone-200 dark:border-stone-700',
+    hover: 'hover:bg-stone-100 dark:hover:bg-stone-700',
     focus: 'focus:ring-stone-500',
-    dropdown: 'text-stone-700 bg-stone-50 border border-stone-200',
-    description: 'text-stone-600',
+    dropdown:
+      'text-stone-700 dark:text-stone-300 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700',
+    description: 'text-stone-600 dark:text-stone-400',
   },
   emerald: {
-    button: 'bg-emerald-50 text-emerald-700 border border-emerald-200',
-    hover: 'hover:bg-emerald-100',
+    button:
+      'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-700',
+    hover: 'hover:bg-emerald-100 dark:hover:bg-emerald-900/50',
     focus: 'focus:ring-emerald-500',
-    dropdown: 'text-emerald-700 bg-emerald-50 border border-emerald-200',
-    description: 'text-emerald-600',
+    dropdown:
+      'text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-700',
+    description: 'text-emerald-600 dark:text-emerald-400',
   },
 };
 
@@ -152,7 +162,7 @@ const SelectOptions = ({
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Listbox.Options className="mt-1 absolute right-0 z-10 w-64 origin-top-right divide-y divide-slate-200 overflow-hidden rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-hidden">
+              <Listbox.Options className="mt-1 absolute right-0 z-10 w-64 origin-top-right divide-y divide-slate-200 dark:divide-slate-600 overflow-hidden rounded-md bg-white dark:bg-slate-800 shadow-lg ring-1 ring-black dark:ring-slate-600 ring-opacity-5 dark:ring-opacity-50 focus:outline-hidden">
                 {options.map((option) => (
                   <Listbox.Option
                     key={option.title}
@@ -191,7 +201,7 @@ const SelectOptions = ({
                           {option?.description && (
                             <div
                               className={classNames(
-                                'mt-2 ms-1 text-sm text-slate-600',
+                                'mt-2 ms-1 text-sm text-slate-600 dark:text-slate-400',
                               )}
                             >
                               {option.description}
