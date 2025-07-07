@@ -94,7 +94,9 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                   <span
                     className={classNames(
                       currentId >= timeline[value].id
-                        ? 'bg-emerald-600'
+                        ? data?.status === 'CONFIRMED' ? 'bg-lime-600' : 
+                          data?.status === 'PENDING' ? 'bg-amber-600' :
+                          data?.status === 'OPEN' ? 'bg-sky-600' : 'bg-emerald-600'
                         : 'bg-slate-200 dark:bg-slate-700',
                       'absolute top-0 left-0 -ml-px h-2 w-full',
                     )}
