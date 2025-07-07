@@ -415,7 +415,7 @@ const Layout = ({
                 </Link>
                 <button
                   onClick={onLogout}
-                  className="p-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus:outline-hidden focus:ring-2 focus:ring-slate-800 ml-auto"
+                  className="p-2 mr-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus:outline-hidden focus:ring-2 focus:ring-slate-800 ml-auto"
                   title={formatMessage({
                     id: 'log_out',
                     defaultMessage: 'Log out',
@@ -427,6 +427,39 @@ const Layout = ({
             )}
             {narrowNav && (
               <div className="flex items-center flex-col space-y-2">
+                <Link
+                  href="/account"
+                  className="p-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-slate-800 dark:focus:ring-slate-400"
+                  title={formatMessage({
+                    id: 'account',
+                    defaultMessage: 'Account',
+                  })}
+                >
+                  {currentUser?.avatar ? (
+                    <ImageWithFallback
+                      src={currentUser.avatar.url}
+                      width={24}
+                      height={24}
+                      className="h-6 w-6 rounded-full object-cover"
+                      alt={formatMessage({
+                        id: 'user_avatar',
+                        defaultMessage: 'User avatar',
+                      })}
+                    />
+                  ) : (
+                    <UserIcon className="h-6 w-6" />
+                  )}
+                </Link>
+                <button
+                  onClick={onLogout}
+                  className="p-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-800 dark:focus:ring-slate-400"
+                  title={formatMessage({
+                    id: 'log_out',
+                    defaultMessage: 'Log out',
+                  })}
+                >
+                  <ArrowRightEndOnRectangleIcon className="h-5 w-5" />
+                </button>
                 <LanguageToggle narrowNav={narrowNav} />
                 <ThemeToggle />
               </div>
