@@ -61,9 +61,22 @@ const OrderListItem = ({ order, showUser }) => {
       )}
       <Table.Cell>
         <Badge
-          text={order?.status}
+          text={
+            order?.status === 'CONFIRMED' 
+              ? formatMessage({ id: 'confirmed', defaultMessage: 'CONFIRMED' })
+              : order?.status === 'PENDING' 
+              ? formatMessage({ id: 'pending', defaultMessage: 'PENDING' })
+              : order?.status === 'OPEN' 
+              ? formatMessage({ id: 'open', defaultMessage: 'OPEN' })
+              : order?.status === 'FULLFILLED' 
+              ? formatMessage({ id: 'fulfilled', defaultMessage: 'FULFILLED' })
+              : order?.status === 'REJECTED' 
+              ? formatMessage({ id: 'rejected', defaultMessage: 'REJECTED' })
+              : order?.status
+          }
           color={ORDER_STATUSES[order.status]}
           square
+          className="uppercase"
         />
       </Table.Cell>
     </Table.Row>
