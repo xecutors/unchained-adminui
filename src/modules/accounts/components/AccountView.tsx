@@ -118,7 +118,7 @@ const AccountView = ({
             defaultMessage: 'Set password',
           })}
         >
-          <div className="overflow-hidden rounded-md border-b bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-200 border-slate-300 dark:border-slate-800 px-4 py-5 shadow-sm sm:p-6">
+          <div className="overflow-hidden rounded-md border-b bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-200 border-slate-300 dark:border-slate-800 shadow-sm">
             <SetPassword
               userId={_id}
               isInitialPassword={isInitialPassword}

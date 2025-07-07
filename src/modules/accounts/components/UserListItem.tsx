@@ -56,7 +56,7 @@ const UserListItem = ({ user }) => {
               name={user.username}
             />
             <div className="flex-1 min-w-0">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between gap-3">
                 <span className="text-sm font-semibold text-slate-900 dark:text-slate-300 truncate">
                   {formatUsername(user)}
                 </span>

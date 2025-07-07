@@ -73,7 +73,10 @@ export const useAvailableTools = (): UseAvailableToolsReturn => {
       // Check if this is a development environment endpoint issue
       const isEndpointNotFound = errorMessage.includes('non-JSON response') || 
                                 errorMessage.includes('404') ||
-                                errorMessage.includes('Internal Server Error');
+                                errorMessage.includes('Internal Server Error') ||
+                                errorMessage.includes('Failed to fetch') ||
+                                errorMessage.includes('TypeError: Failed to fetch') ||
+                                err instanceof TypeError;
       
       if (process.env.NODE_ENV === 'development' && isEndpointNotFound) {
         console.warn('Chat tools endpoint not available, using default tools. This is expected if the backend chat service is not running.');

@@ -13,7 +13,7 @@ const OrderDetailAddresses = ({ order }) => {
     >
       {/* Billing Address */}
       <div>
-        <div className="mb-2 text-xl">
+        <div className="mb-2 text-xl dark:text-slate-400">
           {formatMessage({
             id: 'billing_address',
             defaultMessage: 'Billing address',
@@ -50,7 +50,7 @@ const OrderDetailAddresses = ({ order }) => {
 
       {/* Delivery Address */}
       <div>
-        <div className="mb-2 text-xl">
+        <div className="mb-2 text-xl dark:text-slate-400">
           {formatMessage({
             id: 'delivery_address',
             defaultMessage: 'Delivery address',

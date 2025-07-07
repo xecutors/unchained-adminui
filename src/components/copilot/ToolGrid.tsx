@@ -136,7 +136,7 @@ export const ToolGrid: React.FC<ToolGridProps> = ({
                       <h3 className="text-sm font-semibold text-slate-700 dark:text-slate-300">
                         {category}
                       </h3>
-                      <span className="text-xs text-slate-500 dark:text-slate-500 bg-slate-200 dark:bg-slate-700 px-2 py-1 rounded-full">
+                      <span className="text-xs text-slate-500 dark:text-slate-400 bg-slate-200 dark:bg-slate-700 px-2 py-1 rounded-full">
                         {tools.length}
                       </span>
                     </div>

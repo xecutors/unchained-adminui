@@ -47,7 +47,8 @@ export const useChatManager = () => {
       if (
         error.message?.includes('401') ||
         error.message?.includes('invalid_token') ||
-        error.message?.includes('Unauthorized')
+        error.message?.includes('Unauthorized') ||
+        error.message?.includes('HTTP 401')
       ) {
         errorContent = `🔐 **Authentication Error**\n\nYour session has expired or the authentication token is invalid.\n\n**To fix this:**\n1. **Refresh the page** (Ctrl+R / Cmd+R) to renew your session\n2. If the problem persists, log out and log back in\n3. Check that you have proper permissions for chat functionality\n\n**Quick action:** Click [here to refresh the page](javascript:window.location.reload())\n\n*This happens when your session expires after being idle for too long.*`;
       } else if (
@@ -120,14 +121,30 @@ export const useChatManager = () => {
     } catch (error) {
       console.error('Error in handleSubmit:', error);
 
-      // Create error message if not handled by onError
-      const errorMessage: ChatMessage = {
-        id: `error-${Date.now()}`,
-        role: 'assistant',
-        content: `❌ **Submission Error**\n\nFailed to send your message. This usually happens when the backend server is not running.\n\n**Error:** ${error instanceof Error ? error.message : 'Unknown error'}\n\n*Please ensure the Unchained Commerce backend is running on localhost:4010.*`,
-      };
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
 
-      setMessages((prev) => [...prev, errorMessage]);
+      // Check for authentication errors first
+      if (
+        errorMessage.includes('401') ||
+        errorMessage.includes('invalid_token') ||
+        errorMessage.includes('Unauthorized') ||
+        errorMessage.includes('HTTP 401')
+      ) {
+        const authErrorMessage: ChatMessage = {
+          id: `error-${Date.now()}`,
+          role: 'assistant',
+          content: `🔐 **Authentication Error**\n\nYour session has expired or the authentication token is invalid.\n\n**To fix this:**\n1. **Refresh the page** (Ctrl+R / Cmd+R) to renew your session\n2. If the problem persists, log out and log back in\n3. Check that you have proper permissions for chat functionality\n\n**Quick action:** Click [here to refresh the page](javascript:window.location.reload())\n\n*This happens when your session expires after being idle for too long.*`,
+        };
+        setMessages((prev) => [...prev, authErrorMessage]);
+      } else {
+        // Handle other errors
+        const generalErrorMessage: ChatMessage = {
+          id: `error-${Date.now()}`,
+          role: 'assistant',
+          content: `❌ **Submission Error**\n\nFailed to send your message. This usually happens when the backend server is not running.\n\n**Error:** ${errorMessage}\n\n*Please ensure the Unchained Commerce backend is running on localhost:4010.*`,
+        };
+        setMessages((prev) => [...prev, generalErrorMessage]);
+      }
     }
   };
 

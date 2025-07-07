@@ -23,7 +23,7 @@ const OrderDetailBilling = ({ order }) => {
         {!isCart && (
           <>
             <div className="flex items-center justify-between">
-              <dt className="text-slate-600 dark:text-slate-200">
+              <dt className="text-slate-600 dark:text-slate-400">
                 {formatMessage({
                   id: 'discount',
                   defaultMessage: 'Discount',
@@ -32,7 +32,7 @@ const OrderDetailBilling = ({ order }) => {
               <dd className="">{formatPrice(order?.totalDiscount)}</dd>
             </div>
             <div className="flex items-center justify-between">
-              <dt className="text-slate-600 dark:text-slate-200">
+              <dt className="text-slate-600 dark:text-slate-400">
                 {formatMessage({
                   id: 'shipping',
                   defaultMessage: 'Shipping',
@@ -41,7 +41,7 @@ const OrderDetailBilling = ({ order }) => {
               <dd className="">{formatPrice(order?.totalDelivery)}</dd>
             </div>
             <div className="flex items-center justify-between">
-              <dt className="text-slate-600 dark:text-slate-200">
+              <dt className="text-slate-600 dark:text-slate-400">
                 {formatMessage({
                   id: 'tax',
                   defaultMessage: 'Tax',
@@ -50,7 +50,7 @@ const OrderDetailBilling = ({ order }) => {
               <dd className="">{formatPrice(order?.totalTax)}</dd>
             </div>
             <div className="flex items-center justify-between">
-              <dt className="text-slate-600 dark:text-slate-200">
+              <dt className="text-slate-600 dark:text-slate-400">
                 {formatMessage({
                   id: 'order_payment_fees',
                   defaultMessage: 'Fees',
@@ -59,7 +59,7 @@ const OrderDetailBilling = ({ order }) => {
               <dd className="">{formatPrice(order?.totalPayment)}</dd>
             </div>
             <div className="flex items-center justify-between">
-              <dt className="text-slate-600 dark:text-slate-200">
+              <dt className="text-slate-600 dark:text-slate-400">
                 {formatMessage({
                   id: 'subtotal',
                   defaultMessage: 'Subtotal',
