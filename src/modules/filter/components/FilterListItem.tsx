@@ -18,53 +18,61 @@ const FilterListItem = ({ filter, onRemove }) => {
     false: formatMessage({ id: 'in_active', defaultMessage: 'In-Active' }),
   };
   return (
-    <Table.Row>
+    <Table.Row className="group">
       <Table.Cell>
-        <div className="flex items-center text-sm text-slate-900">
-          <Link
-            href={`/filters?filterId=${filter._id}`}
-            className="text-slate-900 dark:text-slate-300"
-          >
-            {filter?.texts &&
-              (filter?.texts.title || (
-                <>
-                  {filter._id}{' '}
-                  <Badge
-                    color="blue"
-                    text={formatMessage({
-                      id: 'name',
-                      defaultMessage: 'Name',
-                    })}
-                  />
-                </>
-              ))}
-          </Link>
-        </div>
+        <Link
+          href={`/filters?filterId=${filter._id}`}
+          className="flex items-center text-sm text-slate-900 dark:text-slate-300 group-hover:text-slate-700 dark:group-hover:text-slate-100"
+        >
+          {filter?.texts &&
+            (filter?.texts.title || (
+              <>
+                {filter._id}{' '}
+                <Badge
+                  color="blue"
+                  text={formatMessage({
+                    id: 'name',
+                    defaultMessage: 'Name',
+                  })}
+                />
+              </>
+            ))}
+        </Link>
       </Table.Cell>
 
       <Table.Cell>
-        <Badge
-          text={filter.type?.split('_')?.join(' ')}
-          color={FILTER_TYPES[filter.type]}
-          square
-        />
+        <Link href={`/filters?filterId=${filter._id}`} className="block">
+          <Badge
+            text={filter.type?.split('_')?.join(' ')}
+            color={FILTER_TYPES[filter.type]}
+            square
+          />
+        </Link>
       </Table.Cell>
 
       <Table.Cell>
-        <Badge
-          text={STATUS[filter.isActive]}
-          color={filter.isActive ? 'emerald' : 'amber'}
-          square
-        />
+        <Link href={`/filters?filterId=${filter._id}`} className="block">
+          <Badge
+            text={STATUS[filter.isActive]}
+            color={filter.isActive ? 'emerald' : 'amber'}
+            square
+          />
+        </Link>
       </Table.Cell>
 
-      <Table.Cell>{filter.options?.length}</Table.Cell>
+      <Table.Cell>
+        <Link href={`/filters?filterId=${filter._id}`} className="block">
+          {filter.options?.length}
+        </Link>
+      </Table.Cell>
       {hasRole('removeFilter') && (
         <Table.Cell>
           <div className="flex items-center md:justify-center">
             <DeleteButton
               className="px-0"
-              onClick={async () => {
+              onClick={async (e) => {
+                e.preventDefault();
+                e.stopPropagation();
                 await onRemove(filter?._id);
               }}
             />

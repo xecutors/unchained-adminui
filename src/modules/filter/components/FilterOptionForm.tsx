@@ -37,10 +37,6 @@ const FilterOptionForm = ({
             id: 'filter_option_value',
             defaultMessage: 'Value',
           })}
-          placeholder={formatMessage({
-            id: 'filter_option_value',
-            defaultMessage: 'Value',
-          })}
           required
         />
         <TextField
@@ -49,19 +45,15 @@ const FilterOptionForm = ({
             id: 'filter_option_title',
             defaultMessage: 'Title',
           })}
-          placeholder={formatMessage({
-            id: 'filter_option_title',
-            defaultMessage: 'Title',
-          })}
           required
         />
       </div>
 
-      <div className="flex justify-end">
+      <div className="mt-5 flex justify-end">
         <button
           onClick={onCancel}
           type="button"
-          className="mb-5 mt-5 mr-2  h-9 rounded-md border border-transparent border-slate-300 bg-white px-3 py-1 text-sm font-medium leading-5 text-slate-700 shadow-xs"
+          className="mr-2 rounded-md border border-slate-100 bg-white px-3 py-1 text-sm font-medium leading-5 text-slate-700 shadow-xs"
         >
           {formatMessage({ id: 'cancel', defaultMessage: 'Cancel' })}
         </button>
