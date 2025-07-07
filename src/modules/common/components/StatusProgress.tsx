@@ -2,6 +2,7 @@ import { useIntl } from 'react-intl';
 import { CheckIcon } from '@heroicons/react/24/outline';
 import useFormatDateTime from '../utils/useFormatDateTime';
 import { classNames } from '../utils/utils';
+import Badge from './Badge';
 
 const StatusProgress = ({ data, statusTypes, timeline }) => {
   const { formatMessage } = useIntl();
@@ -74,8 +75,20 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
 
       <div>
         <p className="font-medium flex items-center justify-between">
-          <span className="text-2xl uppercase">
-            {data?.status?.toLowerCase()}
+          <span className="text-2xl">
+            {data?.status === 'CONFIRMED' ? (
+              <Badge text={data?.status} color="lime" className="px-4 py-2" />
+            ) : data?.status === 'PENDING' ? (
+              <Badge text={data?.status} color="amber" className="px-4 py-2" />
+            ) : data?.status === 'OPEN' ? (
+              <Badge text={data?.status} color="sky" className="px-4 py-2" />
+            ) : data?.status === 'FULLFILLED' ? (
+              <Badge text={data?.status} color="emerald" className="px-4 py-2" />
+            ) : data?.status === 'REJECTED' ? (
+              <Badge text={data?.status} color="rose" className="px-4 py-2" />
+            ) : (
+              <span className="uppercase">{data?.status?.toLowerCase()}</span>
+            )}
           </span>
           <span>
             {data[content]
@@ -94,9 +107,13 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                   <span
                     className={classNames(
                       currentId >= timeline[value].id
-                        ? data?.status === 'CONFIRMED' ? 'bg-lime-600' : 
-                          data?.status === 'PENDING' ? 'bg-amber-600' :
-                          data?.status === 'OPEN' ? 'bg-sky-600' : 'bg-emerald-600'
+                        ? data?.status === 'CONFIRMED'
+                          ? 'bg-lime-600'
+                          : data?.status === 'PENDING'
+                            ? 'bg-amber-600'
+                            : data?.status === 'OPEN'
+                              ? 'bg-sky-600'
+                              : 'bg-emerald-600'
                         : 'bg-slate-200 dark:bg-slate-700',
                       'absolute top-0 left-0 -ml-px h-2 w-full',
                     )}
