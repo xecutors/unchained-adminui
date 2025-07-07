@@ -83,7 +83,7 @@ describe('Delivery Provider', () => {
 
     cy.get('h2').should(
       'contain.text',
-      localizations.en.delivery_providers_header,
+      localizations.en.delivery_providers,
     );
     cy.location('pathname').should('eq', '/delivery-provider');
   });

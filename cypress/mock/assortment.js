@@ -287,7 +287,7 @@ export const AssortmentPathsResponse = {
   },
 };
 
-export const CreateAssortmentResponse = {
+export const Createassortmentesponse = {
   data: {
     createAssortment: {
       ...AssortmentListResponse.data?.assortments[0],
@@ -302,7 +302,7 @@ export const CreateAssortmentResponse = {
   },
 };
 
-export const UpdateAssortmentResponse = {
+export const Updateassortmentesponse = {
   data: {
     updateAssortment: {
       ...AssortmentListResponse.data?.assortments[0],
@@ -312,7 +312,7 @@ export const UpdateAssortmentResponse = {
   },
 };
 
-export const SingleAssortmentResponse = {
+export const Singleassortmentesponse = {
   data: {
     assortment: {
       ...AssortmentListResponse.data?.assortments[0],
@@ -350,7 +350,7 @@ export const SingleAssortmentResponse = {
   },
 };
 
-export const SetBaseAssortmentResponse = {
+export const SetBaseassortmentesponse = {
   data: {
     setBaseAssortment: {
       ...AssortmentListResponse.data?.assortments[0],
@@ -1096,7 +1096,7 @@ export const RemoveAssortmentFilterResponse = {
   },
 };
 
-export const assortmentRequestVariables = {
+export const assortmentequestVariables = {
   includeInactive: true,
   includeLeaves: false,
   limit: 50,

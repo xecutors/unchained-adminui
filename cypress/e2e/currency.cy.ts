@@ -59,7 +59,7 @@ describe('Currencies', () => {
 
     cy.get('h2').should(
       'contain.text',
-      localizations.en.currencies_list_header,
+      localizations.en.currencies,
     );
   });
 

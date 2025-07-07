@@ -15,18 +15,17 @@ const AssortmentListView = ({
 
   const sortKeys = convertSortFieldsToQueryFormat(sort);
 
-  const { assortments, assortmentsCount, loading, loadMore, hasMore } =
-    useAssortments({
-      queryString,
-      includeInactive,
-      includeLeaves,
-      limit,
-      offset,
-      tags,
-      slugs: slug,
-      sort: sortKeys,
-      forceLocale: selectedLocale,
-    });
+  const { assortments, loading, loadMore, hasMore } = useAssortments({
+    queryString,
+    includeInactive,
+    includeLeaves,
+    limit,
+    offset,
+    tags,
+    slugs: slug,
+    sort: sortKeys,
+    forceLocale: selectedLocale,
+  });
 
   if (loading && assortments?.length === 0) {
     return <Loading />;

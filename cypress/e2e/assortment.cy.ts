@@ -4,11 +4,11 @@ import {
   AssortmentChildrenResponse,
   AssortmentListResponse,
   AssortmentOperation,
-  assortmentRequestVariables,
-  CreateAssortmentResponse,
-  SingleAssortmentResponse,
+  assortmentequestVariables,
+  Createassortmentesponse,
+  Singleassortmentesponse,
   TranslatedAssortmentTextsResponse,
-  UpdateAssortmentResponse,
+  Updateassortmentesponse,
 } from '../mock/assortment';
 import { LanguagesResponse } from '../mock/language';
 import { aliasMutation, fullAliasMutationName } from '../utils/aliasMutation';
@@ -30,7 +30,7 @@ describe('Assortment', () => {
       }
       if (hasOperationName(req, AssortmentOperation.GetSingleAssortment)) {
         aliasQuery(req, AssortmentOperation.GetSingleAssortment);
-        req.reply(SingleAssortmentResponse);
+        req.reply(Singleassortmentesponse);
       }
       if (hasOperationName(req, AssortmentOperation.GetTranslatedTexts)) {
         aliasQuery(req, AssortmentOperation.GetTranslatedTexts);
@@ -38,11 +38,11 @@ describe('Assortment', () => {
       }
       if (hasOperationName(req, AssortmentOperation.UpdateAssortment)) {
         aliasMutation(req, AssortmentOperation.UpdateAssortment);
-        req.reply(UpdateAssortmentResponse);
+        req.reply(Updateassortmentesponse);
       }
       if (hasOperationName(req, AssortmentOperation.CreateAssortment)) {
         aliasMutation(req, AssortmentOperation.CreateAssortment);
-        req.reply(CreateAssortmentResponse);
+        req.reply(Createassortmentesponse);
       }
     });
 
@@ -54,7 +54,7 @@ describe('Assortment', () => {
     cy.wait(fullAliasName(AssortmentOperation.GetAssortmentList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
-        expect(request.body.variables).to.deep.eq(assortmentRequestVariables);
+        expect(request.body.variables).to.deep.eq(assortmentequestVariables);
         expect(response.body).to.deep.eq(AssortmentListResponse);
       },
     );
@@ -62,7 +62,7 @@ describe('Assortment', () => {
     cy.location('pathname').should('eq', '/assortments');
     cy.get('h2').should(
       'contain.text',
-      localizations.en.assortments_list_header,
+      localizations.en.assortment,
     );
   });
 
@@ -79,7 +79,7 @@ describe('Assortment', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          ...assortmentRequestVariables,
+          ...assortmentequestVariables,
           includeInactive: false,
         });
         expect(response.body).to.deep.eq(AssortmentListResponse);
@@ -112,7 +112,7 @@ describe('Assortment', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          ...assortmentRequestVariables,
+          ...assortmentequestVariables,
           includeLeaves: true,
         });
         expect(response.body).to.deep.eq(AssortmentListResponse);
@@ -258,7 +258,7 @@ describe('Assortment', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          ...assortmentRequestVariables,
+          ...assortmentequestVariables,
           queryString: 'search',
         });
         expect(response.body).to.deep.eq(AssortmentListResponse);
@@ -277,7 +277,7 @@ describe('Assortment', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          ...assortmentRequestVariables,
+          ...assortmentequestVariables,
           queryString: 'search input',
         });
         expect(response.body).to.deep.eq(AssortmentListResponse);
@@ -300,7 +300,7 @@ describe('Assortment', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          ...assortmentRequestVariables,
+          ...assortmentequestVariables,
           tags: ['new'],
         });
         expect(response.body).to.deep.eq(AssortmentListResponse);
@@ -320,7 +320,7 @@ describe('Assortment', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          ...assortmentRequestVariables,
+          ...assortmentequestVariables,
           tags: ['new', 'old'],
         });
         expect(response.body).to.deep.eq(AssortmentListResponse);
@@ -343,7 +343,7 @@ describe('Assortment', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          ...assortmentRequestVariables,
+          ...assortmentequestVariables,
           tags: ['new'],
         });
         expect(response.body).to.deep.eq(AssortmentListResponse);
@@ -361,7 +361,7 @@ describe('Assortment', () => {
   });
 
   it('Should update data when [SEQUENCING] accordingly', () => {
-    const { _id } = SingleAssortmentResponse.data.assortment;
+    const { _id } = Singleassortmentesponse.data.assortment;
     cy.get(`input#${_id}-sequence`).first().clear().type('50').blur();
 
     cy.wait(fullAliasMutationName(AssortmentOperation.UpdateAssortment)).then(
@@ -373,7 +373,7 @@ describe('Assortment', () => {
           },
           assortmentId: _id,
         });
-        expect(response.body).to.deep.eq(UpdateAssortmentResponse);
+        expect(response.body).to.deep.eq(Updateassortmentesponse);
       },
     );
 
@@ -390,7 +390,7 @@ describe('Assortment', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          ...assortmentRequestVariables,
+          ...assortmentequestVariables,
           includeInactive: false,
         });
         expect(response.body).to.deep.eq(AssortmentListResponse);
@@ -413,7 +413,7 @@ describe('Assortment', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          ...assortmentRequestVariables,
+          ...assortmentequestVariables,
           includeInactive: false,
           includeLeaves: true,
         });
@@ -437,7 +437,7 @@ describe('Assortment', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          ...assortmentRequestVariables,
+          ...assortmentequestVariables,
           includeInactive: false,
           includeLeaves: true,
           tags: ['new'],
@@ -462,7 +462,7 @@ describe('Assortment', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          ...assortmentRequestVariables,
+          ...assortmentequestVariables,
           includeInactive: false,
           includeLeaves: true,
           tags: ['new'],
@@ -492,7 +492,7 @@ describe('Assortment', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          ...assortmentRequestVariables,
+          ...assortmentequestVariables,
         });
         expect(response.body).to.deep.eq(AssortmentListResponse);
       },
@@ -530,14 +530,14 @@ describe('Assortment', () => {
             tags: ['new'],
           },
         });
-        expect(response.body).to.deep.eq(CreateAssortmentResponse);
+        expect(response.body).to.deep.eq(Createassortmentesponse);
       },
     );
 
     cy.location('pathname').should(
       'eq',
       `/assortments?assortmentSlug=${generateUniqueId(
-        CreateAssortmentResponse.data.createAssortment,
+        Createassortmentesponse.data.createAssortment,
       )}`,
     );
 
@@ -545,9 +545,9 @@ describe('Assortment', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          assortmentId: CreateAssortmentResponse.data.createAssortment._id,
+          assortmentId: Createassortmentesponse.data.createAssortment._id,
         });
-        expect(response.body).to.deep.eq(SingleAssortmentResponse);
+        expect(response.body).to.deep.eq(Singleassortmentesponse);
       },
     );
 
@@ -555,7 +555,7 @@ describe('Assortment', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          assortmentId: SingleAssortmentResponse.data.assortment._id,
+          assortmentId: Singleassortmentesponse.data.assortment._id,
         });
         expect(response.body).to.deep.eq(TranslatedAssortmentTextsResponse);
       },

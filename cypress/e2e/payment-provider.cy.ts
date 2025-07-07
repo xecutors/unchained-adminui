@@ -82,7 +82,7 @@ describe('Payment Provider', () => {
 
     cy.get('h2').should(
       'contain.text',
-      localizations.en.payment_providers_header,
+      localizations.en.payment_providers,
     );
   });
 
