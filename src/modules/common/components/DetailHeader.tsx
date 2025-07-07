@@ -31,13 +31,13 @@ const DetailHeader = ({ user, contact }) => {
           <FallbackAvatar username={user?.username} />
         )}
       </div>
-      <div>
+      <div className="flex flex-wrap items-center gap-4">
         <div className="flex items-center justify-between gap-3 flex-wrap">
           <span className="flex items-center">
             <h3 className="text-xl font-semibold capitalize">
               <Link
                 href={`/users?userId=${user?._id}`}
-                className="text-slate-800 dark:text-slate-700 hover:text-slate-900 dark:hover:text-slate-600"
+                className="text-slate-800 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-600"
               >
                 {formatUsername(user)}
               </Link>
@@ -53,12 +53,12 @@ const DetailHeader = ({ user, contact }) => {
                 <dd className="mt-3 flex items-center self-end text-sm font-medium capitalize text-slate-900 sm:mr-6 sm:mt-0">
                   {user?.primaryEmail?.verified ? (
                     <CheckCircleIcon
-                      className="mb-1.5 h-4 w-4 shrink-0 text-emerald-400"
+                      className="h-4 w-4 shrink-0 text-emerald-400"
                       aria-hidden="true"
                     />
                   ) : (
                     <XCircleIcon
-                      className="mb-1.5 h-4 w-4 shrink-0 text-rose-400"
+                      className="h-4 w-4 shrink-0 text-rose-400"
                       aria-hidden="true"
                     />
                   )}
@@ -68,11 +68,8 @@ const DetailHeader = ({ user, contact }) => {
           </span>
         </div>
 
-        <div className="">
-          {contact?.emailAddress && <div>{contact.emailAddress}</div>}
-
-          {contact?.telNumber && <div>{contact.telNumber}</div>}
-        </div>
+        {contact?.emailAddress && <div>{contact.emailAddress}</div>}
+        {contact?.telNumber && <div>{contact.telNumber}</div>}
       </div>
     </div>
   );

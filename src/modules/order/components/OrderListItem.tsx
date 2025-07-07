@@ -17,7 +17,7 @@ const OrderListItem = ({ order, showUser }) => {
       <Table.Cell>
         <Link
           href={`/orders?orderId=${order._id}`}
-          className="flex items-center gap-3 text-sm font-medium text-slate-800 dark:text-slate-700 group-hover:text-slate-900 dark:group-hover:text-slate-600"
+          className="flex items-center gap-3 text-sm font-medium text-slate-800 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-slate-200"
         >
           {order?.orderNumber || (
             <>
@@ -33,7 +33,7 @@ const OrderListItem = ({ order, showUser }) => {
       <Table.Cell>
         <Link
           href={`/orders?orderId=${order._id}`}
-          className="flex items-center text-sm"
+          className="flex items-center text-sm dark:text-slate-300"
         >
           {formatDateTime(order.ordered, {
             dateStyle: 'short',
@@ -44,7 +44,7 @@ const OrderListItem = ({ order, showUser }) => {
       <Table.Cell>
         <Link
           href={`/orders?orderId=${order._id}`}
-          className="flex items-center text-sm"
+          className="flex items-center text-sm dark:text-slate-300"
         >
           {formatPrice(order.total)}
         </Link>
@@ -53,7 +53,7 @@ const OrderListItem = ({ order, showUser }) => {
         <Table.Cell>
           <Link
             href={`/users?userId=${order.user._id}`}
-            className="flex items-center text-sm text-slate-800 dark:text-slate-700 hover:text-decoration"
+            className="flex items-center text-sm text-slate-800 dark:text-slate-300 hover:text-decoration"
             onClick={(e) => e.stopPropagation()}
           >
             <MediaAvatar file={order.user?.avatar} className="mr-3" />
