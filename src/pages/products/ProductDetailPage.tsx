@@ -6,6 +6,7 @@ import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
 import useFormatDateTime from '../../modules/common/utils/useFormatDateTime';
 import ProductDetail from '../../modules/product/components/ProductDetail';
+import ProductImageGallery from '../../modules/product/components/ProductImageGallery';
 import useProduct from '../../modules/product/hooks/useProduct';
 import SelectOptions from '../../modules/common/components/SelectOptions';
 import usePublishProduct from '../../modules/product/hooks/usePublishProduct';
@@ -336,6 +337,25 @@ const ProductDetailPage = ({ slug }) => {
           )}
         </div>
       </div>
+
+      <ProductImageGallery 
+        productId={product?._id}
+        media={product?.media || []}
+        onEditMedia={(mediaId) => {
+          // Navigate to media tab
+          router.push(
+            {
+              pathname: router.pathname,
+              query: { ...router.query, tab: 'media' },
+            },
+            undefined,
+            {
+              shallow: true,
+            },
+          );
+        }}
+        canEdit={hasRole('editProduct')}
+      />
 
       <ProductDetail product={product} extendedData={extendedData} />
     </div>

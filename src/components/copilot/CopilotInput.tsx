@@ -58,7 +58,11 @@ const CopilotInput: React.FC = () => {
         await handleSubmit(e, imgs);
       }
     } catch (e) {
-      console.error(e);
+      // Don't log authentication errors to console as they're handled in the UI
+      const errorMessage = e instanceof Error ? e.message : String(e);
+      if (!errorMessage.includes('401') && !errorMessage.includes('invalid_token')) {
+        console.error(e);
+      }
     }
   };
 
