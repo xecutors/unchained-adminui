@@ -188,13 +188,15 @@ const SelectOptions = ({
                               />
                             )}
                           </div>
-                          <div
-                            className={classNames(
-                              'mt-2 ms-1 text-sm text-slate-600',
-                            )}
-                          >
-                            {option?.description}
-                          </div>
+                          {option?.description && (
+                            <div
+                              className={classNames(
+                                'mt-2 ms-1 text-sm text-slate-600',
+                              )}
+                            >
+                              {option.description}
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>

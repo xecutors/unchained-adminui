@@ -105,7 +105,7 @@ const FilterTextForm = ({ filterId, selectedLocale = null }) => {
                 defaultMessage: 'Subtitle',
               })}
               autoComplete="on"
-              className="mt-2 px-4 text-sm"
+              className="mt-5 px-4 text-sm"
             />
           </div>
           <div className="flex">
