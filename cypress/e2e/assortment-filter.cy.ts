@@ -6,10 +6,10 @@ import {
   AssortmentFiltersResponse,
   AssortmentListResponse,
   AssortmentOperation,
-  assortmentRequestVariables,
+  assortmentequestVariables,
   FiltersListResponse,
   RemoveAssortmentFilterResponse,
-  SingleAssortmentResponse,
+  Singleassortmentesponse,
   TranslatedAssortmentTextsResponse,
 } from '../mock/assortment';
 import { aliasMutation, fullAliasMutationName } from '../utils/aliasMutation';
@@ -19,7 +19,7 @@ import hasOperationName from '../utils/hasOperationName';
 import replaceIntlPlaceholder from '../utils/replaceIntlPlaceholder';
 
 describe('Assortment Detail Filters', () => {
-  const { assortment } = SingleAssortmentResponse.data;
+  const { assortment } = Singleassortmentesponse.data;
   beforeEach(() => {
     cy.intercept('POST', '/graphql', (req) => {
       if (hasOperationName(req, AssortmentOperation.GetAssortmentList)) {
@@ -28,7 +28,7 @@ describe('Assortment Detail Filters', () => {
       }
       if (hasOperationName(req, AssortmentOperation.GetSingleAssortment)) {
         aliasQuery(req, AssortmentOperation.GetSingleAssortment);
-        req.reply(SingleAssortmentResponse);
+        req.reply(Singleassortmentesponse);
       }
 
       if (hasOperationName(req, AssortmentOperation.GetTranslatedTexts)) {
@@ -62,7 +62,7 @@ describe('Assortment Detail Filters', () => {
     cy.wait(fullAliasName(AssortmentOperation.GetAssortmentList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
-        expect(request.body.variables).to.deep.eq(assortmentRequestVariables);
+        expect(request.body.variables).to.deep.eq(assortmentequestVariables);
         expect(response.body).to.deep.eq(AssortmentListResponse);
       },
     );
@@ -70,7 +70,7 @@ describe('Assortment Detail Filters', () => {
     cy.location('pathname').should('eq', '/assortments');
     cy.get('h2').should(
       'contain.text',
-      localizations.en.assortments_list_header,
+      localizations.en.assortments,
     );
 
     cy.get(`a[href="/assortments?assortmentSlug=${generateUniqueId(assortment)}"]`)
@@ -83,7 +83,7 @@ describe('Assortment Detail Filters', () => {
         expect(request.body.variables).to.deep.eq({
           assortmentId: assortment._id,
         });
-        expect(response.body).to.deep.eq(SingleAssortmentResponse);
+        expect(response.body).to.deep.eq(Singleassortmentesponse);
       },
     );
 
@@ -91,7 +91,7 @@ describe('Assortment Detail Filters', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          assortmentId: SingleAssortmentResponse.data.assortment._id,
+          assortmentId: Singleassortmentesponse.data.assortment._id,
         });
         expect(response.body).to.deep.eq(TranslatedAssortmentTextsResponse);
       },
@@ -106,7 +106,7 @@ describe('Assortment Detail Filters', () => {
         'contain.text',
         getContent(
           replaceIntlPlaceholder(
-            localizations.en.assortment_detail_header,
+            localizations.en.assortment,
             assortment._id,
             'id',
           ),

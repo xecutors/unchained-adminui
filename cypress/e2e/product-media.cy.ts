@@ -75,7 +75,7 @@ describe('Product Media', () => {
     );
 
     cy.location('pathname').should('eq', '/products');
-    cy.get('h2').should('contain.text', localizations.en.products_list_header);
+    cy.get('h2').should('contain.text', localizations.en.products);
 
     cy.get(`a[href="/products?slug=${generateUniqueId(product)}"]`)
       .contains(product?.texts?.title)

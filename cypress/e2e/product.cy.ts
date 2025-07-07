@@ -528,7 +528,7 @@ describe('Product', () => {
         });
       });
 
-      cy.get('li[role="option"]').contains(localizations.en.publish).click();
+      cy.get('li[role="option"]').contains(localizations.en.publish_product_description).click();
       cy.wait(fullAliasMutationName(ProductOperations.PublishProduct)).then(
         (currentSubject) => {
           const { request, response } = currentSubject;

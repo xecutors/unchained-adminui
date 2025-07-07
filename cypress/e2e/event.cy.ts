@@ -34,7 +34,7 @@ describe('Events ', () => {
       .click({ force: true });
 
     cy.location('pathname').should('eq', '/events');
-    cy.get('h2').should('contain.text', localizations.en.events_list_header);
+    cy.get('h2').should('contain.text', localizations.en.event);
     cy.wait(fullAliasName(EventOperations.GetEventList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;

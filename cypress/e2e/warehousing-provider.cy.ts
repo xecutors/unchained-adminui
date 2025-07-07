@@ -90,7 +90,7 @@ describe('Warehousing Provider', () => {
     cy.location('pathname').should('eq', '/warehousing-provider');
     cy.get('h2').should(
       'contain.text',
-      localizations.en.warehousing_providers_header,
+      localizations.en.warehousing_provider,
     );
   });
 

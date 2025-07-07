@@ -41,7 +41,7 @@ describe('Languages', () => {
     cy.get('a[href="/language"]')
       .contains(localizations.en.languages)
       .click({ force: true });
-    cy.get('h2').should('contain.text', localizations.en.language_header);
+    cy.get('h2').should('contain.text', localizations.en.languages);
     cy.wait(fullAliasName(LanguageOperations.GetLanguagesList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;

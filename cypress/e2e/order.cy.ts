@@ -99,7 +99,7 @@ describe('Order', () => {
       },
     );
 
-    cy.get('h2').should('contain.text', localizations.en.orders_list_header);
+    cy.get('h2').should('contain.text', localizations.en.orders);
     cy.location('pathname').should('eq', '/orders');
     /* cy.wait(fullAliasName(OrderOperations.GetOrderList)).then(
       (currentSubject) => {

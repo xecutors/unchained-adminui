@@ -90,7 +90,7 @@ describe('User', () => {
       .click({ force: true });
 
     cy.location('pathname').should('eq', '/users');
-    cy.get('h2').should('contain.text', localizations.en.users_list_header);
+    cy.get('h2').should('contain.text', localizations.en.users);
   });
 
   context('Order Tab', () => {
