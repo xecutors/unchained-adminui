@@ -1,5 +1,5 @@
 import React from 'react';
-import { ProductList, ProductListItem } from '../product';
+import { ProductList, ProductListItemCompact } from '../product';
 import CopilotAssortmentList from '../../modules/chat/components/CopilotAssortmentList';
 import AssortmentResultsSummary from '../../modules/chat/components/AssortmentResultsSummary';
 import UnknownToolResponse from './UnknownToolResponse';
@@ -92,7 +92,7 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
     if (listViewTools.includes(toolName) && parsed?.product)
       return (
         <div className="mb-6">
-          <ProductListItem product={parsed.product} />
+          <ProductListItemCompact product={parsed.product} />
         </div>
       );
 
@@ -119,7 +119,7 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
     if (parsed?.product && !listViewTools.includes(toolName)) {
       return (
         <div className="mb-6">
-          <ProductList products={[parsed.product]} />
+          <ProductListItemCompact product={parsed.product} />
         </div>
       );
     }
