@@ -27,15 +27,15 @@ const OrderDetailPayment = ({ order }) => {
       <AlertMessage
         buttonText={formatMessage({
           id: 'pay',
-          defaultMessage: 'PAY',
+          defaultMessage: 'Mark paid',
         })}
         message={formatMessage({
           id: 'mark_as_paid_question',
-          defaultMessage: 'This will change the order payment status as Paid.',
+          defaultMessage: 'This will change the order payment status to Paid.',
         })}
         headerText={formatMessage({
           id: 'mark_as_paid_question_header',
-          defaultMessage: 'Mark as paid ?',
+          defaultMessage: 'Mark as paid?',
         })}
         onOkClick={async () => {
           setModal('');

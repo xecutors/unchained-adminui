@@ -16,7 +16,7 @@ const TagList = ({ defaultValue, onSubmit, enableEdit }) => {
         {defaultValue?.length ? (
           defaultValue.map((tag, key) => (
             <span key={`${tag}${key + 1}`}>
-              <Badge text={tag} color="slate" />
+              <Badge text={tag} color="sky" />
             </span>
           ))
         ) : (

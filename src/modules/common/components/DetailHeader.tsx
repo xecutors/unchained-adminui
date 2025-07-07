@@ -3,6 +3,7 @@ import {
   CheckCircleIcon,
   XCircleIcon,
   DevicePhoneMobileIcon,
+  UserCircleIcon,
 } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import formatUsername from '../utils/formatUsername';
@@ -10,9 +11,7 @@ import ImageWithFallback from './ImageWithFallback';
 
 const FallbackAvatar = ({ username }) => {
   return (
-    <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-slate-900">
-      <span>{username?.slice(0, 2)}</span>
-    </span>
+    <UserCircleIcon className="h-8 w-8 text-slate-800 dark:text-slate-600" />
   );
 };
 
@@ -20,7 +19,7 @@ const DetailHeader = ({ user, contact }) => {
   const { formatMessage } = useIntl();
   return (
     <div className="flex items-center gap-3">
-      <div className="h-12 w-12 rounded-full">
+      <div className="h-8 w-8 rounded-full">
         {user?.avatar ? (
           <ImageWithFallback
             src={user.avatar.url}
@@ -34,18 +33,6 @@ const DetailHeader = ({ user, contact }) => {
       </div>
       <div>
         <div className="flex items-center justify-between gap-3 flex-wrap">
-          <span className="block h-12 w-12 rounded-full sm:hidden">
-            {user?.avatar ? (
-              <ImageWithFallback
-                src="/no-image.jpg"
-                alt={user.name || user.username}
-                width={8}
-                height={8}
-              />
-            ) : (
-              <FallbackAvatar username={user?.username} />
-            )}
-          </span>
           <span className="flex items-center">
             <h3 className="ml-3 text-xl font-bold capitalize">
               <Link

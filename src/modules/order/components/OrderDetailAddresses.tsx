@@ -9,7 +9,7 @@ const OrderDetailAddresses = ({ order }) => {
   return (
     <section
       aria-labelledby="addresses-heading"
-      className="lg:grid lg:grid-cols-2 lg:gap-x-8"
+      className="lg:grid lg:grid-cols-2 flex flex-col gap-8"
     >
       {/* Billing Address */}
       <div>

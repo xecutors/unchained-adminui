@@ -303,7 +303,7 @@ const CommerceForm = ({ productId, disabled = false }) => {
             </div>
           </Form>
         </FormWrapper>
-        <p className="mt-6 mb-10 text-sm text-slate-600 dark:text-slate-400">
+        <p className="mt-6 mb-10 text-sm text-slate-500 dark:text-slate-400">
           {formatMessage({
             id: 'product_commerce_info',
             defaultMessage:

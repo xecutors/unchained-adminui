@@ -207,17 +207,14 @@ const ProductTextsForm = ({
               />
             </div>
           </div>
-          <div className="sticky bottom-0">
-            <div className="absolute -top-5 left-0 right-0 h-5 bg-gradient-to-t from-slate-50 dark:from-slate-800 to-transparent pointer-events-none border-b border-slate-100 dark:border-slate-700" />
-            <div className="border-t-slate-100 border-t dark:border-t-slate-700 bg-slate-50 dark:bg-slate-900 px-4 py-5 text-right sm:px-6">
-              <SubmitButton
-                hidden={!hasRole('editProductTexts')}
-                label={formatMessage({
-                  id: 'save',
-                  defaultMessage: 'Save',
-                })}
-              />
-            </div>
+          <div className="border-t-slate-100 border-t dark:border-t-slate-700 bg-slate-50 dark:bg-slate-900 px-4 py-5 text-right sm:px-6">
+            <SubmitButton
+              hidden={!hasRole('editProductTexts')}
+              label={formatMessage({
+                id: 'save',
+                defaultMessage: 'Save',
+              })}
+            />
           </div>
         </Form>
       </FormWrapper>

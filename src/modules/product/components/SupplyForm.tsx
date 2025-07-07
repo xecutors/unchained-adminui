@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
-import SelfDocumentingView from '../../common/components/SelfDocumentingView';
 import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
@@ -78,23 +77,7 @@ const SupplyForm = ({ productId, disabled = false }) => {
     if (Object.keys(dimensions).length) form.formik.setValues(dimensions);
   }, [dimensions]);
   return (
-    <SelfDocumentingView
-      documentationLabel={formatMessage({
-        id: 'supply',
-        defaultMessage: 'Supply',
-      })}
-      className="mt-2 lg:mt-5"
-      documentation={
-        <FormattedMessage
-          id="product_supply_form_description"
-          defaultMessage="<ul><li> Information that will be used to identify dimensions of a product  </li> </ul>"
-          values={{
-            ul: (chunk) => <ul className="space-y-1">{chunk} </ul>,
-            li: (chunk) => <li>{chunk} </li>,
-          }}
-        />
-      }
-    >
+    <div className="mt-5 md:col-span-2 md:mt-0">
       <FormWrapper>
         <Form form={form}>
           <div className="relative px-4 py-5 sm:p-6">
@@ -165,7 +148,7 @@ const SupplyForm = ({ productId, disabled = false }) => {
           </div>
         </Form>
       </FormWrapper>
-    </SelfDocumentingView>
+    </div>
   );
 };
 

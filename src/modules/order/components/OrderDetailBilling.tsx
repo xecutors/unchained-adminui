@@ -6,10 +6,7 @@ const OrderDetailBilling = ({ order }) => {
   const { formatPrice } = useFormatPrice();
 
   return (
-    <section
-      aria-labelledby="summary-heading"
-      className="max-w-lg"
-    >
+    <div aria-labelledby="summary-heading">
       <div>
         <div className="flex items-center justify-between pb-3 text-xl">
           <dt className="">
@@ -67,7 +64,7 @@ const OrderDetailBilling = ({ order }) => {
           <dd className="">{formatPrice(order?.itemsTotal)}</dd>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

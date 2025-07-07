@@ -47,15 +47,17 @@ const AssortmentProductListItem = ({ link, onDelete, id }) => {
           e.stopPropagation();
         }}
       >
-        <button
-          type="button"
-          {...attributes}
-          {...listeners}
-          className="hover:cursor-move"
-        >
-          <DraggableIcon />
-        </button>
-        <DeleteButton onClick={() => onDelete(_id)} />
+        <div className="flex items-center justify-between gap-5">
+          <button
+            type="button"
+            {...attributes}
+            {...listeners}
+            className="hover:cursor-move"
+          >
+            <DraggableIcon />
+          </button>
+          <DeleteButton onClick={() => onDelete(_id)} />
+        </div>
       </div>
     </div>
   );

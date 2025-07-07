@@ -25,12 +25,12 @@ const AssortmentLinksListItem = ({ link, onDelete, linkId, isParent, id }) => {
       style={style}
     >
       <div className="flex flex-col justify-center space-x-6 py-4 flex-auto">
-        <div className="flex grow shrink basis-2/5">
-          <div className="flex items-center pr-4 grow-0 shrink-0 basis-[22%]">
+        <div className="flex gap-5 items-center">
+          <div className="flex items-center">
             <Badge color="cyan" text={isParent ? 'Parent' : 'Descendant'} />
           </div>
-          <div className="flex-auto">
-            <div className="flex flex-wrap">
+          <div className="flex gap-4">
+            <div className="flex flex-wrap gap-5">
               <h3 className="text-lg flex-auto">{link?.texts?.title}</h3>
               {link?.texts?.title && (
                 <p className="flex-auto text-xs text-slate-600 my-auto">
@@ -58,15 +58,17 @@ const AssortmentLinksListItem = ({ link, onDelete, linkId, isParent, id }) => {
           e.stopPropagation();
         }}
       >
-        <button
-          type="button"
-          {...attributes}
-          {...listeners}
-          className="hover:cursor-move"
-        >
-          <DraggableIcon />
-        </button>
-        <DeleteButton onClick={() => onDelete(linkId)} />
+        <div className="flex items-center gap-5">
+          <button
+            type="button"
+            {...attributes}
+            {...listeners}
+            className="hover:cursor-move"
+          >
+            <DraggableIcon />
+          </button>
+          <DeleteButton onClick={() => onDelete(linkId)} />
+        </div>
       </div>
     </div>
   );

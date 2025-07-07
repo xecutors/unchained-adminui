@@ -77,34 +77,46 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
         <p className="font-medium flex items-center justify-between">
           <span className="text-2xl">
             {data?.status === 'CONFIRMED' ? (
-              <Badge 
-                text={formatMessage({ id: 'confirmed', defaultMessage: 'CONFIRMED' })} 
-                color="lime" 
-                className="rounded-md uppercase" 
+              <Badge
+                text={formatMessage({
+                  id: 'confirmed',
+                  defaultMessage: 'CONFIRMED',
+                })}
+                color="lime"
+                className="rounded-md uppercase"
               />
             ) : data?.status === 'PENDING' ? (
-              <Badge 
-                text={formatMessage({ id: 'pending', defaultMessage: 'PENDING' })} 
-                color="amber" 
-                className="rounded-md uppercase" 
+              <Badge
+                text={formatMessage({
+                  id: 'pending',
+                  defaultMessage: 'PENDING',
+                })}
+                color="amber"
+                className="rounded-md uppercase"
               />
             ) : data?.status === 'OPEN' ? (
-              <Badge 
-                text={formatMessage({ id: 'open', defaultMessage: 'OPEN' })} 
-                color="sky" 
-                className="rounded-md uppercase" 
+              <Badge
+                text={formatMessage({ id: 'open', defaultMessage: 'OPEN' })}
+                color="sky"
+                className="rounded-md uppercase"
               />
             ) : data?.status === 'FULLFILLED' ? (
               <Badge
-                text={formatMessage({ id: 'fulfilled', defaultMessage: 'FULFILLED' })}
+                text={formatMessage({
+                  id: 'fulfilled',
+                  defaultMessage: 'FULFILLED',
+                })}
                 color="emerald"
                 className="rounded-md uppercase"
               />
             ) : data?.status === 'REJECTED' ? (
-              <Badge 
-                text={formatMessage({ id: 'rejected', defaultMessage: 'REJECTED' })} 
-                color="rose" 
-                className="rounded-md uppercase" 
+              <Badge
+                text={formatMessage({
+                  id: 'rejected',
+                  defaultMessage: 'REJECTED',
+                })}
+                color="rose"
+                className="rounded-md uppercase"
               />
             ) : (
               <span className="uppercase">{data?.status?.toLowerCase()}</span>
@@ -151,17 +163,32 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                   <span className="text-slate-900 dark:text-slate-400 uppercase">
                     {timeline[value]?.Component
                       ? timeline[value].Component
-                      : value === 'CONFIRMED' 
-                      ? formatMessage({ id: 'confirmed', defaultMessage: 'CONFIRMED' })
-                      : value === 'PENDING' 
-                      ? formatMessage({ id: 'pending', defaultMessage: 'PENDING' })
-                      : value === 'OPEN' 
-                      ? formatMessage({ id: 'open', defaultMessage: 'OPEN' })
-                      : value === 'FULLFILLED' 
-                      ? formatMessage({ id: 'fulfilled', defaultMessage: 'FULFILLED' })
-                      : value === 'REJECTED' 
-                      ? formatMessage({ id: 'rejected', defaultMessage: 'REJECTED' })
-                      : value}
+                      : value === 'CONFIRMED'
+                        ? formatMessage({
+                            id: 'confirmed',
+                            defaultMessage: 'CONFIRMED',
+                          })
+                        : value === 'PENDING'
+                          ? formatMessage({
+                              id: 'pending',
+                              defaultMessage: 'PENDING',
+                            })
+                          : value === 'OPEN'
+                            ? formatMessage({
+                                id: 'open',
+                                defaultMessage: 'OPEN',
+                              })
+                            : value === 'FULLFILLED'
+                              ? formatMessage({
+                                  id: 'fulfilled',
+                                  defaultMessage: 'FULFILLED',
+                                })
+                              : value === 'REJECTED'
+                                ? formatMessage({
+                                    id: 'rejected',
+                                    defaultMessage: 'REJECTED',
+                                  })
+                                : value}
                   </span>
                   <span className="block text-slate-900 dark:text-slate-100">
                     {currentId >= timeline?.[value]?.id

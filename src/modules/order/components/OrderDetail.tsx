@@ -151,9 +151,9 @@ const OrderDetail = ({ order }) => {
         <OrderDetailAddresses order={order} />
       </div>
 
-      <div className="mt-10 lg:grid lg:grid-cols-2 lg:gap-10">
+      <div className="mt-20 lg:grid lg:grid-cols-2 lg:gap-10">
         <div>
-          <div className="flex gap-10 flex-wrap">
+          <div className="flex gap-5 flex-col">
             {order?.items.map((item) => {
               return <OrderDetailItem key={item._id} item={item} />;
             })}
@@ -164,7 +164,7 @@ const OrderDetail = ({ order }) => {
         </div>
       </div>
 
-      <div className="mt-10">
+      <div className="mt-20">
         <StatusProgress
           data={order}
           statusTypes={orderStatusType}

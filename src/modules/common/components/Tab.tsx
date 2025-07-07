@@ -25,7 +25,7 @@ const Tab = ({ children, tabItems, defaultTab, updateRoute = true }) => {
   };
 
   return (
-    <div className="mt-5">
+    <div className="mt-10">
       <div className="lg:hidden">
         <label htmlFor="selected-tab" className="sr-only">
           {formatMessage({
@@ -68,7 +68,7 @@ const Tab = ({ children, tabItems, defaultTab, updateRoute = true }) => {
                     'cursor-pointer rounded-lg border border-slate-300 dark:border-slate-600 bg-white text-slate-900 dark:text-slate-100 dark:bg-slate-900 shadow-sm dark:hover:border-slate-500 hover:border-slate-400 focus:ring-2 focus:ring-slate-800':
                       tab === option.id,
                   },
-                  'cursor-pointer relative whitespace-nowrap border border-transparent py-3 px-1 pr-3 pl-2 text-sm dark:text-slate-400 font-medium dark:hover:bg-slate-800 hover:border-slate-200 dark:hover:border-slate-500 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-slate-800',
+                  'cursor-pointer relative whitespace-nowrap border border-slate-200 dark:border-slate-800 py-2 px-1 pr-3 pl-2 text-sm dark:text-slate-400 font-medium hover:bg-white dark:hover:bg-slate-800 hover:border-slate-300 dark:hover:border-slate-500 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-slate-800',
                 )}
               >
                 <div className="flex items-center space-x-1">

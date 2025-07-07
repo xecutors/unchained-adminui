@@ -3,7 +3,6 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { IUpdateProductWarehousingInput } from '../../../gql/types';
 import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
-import SelfDocumentingView from '../../common/components/SelfDocumentingView';
 
 import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
@@ -50,27 +49,11 @@ const WarehousingForm = ({ productId, disabled = false }) => {
     }
   }, [product]);
   return (
-    <SelfDocumentingView
-      documentationLabel={formatMessage({
-        id: 'warehousing',
-        defaultMessage: 'Warehousing',
-      })}
-      className="mt-2 lg:mt-5"
-      documentation={
-        <FormattedMessage
-          id="product_warehousing_form_description"
-          defaultMessage="<ul><li> Information regarding product storage </li> </ul>"
-          values={{
-            ul: (chunk) => <ul className="space-y-1">{chunk} </ul>,
-            li: (chunk) => <li>{chunk} </li>,
-          }}
-        />
-      }
-    >
+    <div className="mt-5 md:mt-0">
       <FormWrapper>
         <Form className="rounded" form={form}>
           <div className="relative px-4 pb-5 sm:p-6">
-            <div className="w-full justify-between align-baseline">
+            <div className="w-full justify-between align-baseline lg:flex gap-6">
               <TextField
                 name="sku"
                 id="sku"
@@ -103,7 +86,7 @@ const WarehousingForm = ({ productId, disabled = false }) => {
           </div>
         </Form>
       </FormWrapper>
-    </SelfDocumentingView>
+    </div>
   );
 };
 

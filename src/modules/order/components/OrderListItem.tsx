@@ -68,17 +68,26 @@ const OrderListItem = ({ order, showUser }) => {
         <Link href={`/orders?orderId=${order._id}`} className="block">
           <Badge
             text={
-              order?.status === 'CONFIRMED' 
-                ? formatMessage({ id: 'confirmed', defaultMessage: 'CONFIRMED' })
-                : order?.status === 'PENDING' 
-                ? formatMessage({ id: 'pending', defaultMessage: 'PENDING' })
-                : order?.status === 'OPEN' 
-                ? formatMessage({ id: 'open', defaultMessage: 'OPEN' })
-                : order?.status === 'FULLFILLED' 
-                ? formatMessage({ id: 'fulfilled', defaultMessage: 'FULFILLED' })
-                : order?.status === 'REJECTED' 
-                ? formatMessage({ id: 'rejected', defaultMessage: 'REJECTED' })
-                : order?.status
+              order?.status === 'CONFIRMED'
+                ? formatMessage({
+                    id: 'confirmed',
+                    defaultMessage: 'CONFIRMED',
+                  })
+                : order?.status === 'PENDING'
+                  ? formatMessage({ id: 'pending', defaultMessage: 'PENDING' })
+                  : order?.status === 'OPEN'
+                    ? formatMessage({ id: 'open', defaultMessage: 'OPEN' })
+                    : order?.status === 'FULLFILLED'
+                      ? formatMessage({
+                          id: 'fulfilled',
+                          defaultMessage: 'FULFILLED',
+                        })
+                      : order?.status === 'REJECTED'
+                        ? formatMessage({
+                            id: 'rejected',
+                            defaultMessage: 'REJECTED',
+                          })
+                        : order?.status
             }
             color={ORDER_STATUSES[order.status]}
             square
