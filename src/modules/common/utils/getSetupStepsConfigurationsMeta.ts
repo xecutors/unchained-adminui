@@ -107,23 +107,6 @@ const getSetupStepsConfigurationsMeta = (formatMessage): ConfigurationStep => {
       icon: 'truck',
       isComplete: false,
     },
-    warehousingProvidersCount: {
-      id: 'warehousing',
-      title: formatMessage({
-        id: 'warehousing_processing',
-        defaultMessage: 'Warehousing',
-      }),
-      description: formatMessage({
-        id: 'warehousing_processing_config_description',
-        defaultMessage: 'Warehousing providers are already configured',
-      }),
-      isRequired: true,
-      setupUrl: '/warehousing-provider/new',
-      category: 'commerce',
-      estimatedTime: '10 min',
-      icon: 'warehouse',
-      isComplete: false,
-    },
     productsCount: {
       id: 'products',
       title: formatMessage({ id: 'products', defaultMessage: 'Products' }),

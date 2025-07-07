@@ -67,7 +67,6 @@ const FilterOptionsListItem = ({
                 <div className="truncate text-sm text-slate-900 dark:text-slate-200">
                   {isEdit ? (
                     <TextField
-                      className="mt-0 mb-1 rounded-xs py-0 px-2"
                       name="title"
                       required
                       label={formatMessage({
@@ -82,7 +81,6 @@ const FilterOptionsListItem = ({
                 <div className="truncate text-sm text-slate-500 dark:text-slate-200">
                   {isEdit ? (
                     <TextField
-                      className="mt-0 mb-1 rounded-xs py-0 px-2"
                       name="subtitle"
                       label={formatMessage({
                         id: 'subtitle',

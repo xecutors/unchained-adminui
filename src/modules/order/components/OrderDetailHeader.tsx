@@ -12,7 +12,7 @@ const OrderDetailHeader = ({ order }) => {
     <div>
       <div className="flex justify-between items-baseline flex-wrap mb-10">
         <div className="flex items-center justify-between gap-5 flex-wrap">
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-200 sm:truncate sm:text-3xl lg:text-4xl xl:text-5xl">
+          <h2 className="text-2xl font-medium text-slate-900 dark:text-slate-200 sm:truncate sm:text-3xl lg:text-4xl xl:text-5xl">
             {formatMessage({
               id: 'order_number',
               defaultMessage: 'Order',

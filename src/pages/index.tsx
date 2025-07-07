@@ -14,11 +14,11 @@ const HomePage = () => {
   const { hasRole } = useAuth();
 
   return (
-    <>
+    <div className="mt-5">
       <PageHeader
         headerText={formatMessage({
-          id: 'home',
-          defaultMessage: 'Home',
+          id: 'unchained_admin_ui',
+          defaultMessage: 'Unchained AdminUI',
         })}
       />
       <div className="mx-auto py-6">
@@ -140,7 +140,7 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

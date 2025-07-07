@@ -8,7 +8,7 @@ const FilterSummary = ({ filterKey, filterType }) => {
         <div className="text-sm">
           {formatMessage({ id: 'key', defaultMessage: 'Key' })}
         </div>
-        <div className="rounded-md bg-slate-200 py-1 px-2 text-sm dark:text-slate-600">
+        <div className="rounded-md border-1 border-slate-200 bg-slate-100 py-1 px-2 text-sm dark:text-slate-600">
           {filterKey}
         </div>
       </div>
@@ -19,7 +19,7 @@ const FilterSummary = ({ filterKey, filterType }) => {
             defaultMessage: 'Filter Type',
           })}
         </div>
-        <div className="rounded-md bg-slate-200 py-1 px-2 text-sm dark:text-slate-600">
+        <div className="rounded-md border-1 border-slate-200 bg-slate-100 py-1 px-2 text-sm dark:text-slate-600">
           {filterType}
         </div>
       </div>

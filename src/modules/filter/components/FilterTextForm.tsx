@@ -108,7 +108,7 @@ const FilterTextForm = ({ filterId, selectedLocale = null }) => {
               className="mt-5 px-4 text-sm"
             />
           </div>
-          <div className="flex">
+          <div className="flex bg-slate-100 dark:bg-slate-900 mt-5">
             <SubmitButton
               hidden={!hasRole('editFilterTexts')}
               label={formatMessage({

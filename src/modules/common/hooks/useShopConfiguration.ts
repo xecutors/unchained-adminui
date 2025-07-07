@@ -16,7 +16,6 @@ const BASIC_SHOP_STATUS_QUERY = gql`
     filtersCount
     deliveryProvidersCount
     paymentProvidersCount
-    warehousingProvidersCount
   }
 `;
 

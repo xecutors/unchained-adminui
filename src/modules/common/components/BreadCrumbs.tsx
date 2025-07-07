@@ -52,7 +52,7 @@ const BreadCrumbs = ({
     if (!e) {
       return {
         name: formatMessage({ id: 'home', defaultMessage: 'Home' }),
-        path: '/home',
+        path: '/',
       };
     }
     // if routeName is given dont modify the string else
