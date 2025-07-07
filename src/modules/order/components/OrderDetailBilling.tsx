@@ -4,7 +4,7 @@ import { useFormatPrice } from '../../common/utils/utils';
 const OrderDetailBilling = ({ order }) => {
   const { formatMessage } = useIntl();
   const { formatPrice } = useFormatPrice();
-  
+
   const isCart = order?.status === 'OPEN' || !order?.orderNumber;
 
   return (

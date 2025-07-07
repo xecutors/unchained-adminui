@@ -8,7 +8,7 @@ const OrderDetailHeader = ({ order }) => {
   const { formatMessage, locale } = useIntl();
   const { formatDateTime } = useFormatDateTime();
   if (!order) return null;
-  
+
   const isCart = order?.status === 'OPEN' || !order?.orderNumber;
   return (
     <div>
@@ -36,32 +36,35 @@ const OrderDetailHeader = ({ order }) => {
         </div>
         <div>
           <span className="mr-1 text-slate-400 dark:text-slate-500">
-            {isCart ? (
-              formatMessage({
-                id: 'cart_created',
-                defaultMessage: 'Warenkorb erstellt',
-              })
-            ) : (
-              formatMessage({
-                id: 'order_placed',
-                defaultMessage: 'Order placed',
-              })
-            )}
+            {isCart
+              ? formatMessage({
+                  id: 'cart_created',
+                  defaultMessage: 'Warenkorb erstellt',
+                })
+              : formatMessage({
+                  id: 'order_placed',
+                  defaultMessage: 'Order placed',
+                })}
           </span>
-          {isCart ? formatDateTime(order.created) : (order?.ordered ? formatDateTime(order.ordered) : null)}
+          {isCart
+            ? formatDateTime(order.created)
+            : order?.ordered
+              ? formatDateTime(order.ordered)
+              : null}
         </div>
       </div>
 
       {!isCart && <DetailHeader user={order?.user} contact={order?.contact} />}
-      
+
       {isCart && order?.user && (
         <div className="mt-5">
           <span className="text-lg text-slate-600 dark:text-slate-400">
-            {order.user.profile?.displayName || 
-             (order.user.profile?.address?.firstName && order.user.profile?.address?.lastName 
-               ? `${order.user.profile.address.firstName} ${order.user.profile.address.lastName}`
-               : order.user.username) || 
-             'Guest'}
+            {order.user.profile?.displayName ||
+              (order.user.profile?.address?.firstName &&
+              order.user.profile?.address?.lastName
+                ? `${order.user.profile.address.firstName} ${order.user.profile.address.lastName}`
+                : order.user.username) ||
+              'Guest'}
           </span>
         </div>
       )}

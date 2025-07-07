@@ -31,6 +31,9 @@ const SubmitButton = ({
 
   const disabled =
     disabledProp || contextDisabled || formik.isSubmitting || hasError;
+  
+  const isSubmitting = formik.isSubmitting && !hasError;
+  const hasErrorOrDisabled = (disabledProp || contextDisabled || hasError) && !formik.isSubmitting;
   return (
     <input
       className={classNames(
@@ -38,7 +41,10 @@ const SubmitButton = ({
         className,
         {
           'bg-rose-50 dark:bg-slate-800 dark:text-rose-300 cursor-not-allowed border-rose-300 dark:border-rose-600 text-rose-900':
-            disabled,
+            hasErrorOrDisabled,
+
+          'bg-slate-600 dark:bg-slate-700 text-white cursor-not-allowed border-slate-400 dark:border-slate-600':
+            isSubmitting,
 
           'bg-slate-800 dark:bg-slate-600 text-white hover:bg-slate-900 dark:hover:bg-slate-500 focus:outline-hidden focus:ring-2 focus:ring-offset-2 border-transparent':
             !disabled,
