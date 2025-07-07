@@ -64,8 +64,8 @@ const Layout = ({
   const onLogout = async () => {
     const userName =
       currentUser?.username ||
-      currentUser?.displayName ||
       currentUser?.profile?.displayName ||
+      currentUser?.name ||
       '';
     await logOut(apolloClient, router);
     toast.success(
@@ -74,7 +74,7 @@ const Layout = ({
           id: 'goodbye_user',
           defaultMessage: 'See you later, {name}!',
         },
-        { name: userName || '' },
+        { name: userName },
       ),
     );
   };
