@@ -37,10 +37,6 @@ const GetCurrentStep = ({ step }) => {
               id: 'password',
               defaultMessage: 'Password',
             })}
-            placeholder={formatMessage({
-              id: 'password',
-              defaultMessage: 'Password',
-            })}
           />
 
           <div className="my-1 text-sm sm:my-0 text-left">
@@ -67,10 +63,6 @@ const GetCurrentStep = ({ step }) => {
           autoFocus
           required
           label={formatMessage({
-            id: 'username_or_email',
-            defaultMessage: 'Username/Email',
-          })}
-          placeholder={formatMessage({
             id: 'username_or_email',
             defaultMessage: 'Username/Email',
           })}
