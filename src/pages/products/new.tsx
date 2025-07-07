@@ -44,14 +44,14 @@ const AddProduct = () => {
       />
       <div className="mt-6 lg:grid lg:grid-cols-3 gap-10">
         <div className="lg:col-span-2">
-          <LocaleWrapper>
-            <FormWrapper>
+          <FormWrapper>
+            <LocaleWrapper>
               <ProductForm
                 onSubmit={onSubmit}
                 onSubmitSuccess={onSubmitSuccess}
               />
-            </FormWrapper>
-          </LocaleWrapper>
+            </LocaleWrapper>
+          </FormWrapper>
         </div>
         <div className="mt-10 lg:mt-14 lg:col-span-1 space-y-2">
           <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-slate-200">

@@ -52,7 +52,11 @@ const FilterDetailPage = ({ filterId }) => {
       />,
     );
   };
-
+  if (!filter && !loading) {
+    router.push('/404');
+    return null;
+  }
+  if (loading) return <Loading />;
   return (
     <div className="mt-5 max-w-full">
       <BreadCrumbs currentPageTitle={filter?.key} />
@@ -75,11 +79,7 @@ const FilterDetailPage = ({ filterId }) => {
         )}
       </div>
 
-      {loading ? (
-        <Loading />
-      ) : (
-        <FilterDetail filter={filter} extendedData={extendedData} />
-      )}
+      <FilterDetail filter={filter} extendedData={extendedData} />
     </div>
   );
 };

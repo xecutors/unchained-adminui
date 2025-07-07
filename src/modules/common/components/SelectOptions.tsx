@@ -73,7 +73,7 @@ const SelectOptions = ({
 }) => {
   const [isHover, setIsHover] = useState(false);
   const [select, setSelected] = useState(
-    options?.filter(({ current }) => current)[0] || options?.[0],
+    options?.find(({ current }) => current) || options?.[0],
   );
   const { formatMessage } = useIntl();
 

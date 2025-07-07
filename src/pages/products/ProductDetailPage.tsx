@@ -19,6 +19,7 @@ import CustomError from '../../modules/common/CustomError';
 import { useRouter } from 'next/router';
 import useAuth from '../../modules/Auth/useAuth';
 import { XMarkIcon } from '@heroicons/react/24/outline';
+import { useMemo } from 'react';
 
 const ProductDetailPage = ({ slug }) => {
   const { formatMessage } = useIntl();
@@ -30,15 +31,97 @@ const ProductDetailPage = ({ slug }) => {
   const { updateProduct } = useUpdateProduct();
   const { setModal } = useModal();
   const router = useRouter();
+  const { push } = useRouter();
 
   const { product, loading, error, extendedData } = useProduct({
     slug,
   });
-  const { push } = useRouter();
-  if (!product && !loading) {
-    push('/404');
-    return null;
-  }
+  const status = product?.status || 'DRAFT';
+
+  const activeOptions = useMemo(
+    () => [
+      {
+        id: 'published',
+        title: formatMessage({
+          id: 'published',
+          defaultMessage: 'Published',
+        }),
+        description: formatMessage({
+          id: 'publish_product_description',
+          defaultMessage:
+            'Product will be searchable and is available for orders',
+        }),
+        current: status === 'ACTIVE',
+        selectedTitle: formatMessage({
+          id: 'published',
+          defaultMessage: 'Published',
+        }),
+        onClick: async () => {
+          try {
+            await publishProduct({ productId: product?._id });
+            toast.success(
+              formatMessage({
+                id: 'product_published',
+                defaultMessage: 'Published successfully ',
+              }),
+            );
+          } catch (error: any) {
+            console.error('Failed to publish product:', error);
+            const errorMessage = error?.message || 'Unknown error';
+            toast.error(
+              `${formatMessage({
+                id: 'product_publish_error',
+                defaultMessage: 'Failed to publish product',
+              })}: ${errorMessage}`,
+            );
+          }
+        },
+        bgColor: 'green',
+      },
+      {
+        id: 'draft',
+        title: formatMessage({
+          id: 'draft',
+          defaultMessage: 'Draft',
+        }),
+        description: formatMessage({
+          id: 'draft_product_description',
+          defaultMessage:
+            'Product will not be discoverable and can not be ordered',
+        }),
+        current: status === 'DRAFT',
+        selectedTitle: formatMessage({
+          id: 'not_published',
+          defaultMessage: 'Not published',
+        }),
+        bgColor: 'amber',
+        disable: status === 'ACTIVE' && !hasRole('unpublishProduct'),
+        onClick: async () => {
+          if (hasRole('unpublishProduct') || hasRole('publishProduct')) {
+            try {
+              await unPublishProduct({ productId: product?._id });
+              toast.success(
+                formatMessage({
+                  id: 'product_drafted',
+                  defaultMessage: 'Drafted successfully ',
+                }),
+              );
+            } catch (error: any) {
+              console.error('Failed to unpublish product:', error);
+              const errorMessage = error?.message || 'Unknown error';
+              toast.error(
+                `${formatMessage({
+                  id: 'product_unpublish_error',
+                  defaultMessage: 'Failed to unpublish product',
+                })}: ${errorMessage}`,
+              );
+            }
+          }
+        },
+      },
+    ],
+    [product],
+  );
 
   if (error) {
     console.error('Error loading product:', error);
@@ -65,90 +148,6 @@ const ProductDetailPage = ({ slug }) => {
         },
       });
   };
-
-  const status = product?.status || 'DRAFT';
-
-  const activeOptions = [
-    {
-      id: 'published',
-      title: formatMessage({
-        id: 'published',
-        defaultMessage: 'Published',
-      }),
-      description: formatMessage({
-        id: 'publish_product_description',
-        defaultMessage:
-          'Product will be searchable and is available for orders',
-      }),
-      current: status === 'ACTIVE',
-      selectedTitle: formatMessage({
-        id: 'published',
-        defaultMessage: 'Published',
-      }),
-      onClick: async () => {
-        try {
-          await publishProduct({ productId: product?._id });
-          toast.success(
-            formatMessage({
-              id: 'product_published',
-              defaultMessage: 'Published successfully ',
-            }),
-          );
-        } catch (error: any) {
-          console.error('Failed to publish product:', error);
-          const errorMessage = error?.message || 'Unknown error';
-          toast.error(
-            `${formatMessage({
-              id: 'product_publish_error',
-              defaultMessage: 'Failed to publish product',
-            })}: ${errorMessage}`,
-          );
-        }
-      },
-      bgColor: 'green',
-    },
-    {
-      id: 'draft',
-      title: formatMessage({
-        id: 'draft',
-        defaultMessage: 'Draft',
-      }),
-      description: formatMessage({
-        id: 'draft_product_description',
-        defaultMessage:
-          'Product will not be discoverable and can not be ordered',
-      }),
-      current: status === 'DRAFT',
-      selectedTitle: formatMessage({
-        id: 'not_published',
-        defaultMessage: 'Not published',
-      }),
-      bgColor: 'amber',
-      disable: status === 'ACTIVE' && !hasRole('unpublishProduct'),
-      onClick: async () => {
-        if (hasRole('unpublishProduct') || hasRole('publishProduct')) {
-          try {
-            await unPublishProduct({ productId: product?._id });
-            toast.success(
-              formatMessage({
-                id: 'product_drafted',
-                defaultMessage: 'Drafted successfully ',
-              }),
-            );
-          } catch (error: any) {
-            console.error('Failed to unpublish product:', error);
-            const errorMessage = error?.message || 'Unknown error';
-            toast.error(
-              `${formatMessage({
-                id: 'product_unpublish_error',
-                defaultMessage: 'Failed to unpublish product',
-              })}: ${errorMessage}`,
-            );
-          }
-        }
-      },
-    },
-  ];
 
   const handleDeleteProduct = async () => {
     await setModal(
@@ -205,6 +204,13 @@ const ProductDetailPage = ({ slug }) => {
     );
   };
 
+  if (!product && !loading) {
+    push('/404');
+    return null;
+  }
+
+  if (loading) return <Loading />;
+
   return (
     <div className="mt-5 max-w-full">
       <BreadCrumbs
@@ -240,7 +246,7 @@ const ProductDetailPage = ({ slug }) => {
             title={`${product?.texts?.title || 'Product'} (${product?._id})`}
           />
           <div className="publish-and-order flex flex-wrap gap-3">
-            {status !== 'DELETED' && (
+            {status && status !== 'DELETED' && (
               <SelectOptions
                 options={activeOptions}
                 type={formatMessage({
@@ -330,11 +336,8 @@ const ProductDetailPage = ({ slug }) => {
           )}
         </div>
       </div>
-      {loading && product ? (
-        <Loading />
-      ) : (
-        <ProductDetail product={product} extendedData={extendedData} />
-      )}
+
+      <ProductDetail product={product} extendedData={extendedData} />
     </div>
   );
 };

@@ -223,6 +223,11 @@ const AssortmentDetailPage = ({ assortmentSlug }) => {
       />,
     );
   };
+  if (!assortment && !loading) {
+    router.push('/404');
+    return null;
+  }
+  if (loading) return <Loading />;
 
   return (
     <div className="mt-5 max-w-full">
@@ -338,15 +343,12 @@ const AssortmentDetailPage = ({ assortmentSlug }) => {
           )}
         </div>
       </div>
-      {loading ? (
-        <Loading />
-      ) : (
-        <AssortmentDetail
-          assortment={assortment}
-          extendedData={extendedData}
-          hideControls={true}
-        />
-      )}
+
+      <AssortmentDetail
+        assortment={assortment}
+        extendedData={extendedData}
+        hideControls={true}
+      />
     </div>
   );
 };

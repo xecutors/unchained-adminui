@@ -43,7 +43,7 @@ const FilterForm = ({
       options: [''],
     },
     getSubmitErrorMessage: (error) => {
-      if (error.message?.includes('duplicate key')) {
+      if (error?.extensions?.code === 'DuplicateFilterKeyError') {
         form.formik.setFieldError(
           'key',
           formatMessage({

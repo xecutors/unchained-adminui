@@ -47,6 +47,7 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
       'assortment_create',
       'assortment_update',
       'assortment_remove',
+      'product_get',
     ];
 
     if (toolName === 'product_list' && parsed?.products?.length) {
@@ -102,19 +103,6 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
           <CopilotAssortmentList assortments={[parsed.assortment]} />
         </div>
       );
-
-    if (toolName === 'product_get' && parsed?.product) {
-      return (
-        <div className="mb-6">
-          <ProductDetail
-            key={parsed.product._id}
-            product={{
-              ...parsed.product,
-            }}
-          />
-        </div>
-      );
-    }
 
     if (toolName === 'assortment_getProducts') {
       return (
