@@ -39,14 +39,14 @@ const AddAssortments = () => {
           })}
         />
         <div className="mt-6 sm:max-w-2xl">
-          <FormWrapper>
-            <LocaleWrapper>
+          <LocaleWrapper>
+            <FormWrapper>
               <AssortmentForm
                 onSubmitSuccess={onSubmitSuccess}
                 onSubmit={onSubmit}
               />
-            </LocaleWrapper>
-          </FormWrapper>
+            </FormWrapper>
+          </LocaleWrapper>
         </div>
       </div>
     </>
