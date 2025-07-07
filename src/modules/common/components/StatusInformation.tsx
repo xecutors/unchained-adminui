@@ -7,13 +7,16 @@ const StatusInformation = ({
   component = null,
 }) => {
   const { formatMessage } = useIntl();
-  
+
   const getTranslatedType = (type) => {
     switch (type) {
       case 'INVOICE':
         return formatMessage({ id: 'invoice', defaultMessage: 'INVOICE' });
       case 'SHIPPING':
-        return formatMessage({ id: 'shipping_method', defaultMessage: 'SHIPPING' });
+        return formatMessage({
+          id: 'shipping_method',
+          defaultMessage: 'SHIPPING',
+        });
       case 'OPEN':
         return formatMessage({ id: 'open', defaultMessage: 'OPEN' });
       case 'DELIVERED':
