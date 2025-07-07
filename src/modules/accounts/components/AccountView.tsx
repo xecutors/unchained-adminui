@@ -67,14 +67,14 @@ const AccountView = ({
               id="web3_address_verify_link"
               defaultMessage="<p> Go to <a> etherscan </a> to verify address  </p>"
               values={{
-                p: (chunk) => <p className="text-lg">{chunk} </p>,
+                p: (chunk) => <p className="text-sm">{chunk}</p>,
                 a: (chunk) => (
                   <a
                     href="https://etherscan.io/verifiedSignatures"
                     target="__blank"
-                    className="text-lg text-slate-950 hover:text-slate-900 dark:text-slate-800 dark:hover:text-slate-400"
+                    className="text-sm text-slate-900 hover:text-sky-600 dark:text-slate-800 dark:hover:text-slate-400"
                   >
-                    {chunk}{' '}
+                    {chunk}
                   </a>
                 ),
               }}

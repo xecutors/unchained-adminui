@@ -54,7 +54,7 @@ const AddProduct = () => {
           </LocaleWrapper>
         </div>
         <div className="mt-10 lg:mt-14 lg:col-span-1 space-y-2">
-          <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-slate-200">
+          <h3 className="text-lg text-slate-900 dark:text-slate-200">
             {formatMessage({
               id: 'product_type',
               defaultMessage: 'Product type',

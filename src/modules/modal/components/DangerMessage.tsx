@@ -35,7 +35,7 @@ const DangerMessage = ({
         )}
         <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
           <h3
-            className="text-lg font-medium leading-6 text-slate-900 dark:text-slate-200"
+            className="text-lg text-slate-900 dark:text-slate-200"
             id="modal-title"
           >
             {headerText ||

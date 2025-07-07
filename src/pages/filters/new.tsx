@@ -58,16 +58,16 @@ const AddFilter = () => {
             defaultMessage: 'New filter',
           })}
         />
-        <div className="mt-6">
-          <LocaleWrapper>
+        <LocaleWrapper>
+          <div className="mt-6">
             <FormWrapper>
               <FilterForm
                 onSubmit={onSubmit}
                 onSubmitSuccess={onSubmitSuccess}
               />
             </FormWrapper>
-          </LocaleWrapper>
-        </div>
+          </div>
+        </LocaleWrapper>
       </div>
     </>
   );

@@ -44,7 +44,7 @@ const QuotationConfigurationForm = ({
 
         <div className="text-center">
           <h3
-            className="text-lg font-medium leading-6 text-slate-900 dark:text-slate-200"
+            className="text-lg text-slate-900 dark:text-slate-200"
             id="modal-title"
           >
             {headerText}

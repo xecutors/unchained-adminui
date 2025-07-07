@@ -54,7 +54,7 @@ const MediaUploader = ({
     <>
       {!onlyDragAndDrop && (
         <div className="text-slate-500 dark:text-slate-200">
-          <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-slate-200">
+          <h3 className="text-lg text-slate-900 dark:text-slate-200">
             {formatMessage({ id: 'avatar', defaultMessage: 'Avatar' })}
           </h3>
           <div className="my-4 flex items-center">

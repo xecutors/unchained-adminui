@@ -87,7 +87,7 @@ const Tab = ({ children, tabItems, defaultTab, updateRoute = true }) => {
           </nav>
         </div>
       </div>
-      <div className="mt-5 text-white">
+      <div className="mt-5">
         {React.cloneElement(children, { selectedView: tab })}
       </div>
     </div>
