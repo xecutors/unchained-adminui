@@ -8,34 +8,10 @@ const OrderDetailBilling = ({ order }) => {
   return (
     <section
       aria-labelledby="summary-heading"
-      className="lg:grid lg:grid-cols-2 lg:gap-x-8"
+      className="max-w-lg"
     >
       <div>
-        <div className="text-xl mb-5 block">
-          {order?.billingAddress?.firstName && order?.billingAddress?.lastName
-            ? `${order.billingAddress.firstName} ${order.billingAddress.lastName}`
-            : order?.billingAddress?.firstName || order?.billingAddress?.lastName || 'n/a'}
-        </div>
-        <div className="mb-2 text-xl">
-          {formatMessage({
-            id: 'billing_address',
-            defaultMessage: 'Billing address',
-          })}
-        </div>
-
-        <div>
-          <span className="block">{order?.billingAddress?.addressLine}</span>
-          <span>{order?.billingAddress?.postalCode}</span>
-          &nbsp;
-          <span>{order?.billingAddress?.city}</span>
-          <span className="block">
-            {`${order?.country.name} ${order?.country.flagEmoji}`}
-          </span>
-        </div>
-      </div>
-
-      <div>
-        <div className="mt-10 flex items-center justify-between pb-3 text-xl">
+        <div className="flex items-center justify-between pb-3 text-xl">
           <dt className="">
             {formatMessage({
               id: 'order_total',

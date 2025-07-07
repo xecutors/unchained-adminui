@@ -138,6 +138,19 @@ const OrderDetailFragment = gql`
     }
     delivery {
       _id
+      ... on OrderDeliveryShipping {
+        address {
+          firstName
+          lastName
+          company
+          addressLine
+          addressLine2
+          postalCode
+          countryCode
+          regionCode
+          city
+        }
+      }
       provider {
         _id
         created

@@ -6,6 +6,7 @@ import OrderDetailItem from './OrderDetailItem';
 import OrderDetailBilling from './OrderDetailBilling';
 import OrderDetailPayment from './OrderDetailPayment';
 import OrderDetailDelivery from './OrderDetailDelivery';
+import OrderDetailAddresses from './OrderDetailAddresses';
 import DiscountList from './DiscountList';
 import useOrderStatusTypes from '../hooks/useOrderStatusTypes';
 
@@ -147,13 +148,20 @@ const OrderDetail = ({ order }) => {
       </div>
 
       <div className="mt-10">
-        <OrderDetailBilling order={order} />
+        <OrderDetailAddresses order={order} />
       </div>
 
-      <div className="mt-10 flex gap-10 flex-wrap">
-        {order?.items.map((item) => {
-          return <OrderDetailItem key={item._id} item={item} />;
-        })}
+      <div className="mt-10 lg:grid lg:grid-cols-2 lg:gap-10">
+        <div>
+          <div className="flex gap-10 flex-wrap">
+            {order?.items.map((item) => {
+              return <OrderDetailItem key={item._id} item={item} />;
+            })}
+          </div>
+        </div>
+        <div>
+          <OrderDetailBilling order={order} />
+        </div>
       </div>
 
       <div className="mt-10">
