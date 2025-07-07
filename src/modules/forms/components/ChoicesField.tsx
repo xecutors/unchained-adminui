@@ -40,10 +40,15 @@ const ChoicesField = ({ multiple, options, ...props }: ChoicesFieldProps) => {
         {field.label}
       </label>
 
-      <div className={classNames(`row ${choiceContainerClassName}`, className)}>
+      <div
+        className={classNames(
+          `row flex flex-row gap-3 ${choiceContainerClassName}`,
+          className,
+        )}
+      >
         {Object.entries(field.options).map(([value, display]: any) => (
           <div
-            className={classNames(`mb-3 -ml-2 ${choiceClassName}`, className)}
+            className={classNames(`-ml-2 ${choiceClassName}`, className)}
             key={value}
           >
             <label
