@@ -85,7 +85,7 @@ const CommerceForm = ({ productId, disabled = false }) => {
             <div className="relative max-w-full p-3 sm:px-5">
               <div className="max-w-full justify-between align-baseline" />
 
-              <label className="sr-only flex w-full font-sans text-sm text-black dark:text-slate-200 lg:not-sr-only">
+              <label className="sr-only flex w-full font-sans text-sm text-slate-500 dark:text-slate-200 lg:not-sr-only">
                 <span className="flex w-full">
                   <span className="w-full">
                     {formatMessage({
@@ -93,21 +93,21 @@ const CommerceForm = ({ productId, disabled = false }) => {
                       defaultMessage: 'Max Quantity',
                     })}
                   </span>
-                  <span className="w-full">
+                  <span className="w-full lg:ml-5">
                     {formatMessage({
                       id: 'price',
                       defaultMessage: 'Price',
                     })}
                   </span>
                 </span>
-                <span className="ml-3 flex w-full">
-                  <span className="w-full">
+                <span className="flex w-full">
+                  <span className="w-full lg:ml-8">
                     {formatMessage({
                       id: 'vat_suspect',
                       defaultMessage: 'Vat Suspect',
                     })}
                   </span>
-                  <span className="w-full">
+                  <span className="w-full lg:ml-12">
                     {formatMessage({
                       id: 'net_price',
                       defaultMessage: 'Net Price',
@@ -137,7 +137,7 @@ const CommerceForm = ({ productId, disabled = false }) => {
                       return (
                         <div
                           key={index}
-                          className="relative max-w-full border-b dark:border-slate-700 py-3 align-baseline lg:flex"
+                          className="relative max-w-full border-b dark:border-slate-700 pt-1 pb-5 mb-3 align-baseline lg:flex"
                         >
                           <div className="flex w-full gap-x-2">
                             <TextField
@@ -199,7 +199,7 @@ const CommerceForm = ({ productId, disabled = false }) => {
                             </div>
                           </div>
 
-                          <div className="flex w-full gap-x-2">
+                          <div className="flex w-full gap-x-2 mt-1">
                             <SelectField
                               defaultValue={defaultCountryValue}
                               className="w-full lg:ml-4 lg:mr-4"
@@ -241,7 +241,7 @@ const CommerceForm = ({ productId, disabled = false }) => {
                             />
                           </div>
 
-                          <div className="absolute top-0 right-0 mt-0 mr-0 shrink-0  pb-1 md:mr-0 lg:mt-6 lg:py-0 lg:px-0 ">
+                          <div className="absolute -top-2 right-0 mt-0 mr-0 shrink-0  pb-1 md:mr-0 lg:mt-6 lg:py-0 lg:px-0 ">
                             <button
                               className="items-center rounded-full bg-white dark:bg-slate-900 px-1 py-1 text-sm text-rose-500 dark:text-rose-400 hover:bg-rose-50 focus:outline-hidden focus:ring-0 focus:ring-rose-500 focus:ring-offset-2"
                               type="button"
@@ -266,13 +266,14 @@ const CommerceForm = ({ productId, disabled = false }) => {
                         </div>
                       );
                     })}
-                    <div className="mt-6 shrink-0">
+                    <div className="mt-6">
                       <Button
                         variant="tertiary"
                         text={formatMessage({
                           id: 'add_price_row',
                           defaultMessage: 'Add Price Row',
                         })}
+                        className="w-full items-center justify-center"
                         onClick={() =>
                           push({
                             maxQuantity: '',
@@ -290,8 +291,9 @@ const CommerceForm = ({ productId, disabled = false }) => {
               </FieldArray>
             </div>
             <FormErrors displayFieldErrors />
-            <div className="mx-6 mb-6 text-right">
+            <div className="-mx-6 p-6 bg-slate-50 text-right">
               <SubmitButton
+                className="mx-6"
                 hidden={!hasRole('editProductCommerce')}
                 label={formatMessage({
                   id: 'save',
