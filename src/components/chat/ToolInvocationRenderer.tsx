@@ -8,6 +8,13 @@ import Image from 'next/image';
 import ShopInfoCard from './ShopInfo';
 import TextsList from './TextsList';
 import { AssortmentListItemCompact } from '../assortment';
+import CopilotCountryList, { CountryItemCompact } from './CopilotCountryList';
+import CopilotCurrencyList, {
+  CurrencyItemCompact,
+} from './CopilotCurrencyList';
+import CopilotLanguageList, {
+  LanguageItemCompact,
+} from './CopilotLanguageList';
 
 interface ToolInvocationRendererProps {
   part: any;
@@ -74,6 +81,32 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
       'assortment_list',
     ];
 
+    const MultipleCountryReturnTools = ['country_list'];
+
+    const SingleCountryReturnTools = [
+      'country_create',
+      'country_update',
+      'country_remove',
+      'country_get',
+    ];
+    const MultipleCurrencyReturnTools = ['currency_list'];
+
+    const SingleCurrencyReturnTools = [
+      'currency_create',
+      'currency_update',
+      'currency_remove',
+      'currency_get',
+    ];
+
+    const MultipleLanguageReturnTools = ['languages_list'];
+
+    const SingleLanguageReturnTools = [
+      'language_create',
+      'language_update',
+      'language_remove',
+      'language_get',
+    ];
+
     const SingleAssortmentReturnTools = [
       'assortment_create',
       'assortment_update',
@@ -83,6 +116,13 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
       'assortment_searchProducts',
     ];
 
+    const SkippedToolResponse = [
+      'assortment_addMedia',
+      'assortment_removeMedia',
+      'productMedia_remove',
+      'product_addMedia',
+    ];
+    if (SkippedToolResponse.includes(toolName)) return null;
     if (
       MultipleProductReturnTools.includes(toolName) &&
       parsed?.products?.length
@@ -138,6 +178,54 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
       return (
         <div className="mb-6">
           <AssortmentListItemCompact assortment={parsed?.assortment} />
+        </div>
+      );
+    }
+
+    if (parsed?.country && SingleCountryReturnTools.includes(toolName)) {
+      return (
+        <div className="mb-6">
+          <CountryItemCompact country={parsed?.country} />
+        </div>
+      );
+    }
+
+    if (parsed?.countries && MultipleCountryReturnTools.includes(toolName)) {
+      return (
+        <div className="mb-6">
+          <CopilotCountryList countries={parsed?.countries} />
+        </div>
+      );
+    }
+
+    if (parsed?.currency && SingleCurrencyReturnTools.includes(toolName)) {
+      return (
+        <div className="mb-6">
+          <CurrencyItemCompact currency={parsed?.currency} />
+        </div>
+      );
+    }
+
+    if (parsed?.currencies && MultipleCurrencyReturnTools.includes(toolName)) {
+      return (
+        <div className="mb-6">
+          <CopilotCurrencyList currencies={parsed?.currencies} />
+        </div>
+      );
+    }
+
+    if (parsed?.language && SingleLanguageReturnTools.includes(toolName)) {
+      return (
+        <div className="mb-6">
+          <LanguageItemCompact language={parsed?.language} />
+        </div>
+      );
+    }
+
+    if (parsed?.languages && MultipleLanguageReturnTools.includes(toolName)) {
+      return (
+        <div className="mb-6">
+          <CopilotLanguageList languages={parsed?.languages} />
         </div>
       );
     }

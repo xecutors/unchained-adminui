@@ -1,7 +1,5 @@
 import {
-  ChartBarIcon,
   Cog8ToothIcon,
-  TagIcon,
   HomeIcon,
   InboxIcon,
   RectangleStackIcon,
@@ -22,7 +20,6 @@ import { useIntl } from 'react-intl';
 import useCurrentUser from '../../accounts/hooks/useCurrentUser';
 import useShopInfo from '../hooks/useShopInfo';
 import SideNav from './SideNav';
-import UserAvatar from './UserAvatar';
 import ThemeToggle from './ThemeToggle';
 import LanguageToggle from './LanguageToggle';
 import useOutsideClick from '../hooks/useOutsideClick';
