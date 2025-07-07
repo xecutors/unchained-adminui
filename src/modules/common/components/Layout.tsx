@@ -28,6 +28,12 @@ import LanguageToggle from './LanguageToggle';
 import useOutsideClick from '../hooks/useOutsideClick';
 import ImageWithFallback from './ImageWithFallback';
 import AuthWrapper from '../../Auth/AuthWrapper';
+import formatUsername from '../utils/formatUsername';
+import { useApolloClient } from '@apollo/client';
+import { toast } from 'react-toastify';
+import logOut from '../../accounts/hooks/logOut';
+import { useRouter } from 'next/router';
+import { ArrowRightEndOnRectangleIcon } from '@heroicons/react/24/outline';
 
 const QuotationIcon = ({ className }) => (
   <svg
@@ -52,6 +58,23 @@ const Layout = ({
   const { shopInfo } = useShopInfo();
   const [hideNav, setHideNav] = useState(true);
   const [narrowNav, setNarrowNav] = useState(false);
+  const apolloClient = useApolloClient();
+  const router = useRouter();
+
+  const onLogout = async () => {
+    const userName =
+      currentUser?.username || currentUser?.displayName || currentUser?.profile?.displayName || '';
+    await logOut(apolloClient, router);
+    toast.success(
+      formatMessage(
+        {
+          id: 'goodbye_user',
+          defaultMessage: 'See you later, {name}!',
+        },
+        { name: userName || '' },
+      ),
+    );
+  };
 
   const defaultNavigation = [
     {
@@ -192,11 +215,6 @@ const Layout = ({
         },
       ],
     },
-    {
-      name: formatMessage({ id: 'account', defaultMessage: 'Account' }),
-      icon: UserIcon,
-      href: '/account',
-    },
     shopInfo?.adminUiConfig?.externalLinks?.length && {
       name: formatMessage({ id: 'extensions', defaultMessage: 'Extensions' }),
       icon: LinkIcon,
@@ -288,9 +306,29 @@ const Layout = ({
               onClick={() => setHideNav(!hideNav)}
             />
           </div>
-          <div className="flex items-center shrink-0 border-t border-slate-300 dark:border-slate-800">
-            <UserAvatar avatar={currentUser?.avatar} {...currentUser} />
-            <div className="ml-auto">
+          <div className="flex items-center shrink-0 border-t border-slate-300 dark:border-slate-800 px-2 py-2">
+            <Link
+              href="/account"
+              className="flex items-center flex-1 py-2 pl-2 pr-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-md text-sm font-medium focus:outline-hidden focus:ring-2 focus:ring-slate-800"
+            >
+              <UserIcon className="h-6 w-6 shrink-0 mr-3 text-slate-800 dark:text-slate-300" />
+              <div className="flex-1">
+                <div className="text-sm font-medium dark:text-slate-400">
+                  {formatMessage({ id: 'account', defaultMessage: 'Account' })}
+                </div>
+                <div className="text-xs text-slate-500 dark:text-slate-400">
+                  {formatUsername(currentUser)}
+                </div>
+              </div>
+            </Link>
+            <div className="flex items-center space-x-2 ml-auto">
+              <button
+                onClick={onLogout}
+                className="p-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus:outline-hidden focus:ring-2 focus:ring-slate-800"
+                title={formatMessage({ id: 'log_out', defaultMessage: 'Log out' })}
+              >
+                <ArrowRightEndOnRectangleIcon className="h-5 w-5" />
+              </button>
               <ThemeToggle />
             </div>
           </div>
@@ -328,7 +366,29 @@ const Layout = ({
             className={`flex items-center shrink-0 py-2 ${narrowNav ? 'justify-center px-2' : 'border-t border-slate-200 dark:border-slate-800 px-2 lg:px-4 2xl:px-6'}`}
           >
             {!narrowNav && (
-              <UserAvatar avatar={currentUser?.avatar} {...currentUser} />
+              <>
+                <Link
+                  href="/account"
+                  className="flex items-center flex-1 py-2 pl-2 pr-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-md text-sm font-medium focus:outline-hidden focus:ring-2 focus:ring-slate-800"
+                >
+                  <UserIcon className="h-6 w-6 shrink-0 mr-3 text-slate-800 dark:text-slate-300" />
+                  <div className="flex-1">
+                    <div className="text-sm font-medium dark:text-slate-400">
+                      {formatMessage({ id: 'account', defaultMessage: 'Account' })}
+                    </div>
+                    <div className="text-xs text-slate-500 dark:text-slate-400">
+                      {formatUsername(currentUser)}
+                    </div>
+                  </div>
+                </Link>
+                <button
+                  onClick={onLogout}
+                  className="p-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus:outline-hidden focus:ring-2 focus:ring-slate-800 ml-auto"
+                  title={formatMessage({ id: 'log_out', defaultMessage: 'Log out' })}
+                >
+                  <ArrowRightEndOnRectangleIcon className="h-5 w-5" />
+                </button>
+              </>
             )}
             {narrowNav && (
               <div className="flex items-center flex-col space-y-2">
