@@ -120,7 +120,9 @@ const ChildrenNav = ({ item, hasRole, onSelected, narrowView }) => {
                 aria-hidden="true"
               />
             )}
-            <span className="flex-1 dark:text-slate-400">{item.name}</span>
+            <span className="flex-1 dark:text-slate-300 dark:hover:text-white">
+              {item.name}
+            </span>
             <ChevronDownIcon
               className={classNames(
                 'h-5 w-5 transition-all duration-200 ease-out',
@@ -141,7 +143,7 @@ const ChildrenNav = ({ item, hasRole, onSelected, narrowView }) => {
                   className={classNames(
                     'group flex w-full items-center rounded-md py-2 pl-5 pr-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-slate-800',
                     {
-                      ' dark:bg-slate-800 text-slate-900 dark:text-slate-400 bg-slate-50 hover:bg-slate-100':
+                      ' dark:bg-slate-800 text-slate-900 dark:text-slate-300 dark:hover:text-white bg-slate-50 hover:bg-slate-100':
                         router.pathname === subItem.href,
                     },
                   )}
@@ -177,7 +179,7 @@ const SideNav = ({ navigation, onClick = null, narrowView = false }) => {
                   'group flex w-full items-center rounded-md py-2 text-sm font-medium focus:outline-hidden focus:ring-2 focus:ring-slate-800',
                   router.asPath === item.href || router.pathname === item.href
                     ? 'text-slate-900 dark:text-slate-100 bg-slate-100 dark:bg-slate-800'
-                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800',
+                    : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800',
                   {
                     'justify-center': narrowView,
                     'pl-2': !narrowView,
@@ -200,7 +202,7 @@ const SideNav = ({ navigation, onClick = null, narrowView = false }) => {
                   />
                 )}
                 {!narrowView && (
-                  <span className="flex-1 dark:text-slate-400">
+                  <span className="flex-1 dark:text-slate-300">
                     {item.name}
                   </span>
                 )}

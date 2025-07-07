@@ -441,7 +441,7 @@ const Layout = ({
             {narrowNav ? (
               <button
                 onClick={() => setNarrowNav(!narrowNav)}
-                className="w-full flex items-center justify-center p-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus:outline-hidden focus:ring-2 focus:ring-slate-800"
+                className="w-full flex items-center justify-center p-2 text-slate-600 dark:text-emerald-400 hover:text-slate-900 dark:hover:text-slate-200 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus:outline-hidden focus:ring-2 focus:ring-slate-800"
                 title={formatMessage({
                   id: 'expand_navigation',
                   defaultMessage: 'Expand navigation',
@@ -453,7 +453,7 @@ const Layout = ({
               <div className="w-full flex items-center justify-center">
                 <button
                   onClick={() => setNarrowNav(!narrowNav)}
-                  className="flex items-center p-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus:outline-hidden focus:ring-2 focus:ring-slate-800"
+                  className="flex items-center p-2 text-slate-600 dark:text-emerald-400 hover:text-slate-900 dark:hover:text-slate-200 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus:outline-hidden focus:ring-2 focus:ring-slate-800"
                   title={formatMessage({
                     id: 'collapse_navigation',
                     defaultMessage: 'Collapse navigation',
