@@ -11,7 +11,6 @@ interface MessageRendererProps {
 
 const MessageRenderer: React.FC<MessageRendererProps> = ({ message, user }) => {
   const isUser = message.role === 'user';
-
   return (
     <div className={`flex ${isUser ? 'justify-end' : 'justify-start'}`}>
       {isUser && user && (

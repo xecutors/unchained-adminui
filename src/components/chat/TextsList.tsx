@@ -20,6 +20,8 @@ interface ProductText {
   labels?: string[];
   created: string;
   updated: string;
+  productVariationId?: string | null;
+  productVariationOptionValue?: string | null;
 }
 
 interface Props {
@@ -52,6 +54,11 @@ export const TextItemCompact = ({
     case 'assortmentMedia_updateTexts':
       normalizedHref = `/assortments?assortmentSlug=${generateUniqueId({ texts: text, _id: assortmentId })}&tab=media`;
       break;
+    case 'productVariation_updateTexts':
+    case 'productVariation_getTexts':
+      normalizedHref = `/products?slug=${generateUniqueId({ texts: text, _id: productId })}&tab=variations`;
+      break;
+
     default:
       normalizedHref = `/products?slug=${generateUniqueId({ texts: text, _id: text?.productId })}`;
       break;
@@ -88,6 +95,8 @@ export const TextItemCompact = ({
         {infoRow('Slug', text.slug)}
         {infoRow('Brand', text.brand)}
         {infoRow('Vendor', text.vendor)}
+        {infoRow('Variation option', text?.productVariationOptionValue)}
+        {infoRow('Variation ID', text?.productVariationId)}
 
         {text.labels && text.labels.length > 0 && (
           <div className="text-sm text-slate-700 dark:text-slate-300">

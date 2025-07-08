@@ -88,6 +88,18 @@ const ProductListItemCompact: React.FC<ProductListItemCompactProps> = ({
             ID: {product._id}
           </span>
         </div>
+
+        {product?.variations?.length > 0 && (
+          <div className="mt-1 text-xs text-slate-500">
+            <span className="font-medium">Variations:</span>{' '}
+            {product?.variations.map((variation) => (
+              <span key={variation._id} className="inline-block mr-2">
+                {variation.key}{' '}
+                <span className="text-slate-400">({variation.type})</span>
+              </span>
+            ))}
+          </div>
+        )}
       </div>
 
       <Link

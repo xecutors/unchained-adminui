@@ -97,7 +97,11 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale = null }) => {
            </ul>"
           values={{
             ul: (chunk) => <ul className="space-y-2">{chunk} </ul>,
-            li: (chunk) => <li key={Math.random()} className="text-sm">{chunk} </li>,
+            li: (chunk) => (
+              <li key={Math.random()} className="text-sm">
+                {chunk}{' '}
+              </li>
+            ),
             strong: (chunk) => (
               <strong className="font-semibold text-slate-800 dark:text-slate-200">
                 {chunk}

@@ -43,6 +43,7 @@ export const SingleProductReturnTools = [
   'product_updateSupply',
   'product_updateTokenization',
   'product_updatePlan',
+  'product_createVariation',
 ];
 
 export const MultipleProductReturnTools = [
@@ -55,11 +56,12 @@ export const TextsReturnTools = [
   'productMedia_updateTexts',
   'product_getTexts',
   'productMedia_getTexts',
-  'productVariation_getTexts',
   'assortmentMedia_updateTexts',
   'assortmentMedia_getTexts',
   'assortment_getTexts',
   'assortment_updateTexts',
+  'productVariation_updateTexts',
+  'productVariation_getTexts',
 ];
 
 export const SingleAssortmentReturnTools = [
