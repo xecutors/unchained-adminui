@@ -16,6 +16,7 @@ import useAuth from '../../modules/Auth/useAuth';
 import useModal from '../../modules/modal/hooks/useModal';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import AlertMessage from '../../modules/modal/components/AlertMessage';
+import AssortmentImageGallery from '../../modules/assortment/components/AssortmentImageGallery';
 
 const AssortmentDetailPage = ({ assortmentSlug }) => {
   const { formatDateTime } = useFormatDateTime();
@@ -308,12 +309,13 @@ const AssortmentDetailPage = ({ assortmentSlug }) => {
 
         <div className="mt-5 flex items-baseline gap-2">
           <span className="text-xs text-slate-600 dark:text-slate-400">
-            ID:
-          </span>
-          <span className="text-sm font-mono">{assortment?._id}</span>
-        </div>
-
-        <div className="mt-3 flex flex-wrap gap-3 lg:gap-10 text-slate-600 dark:text-slate-400">
+        <div className="mt-8 flex flex-wrap gap-3 gap-x-10 text-slate-600 dark:text-slate-400">
+          <div className="flex items-baseline gap-2">
+            <span className="text-xs text-slate-600 dark:text-slate-400">
+              ID:
+            </span>
+            <span className="text-sm font-mono">{assortment?._id}</span>
+          </div>
           {assortment?.created && (
             <div className="flex items-baseline gap-2">
               <span className="text-xs text-slate-600 dark:text-slate-300">
@@ -343,6 +345,25 @@ const AssortmentDetailPage = ({ assortmentSlug }) => {
           )}
         </div>
       </div>
+
+      <AssortmentImageGallery
+        assortmentId={assortment?._id}
+        media={assortment?.media || ([] as any)}
+        onEditMedia={(mediaId) => {
+          // Navigate to media tab
+          router.push(
+            {
+              pathname: router.pathname,
+              query: { ...router.query, tab: 'media' },
+            },
+            undefined,
+            {
+              shallow: true,
+            },
+          );
+        }}
+        canEdit={hasRole('editAssortment')}
+      />
 
       <AssortmentDetail
         assortment={assortment}

@@ -280,7 +280,7 @@ const ProductDetailPage = ({ slug }) => {
           </div>
         </div>
 
-        <div className="mt-4 flex items-baseline gap-10">
+        <div className="mt-8 flex flex-wrap gap-3 gap-x-10 text-slate-600 dark:text-slate-400">
           <div className="flex flex-col items-baseline gap-0">
             <span className="mr-2 text-xs text-slate-500 dark:text-slate-400">
               ID:
@@ -293,9 +293,6 @@ const ProductDetailPage = ({ slug }) => {
             </span>
             <p className="text-sm font-mono">{product?.['__typename']}</p>
           </div>
-        </div>
-
-        <div className="mt-2 flex flex-wrap gap-3 lg:gap-25 text-slate-600 dark:text-slate-400">
           {product?.created && (
             <div className="flex flex-col items-baseline gap-0">
               <span className="text-xs text-slate-500 dark:text-slate-300">
