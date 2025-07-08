@@ -21,7 +21,7 @@ const PageHeader = ({
       <div className="flex gap-3 flex-wrap items-center justify-between">
         <div className="flex items-center justify-between w-full gap-4">
           {headerText && (
-            <h2 className="text-2xl font-medium text-slate-900 dark:text-slate-200 sm:truncate sm:text-3xl lg:text-4xl xl:text-5xl">
+            <h2 className="text-2xl font-medium text-slate-900 dark:text-slate-300 sm:truncate sm:text-3xl lg:text-4xl xl:text-5xl">
               {headerText}
             </h2>
           )}

@@ -15,7 +15,7 @@ const HomePage = () => {
   const { hasRole } = useAuth();
 
   return (
-    <div className="mt-5">
+    <div className="mt-20">
       <PageHeader
         headerText={formatMessage({
           id: 'unchained_admin_ui',
