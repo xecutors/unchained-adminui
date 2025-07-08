@@ -1,6 +1,10 @@
 import React, { useRef, useEffect, useState, useLayoutEffect } from 'react';
 import { useIntl } from 'react-intl';
-import { ChevronDownIcon, ChevronUpIcon, ChatBubbleLeftRightIcon } from '@heroicons/react/24/outline';
+import {
+  ChevronDownIcon,
+  ChevronUpIcon,
+  ChatBubbleLeftRightIcon,
+} from '@heroicons/react/24/outline';
 import useCurrentUser from '../../modules/accounts/hooks/useCurrentUser';
 import { useChatContext } from '../../modules/chat';
 import { MessageRenderer, LoadingIndicator } from '../chat';
@@ -91,7 +95,8 @@ const Copilot: React.FC = () => {
               <p className="text-slate-600 dark:text-slate-400 max-w-md">
                 {formatMessage({
                   id: 'copilot_welcome_description',
-                  defaultMessage: 'Your AI assistant is ready to help you manage your Unchained Commerce store.',
+                  defaultMessage:
+                    'Your AI assistant is ready to help you manage your Unchained Commerce store.',
                 })}
               </p>
             </div>
