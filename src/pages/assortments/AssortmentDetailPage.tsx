@@ -307,8 +307,6 @@ const AssortmentDetailPage = ({ assortmentSlug }) => {
           </div>
         </div>
 
-        <div className="mt-5 flex items-baseline gap-2">
-          <span className="text-xs text-slate-600 dark:text-slate-400">
         <div className="mt-8 flex flex-wrap gap-3 gap-x-10 text-slate-600 dark:text-slate-400">
           <div className="flex items-baseline gap-2">
             <span className="text-xs text-slate-600 dark:text-slate-400">
