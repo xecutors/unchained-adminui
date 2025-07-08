@@ -280,17 +280,22 @@ const ProductDetailPage = ({ slug }) => {
           </div>
         </div>
 
-        <div className="mt-2 flex items-baseline gap-8">
-          <div>
+        <div className="mt-4 flex items-baseline gap-8">
+          <div className="flex items-baseline gap-2">
             <span className="mr-2 text-xs text-slate-500 dark:text-slate-400">
               ID:
             </span>
             <span className="text-sm font-mono">{product?._id}</span>
           </div>
-          <p className="text-sm mt-3 font-mono">{product?.['__typename']}</p>
+          <div className="flex items-baseline gap-2">
+            <span className="text-xs text-slate-500 dark:text-slate-400">
+              Type:
+            </span>
+            <p className="text-sm font-mono">{product?.['__typename']}</p>
+          </div>
         </div>
 
-        <div className="mt-2 flex flex-wrap gap-3 lg:gap-10 text-slate-600 dark:text-slate-400">
+        <div className="mt-2 flex flex-wrap gap-3 lg:gap-18 text-slate-600 dark:text-slate-400">
           {product?.created && (
             <div className="flex items-baseline gap-2">
               <span className="text-xs text-slate-500 dark:text-slate-300">
@@ -304,7 +309,19 @@ const ProductDetailPage = ({ slug }) => {
               </span>
             </div>
           )}
-
+          {product?.updated && (
+            <div className="flex items-baseline gap-2">
+              <span className="text-xs text-slate-500 dark:text-slate-300">
+                {formatMessage({ id: 'updated', defaultMessage: 'Updated' })}:
+              </span>
+              <span className="text-sm font-mono">
+                {formatDateTime(product.updated, {
+                  dateStyle: 'medium',
+                  timeStyle: 'short',
+                })}
+              </span>
+            </div>
+          )}
           {product?.published && (
             <div className="flex items-baseline gap-2">
               <span className="text-xs text-slate-500 dark:text-slate-300">
@@ -316,20 +333,6 @@ const ProductDetailPage = ({ slug }) => {
               </span>
               <span className="text-sm font-mono">
                 {formatDateTime(product.published, {
-                  dateStyle: 'medium',
-                  timeStyle: 'short',
-                })}
-              </span>
-            </div>
-          )}
-
-          {product?.updated && (
-            <div className="flex items-baseline gap-2">
-              <span className="text-xs text-slate-500 dark:text-slate-300">
-                {formatMessage({ id: 'updated', defaultMessage: 'Updated' })}:
-              </span>
-              <span className="text-sm font-mono">
-                {formatDateTime(product.updated, {
                   dateStyle: 'medium',
                   timeStyle: 'short',
                 })}
