@@ -120,8 +120,13 @@ const AssortmentFilters = ({ assortmentId }) => {
             defaultMessage="<ul> <li>Assign filters that will be applied for the assortment </li>
       </ul>"
             values={{
-              ul: (chunk) => <ul className="space-y-1">{chunk} </ul>,
-              li: (chunk) => <li>{chunk} </li>,
+              ul: (chunk) => <ul className="space-y-2">{chunk} </ul>,
+              li: (chunk) => <li key={Math.random()} className="text-sm">{chunk} </li>,
+              strong: (chunk) => (
+                <strong className="font-semibold text-slate-800 dark:text-slate-200">
+                  {chunk}
+                </strong>
+              ),
             }}
           />
         }
@@ -141,8 +146,13 @@ const AssortmentFilters = ({ assortmentId }) => {
             <li> Drag and drop list items to sort filters order </li>
           </ul>"
             values={{
-              ul: (chunk) => <ul className="space-y-1">{chunk} </ul>,
-              li: (chunk) => <li>{chunk} </li>,
+              ul: (chunk) => <ul className="space-y-2">{chunk} </ul>,
+              li: (chunk) => <li key={Math.random()} className="text-sm">{chunk} </li>,
+              strong: (chunk) => (
+                <strong className="font-semibold text-slate-800 dark:text-slate-200">
+                  {chunk}
+                </strong>
+              ),
             }}
           />
         }

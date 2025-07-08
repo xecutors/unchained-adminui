@@ -89,12 +89,20 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale = null }) => {
       documentation={
         <FormattedMessage
           id="assortment_text_form_description"
-          defaultMessage="<ul> <li>A Slug is the unique identifying part of a web address, typically at the end of the URL. </li>
-         <li> You can change the language of text by using the localization dropdown found at top left corner </li> 
-         <li> Description area accepts text that are compatible with markdown or HTML format. Tip: in order to add a line break use \ </li></ul>"
+          defaultMessage="<ul> <li><strong>Slug:</strong> The unique part of your category URL (e.g., 'electronics' or 'summer-collection'). Keep it short and descriptive.</li>
+           <li><strong>Localization:</strong> Switch languages using the dropdown at the top left to translate content for different markets.</li>
+           <li><strong>Description:</strong> Supports Markdown and HTML formatting. Use double backslash (\\\\\\\\) for line breaks.</li>
+           <li><strong>Category Organization:</strong> Use clear, descriptive titles that help customers navigate your product catalog. Think about how customers would search for this category.</li>
+           <li><strong>SEO Tip:</strong> Well-written category descriptions help search engines understand your product organization and improve discoverability.</li>
+           </ul>"
           values={{
-            ul: (chunk) => <ul className="space-y-1">{chunk} </ul>,
-            li: (chunk) => <li>{chunk} </li>,
+            ul: (chunk) => <ul className="space-y-2">{chunk} </ul>,
+            li: (chunk) => <li key={Math.random()} className="text-sm">{chunk} </li>,
+            strong: (chunk) => (
+              <strong className="font-semibold text-slate-800 dark:text-slate-200">
+                {chunk}
+              </strong>
+            ),
           }}
         />
       }

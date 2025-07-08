@@ -120,8 +120,13 @@ const AssortmentLinks = ({ assortmentId }) => {
             defaultMessage="<ul> <li>Assign assortment that are direct child of this assortment </li>
           </ul>"
             values={{
-              ul: (chunk) => <ul className="space-y-1">{chunk} </ul>,
-              li: (chunk) => <li>{chunk} </li>,
+              ul: (chunk) => <ul className="space-y-2">{chunk} </ul>,
+              li: (chunk) => <li key={Math.random()} className="text-sm">{chunk} </li>,
+              strong: (chunk) => (
+                <strong className="font-semibold text-slate-800 dark:text-slate-200">
+                  {chunk}
+                </strong>
+              ),
             }}
           />
         }
@@ -142,8 +147,13 @@ const AssortmentLinks = ({ assortmentId }) => {
          <li> Parents are assortments found in the ancestors tree on any level </li>
          <li> Descendants are assortments found in the children tree on any level </li> </ul>"
             values={{
-              ul: (chunk) => <ul className="space-y-1">{chunk} </ul>,
-              li: (chunk) => <li>{chunk} </li>,
+              ul: (chunk) => <ul className="space-y-2">{chunk} </ul>,
+              li: (chunk) => <li key={Math.random()} className="text-sm">{chunk} </li>,
+              strong: (chunk) => (
+                <strong className="font-semibold text-slate-800 dark:text-slate-200">
+                  {chunk}
+                </strong>
+              ),
             }}
           />
         }
