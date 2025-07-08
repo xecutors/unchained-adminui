@@ -180,7 +180,16 @@ iframe#external-page {
 }
 
 .Toastify__progress-bar--wrp {
-  height: 2px;
+  height: 3px;
+  background: rgba(0, 0, 0, 0.1) !important;
+  bottom: 0 !important;
+  border-radius: 0 0 16px 16px !important;
+  overflow: hidden !important;
+}
+
+.Toastify__progress-bar {
+  height: 3px !important;
+  border-radius: 0 0 16px 16px !important;
 }
 
 .Toastify__close-button {
@@ -190,14 +199,34 @@ iframe#external-page {
   right: 10px;
 }
 
+/* Toast styles with transparent blur effect */
+.Toastify__toast {
+  background-color: rgba(255, 255, 255, 0.3) !important;
+  backdrop-filter: blur(16px) brightness(1.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  color: var(--color-slate-700) !important;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1) !important;
+  border-radius: 16px !important;
+  overflow: hidden !important;
+}
+
+.Toastify__toast-body {
+  color: var(--color-slate-700) !important;
+}
+
 /* Dark theme styles for toast notifications */
 .dark .Toastify__toast {
-  background-color: var(--color-slate-800);
-  color: var(--color-slate-200);
+  background-color: rgba(30, 41, 59, 0.3) !important;
+  backdrop-filter: blur(16px) brightness(1.3) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: var(--color-slate-200) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2) !important;
+  border-radius: 16px !important;
+  overflow: hidden !important;
 }
 
 .dark .Toastify__toast-body {
-  color: var(--color-slate-200);
+  color: var(--color-slate-200) !important;
 }
 
 .dark .Toastify__close-button {
