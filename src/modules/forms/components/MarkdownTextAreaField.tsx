@@ -84,9 +84,11 @@ const MarkdownTextAreaField = ({
 
   return (
     <FieldWrapper {...field}>
-      <Tab tabItems={TextAreaStates} defaultTab="editor">
-        <GetCurrentTab {...field} />
-      </Tab>
+      <div className="-mt-8">
+        <Tab tabItems={TextAreaStates} defaultTab="editor">
+          <GetCurrentTab {...field} />
+        </Tab>
+      </div>
     </FieldWrapper>
   );
 };
