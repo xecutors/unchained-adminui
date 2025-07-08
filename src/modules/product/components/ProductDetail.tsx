@@ -10,7 +10,8 @@ import {
   UsersIcon,
   PuzzlePieceIcon,
   LinkIcon,
-} from '@heroicons/react/24/outline';
+  StarIcon,
+} from '@heroicons/react/20/solid';
 import LocaleWrapper from '../../common/components/LocaleWrapper';
 
 import CommerceForm from './CommerceForm';
@@ -97,17 +98,17 @@ const ProductDetail = ({ product, extendedData = {} }) => {
         id: 'general_text',
         defaultMessage: 'Text',
       }),
-      Icon: <DocumentTextIcon className="h-4 w-5" />,
+      Icon: <DocumentTextIcon className="h-5 w-5" />,
     },
     {
       id: 'media',
       title: formatMessage({ id: 'media', defaultMessage: 'Media' }),
-      Icon: <FilmIcon className="h-4 w-5" />,
+      Icon: <FilmIcon className="h-5 w-5" />,
     },
     __typename !== PRODUCT_TYPES.ConfigurableProduct && {
       id: 'commerce',
       title: formatMessage({ id: 'commerce', defaultMessage: 'Commerce' }),
-      Icon: <ShoppingBagIcon className="h-4 w-5" />,
+      Icon: <ShoppingBagIcon className="h-5 w-5" />,
     },
     __typename === PRODUCT_TYPES.SimpleProduct && {
       id: 'supply',
@@ -115,7 +116,7 @@ const ProductDetail = ({ product, extendedData = {} }) => {
         id: 'supply',
         defaultMessage: 'Supply',
       }),
-      Icon: <ChartPieIcon className="h-4 w-5" />,
+      Icon: <ChartPieIcon className="h-5 w-5" />,
     },
     __typename === PRODUCT_TYPES.SimpleProduct && {
       id: 'warehousing',
@@ -123,7 +124,7 @@ const ProductDetail = ({ product, extendedData = {} }) => {
         id: 'warehousing',
         defaultMessage: 'Warehousing',
       }),
-      Icon: <ArchiveBoxIcon className="h-4 w-5" />,
+      Icon: <ArchiveBoxIcon className="h-5 w-5" />,
     },
     __typename === PRODUCT_TYPES.ConfigurableProduct && {
       id: 'variations',
@@ -131,7 +132,7 @@ const ProductDetail = ({ product, extendedData = {} }) => {
         id: 'variations',
         defaultMessage: 'Variations',
       }),
-      Icon: <SwatchIcon className="h-4 w-5" />,
+      Icon: <SwatchIcon className="h-5 w-5" />,
     },
     __typename === PRODUCT_TYPES.BundleProduct && {
       id: 'bundled_products',
@@ -139,7 +140,7 @@ const ProductDetail = ({ product, extendedData = {} }) => {
         id: 'bundles',
         defaultMessage: 'Bundles',
       }),
-      Icon: <PresentationChartLineIcon className="h-4 w-5" />,
+      Icon: <PresentationChartLineIcon className="h-5 w-5" />,
     },
     __typename === PRODUCT_TYPES.PlanProduct && {
       id: 'subscriptions',
@@ -147,7 +148,7 @@ const ProductDetail = ({ product, extendedData = {} }) => {
         id: 'subscriptions',
         defaultMessage: 'Subscriptions',
       }),
-      Icon: <UsersIcon className="h-4 w-5" />,
+      Icon: <UsersIcon className="h-5 w-5" />,
     },
     __typename === PRODUCT_TYPES.ConfigurableProduct && {
       id: 'assignments',
@@ -155,7 +156,7 @@ const ProductDetail = ({ product, extendedData = {} }) => {
         id: 'assignments',
         defaultMessage: 'Assignments',
       }),
-      Icon: <LinkIcon className="h-4 w-5" />,
+      Icon: <LinkIcon className="h-5 w-5" />,
     },
     __typename === PRODUCT_TYPES.TokenizedProduct && {
       id: 'token',
@@ -163,7 +164,7 @@ const ProductDetail = ({ product, extendedData = {} }) => {
         id: 'token',
         defaultMessage: 'Token',
       }),
-      Icon: <LinkIcon className="h-4 w-5" />,
+      Icon: <LinkIcon className="h-5 w-5" />,
     },
     {
       id: 'reviews',
@@ -171,7 +172,7 @@ const ProductDetail = ({ product, extendedData = {} }) => {
         id: 'reviews',
         defaultMessage: 'Reviews',
       }),
-      Icon: <PresentationChartLineIcon className="h-4 w-5" />,
+      Icon: <StarIcon className="h-5 w-5" />,
     },
     extendedData !== null && {
       id: 'extended',
@@ -179,7 +180,7 @@ const ProductDetail = ({ product, extendedData = {} }) => {
         id: 'extended-fields',
         defaultMessage: 'Extended',
       }),
-      Icon: <PuzzlePieceIcon className="h-4 w-5" />,
+      Icon: <PuzzlePieceIcon className="h-5 w-5" />,
     },
   ].filter((item) => item);
 

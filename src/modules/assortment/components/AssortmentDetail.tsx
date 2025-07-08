@@ -3,10 +3,10 @@ import {
   DocumentTextIcon,
   LinkIcon,
   FilmIcon,
-  ViewColumnsIcon,
+  CubeIcon,
   FunnelIcon,
   PuzzlePieceIcon,
-} from '@heroicons/react/24/outline';
+} from '@heroicons/react/20/solid';
 
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
@@ -120,7 +120,7 @@ const AssortmentDetail = ({
         id: 'texts',
         defaultMessage: 'Texts',
       }),
-      Icon: <DocumentTextIcon className="h-4 w-5" />,
+      Icon: <DocumentTextIcon className="h-5 w-5" />,
     },
 
     {
@@ -129,7 +129,7 @@ const AssortmentDetail = ({
         id: 'links',
         defaultMessage: 'Links',
       }),
-      Icon: <LinkIcon className="h-4 w-5" />,
+      Icon: <LinkIcon className="h-5 w-5" />,
     },
     {
       id: 'media',
@@ -137,7 +137,7 @@ const AssortmentDetail = ({
         id: 'media',
         defaultMessage: 'Media',
       }),
-      Icon: <FilmIcon className="h-4 w-5" />,
+      Icon: <FilmIcon className="h-5 w-5" />,
     },
     {
       id: 'products',
@@ -145,7 +145,7 @@ const AssortmentDetail = ({
         id: 'products',
         defaultMessage: 'Products',
       }),
-      Icon: <ViewColumnsIcon className="h-4 w-5" />,
+      Icon: <CubeIcon className="h-5 w-5" />,
     },
     {
       id: 'filters',
@@ -153,7 +153,7 @@ const AssortmentDetail = ({
         id: 'filters',
         defaultMessage: 'Filters',
       }),
-      Icon: <FunnelIcon className="h-4 w-5" />,
+      Icon: <FunnelIcon className="h-5 w-5" />,
     },
     extendedData !== null && {
       id: 'extended',
@@ -161,7 +161,7 @@ const AssortmentDetail = ({
         id: 'extended-fields',
         defaultMessage: 'Extended',
       }),
-      Icon: <PuzzlePieceIcon className="h-4 w-5" />,
+      Icon: <PuzzlePieceIcon className="h-5 w-5" />,
     },
   ];
 

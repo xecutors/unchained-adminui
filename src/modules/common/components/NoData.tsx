@@ -12,7 +12,7 @@ const NoData = ({ message, className = '', Icon = null }) => {
     >
       <div className="grid items-center justify-center">
         <div className="flex items-center justify-center text-slate-400 dark:text-slate-600">
-          {Icon || <NoSymbolIcon className="h-8 w-8" />}
+          {Icon || <NoSymbolIcon className="h-6 w-6" />}
         </div>
 
         <FormattedMessage

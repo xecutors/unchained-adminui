@@ -208,7 +208,7 @@ const ProductTextsForm = ({
                 <HelpText
                   messageKey="product_labels_help"
                   defaultMessage="Add promotional badges like 'New Arrival', '50% Off', or 'Limited Edition' that customers will see on your product. Perfect for highlighting deals and special features."
-                  className="mt-1"
+                  className="mt-3"
                 />
               </div>
             </div>

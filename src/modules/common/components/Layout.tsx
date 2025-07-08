@@ -1,6 +1,6 @@
 import {
   Cog8ToothIcon,
-  HomeIcon,
+  HomeModernIcon,
   InboxIcon,
   RectangleStackIcon,
   CalendarIcon,
@@ -79,7 +79,7 @@ const Layout = ({
   const defaultNavigation = [
     {
       name: formatMessage({ id: 'home', defaultMessage: 'Home' }),
-      icon: HomeIcon,
+      icon: HomeModernIcon,
       href: '/',
     },
     {

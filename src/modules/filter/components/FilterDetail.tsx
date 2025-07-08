@@ -3,7 +3,7 @@ import {
   DocumentTextIcon,
   ClipboardDocumentListIcon,
   PuzzlePieceIcon,
-} from '@heroicons/react/24/outline';
+} from '@heroicons/react/20/solid';
 
 import { toast } from 'react-toastify';
 import SelectOptions from '../../common/components/SelectOptions';
@@ -46,20 +46,20 @@ const FilterDetail = ({ filter, extendedData }) => {
   const filterOptions = [
     {
       id: 'text',
-      texts: formatMessage({
+      title: formatMessage({
         id: 'text',
         defaultMessage: 'Text',
       }),
-      Icon: <DocumentTextIcon className="h-4 w-5" />,
+      Icon: <DocumentTextIcon className="h-5 w-5" />,
     },
 
     {
       id: 'options',
-      options: formatMessage({
+      title: formatMessage({
         id: 'options',
         defaultMessage: 'Options',
       }),
-      Icon: <ClipboardDocumentListIcon className="h-4 w-5" />,
+      Icon: <ClipboardDocumentListIcon className="h-5 w-5" />,
     },
     extendedData !== null && {
       id: 'extended',
@@ -67,7 +67,7 @@ const FilterDetail = ({ filter, extendedData }) => {
         id: 'extended-fields',
         defaultMessage: 'Extended',
       }),
-      Icon: <PuzzlePieceIcon className="h-4 w-5" />,
+      Icon: <PuzzlePieceIcon className="h-5 w-5" />,
     },
   ].filter(Boolean);
 

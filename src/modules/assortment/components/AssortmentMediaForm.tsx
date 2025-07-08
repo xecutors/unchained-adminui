@@ -173,12 +173,12 @@ const AssortmentMediaForm = ({ assortmentId, selectedLocale = null }) => {
   };
 
   return (
-    <div className="mx-auto mt-5 max-w-fullpy-6 lg:grid lg:grid-cols-12">
-      <div className="mx-auto w-full px-6 lg:col-span-6 lg:col-start-1">
+    <div className="mx-auto mt-5 max-w-fullpy-6 grid lg:grid-cols-12 gap-5">
+      <div className="lg:col-span-6">
         <MediaUploader onlyDragAndDrop addMedia={onAddMedia} />
       </div>
 
-      <div className="mx-auto w-full px-6 lg:col-span-6">
+      <div className="lg:col-span-6">
         <DndContext
           sensors={sensors}
           collisionDetection={closestCenter}
