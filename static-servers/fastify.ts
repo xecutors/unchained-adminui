@@ -88,7 +88,7 @@ const setupMCPChatHandler = (chatConfiguration: ChatConfiguration) => {
           parameters: tool.parameters || {},
           category: categorizeTools(name),
         }));
-        res.status(200).send({
+        return res.status(200).send({
           tools,
         });
       }
