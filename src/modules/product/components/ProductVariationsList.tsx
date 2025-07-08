@@ -70,9 +70,9 @@ const ProductVariationsList = ({
     <Accordion
       data-variationid={variation._id}
       data={variations}
-      containerCSS="w-full my-0"
+      containerCSS="w-full !my-0"
       bodyCSS="bg-white dark:bg-slate-800"
-      itemContainerCSS="mt-0 my-0"
+      itemContainerCSS="!mt-0"
       headerCSS="w-full flex items-center rounded-sm justify-between p-2 bg-white dark:bg-slate-800"
     />
   );
