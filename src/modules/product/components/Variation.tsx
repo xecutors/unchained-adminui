@@ -39,7 +39,7 @@ const Variation = ({ type, variation, selectedLocale, onDelete }) => {
       data-variationid={variation._id}
     >
       <div className="grid grid-cols-8 items-center gap-3" tabIndex={-1}>
-        <div className="col-span-2 flex gap-3">
+        <div className="col-span-2 flex gap-3 items-center">
           <Badge
             text={type}
             square
@@ -47,6 +47,17 @@ const Variation = ({ type, variation, selectedLocale, onDelete }) => {
             className="justify-end"
           />
           <div className="font-semibold">{variation?.key}</div>
+          {variation?.options?.length > 0 && (
+            <div className="flex items-center gap-1 text-xs text-slate-600 dark:text-slate-400">
+              <span className="inline-flex text-nowrap items-center px-2 py-0.5 rounded-lg text-xs font-medium bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-800">
+                {variation.options.length}{' '}
+                {formatMessage({
+                  id: 'options',
+                  defaultMessage: 'options',
+                })}
+              </span>
+            </div>
+          )}
         </div>
 
         <div

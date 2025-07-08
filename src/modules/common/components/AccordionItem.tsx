@@ -37,7 +37,7 @@ const AccordionItem = ({
       {show ? (
         <div
           className={classNames(
-            'rounded-lg p-0 text-slate-400 bg-white dark:text-slate-200 ',
+            'rounded-lg p-0 text-slate-400 bg-red dark:text-slate-200',
             bodyCSS,
           )}
         >

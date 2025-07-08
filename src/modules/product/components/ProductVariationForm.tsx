@@ -35,7 +35,6 @@ const ProductVariationForm = ({
     successMessage,
     initialValues: {
       title: '',
-      subtitle: '',
       key: '',
       type: '',
     },
@@ -62,26 +61,29 @@ const ProductVariationForm = ({
             </p>
           </div>
 
-          <div className="max-w-full mb-0">
-            <div className="mb-5">
-              <FieldWithHelp
-                name="title"
-                id="title"
-                label={formatMessage({
-                  id: 'title',
-                  defaultMessage: 'Title',
-                })}
-                helpText={formatMessage({
-                  id: 'product_variation_title_help',
-                  defaultMessage:
-                    'The display name customers will see (e.g., "Color", "Size", "Material")',
-                })}
-                required
-                autoComplete="on"
-                className="w-full text-sm text-slate-400 dark:text-slate-200"
-              />
-            </div>
-            <div className="mb-5">
+          {/* Title Field */}
+          <div className="mb-6">
+            <FieldWithHelp
+              name="title"
+              id="title"
+              label={formatMessage({
+                id: 'title',
+                defaultMessage: 'Title',
+              })}
+              helpText={formatMessage({
+                id: 'product_variation_title_help',
+                defaultMessage:
+                  'The display name customers will see (e.g., "Color", "Size", "Material")',
+              })}
+              required
+              autoComplete="on"
+              className="w-full text-sm text-slate-400 dark:text-slate-200"
+            />
+          </div>
+
+          {/* Key and Type Fields in Vertical Subgrid */}
+          <div className="grid grid-rows-2 gap-4">
+            <div className="space-y-1">
               <FieldWithHelp
                 name="key"
                 id="key"
@@ -99,31 +101,31 @@ const ProductVariationForm = ({
                 className="w-full text-sm text-slate-400 dark:text-slate-200"
               />
             </div>
-          </div>
-          <div className="space-y-1">
-            <SelectField
-              required
-              className="mt-0 w-full pb-2 text-sm text-slate-400 dark:text-slate-200"
-              label={formatMessage({
-                id: 'type',
-                defaultMessage: 'Type',
-              })}
-              placeholder={formatMessage({
-                id: 'type',
-                defaultMessage: 'Type',
-              })}
-              name="type"
-              options={convertArrayOfObjectToObject(
-                variationTypes,
-                'value',
-                'value',
-              )}
-            />
-            <HelpText
-              messageKey="product_variation_type_help"
-              defaultMessage="COLOR: For predefined options like colors or sizes. TEXT: For free-form input like custom text or measurements."
-              className="mt-1"
-            />
+            <div className="space-y-1">
+              <SelectField
+                required
+                className="mt-0 w-full pb-2 text-sm text-slate-400 dark:text-slate-200"
+                label={formatMessage({
+                  id: 'type',
+                  defaultMessage: 'Type',
+                })}
+                placeholder={formatMessage({
+                  id: 'type',
+                  defaultMessage: 'Type',
+                })}
+                name="type"
+                options={convertArrayOfObjectToObject(
+                  variationTypes,
+                  'value',
+                  'value',
+                )}
+              />
+              <HelpText
+                messageKey="product_variation_type_help"
+                defaultMessage="COLOR: For predefined options like colors or sizes. TEXT: For free-form input like custom text or measurements."
+                className="mt-1"
+              />
+            </div>
           </div>
         </div>
         <div className="space-y-6 bg-slate-50 dark:bg-slate-700 px-5 py-6 text-right">
