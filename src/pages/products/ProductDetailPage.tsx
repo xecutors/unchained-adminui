@@ -282,20 +282,20 @@ const ProductDetailPage = ({ slug }) => {
 
         <div className="mt-8 flex flex-wrap gap-3 gap-x-10 text-slate-600 dark:text-slate-400">
           <div className="flex flex-col items-baseline gap-0">
-            <span className="mr-2 text-xs text-slate-500 dark:text-slate-400">
+            <span className="mr-2 text-xs text-slate-500 dark:text-slate-500">
               ID:
             </span>
             <span className="text-sm font-mono">{product?._id}</span>
           </div>
           <div className="flex flex-col items-baseline gap-0">
-            <span className="text-xs text-slate-500 dark:text-slate-400">
+            <span className="text-xs text-slate-500 dark:text-slate-500">
               Type:
             </span>
             <p className="text-sm font-mono">{product?.['__typename']}</p>
           </div>
           {product?.created && (
             <div className="flex flex-col items-baseline gap-0">
-              <span className="text-xs text-slate-500 dark:text-slate-300">
+              <span className="text-xs text-slate-500 dark:text-slate-500">
                 {formatMessage({ id: 'created', defaultMessage: 'Created' })}:
               </span>
               <span className="text-sm font-mono">
@@ -308,7 +308,7 @@ const ProductDetailPage = ({ slug }) => {
           )}
           {product?.updated && (
             <div className="flex flex-col items-baseline gap-0">
-              <span className="text-xs text-slate-500 dark:text-slate-300">
+              <span className="text-xs text-slate-500 dark:text-slate-500">
                 {formatMessage({ id: 'updated', defaultMessage: 'Updated' })}:
               </span>
               <span className="text-sm font-mono">
@@ -321,7 +321,7 @@ const ProductDetailPage = ({ slug }) => {
           )}
           {product?.published && (
             <div className="flex flex-col items-baseline gap-0">
-              <span className="text-xs text-slate-500 dark:text-slate-300">
+              <span className="text-xs text-slate-500 dark:text-slate-500">
                 {formatMessage({
                   id: 'published',
                   defaultMessage: 'Published',
