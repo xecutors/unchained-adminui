@@ -19,8 +19,8 @@ const ProductImageGallery = ({
   };
 
   return (
-    <div className="my-6">
-      <div className="flex gap-3 overflow-x-auto pb-2">
+    <div className="my-5">
+      <div className="flex gap-3 overflow-x-auto">
         {media.map((item) => (
           <div key={item._id} className="relative flex-shrink-0 group">
             <div

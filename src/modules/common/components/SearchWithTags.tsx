@@ -40,7 +40,7 @@ const SearchWithTags = ({
             />
           </div>
           {showTagFilter && (
-            <div className="w-fit lg:border-l lg:border-slate-300 lg:dark:border-slate-700 lg:pl-3">
+            <div className="w-fit lg:border-l lg:border-slate-300 lg:dark:border-slate-700 lg:pl-3 flex items-center">
               <TagInput
                 buttonText={formatMessage({
                   id: 'apply',
