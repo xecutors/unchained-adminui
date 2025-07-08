@@ -1,20 +1,17 @@
-import React, { useRef, useEffect, useState, useLayoutEffect } from 'react';
+import React, { useRef, useState, useLayoutEffect, useMemo } from 'react';
 import { useIntl } from 'react-intl';
-import {
-  ChevronDownIcon,
-  ChevronUpIcon,
-  ChatBubbleLeftRightIcon,
-} from '@heroicons/react/24/outline';
 import useCurrentUser from '../../modules/accounts/hooks/useCurrentUser';
 import { useChatContext } from '../../modules/chat';
-import { MessageRenderer, LoadingIndicator } from '../chat';
+import { LoadingIndicator } from '../chat';
 import CopilotHeader from './CopilotHeader';
 import CopilotInput from './CopilotInput';
-import ToolGrid from './ToolGrid';
 import { useChatEndpointChecker } from '../../modules/common/hooks/useChatEndpointChecker';
 import { useAvailableTools } from '../../modules/chat/hooks/useAvailableTools';
+import CopilotEmptyState from './CopilotEmptyState';
+import CopilotMessageList from './CopilotMessageList';
+import CopilotErrorState from './CopilotErrorState';
 
-const Copilot: React.FC = () => {
+const Copilot = () => {
   const { formatMessage } = useIntl();
   const chatContext = useChatContext();
   const { messages, status, reload, append } = chatContext;
@@ -30,14 +27,16 @@ const Copilot: React.FC = () => {
   const loading = status !== 'ready' && status !== 'error';
   const [showTools, setShowTools] = useState(false);
 
-  // Handle manual introduction button click
   const handleIntroduction = async () => {
-    const introMessage =
-      'Hello! Please introduce yourself and explain what you can help me with in managing my Unchained Commerce store. Be friendly and informative about your current capabilities.';
+    const introMessage = formatMessage({
+      id: 'copilot-into-message',
+      defaultMessage:
+        'Hello! Please introduce yourself and explain what you can help me with in managing my Unchained Commerce store. Be friendly and informative about your current capabilities.',
+    });
 
     try {
       await append({
-        id: `intro-${Date.now()}`,
+        id: `intro-message`,
         role: 'user',
         content: introMessage,
       });
@@ -49,179 +48,74 @@ const Copilot: React.FC = () => {
   useLayoutEffect(() => {
     const el = bottomRef.current;
     if (!el || messages.length === 0) return;
-
-    el.scrollIntoView({ behavior: 'smooth' });
+    const id = requestAnimationFrame(() => {
+      el.scrollIntoView({ behavior: 'smooth' });
+    });
+    return () => cancelAnimationFrame(id);
   }, [messages.length]);
+
+  const visibleMessages = useMemo(() => {
+    return messages.filter((message) => {
+      if (
+        message.role === 'assistant' &&
+        (!message.parts ||
+          message.parts.length === 0 ||
+          (message.parts[0].type === 'text' && !message.parts[0].text))
+      )
+        return false;
+      if (message.id === 'intro-message') return false;
+      return true;
+    });
+  }, [messages]);
+
   if (!chatEnabled) {
     return (
       <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-slate-950 font-sans">
-        <div className="py-16">
-          <div className="text-center">
-            <h1 className="mt-2 text-4xl font-extrabold tracking-tight text-rose-900 dark:text-rose-200 sm:text-5xl">
-              {formatMessage({
-                id: 'chat_disabled_title',
-                defaultMessage: 'Chat is Disabled',
-              })}
-            </h1>
-            <p className="mt-2 text-base text-slate-500 dark:text-slate-200">
-              {formatMessage({
-                id: 'chat_disabled_message',
-                defaultMessage:
-                  'Copilot chat is currently disabled in this shop. Please check your engine configuration',
-              })}
-            </p>
-          </div>
+        <div className="py-16 text-center">
+          <h1 className="text-4xl font-extrabold text-rose-900 dark:text-rose-200">
+            {formatMessage({
+              id: 'chat_disabled_title',
+              defaultMessage: 'Chat is Disabled',
+            })}
+          </h1>
+          <p className="mt-2 text-base text-slate-500 dark:text-slate-200">
+            {formatMessage({
+              id: 'chat_disabled_message',
+              defaultMessage:
+                'Copilot chat is currently disabled in this shop. Please check your engine configuration',
+            })}
+          </p>
         </div>
       </div>
     );
   }
+
   return (
     <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-slate-950 font-sans">
       <CopilotHeader />
       <main className="flex-1 overflow-y-auto py-6 space-y-4 max-w-4xl mx-auto w-full px-4">
-        {/* Empty state with introduction button */}
-        {messages.length === 0 && !loading && (
-          <div className="flex flex-col items-center justify-center min-h-[60vh] text-center space-y-6">
-            <div className="w-16 h-16 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center">
-              <ChatBubbleLeftRightIcon className="w-8 h-8 text-slate-400 dark:text-slate-500" />
-            </div>
-            <div className="space-y-3">
-              <h2 className="text-2xl font-semibold text-slate-900 dark:text-slate-100">
-                {formatMessage({
-                  id: 'copilot_welcome_title',
-                  defaultMessage: 'Welcome to Unchained Copilot',
-                })}
-              </h2>
-              <p className="text-slate-600 dark:text-slate-400 max-w-md">
-                {formatMessage({
-                  id: 'copilot_welcome_description',
-                  defaultMessage:
-                    'Your AI assistant is ready to help you manage your Unchained Commerce store.',
-                })}
-              </p>
-            </div>
-            <button
-              onClick={handleIntroduction}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-slate-800 hover:bg-slate-900 dark:bg-slate-600 dark:hover:bg-slate-500 text-white font-medium rounded-lg transition-colors focus:outline-hidden focus:ring-2 focus:ring-slate-800 dark:focus:ring-slate-400 focus:ring-offset-2"
-            >
-              <ChatBubbleLeftRightIcon className="w-5 h-5" />
-              {formatMessage({
-                id: 'say_hi_get_to_know_me',
-                defaultMessage: 'Say Hi and Get To Know Me',
-              })}
-            </button>
-          </div>
+        {messages.length === 0 && !loading ? (
+          <CopilotEmptyState onIntroClick={handleIntroduction} />
+        ) : (
+          <CopilotMessageList
+            messages={visibleMessages}
+            loading={loading}
+            currentUser={currentUser}
+            showTools={showTools}
+            toggleShowTools={() => setShowTools((s) => !s)}
+            groupedTools={groupedTools}
+            toolsLoading={toolsLoading}
+            toolsError={toolsError}
+            lastUpdated={lastUpdated}
+          />
         )}
-
-        {/* Messages */}
-        {(() => {
-          let visibleMessageIndex = 0;
-          return messages?.map((message, index) => {
-            // Skip empty assistant messages (these might be loading placeholders)
-            if (
-              message.role === 'assistant' &&
-              (!message.parts ||
-                message.parts.length === 0 ||
-                (message.parts.length === 1 &&
-                  message.parts[0].type === 'text' &&
-                  !message.parts[0].text))
-            ) {
-              return null;
-            }
-
-            // Hide the auto-introduction prompt from user
-            if (
-              message.role === 'user' &&
-              (message?.content?.includes('Give a brief introduction') ||
-                message?.content?.includes(
-                  'Introduce yourself and your tools',
-                ) ||
-                message?.content?.includes(
-                  'Please introduce yourself and explain',
-                ))
-            ) {
-              return null;
-            }
-
-            // This is a visible message
-            const isFirstVisibleMessage = visibleMessageIndex === 0;
-            visibleMessageIndex++;
-
-            return (
-              <React.Fragment key={message.id}>
-                <MessageRenderer message={message} user={currentUser} />
-                {/* Show tools button after the first visible message */}
-                {isFirstVisibleMessage && !loading && (
-                  <div className="py-4">
-                    <div>
-                      {/* Tools toggle button */}
-                      <div className="mb-6">
-                        <button
-                          onClick={() => setShowTools(!showTools)}
-                          className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
-                        >
-                          {showTools ? (
-                            <>
-                              <ChevronUpIcon className="w-4 h-4" />
-                              {formatMessage({
-                                id: 'hide_capabilities',
-                                defaultMessage: 'Hide Available Tools',
-                              })}
-                            </>
-                          ) : (
-                            <>
-                              <ChevronDownIcon className="w-4 h-4" />
-                              {formatMessage({
-                                id: 'show_capabilities',
-                                defaultMessage: 'Show Available Tools',
-                              })}
-                            </>
-                          )}
-                        </button>
-                      </div>
-
-                      {/* Tools grid - collapsible */}
-                      {showTools && (
-                        <div className="mt-8">
-                          <ToolGrid
-                            groupedTools={groupedTools}
-                            loading={toolsLoading}
-                            error={toolsError}
-                            lastUpdated={lastUpdated}
-                          />
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                )}
-              </React.Fragment>
-            );
-          });
-        })()}
-        {status === 'error' && (
-          <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-slate-950 font-sans">
-            <div className="py-16 text-center max-w-lg mx-auto">
-              <p className="mt-2 text-sm text-rose-400 dark:text-rose-300">
-                A error occurred while processing your request, please reload
-                the conversation and submit something shorter.
-              </p>
-              <button
-                onClick={reload}
-                className="mt-6 bg-white hover:bg-slate-950 text-slate-950 hover:text-white dark:hover:text-white rounded-sm shadow-sm hover:shadow-lg py-2 px-4 border border-slate-950 dark:border-slate-200 hover:border-transparent"
-              >
-                Retry
-              </button>
-            </div>
-          </div>
-        )}
+        {status === 'error' && <CopilotErrorState onRetry={reload} />}
         {loading && <LoadingIndicator />}
-
         <div
           ref={bottomRef}
           className={messages.length > 0 || loading ? 'pb-6' : ''}
         />
       </main>
-
       <CopilotInput />
     </div>
   );
