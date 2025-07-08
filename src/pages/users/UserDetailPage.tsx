@@ -53,10 +53,13 @@ const UserDetailPage = ({ userId }) => {
     <div className=" max-w-6xl">
       <BreadCrumbs currentPageTitle={user ? `${user?.name}` : ''} />
       <PageHeader
-        headerText={formatUsername(user) || formatMessage({
-          id: 'users_setting_list_header',
-          defaultMessage: 'User settings',
-        })}
+        headerText={
+          formatUsername(user) ||
+          formatMessage({
+            id: 'users_setting_list_header',
+            defaultMessage: 'User settings',
+          })
+        }
         onDelete={!user?.deleted && hasRole('removeUser') ? onDeleteUser : null}
         title={formatMessage(
           {
