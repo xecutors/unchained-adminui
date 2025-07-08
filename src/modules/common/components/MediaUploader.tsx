@@ -81,12 +81,12 @@ const MediaUploader = ({
           onDragOver={handleDragOver}
           onDragEnter={handleDragEnter}
           onDragLeave={handleDragLeave}
-          className="text-slate-500 dark:text-slate-200"
+          className="text-slate-500 dark:text-slate-300"
         >
           <label htmlFor="file-upload" className="block">
             <div
               className={classNames(
-                'flex justify-center rounded-md border-1 border-dashed border-slate-300 px-6 py-10 cursor-pointer hover:border-slate-400 dark:hover:border-slate-500 transition-colors',
+                'flex justify-center rounded-md border-1 border-dashed border-slate-300 px-6 py-10 cursor-pointer hover:border-slate-400 dark:hover:border-slate-500 dark:border-slate-600 dark:text-slate-400 transition-colors',
                 {
                   'border-slate-950': dragArea,
                 },
@@ -94,7 +94,7 @@ const MediaUploader = ({
             >
               <div className="pl-5 space-y-1 text-center pointer-events-none">
                 <svg
-                  className="mx-auto h-12 w-12 text-slate-400 dark:text-slate-200"
+                  className="mx-auto h-12 w-12 text-slate-400 dark:text-slate-400"
                   stroke="currentColor"
                   fill="none"
                   viewBox="0 0 48 48"
@@ -107,14 +107,14 @@ const MediaUploader = ({
                     strokeLinejoin="round"
                   />
                 </svg>
-                <div className="flex text-sm text-slate-600 dark:text-slate-200">
-                  <span className="px-1 mr-1 font-medium text-slate-950 dark:text-slate-300">
+                <div className="flex text-sm text-slate-600 dark:text-slate-400">
+                  <span className="px-1 font-medium text-slate-950 dark:text-slate-300">
                     {formatMessage({
                       id: 'upload_file',
                       defaultMessage: 'Upload a file',
                     })}
                   </span>
-                  <p className="pl-1">
+                  <p>
                     {formatMessage({
                       id: 'or_drag_and_drop',
                       defaultMessage: 'or drag and drop',
