@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState, useLayoutEffect } from 'react';
 import { useIntl } from 'react-intl';
-import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
+import { ChevronDownIcon, ChevronUpIcon, ChatBubbleLeftRightIcon } from '@heroicons/react/24/outline';
 import useCurrentUser from '../../modules/accounts/hooks/useCurrentUser';
 import { useChatContext } from '../../modules/chat';
 import { MessageRenderer, LoadingIndicator } from '../chat';
@@ -25,39 +25,22 @@ const Copilot: React.FC = () => {
   const bottomRef = useRef<HTMLDivElement>(null);
   const loading = status !== 'ready' && status !== 'error';
   const [showTools, setShowTools] = useState(false);
-  const hasInitialized = useRef(false);
 
-  // Auto-send introduction message when copilot opens
-  useEffect(() => {
-    // Only check when chat is ready and enabled
-    if (status !== 'ready' || !chatEnabled) return;
-
-    // Check if we already have messages
-    if (messages.length > 0) return;
-
-    // Check if we've already initialized
-    if (hasInitialized.current) return;
-
-    hasInitialized.current = true;
-
-    // Use append directly instead of simulating form submission
+  // Handle manual introduction button click
+  const handleIntroduction = async () => {
     const introMessage =
       'Hello! Please introduce yourself and explain what you can help me with in managing my Unchained Commerce store. Be friendly and informative about your current capabilities.';
 
-    const timer = setTimeout(async () => {
-      try {
-        await append({
-          id: `intro-${Date.now()}`,
-          role: 'user',
-          content: introMessage,
-        });
-      } catch (error) {
-        console.error('Failed to append introduction:', error);
-      }
-    }, 500);
-
-    return () => clearTimeout(timer);
-  }, [status, chatEnabled, messages.length, append]);
+    try {
+      await append({
+        id: `intro-${Date.now()}`,
+        role: 'user',
+        content: introMessage,
+      });
+    } catch (error) {
+      console.error('Failed to append introduction:', error);
+    }
+  };
 
   useLayoutEffect(() => {
     const el = bottomRef.current;
@@ -92,6 +75,40 @@ const Copilot: React.FC = () => {
     <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-slate-950 font-sans">
       <CopilotHeader />
       <main className="flex-1 overflow-y-auto py-6 space-y-4 max-w-4xl mx-auto w-full px-4">
+        {/* Empty state with introduction button */}
+        {messages.length === 0 && !loading && (
+          <div className="flex flex-col items-center justify-center min-h-[60vh] text-center space-y-6">
+            <div className="w-16 h-16 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center">
+              <ChatBubbleLeftRightIcon className="w-8 h-8 text-slate-400 dark:text-slate-500" />
+            </div>
+            <div className="space-y-3">
+              <h2 className="text-2xl font-semibold text-slate-900 dark:text-slate-100">
+                {formatMessage({
+                  id: 'copilot_welcome_title',
+                  defaultMessage: 'Welcome to Unchained Copilot',
+                })}
+              </h2>
+              <p className="text-slate-600 dark:text-slate-400 max-w-md">
+                {formatMessage({
+                  id: 'copilot_welcome_description',
+                  defaultMessage: 'Your AI assistant is ready to help you manage your Unchained Commerce store.',
+                })}
+              </p>
+            </div>
+            <button
+              onClick={handleIntroduction}
+              className="inline-flex items-center gap-2 px-6 py-3 bg-slate-800 hover:bg-slate-900 dark:bg-slate-600 dark:hover:bg-slate-500 text-white font-medium rounded-lg transition-colors focus:outline-hidden focus:ring-2 focus:ring-slate-800 dark:focus:ring-slate-400 focus:ring-offset-2"
+            >
+              <ChatBubbleLeftRightIcon className="w-5 h-5" />
+              {formatMessage({
+                id: 'say_hi_get_to_know_me',
+                defaultMessage: 'Say Hi and Get To Know Me',
+              })}
+            </button>
+          </div>
+        )}
+
+        {/* Messages */}
         {(() => {
           let visibleMessageIndex = 0;
           return messages?.map((message, index) => {
