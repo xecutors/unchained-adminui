@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { PlusIcon } from '@heroicons/react/24/outline';
 import PageHeader from '../modules/common/components/PageHeader';
 import ShopSetupChecklist from '../components/copilot/ShopSetupChecklist';
+import DashboardMetrics from '../modules/common/components/DashboardMetrics';
 import useShopInfo from '../modules/common/hooks/useShopInfo';
 import useAuth from '../modules/Auth/useAuth';
 import Button from '../modules/common/components/Button';
@@ -24,6 +25,8 @@ const HomePage = () => {
       />
       <div className="mx-auto py-6">
         <ShopSetupChecklist className="mb-8" />
+
+        <DashboardMetrics />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 p-6">
