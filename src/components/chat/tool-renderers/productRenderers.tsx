@@ -1,3 +1,4 @@
+import ImageWithFallback from '../../../modules/common/components/ImageWithFallback';
 import { ProductList, ProductListItemCompact } from '../../product';
 import ProductResultsSummary from '../ProductResultsSummary';
 

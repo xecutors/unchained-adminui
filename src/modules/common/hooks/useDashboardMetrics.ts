@@ -6,7 +6,9 @@ import useProductsCount from '../../product/hooks/useProductsCount';
 const useDashboardMetrics = () => {
   const { ordersCount, loading: ordersLoading } = useOrders({ limit: 1 });
   const { usersCount, loading: usersLoading } = useUsersCount();
-  const { assortmentsCount, loading: assortmentsLoading } = useAssortmentsCount({});
+  const { assortmentsCount, loading: assortmentsLoading } = useAssortmentsCount(
+    {},
+  );
   const { productsCount, loading: productsLoading } = useProductsCount({});
 
   const metrics = {
@@ -28,7 +30,8 @@ const useDashboardMetrics = () => {
     },
   };
 
-  const isLoading = ordersLoading || usersLoading || assortmentsLoading || productsLoading;
+  const isLoading =
+    ordersLoading || usersLoading || assortmentsLoading || productsLoading;
 
   return {
     metrics,
