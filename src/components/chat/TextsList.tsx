@@ -23,9 +23,29 @@ interface ProductText {
 
 interface Props {
   text: ProductText;
+  tool: string;
+  productId?: string | null;
+  assortmentId?: string | null;
 }
 
-export const TextItemCompact: React.FC<Props> = ({ text }) => {
+export const TextItemCompact: React.FC<Props> = ({
+  tool,
+  text,
+  productId = null,
+}) => {
+  let normalizedHref = '';
+  switch (tool) {
+    case 'product_getTexts':
+      normalizedHref = `/products?slug=${generateUniqueId({ texts: text, _id: text?.productId })}`;
+      break;
+    case 'productMedia_getTexts':
+      normalizedHref = `/products?slug=${generateUniqueId({ texts: text, _id: productId })}&tab=media`;
+      break;
+    default:
+      normalizedHref = `/products?slug=${generateUniqueId({ texts: text, _id: text?.productId })}`;
+      break;
+  }
+
   const infoRow = (label: string, value: string | null | undefined) => {
     if (!value) return null;
     return (
@@ -72,7 +92,7 @@ export const TextItemCompact: React.FC<Props> = ({ text }) => {
       </div>
 
       <Link
-        href={`/products?slug=${generateUniqueId({ texts: text, _id: text?.productId || text?.assortmentId })}`}
+        href={normalizedHref}
         className="mt-2 px-3 py-1.5 text-sm text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 border border-slate-300 dark:border-slate-600 rounded-md hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
       >
         Edit
@@ -81,12 +101,15 @@ export const TextItemCompact: React.FC<Props> = ({ text }) => {
   );
 };
 
-const TextsList = ({ texts }) => (
-  <div className="space-y-3">
-    {texts.map((text) => (
-      <TextItemCompact key={text._id} text={text} />
-    ))}
-  </div>
-);
+const TextsList = ({ tool, texts, ...rest }) => {
+  console.log(texts, rest);
+  return (
+    <div className="space-y-3">
+      {texts.map((text) => (
+        <TextItemCompact tool={tool} key={text._id} text={text} {...rest} />
+      ))}
+    </div>
+  );
+};
 
 export default TextsList;

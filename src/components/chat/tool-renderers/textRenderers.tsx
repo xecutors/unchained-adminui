@@ -1,4 +1,10 @@
+import React from 'react';
 import TextsList from '../TextsList';
 
-export const renderTexts = (data: any) =>
-  data?.texts ? <TextsList texts={data.texts} /> : null;
+export const renderTexts = (toolName) => {
+  const RenderedTexts = (data: any) =>
+    data?.texts ? <TextsList tool={toolName} {...data} /> : null;
+
+  RenderedTexts.displayName = `RenderTexts(${toolName})`;
+  return RenderedTexts;
+};

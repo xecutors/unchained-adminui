@@ -114,7 +114,9 @@ const ToolRenderer: Record<string, ToolRenderFn> = {
   ...Object.fromEntries(
     MultipleProductReturnTools.map((name) => [name, renderMultipleProducts]),
   ),
-  ...Object.fromEntries(TextsReturnTools.map((name) => [name, renderTexts])),
+  ...Object.fromEntries(
+    TextsReturnTools.map((name) => [name, renderTexts(name)]),
+  ),
 
   ...Object.fromEntries(
     SingleAssortmentReturnTools.map((name) => [name, renderSingleAssortment]),
