@@ -6,7 +6,7 @@ import {
   FastifyRequest,
 } from 'fastify';
 import fastifyStatic from '@fastify/static';
-import { ChatConfiguration, errorHandler } from './utils';
+import { categorizeTools, ChatConfiguration, errorHandler } from './utils';
 import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
 import {
   experimental_createMCPClient as createMCPClient,
@@ -78,11 +78,18 @@ const setupMCPChatHandler = (chatConfiguration: ChatConfiguration) => {
       }
 
       if (req.method === 'GET') {
-        return res.status(200).send({
-          tools: {
-            ...defaultUnchainedTools,
-            ...customTools,
-          },
+        const mcpTools = {
+          ...defaultUnchainedTools,
+          ...customTools,
+        };
+        const tools = Object.entries(mcpTools).map(([name, tool]: any) => ({
+          name,
+          description: tool.description || '',
+          parameters: tool.parameters || {},
+          category: categorizeTools(name),
+        }));
+        res.status(200).send({
+          tools,
         });
       }
 

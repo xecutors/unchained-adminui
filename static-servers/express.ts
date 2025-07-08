@@ -6,7 +6,7 @@ import {
   experimental_createMCPClient as createMCPClient,
   streamText,
 } from 'ai';
-import { ChatConfiguration, errorHandler } from './utils';
+import { categorizeTools, ChatConfiguration, errorHandler } from './utils';
 import generateImageHandler from './generateImageHandler';
 
 export const expressRouter = express.Router();
@@ -67,12 +67,18 @@ const setupMCPChatHandler = (
       }
 
       if (req.method === 'GET') {
-        const now = Date.now();
+        const mcpTools = {
+          ...defaultUnchainedTools,
+          ...customTools,
+        };
+        const tools = Object.entries(mcpTools).map(([name, tool]: any) => ({
+          name,
+          description: tool.description || '',
+          parameters: tool.parameters || {},
+          category: categorizeTools(name),
+        }));
         res.status(200).json({
-          tools: {
-            ...defaultUnchainedTools,
-            ...customTools,
-          },
+          tools,
         });
         return;
       }
