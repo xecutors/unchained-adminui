@@ -1,6 +1,9 @@
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
-import { ArrowRightEndOnRectangleIcon, ArrowLeftIcon } from '@heroicons/react/24/outline';
+import {
+  ArrowRightEndOnRectangleIcon,
+  ArrowLeftIcon,
+} from '@heroicons/react/24/outline';
 import logOut from '../modules/accounts/hooks/logOut';
 import { useApolloClient } from '@apollo/client';
 import { toast } from 'react-toastify';

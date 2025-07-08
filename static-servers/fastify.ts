@@ -78,14 +78,12 @@ const setupMCPChatHandler = (chatConfiguration: ChatConfiguration) => {
       }
 
       if (req.method === 'GET') {
-        const now = Date.now();
-        res.status(200).send({
+        return res.status(200).send({
           tools: {
             ...defaultUnchainedTools,
             ...customTools,
           },
         });
-        return;
       }
 
       const { messages } = req.body as any;

@@ -15,7 +15,16 @@ export interface ButtonProps {
   /** Element ID */
   id?: string;
   /** Button variant */
-  variant?: 'primary' | 'secondary' | 'tertiary' | 'quaternary' | 'danger' | 'ghost' | 'success' | 'neutral' | 'input';
+  variant?:
+    | 'primary'
+    | 'secondary'
+    | 'tertiary'
+    | 'quaternary'
+    | 'danger'
+    | 'ghost'
+    | 'success'
+    | 'neutral'
+    | 'input';
   /** Button size */
   size?: 'xs' | 'sm' | 'md' | 'lg';
   /** Button type */

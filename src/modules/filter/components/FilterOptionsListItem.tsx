@@ -107,7 +107,7 @@ const FilterOptionsListItem = ({
                   <Button
                     variant="primary"
                     disabled={!form.formik.isValid}
-                    onClick={form.formik.handleSubmit}
+                    onClick={form.formik.handleSubmit as any}
                     text={formatMessage({
                       id: 'save',
                       defaultMessage: 'Save',
