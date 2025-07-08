@@ -14,6 +14,7 @@ import SelfDocumentingView from '../../common/components/SelfDocumentingView';
 
 import MarkdownTextAreaField from '../../forms/components/MarkdownTextAreaField';
 import TagInputField from '../../forms/components/TagInputField';
+import HelpText from '../../common/components/HelpText';
 
 const ProductTextsForm = ({
   productId,
@@ -97,13 +98,20 @@ const ProductTextsForm = ({
       documentation={
         <FormattedMessage
           id="product_text_form_description"
-          defaultMessage="<ul> <li>A Slug is the unique identifying part of a web address, typically at the end of the URL. </li>
-           <li> You can change the language of text by using the localization dropdown found at top right corner </li>
-           <li> Description area accepts text that are compatible with markdown or HTML. Tip: in order to add a line break use \ </li>
+          defaultMessage="<ul> <li><strong>Slug:</strong> The unique part of your product URL (e.g., 'my-awesome-product'). Keep it short and descriptive.</li>
+           <li><strong>Localization:</strong> Switch languages using the dropdown at the top left to translate content for different markets.</li>
+           <li><strong>Description:</strong> Supports Markdown and HTML formatting. Use double backslash (\\\\) for line breaks.</li>
+           <li><strong>Labels:</strong> Eye-catching badges that appear on your product (e.g., 'New Arrival', '50% Off', 'Limited Edition'). Perfect for promotions and highlighting special features. Each language can have unique labels.</li>
+           <li><strong>Key Difference:</strong> Labels are customer-facing promotional badges, while Tags are internal keywords for organization and filtering.</li>
            </ul>"
           values={{
-            ul: (chunk) => <ul className="space-y-1">{chunk} </ul>,
-            li: (chunk) => <li key={Math.random()}>{chunk} </li>,
+            ul: (chunk) => <ul className="space-y-2">{chunk} </ul>,
+            li: (chunk) => <li key={Math.random()} className="text-sm">{chunk} </li>,
+            strong: (chunk) => (
+              <strong className="font-semibold text-slate-800 dark:text-slate-200">
+                {chunk}
+              </strong>
+            ),
           }}
         />
       }
@@ -192,6 +200,11 @@ const ProductTextsForm = ({
                   })}
                   autoComplete="on"
                   className="text-sm"
+                />
+                <HelpText
+                  messageKey="product_labels_help"
+                  defaultMessage="Add promotional badges like 'New Arrival', '50% Off', or 'Limited Edition' that customers will see on your product. Perfect for highlighting deals and special features."
+                  className="mt-1"
                 />
               </div>
             </div>

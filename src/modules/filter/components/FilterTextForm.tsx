@@ -69,7 +69,7 @@ const FilterTextForm = ({ filterId, selectedLocale = null }) => {
       documentation={
         <FormattedMessage
           id="filter_text_form_description"
-          defaultMessage="<ul> <li>You can change the language of filter using the dropdown found at top right corner</li>
+          defaultMessage="<ul> <li>You can change the language of filter using the dropdown found at top left corner</li>
         </ul>"
           values={{
             ul: (chunk) => <ul className="space-y-1">{chunk} </ul>,

@@ -10,6 +10,7 @@ import useForm, {
   OnSubmitSuccessType,
   OnSubmitType,
 } from '../../forms/hooks/useForm';
+import HelpText from '../../common/components/HelpText';
 import { PRODUCT_TYPES } from '../ProductTypes';
 
 const ProductForm = ({
@@ -93,6 +94,11 @@ const ProductForm = ({
         <TagInputField
           name="tags"
           label={formatMessage({ id: 'tags', defaultMessage: 'Tags' })}
+        />
+        <HelpText
+          messageKey="product_tags_help"
+          defaultMessage="Add keywords to organize and filter products (e.g., 'electronics', 'outdoor', 'premium'). These work across all languages and help customers find products through search and filters."
+          className="mt-1"
         />
       </div>
 

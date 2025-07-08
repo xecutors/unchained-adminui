@@ -90,7 +90,7 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale = null }) => {
         <FormattedMessage
           id="assortment_text_form_description"
           defaultMessage="<ul> <li>A Slug is the unique identifying part of a web address, typically at the end of the URL. </li>
-         <li> You can change the language of text by using the localization dropdown found at top right corner </li> 
+         <li> You can change the language of text by using the localization dropdown found at top left corner </li> 
          <li> Description area accepts text that are compatible with markdown or HTML format. Tip: in order to add a line break use \ </li></ul>"
           values={{
             ul: (chunk) => <ul className="space-y-1">{chunk} </ul>,
