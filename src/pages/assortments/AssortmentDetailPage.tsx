@@ -307,7 +307,7 @@ const AssortmentDetailPage = ({ assortmentSlug }) => {
         </div>
 
         <div className="mt-5 flex items-baseline gap-2">
-          <span className="text-sm text-slate-600 dark:text-slate-400">
+          <span className="text-xs text-slate-600 dark:text-slate-400">
             ID:
           </span>
           <span className="text-sm font-mono">{assortment?._id}</span>
@@ -319,7 +319,7 @@ const AssortmentDetailPage = ({ assortmentSlug }) => {
               <span className="text-xs text-slate-600 dark:text-slate-300">
                 {formatMessage({ id: 'created', defaultMessage: 'Created' })}:
               </span>
-              <span className="text-md">
+              <span className="text-sm font-mono">
                 {formatDateTime(assortment.created, {
                   dateStyle: 'medium',
                   timeStyle: 'short',
@@ -333,7 +333,7 @@ const AssortmentDetailPage = ({ assortmentSlug }) => {
               <span className="text-xs text-slate-600 dark:text-slate-300">
                 {formatMessage({ id: 'updated', defaultMessage: 'Updated' })}:
               </span>
-              <span className="text-md">
+              <span className="text-sm font-mono">
                 {formatDateTime(assortment.updated, {
                   dateStyle: 'medium',
                   timeStyle: 'short',
