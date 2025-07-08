@@ -152,6 +152,7 @@
   "copilot": "Copilot",
   "copy_to_clipboard": "In Zwischenablage kopieren",
   "countries": "Länder",
+  "countries_config_description": "Länder konfigurieren und Standardwährungen zuweisen",
   "countries_count_header": "{count} Länder",
   "country": "Land",
   "country_added": "Land erfolgreich hinzugefügt!",

@@ -133,7 +133,7 @@
   "copilot": "Copilot",
   "copy_to_clipboard": "Copy to clipboard",
   "countries": "Countries",
-  "countries_config_description": "Configure at least one country for your shop",
+  "countries_config_description": "Configure countries and assign default currencies",
   "country": "Country",
   "country_added": "Country added successfully!",
   "country_code": "Country code",

@@ -31,20 +31,6 @@ export interface ShopConfiguration {
 
 const getSetupStepsConfigurationsMeta = (formatMessage): ConfigurationStep => {
   return {
-    countriesCount: {
-      id: 'countries',
-      title: formatMessage({ id: 'countries', defaultMessage: 'Countries' }),
-      description: formatMessage({
-        id: 'countries_config_description',
-        defaultMessage: 'Configure at least one country for your shop',
-      }),
-      isRequired: true,
-      setupUrl: '/country/new',
-      category: 'essential',
-      estimatedTime: '2 min',
-      icon: 'globe',
-      isComplete: false,
-    },
     currenciesCount: {
       id: 'currencies',
       title: formatMessage({ id: 'currencies', defaultMessage: 'Currencies' }),
@@ -57,6 +43,20 @@ const getSetupStepsConfigurationsMeta = (formatMessage): ConfigurationStep => {
       category: 'essential',
       estimatedTime: '2 min',
       icon: 'currency',
+      isComplete: false,
+    },
+    countriesCount: {
+      id: 'countries',
+      title: formatMessage({ id: 'countries', defaultMessage: 'Countries' }),
+      description: formatMessage({
+        id: 'countries_config_description',
+        defaultMessage: 'Configure countries and assign default currencies',
+      }),
+      isRequired: true,
+      setupUrl: '/country/new',
+      category: 'essential',
+      estimatedTime: '2 min',
+      icon: 'globe',
       isComplete: false,
     },
     languagesCount: {
