@@ -1,4 +1,4 @@
-import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
+import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/20/solid';
 import classNames from 'classnames';
 import { useRouter } from 'next/router';
 import React from 'react';
@@ -31,9 +31,9 @@ const SortButton = ({ onSort, sortDirection }) => {
     );
 
   return sortDirection === 'ASC' ? (
-    <ChevronUpIcon className="ml-2 w-4 h-4 text-slate-700" onClick={onSort} />
+    <ChevronUpIcon className="ml-2 w-5 h-5 text-slate-700" onClick={onSort} />
   ) : (
-    <ChevronDownIcon className="ml-2 w-4 h-4 text-slate-700" onClick={onSort} />
+    <ChevronDownIcon className="ml-2 w-5 h-5 text-slate-700" onClick={onSort} />
   );
 };
 

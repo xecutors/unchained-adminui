@@ -1,4 +1,4 @@
-import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
+import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/20/solid';
 import classNames from 'classnames';
 import { useState } from 'react';
 
@@ -27,19 +27,9 @@ const AccordionItem = ({
         <div className="w-full">{header}</div>
         <span className="px-2">
           {show ? (
-            <ChevronUpIcon
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-            />
+            <ChevronUpIcon className="h-5 w-5" />
           ) : (
-            <ChevronDownIcon
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-            />
+            <ChevronDownIcon className="h-5 w-5" />
           )}
         </span>
       </button>

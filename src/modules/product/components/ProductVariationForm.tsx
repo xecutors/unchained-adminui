@@ -41,8 +41,8 @@ const ProductVariationForm = ({
   return (
     <FormWrapper>
       <Form form={form}>
-        <div className="max-w-full space-y-6 rounded-md p-4 sm:p-6">
-          <div className="max-w-full">
+        <div className="max-w-full rounded-md p-4 sm:p-6">
+          <div className="max-w-full mb-0">
             <TextField
               name="title"
               id="title"
@@ -52,7 +52,7 @@ const ProductVariationForm = ({
               })}
               required
               autoComplete="on"
-              className="mt-1 w-full py-2 text-sm text-slate-400 dark:text-slate-200"
+              className="w-full pb-3 text-sm text-slate-400 dark:text-slate-200"
             />
             <TextField
               name="key"
@@ -63,12 +63,12 @@ const ProductVariationForm = ({
               })}
               required
               autoComplete="on"
-              className="mt-1 w-full py-2 text-sm text-slate-400 dark:text-slate-200"
+              className="w-full pb-3 text-sm text-slate-400 dark:text-slate-200"
             />
           </div>
           <SelectField
             required
-            className="mt-2.5  w-full py-1.5 text-sm text-slate-400 dark:text-slate-200"
+            className="mt-0 w-full pb-2 text-sm text-slate-400 dark:text-slate-200"
             label={formatMessage({
               id: 'type',
               defaultMessage: 'Type',

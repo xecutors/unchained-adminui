@@ -1,4 +1,4 @@
-import { TrashIcon } from '@heroicons/react/24/outline';
+import { TrashIcon } from '@heroicons/react/20/solid';
 import classNames from 'classnames';
 import { useIntl } from 'react-intl';
 

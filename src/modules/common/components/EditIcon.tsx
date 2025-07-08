@@ -1,4 +1,4 @@
-import { PencilSquareIcon } from '@heroicons/react/24/outline';
+import { PencilSquareIcon } from '@heroicons/react/20/solid';
 
 const EditIcon = () => {
   return (
