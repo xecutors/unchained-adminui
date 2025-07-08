@@ -23,6 +23,7 @@ import {
   renderMultipleLanguages,
 } from './tool-renderers/languageRenderers';
 import { renderTexts } from './tool-renderers/textRenderers';
+import { renderMedias } from './tool-renderers/renderMedias';
 
 export const SkippedToolResponse = [
   'assortment_addMedia',
@@ -103,6 +104,13 @@ export const SingleLanguageReturnTools = [
   'language_get',
 ];
 
+export const MediaListReturnTools = [
+  'product_getMedias',
+  'assortment_getMedias',
+  'product_reorderMedias',
+  'assortment_reorderMedias',
+];
+
 export const MultipleLanguageReturnTools = ['languages_list'];
 
 type ToolRenderFn = (data: any) => ReactElement | null;
@@ -110,6 +118,9 @@ type ToolRenderFn = (data: any) => ReactElement | null;
 const ToolRenderer: Record<string, ToolRenderFn> = {
   shop_info: renderShopInfo,
   generateImage: renderImage,
+  ...Object.fromEntries(
+    MediaListReturnTools.map((name) => [name, renderMedias]),
+  ),
   ...Object.fromEntries(
     SingleProductReturnTools.map((name) => [name, renderSingleProduct]),
   ),
