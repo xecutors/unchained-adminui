@@ -40,7 +40,12 @@ const Variation = ({ type, variation, selectedLocale, onDelete }) => {
     >
       <div className="grid grid-cols-8 items-center gap-3" tabIndex={-1}>
         <div className="col-span-2 flex gap-3">
-          <Badge text={type} square color="cyan" className="justify-start" />
+          <Badge
+            text={type}
+            square
+            color={type === 'COLOR' ? 'rainbow' : 'cyan'}
+            className="justify-end"
+          />
           <div className="font-semibold">{variation?.key}</div>
         </div>
 
@@ -53,7 +58,7 @@ const Variation = ({ type, variation, selectedLocale, onDelete }) => {
           )}
         >
           <div
-            className="flex justify-start gap-4 w-full"
+            className="flex justify-end gap-4 w-full"
             onClick={(event) => {
               event.stopPropagation();
               event.preventDefault();
@@ -95,7 +100,7 @@ const Variation = ({ type, variation, selectedLocale, onDelete }) => {
           </div>
 
           <div
-            className={classNames('ml-auto', { 'mx-auto': isEdit })}
+            className={classNames('ml-auto', { '': isEdit })}
             onClick={(event) => {
               event.stopPropagation();
               event.preventDefault();

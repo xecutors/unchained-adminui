@@ -10,18 +10,21 @@ const Badge = ({
   onClick = null,
 }) => {
   const normalizedColor = color?.trim();
+  const isRainbow = normalizedColor === 'rainbow';
 
   return (
     <span
       id="badge"
       className={classnames(
-        `inline-flex items-center border ${borderColor(
-          normalizedColor,
-          400,
-        )} px-2.5 py-0.5 text-sm font-medium ${bgColor(
-          normalizedColor,
-          100,
-        )} ${textColor(normalizedColor, 800)}`,
+        isRainbow
+          ? 'inline-flex items-center border-0 px-2.5 py-0.5 text-sm font-bold bg-gradient-to-r from-red-500 via-green-500 to-blue-500 text-white shadow-lg'
+          : `inline-flex items-center border ${borderColor(
+              normalizedColor,
+              400,
+            )} px-2.5 py-0.5 text-sm font-medium ${bgColor(
+              normalizedColor,
+              100,
+            )} ${textColor(normalizedColor, 800)}`,
         classes,
         {
           'rounded-full': !square,
@@ -31,7 +34,9 @@ const Badge = ({
     >
       {dotted && (
         <svg
-          className={`-ml-1 mr-1.5 h-2 w-2 ${textColor(normalizedColor, 400)}`}
+          className={`-ml-1 mr-1.5 h-2 w-2 ${
+            isRainbow ? 'text-white' : textColor(normalizedColor, 400)
+          }`}
           fill="currentColor"
           viewBox="0 0 8 8"
         >
@@ -44,16 +49,20 @@ const Badge = ({
           id="badge-x-button"
           type="button"
           onClick={onClick}
-          className={`ml-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full ${textColor(
-            normalizedColor,
-            400,
-          )} hover:${bgColor(
-            normalizedColor,
-            200,
-          )} hover:text-${normalizedColor}-500 focus:outline-hidden focus:${bgColor(
-            normalizedColor,
-            500,
-          )} focus:text-white`}
+          className={
+            isRainbow
+              ? 'ml-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full text-white hover:bg-white hover:bg-opacity-20 focus:outline-hidden focus:bg-white focus:bg-opacity-30'
+              : `ml-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full ${textColor(
+                  normalizedColor,
+                  400,
+                )} hover:${bgColor(
+                  normalizedColor,
+                  200,
+                )} hover:text-${normalizedColor}-500 focus:outline-hidden focus:${bgColor(
+                  normalizedColor,
+                  500,
+                )} focus:text-white`
+          }
         >
           <svg
             className="h-2 w-2"

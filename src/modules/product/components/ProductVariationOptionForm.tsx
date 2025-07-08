@@ -29,23 +29,23 @@ const ProductVariationOptionForm = ({
 
   return (
     <Form form={form} className="variation-option-form">
-      <div className="mt-2 flex gap-2 px-2 pt-2 sm:px-4">
+      <div className="flex gap-3 flex-wrap px-2 sm:px-4 sm:pb-4">
         <TextField
-          className="mt-0 shrink grow basis-1/3 py-1"
+          className="mt-2 shrink grow basis-1/3 pt-1"
           name="title"
           label={formatMessage({ id: 'title', defaultMessage: 'Title' })}
           required
         />
         <TextField
-          className="mt-0 shrink grow basis-1/3 py-1"
+          className="mt-2 shrink grow basis-1/3 pt-1"
           name="value"
           label={formatMessage({ id: 'value', defaultMessage: 'Value' })}
           required
         />
         <span className="flex-auto self-end">
           <SubmitButton
+            className="py-2.5"
             hidden={!hasRole('addProductVariationOption')}
-            className="p-0"
             label={formatMessage({
               id: 'add_option',
               defaultMessage: 'Add option',
