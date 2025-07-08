@@ -89,14 +89,21 @@ const OrderDetailDelivery = ({ order }) => {
           })}
         </div>
         <span className="mr-2 block rounded-full py-1 text-xs font-semibold leading-5">
-          {deliveryProviderType.map((type) => (
-            <StatusInformation
-              key={type.value}
-              enumType={type.value}
-              currentType={order?.delivery?.provider?.type}
-              label={type.label}
-            />
-          ))}
+          {[...deliveryProviderType]
+            .sort((a, b) => {
+              // Put the active method first
+              if (a.value === order?.delivery?.provider?.type) return -1;
+              if (b.value === order?.delivery?.provider?.type) return 1;
+              return 0;
+            })
+            .map((type) => (
+              <StatusInformation
+                key={type.value}
+                enumType={type.value}
+                currentType={order?.delivery?.provider?.type}
+                label={type.label}
+              />
+            ))}
         </span>
 
         <div className="mt-3 text-sm text-slate-500 dark:text-slate-200">
@@ -106,33 +113,40 @@ const OrderDetailDelivery = ({ order }) => {
           })}
         </div>
         <span className="mr-2 block rounded-full py-1 text-xs font-semibold leading-5">
-          {deliveryStatusType.map((type) => (
-            <StatusInformation
-              key={type.value}
-              enumType={type.value}
-              currentType={order?.delivery?.status}
-              label={type.label}
-              component={
-                order?.delivery?.status === 'OPEN' &&
-                type.value === 'DELIVERED' && (
-                  <button
-                    id="deliver"
-                    type="button"
-                    onClick={markAsDelivered}
-                    className="my-2  mr-2  inline-flex  h-full  items-center justify-center  rounded-sm border border-slate-300 border-transparent bg-slate-800 dark:bg-slate-600 py-1 px-2 text-xs font-semibold text-white  shadow-xs hover:bg-slate-950 dark:hover:bg-slate-500 focus:outline-hidden focus:ring-2 focus:ring-slate-700 dark:focus:ring-slate-400 focus:ring-offset-2"
-                  >
-                    <span className="mr-1">
-                      <PlusIcon className="inline-block h-3 w-3 text-white" />
-                    </span>
-                    {formatMessage({
-                      id: 'mark_as_delivered',
-                      defaultMessage: 'Mark as delivered',
-                    })}
-                  </button>
-                )
-              }
-            />
-          ))}
+          {[...deliveryStatusType]
+            .sort((a, b) => {
+              // Put the active status first
+              if (a.value === order?.delivery?.status) return -1;
+              if (b.value === order?.delivery?.status) return 1;
+              return 0;
+            })
+            .map((type) => (
+              <StatusInformation
+                key={type.value}
+                enumType={type.value}
+                currentType={order?.delivery?.status}
+                label={type.label}
+                component={
+                  order?.delivery?.status === 'OPEN' &&
+                  type.value === 'DELIVERED' && (
+                    <button
+                      id="deliver"
+                      type="button"
+                      onClick={markAsDelivered}
+                      className="my-2  mr-2  inline-flex  h-full  items-center justify-center  rounded-sm border border-slate-300 border-transparent bg-slate-800 dark:bg-slate-600 py-1 px-2 text-xs font-semibold text-white  shadow-xs hover:bg-slate-950 dark:hover:bg-slate-500 focus:outline-hidden focus:ring-2 focus:ring-slate-700 dark:focus:ring-slate-400 focus:ring-offset-2"
+                    >
+                      <span className="mr-1">
+                        <PlusIcon className="inline-block h-3 w-3 text-white" />
+                      </span>
+                      {formatMessage({
+                        id: 'mark_as_delivered',
+                        defaultMessage: 'Mark as delivered',
+                      })}
+                    </button>
+                  )
+                }
+              />
+            ))}
         </span>
       </div>
     </div>

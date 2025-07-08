@@ -89,14 +89,21 @@ const OrderDetailPayment = ({ order }) => {
           })}
         </div>
         <span className="mr-2 block rounded-full py-1 text-xs font-semibold leading-5">
-          {paymentProviderType.map((type) => (
-            <StatusInformation
-              key={type.value}
-              enumType={type.value}
-              currentType={order.payment?.provider?.type}
-              label={type.label}
-            />
-          ))}
+          {[...paymentProviderType]
+            .sort((a, b) => {
+              // Put the active method first
+              if (a.value === order.payment?.provider?.type) return -1;
+              if (b.value === order.payment?.provider?.type) return 1;
+              return 0;
+            })
+            .map((type) => (
+              <StatusInformation
+                key={type.value}
+                enumType={type.value}
+                currentType={order.payment?.provider?.type}
+                label={type.label}
+              />
+            ))}
         </span>
         <div className="mt-3 text-sm text-slate-500 dark:text-slate-200">
           {formatMessage({
@@ -105,33 +112,40 @@ const OrderDetailPayment = ({ order }) => {
           })}
         </div>
         <span className="mr-2 block rounded-full py-1 text-xs font-semibold leading-5">
-          {paymentStatusTypes.map((type) => (
-            <StatusInformation
-              key={type.value}
-              enumType={type.value}
-              currentType={order.payment?.status}
-              label={type.label}
-              component={
-                order.payment.status === 'OPEN' &&
-                type.value === 'PAID' && (
-                  <button
-                    id="pay"
-                    type="button"
-                    onClick={markAsPaid}
-                    className="my-2 mr-2 inline-flex h-full items-center justify-center rounded-sm border border-transparent bg-slate-800 dark:bg-slate-600 py-1 px-2 text-xs font-semibold text-white shadow-xs hover:bg-slate-950 dark:hover:bg-slate-500 focus:outline-hidden focus:ring-2 focus:ring-slate-700 dark:focus:ring-slate-400 focus:ring-offset-2"
-                  >
-                    <span className="mr-1">
-                      <PlusIcon className="inline-block h-3 w-3 text-white" />
-                    </span>
-                    {formatMessage({
-                      id: 'mark_as_paid',
-                      defaultMessage: 'Mark as Paid',
-                    })}
-                  </button>
-                )
-              }
-            />
-          ))}
+          {[...paymentStatusTypes]
+            .sort((a, b) => {
+              // Put the active status first
+              if (a.value === order.payment?.status) return -1;
+              if (b.value === order.payment?.status) return 1;
+              return 0;
+            })
+            .map((type) => (
+              <StatusInformation
+                key={type.value}
+                enumType={type.value}
+                currentType={order.payment?.status}
+                label={type.label}
+                component={
+                  order.payment.status === 'OPEN' &&
+                  type.value === 'PAID' && (
+                    <button
+                      id="pay"
+                      type="button"
+                      onClick={markAsPaid}
+                      className="my-2 mr-2 inline-flex h-full items-center justify-center rounded-sm border border-transparent bg-slate-800 dark:bg-slate-600 py-1 px-2 text-xs font-semibold text-white shadow-xs hover:bg-slate-950 dark:hover:bg-slate-500 focus:outline-hidden focus:ring-2 focus:ring-slate-700 dark:focus:ring-slate-400 focus:ring-offset-2"
+                    >
+                      <span className="mr-1">
+                        <PlusIcon className="inline-block h-3 w-3 text-white" />
+                      </span>
+                      {formatMessage({
+                        id: 'mark_as_paid',
+                        defaultMessage: 'Mark as Paid',
+                      })}
+                    </button>
+                  )
+                }
+              />
+            ))}
         </span>
       </div>
     </div>
