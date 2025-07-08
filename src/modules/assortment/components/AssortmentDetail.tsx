@@ -41,11 +41,11 @@ const GetCurrentTab = ({ id, selectedView, ...extendedData }) => {
 
   if (selectedView === 'media')
     return (
-      <LocaleWrapper>
-        <ErrorBoundary>
+      <ErrorBoundary>
+        <LocaleWrapper>
           <SafeAssortmentMediaForm assortmentId={id} />
-        </ErrorBoundary>
-      </LocaleWrapper>
+        </LocaleWrapper>
+      </ErrorBoundary>
     );
   if (selectedView === 'products')
     return <AssortmentProducts assortmentId={id} />;

@@ -30,6 +30,7 @@ import useAuth from '../../Auth/useAuth';
 import ProductAssignmentForm from './ProductAssignmentForm';
 import ProductTokenizationForm from './ProductTokenizationForm';
 import DisplayExtendedFields from '../../common/components/DisplayExtendedFields';
+import ErrorBoundary from '../../common/components/ErrorBoundary';
 
 const GetCurrentTab = ({
   id,
@@ -45,9 +46,11 @@ const GetCurrentTab = ({
     );
   if (selectedView === 'media')
     return (
-      <LocaleWrapper>
-        <ProductMediaForm productId={id} />
-      </LocaleWrapper>
+      <ErrorBoundary>
+        <LocaleWrapper>
+          <ProductMediaForm productId={id} />
+        </LocaleWrapper>
+      </ErrorBoundary>
     );
   if (selectedView === 'commerce')
     return <CommerceForm productId={id} disabled={disableAll} />;
