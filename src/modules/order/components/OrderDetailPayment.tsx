@@ -64,7 +64,7 @@ const OrderDetailPayment = ({ order }) => {
           <span className="block">{formatPrice(order.payment.fee)}</span>
         )}
         {order?.payment?.paid && (
-          <span>
+          <span className="font-mono">
             {formatDateTime(order.payment.paid, {
               timeStyle: 'short',
               dateStyle: 'medium',
@@ -74,7 +74,7 @@ const OrderDetailPayment = ({ order }) => {
       </div>
 
       <div>
-        <span className="mb-5 block">
+        <span className="mb-5 block text-xs font-mono">
           <Link
             href={`/payment-provider?paymentProviderId=${order.payment.provider._id}`}
             className="text-slate-500 dark:text-slate-300 hover:text-slate-800 dark:hover:text-slate-600"

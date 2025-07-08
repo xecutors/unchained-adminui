@@ -64,7 +64,7 @@ const OrderDetailDelivery = ({ order }) => {
           <span className="block">{formatPrice(order.delivery.fee)}</span>
         )}
         {order?.delivery?.delivered && (
-          <span>
+          <span className="font-mono">
             {formatDateTime(order.delivery.delivered, {
               timeStyle: 'short',
               dateStyle: 'medium',
@@ -73,7 +73,7 @@ const OrderDetailDelivery = ({ order }) => {
         )}
       </div>
       <div>
-        <span className="mb-5 block">
+        <span className="mb-5 block font-mono text-xs">
           <Link
             href={`/delivery-provider?deliveryProviderId=${order?.delivery?.provider._id}`}
             className="text-slate-500 dark:text-slate-300 hover:text-slate-800 dark:hover:text-slate-600"
