@@ -22,7 +22,6 @@ const ProductTextsForm = ({
 }) => {
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
-
   const { translatedTexts } = useTranslatedProductTexts({ productId });
   const successMessage = formatMessage({
     id: 'saved',

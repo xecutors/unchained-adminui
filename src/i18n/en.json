@@ -94,6 +94,7 @@
   "bundles": "Bundles",
   "cancel": "Cancel",
   "cart": "Cart",
+  "cart_created": "Warenkorb erstellt",
   "chain-id": "Chain ID {chainId}",
   "chain-token-id": "Chain Token ID",
   "change": "Change",

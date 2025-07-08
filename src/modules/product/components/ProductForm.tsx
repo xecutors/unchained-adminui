@@ -28,7 +28,6 @@ const ProductForm = ({
     id: 'product_added',
     defaultMessage: 'Product added successfully!',
   });
-
   const form = useForm({
     submit: async (values) => {
       const { title, subtitle, type, tags } = values;

@@ -27,11 +27,10 @@ export async function POST(req: Request) {
   });
   const mcpTools = await client.tools();
   const result = streamText({
-    maxTokens: 8000,
     maxSteps: 1,
     system:
       'do not include the data in your summary, just write a summary about it in one short paragraph and never list all the fields of a result, just summarize paragraph about your findings, if necessary',
-    model: anthropic('claude-4-sonnet-20250514'),
+    model: anthropic('claude-3-haiku-20240307'),
     messages,
     tools: {
       ...mcpTools,
