@@ -59,7 +59,11 @@ const GetCurrentTab = ({
   if (selectedView === 'warehousing')
     return <WarehousingForm productId={id} disabled={disableAll} />;
   if (selectedView === 'variations')
-    return <ProductVariation productId={id} disabled={disableAll} />;
+    return (
+      <LocaleWrapper>
+        <ProductVariation productId={id} disabled={disableAll} />
+      </LocaleWrapper>
+    );
   if (selectedView === 'bundled_products')
     return <BundleProducts productId={id} disabled={disableAll} />;
   if (selectedView === 'subscriptions')

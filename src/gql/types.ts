@@ -655,15 +655,15 @@ export enum IEventType {
   AssortmentAddMedia = 'ASSORTMENT_ADD_MEDIA',
   AssortmentAddProduct = 'ASSORTMENT_ADD_PRODUCT',
   AssortmentCreate = 'ASSORTMENT_CREATE',
-  assortmentemove = 'ASSORTMENT_REMOVE',
-  assortmentemoveFilter = 'ASSORTMENT_REMOVE_FILTER',
-  assortmentemoveLink = 'ASSORTMENT_REMOVE_LINK',
-  assortmentemoveMedia = 'ASSORTMENT_REMOVE_MEDIA',
-  assortmentemoveProduct = 'ASSORTMENT_REMOVE_PRODUCT',
-  assortmenteorderFilters = 'ASSORTMENT_REORDER_FILTERS',
-  assortmenteorderLinks = 'ASSORTMENT_REORDER_LINKS',
-  assortmenteorderMedia = 'ASSORTMENT_REORDER_MEDIA',
-  assortmenteorderProducts = 'ASSORTMENT_REORDER_PRODUCTS',
+  AssortmentRemove = 'ASSORTMENT_REMOVE',
+  AssortmentRemoveFilter = 'ASSORTMENT_REMOVE_FILTER',
+  AssortmentRemoveLink = 'ASSORTMENT_REMOVE_LINK',
+  AssortmentRemoveMedia = 'ASSORTMENT_REMOVE_MEDIA',
+  AssortmentRemoveProduct = 'ASSORTMENT_REMOVE_PRODUCT',
+  AssortmentReorderFilters = 'ASSORTMENT_REORDER_FILTERS',
+  AssortmentReorderLinks = 'ASSORTMENT_REORDER_LINKS',
+  AssortmentReorderMedia = 'ASSORTMENT_REORDER_MEDIA',
+  AssortmentReorderProducts = 'ASSORTMENT_REORDER_PRODUCTS',
   AssortmentSetBase = 'ASSORTMENT_SET_BASE',
   AssortmentUpdate = 'ASSORTMENT_UPDATE',
   AssortmentUpdateMediaText = 'ASSORTMENT_UPDATE_MEDIA_TEXT',
@@ -7010,7 +7010,6 @@ export type IShopStatusQuery = {
   filtersCount: number;
   deliveryProvidersCount: number;
   paymentProvidersCount: number;
-  warehousingProvidersCount: number;
 };
 
 export type IShopInfoQueryVariables = Exact<{ [key: string]: never }>;
@@ -8108,6 +8107,10 @@ export type IOrderDetailFragment = {
     username?: string | null;
     isGuest: boolean;
     avatar?: { _id: string; url?: string | null } | null;
+    profile?: {
+      displayName?: string | null;
+      address?: { firstName?: string | null; lastName?: string | null } | null;
+    } | null;
   } | null;
   discounts?: Array<{
     _id: string;
@@ -8693,6 +8696,13 @@ export type IOrderQuery = {
       username?: string | null;
       isGuest: boolean;
       avatar?: { _id: string; url?: string | null } | null;
+      profile?: {
+        displayName?: string | null;
+        address?: {
+          firstName?: string | null;
+          lastName?: string | null;
+        } | null;
+      } | null;
     } | null;
     discounts?: Array<{
       _id: string;
@@ -12513,6 +12523,7 @@ export type IProductVariationTypeQuery = {
 export type IProductVariationsQueryVariables = Exact<{
   productId?: InputMaybe<Scalars['ID']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
+  locale?: InputMaybe<Scalars['Locale']['input']>;
 }>;
 
 export type IProductVariationsQuery = {

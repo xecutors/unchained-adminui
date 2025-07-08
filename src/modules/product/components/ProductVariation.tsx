@@ -18,13 +18,14 @@ const ProductVariation = ({
 
   const { variations, loading } = useProductVariations({
     productId,
+    locale: selectedLocale,
   });
 
   const onSubmit: OnSubmitType = async ({ title, key, type }) => {
     await createProductVariation({
       productId,
       variation: { key, type },
-      texts: [{ title, locale: selectedLocale || 'de' }],
+      texts: [{ title, locale: selectedLocale }],
     });
     return { success: true };
   };

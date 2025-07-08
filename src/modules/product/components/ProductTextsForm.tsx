@@ -43,7 +43,7 @@ const ProductTextsForm = ({
       productId,
       texts: [
         {
-          locale: selectedLocale || 'de',
+          locale: selectedLocale,
           slug,
           title,
           subtitle,

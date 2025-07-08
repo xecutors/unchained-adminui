@@ -27,7 +27,7 @@ const ProductVariationOptionItem = ({
     const data = await updateProductVariationTexts({
       productVariationId: variationId,
       productVariationOptionValue: option.value,
-      texts: [{ title, subtitle, locale: selectedLocale || 'de' }],
+      texts: [{ title, subtitle, locale: selectedLocale }],
     });
     setIsEdit(false);
     return { data, success: true };

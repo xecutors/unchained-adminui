@@ -30,7 +30,7 @@ const FilterTextForm = ({ filterId, selectedLocale = null }) => {
       filterId,
       texts: [
         {
-          locale: selectedLocale || 'de',
+          locale: selectedLocale,
           title,
           subtitle,
         },

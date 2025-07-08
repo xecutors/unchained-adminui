@@ -8,7 +8,7 @@ import { parseUniqueId } from '../../common/utils/getUniqueId';
 import ProductVariationFragment from '../fragments/ProductVariationFragment';
 
 const ProductVariationQuery = gql`
-  query ProductVariations($productId: ID, $slug: String) {
+  query ProductVariations($productId: ID, $slug: String, $locale: Locale) {
     product(productId: $productId, slug: $slug) {
       _id
       ... on ConfigurableProduct {
@@ -24,6 +24,7 @@ const ProductVariationQuery = gql`
 const useProductVariations = ({
   productId: id = null,
   slug = null,
+  locale = null,
 }: IProductVariationsQueryVariables = {}) => {
   const parsedId = parseUniqueId(slug);
 
@@ -32,7 +33,7 @@ const useProductVariations = ({
     IProductVariationsQueryVariables
   >(ProductVariationQuery, {
     skip: !id && !parsedId,
-    variables: { productId: id || parsedId },
+    variables: { productId: id || parsedId, locale },
   });
 
   const product = data?.product as any;
