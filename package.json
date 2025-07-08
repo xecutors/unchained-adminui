@@ -1,6 +1,6 @@
 {
   "name": "@unchainedshop/admin-ui",
-  "version": "4.0.17",
+  "version": "4.0.18",
   "description": "Unchained commerce Admin UI",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
