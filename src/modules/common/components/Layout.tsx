@@ -1,13 +1,13 @@
 import {
   Cog8ToothIcon,
   HomeModernIcon,
-  InboxIcon,
+  InboxStackIcon,
   RectangleStackIcon,
   CalendarIcon,
-  UserGroupIcon,
+  UsersIcon,
   UserIcon,
   Bars4Icon,
-  AdjustmentsVerticalIcon,
+  AdjustmentsHorizontalIcon,
   CommandLineIcon,
   BoltIcon,
   LinkIcon,
@@ -78,7 +78,7 @@ const Layout = ({
 
   const defaultNavigation = [
     {
-      name: formatMessage({ id: 'home', defaultMessage: 'Home' }),
+      name: formatMessage({ id: 'home', defaultMessage: 'Dashboard' }),
       icon: HomeModernIcon,
       href: '/',
     },
@@ -93,7 +93,7 @@ const Layout = ({
         defaultMessage: 'Orders',
       }),
       requiredRole: 'manageOrders',
-      icon: InboxIcon,
+      icon: InboxStackIcon,
       href: '/orders',
     },
     {
@@ -113,13 +113,13 @@ const Layout = ({
     },
     {
       name: formatMessage({ id: 'filters', defaultMessage: 'Filters' }),
-      icon: AdjustmentsVerticalIcon,
+      icon: AdjustmentsHorizontalIcon,
       requiredRole: 'manageFilters',
       href: '/filters',
     },
     {
       name: formatMessage({ id: 'users', defaultMessage: 'Users' }),
-      icon: UserGroupIcon,
+      icon: UsersIcon,
       href: '/users',
       requiredRole: 'viewUsers',
     },

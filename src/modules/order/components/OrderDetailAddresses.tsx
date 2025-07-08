@@ -1,4 +1,5 @@
 import { useIntl } from 'react-intl';
+import { CreditCardIcon, TruckIcon } from '@heroicons/react/20/solid';
 
 const OrderDetailAddresses = ({ order }) => {
   const { formatMessage } = useIntl();
@@ -13,7 +14,8 @@ const OrderDetailAddresses = ({ order }) => {
     >
       {/* Billing Address */}
       <div>
-        <div className="mb-2 text-xl dark:text-slate-400">
+        <div className="mb-2 text-xl dark:text-slate-400 flex items-center gap-2">
+          <CreditCardIcon className="h-5 w-5" />
           {formatMessage({
             id: 'billing_address',
             defaultMessage: 'Billing address',
@@ -50,7 +52,8 @@ const OrderDetailAddresses = ({ order }) => {
 
       {/* Delivery Address */}
       <div>
-        <div className="mb-2 text-xl dark:text-slate-400">
+        <div className="mb-2 text-xl dark:text-slate-400 flex items-center gap-2">
+          <TruckIcon className="h-5 w-5" />
           {formatMessage({
             id: 'delivery_address',
             defaultMessage: 'Delivery address',
