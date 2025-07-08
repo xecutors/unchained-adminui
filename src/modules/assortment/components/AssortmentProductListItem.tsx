@@ -27,7 +27,7 @@ const AssortmentProductListItem = ({ link, onDelete, id }) => {
         router.push(`/products?slug=${generateUniqueId(link?.product)}`);
       }}
     >
-      <div className="flex items-center  py-4">
+      <div className="flex items-center py-4">
         <div>
           <h3 className="text-lg text-slate-800 dark:text-slate-200">
             {product?.texts?.title}
