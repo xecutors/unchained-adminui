@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 
 import { useIntl } from 'react-intl';
 
 import useLanguages from '../../language/hooks/useLanguages';
 import useCountries from '../../country/hooks/useCountries';
 import useShopInfo from '../hooks/useShopInfo';
+import { FormWrapperContext } from './FormWrapper';
 
 const createLanguageDialectList = (languages, countries) => {
   const result = [];
@@ -28,6 +29,7 @@ const LocaleWrapper = ({ children, onlyFull = false }) => {
   const { shopInfo, loading: shopInfoLoading } = useShopInfo();
   const { countries } = useCountries();
   const { locale } = useIntl();
+  const isInsideFormWrapper = useContext(FormWrapperContext);
 
   const [selectedLocale, setSelectedLocale] = useState(null);
   useEffect(() => {
@@ -46,7 +48,7 @@ const LocaleWrapper = ({ children, onlyFull = false }) => {
   ).filter((l) => !onlyFull || l.isoCode.includes('-'));
   return (
     <>
-      <div className="w-fit mt-5 mb-3">
+      <div className={`w-fit mt-5 mb-3 ${isInsideFormWrapper ? 'ml-5' : ''}`}>
         <select
           id="locale-wrapper"
           className="cursor-pointer rounded-md border-1 border-slate-300 dark:border-slate-700 py-1 pr-8 text-sm lg:py-1 lg:pr-10 text-black dark:text-white dark:bg-slate-800 shadow-xs  focus:outline-hidden focus:ring-2 focus:ring-slate-800"
