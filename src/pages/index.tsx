@@ -6,6 +6,7 @@ import PageHeader from '../modules/common/components/PageHeader';
 import ShopSetupChecklist from '../components/copilot/ShopSetupChecklist';
 import useShopInfo from '../modules/common/hooks/useShopInfo';
 import useAuth from '../modules/Auth/useAuth';
+import Button from '../modules/common/components/Button';
 
 const HomePage = () => {
   const { formatMessage } = useIntl();
@@ -34,46 +35,40 @@ const HomePage = () => {
             </h3>
             <div className="grid xl:grid-cols-3 gap-3">
               {hasRole('createProduct') && (
-                <button
+                <Button
                   onClick={() => router.push('/products/new')}
-                  className="relative flex items-center justify-center px-6 py-3 bg-slate-900 hover:bg-slate-950 text-white rounded-lg transition-colors"
-                >
-                  <PlusIcon className="w-5 h-5 absolute left-3" />
-                  <span>
-                    {formatMessage({
-                      id: 'product',
-                      defaultMessage: 'Product',
-                    })}
-                  </span>
-                </button>
+                  icon={<PlusIcon className="w-5 h-5" />}
+                  variant="primary"
+                  size="lg"
+                  text={formatMessage({
+                    id: 'product',
+                    defaultMessage: 'Product',
+                  })}
+                />
               )}
               {hasRole('createUser') && (
-                <button
+                <Button
                   onClick={() => router.push('/users/new')}
-                  className="relative flex items-center justify-center px-6 py-3 bg-slate-900 hover:bg-slate-950 text-white rounded-lg transition-colors"
-                >
-                  <PlusIcon className="w-5 h-5 absolute left-3" />
-                  <span>
-                    {formatMessage({
-                      id: 'user',
-                      defaultMessage: 'User',
-                    })}
-                  </span>
-                </button>
+                  icon={<PlusIcon className="w-5 h-5" />}
+                  variant="primary"
+                  size="lg"
+                  text={formatMessage({
+                    id: 'user',
+                    defaultMessage: 'User',
+                  })}
+                />
               )}
               {hasRole('createAssortment') && (
-                <button
+                <Button
                   onClick={() => router.push('/assortments/new')}
-                  className="relative flex items-center justify-center px-6 py-3 bg-slate-900 hover:bg-slate-950 text-white rounded-lg transition-colors"
-                >
-                  <PlusIcon className="w-5 h-5 absolute left-3" />
-                  <span>
-                    {formatMessage({
-                      id: 'assortment',
-                      defaultMessage: 'Assortment',
-                    })}
-                  </span>
-                </button>
+                  icon={<PlusIcon className="w-5 h-5" />}
+                  variant="primary"
+                  size="lg"
+                  text={formatMessage({
+                    id: 'assortment',
+                    defaultMessage: 'Assortment',
+                  })}
+                />
               )}
             </div>
           </div>

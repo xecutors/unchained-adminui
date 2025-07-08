@@ -56,11 +56,7 @@ const OrderListItem = ({ order, showUser }) => {
             className="flex items-center text-sm text-slate-800 dark:text-slate-300 hover:text-decoration"
             onClick={(e) => e.stopPropagation()}
           >
-            <MediaAvatar file={order.user?.avatar} className="mr-3" />
-
-            <span className="font-medium ml-2">
-              {formatUsername(order.user)}
-            </span>
+            <span className="font-medium">{formatUsername(order.user)}</span>
           </Link>
         </Table.Cell>
       )}

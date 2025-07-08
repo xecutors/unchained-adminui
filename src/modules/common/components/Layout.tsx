@@ -551,7 +551,7 @@ const Layout = ({
             <ThemeToggle />
           </div>
         </div>
-        <main className="container mx-auto max-w-7xl flex-1 px-4 py-5 md:pt-10 lg:pt-5 sm:px-6 md:px-8">
+        <main className="container mx-auto max-w-7xl flex-1 px-4 py-5 md:pt-10 lg:pt-5 pb-20 sm:px-6 md:px-8">
           <h3 className="ml-8 text-lg font-medium leading-6 text-slate-900">
             {pageHeader}
           </h3>
