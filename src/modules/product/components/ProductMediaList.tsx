@@ -21,7 +21,7 @@ const ProductMediaList = ({ medias, selectedLocale, onDeleteMedia, items }) => {
           })}
         </h2>
 
-        <div className="flow-root dark:bg-slate-900">
+        <div className="flow-root">
           <SortableContext items={items} strategy={verticalListSortingStrategy}>
             <ul className="flex flex-col gap-3 rounded-md transition-[background-color] ease-in-out delay-200 ">
               {medias?.length ? (
