@@ -127,6 +127,9 @@ const AssortmentListItemCompact: React.FC<AssortmentListItemCompactProps> = ({
                   )}
                 </div>
               )}
+              <span className="text-xs text-slate-500 dark:text-slate-400 truncate">
+                ID: {assortment._id}
+              </span>
             </div>
 
             {/* Action */}

@@ -107,6 +107,9 @@ const AssortmentListItem: React.FC<AssortmentListItemProps> = ({
 
       {/* 5. Tags */}
       <div className="px-4">
+        <span className="text-xs text-slate-500 dark:text-slate-400 truncate">
+          ID: {assortment._id}
+        </span>
         {assortment.tags && assortment.tags.length > 0 ? (
           <div className="flex flex-wrap gap-1">
             {assortment.tags.slice(0, 3).map((tag: string, index: number) => (
