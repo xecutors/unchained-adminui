@@ -2,6 +2,7 @@ import React from 'react';
 import UnknownToolResponse from './UnknownToolResponse';
 import ToolRenderer from './ToolRenderer';
 import { SkippedToolResponse } from '../../modules/chat/hooks/useToolTextNormalizer';
+import { useIntl } from 'react-intl';
 
 interface ToolInvocationRendererProps {
   part: any;
@@ -10,6 +11,7 @@ interface ToolInvocationRendererProps {
 const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
   part,
 }) => {
+  const { formatMessage } = useIntl();
   const { toolName, result } = part.toolInvocation ?? {};
   if (!toolName || !result?.content?.length) return null;
 
@@ -22,7 +24,14 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
     if (textString.startsWith('Error')) {
       return (
         <div className="mt-4 text-sm border border-amber-200 text-amber-700 dark:text-amber-400 mb-4 p-3 bg-amber-50 dark:bg-amber-950 rounded-md">
-          <div className="font-medium mb-1">Tool Response:</div>
+          <div className="font-medium mb-1">
+            {' '}
+            {formatMessage({
+              id: 'tool_response',
+              defaultMessage: 'Tool Response',
+            })}{' '}
+            :
+          </div>
           <div>{textString}</div>
         </div>
       );
@@ -42,7 +51,13 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
   } catch (error) {
     return (
       <div className="text-sm text-rose-500 mb-4">
-        <div>Failed to parse tool result.</div>
+        <div>
+          {' '}
+          {formatMessage({
+            id: 'failed_tool_response',
+            defaultMessage: 'Failed to parse tool result.',
+          })}{' '}
+        </div>
         <details className="mt-2">
           <summary className="cursor-pointer text-xs">Debug info</summary>
           <pre className="text-xs mt-1 p-2 bg-rose-50 dark:bg-rose-950 rounded overflow-auto">

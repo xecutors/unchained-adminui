@@ -92,8 +92,17 @@ const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess, readOnly }) => {
               {provider?.configurationError ? (
                 <dd className="mt-2">
                   <div className="flex items-start p-3 bg-rose-50 dark:bg-rose-900/20 border border-rose-200 dark:border-rose-800 rounded-md">
-                    <svg className="h-5 w-5 text-rose-400 dark:text-rose-500 mt-0.5 mr-3 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z" clipRule="evenodd" />
+                    <svg
+                      className="h-5 w-5 text-rose-400 dark:text-rose-500 mt-0.5 mr-3 flex-shrink-0"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z"
+                        clipRule="evenodd"
+                      />
                     </svg>
                     <div>
                       <h3 className="text-sm font-medium text-rose-800 dark:text-rose-200">
@@ -122,7 +131,8 @@ const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess, readOnly }) => {
                       <p className="mt-1 text-sm text-emerald-700 dark:text-emerald-300">
                         {formatMessage({
                           id: 'configuration_valid_description',
-                          defaultMessage: 'All configuration parameters are correctly set and validated.',
+                          defaultMessage:
+                            'All configuration parameters are correctly set and validated.',
                         })}
                       </p>
                     </div>

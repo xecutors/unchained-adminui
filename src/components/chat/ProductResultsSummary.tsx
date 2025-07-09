@@ -75,7 +75,13 @@ const ProductResultsSummary: React.FC<ProductResultsSummaryProps> = ({
 
       {requestedFilters?.status && !statusGroups[requestedFilters.status] && (
         <div className="mt-2 text-xs text-amber-600 dark:text-amber-400">
-          ⚠️ No {requestedFilters.status} products found in these results
+          {formatMessage(
+            {
+              id: 'products_not_found',
+              defaultMessage: 'No {status} products found in these results',
+            },
+            { status: requestedFilters.status },
+          )}
         </div>
       )}
     </div>

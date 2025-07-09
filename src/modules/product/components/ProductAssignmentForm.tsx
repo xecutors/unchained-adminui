@@ -148,7 +148,6 @@ const ProductAssignmentForm = ({ proxyId, disabled = false }) => {
     return removeAssignment;
   };
   const debouncedQuery = deBounce(200)(setQueryString);
-
   return (
     <FormWrapper>
       <Table>
@@ -159,9 +158,16 @@ const ProductAssignmentForm = ({ proxyId, disabled = false }) => {
             ))}
 
             <Table.Cell>
-              {' '}
               {variationProduct ? (
                 variationProduct?.texts?.title
+              ) : product.variations?.length !== columns.length ? (
+                <div className="mt-1 text-sm text-red-600">
+                  {formatMessage({
+                    id: 'assign_product_needs_variations',
+                    defaultMessage:
+                      'Please configure all variation options before assigning a product.',
+                  })}
+                </div>
               ) : (
                 <Select
                   name={`productId-${_id}`}
@@ -175,9 +181,11 @@ const ProductAssignmentForm = ({ proxyId, disabled = false }) => {
                   onInputChange={debouncedQuery}
                   value={queryString}
                   options={
-                    (products || []).map(
-                      normalizeProduct,
-                    ) as unknown as OptionsOrGroups<string, GroupBase<string>>
+                    (products || [])
+                      .map(normalizeProduct)
+                      .filter(
+                        ({ value }) => value !== proxyId,
+                      ) as unknown as OptionsOrGroups<string, GroupBase<string>>
                   }
                   className="mt-1 w-full py-2 text-sm font-medium text-slate-500"
                 />
