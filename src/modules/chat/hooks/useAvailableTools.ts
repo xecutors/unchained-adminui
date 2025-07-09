@@ -1,7 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
+import { ToolName } from './useToolTextNormalizer';
+import { useIntl } from 'react-intl';
 
 export interface Tool {
-  name: string;
+  name: ToolName;
   description: string;
   parameters: any;
   category: string;
@@ -19,155 +21,74 @@ interface UseAvailableToolsReturn {
   groupedTools: Record<string, Tool[]>;
   loading: boolean;
   error: string | null;
-  refetch: () => void;
 }
 
 export const useAvailableTools = (): UseAvailableToolsReturn => {
+  const { formatMessage } = useIntl();
   const [tools, setTools] = useState<Tool[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchTools = async () => {
+  const fetchTools = useCallback(async () => {
     setLoading(true);
     setError(null);
-    const normalizedToolsUrl = process.env.NEXT_PUBLIC_CHAT_URL
+
+    const url = process.env.NEXT_PUBLIC_CHAT_URL
       ? `${process.env.NEXT_PUBLIC_CHAT_URL}/tools`
       : '/chat/tools';
+
     try {
-      const response = await fetch(normalizedToolsUrl, {
-        credentials: 'include',
-      });
+      const response = await fetch(url, { credentials: 'include' });
 
       if (!response.ok) {
-        throw new Error(`Failed to fetch tools: ${response.statusText}`);
+        throw new Error(`HTTP error: ${response.statusText}`);
       }
 
-      const contentType = response.headers.get('content-type');
-      if (!contentType || !contentType.includes('application/json')) {
-        throw new Error(
-          'Tools endpoint returned non-JSON response (likely HTML error page)',
-        );
-      }
+      const data: ToolsResponse = await response.json();
 
-      let data: ToolsResponse;
-      try {
-        data = await response.json();
-      } catch (jsonError) {
-        throw new Error('Invalid JSON response from tools endpoint');
-      }
-
-      if (data.error && !data.tools) {
+      if (data.error && !data.tools?.length) {
         throw new Error(data.error);
       }
 
       setTools(data.tools || []);
-
-      if (data.error) {
-        // We have cached data but also an error
-        console.warn('Using cached tools data:', data.error);
-      }
     } catch (err) {
-      const errorMessage =
-        err instanceof Error ? err.message : 'Failed to fetch available tools';
+      const message =
+        process.env.NODE_ENV === 'development'
+          ? null
+          : formatMessage({
+              id: 'tool_fetch_failed_error',
+              defaultMessage: 'Failed to fetch available tools',
+            });
 
-      // Check if this is a development environment endpoint issue
-      const isEndpointNotFound =
-        errorMessage.includes('non-JSON response') ||
-        errorMessage.includes('404') ||
-        errorMessage.includes('Internal Server Error') ||
-        errorMessage.includes('Failed to fetch') ||
-        errorMessage.includes('TypeError: Failed to fetch') ||
-        err instanceof TypeError;
-
-      if (process.env.NODE_ENV === 'development' && isEndpointNotFound) {
+      if (process.env.NODE_ENV === 'development') {
         console.warn(
           'Chat tools endpoint not available, using default tools. This is expected if the backend chat service is not running.',
+          err,
         );
-        setError(null); // Don't show error in development for endpoint issues
       } else {
         console.error('Error fetching tools:', err);
-        setError(errorMessage);
       }
 
-      // Set default tools as fallback
-      setTools(getDefaultTools());
+      setError(message);
+      setTools([]);
     } finally {
       setLoading(false);
     }
-  };
+  }, [formatMessage]);
 
   useEffect(() => {
     fetchTools();
-  }, []);
+  }, [fetchTools]);
 
-  // Group tools by category
-  const groupedTools = tools.reduce<Record<string, Tool[]>>((acc, tool) => {
-    if (!acc[tool.category]) {
-      acc[tool.category] = [];
-    }
-    acc[tool.category].push(tool);
-    return acc;
-  }, {});
+  const groupedTools = useMemo(() => {
+    return tools.reduce<Record<string, Tool[]>>(
+      (acc, tool) => {
+        (acc[tool.category] ||= []).push(tool);
+        return acc;
+      },
+      {} as Record<string, Tool[]>,
+    );
+  }, [tools]);
 
-  return {
-    tools,
-    groupedTools,
-    loading,
-    error,
-    refetch: fetchTools,
-  };
+  return { tools, groupedTools, loading, error };
 };
-
-// Fallback tools when API is unavailable
-function getDefaultTools(): Tool[] {
-  return [
-    {
-      name: 'list_products',
-      description: 'List and search products in your catalog',
-      parameters: {},
-      category: 'Product Management',
-    },
-    {
-      name: 'get_product',
-      description: 'Get detailed information about a specific product',
-      parameters: {},
-      category: 'Product Management',
-    },
-    {
-      name: 'create_product',
-      description: 'Create a new product in your catalog',
-      parameters: {},
-      category: 'Product Management',
-    },
-    {
-      name: 'publish_product',
-      description: 'Publish a draft product to make it available',
-      parameters: {},
-      category: 'Product Management',
-    },
-    {
-      name: 'list_assortments',
-      description: 'List and search assortments (categories) in your catalog',
-      parameters: {},
-      category: 'Assortment Management',
-    },
-    {
-      name: 'get_assortment',
-      description: 'Get detailed information about a specific assortment',
-      parameters: {},
-      category: 'Assortment Management',
-    },
-    {
-      name: 'shop_info',
-      description: 'Get information about your shop configuration',
-      parameters: {},
-      category: 'Shop Configuration',
-    },
-    {
-      name: 'generateImage',
-      description: 'Generate images using AI',
-      parameters: {},
-      category: 'Media & Content',
-    },
-  ];
-}

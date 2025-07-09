@@ -14,12 +14,12 @@ export const SingleProductReturnTools = [
   'product_updateTokenization',
   'product_updatePlan',
   'product_createVariation',
-];
+] as const;
 
 export const MultipleProductReturnTools = [
   'product_list',
   'assortment_getProducts',
-];
+] as const;
 
 export const TextsReturnTools = [
   'product_updateTexts',
@@ -32,7 +32,7 @@ export const TextsReturnTools = [
   'assortment_updateTexts',
   'productVariation_updateTexts',
   'productVariation_getTexts',
-];
+] as const;
 
 export const SingleAssortmentReturnTools = [
   'assortment_create',
@@ -41,51 +41,71 @@ export const SingleAssortmentReturnTools = [
   'assortment_setBase',
   'assortment_get',
   'assortment_searchProducts',
-];
+] as const;
 
 export const MultipleAssortmentReturnTools = [
   'assortment_getChildren',
   'assortment_list',
-];
+] as const;
 
 export const SingleCountryReturnTools = [
   'country_create',
   'country_update',
   'country_remove',
   'country_get',
-];
+] as const;
 
-export const MultipleCountryReturnTools = ['country_list'];
+export const MultipleCountryReturnTools = ['country_list'] as const;
 
 export const SingleCurrencyReturnTools = [
   'currency_create',
   'currency_update',
   'currency_remove',
   'currency_get',
-];
+] as const;
 
-export const MultipleCurrencyReturnTools = ['currency_list'];
+export const MultipleCurrencyReturnTools = ['currency_list'] as const;
 
 export const SingleLanguageReturnTools = [
   'language_create',
   'language_update',
   'language_remove',
   'language_get',
-];
+] as const;
 
 export const MediaListReturnTools = [
   'product_getMedias',
   'assortment_getMedias',
   'product_reorderMedias',
   'assortment_reorderMedias',
-];
+  'productMedia_remove',
+  'product_addMedia',
+] as const;
 
-export const MultipleLanguageReturnTools = ['languages_list'];
+export const OtherTools = ['shop_info', 'generateImage'] as const;
 
+export const MultipleLanguageReturnTools = ['languages_list'] as const;
+
+export const AllTools = [
+  ...SingleProductReturnTools,
+  ...MultipleProductReturnTools,
+  ...TextsReturnTools,
+  ...SingleAssortmentReturnTools,
+  ...MultipleAssortmentReturnTools,
+  ...SingleCountryReturnTools,
+  ...MultipleCountryReturnTools,
+  ...SingleCurrencyReturnTools,
+  ...MultipleCurrencyReturnTools,
+  ...SingleLanguageReturnTools,
+  ...MultipleLanguageReturnTools,
+  ...MediaListReturnTools,
+  ...OtherTools,
+] as const;
+export type ToolName = (typeof AllTools)[number];
 const useToolTextNormalizer = () => {
   const { formatMessage } = useIntl();
 
-  const normalizeToolName = (toolName: string): string => {
+  const normalizeToolName = (toolName: ToolName | string): string => {
     if (!toolName) return '';
 
     const parts = toolName.split('_');
@@ -114,11 +134,12 @@ const useToolTextNormalizer = () => {
     (toolName: string): string => {
       const name = toolName.toLowerCase();
 
-      const TOOL_TO_DESCRIPTION_MATCH: Record<string, string> = {
+      const TOOL_TO_DESCRIPTION_MATCH: Partial<Record<ToolName, string>> = {
         product_list: formatMessage({
           id: 'list_product_tool_definition',
           defaultMessage: 'Show me all draft products',
         }),
+
         product_get: formatMessage({
           id: 'get_product_tool_definition',
           defaultMessage: 'Get details for product ABC123',
