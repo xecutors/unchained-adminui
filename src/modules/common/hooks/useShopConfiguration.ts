@@ -5,6 +5,7 @@ import getSetupStepsConfigurationsMeta, {
   ConfigurationStep,
   ShopConfiguration,
 } from '../utils/getSetupStepsConfigurationsMeta';
+import useFormatDateTime from '../utils/useFormatDateTime';
 
 const BASIC_SHOP_STATUS_QUERY = gql`
   query ShopStatus {
@@ -47,7 +48,6 @@ const buildConfiguration = (steps: ConfigurationStep): ShopConfiguration => {
     essentialSteps,
     commerceSteps,
     contentSteps,
-    lastUpdated: new Date().toISOString(),
   };
 };
 

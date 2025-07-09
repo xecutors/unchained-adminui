@@ -11,14 +11,12 @@ interface ToolGridProps {
   groupedTools: Record<string, Tool[]>;
   loading: boolean;
   error: string | null;
-  lastUpdated: Date | null;
 }
 
 export const ToolGrid: React.FC<ToolGridProps> = ({
   groupedTools,
   loading,
   error,
-  lastUpdated,
 }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [expandedCategories, setExpandedCategories] = useState<
@@ -86,11 +84,6 @@ export const ToolGrid: React.FC<ToolGridProps> = ({
             <span className="text-sm font-medium text-slate-900 dark:text-slate-100">
               {totalTools} tools available
             </span>
-            {lastUpdated && (
-              <span className="text-xs text-slate-500 dark:text-slate-400">
-                • Updated {new Date(lastUpdated).toLocaleTimeString()}
-              </span>
-            )}
           </div>
 
           {/* Search input */}

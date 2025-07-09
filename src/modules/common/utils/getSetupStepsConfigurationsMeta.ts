@@ -22,7 +22,6 @@ export interface ShopConfiguration {
   essentialStepsComplete: boolean;
   commerceStepsComplete: boolean;
   contentStepsComplete: boolean;
-  lastUpdated: string;
   essentialSteps: Step[];
   commerceSteps: Step[];
   contentSteps: Step[];

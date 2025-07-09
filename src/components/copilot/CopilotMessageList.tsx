@@ -14,7 +14,6 @@ const CopilotMessageList = ({
   groupedTools,
   toolsLoading,
   toolsError,
-  lastUpdated,
 }: {
   messages: any[];
   loading: boolean;
@@ -24,7 +23,6 @@ const CopilotMessageList = ({
   groupedTools: any;
   toolsLoading: boolean;
   toolsError: any;
-  lastUpdated: Date | null;
 }) => {
   const { formatMessage } = useIntl();
   if (messages.length === 0) return null;
@@ -65,7 +63,6 @@ const CopilotMessageList = ({
                     groupedTools={groupedTools}
                     loading={toolsLoading}
                     error={toolsError}
-                    lastUpdated={lastUpdated}
                   />
                 </div>
               )}

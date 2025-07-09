@@ -20,14 +20,12 @@ interface UseAvailableToolsReturn {
   loading: boolean;
   error: string | null;
   refetch: () => void;
-  lastUpdated: Date | null;
 }
 
 export const useAvailableTools = (): UseAvailableToolsReturn => {
   const [tools, setTools] = useState<Tool[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
 
   const fetchTools = async () => {
     setLoading(true);
@@ -63,7 +61,6 @@ export const useAvailableTools = (): UseAvailableToolsReturn => {
       }
 
       setTools(data.tools || []);
-      setLastUpdated(new Date(data.timestamp));
 
       if (data.error) {
         // We have cached data but also an error
@@ -118,7 +115,6 @@ export const useAvailableTools = (): UseAvailableToolsReturn => {
     loading,
     error,
     refetch: fetchTools,
-    lastUpdated,
   };
 };
 

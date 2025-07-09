@@ -21,7 +21,6 @@ const Copilot = () => {
     groupedTools,
     loading: toolsLoading,
     error: toolsError,
-    lastUpdated,
   } = useAvailableTools();
   const bottomRef = useRef<HTMLDivElement>(null);
   const loading = status !== 'ready' && status !== 'error';
@@ -106,7 +105,6 @@ const Copilot = () => {
             groupedTools={groupedTools}
             toolsLoading={toolsLoading}
             toolsError={toolsError}
-            lastUpdated={lastUpdated}
           />
         )}
         {status === 'error' && <CopilotErrorState onRetry={reload} />}
