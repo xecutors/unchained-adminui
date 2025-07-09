@@ -28,18 +28,6 @@ const DashboardMetrics: React.FC = () => {
     },
     {
       title: formatMessage({
-        id: 'customers_count',
-        defaultMessage: 'Customers',
-      }),
-      value: metrics.customers.value,
-      icon: (
-        <UsersIcon className="h-6 w-6 text-slate-700 dark:text-slate-300" />
-      ),
-      loading: metrics.customers.loading,
-      onClick: () => router.push('/users'),
-    },
-    {
-      title: formatMessage({
         id: 'categories_count',
         defaultMessage: 'Assortments',
       }),
@@ -49,6 +37,18 @@ const DashboardMetrics: React.FC = () => {
       ),
       loading: metrics.categories.loading,
       onClick: () => router.push('/assortments'),
+    },
+    {
+      title: formatMessage({
+        id: 'customers_count',
+        defaultMessage: 'Customers',
+      }),
+      value: metrics.customers.value,
+      icon: (
+        <UsersIcon className="h-6 w-6 text-slate-700 dark:text-slate-300" />
+      ),
+      loading: metrics.customers.loading,
+      onClick: () => router.push('/users'),
     },
   ];
 

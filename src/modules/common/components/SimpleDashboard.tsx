@@ -109,246 +109,259 @@ const SimpleDashboard: React.FC = () => {
   const formatCount = (value) => Math.round(value).toLocaleString('de-CH');
 
   return (
-    <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 mb-8">
-      {/* Total Sales Chart */}
-      <Card className="relative overflow-hidden rounded-xl border-0 bg-white">
-        <CardHeader className="pb-6">
-          <div className="flex items-center justify-between">
-            <CardDescription className="text-slate-500 font-medium">
-              {formatMessage({
-                id: 'total_sales',
-                defaultMessage: 'Total sales',
-              })}{' '}
-              {new Date().toLocaleDateString('de-CH', {
-                month: 'long',
-                year: 'numeric',
-              })}
-            </CardDescription>
-          </div>
-          <CardTitle className="text-4xl font-bold text-slate-900 mt-2">
-            {currency} {Math.round(totalSales).toLocaleString('de-CH')}
-          </CardTitle>
-          <div className="flex items-center gap-1 mt-2">
-            <TrendingUp
-              className={`h-4 w-4 ${salesGrowth >= 0 ? 'text-green-500' : 'text-red-500'}`}
-            />
-            <span
-              className={`text-sm font-medium ${salesGrowth >= 0 ? 'text-green-500' : 'text-red-500'}`}
-            >
-              {salesGrowth >= 0 ? '+' : ''}
-              {salesGrowth.toFixed(1)}% from last month
-            </span>
-          </div>
-        </CardHeader>
-        <CardContent className="pt-0">
-          <ChartContainer config={chartConfig}>
-            <AreaChart
-              accessibilityLayer
-              data={salesData}
-              margin={{
-                left: 12,
-                right: 12,
-                bottom: 12,
-                top: 12,
-              }}
-            >
-              <defs>
-                <linearGradient id="salesGradient" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.4} />
-                  <stop offset="95%" stopColor="#3b82f6" stopOpacity={0.05} />
-                </linearGradient>
-              </defs>
-              <XAxis
-                dataKey="date"
-                tickLine={false}
-                axisLine={false}
-                tickMargin={8}
-                tick={{ fontSize: 10, fill: '#94a3b8' }}
-                tickFormatter={(value) => value.slice(0, 6)}
+    <div>
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 mb-8">
+        {/* Total Sales Chart */}
+        <Card className="relative overflow-hidden rounded-xl border-0 bg-white">
+          <CardHeader className="pb-6">
+            <div className="flex items-center justify-between">
+              <CardDescription className="text-slate-500 font-medium">
+                {formatMessage({
+                  id: 'total_sales',
+                  defaultMessage: 'Total sales',
+                })}{' '}
+                {new Date().toLocaleDateString('de-CH', {
+                  month: 'long',
+                  year: 'numeric',
+                })}
+              </CardDescription>
+            </div>
+            <CardTitle className="text-4xl font-bold text-slate-900 mt-2">
+              {currency} {Math.round(totalSales).toLocaleString('de-CH')}
+            </CardTitle>
+            <div className="flex items-center gap-1 mt-2">
+              <TrendingUp
+                className={`h-4 w-4 ${salesGrowth >= 0 ? 'text-green-500' : 'text-red-500'}`}
               />
-              <YAxis hide />
-              <ChartTooltip
-                cursor={false}
-                content={
-                  <ChartTooltipContent hideLabel formatter={formatCurrency} />
-                }
-              />
-              <Area
-                dataKey="sales"
-                type="monotone"
-                stroke="#3b82f6"
-                strokeWidth={2}
-                fill="url(#salesGradient)"
-                dot={false}
-              />
-            </AreaChart>
-          </ChartContainer>
-        </CardContent>
-      </Card>
+              <span
+                className={`text-sm font-medium ${salesGrowth >= 0 ? 'text-green-500' : 'text-red-500'}`}
+              >
+                {salesGrowth >= 0 ? '+' : ''}
+                {salesGrowth.toFixed(1)}% from last month
+              </span>
+            </div>
+          </CardHeader>
+          <CardContent className="pt-0">
+            <ChartContainer config={chartConfig}>
+              <AreaChart
+                accessibilityLayer
+                data={salesData}
+                margin={{
+                  left: 12,
+                  right: 12,
+                  bottom: 12,
+                  top: 12,
+                }}
+              >
+                <defs>
+                  <linearGradient
+                    id="salesGradient"
+                    x1="0"
+                    y1="0"
+                    x2="0"
+                    y2="1"
+                  >
+                    <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.4} />
+                    <stop offset="95%" stopColor="#3b82f6" stopOpacity={0.05} />
+                  </linearGradient>
+                </defs>
+                <XAxis
+                  dataKey="date"
+                  tickLine={false}
+                  axisLine={false}
+                  tickMargin={8}
+                  tick={{ fontSize: 10, fill: '#94a3b8' }}
+                  tickFormatter={(value) => value.slice(0, 6)}
+                />
+                <YAxis hide />
+                <ChartTooltip
+                  cursor={false}
+                  content={
+                    <ChartTooltipContent hideLabel formatter={formatCurrency} />
+                  }
+                />
+                <Area
+                  dataKey="sales"
+                  type="monotone"
+                  stroke="#3b82f6"
+                  strokeWidth={2}
+                  fill="url(#salesGradient)"
+                  dot={false}
+                />
+              </AreaChart>
+            </ChartContainer>
+          </CardContent>
+        </Card>
 
-      {/* Total Orders Chart */}
-      <Card className="relative overflow-hidden rounded-xl border-0 bg-white">
-        <CardHeader className="pb-6">
-          <div className="flex items-center justify-between">
-            <CardDescription className="text-slate-500 font-medium">
-              {formatMessage({
-                id: 'total_orders',
-                defaultMessage: 'Total orders',
-              })}{' '}
-              {new Date().toLocaleDateString('de-CH', {
-                month: 'long',
-                year: 'numeric',
-              })}
-            </CardDescription>
-          </div>
-          <CardTitle className="text-4xl font-bold text-slate-900 mt-2">
-            {totalOrders.toLocaleString('de-CH')}
-          </CardTitle>
-          <div className="flex items-center gap-1 mt-2">
-            <TrendingUp
-              className={`h-4 w-4 ${ordersGrowth >= 0 ? 'text-green-500' : 'text-red-500'}`}
-            />
-            <span
-              className={`text-sm font-medium ${ordersGrowth >= 0 ? 'text-green-500' : 'text-red-500'}`}
-            >
-              {ordersGrowth >= 0 ? '+' : ''}
-              {ordersGrowth.toFixed(1)}% from last month
-            </span>
-          </div>
-        </CardHeader>
-        <CardContent className="pt-0">
-          <ChartContainer config={chartConfig}>
-            <AreaChart
-              accessibilityLayer
-              data={salesData}
-              margin={{
-                left: 12,
-                right: 12,
-                bottom: 12,
-                top: 12,
-              }}
-            >
-              <defs>
-                <linearGradient id="ordersGradient" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#10b981" stopOpacity={0.4} />
-                  <stop offset="95%" stopColor="#10b981" stopOpacity={0.05} />
-                </linearGradient>
-              </defs>
-              <XAxis
-                dataKey="date"
-                tickLine={false}
-                axisLine={false}
-                tickMargin={8}
-                tick={{ fontSize: 10, fill: '#94a3b8' }}
-                tickFormatter={(value) => value.slice(0, 6)}
+        {/* Total Orders Chart */}
+        <Card className="relative overflow-hidden rounded-xl border-0 bg-white">
+          <CardHeader className="pb-6">
+            <div className="flex items-center justify-between">
+              <CardDescription className="text-slate-500 font-medium">
+                {formatMessage({
+                  id: 'total_orders',
+                  defaultMessage: 'Total orders',
+                })}{' '}
+                {new Date().toLocaleDateString('de-CH', {
+                  month: 'long',
+                  year: 'numeric',
+                })}
+              </CardDescription>
+            </div>
+            <CardTitle className="text-4xl font-bold text-slate-900 mt-2">
+              {totalOrders.toLocaleString('de-CH')}
+            </CardTitle>
+            <div className="flex items-center gap-1 mt-2">
+              <TrendingUp
+                className={`h-4 w-4 ${ordersGrowth >= 0 ? 'text-green-500' : 'text-red-500'}`}
               />
-              <YAxis hide />
-              <ChartTooltip
-                cursor={false}
-                content={
-                  <ChartTooltipContent hideLabel formatter={formatCount} />
-                }
-              />
-              <Area
-                dataKey="orders"
-                type="monotone"
-                stroke="#10b981"
-                strokeWidth={2}
-                fill="url(#ordersGradient)"
-                dot={false}
-              />
-            </AreaChart>
-          </ChartContainer>
-        </CardContent>
-      </Card>
+              <span
+                className={`text-sm font-medium ${ordersGrowth >= 0 ? 'text-green-500' : 'text-red-500'}`}
+              >
+                {ordersGrowth >= 0 ? '+' : ''}
+                {ordersGrowth.toFixed(1)}% from last month
+              </span>
+            </div>
+          </CardHeader>
+          <CardContent className="pt-0">
+            <ChartContainer config={chartConfig}>
+              <AreaChart
+                accessibilityLayer
+                data={salesData}
+                margin={{
+                  left: 12,
+                  right: 12,
+                  bottom: 12,
+                  top: 12,
+                }}
+              >
+                <defs>
+                  <linearGradient
+                    id="ordersGradient"
+                    x1="0"
+                    y1="0"
+                    x2="0"
+                    y2="1"
+                  >
+                    <stop offset="5%" stopColor="#10b981" stopOpacity={0.4} />
+                    <stop offset="95%" stopColor="#10b981" stopOpacity={0.05} />
+                  </linearGradient>
+                </defs>
+                <XAxis
+                  dataKey="date"
+                  tickLine={false}
+                  axisLine={false}
+                  tickMargin={8}
+                  tick={{ fontSize: 10, fill: '#94a3b8' }}
+                  tickFormatter={(value) => value.slice(0, 6)}
+                />
+                <YAxis hide />
+                <ChartTooltip
+                  cursor={false}
+                  content={
+                    <ChartTooltipContent hideLabel formatter={formatCount} />
+                  }
+                />
+                <Area
+                  dataKey="orders"
+                  type="monotone"
+                  stroke="#10b981"
+                  strokeWidth={2}
+                  fill="url(#ordersGradient)"
+                  dot={false}
+                />
+              </AreaChart>
+            </ChartContainer>
+          </CardContent>
+        </Card>
 
-      {/* Average Order Value Chart */}
-      <Card className="relative overflow-hidden rounded-xl border-0 bg-white">
-        <CardHeader className="pb-6">
-          <div className="flex items-center justify-between">
-            <CardDescription className="text-slate-500 font-medium">
-              {formatMessage({
-                id: 'average_order_value',
-                defaultMessage: 'Average order value',
-              })}{' '}
-              {new Date().toLocaleDateString('de-CH', {
-                month: 'long',
-                year: 'numeric',
-              })}
-            </CardDescription>
-          </div>
-          <CardTitle className="text-4xl font-bold text-slate-900 mt-2">
-            {currency} {Math.round(averageOrderValue).toLocaleString('de-CH')}
-          </CardTitle>
-          <div className="flex items-center gap-1 mt-2">
-            <TrendingUp
-              className={`h-4 w-4 ${avgOrderValueGrowth >= 0 ? 'text-green-500' : 'text-red-500'}`}
-            />
-            <span
-              className={`text-sm font-medium ${avgOrderValueGrowth >= 0 ? 'text-green-500' : 'text-red-500'}`}
-            >
-              {avgOrderValueGrowth >= 0 ? '+' : ''}
-              {avgOrderValueGrowth.toFixed(1)}% from last month
-            </span>
-          </div>
-        </CardHeader>
-        <CardContent className="pt-0">
-          <ChartContainer config={chartConfig}>
-            <AreaChart
-              accessibilityLayer
-              data={salesData}
-              margin={{
-                left: 12,
-                right: 12,
-                bottom: 12,
-                top: 12,
-              }}
-            >
-              <defs>
-                <linearGradient
-                  id="avgOrderGradient"
-                  x1="0"
-                  y1="0"
-                  x2="0"
-                  y2="1"
-                >
-                  <stop offset="5%" stopColor="#8b5cf6" stopOpacity={0.4} />
-                  <stop offset="95%" stopColor="#8b5cf6" stopOpacity={0.05} />
-                </linearGradient>
-              </defs>
-              <XAxis
-                dataKey="date"
-                tickLine={false}
-                axisLine={false}
-                tickMargin={8}
-                tick={{ fontSize: 10, fill: '#94a3b8' }}
-                tickFormatter={(value) => value.slice(0, 6)}
+        {/* Average Order Value Chart */}
+        <Card className="relative overflow-hidden rounded-xl border-0 bg-white">
+          <CardHeader className="pb-6">
+            <div className="flex items-center justify-between">
+              <CardDescription className="text-slate-500 font-medium">
+                {formatMessage({
+                  id: 'average_order_value',
+                  defaultMessage: 'Average order value',
+                })}{' '}
+                {new Date().toLocaleDateString('de-CH', {
+                  month: 'long',
+                  year: 'numeric',
+                })}
+              </CardDescription>
+            </div>
+            <CardTitle className="text-4xl font-bold text-slate-900 mt-2">
+              {currency} {Math.round(averageOrderValue).toLocaleString('de-CH')}
+            </CardTitle>
+            <div className="flex items-center gap-1 mt-2">
+              <TrendingUp
+                className={`h-4 w-4 ${avgOrderValueGrowth >= 0 ? 'text-green-500' : 'text-red-500'}`}
               />
-              <YAxis hide />
-              <ChartTooltip
-                cursor={false}
-                content={
-                  <ChartTooltipContent hideLabel formatter={formatCurrency} />
-                }
-              />
-              <Area
-                dataKey="avgOrderValue"
-                type="monotone"
-                stroke="#8b5cf6"
-                strokeWidth={2}
-                fill="url(#avgOrderGradient)"
-                dot={false}
-              />
-            </AreaChart>
-          </ChartContainer>
-        </CardContent>
-      </Card>
-
+              <span
+                className={`text-sm font-medium ${avgOrderValueGrowth >= 0 ? 'text-green-500' : 'text-red-500'}`}
+              >
+                {avgOrderValueGrowth >= 0 ? '+' : ''}
+                {avgOrderValueGrowth.toFixed(1)}% from last month
+              </span>
+            </div>
+          </CardHeader>
+          <CardContent className="pt-0">
+            <ChartContainer config={chartConfig}>
+              <AreaChart
+                accessibilityLayer
+                data={salesData}
+                margin={{
+                  left: 12,
+                  right: 12,
+                  bottom: 12,
+                  top: 12,
+                }}
+              >
+                <defs>
+                  <linearGradient
+                    id="avgOrderGradient"
+                    x1="0"
+                    y1="0"
+                    x2="0"
+                    y2="1"
+                  >
+                    <stop offset="5%" stopColor="#8b5cf6" stopOpacity={0.4} />
+                    <stop offset="95%" stopColor="#8b5cf6" stopOpacity={0.05} />
+                  </linearGradient>
+                </defs>
+                <XAxis
+                  dataKey="date"
+                  tickLine={false}
+                  axisLine={false}
+                  tickMargin={8}
+                  tick={{ fontSize: 10, fill: '#94a3b8' }}
+                  tickFormatter={(value) => value.slice(0, 6)}
+                />
+                <YAxis hide />
+                <ChartTooltip
+                  cursor={false}
+                  content={
+                    <ChartTooltipContent hideLabel formatter={formatCurrency} />
+                  }
+                />
+                <Area
+                  dataKey="avgOrderValue"
+                  type="monotone"
+                  stroke="#8b5cf6"
+                  strokeWidth={2}
+                  fill="url(#avgOrderGradient)"
+                  dot={false}
+                />
+              </AreaChart>
+            </ChartContainer>
+          </CardContent>
+        </Card>
+      </div>
       {/* Top Selling Products */}
-      <Card className="relative overflow-hidden rounded-xl border-0 bg-white">
+      <Card className="mb-8 relative overflow-hidden rounded-xl border-0 bg-white dark:bg-slate-800">
         <CardHeader className="pb-6">
           <div className="flex items-center justify-between">
-            <CardDescription className="text-slate-500 font-medium">
+            <CardDescription className="text-slate-500 dark:text-slate-400 font-medium">
               {formatMessage({
                 id: 'top_selling_products',
                 defaultMessage: 'Top selling products',
@@ -360,19 +373,19 @@ const SimpleDashboard: React.FC = () => {
             </CardDescription>
           </div>
         </CardHeader>
-        <CardContent className="pt-0">
+        <CardContent className="pt-0 pb-6">
           {productsLoading ? (
             <div className="space-y-4">
               {[...Array(3)].map((_, i) => (
                 <div key={i} className="flex items-center justify-between">
-                  <div className="h-4 w-40 bg-slate-100 rounded-lg animate-pulse" />
-                  <div className="h-4 w-12 bg-slate-100 rounded-lg animate-pulse" />
+                  <div className="h-4 w-40 bg-slate-100 dark:bg-slate-700 rounded-lg animate-pulse" />
+                  <div className="h-4 w-12 bg-slate-100 dark:bg-slate-700 rounded-lg animate-pulse" />
                 </div>
               ))}
             </div>
           ) : productsError && !realTopProducts.length ? (
             <div className="text-center py-8">
-              <span className="text-slate-400 text-sm">
+              <span className="text-slate-400 dark:text-slate-500 text-sm">
                 {formatMessage({
                   id: 'products_data_unavailable',
                   defaultMessage: 'Product data unavailable',
@@ -394,20 +407,20 @@ const SimpleDashboard: React.FC = () => {
                         className="w-8 h-8 rounded-md object-cover flex-shrink-0"
                       />
                     )}
-                    <span className="text-slate-700 text-sm font-medium truncate">
+                    <span className="text-slate-700 dark:text-slate-200 text-sm font-medium truncate">
                       {product.productName || `Product ${index + 1}`}
                     </span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <div className="w-24 bg-slate-100 rounded-full h-2">
+                    <div className="w-24 bg-slate-100 dark:bg-slate-700 rounded-full h-2">
                       <div
-                        className="bg-slate-700 h-2 rounded-full transition-all duration-500"
+                        className="bg-slate-700 dark:bg-slate-300 h-2 rounded-full transition-all duration-500"
                         style={{
                           width: `${Math.min((product.totalQuantity / (displayTopProducts[0]?.totalQuantity || 1)) * 100, 100)}%`,
                         }}
                       />
                     </div>
-                    <span className="text-sm font-semibold text-slate-900 w-8 text-right">
+                    <span className="text-sm font-semibold text-slate-900 dark:text-slate-100 w-8 text-right">
                       {product.totalQuantity}
                     </span>
                   </div>
@@ -416,7 +429,7 @@ const SimpleDashboard: React.FC = () => {
             </div>
           ) : (
             <div className="text-center py-8">
-              <span className="text-slate-400 text-sm">
+              <span className="text-slate-400 dark:text-slate-500 text-sm">
                 {formatMessage({
                   id: 'no_product_sales_data',
                   defaultMessage: 'No product sales data available',
