@@ -74,8 +74,18 @@ const UserListItem = ({ user }) => {
             </div>
           </div>
           <div className="flex items-end flex-wrap gap-10 text-slate-600">
-            <Badge 
-              text={isVerified ? formatMessage({ id: 'email_verified_successfully', defaultMessage: 'Verified' }) : formatMessage({ id: 'email_verified_false', defaultMessage: 'Unverified' })}
+            <Badge
+              text={
+                isVerified
+                  ? formatMessage({
+                      id: 'email_verified_successfully',
+                      defaultMessage: 'Verified',
+                    })
+                  : formatMessage({
+                      id: 'email_verified_false',
+                      defaultMessage: 'Unverified',
+                    })
+              }
               color={isVerified ? 'green' : 'yellow'}
             />
             <div className="flex items-center gap-10">
