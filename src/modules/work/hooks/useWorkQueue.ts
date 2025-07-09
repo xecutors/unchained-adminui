@@ -48,14 +48,15 @@ const useWorkQueue = ({
   created = null,
   sort: sortOptions = [],
   offset = 0,
-}: IWorkQueueQueryVariables) => {
+  pollInterval = 1000,
+}: IWorkQueueQueryVariables & { pollInterval?: number }) => {
   const { parseDate } = useFormatDateTime();
   const { data, loading, error, fetchMore, previousData } = useQuery<
     IWorkQueueQuery,
     IWorkQueueQueryVariables
   >(WorkQueueQuery, {
     fetchPolicy: 'cache-and-network',
-    pollInterval: 1000,
+    pollInterval,
     variables: {
       queryString,
       offset,

@@ -1,13 +1,19 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
 import { useRouter } from 'next/router';
-import { PlusIcon } from '@heroicons/react/24/outline';
+import {
+  CheckCircleIcon,
+  ExclamationTriangleIcon,
+  PlusIcon,
+  XMarkIcon,
+} from '@heroicons/react/24/outline';
 import PageHeader from '../modules/common/components/PageHeader';
 import ShopSetupChecklist from '../components/copilot/ShopSetupChecklist';
 import DashboardMetrics from '../modules/common/components/DashboardMetrics';
 import useShopInfo from '../modules/common/hooks/useShopInfo';
 import useAuth from '../modules/Auth/useAuth';
 import Button from '../modules/common/components/Button';
+import { WorkQueueWarningBanner } from '../modules/work/components/WorkQueueWarningBanner';
 
 const HomePage = () => {
   const { formatMessage } = useIntl();
@@ -16,7 +22,8 @@ const HomePage = () => {
   const { hasRole } = useAuth();
 
   return (
-    <div className="mt-20">
+    <div>
+      <WorkQueueWarningBanner />
       <PageHeader
         headerText={formatMessage({
           id: 'unchained_admin_ui',
