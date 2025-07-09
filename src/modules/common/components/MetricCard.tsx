@@ -49,9 +49,7 @@ const MetricCard: React.FC<MetricCardProps> = ({
         </div>
         <div className="flex-shrink-0">
           <div className="p-3 bg-slate-100 dark:bg-slate-700 rounded-lg">
-            {React.cloneElement(icon as React.ReactElement, {
-              className: 'h-6 w-6 text-slate-600 dark:text-slate-300',
-            })}
+            {icon}
           </div>
         </div>
       </div>

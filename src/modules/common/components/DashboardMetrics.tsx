@@ -22,7 +22,9 @@ const DashboardMetrics: React.FC = () => {
         defaultMessage: 'Total Orders',
       }),
       value: metrics.orders.value,
-      icon: <InboxStackIcon />,
+      icon: (
+        <InboxStackIcon className="h-6 w-6 text-slate-600 dark:text-slate-300" />
+      ),
       loading: metrics.orders.loading,
       onClick: () => router.push('/orders'),
     },
@@ -32,7 +34,7 @@ const DashboardMetrics: React.FC = () => {
         defaultMessage: 'Products',
       }),
       value: metrics.products.value,
-      icon: <CubeIcon />,
+      icon: <CubeIcon className="h-6 w-6 text-slate-600 dark:text-slate-300" />,
       loading: metrics.products.loading,
       onClick: () => router.push('/products'),
     },
@@ -42,7 +44,9 @@ const DashboardMetrics: React.FC = () => {
         defaultMessage: 'Customers',
       }),
       value: metrics.customers.value,
-      icon: <UsersIcon />,
+      icon: (
+        <UsersIcon className="h-6 w-6 text-slate-600 dark:text-slate-300" />
+      ),
       loading: metrics.customers.loading,
       onClick: () => router.push('/users'),
     },
@@ -52,7 +56,9 @@ const DashboardMetrics: React.FC = () => {
         defaultMessage: 'Assortments',
       }),
       value: metrics.categories.value,
-      icon: <RectangleStackIcon />,
+      icon: (
+        <RectangleStackIcon className="h-6 w-6 text-slate-600 dark:text-slate-300" />
+      ),
       loading: metrics.categories.loading,
       onClick: () => router.push('/assortments'),
     },
