@@ -18,18 +18,6 @@ const DashboardMetrics: React.FC = () => {
   const metricCards = [
     {
       title: formatMessage({
-        id: 'total_orders',
-        defaultMessage: 'Total Orders',
-      }),
-      value: metrics.orders.value,
-      icon: (
-        <InboxStackIcon className="h-6 w-6 text-slate-700 dark:text-slate-300" />
-      ),
-      loading: metrics.orders.loading,
-      onClick: () => router.push('/orders'),
-    },
-    {
-      title: formatMessage({
         id: 'products_count',
         defaultMessage: 'Products',
       }),
@@ -65,7 +53,7 @@ const DashboardMetrics: React.FC = () => {
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
       {metricCards.map((metric, index) => (
         <MetricCard
           key={index}
