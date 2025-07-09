@@ -42,95 +42,94 @@ const ProductVariationOptionItem = ({
   });
   return (
     <Form form={form} className="last:pb-2 variation-option-update-form">
-      <div className="my-2 flow-root rounded-sm border sm:mx-4 ">
-        <li className="list-none py-2 dark:bg-slate-500 dark:text-slate-200 pl-2 pr-2">
-          <div className="grid grid-cols-6 items-center gap-2">
-            <span className="col-span-1">
-              <Badge text={option?.value} color="slate" />
-            </span>
-
-            <div className="col-span-4 min-w-0">
-              <p className="truncate text-sm font-medium text-slate-900 dark:text-slate-200">
+      <div className="my-2 rounded-sm border mx-4 ">
+        <div className="p-2 dark:bg-slate-500 dark:text-slate-200">
+          <div className="flex gap-2 w-full items-center justify-between">
+            <Badge text={option?.value} color="slate" className="rounded-md" />
+            <div className="flex flex-col items-center gap-3">
+              <div className="flex items-center justify-end gap-4 w-full">
+                <p className="truncate text-sm font-medium text-slate-900 dark:text-slate-200">
+                  {isEdit ? (
+                    <TextField
+                      className="mt-0"
+                      name="title"
+                      required
+                      label={formatMessage({
+                        id: 'title',
+                        defaultMessage: 'Title',
+                      })}
+                    />
+                  ) : (
+                    option?.texts?.title
+                  )}
+                </p>
+                <p className="truncate text-sm text-slate-500">
+                  {isEdit ? (
+                    <TextField
+                      className="mt-0"
+                      name="subtitle"
+                      label={formatMessage({
+                        id: 'subtitle',
+                        defaultMessage: 'Subtitle',
+                      })}
+                    />
+                  ) : (
+                    option?.texts?.subtitle
+                  )}
+                </p>
+              </div>
+              <div className="flex items-center justify-end ml-auto">
                 {isEdit ? (
-                  <TextField
-                    className="mt-0"
-                    name="title"
-                    required
-                    label={formatMessage({
-                      id: 'title',
-                      defaultMessage: 'Title',
-                    })}
-                  />
-                ) : (
-                  option?.texts?.title
-                )}
-              </p>
-              <p className="truncate text-sm text-slate-500">
-                {isEdit ? (
-                  <TextField
-                    className="mt-0"
-                    name="subtitle"
-                    label={formatMessage({
-                      id: 'subtitle',
-                      defaultMessage: 'Subtitle',
-                    })}
-                  />
-                ) : (
-                  option?.texts?.subtitle
-                )}
-              </p>
-            </div>
-            <div className="col-span-1">
-              {isEdit ? (
-                <div className="flex flex-col space-y-2">
-                  <button
-                    onClick={() => setIsEdit(!isEdit)}
-                    aria-label={formatMessage({
-                      id: 'cancel',
-                      defaultMessage: 'Cancel',
-                    })}
-                    type="button"
-                    className="rounded-md bg-white font-medium text-rose-500 hover:text-rose-600 focus:outline-hidden focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
-                  >
-                    {formatMessage({
-                      id: 'cancel',
-                      defaultMessage: 'Cancel',
-                    })}
-                  </button>
+                  <div className="flex space-x-2 py-2">
+                    <button
+                      onClick={() => setIsEdit(!isEdit)}
+                      aria-label={formatMessage({
+                        id: 'cancel',
+                        defaultMessage: 'Cancel',
+                      })}
+                      type="button"
+                      className="inline-flex items-center justify-center font-medium shadow-sm focus:outline-hidden focus:ring-2 focus:ring-offset-2 transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-50 px-3 py-2 text-sm h-8 rounded-md border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 focus:ring-slate-500"
+                    >
+                      {formatMessage({
+                        id: 'cancel',
+                        defaultMessage: 'Cancel',
+                      })}
+                    </button>
 
-                  <button
-                    type="submit"
-                    aria-label={formatMessage({
-                      id: 'save',
-                      defaultMessage: 'Save',
-                    })}
-                    className="rounded-md bg-white font-medium text-slate-950 hover:text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
-                  >
-                    {formatMessage({
-                      id: 'save',
-                      defaultMessage: 'Save',
-                    })}
-                  </button>
-                </div>
-              ) : (
-                <div className="flex items-center space-x-2">
-                  <div
-                    onClick={() => setIsEdit(!isEdit)}
-                    data-optionvalue={option?.value}
-                    id="edit_variation_option"
-                  >
-                    <EditIcon />
+                    <button
+                      type="submit"
+                      aria-label={formatMessage({
+                        id: 'save',
+                        defaultMessage: 'Save',
+                      })}
+                      className="inline-flex items-center justify-center font-medium shadow-sm focus:outline-hidden focus:ring-2 focus:ring-offset-2 transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-50 px-3 py-2 text-sm h-8 rounded-md border border-slate-800 dark:border-slate-600 bg-slate-800 dark:bg-slate-600 text-white hover:bg-slate-900 dark:hover:bg-slate-500 focus:ring-slate-800 dark:focus:ring-slate-400"
+                    >
+                      {formatMessage({
+                        id: 'save',
+                        defaultMessage: 'Save',
+                      })}
+                    </button>
                   </div>
+                ) : (
+                  <div className="flex items-center space-x-2">
+                    <div
+                      onClick={() => setIsEdit(!isEdit)}
+                      data-optionvalue={option?.value}
+                      id="edit_variation_option"
+                    >
+                      <EditIcon />
+                    </div>
 
-                  <DeleteButton
-                    onClick={() => onDelete(option.value)}
-                    className="ml-1 mr-1"
-                  />
-                </div>
-              )}
+                    <DeleteButton
+                      onClick={() => onDelete(option.value)}
+                      className="ml-1 mr-1"
+                    />
+                  </div>
+                )}
+              </div>
             </div>
           </div>
-        </li>
+        </div>
       </div>
     </Form>
   );

@@ -17,7 +17,7 @@ const Badge = ({
       id="badge"
       className={classnames(
         isRainbow
-          ? 'inline-flex items-center border-0 px-2.5 py-0.5 text-sm font-bold bg-gradient-to-r from-red-500 via-green-500 to-blue-500 text-white shadow-lg'
+          ? 'inline-flex items-center text-sm font-bold text-slate-900 shadow-lg relative p-[2px] bg-gradient-to-r from-red-500 via-green-500 to-blue-500'
           : `inline-flex items-center border ${borderColor(
               normalizedColor,
               400,
@@ -32,51 +32,91 @@ const Badge = ({
         },
       )}
     >
-      {dotted && (
-        <svg
-          className={`-ml-1 mr-1.5 h-2 w-2 ${
-            isRainbow ? 'text-white' : textColor(normalizedColor, 400)
-          }`}
-          fill="currentColor"
-          viewBox="0 0 8 8"
+      {isRainbow ? (
+        <span
+          className={classnames(
+            'inline-flex items-center bg-white px-2.5 py-0.5',
+            {
+              'rounded-full': !square,
+              'rounded-md': square,
+            },
+          )}
         >
-          <circle cx="4" cy="4" r="3" />
-        </svg>
-      )}
-      {text}
-      {onClick && (
-        <button
-          id="badge-x-button"
-          type="button"
-          onClick={onClick}
-          className={
-            isRainbow
-              ? 'ml-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full text-white hover:bg-white hover:bg-opacity-20 focus:outline-hidden focus:bg-white focus:bg-opacity-30'
-              : `ml-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full ${textColor(
-                  normalizedColor,
-                  400,
-                )} hover:${bgColor(
-                  normalizedColor,
-                  200,
-                )} hover:text-${normalizedColor}-500 focus:outline-hidden focus:${bgColor(
-                  normalizedColor,
-                  500,
-                )} focus:text-white`
-          }
-        >
-          <svg
-            className="h-2 w-2"
-            stroke="currentColor"
-            fill="none"
-            viewBox="0 0 8 8"
-          >
-            <path
-              strokeLinecap="round"
-              strokeWidth="1.5"
-              d="M1 1l6 6m0-6L1 7"
-            />
-          </svg>
-        </button>
+          {dotted && (
+            <svg
+              className="text-white -ml-1 mr-1.5 h-2 w-2"
+              fill="currentColor"
+              viewBox="0 0 8 8"
+            >
+              <circle cx="4" cy="4" r="3" />
+            </svg>
+          )}
+          {text}
+          {onClick && (
+            <button
+              id="badge-x-button"
+              type="button"
+              onClick={onClick}
+              className="ml-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full text-white hover:bg-white hover:bg-opacity-20 focus:outline-hidden focus:bg-white focus:bg-opacity-30"
+            >
+              <svg
+                className="h-2 w-2"
+                stroke="currentColor"
+                fill="none"
+                viewBox="0 0 8 8"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeWidth="1.5"
+                  d="M1 1l6 6m0-6L1 7"
+                />
+              </svg>
+            </button>
+          )}
+        </span>
+      ) : (
+        <>
+          {dotted && (
+            <svg
+              className={`-ml-1 mr-1.5 h-2 w-2 ${textColor(normalizedColor, 400)}`}
+              fill="currentColor"
+              viewBox="0 0 8 8"
+            >
+              <circle cx="4" cy="4" r="3" />
+            </svg>
+          )}
+          {text}
+          {onClick && (
+            <button
+              id="badge-x-button"
+              type="button"
+              onClick={onClick}
+              className={`ml-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full ${textColor(
+                normalizedColor,
+                400,
+              )} hover:${bgColor(
+                normalizedColor,
+                200,
+              )} hover:text-${normalizedColor}-500 focus:outline-hidden focus:${bgColor(
+                normalizedColor,
+                500,
+              )} focus:text-white`}
+            >
+              <svg
+                className="h-2 w-2"
+                stroke="currentColor"
+                fill="none"
+                viewBox="0 0 8 8"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeWidth="1.5"
+                  d="M1 1l6 6m0-6L1 7"
+                />
+              </svg>
+            </button>
+          )}
+        </>
       )}
     </span>
   );

@@ -14,6 +14,7 @@ import LanguageToggle from '../modules/common/components/LanguageToggle';
 import Button from '../modules/common/components/Button';
 import DeleteButton from '../modules/common/components/DeleteButton';
 import Badge from '../modules/common/components/Badge';
+import TagList from '../modules/common/components/TagList';
 
 const StyleGuidePage = () => {
   const { formatMessage } = useIntl();
@@ -174,6 +175,80 @@ const StyleGuidePage = () => {
                     onClick={() => alert('Badge closed!')}
                   />
                   <Badge text="Rounded" color="sky" />
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* TagList */}
+          <section>
+            <h2 className="text-2xl font-semibold text-slate-900 dark:text-slate-100 mb-6">
+              Tag Lists
+            </h2>
+            <div className="bg-white dark:bg-slate-800 rounded-lg p-6 border border-slate-200 dark:border-slate-700">
+              <div className="space-y-6">
+                {/* TagList with tags */}
+                <div>
+                  <h4 className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-3">
+                    TagList with Tags
+                  </h4>
+                  <TagList
+                    defaultValue={[
+                      'Product',
+                      'Electronics',
+                      'Gaming',
+                      'Accessories',
+                    ]}
+                    onSubmit={(tags) => console.log('Tags submitted:', tags)}
+                    enableEdit={true}
+                  />
+                </div>
+
+                {/* TagList without tags */}
+                <div>
+                  <h4 className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-3">
+                    TagList without Tags (Empty State)
+                  </h4>
+                  <TagList
+                    defaultValue={[]}
+                    onSubmit={(tags) => console.log('Tags submitted:', tags)}
+                    enableEdit={true}
+                  />
+                </div>
+
+                {/* TagList read-only */}
+                <div>
+                  <h4 className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-3">
+                    TagList Read-Only (No Edit Button)
+                  </h4>
+                  <TagList
+                    defaultValue={['Read Only', 'Display Only', 'No Edit']}
+                    onSubmit={(tags) => console.log('Tags submitted:', tags)}
+                    enableEdit={false}
+                  />
+                </div>
+
+                {/* TagList with many tags */}
+                <div>
+                  <h4 className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-3">
+                    TagList with Many Tags (Wrapping)
+                  </h4>
+                  <TagList
+                    defaultValue={[
+                      'Technology',
+                      'Software',
+                      'Development',
+                      'Frontend',
+                      'React',
+                      'TypeScript',
+                      'Tailwind CSS',
+                      'UI/UX',
+                      'Design System',
+                      'Component Library',
+                    ]}
+                    onSubmit={(tags) => console.log('Tags submitted:', tags)}
+                    enableEdit={true}
+                  />
                 </div>
               </div>
             </div>
