@@ -1,6 +1,7 @@
 import React from 'react';
 import UnknownToolResponse from './UnknownToolResponse';
-import ToolRenderer, { SkippedToolResponse } from './ToolRenderer';
+import ToolRenderer from './ToolRenderer';
+import { SkippedToolResponse } from '../../modules/chat/hooks/useToolTextNormalizer';
 
 interface ToolInvocationRendererProps {
   part: any;

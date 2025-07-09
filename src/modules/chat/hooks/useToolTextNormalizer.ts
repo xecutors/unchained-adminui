@@ -78,13 +78,19 @@ export const MediaListReturnTools = [
   'assortment_getMedias',
   'product_reorderMedias',
   'assortment_reorderMedias',
-  'productMedia_remove',
-  'product_addMedia',
+  'generateImage',
 ] as const;
 
 export const OtherTools = ['shop_info', 'generateImage'] as const;
 
 export const MultipleLanguageReturnTools = ['languages_list'] as const;
+
+export const SkippedToolResponse = [
+  'assortment_addMedia',
+  'assortment_removeMedia',
+  'productMedia_remove',
+  'product_addMedia',
+] as const;
 
 export const AllTools = [
   ...SingleProductReturnTools,
@@ -99,6 +105,7 @@ export const AllTools = [
   ...SingleLanguageReturnTools,
   ...MultipleLanguageReturnTools,
   ...MediaListReturnTools,
+  ...SkippedToolResponse,
   ...OtherTools,
 ] as const;
 export type ToolName = (typeof AllTools)[number];

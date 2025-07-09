@@ -1,6 +1,35 @@
 import ImageWithFallback from '../../../modules/common/components/ImageWithFallback';
 
-export const renderMedias = ({ media }: { media?: any[] }) => {
+export const renderMedias = ({
+  media,
+  imageUrl,
+  file,
+  ...rest
+}: {
+  media?: any[];
+  imageUrl?: string;
+  file?: { url: string; name?: string; _id?: string };
+}) => {
+  const normalizedSingleMediaURL = file?.url || imageUrl;
+  if (normalizedSingleMediaURL)
+    return (
+      <div className="space-y-2">
+        <ImageWithFallback
+          src={normalizedSingleMediaURL}
+          alt={file?.name || imageUrl}
+          width={128}
+          height={128}
+          className="w-100 object-cover rounded shadow"
+        />
+        <a
+          href={normalizedSingleMediaURL}
+          target="_blank"
+          className="text-xs font-mono link"
+        >
+          {normalizedSingleMediaURL}
+        </a>
+      </div>
+    );
   if (!media?.length) return null;
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mb-6">

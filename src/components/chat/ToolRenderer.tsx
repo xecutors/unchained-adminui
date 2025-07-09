@@ -39,13 +39,6 @@ import {
   MultipleLanguageReturnTools,
 } from '../../modules/chat/hooks/useToolTextNormalizer';
 
-export const SkippedToolResponse = [
-  'assortment_addMedia',
-  'assortment_removeMedia',
-  'productMedia_remove',
-  'product_addMedia',
-];
-
 type ToolRenderFn = (data: any) => ReactElement | null;
 
 const ToolRenderer: Record<string, ToolRenderFn> = {
