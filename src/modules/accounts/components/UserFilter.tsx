@@ -52,13 +52,13 @@ const UserFilter: React.FC = () => {
             <option value={true.toString()}>
               {formatMessage({
                 id: 'email_verified_true',
-                defaultMessage: 'Only verified',
+                defaultMessage: 'verified',
               })}
             </option>
             <option value={false.toString()}>
               {formatMessage({
                 id: 'email_verified_false',
-                defaultMessage: 'Only unverified',
+                defaultMessage: 'unverified',
               })}
             </option>
           </select>

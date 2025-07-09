@@ -37,10 +37,10 @@ export const WorkQueueWarningBanner = () => {
   if (isDismissed || !workQueue.length) return null;
 
   return (
-    <div className="p-4 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-700/50 rounded-lg mb-6">
+    <div className="p-5 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700/50 rounded-lg mb-6">
       <div className="flex items-center gap-4">
-        <ExclamationTriangleIcon className="w-6 h-6 text-yellow-600 dark:text-yellow-400" />
-        <div className="flex-1 text-sm text-yellow-800 dark:text-yellow-200">
+        <ExclamationTriangleIcon className="w-6 h-6 text-amber-600 dark:text-amber-400" />
+        <div className="flex-1 text-sm text-amber-800 dark:text-amber-200">
           <strong>
             {formatMessage({
               id: 'work_queue_problem_detected',
@@ -51,7 +51,7 @@ export const WorkQueueWarningBanner = () => {
         </div>
         <Link
           href={'/works/?status=FAILED'}
-          className="ml-4 text-yellow-700 dark:text-yellow-300 hover:underline text-sm font-medium"
+          className="ml-4 text-amber-700 dark:text-amber-300 hover:underline text-sm font-medium"
         >
           {formatMessage({
             id: 'check_work_queue_details',
@@ -60,7 +60,7 @@ export const WorkQueueWarningBanner = () => {
         </Link>
         <button
           onClick={() => setIsDismissed(true)}
-          className="flex-shrink-0 p-1 text-emerald-600 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-200"
+          className="flex-shrink-0 p-1 text-amber-600 dark:text-amber-600 hover:text-amber-800 dark:hover:text-amber-200"
         >
           <XMarkIcon className="w-5 h-5" />
         </button>

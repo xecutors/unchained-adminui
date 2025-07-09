@@ -24,17 +24,17 @@ const HomePage = () => {
   return (
     <div>
       <WorkQueueWarningBanner />
-      <PageHeader
-        headerText={formatMessage({
-          id: 'unchained_admin_ui',
-          defaultMessage: 'Unchained AdminUI',
-        })}
-      />
+      <div className="mt-18">
+        <PageHeader
+          headerText={formatMessage({
+            id: 'unchained_admin_ui',
+            defaultMessage: 'Unchained AdminUI',
+          })}
+        />
+      </div>
       <div className="mx-auto py-6">
         <ShopSetupChecklist className="mb-8" />
-
         <DashboardMetrics />
-
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 p-6">
             <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100 mb-4">

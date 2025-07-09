@@ -23,7 +23,7 @@ const DashboardMetrics: React.FC = () => {
       }),
       value: metrics.orders.value,
       icon: (
-        <InboxStackIcon className="h-6 w-6 text-slate-600 dark:text-slate-300" />
+        <InboxStackIcon className="h-6 w-6 text-slate-700 dark:text-slate-300" />
       ),
       loading: metrics.orders.loading,
       onClick: () => router.push('/orders'),
@@ -34,7 +34,7 @@ const DashboardMetrics: React.FC = () => {
         defaultMessage: 'Products',
       }),
       value: metrics.products.value,
-      icon: <CubeIcon className="h-6 w-6 text-slate-600 dark:text-slate-300" />,
+      icon: <CubeIcon className="h-6 w-6 text-slate-700 dark:text-slate-300" />,
       loading: metrics.products.loading,
       onClick: () => router.push('/products'),
     },
@@ -45,7 +45,7 @@ const DashboardMetrics: React.FC = () => {
       }),
       value: metrics.customers.value,
       icon: (
-        <UsersIcon className="h-6 w-6 text-slate-600 dark:text-slate-300" />
+        <UsersIcon className="h-6 w-6 text-slate-700 dark:text-slate-300" />
       ),
       loading: metrics.customers.loading,
       onClick: () => router.push('/users'),
@@ -57,7 +57,7 @@ const DashboardMetrics: React.FC = () => {
       }),
       value: metrics.categories.value,
       icon: (
-        <RectangleStackIcon className="h-6 w-6 text-slate-600 dark:text-slate-300" />
+        <RectangleStackIcon className="h-6 w-6 text-slate-700 dark:text-slate-300" />
       ),
       loading: metrics.categories.loading,
       onClick: () => router.push('/assortments'),

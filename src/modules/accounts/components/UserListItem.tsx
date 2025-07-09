@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
-import ActiveInActive from '../../common/components/ActiveInActive';
 import Badge from '../../common/components/Badge';
 import MiniUserAvatar from '../../common/components/MiniUserAvatar';
 import formatUsername from '../../common/utils/formatUsername';
@@ -35,10 +34,6 @@ const UserListItem = ({ user }) => {
   const { formatMessage, locale } = useIntl();
   const { currentUser, loading } = useCurrentUser();
   const isVerified = !!user?.primaryEmail?.verified;
-  const UserTypes = {
-    true: 'Verified',
-    false: 'Unverified',
-  };
 
   if (loading && !currentUser) return <Loading />;
 
@@ -79,12 +74,10 @@ const UserListItem = ({ user }) => {
             </div>
           </div>
           <div className="flex items-end flex-wrap gap-10 text-slate-600">
-            <div className="flex items-center gap-2">
-              <ActiveInActive isActive={isVerified} />
-              <span className="texts-sm font-semibold text-slate-500 dark:text-slate-200">
-                {UserTypes[isVerified.toString()]}
-              </span>
-            </div>
+            <Badge 
+              text={isVerified ? formatMessage({ id: 'email_verified_successfully', defaultMessage: 'Verified' }) : formatMessage({ id: 'email_verified_false', defaultMessage: 'Unverified' })}
+              color={isVerified ? 'green' : 'yellow'}
+            />
             <div className="flex items-center gap-10">
               <div className="flex items-center gap-3 justify-between flex-wrap">
                 <ShoppingCartIcon className="w-4 h-4 text-slate-500" />
