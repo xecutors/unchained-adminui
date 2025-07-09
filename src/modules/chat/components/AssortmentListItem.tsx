@@ -20,10 +20,17 @@ const AssortmentListItem: React.FC<AssortmentListItemProps> = ({
   const getStatusBadge = (isActive: boolean) => {
     return (
       <Badge
-        text={formatMessage({
-          id: isActive ? 'active' : 'inactive',
-          defaultMessage: isActive ? 'Active' : 'Inactive',
-        })}
+        text={
+          isActive
+            ? formatMessage({
+                id: 'active',
+                defaultMessage: 'Active',
+              })
+            : formatMessage({
+                id: 'inactive',
+                defaultMessage: 'In-Active',
+              })
+        }
         color={isActive ? 'green' : 'yellow'}
         square
         dotted

@@ -82,7 +82,7 @@
     "defaultMessage": "Add Price Row"
   },
   "add_product": {
-    "defaultMessage": "Add product"
+    "defaultMessage": "Add Product"
   },
   "add_product_media_tool_definition": {
     "defaultMessage": "Add media to product"
@@ -134,6 +134,9 @@
   },
   "are_you_sure": {
     "defaultMessage": "Are you sure?"
+  },
+  "assign_product_needs_variations": {
+    "defaultMessage": "Please configure all variation options before assigning a product."
   },
   "assigned_products": {
     "defaultMessage": "Assigned Products"
@@ -351,8 +354,17 @@
   "configuration": {
     "defaultMessage": "Configuration"
   },
-  "configuration_error": {
-    "defaultMessage": "Configuration error"
+  "configuration_invalid": {
+    "defaultMessage": "Invalid configuration"
+  },
+  "configuration_status": {
+    "defaultMessage": "Configuration status"
+  },
+  "configuration_valid": {
+    "defaultMessage": "Valid configuration"
+  },
+  "configuration_valid_description": {
+    "defaultMessage": "All configuration parameters are correctly set and validated."
   },
   "confirm_order": {
     "defaultMessage": "Confirm order"
@@ -491,6 +503,9 @@
   },
   "customers_count": {
     "defaultMessage": "Customers"
+  },
+  "dashboard": {
+    "defaultMessage": "Dashboard"
   },
   "data": {
     "defaultMessage": "Data"
@@ -787,7 +802,7 @@
     "defaultMessage": "All"
   },
   "email_verified_false": {
-    "defaultMessage": "Only unverified"
+    "defaultMessage": "unverified"
   },
   "email_verified_label": {
     "defaultMessage": "E-Mail verified"
@@ -796,7 +811,7 @@
     "defaultMessage": "Email Verified"
   },
   "email_verified_true": {
-    "defaultMessage": "Only verified"
+    "defaultMessage": "verified"
   },
   "end": {
     "defaultMessage": "End"
@@ -1069,7 +1084,7 @@
     "defaultMessage": "Height (Millimeter)"
   },
   "home": {
-    "defaultMessage": "Dashboard"
+    "defaultMessage": "Home"
   },
   "id": {
     "defaultMessage": "ID"
@@ -1090,7 +1105,7 @@
     "defaultMessage": "InValid"
   },
   "inactive": {
-    "defaultMessage": "Inactive"
+    "defaultMessage": "In-Active"
   },
   "include_drafts": {
     "defaultMessage": "Include drafts"
@@ -1351,9 +1366,6 @@
   "no_internet_access": {
     "defaultMessage": "You aren't connected to a working internet connection."
   },
-  "no_more_items_to_load": {
-    "defaultMessage": "No more items to load"
-  },
   "no_payload": {
     "defaultMessage": "Payload"
   },
@@ -1397,7 +1409,7 @@
     "defaultMessage": "Option"
   },
   "options": {
-    "defaultMessage": "options"
+    "defaultMessage": "Options"
   },
   "or_drag_and_drop": {
     "defaultMessage": "or drag and drop"
@@ -2047,6 +2059,9 @@
   "tokens": {
     "defaultMessage": "Tokens"
   },
+  "tool_fetch_failed_error": {
+    "defaultMessage": "Failed to fetch available tools"
+  },
   "total": {
     "defaultMessage": "Total"
   },
@@ -2088,6 +2103,9 @@
   },
   "untitled_assortment": {
     "defaultMessage": "Untitled Assortment"
+  },
+  "unverified": {
+    "defaultMessage": "Unverified"
   },
   "update": {
     "defaultMessage": "Update"
@@ -2231,7 +2249,7 @@
     "defaultMessage": "Vendor"
   },
   "verification_failed": {
-    "defaultMessage": "Verification Failed"
+    "defaultMessage": "verification failed"
   },
   "verification_failed_status": {
     "defaultMessage": "Verification Failed"
@@ -2250,6 +2268,9 @@
   },
   "verification_web3_address": {
     "defaultMessage": "Verify"
+  },
+  "verified": {
+    "defaultMessage": "Verified"
   },
   "verify-quotation-quotation": {
     "defaultMessage": "Verify quotation?"

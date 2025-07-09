@@ -37,7 +37,7 @@ const ActiveInActive = ({
             >
               {formatMessage({
                 id: 'inactive',
-                defaultMessage: 'Inactive',
+                defaultMessage: 'In-Active',
               })}
             </span>
           )}

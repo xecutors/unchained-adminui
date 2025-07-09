@@ -98,7 +98,7 @@ const TableCell = ({
       {...props}
     >
       <div className="flex items-center">
-        <div className="sm:inline">{children}</div>
+        {children}
 
         {Td === 'th' && enablesort && sortKey && (
           <SortButton

@@ -43,7 +43,7 @@ export const CountryItemCompact = ({ country }: { country: Country }) => {
               ? formatMessage({ id: 'active', defaultMessage: 'Active' })
               : formatMessage({
                   id: 'inactive',
-                  defaultMessage: 'Inactive',
+                  defaultMessage: 'In-Active',
                 })}
           </span>
         </div>

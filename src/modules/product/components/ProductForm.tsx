@@ -107,7 +107,7 @@ const ProductForm = ({
           hidden={!hasRole('addProduct')}
           label={formatMessage({
             id: 'add_product',
-            defaultMessage: 'Add product',
+            defaultMessage: 'Add Product',
           })}
         />
       </div>

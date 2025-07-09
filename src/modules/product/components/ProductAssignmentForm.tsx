@@ -169,26 +169,34 @@ const ProductAssignmentForm = ({ proxyId, disabled = false }) => {
                   })}
                 </div>
               ) : (
-                <Select
-                  name={`productId-${_id}`}
-                  placeholder={formatMessage({
-                    id: 'search_product',
-                    defaultMessage: 'Search product',
-                  })}
-                  isLoading={loading}
-                  isDisabled={disabled}
-                  onChange={handleProductAssignment(columns) as any}
-                  onInputChange={debouncedQuery}
-                  value={queryString}
-                  options={
-                    (products || [])
-                      .map(normalizeProduct)
-                      .filter(
-                        ({ value }) => value !== proxyId,
-                      ) as unknown as OptionsOrGroups<string, GroupBase<string>>
-                  }
-                  className="mt-1 w-full py-2 text-sm font-medium text-slate-500"
-                />
+                <div className="relative w-full">
+                  <Select
+                    name={`productId-${_id}`}
+                    placeholder={formatMessage({
+                      id: 'search_product',
+                      defaultMessage: 'Search product',
+                    })}
+                    isLoading={loading}
+                    isDisabled={disabled}
+                    onChange={handleProductAssignment(columns) as any}
+                    onInputChange={debouncedQuery}
+                    value={queryString}
+                    menuPortalTarget={
+                      typeof window !== 'undefined' ? document.body : null
+                    }
+                    options={
+                      (products || [])
+                        .map(normalizeProduct)
+                        .filter(
+                          ({ value }) => value !== proxyId,
+                        ) as unknown as OptionsOrGroups<
+                        string,
+                        GroupBase<string>
+                      >
+                    }
+                    className="mt-1 w-full py-2 text-sm font-medium text-slate-500"
+                  />
+                </div>
               )}
             </Table.Cell>
             <Table.Cell>
