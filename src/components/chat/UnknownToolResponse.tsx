@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useIntl } from 'react-intl';
 
 interface UnknownToolResponseProps {
   data: any;
@@ -6,6 +7,7 @@ interface UnknownToolResponseProps {
 
 const UnknownToolResponse: React.FC<UnknownToolResponseProps> = ({ data }) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const { formatMessage } = useIntl();
 
   return (
     <div className="relative mb-4">
@@ -26,7 +28,10 @@ const UnknownToolResponse: React.FC<UnknownToolResponseProps> = ({ data }) => {
               onClick={() => setIsExpanded(true)}
               className="absolute bottom-2 left-1/2 transform -translate-x-1/2 px-4 py-1.5  dark:bg-slate-700 text-sm text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 rounded-md hover:bg-white dark:hover:bg-slate-600 transition-colors shadow-xs"
             >
-              Show full response
+              {formatMessage({
+                id: 'show_full_response',
+                defaultMessage: 'Show full response',
+              })}
             </button>
           </>
         )}
@@ -35,7 +40,7 @@ const UnknownToolResponse: React.FC<UnknownToolResponseProps> = ({ data }) => {
             onClick={() => setIsExpanded(false)}
             className="sticky bottom-2 left-1/2 transform -translate-x-1/2 mt-2 mb-2 px-4 py-1.5 bg-white dark:bg-slate-700 text-sm text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 rounded-md hover:bg-slate-50 dark:hover:bg-slate-600 transition-colors shadow-sm"
           >
-            Show less
+            {formatMessage({ id: 'show_less', defaultMessage: 'Show less' })}
           </button>
         )}
       </div>

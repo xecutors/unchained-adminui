@@ -78,7 +78,7 @@ const Layout = ({
 
   const defaultNavigation = [
     {
-      name: formatMessage({ id: 'home', defaultMessage: 'Dashboard' }),
+      name: formatMessage({ id: 'dashboard', defaultMessage: 'Dashboard' }),
       icon: HomeModernIcon,
       href: '/',
     },

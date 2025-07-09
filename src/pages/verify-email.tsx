@@ -146,7 +146,6 @@ const VerifyEmail = () => {
       </div>
     </div>
   ) : (
-    // Success/Error state: Email verification result
     <div className="flex min-h-screen items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-4 text-center">
         <div>
@@ -158,7 +157,7 @@ const VerifyEmail = () => {
                 })
               : formatMessage({
                   id: 'verification_failed',
-                  defaultMessage: 'Verification Failed',
+                  defaultMessage: 'verification failed',
                 })}
           </h2>
         </div>

@@ -52,7 +52,7 @@ const AssortmentResultsSummary: React.FC<AssortmentResultsSummaryProps> = ({
               <EyeSlashIcon className="w-4 h-4" />
               {formatMessage({
                 id: 'inactive',
-                defaultMessage: 'Inactive',
+                defaultMessage: 'In-Active',
               })}
               : {count}
             </span>
@@ -105,7 +105,7 @@ const AssortmentResultsSummary: React.FC<AssortmentResultsSummaryProps> = ({
             {stats.inactive}
           </div>
           <div className="text-xs text-slate-500 dark:text-slate-500">
-            {formatMessage({ id: 'inactive', defaultMessage: 'Inactive' })}
+            {formatMessage({ id: 'inactive', defaultMessage: 'In-Active' })}
           </div>
         </div>
 

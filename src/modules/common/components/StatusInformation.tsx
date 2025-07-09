@@ -20,9 +20,15 @@ const StatusInformation = ({
       case 'OPEN':
         return formatMessage({ id: 'open', defaultMessage: 'OPEN' });
       case 'DELIVERED':
-        return formatMessage({ id: 'delivered', defaultMessage: 'DELIVERED' });
+        return formatMessage({
+          id: 'delivered',
+          defaultMessage: 'Delivered',
+        }).toUpperCase();
       case 'PAID':
-        return formatMessage({ id: 'paid', defaultMessage: 'PAID' });
+        return formatMessage({
+          id: 'paid',
+          defaultMessage: 'Paid',
+        }).toUpperCase();
       default:
         return type;
     }

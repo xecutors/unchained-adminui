@@ -90,13 +90,40 @@ export const TextItemCompact = ({
           <Badge text={text.locale.toUpperCase()} color="blue" square dotted />
         </div>
 
-        {infoRow('Subtitle', text.subtitle)}
-        {infoRow('Description', text.description)}
-        {infoRow('Slug', text.slug)}
-        {infoRow('Brand', text.brand)}
-        {infoRow('Vendor', text.vendor)}
-        {infoRow('Variation option', text?.productVariationOptionValue)}
-        {infoRow('Variation ID', text?.productVariationId)}
+        {infoRow(
+          formatMessage({ id: 'subtitle', defaultMessage: 'Subtitle' }),
+          text.subtitle,
+        )}
+        {infoRow(
+          formatMessage({ id: 'description', defaultMessage: 'Description' }),
+          text.description,
+        )}
+        {infoRow(
+          formatMessage({ id: 'slug', defaultMessage: 'Slug' }),
+          text.slug,
+        )}
+        {infoRow(
+          formatMessage({ id: 'brand', defaultMessage: 'Brand' }),
+          text.brand,
+        )}
+        {infoRow(
+          formatMessage({ id: 'vendor', defaultMessage: 'Vendor' }),
+          text.vendor,
+        )}
+        {infoRow(
+          formatMessage({
+            id: 'variation_option',
+            defaultMessage: 'Variation option',
+          }),
+          text?.productVariationOptionValue,
+        )}
+        {infoRow(
+          formatMessage({
+            id: 'variation_id',
+            defaultMessage: 'Variation ID',
+          }),
+          text?.productVariationId,
+        )}
 
         {text.labels && text.labels.length > 0 && (
           <div className="text-sm text-slate-700 dark:text-slate-300">

@@ -53,7 +53,7 @@ const Variation = ({ type, variation, selectedLocale, onDelete }) => {
                 {variation.options.length}{' '}
                 {formatMessage({
                   id: 'options',
-                  defaultMessage: 'options',
+                  defaultMessage: 'Options',
                 })}
               </span>
             </div>

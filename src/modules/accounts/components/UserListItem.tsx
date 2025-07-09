@@ -78,11 +78,11 @@ const UserListItem = ({ user }) => {
               text={
                 isVerified
                   ? formatMessage({
-                      id: 'email_verified_successfully',
+                      id: 'verified',
                       defaultMessage: 'Verified',
                     })
                   : formatMessage({
-                      id: 'email_verified_false',
+                      id: 'unverified',
                       defaultMessage: 'Unverified',
                     })
               }

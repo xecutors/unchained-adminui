@@ -1,8 +1,6 @@
 import { useIntl } from 'react-intl';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
-import Badge from '../../common/components/Badge';
 import DetailHeader from '../../common/components/DetailHeader';
-import { normalizeCurrencyISOCode } from '../../common/utils/utils';
 
 const OrderDetailHeader = ({ order }) => {
   const { formatMessage, locale } = useIntl();
@@ -19,7 +17,7 @@ const OrderDetailHeader = ({ order }) => {
               <>
                 {formatMessage({
                   id: 'cart',
-                  defaultMessage: 'Warenkorb',
+                  defaultMessage: 'Cart',
                 })}
                 {` ${order._id}`}
               </>
@@ -27,7 +25,7 @@ const OrderDetailHeader = ({ order }) => {
               <>
                 {formatMessage({
                   id: 'order_number',
-                  defaultMessage: 'Order',
+                  defaultMessage: 'Order #',
                 })}
                 {order?.orderNumber ? `${order.orderNumber}` : ''}
               </>
@@ -68,20 +66,6 @@ const OrderDetailHeader = ({ order }) => {
           </span>
         </div>
       )}
-
-      {/* <div className="mt-5 flex gap-5 justify-between">
-        <div className="flex gap-1">
-          <span>{order?.country?.flagEmoji}</span>
-          <span className="mx-1">
-            {normalizeCurrencyISOCode(locale, order?.currency?.isoCode)}
-          </span>
-          <span>
-            {order?.currency?.isoCode && (
-              <Badge text={order?.currency?.isoCode} color="slate" square />
-            )}
-          </span>
-        </div>
-      </div> */}
     </div>
   );
 };
