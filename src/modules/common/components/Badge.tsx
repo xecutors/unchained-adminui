@@ -17,7 +17,7 @@ const Badge = ({
       id="badge"
       className={classnames(
         isRainbow
-          ? 'inline-flex items-center text-sm font-bold text-slate-900 shadow-lg relative p-[2px] bg-gradient-to-r from-red-500 via-green-500 to-blue-500'
+          ? 'inline-flex items-center text-sm font-bold text-slate-900 dark:text-white shadow-lg relative p-[2px] bg-gradient-to-r from-red-500 via-green-500 to-blue-500'
           : `inline-flex items-center border ${borderColor(
               normalizedColor,
               400,
@@ -35,7 +35,7 @@ const Badge = ({
       {isRainbow ? (
         <span
           className={classnames(
-            'inline-flex items-center bg-white px-2.5 py-0.5',
+            'inline-flex items-center bg-white dark:bg-slate-700 px-2.5 py-0.5',
             {
               'rounded-full': !square,
               'rounded-md': square,
@@ -44,7 +44,7 @@ const Badge = ({
         >
           {dotted && (
             <svg
-              className="text-white -ml-1 mr-1.5 h-2 w-2"
+              className="text-slate-900 dark:text-white -ml-1 mr-1.5 h-2 w-2"
               fill="currentColor"
               viewBox="0 0 8 8"
             >
@@ -57,7 +57,7 @@ const Badge = ({
               id="badge-x-button"
               type="button"
               onClick={onClick}
-              className="ml-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full text-white hover:bg-white hover:bg-opacity-20 focus:outline-hidden focus:bg-white focus:bg-opacity-30"
+              className="ml-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full text-slate-900 dark:text-white hover:bg-slate-900 hover:bg-opacity-10 dark:hover:bg-white dark:hover:bg-opacity-20 focus:outline-hidden focus:bg-slate-900 focus:bg-opacity-20 dark:focus:bg-white dark:focus:bg-opacity-30"
             >
               <svg
                 className="h-2 w-2"
