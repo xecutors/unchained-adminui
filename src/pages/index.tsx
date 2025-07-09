@@ -25,13 +25,13 @@ const HomePage = () => {
   return (
     <div>
       <WorkQueueWarningBanner />
-      <div className="mt-18">
-        <PageHeader
-          headerText={formatMessage({
-            id: 'unchained_admin_ui',
-            defaultMessage: 'Unchained AdminUI',
-          })}
-        />
+      <div className="mt-5">
+        <div className="text-xl font-semibold text-slate-900 dark:text-slate-100">
+          Unchained
+          <span className="font-light ml-1">
+            AdminUI<span className="text-xs ml-1"> 2.0</span>
+          </span>
+        </div>
       </div>
       <div className="mx-auto py-6">
         <ShopSetupChecklist className="mb-8" />
