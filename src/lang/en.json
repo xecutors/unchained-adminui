@@ -84,6 +84,9 @@
   "add_product": {
     "defaultMessage": "Add product"
   },
+  "add_product_media_tool_definition": {
+    "defaultMessage": "Add media to product"
+  },
   "add_review": {
     "defaultMessage": "Add Review"
   },
@@ -198,6 +201,9 @@
   "assortment_made_base": {
     "defaultMessage": "Assortment changed to base"
   },
+  "assortment_management_tool_definition": {
+    "defaultMessage": "\"Manage product categories\""
+  },
   "assortment_media": {
     "defaultMessage": "Assortment Media"
   },
@@ -288,6 +294,9 @@
   "cart_created": {
     "defaultMessage": "Warenkorb erstellt"
   },
+  "categories_count": {
+    "defaultMessage": "Assortments"
+  },
   "chain-id": {
     "defaultMessage": "Chain ID {chainId}"
   },
@@ -302,6 +311,9 @@
   },
   "change_password": {
     "defaultMessage": "Change password"
+  },
+  "check_work_queue_details": {
+    "defaultMessage": "Check Work Queue for Details"
   },
   "child_assortment": {
     "defaultMessage": "Sub-Assortment"
@@ -403,7 +415,7 @@
     "defaultMessage": "Countries"
   },
   "countries_config_description": {
-    "defaultMessage": "Configure at least one country for your shop"
+    "defaultMessage": "Configure countries and assign default currencies"
   },
   "country": {
     "defaultMessage": "Country"
@@ -434,6 +446,9 @@
   },
   "create_new_account": {
     "defaultMessage": "Create new account?"
+  },
+  "create_product_tool_definition": {
+    "defaultMessage": "Create a new product"
   },
   "create_provider": {
     "defaultMessage": "Create provider"
@@ -473,6 +488,9 @@
   },
   "customer_reviews": {
     "defaultMessage": "Customer Reviews"
+  },
+  "customers_count": {
+    "defaultMessage": "Customers"
   },
   "data": {
     "defaultMessage": "Data"
@@ -599,6 +617,9 @@
   },
   "delete_product_media_confirmation": {
     "defaultMessage": "This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this media?"
+  },
+  "delete_product_tool_definition": {
+    "defaultMessage": "Delete product OLD123"
   },
   "delete_product_variation": {
     "defaultMessage": "Delete variation"
@@ -1011,6 +1032,15 @@
   "general_text": {
     "defaultMessage": "Text"
   },
+  "general_tool_definition": {
+    "defaultMessage": "\"Help me with {toolName}\""
+  },
+  "generate_image_tool_definition": {
+    "defaultMessage": "Generate a hero banner image"
+  },
+  "get_product_tool_definition": {
+    "defaultMessage": "Get details for product ABC123"
+  },
   "go_back": {
     "defaultMessage": "Go Back"
   },
@@ -1177,6 +1207,9 @@
   "links": {
     "defaultMessage": "Links"
   },
+  "list_product_tool_definition": {
+    "defaultMessage": "Show me all draft products"
+  },
   "load-more-reviews": {
     "defaultMessage": "Load reviews"
   },
@@ -1239,6 +1272,15 @@
   },
   "media": {
     "defaultMessage": "Media"
+  },
+  "media_add_tool_definition": {
+    "defaultMessage": "\"Add media files\""
+  },
+  "media_management_tool_definition": {
+    "defaultMessage": "\"Manage media files\""
+  },
+  "media_remover_tool_definition": {
+    "defaultMessage": "\"Remove media files\""
   },
   "media_subtitle": {
     "defaultMessage": "Subtitle:"
@@ -1355,7 +1397,7 @@
     "defaultMessage": "Option"
   },
   "options": {
-    "defaultMessage": "Options"
+    "defaultMessage": "options"
   },
   "or_drag_and_drop": {
     "defaultMessage": "or drag and drop"
@@ -1570,14 +1612,29 @@
   "product_variation_deleted": {
     "defaultMessage": "Variation deleted successfully"
   },
+  "product_variation_key_help": {
+    "defaultMessage": "Unique identifier used internally (e.g., \"color\", \"size\"). Use lowercase without spaces."
+  },
   "product_variation_option_deleted": {
     "defaultMessage": "Variation option deleted successfully"
+  },
+  "product_variation_title_help": {
+    "defaultMessage": "The display name customers will see (e.g., \"Color\", \"Size\", \"Material\")"
+  },
+  "product_variations_explanation": {
+    "defaultMessage": "Variations allow customers to choose different options for your product (like color, size, material). Each variation can have multiple options that customers can select from."
+  },
+  "product_variations_explanation_title": {
+    "defaultMessage": "About Product Variations"
   },
   "products": {
     "defaultMessage": "Products"
   },
   "products_config_description": {
     "defaultMessage": "Create your first products"
+  },
+  "products_count": {
+    "defaultMessage": "Products"
   },
   "profile": {
     "defaultMessage": "Profile"
@@ -1593,6 +1650,9 @@
   },
   "publish_product_description": {
     "defaultMessage": "Product will be searchable and is available for orders"
+  },
+  "publish_product_tool_definition": {
+    "defaultMessage": "Publish product XYZ456"
   },
   "published": {
     "defaultMessage": "Published"
@@ -1659,6 +1719,9 @@
   },
   "rejected": {
     "defaultMessage": "REJECTED"
+  },
+  "remove_product_media_tool_definition": {
+    "defaultMessage": "Remove product media"
   },
   "reorder_original": {
     "defaultMessage": "Reorder to original location"
@@ -1822,6 +1885,9 @@
   "shipping_method": {
     "defaultMessage": "SHIPPING"
   },
+  "shop_info_tool_definition": {
+    "defaultMessage": "Show shop configuration"
+  },
   "shortcuts": {
     "defaultMessage": "Shortcuts"
   },
@@ -1984,6 +2050,9 @@
   "total": {
     "defaultMessage": "Total"
   },
+  "total_orders": {
+    "defaultMessage": "Total Orders"
+  },
   "total_records": {
     "defaultMessage": "{total} records found"
   },
@@ -2013,6 +2082,9 @@
   },
   "unchained_logo": {
     "defaultMessage": "Unchained Logo"
+  },
+  "unpublish_product_tool_definition": {
+    "defaultMessage": "Unpublish the winter collection"
   },
   "untitled_assortment": {
     "defaultMessage": "Untitled Assortment"
@@ -2137,8 +2209,17 @@
   "variation_option_added": {
     "defaultMessage": "Variation option added successfully!"
   },
+  "variation_option_title_help": {
+    "defaultMessage": "Display name customers see (e.g., \"Red\", \"Large\", \"Cotton\")"
+  },
   "variation_option_updated": {
     "defaultMessage": "Variation option updated successfully!"
+  },
+  "variation_option_value_help": {
+    "defaultMessage": "Internal identifier (e.g., \"red\", \"large\", \"cotton\")"
+  },
+  "variation_options_explanation": {
+    "defaultMessage": "Add individual choices for this variation (e.g., \"Red\", \"Blue\", \"Green\" for a Color variation)"
   },
   "variations": {
     "defaultMessage": "Variations"
@@ -2277,6 +2358,9 @@
   },
   "work_queue_header": {
     "defaultMessage": "Work queue"
+  },
+  "work_queue_problem_detected": {
+    "defaultMessage": "Problems detected in the Work Queue"
   },
   "work_retries": {
     "defaultMessage": "Retries"

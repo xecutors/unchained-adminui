@@ -24,6 +24,20 @@ import {
 } from './tool-renderers/languageRenderers';
 import { renderTexts } from './tool-renderers/textRenderers';
 import { renderMedias } from './tool-renderers/renderMedias';
+import {
+  MediaListReturnTools,
+  SingleProductReturnTools,
+  MultipleProductReturnTools,
+  TextsReturnTools,
+  SingleAssortmentReturnTools,
+  MultipleAssortmentReturnTools,
+  SingleCountryReturnTools,
+  MultipleCountryReturnTools,
+  SingleCurrencyReturnTools,
+  MultipleCurrencyReturnTools,
+  SingleLanguageReturnTools,
+  MultipleLanguageReturnTools,
+} from '../../modules/chat/hooks/useToolTextNormalizer';
 
 export const SkippedToolResponse = [
   'assortment_addMedia',
@@ -31,87 +45,6 @@ export const SkippedToolResponse = [
   'productMedia_remove',
   'product_addMedia',
 ];
-
-export const SingleProductReturnTools = [
-  'product_get',
-  'product_create',
-  'product_update',
-  'product_updateCommerce',
-  'product_remove',
-  'product_publish',
-  'product_unpublish',
-  'product_updateWarehousing',
-  'product_updateSupply',
-  'product_updateTokenization',
-  'product_updatePlan',
-  'product_createVariation',
-];
-
-export const MultipleProductReturnTools = [
-  'product_list',
-  'assortment_getProducts',
-];
-
-export const TextsReturnTools = [
-  'product_updateTexts',
-  'productMedia_updateTexts',
-  'product_getTexts',
-  'productMedia_getTexts',
-  'assortmentMedia_updateTexts',
-  'assortmentMedia_getTexts',
-  'assortment_getTexts',
-  'assortment_updateTexts',
-  'productVariation_updateTexts',
-  'productVariation_getTexts',
-];
-
-export const SingleAssortmentReturnTools = [
-  'assortment_create',
-  'assortment_update',
-  'assortment_remove',
-  'assortment_setBase',
-  'assortment_get',
-  'assortment_searchProducts',
-];
-
-export const MultipleAssortmentReturnTools = [
-  'assortment_getChildren',
-  'assortment_list',
-];
-
-export const SingleCountryReturnTools = [
-  'country_create',
-  'country_update',
-  'country_remove',
-  'country_get',
-];
-
-export const MultipleCountryReturnTools = ['country_list'];
-
-export const SingleCurrencyReturnTools = [
-  'currency_create',
-  'currency_update',
-  'currency_remove',
-  'currency_get',
-];
-
-export const MultipleCurrencyReturnTools = ['currency_list'];
-
-export const SingleLanguageReturnTools = [
-  'language_create',
-  'language_update',
-  'language_remove',
-  'language_get',
-];
-
-export const MediaListReturnTools = [
-  'product_getMedias',
-  'assortment_getMedias',
-  'product_reorderMedias',
-  'assortment_reorderMedias',
-];
-
-export const MultipleLanguageReturnTools = ['languages_list'];
 
 type ToolRenderFn = (data: any) => ReactElement | null;
 
