@@ -33,15 +33,15 @@ const FilterableDropdown = ({
     const checkDarkMode = () => {
       setIsDark(document.documentElement.classList.contains('dark'));
     };
-    
+
     checkDarkMode();
-    
+
     const observer = new MutationObserver(checkDarkMode);
     observer.observe(document.documentElement, {
       attributes: true,
       attributeFilter: ['class'],
     });
-    
+
     return () => observer.disconnect();
   }, []);
 
@@ -53,7 +53,9 @@ const FilterableDropdown = ({
       borderColor: state.isFocused ? '#1e293b' : '#cbd5e1', // slate-800 : slate-300
       borderWidth: '1px',
       borderRadius: '0.375rem', // rounded-md
-      boxShadow: state.isFocused ? '0 0 0 2px #1e293b' : '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+      boxShadow: state.isFocused
+        ? '0 0 0 2px #1e293b'
+        : '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
       minHeight: '42px', // py-2.5 equivalent
       paddingLeft: '16px', // px-4
       paddingRight: '16px',
@@ -75,7 +77,8 @@ const FilterableDropdown = ({
       ...provided,
       backgroundColor: '#ffffff',
       border: '1px solid #e2e8f0', // slate-200
-      boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+      boxShadow:
+        '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
       zIndex: 9999,
     }),
     menuList: (provided: any) => ({
@@ -123,7 +126,9 @@ const FilterableDropdown = ({
       borderColor: state.isFocused ? '#1e293b' : '#374151', // slate-800 : slate-700
       borderWidth: '1px',
       borderRadius: '0.375rem', // rounded-md
-      boxShadow: state.isFocused ? '0 0 0 2px #1e293b' : '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+      boxShadow: state.isFocused
+        ? '0 0 0 2px #1e293b'
+        : '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
       minHeight: '42px', // py-2.5 equivalent
       paddingLeft: '16px', // px-4
       paddingRight: '16px',
@@ -145,7 +150,8 @@ const FilterableDropdown = ({
       ...provided,
       backgroundColor: '#0f172a', // slate-900
       border: '1px solid #1e293b', // slate-800
-      boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3)',
+      boxShadow:
+        '0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3)',
       zIndex: 9999,
     }),
     menuList: (provided: any) => ({
