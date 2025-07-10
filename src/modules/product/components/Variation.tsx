@@ -80,12 +80,12 @@ const Variation = ({ type, variation, selectedLocale, onDelete }) => {
       data-variationid={variation._id}
     >
       <div
-        className="flex items-center justify-between w-full gap-3"
+        className="flex items-center justify-between w-full gap-4"
         tabIndex={-1}
       >
-        <div className="flex items-center gap-3 lg:gap-6 xl:gap-10 flex-1 min-w-0 overflow-hidden">
-          {/* Title first on the left */}
-          <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4 flex-1 min-w-0 overflow-hidden">
+          {/* Title */}
+          <div className="flex-shrink-0">
             {isEdit ? (
               <TextField
                 className="mt-0 py-1"
@@ -102,6 +102,15 @@ const Variation = ({ type, variation, selectedLocale, onDelete }) => {
               </span>
             )}
           </div>
+
+          {/* Type badge */}
+          {type && (
+            <Badge 
+              text={type} 
+              color="slate" 
+              className="rounded-md uppercase text-xs font-medium flex-shrink-0"
+            />
+          )}
 
           {/* Subtitle if exists */}
           {(variation?.texts?.subtitle || isEdit) && (
@@ -121,9 +130,9 @@ const Variation = ({ type, variation, selectedLocale, onDelete }) => {
             </div>
           )}
 
-          {/* Options as tags in same row */}
+          {/* Options as tags */}
           {variation?.options?.length > 0 && (
-            <div className="flex items-center gap-3 flex-wrap">
+            <div className="flex items-center gap-2 flex-wrap">
               {variation.options.map((option, index) => (
                 <span
                   key={option.value || index}
@@ -134,8 +143,9 @@ const Variation = ({ type, variation, selectedLocale, onDelete }) => {
               ))}
             </div>
           )}
+
           {/* Key for reference */}
-          <div className="text-sm text-slate-400 dark:text-slate-500 font-mono">
+          <div className="text-sm text-slate-400 dark:text-slate-500 font-mono flex-shrink-0">
             ({variation?.key})
           </div>
         </div>
