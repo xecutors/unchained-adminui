@@ -4,6 +4,7 @@ import renderShopInfo from './tool-renderers/shopRenderers';
 import {
   renderSingleProduct,
   renderMultipleProducts,
+  renderVariations,
 } from './tool-renderers/productRenderers';
 import {
   renderSingleAssortment,
@@ -37,13 +38,15 @@ import {
   MultipleCurrencyReturnTools,
   SingleLanguageReturnTools,
   MultipleLanguageReturnTools,
+  ToolName,
 } from '../../modules/chat/hooks/useToolTextNormalizer';
 
 type ToolRenderFn = (data: any) => ReactElement | null;
 
-const ToolRenderer: Record<string, ToolRenderFn> = {
+const ToolRenderer: Record<ToolName, ToolRenderFn> = {
   shop_info: renderShopInfo,
   generateImage: renderImage,
+  product_variations: renderVariations,
   ...Object.fromEntries(
     MediaListReturnTools.map((name) => [name, renderMedias]),
   ),
@@ -81,9 +84,9 @@ const ToolRenderer: Record<string, ToolRenderFn> = {
   ...Object.fromEntries(
     SingleLanguageReturnTools.map((name) => [name, renderSingleLanguage]),
   ),
-  ...Object.fromEntries(
+  ...(Object.fromEntries(
     MultipleLanguageReturnTools.map((name) => [name, renderMultipleLanguages]),
-  ),
+  ) as any),
 };
 
 export default ToolRenderer;

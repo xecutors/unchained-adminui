@@ -17,7 +17,6 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
 
   const content = result.content[0];
   const text = content?.text ?? content;
-
   try {
     const textString = typeof text === 'string' ? text : JSON.stringify(text);
 

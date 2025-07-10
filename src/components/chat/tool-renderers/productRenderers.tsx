@@ -1,5 +1,5 @@
-import ImageWithFallback from '../../../modules/common/components/ImageWithFallback';
 import { ProductList, ProductListItemCompact } from '../../product';
+import VariationListCompact from '../../product/VariationListCompact';
 import ProductResultsSummary from '../ProductResultsSummary';
 
 export const renderSingleProduct = (data: any) =>
@@ -13,5 +13,12 @@ export const renderMultipleProducts = (data: any) =>
         requestedFilters={data.filters}
       />
       <ProductList products={data.products} />
+    </div>
+  ) : null;
+
+export const renderVariations = (data: any) =>
+  data?.variations?.length ? (
+    <div className="mb-6">
+      <VariationListCompact variations={data.variations} />
     </div>
   ) : null;
