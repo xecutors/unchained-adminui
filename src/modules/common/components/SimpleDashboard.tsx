@@ -45,7 +45,7 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 const SimpleDashboard: React.FC = () => {
-  const { formatMessage } = useIntl();
+  const { formatMessage, locale } = useIntl();
   const { analytics, loading, error } = useRealAnalytics();
   const {
     topProducts: realTopProducts,
@@ -103,10 +103,10 @@ const SimpleDashboard: React.FC = () => {
 
   // Custom formatter for currency values in tooltips
   const formatCurrency = (value) =>
-    `${currency} ${Math.round(value).toLocaleString('de-CH')}`;
+    `${currency} ${Math.round(value).toLocaleString(locale || 'en-US')}`;
 
   // Custom formatter for count values in tooltips
-  const formatCount = (value) => Math.round(value).toLocaleString('de-CH');
+  const formatCount = (value) => Math.round(value).toLocaleString(locale || 'en-US');
 
   return (
     <div>
@@ -120,14 +120,14 @@ const SimpleDashboard: React.FC = () => {
                   id: 'total_sales',
                   defaultMessage: 'Total sales',
                 })}{' '}
-                {new Date().toLocaleDateString('de-CH', {
+                {new Date().toLocaleDateString(locale || 'en-US', {
                   month: 'long',
                   year: 'numeric',
                 })}
               </CardDescription>
             </div>
             <CardTitle className="text-4xl font-bold text-slate-900 mt-2">
-              {currency} {Math.round(totalSales).toLocaleString('de-CH')}
+              {currency} {Math.round(totalSales).toLocaleString(locale || 'en-US')}
             </CardTitle>
             <div className="flex items-center gap-1 mt-2">
               <TrendingUp
@@ -137,7 +137,10 @@ const SimpleDashboard: React.FC = () => {
                 className={`text-sm font-medium ${salesGrowth >= 0 ? 'text-green-500' : 'text-red-500'}`}
               >
                 {salesGrowth >= 0 ? '+' : ''}
-                {salesGrowth.toFixed(1)}% from last month
+                {salesGrowth.toFixed(1)}% {formatMessage({
+                  id: 'from_last_month',
+                  defaultMessage: 'from last month',
+                })}
               </span>
             </div>
           </CardHeader>
@@ -202,14 +205,14 @@ const SimpleDashboard: React.FC = () => {
                   id: 'total_orders',
                   defaultMessage: 'Total orders',
                 })}{' '}
-                {new Date().toLocaleDateString('de-CH', {
+                {new Date().toLocaleDateString(locale || 'en-US', {
                   month: 'long',
                   year: 'numeric',
                 })}
               </CardDescription>
             </div>
             <CardTitle className="text-4xl font-bold text-slate-900 mt-2">
-              {totalOrders.toLocaleString('de-CH')}
+              {totalOrders.toLocaleString(locale || 'en-US')}
             </CardTitle>
             <div className="flex items-center gap-1 mt-2">
               <TrendingUp
@@ -219,7 +222,10 @@ const SimpleDashboard: React.FC = () => {
                 className={`text-sm font-medium ${ordersGrowth >= 0 ? 'text-green-500' : 'text-red-500'}`}
               >
                 {ordersGrowth >= 0 ? '+' : ''}
-                {ordersGrowth.toFixed(1)}% from last month
+                {ordersGrowth.toFixed(1)}% {formatMessage({
+                  id: 'from_last_month',
+                  defaultMessage: 'from last month',
+                })}
               </span>
             </div>
           </CardHeader>
@@ -284,14 +290,14 @@ const SimpleDashboard: React.FC = () => {
                   id: 'average_order_value',
                   defaultMessage: 'Average order value',
                 })}{' '}
-                {new Date().toLocaleDateString('de-CH', {
+                {new Date().toLocaleDateString(locale || 'en-US', {
                   month: 'long',
                   year: 'numeric',
                 })}
               </CardDescription>
             </div>
             <CardTitle className="text-4xl font-bold text-slate-900 mt-2">
-              {currency} {Math.round(averageOrderValue).toLocaleString('de-CH')}
+              {currency} {Math.round(averageOrderValue).toLocaleString(locale || 'en-US')}
             </CardTitle>
             <div className="flex items-center gap-1 mt-2">
               <TrendingUp
@@ -301,7 +307,10 @@ const SimpleDashboard: React.FC = () => {
                 className={`text-sm font-medium ${avgOrderValueGrowth >= 0 ? 'text-green-500' : 'text-red-500'}`}
               >
                 {avgOrderValueGrowth >= 0 ? '+' : ''}
-                {avgOrderValueGrowth.toFixed(1)}% from last month
+                {avgOrderValueGrowth.toFixed(1)}% {formatMessage({
+                  id: 'from_last_month',
+                  defaultMessage: 'from last month',
+                })}
               </span>
             </div>
           </CardHeader>

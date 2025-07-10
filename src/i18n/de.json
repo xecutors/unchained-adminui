@@ -1055,5 +1055,6 @@
   "wrong_file_format": "Falsches Dateiformat",
   "wrong_token_import_file_format": "Falsches Token-Import-Dateiformat",
   "yes": "Ja",
-  "yesterday": "Gestern"
+  "yesterday": "Gestern",
+  "from_last_month": "vom letzten Monat"
 }

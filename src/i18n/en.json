@@ -808,5 +808,6 @@
   "work_type_header": "Type",
   "worker": "Worker",
   "worker_dynamic": "{worker}",
-  "write_review": "Write a Review"
+  "write_review": "Write a Review",
+  "from_last_month": "from last month"
 }
