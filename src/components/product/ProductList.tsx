@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
-import ProductListItem from './ProductListItem';
+import CopilotProductListItem from './CopilotProductListItem';
 import ProductListItemCompact from './ProductListItemCompact';
 import ListViewWrapper from '../../modules/chat/components/ListViewWrapper';
 
@@ -70,7 +70,7 @@ const ProductList: React.FC<ProductListProps> = ({ products }) => {
               }}
             >
               {filteredProducts.map((product) => (
-                <ProductListItem key={product._id} product={product} />
+                <CopilotProductListItem key={product._id} product={product} />
               ))}
             </div>
           ) : (

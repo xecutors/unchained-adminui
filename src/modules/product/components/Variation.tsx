@@ -105,9 +105,9 @@ const Variation = ({ type, variation, selectedLocale, onDelete }) => {
 
           {/* Type badge */}
           {type && (
-            <Badge 
-              text={type} 
-              color="slate" 
+            <Badge
+              text={type}
+              color="slate"
               className="rounded-md uppercase text-xs font-medium flex-shrink-0"
             />
           )}

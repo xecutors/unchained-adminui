@@ -18,7 +18,9 @@ interface ProductListItemProps {
   product: any;
 }
 
-const ProductListItem: React.FC<ProductListItemProps> = ({ product }) => {
+const CopilotProductListItem: React.FC<ProductListItemProps> = ({
+  product,
+}) => {
   const { formatMessage } = useIntl();
   const { formatPrice } = useFormatPrice();
   const { texts, media, catalogPrice, commerce } = product;
@@ -106,4 +108,4 @@ const ProductListItem: React.FC<ProductListItemProps> = ({ product }) => {
   );
 };
 
-export default ProductListItem;
+export default CopilotProductListItem;

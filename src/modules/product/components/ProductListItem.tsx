@@ -43,7 +43,14 @@ const ProductListItem = ({
     }
   };
   const productUrl = `/products?slug=${generateUniqueId(product)}`;
-
+  const TypeName = (
+    <span className="text-xs mt-1 px-2 py-0.5 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 rounded w-fit">
+      {(product.__typename || product.type || 'SimpleProduct').replace(
+        'Product',
+        '',
+      ) || 'Simple'}
+    </span>
+  );
   return (
     <Table.Row className="group">
       <Table.Cell>
@@ -58,18 +65,24 @@ const ProductListItem = ({
                 className="mr-3"
               />
             )}
-            {product?.texts?.title || (
-              <>
-                {product._id}{' '}
-                <Badge
-                  color="yellow"
-                  text={formatMessage({
-                    id: 'title_not_found',
-                    defaultMessage: 'Title not found',
-                  })}
-                />
-              </>
-            )}
+
+            <div className="flex flex-col">
+              <div className="flex items-center gap-2">
+                {product?.texts?.title || (
+                  <>
+                    {product._id}{' '}
+                    <Badge
+                      color="yellow"
+                      text={formatMessage({
+                        id: 'title_not_found',
+                        defaultMessage: 'Title not found',
+                      })}
+                    />
+                  </>
+                )}
+              </div>
+              {TypeName}
+            </div>
           </Link>
         ) : (
           <div className="flex items-center text-sm text-slate-900">
@@ -79,18 +92,24 @@ const ProductListItem = ({
                 className="mr-3"
               />
             )}
-            {product?.texts?.title || (
-              <>
-                {product._id}{' '}
-                <Badge
-                  color="yellow"
-                  text={formatMessage({
-                    id: 'title_not_found',
-                    defaultMessage: 'Title not found',
-                  })}
-                />
-              </>
-            )}
+
+            <div className="flex flex-col">
+              <div className="flex items-center gap-2">
+                {product?.texts?.title || (
+                  <>
+                    {product._id}{' '}
+                    <Badge
+                      color="yellow"
+                      text={formatMessage({
+                        id: 'title_not_found',
+                        defaultMessage: 'Title not found',
+                      })}
+                    />
+                  </>
+                )}
+              </div>
+              {TypeName}
+            </div>
           </div>
         )}
       </Table.Cell>
