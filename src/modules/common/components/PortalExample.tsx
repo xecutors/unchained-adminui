@@ -11,7 +11,7 @@ const PortalExample: React.FC = () => {
   return (
     <div className="relative p-4 bg-slate-100 dark:bg-slate-900 rounded-lg">
       <h3 className="text-lg font-semibold mb-4">Portal Examples</h3>
-      
+
       {/* Dropdown Example */}
       <div className="relative mb-4">
         <button
@@ -20,10 +20,10 @@ const PortalExample: React.FC = () => {
         >
           Toggle Dropdown
         </button>
-        
+
         {showDropdown && (
           <Portal>
-            <div 
+            <div
               className="fixed inset-0 z-50"
               onClick={() => setShowDropdown(false)}
             >
@@ -50,22 +50,19 @@ const PortalExample: React.FC = () => {
 
       {/* Modal Example */}
       <div className="mb-4">
-        <button
-          onClick={() => setShowModal(true)}
-          className="btn-primary"
-        >
+        <button onClick={() => setShowModal(true)} className="btn-primary">
           Open Modal
         </button>
-        
+
         {showModal && (
           <Portal className="portal-modal">
             <div className="fixed inset-0 z-50 flex items-center justify-center">
               {/* Backdrop */}
-              <div 
+              <div
                 className="absolute inset-0 bg-black bg-opacity-50"
                 onClick={() => setShowModal(false)}
               />
-              
+
               {/* Modal content */}
               <div className="relative bg-white dark:bg-slate-800 rounded-lg shadow-xl p-6 max-w-md w-full mx-4">
                 <div className="flex items-center justify-between mb-4">
@@ -76,16 +73,30 @@ const PortalExample: React.FC = () => {
                     onClick={() => setShowModal(false)}
                     className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"
                   >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                    <svg
+                      className="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M6 18L18 6M6 6l12 12"
+                      />
                     </svg>
                   </button>
                 </div>
-                
+
                 <div className="text-slate-700 dark:text-slate-300">
-                  <p>This modal is rendered using the Portal component, which places it at the document body level to avoid z-index and overflow issues.</p>
+                  <p>
+                    This modal is rendered using the Portal component, which
+                    places it at the document body level to avoid z-index and
+                    overflow issues.
+                  </p>
                 </div>
-                
+
                 <div className="mt-6 flex justify-end space-x-2">
                   <button
                     onClick={() => setShowModal(false)}

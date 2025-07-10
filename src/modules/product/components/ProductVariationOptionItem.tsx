@@ -85,8 +85,8 @@ const ProductVariationOptionItem = ({
       form={form}
       className="last:pb-2 variation-option-update-form relative overflow-visible"
     >
-      <div className="my-2 rounded-sm border mx-4 ">
-        <div className="p-2 bg-white dark:bg-slate-500 dark:text-slate-200">
+      <div className="my-2 rounded-sm border dark:border-slate-700 mx-4 ">
+        <div className="p-2 bg-white dark:bg-slate-900 dark:text-slate-200">
           <div className="flex gap-2 w-full items-center justify-between">
             <Badge
               text={option?.texts?.title}
@@ -94,7 +94,7 @@ const ProductVariationOptionItem = ({
               className="rounded-md"
             />
             <div className="flex items-center gap-4 w-full">
-              <p className="truncate text-sm font-medium text-slate-900 dark:text-slate-200">
+              <p className="truncate text-sm font-medium text-slate-900 dark:text-slate-400">
                 {isEdit ? (
                   <TextField
                     className="mt-0"

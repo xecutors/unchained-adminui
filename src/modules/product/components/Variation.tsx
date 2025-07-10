@@ -39,20 +39,20 @@ const Variation = ({ type, variation, selectedLocale, onDelete }) => {
   // Calculate menu position when showing menu
   const calculateMenuPosition = () => {
     if (!buttonRef.current) return;
-    
+
     const buttonRect = buttonRef.current.getBoundingClientRect();
     const menuWidth = 192; // w-48 = 12rem = 192px
     const menuHeight = 80; // Approximate height for 2 menu items
-    
+
     let top = buttonRect.bottom + 4; // 4px gap (mt-1)
     let left = buttonRect.right - menuWidth; // Align right edge with button
-    
+
     // Ensure menu doesn't go off screen
     if (left < 8) left = 8; // 8px from left edge
     if (top + menuHeight > window.innerHeight - 8) {
       top = buttonRect.top - menuHeight - 4; // Show above button
     }
-    
+
     setMenuPosition({ top, left });
   };
 
@@ -78,7 +78,10 @@ const Variation = ({ type, variation, selectedLocale, onDelete }) => {
       className="variation-update-form bg-white dark:bg-slate-800 px-4 py-3 border-b border-slate-200 dark:border-slate-700 w-full overflow-x-hidden overflow-y-visible relative"
       data-variationid={variation._id}
     >
-      <div className="flex items-center justify-between w-full gap-3" tabIndex={-1}>
+      <div
+        className="flex items-center justify-between w-full gap-3"
+        tabIndex={-1}
+      >
         <div className="flex items-center gap-3 flex-1 min-w-0 overflow-hidden">
           {/* Title first on the left */}
           <div className="flex items-center gap-3">
@@ -103,7 +106,7 @@ const Variation = ({ type, variation, selectedLocale, onDelete }) => {
           {variation?.options?.length > 0 && (
             <div className="flex items-center gap-3 flex-wrap">
               {variation.options.map((option, index) => (
-                <span 
+                <span
                   key={option.value || index}
                   className="inline-flex text-nowrap items-center px-2 py-0.5 rounded-lg text-xs font-medium bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-800"
                 >
@@ -182,16 +185,17 @@ const Variation = ({ type, variation, selectedLocale, onDelete }) => {
               >
                 <EllipsisHorizontalIcon className="w-5 h-5 text-slate-500 dark:text-slate-400" />
               </button>
-              
+
               {showMenu && (
                 <Portal>
-                  <div 
+                  <div
                     ref={menuRef}
                     className="fixed w-48 bg-white dark:bg-slate-800 rounded-md shadow-xl border border-slate-200 dark:border-slate-700 z-[9999]"
                     style={{
                       top: menuPosition.top,
                       left: menuPosition.left,
-                      boxShadow: '0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)'
+                      boxShadow:
+                        '0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
                     }}
                   >
                     <div className="py-1">

@@ -19,20 +19,20 @@ export const usePortal = (options: UsePortalOptions = {}) => {
   useEffect(() => {
     // Create portal container element
     const element = document.createElement('div');
-    
+
     // Apply className if provided
     if (className) {
       element.className = className;
     }
-    
+
     elementRef.current = element;
-    
+
     // Append to specified container or document.body
     const targetContainer = container || document.body;
     targetContainer.appendChild(element);
-    
+
     setMounted(true);
-    
+
     // Cleanup function to remove portal element
     return () => {
       if (elementRef.current && targetContainer.contains(elementRef.current)) {
@@ -47,7 +47,7 @@ export const usePortal = (options: UsePortalOptions = {}) => {
     /** Whether the portal is currently mounted */
     mounted,
     /** The portal container element */
-    container: elementRef.current
+    container: elementRef.current,
   };
 };
 

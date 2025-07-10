@@ -29,7 +29,10 @@ const ProductVariationOptionForm = ({
   });
 
   return (
-    <Form form={form} className="variation-option-form relative overflow-visible">
+    <Form
+      form={form}
+      className="variation-option-form relative overflow-visible"
+    >
       <div className="mb-4 px-2 sm:px-4 pt-2">
         <div className="p-3 bg-slate-50 dark:bg-slate-900/20 rounded-lg border border-slate-200 dark:border-slate-800">
           <p className="text-sm text-slate-800 dark:text-slate-200">
