@@ -50,10 +50,10 @@ const useOrderItemsAnalytics = (): OrderItemsAnalytics => {
         order.items.forEach((item: any) => {
           const productId = item.product?._id;
           // Get product name - texts is an object, not array
-          const productName = 
-            item.product?.texts?.title || 
-            item.product?.texts?.subtitle || 
-            `Product ${productId?.slice(-6)}` || 
+          const productName =
+            item.product?.texts?.title ||
+            item.product?.texts?.subtitle ||
+            `Product ${productId?.slice(-6)}` ||
             'Unknown Product';
 
           // Get product image URL
@@ -65,7 +65,7 @@ const useOrderItemsAnalytics = (): OrderItemsAnalytics => {
               productId,
               texts: item.product?.texts,
               productName,
-              fullProduct: item.product
+              fullProduct: item.product,
             });
           }
 

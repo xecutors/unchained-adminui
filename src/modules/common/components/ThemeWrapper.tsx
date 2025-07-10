@@ -1,8 +1,24 @@
-import { createContext, useEffect, useMemo } from 'react';
+import {
+  createContext,
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  useEffect,
+  useMemo,
+} from 'react';
 import useLocalStorage from '../hooks/useLocalStorage';
+export type Theme = 'light' | 'dark';
 
-export const ThemeContext = createContext({});
-const ThemeWrapper = ({ children }) => {
+type ThemeContextType = [Theme, Dispatch<SetStateAction<Theme>>];
+
+export const ThemeContext = createContext<ThemeContextType | undefined>(
+  undefined,
+);
+
+interface ThemeWrapperProps {
+  children: ReactNode;
+}
+const ThemeWrapper = ({ children }: ThemeWrapperProps) => {
   const [theme, setTheme] = useLocalStorage('theme', 'light');
 
   useEffect(() => {
@@ -27,10 +43,10 @@ const ThemeWrapper = ({ children }) => {
     }
   }, [theme]);
 
-  const themeValue = useMemo(() => [theme, setTheme], [theme, setTheme]);
+  const value = useMemo(() => [theme, setTheme] as ThemeContextType, [theme]);
 
   return (
-    <ThemeContext.Provider value={themeValue}>{children}</ThemeContext.Provider>
+    <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
   );
 };
 

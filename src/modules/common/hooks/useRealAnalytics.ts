@@ -76,18 +76,41 @@ const useRealAnalytics = () => {
       return orderDate >= lastMonth && orderDate <= lastMonthEnd;
     });
 
-    const currentMonthSales = currentMonthOrders.reduce((sum, order) => sum + (order.total?.amount || 0), 0) / 100;
-    const lastMonthSales = lastMonthOrders.reduce((sum, order) => sum + (order.total?.amount || 0), 0) / 100;
-    
+    const currentMonthSales =
+      currentMonthOrders.reduce(
+        (sum, order) => sum + (order.total?.amount || 0),
+        0,
+      ) / 100;
+    const lastMonthSales =
+      lastMonthOrders.reduce(
+        (sum, order) => sum + (order.total?.amount || 0),
+        0,
+      ) / 100;
+
     const currentMonthOrdersCount = currentMonthOrders.length;
     const lastMonthOrdersCount = lastMonthOrders.length;
 
-    const currentMonthAvgOrder = currentMonthOrdersCount > 0 ? currentMonthSales / currentMonthOrdersCount : 0;
-    const lastMonthAvgOrder = lastMonthOrdersCount > 0 ? lastMonthSales / lastMonthOrdersCount : 0;
+    const currentMonthAvgOrder =
+      currentMonthOrdersCount > 0
+        ? currentMonthSales / currentMonthOrdersCount
+        : 0;
+    const lastMonthAvgOrder =
+      lastMonthOrdersCount > 0 ? lastMonthSales / lastMonthOrdersCount : 0;
 
-    const salesGrowth = lastMonthSales > 0 ? ((currentMonthSales - lastMonthSales) / lastMonthSales) * 100 : 0;
-    const ordersGrowth = lastMonthOrdersCount > 0 ? ((currentMonthOrdersCount - lastMonthOrdersCount) / lastMonthOrdersCount) * 100 : 0;
-    const avgOrderValueGrowth = lastMonthAvgOrder > 0 ? ((currentMonthAvgOrder - lastMonthAvgOrder) / lastMonthAvgOrder) * 100 : 0;
+    const salesGrowth =
+      lastMonthSales > 0
+        ? ((currentMonthSales - lastMonthSales) / lastMonthSales) * 100
+        : 0;
+    const ordersGrowth =
+      lastMonthOrdersCount > 0
+        ? ((currentMonthOrdersCount - lastMonthOrdersCount) /
+            lastMonthOrdersCount) *
+          100
+        : 0;
+    const avgOrderValueGrowth =
+      lastMonthAvgOrder > 0
+        ? ((currentMonthAvgOrder - lastMonthAvgOrder) / lastMonthAvgOrder) * 100
+        : 0;
 
     // Since OrderFragment doesn't include items, create mock top products based on order data
     // This is a simplified version - in a real scenario you'd need OrderDetailFragment

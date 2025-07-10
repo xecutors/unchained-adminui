@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import useTheme from '../hooks/useTheme';
 
 const ThemeToggle = () => {
-  const [theme, setTheme] = useTheme();
+  const { theme, setTheme } = useTheme();
 
   const handleToggleTheme = () => {
     if (theme === 'dark') {

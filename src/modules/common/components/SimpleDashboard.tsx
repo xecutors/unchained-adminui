@@ -89,11 +89,29 @@ const SimpleDashboard: React.FC = () => {
                 <div className="h-49 relative overflow-hidden rounded">
                   {/* Chart-like skeleton with gradient and curved shape */}
                   <div className="absolute inset-0 bg-gradient-to-r from-slate-100 via-slate-200 to-slate-100 dark:from-slate-800 dark:via-slate-700 dark:to-slate-800 animate-pulse" />
-                  <svg className="w-full h-full opacity-30" viewBox="0 0 100 40" preserveAspectRatio="none">
+                  <svg
+                    className="w-full h-full opacity-30"
+                    viewBox="0 0 100 40"
+                    preserveAspectRatio="none"
+                  >
                     <defs>
-                      <linearGradient id="skeleton-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" stopColor="currentColor" stopOpacity="0.3" />
-                        <stop offset="100%" stopColor="currentColor" stopOpacity="0.05" />
+                      <linearGradient
+                        id="skeleton-gradient"
+                        x1="0%"
+                        y1="0%"
+                        x2="0%"
+                        y2="100%"
+                      >
+                        <stop
+                          offset="0%"
+                          stopColor="currentColor"
+                          stopOpacity="0.3"
+                        />
+                        <stop
+                          offset="100%"
+                          stopColor="currentColor"
+                          stopOpacity="0.05"
+                        />
                       </linearGradient>
                     </defs>
                     <path
@@ -124,7 +142,10 @@ const SimpleDashboard: React.FC = () => {
           <CardContent className="pt-0 pb-6">
             <div className="space-y-4">
               {[...Array(5)].map((_, i) => (
-                <div key={i} className="flex items-center justify-between min-h-[2rem]">
+                <div
+                  key={i}
+                  className="flex items-center justify-between min-h-[2rem]"
+                >
                   <div className="flex items-center gap-3 flex-1">
                     <div className="w-8 h-8 bg-slate-100 dark:bg-slate-700 rounded-md animate-pulse" />
                     <div className="h-4 w-32 bg-slate-100 dark:bg-slate-700 rounded-lg animate-pulse" />
@@ -512,7 +533,9 @@ const SimpleDashboard: React.FC = () => {
                       <div
                         className="bg-slate-700 dark:bg-slate-300 h-2 rounded-full transition-all duration-1000 ease-out"
                         style={{
-                          width: animateBars ? `${Math.min((product.totalQuantity / (displayTopProducts[0]?.totalQuantity || 1)) * 100, 100)}%` : '0%',
+                          width: animateBars
+                            ? `${Math.min((product.totalQuantity / (displayTopProducts[0]?.totalQuantity || 1)) * 100, 100)}%`
+                            : '0%',
                           transitionDelay: `${index * 150}ms`,
                         }}
                       />

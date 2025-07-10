@@ -10,7 +10,10 @@ import useLocalStorage from '../../common/hooks/useLocalStorage';
 
 export const WorkQueueWarningBanner = () => {
   const { formatMessage } = useIntl();
-  const [isDismissed, setIsDismissed] = useLocalStorage('workQueueWarningBanner:dismissed', false);
+  const [isDismissed, setIsDismissed] = useLocalStorage(
+    'workQueueWarningBanner:dismissed',
+    false,
+  );
   const { workQueue } = useWorkQueue({
     status: [IWorkStatus.Failed],
     pollInterval: 0,

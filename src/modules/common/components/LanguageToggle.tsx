@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
-import { GlobeAltIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
+import { GlobeAltIcon } from '@heroicons/react/24/outline';
+import useLocalStorage from '../hooks/useLocalStorage';
 
 const LanguageToggle = ({ narrowNav = false }) => {
-  const router = useRouter();
   const { locale, formatMessage } = useIntl();
   const [isOpen, setIsOpen] = useState(false);
-
-  // Admin UI only supports these localizations
   const availableLocales = ['en', 'de'];
 
   const currentLanguage =
     availableLocales.find((loc) => loc === locale) || 'en';
+  const [, setPreferredLanguage] = useLocalStorage(
+    'preferred-language',
+    currentLanguage,
+  );
 
   const getLanguageDisplayName = (langCode: string): string => {
     const languageNames: Record<string, string> = {
@@ -28,10 +29,7 @@ const LanguageToggle = ({ narrowNav = false }) => {
 
   const changeLanguage = async (newLocale: string) => {
     try {
-      // Store preference in localStorage
-      localStorage.setItem('preferred-language', newLocale);
-
-      // Reload the page to apply new language
+      setPreferredLanguage(newLocale);
       window.location.reload();
 
       setIsOpen(false);
@@ -40,7 +38,6 @@ const LanguageToggle = ({ narrowNav = false }) => {
     }
   };
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Element;

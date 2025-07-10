@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { useChat } from '@ai-sdk/react';
 import { ChatMessage } from '../types';
-import { chatStorage } from '../utils/chatStorage';
 import { chatUtils } from '../utils/chatUtils';
+import useLocalStorage from '../../common/hooks/useLocalStorage';
 
 function formatFileLink(url: string): string {
   const extension = url.split('.').pop()?.toLowerCase().split('?')[0] || '';
@@ -20,6 +20,10 @@ function formatFileLink(url: string): string {
 }
 
 export const useChatManager = () => {
+  const [chatHistory, setChatHistory] = useLocalStorage(
+    'copilot-chat-history',
+    [],
+  );
   const hasInitialized = useRef(false);
 
   const {
@@ -38,7 +42,7 @@ export const useChatManager = () => {
     maxSteps: 5,
     credentials: 'include',
     api: process.env.NEXT_PUBLIC_CHAT_URL || '/chat',
-    initialMessages: chatStorage.loadMessages(),
+    initialMessages: chatHistory,
     onError: (error) => {
       console.error('Chat error:', error);
 
@@ -80,12 +84,12 @@ export const useChatManager = () => {
 
   // Save messages to localStorage whenever they change
   useEffect(() => {
-    chatStorage.saveMessages(messages as ChatMessage[]);
+    setChatHistory(messages as ChatMessage[]);
   }, [messages]);
 
   const clearHistory = () => {
     setMessages([]);
-    chatStorage.clearMessages();
+    setChatHistory([]);
     hasInitialized.current = false; // Reset initialization flag
   };
 

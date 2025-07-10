@@ -112,11 +112,6 @@ const SelectOptions = ({
     return config.dropdown;
   };
 
-  const getDescriptionClasses = (option: SelectOptionsProp) => {
-    const config = colorConfigs[option.bgColor] || colorConfigs.emerald;
-    return config.description;
-  };
-
   return (
     <Listbox value={select} onChange={setSelected}>
       {({ open }) => (

@@ -7,6 +7,7 @@ import {
   StopIcon,
 } from '@heroicons/react/24/outline';
 import { useChatContext } from '../../modules/chat';
+import useLocalStorage from '../../modules/common/hooks/useLocalStorage';
 const CopilotInput: React.FC = () => {
   const {
     input,
@@ -16,21 +17,17 @@ const CopilotInput: React.FC = () => {
     stop,
     addInterruptionMessage,
   } = useChatContext();
+  const [inputHistory, setInputHistory] = useLocalStorage(
+    'copilot-input-history',
+    [],
+  );
 
-  const [inputHistory, setInputHistory] = useState<string[]>(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('copilot-input-history');
-      return saved ? JSON.parse(saved) : [];
-    }
-    return [];
-  });
   const [historyIndex, setHistoryIndex] = useState(-1);
 
   const [imageUrls, setImageUrls] = useState<string[]>([]);
   const [uploading, setUploading] = useState(false);
   const [isStopped, setIsStopped] = useState(false);
 
-  // Reset stopped state when a new operation starts
   useEffect(() => {
     if (status === 'submitted' || status === 'streaming') {
       setIsStopped(false);
@@ -41,7 +38,6 @@ const CopilotInput: React.FC = () => {
     const currentStatus = status;
     setIsStopped(true);
     stop();
-    // Add interruption message after a brief delay to ensure stop takes effect
     setTimeout(() => {
       addInterruptionMessage(currentStatus);
     }, 100);
@@ -135,10 +131,7 @@ const CopilotInput: React.FC = () => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       if (inputHistory.length > 0) {
-        localStorage.setItem(
-          'copilot-input-history',
-          JSON.stringify(inputHistory.slice(-50)),
-        );
+        setInputHistory(JSON.stringify(inputHistory.slice(-50)));
       }
     }, 500);
     return () => clearTimeout(timeout);
