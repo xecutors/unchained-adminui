@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import { useState, useEffect, useRef } from 'react';
 import { useIntl } from 'react-intl';
 import { EllipsisHorizontalIcon } from '@heroicons/react/24/outline';
+import { PencilSquareIcon, TrashIcon } from '@heroicons/react/20/solid';
 
 import Badge from '../../common/components/Badge';
 import Button from '../../common/components/Button';
@@ -75,21 +76,21 @@ const Variation = ({ type, variation, selectedLocale, onDelete }) => {
   return (
     <Form
       form={form}
-      className="variation-update-form bg-white dark:bg-slate-800 px-4 py-3 border-b border-slate-200 dark:border-slate-700 w-full overflow-x-hidden overflow-y-visible relative"
+      className="variation-update-form bg-white dark:bg-slate-800 px-4 py-3 border-b border-slate-200 dark:border-slate-700 w-full overflow-x-hidden overflow-y-visible relative hover:outline hover:outline-2 hover:outline-slate-400 dark:hover:outline-slate-500 transition-all"
       data-variationid={variation._id}
     >
       <div
         className="flex items-center justify-between w-full gap-3"
         tabIndex={-1}
       >
-        <div className="flex items-center gap-3 flex-1 min-w-0 overflow-hidden">
+        <div className="flex items-center gap-3 lg:gap-6 xl:gap-10 flex-1 min-w-0 overflow-hidden">
           {/* Title first on the left */}
           <div className="flex items-center gap-3">
             {isEdit ? (
               <TextField
                 className="mt-0 py-1"
                 name="title"
-                required
+                requirose
                 label={formatMessage({
                   id: 'title',
                   defaultMessage: 'Title',
@@ -101,20 +102,6 @@ const Variation = ({ type, variation, selectedLocale, onDelete }) => {
               </span>
             )}
           </div>
-
-          {/* Options as tags in same row */}
-          {variation?.options?.length > 0 && (
-            <div className="flex items-center gap-3 flex-wrap">
-              {variation.options.map((option, index) => (
-                <span
-                  key={option.value || index}
-                  className="inline-flex text-nowrap items-center px-2 py-0.5 rounded-lg text-xs font-medium bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-800"
-                >
-                  {option?.texts?.title || option.value}
-                </span>
-              ))}
-            </div>
-          )}
 
           {/* Subtitle if exists */}
           {(variation?.texts?.subtitle || isEdit) && (
@@ -134,6 +121,19 @@ const Variation = ({ type, variation, selectedLocale, onDelete }) => {
             </div>
           )}
 
+          {/* Options as tags in same row */}
+          {variation?.options?.length > 0 && (
+            <div className="flex items-center gap-3 flex-wrap">
+              {variation.options.map((option, index) => (
+                <span
+                  key={option.value || index}
+                  className="inline-flex text-nowrap items-center px-2 py-0.5 rounded-lg text-xs font-medium bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-800"
+                >
+                  {option?.texts?.title || option.value}
+                </span>
+              ))}
+            </div>
+          )}
           {/* Key for reference */}
           <div className="text-sm text-slate-400 dark:text-slate-500 font-mono">
             ({variation?.key})
@@ -207,9 +207,9 @@ const Variation = ({ type, variation, selectedLocale, onDelete }) => {
                           setIsEdit(true);
                           setShowMenu(false);
                         }}
-                        className="flex items-center w-full px-4 py-2 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700"
+                        className="flex items-center w-full px-4 py-2 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
                       >
-                        <EditIcon className="mr-3" />
+                        <PencilSquareIcon className="mr-3 h-5 w-5" />
                         {formatMessage({
                           id: 'edit',
                           defaultMessage: 'Edit',
@@ -223,9 +223,9 @@ const Variation = ({ type, variation, selectedLocale, onDelete }) => {
                           onDelete(variation._id);
                           setShowMenu(false);
                         }}
-                        className="flex items-center w-full px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20"
+                        className="flex items-center w-full px-4 py-2 text-sm text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-900/20 transition-colors"
                       >
-                        <DeleteButton className="mr-3 !p-0 !m-0" />
+                        <TrashIcon className="mr-3 h-5 w-5" />
                         {formatMessage({
                           id: 'delete',
                           defaultMessage: 'Delete',

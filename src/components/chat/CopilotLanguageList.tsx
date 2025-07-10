@@ -31,7 +31,7 @@ export const LanguageItemCompact = ({ language }: { language: Language }) => {
             className={`text-xs font-medium rounded-full px-2 py-0.5 ${
               language.isActive
                 ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300'
-                : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300'
+                : 'bg-rose-100 text-rose-800 dark:bg-rose-900 dark:text-rose-300'
             }`}
           >
             {language.isActive ? 'Active' : 'Inactive'}

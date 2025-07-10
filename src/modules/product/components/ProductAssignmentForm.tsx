@@ -164,7 +164,7 @@ const ProductAssignmentForm = ({ proxyId, disabled = false }) => {
               {variationProduct ? (
                 variationProduct?.texts?.title
               ) : product.variations?.length !== columns.length ? (
-                <div className="mt-1 text-sm text-red-600">
+                <div className="mt-1 text-sm text-rose-600">
                   {formatMessage({
                     id: 'assign_product_needs_variations',
                     defaultMessage:

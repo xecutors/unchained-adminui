@@ -29,8 +29,8 @@ export const CurrencyItemCompact = ({ currency }: { currency: Currency }) => {
           <span
             className={`text-xs font-medium rounded-full px-2 py-0.5 ${
               currency.isActive
-                ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300'
-                : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300'
+                ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-300'
+                : 'bg-rose-100 text-rose-800 dark:bg-rose-900 dark:text-rose-300'
             }`}
           >
             {currency.isActive

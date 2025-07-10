@@ -17,7 +17,7 @@ const Badge = ({
       id="badge"
       className={classnames(
         isRainbow
-          ? 'inline-flex items-center text-sm font-bold text-slate-900 dark:text-white shadow-lg relative p-[2px] bg-gradient-to-r from-red-500 via-green-500 to-blue-500'
+          ? 'inline-flex items-center text-sm font-bold text-slate-900 dark:text-white shadow-lg relative p-[2px] bg-gradient-to-r from-rose-500 via-emerald-500 to-sky-500'
           : `inline-flex items-center border ${borderColor(
               normalizedColor,
               400,

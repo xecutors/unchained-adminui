@@ -88,7 +88,7 @@ const ProductDetailPage = ({ slug }) => {
         description: formatMessage({
           id: 'draft_product_description',
           defaultMessage:
-            'Product will not be discoverable and can not be ordered',
+            'Product will not be discoverable and can not be orderose',
         }),
         current: status === 'DRAFT',
         selectedTitle: formatMessage({
@@ -129,7 +129,7 @@ const ProductDetailPage = ({ slug }) => {
     return (
       <div className="mt-5 max-w-full">
         <div className="text-center py-8">
-          <p className="text-red-600 dark:text-red-400">
+          <p className="text-rose-600 dark:text-rose-400">
             {formatMessage({
               id: 'product_load_error',
               defaultMessage: 'Failed to load product',
@@ -180,7 +180,7 @@ const ProductDetailPage = ({ slug }) => {
                 })}
                 message={e instanceof CustomError ? e.message : e}
                 icon={
-                  <div className="mx-auto flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-red-100 dark:bg-red-900/30 sm:mx-0 sm:h-10 sm:w-10">
+                  <div className="mx-auto flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-rose-100 dark:bg-rose-900/30 sm:mx-0 sm:h-10 sm:w-10">
                     <XMarkIcon
                       className="h-6 w-6 text-rose-600 dark:text-rose-400"
                       xmlns="http://www.w3.org/2000/svg"
@@ -220,7 +220,7 @@ const ProductDetailPage = ({ slug }) => {
         currentPageTitle={product?.texts?.title}
       />
       {status === 'DELETED' && (
-        <div className="mb-4 rounded-md border border-red-300 bg-red-50 p-4 text-sm text-red-800 dark:border-red-700 dark:bg-red-900/30 dark:text-red-300">
+        <div className="mb-4 rounded-md border border-rose-300 bg-rose-50 p-4 text-sm text-rose-800 dark:border-rose-700 dark:bg-rose-900/30 dark:text-rose-300">
           {formatMessage({
             id: 'product_deleted_notice',
             defaultMessage:
@@ -235,7 +235,7 @@ const ProductDetailPage = ({ slug }) => {
               <>
                 {product?.texts?.title || 'Untitled Product'}
                 {status === 'DELETED' && (
-                  <span className="ml-3 rounded bg-red-100 px-2 py-1 text-xs font-semibold text-red-800 dark:bg-red-900/40 dark:text-red-300">
+                  <span className="ml-3 rounded bg-rose-100 px-2 py-1 text-xs font-semibold text-rose-800 dark:bg-rose-900/40 dark:text-rose-300">
                     {formatMessage({
                       id: 'deleted_status',
                       defaultMessage: 'Deleted',

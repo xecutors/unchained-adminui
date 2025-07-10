@@ -168,7 +168,7 @@ const SimpleDashboard: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         <Card className="col-span-2">
           <CardContent className="p-6">
-            <p className="text-red-600 dark:text-red-400">
+            <p className="text-rose-600 dark:text-rose-400">
               Error loading analytics: {error.message}
             </p>
           </CardContent>
@@ -225,10 +225,10 @@ const SimpleDashboard: React.FC = () => {
             </CardTitle>
             <div className="flex items-center gap-1 mt-2">
               <TrendingUp
-                className={`h-4 w-4 ${salesGrowth >= 0 ? 'text-green-500' : 'text-red-500'}`}
+                className={`h-4 w-4 ${salesGrowth >= 0 ? 'text-green-500' : 'text-rose-500'}`}
               />
               <span
-                className={`text-sm font-medium ${salesGrowth >= 0 ? 'text-green-500' : 'text-red-500'}`}
+                className={`text-sm font-medium ${salesGrowth >= 0 ? 'text-green-500' : 'text-rose-500'}`}
               >
                 {salesGrowth >= 0 ? '+' : ''}
                 {salesGrowth.toFixed(1)}%{' '}
@@ -311,10 +311,10 @@ const SimpleDashboard: React.FC = () => {
             </CardTitle>
             <div className="flex items-center gap-1 mt-2">
               <TrendingUp
-                className={`h-4 w-4 ${ordersGrowth >= 0 ? 'text-green-500' : 'text-red-500'}`}
+                className={`h-4 w-4 ${ordersGrowth >= 0 ? 'text-green-500' : 'text-rose-500'}`}
               />
               <span
-                className={`text-sm font-medium ${ordersGrowth >= 0 ? 'text-green-500' : 'text-red-500'}`}
+                className={`text-sm font-medium ${ordersGrowth >= 0 ? 'text-green-500' : 'text-rose-500'}`}
               >
                 {ordersGrowth >= 0 ? '+' : ''}
                 {ordersGrowth.toFixed(1)}%{' '}
@@ -398,10 +398,10 @@ const SimpleDashboard: React.FC = () => {
             </CardTitle>
             <div className="flex items-center gap-1 mt-2">
               <TrendingUp
-                className={`h-4 w-4 ${avgOrderValueGrowth >= 0 ? 'text-green-500' : 'text-red-500'}`}
+                className={`h-4 w-4 ${avgOrderValueGrowth >= 0 ? 'text-green-500' : 'text-rose-500'}`}
               />
               <span
-                className={`text-sm font-medium ${avgOrderValueGrowth >= 0 ? 'text-green-500' : 'text-red-500'}`}
+                className={`text-sm font-medium ${avgOrderValueGrowth >= 0 ? 'text-green-500' : 'text-rose-500'}`}
               >
                 {avgOrderValueGrowth >= 0 ? '+' : ''}
                 {avgOrderValueGrowth.toFixed(1)}%{' '}
