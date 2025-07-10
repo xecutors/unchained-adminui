@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
-import { useIntl } from 'react-intl';
-import classNames from 'classnames';
+import React, { useState } from "react";
+import { useIntl } from "react-intl";
+import classNames from "classnames";
 import {
   ChevronDownIcon,
   ChevronUpIcon,
   XMarkIcon,
   RocketLaunchIcon,
   CheckCircleIcon,
-} from '@heroicons/react/24/outline';
-import useShopConfiguration from '../../modules/common/hooks/useShopConfiguration';
-import useLocalStorage from '../../modules/common/hooks/useLocalStorage';
-import ProgressIndicator from './ProgressIndicator';
-import SetupStepCard from './SetupStepCard';
-import { Step } from '../../modules/common/utils/getSetupStepsConfigurationsMeta';
+} from "@heroicons/react/24/outline";
+import useShopConfiguration from "../../modules/common/hooks/useShopConfiguration";
+import useLocalStorage from "../../modules/common/hooks/useLocalStorage";
+import ProgressIndicator from "./ProgressIndicator";
+import SetupStepCard from "./SetupStepCard";
+import { Step } from "../../modules/common/utils/getSetupStepsConfigurationsMeta";
 
 interface ShopSetupChecklistProps {
   onDismiss?: () => void;
@@ -31,7 +31,10 @@ const ShopSetupChecklist: React.FC<ShopSetupChecklistProps> = ({
     content: false,
   });
   const { isFullyConfigured } = configuration;
-  const [isDismissed, setIsDismissed] = useLocalStorage('shopSetupChecklist:dismissed', false);
+  const [isDismissed, setIsDismissed] = useLocalStorage(
+    "shopSetupChecklist:dismissed",
+    false,
+  );
 
   const toggleSection = (section: keyof typeof expandedSections) => {
     setExpandedSections((prev) => ({
@@ -59,7 +62,7 @@ const ShopSetupChecklist: React.FC<ShopSetupChecklistProps> = ({
     return (
       <div
         className={classNames(
-          'p-6 bg-gradient-to-r from-emerald-50 to-emerald-50 dark:from-emerald-900/20 dark:to-emerald-900/20 rounded-lg border border-emerald-200 dark:border-emerald-700/50',
+          "p-6 bg-gradient-to-r from-emerald-50 to-emerald-50 dark:from-emerald-900/20 dark:to-emerald-900/20 rounded-lg border border-emerald-200 dark:border-emerald-700/50",
           className,
         )}
       >
@@ -70,15 +73,15 @@ const ShopSetupChecklist: React.FC<ShopSetupChecklistProps> = ({
           <div className="flex-1">
             <h3 className="text-lg font-semibold text-emerald-800 dark:text-emerald-200 mb-2">
               {formatMessage({
-                id: 'shop_setup_complete',
-                defaultMessage: 'Shop Setup Complete!',
+                id: "shop_setup_complete",
+                defaultMessage: "Shop Setup Complete!",
               })}
             </h3>
             <p className="text-emerald-700 dark:text-emerald-300 text-sm">
               {formatMessage({
-                id: 'shop_setup_complete_description',
+                id: "shop_setup_complete_description",
                 defaultMessage:
-                  'Congratulations! Your shop is fully configured and ready to accept orders.',
+                  "Congratulations! Your shop is fully configured and ready to accept orders.",
               })}
             </p>
           </div>
@@ -101,20 +104,20 @@ const ShopSetupChecklist: React.FC<ShopSetupChecklistProps> = ({
 
   const getCategoryTitle = (category: string) => {
     switch (category) {
-      case 'essential':
+      case "essential":
         return formatMessage({
-          id: 'essential_setup',
-          defaultMessage: 'Essential Setup',
+          id: "essential_setup",
+          defaultMessage: "Essential Setup",
         });
-      case 'commerce':
+      case "commerce":
         return formatMessage({
-          id: 'commerce_setup',
-          defaultMessage: 'Commerce Setup',
+          id: "commerce_setup",
+          defaultMessage: "Commerce Setup",
         });
-      case 'content':
+      case "content":
         return formatMessage({
-          id: 'content_setup',
-          defaultMessage: 'Content Setup',
+          id: "content_setup",
+          defaultMessage: "Content Setup",
         });
       default:
         return category;
@@ -123,23 +126,23 @@ const ShopSetupChecklist: React.FC<ShopSetupChecklistProps> = ({
 
   const getCategoryDescription = (category: string) => {
     switch (category) {
-      case 'essential':
+      case "essential":
         return formatMessage({
-          id: 'essential_setup_description',
-          defaultMessage: 'Core settings required for your shop to function',
+          id: "essential_setup_description",
+          defaultMessage: "Core settings required for your shop to function",
         });
-      case 'commerce':
+      case "commerce":
         return formatMessage({
-          id: 'commerce_setup_description',
-          defaultMessage: 'Payment and delivery configuration for transactions',
+          id: "commerce_setup_description",
+          defaultMessage: "Payment and delivery configuration for transactions",
         });
-      case 'content':
+      case "content":
         return formatMessage({
-          id: 'content_setup_description',
-          defaultMessage: 'Products and categories to start selling',
+          id: "content_setup_description",
+          defaultMessage: "Products and categories to start selling",
         });
       default:
-        return '';
+        return "";
     }
   };
 
@@ -196,7 +199,7 @@ const ShopSetupChecklist: React.FC<ShopSetupChecklistProps> = ({
   return (
     <div
       className={classNames(
-        'bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 overflow-hidden',
+        "bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 overflow-hidden",
         className,
       )}
     >
@@ -211,27 +214,27 @@ const ShopSetupChecklist: React.FC<ShopSetupChecklistProps> = ({
           <div className="flex-1">
             <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100 mb-2">
               {formatMessage({
-                id: 'complete_shop_setup',
-                defaultMessage: 'Complete Your Shop Setup',
+                id: "complete_shop_setup",
+                defaultMessage: "Complete Your Shop Setup",
               })}
             </h2>
             <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">
               {formatMessage({
-                id: 'shop_setup_description',
+                id: "shop_setup_description",
                 defaultMessage:
-                  'Follow these steps to configure your shop and start selling.',
+                  "Follow these steps to configure your shop and start selling.",
               })}
             </p>
             <div className="space-y-2">
               <div className="flex items-center justify-between text-sm">
                 <span className="text-slate-600 dark:text-slate-400">
                   {formatMessage({
-                    id: 'overall_progress',
-                    defaultMessage: 'Overall Progress',
+                    id: "overall_progress",
+                    defaultMessage: "Overall Progress",
                   })}
                 </span>
                 <span className="font-medium text-slate-900 dark:text-slate-100">
-                  {configuration.completedSteps.length} of{' '}
+                  {configuration.completedSteps.length} of{" "}
                   {Object.keys(configuration.steps).length} complete
                 </span>
               </div>
@@ -253,17 +256,17 @@ const ShopSetupChecklist: React.FC<ShopSetupChecklistProps> = ({
       {/* Content */}
       <div className="p-6 space-y-4">
         {renderSection(
-          'essential',
+          "essential",
           configuration.essentialSteps,
           configuration.essentialStepsComplete,
         )}
         {renderSection(
-          'commerce',
+          "commerce",
           configuration.commerceSteps,
           configuration.commerceStepsComplete,
         )}
         {renderSection(
-          'content',
+          "content",
           configuration.contentSteps,
           configuration.contentStepsComplete,
         )}
@@ -273,8 +276,8 @@ const ShopSetupChecklist: React.FC<ShopSetupChecklistProps> = ({
           <p className="text-xs text-slate-500 dark:text-slate-500 flex items-center gap-1">
             <span className="inline-block w-2 h-2 bg-rose-500 rounded-full"></span>
             {formatMessage({
-              id: 'required_steps_note',
-              defaultMessage: 'Required for basic shop functionality',
+              id: "required_steps_note",
+              defaultMessage: "Required for basic shop functionality",
             })}
           </p>
         </div>

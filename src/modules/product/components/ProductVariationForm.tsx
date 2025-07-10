@@ -132,8 +132,8 @@ const ProductVariationForm = ({
           <SubmitButton
             hidden={!hasRole('addProductVariation')}
             label={formatMessage({
-              id: 'add_option',
-              defaultMessage: 'Add Option',
+              id: 'add_variation',
+              defaultMessage: 'Add variation',
             })}
           />
         </div>

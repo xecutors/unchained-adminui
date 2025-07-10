@@ -70,10 +70,11 @@ const ProductVariationsList = ({
     <Accordion
       data-variationid={variation._id}
       data={variations}
-      containerCSS="w-full !my-0"
-      bodyCSS="bg-white dark:bg-slate-800"
-      itemContainerCSS="!mt-0"
-      headerCSS="w-full flex items-center rounded-sm justify-between p-3 !bg-transparent"
+      containerCSS="w-full max-w-full !my-0 !border-0 !shadow-none relative"
+      bodyCSS="bg-slate-50 dark:bg-slate-800 !border-t-0 relative overflow-visible"
+      itemContainerCSS="!mt-0 !mb-0 !border-0"
+      headerCSS="w-full flex items-center justify-between !p-0 !bg-transparent !border-0"
+      hideChevron={true}
     />
   );
 };

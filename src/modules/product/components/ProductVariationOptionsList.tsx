@@ -60,7 +60,7 @@ const ProductVariationOptionsList = ({
   };
 
   return (
-    <div>
+    <div className="relative overflow-visible">
       <ProductVariationOptionForm onSubmit={onSubmit} />
       {options.length ? (
         options.map((option) => (

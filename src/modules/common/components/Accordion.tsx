@@ -7,6 +7,7 @@ const Accordion = ({
   headerCSS = '',
   bodyCSS = '',
   itemContainerCSS = '',
+  hideChevron = false,
   ...rest
 }) => {
   return (
@@ -20,6 +21,7 @@ const Accordion = ({
           headerCSS={headerCSS}
           bodyCSS={bodyCSS}
           itemContainerCSS={itemContainerCSS}
+          hideChevron={hideChevron}
         />
       ))}
     </div>
