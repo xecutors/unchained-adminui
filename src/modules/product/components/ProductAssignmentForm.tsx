@@ -15,6 +15,8 @@ import DangerMessage from '../../modal/components/DangerMessage';
 import deBounce from '../../common/utils/deBounce';
 import useProducts from '../hooks/useProducts';
 import { ISortDirection } from '../../../gql/types';
+import useTheme from '../../common/hooks/useTheme';
+import UnchainedSelect from '../../common/components/UnchainedSelect';
 
 const matrixGenerator = (columns, rowContainer, currentIndex) => {
   const column = columns[currentIndex];
@@ -51,6 +53,7 @@ const ProductAssignmentForm = ({ proxyId, disabled = false }) => {
   const { addProductAssignment } = useAddProductAssignment();
   const { removeProductAssignment } = useRemoveProductAssignment();
   const { setModal } = useModal();
+  const { theme } = useTheme();
 
   const [queryString, setQueryString] = useState('');
   const { products } = useProducts({
@@ -170,7 +173,7 @@ const ProductAssignmentForm = ({ proxyId, disabled = false }) => {
                 </div>
               ) : (
                 <div className="relative w-full">
-                  <Select
+                  <UnchainedSelect
                     name={`productId-${_id}`}
                     placeholder={formatMessage({
                       id: 'search_product',
@@ -181,9 +184,6 @@ const ProductAssignmentForm = ({ proxyId, disabled = false }) => {
                     onChange={handleProductAssignment(columns) as any}
                     onInputChange={debouncedQuery}
                     value={queryString}
-                    menuPortalTarget={
-                      typeof window !== 'undefined' ? document.body : null
-                    }
                     options={
                       (products || [])
                         .map(normalizeProduct)
