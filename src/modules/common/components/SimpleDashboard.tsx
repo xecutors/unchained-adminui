@@ -12,7 +12,7 @@ import {
   CartesianGrid,
   ResponsiveContainer,
 } from 'recharts';
-import { TrendingUp, Euro, ShoppingCart, Calculator } from 'lucide-react';
+import { TrendingUp, Euro, ShoppingCart, Calculator, ArrowRight } from 'lucide-react';
 import {
   Card,
   CardContent,
@@ -28,6 +28,7 @@ import {
 } from '../../../components/ui/chart';
 import useRealAnalytics from '../hooks/useRealAnalytics';
 import useOrderItemsAnalytics from '../hooks/useOrderItemsAnalytics';
+import generateUniqueId from '../utils/getUniqueId';
 
 const chartConfig = {
   sales: {
@@ -416,9 +417,15 @@ const SimpleDashboard: React.FC = () => {
                         className="w-8 h-8 rounded-md object-cover flex-shrink-0"
                       />
                     )}
-                    <span className="text-slate-700 dark:text-slate-200 text-sm font-medium truncate">
-                      {product.productName || `Product ${index + 1}`}
-                    </span>
+                    <a
+                      href={product.product ? `/products?slug=${generateUniqueId(product.product)}` : `/products`}
+                      className="group flex items-center gap-1 text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-slate-100 text-sm font-medium transition-colors"
+                    >
+                      <span className="truncate">
+                        {product.productName || `Product ${index + 1}`}
+                      </span>
+                      <ArrowRight className="w-3 h-3 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 ease-out flex-shrink-0" />
+                    </a>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-24 bg-slate-100 dark:bg-slate-700 rounded-full h-2">

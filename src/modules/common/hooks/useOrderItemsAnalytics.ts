@@ -15,6 +15,7 @@ interface ProductSales {
   productId: string;
   productName: string;
   productImage?: string;
+  product?: any; // Full product object for URL generation
   totalQuantity: number;
   totalRevenue: number;
 }
@@ -82,6 +83,7 @@ const useOrderItemsAnalytics = (): OrderItemsAnalytics => {
                 productId,
                 productName,
                 productImage,
+                product: item.product, // Store full product object
                 totalQuantity: item.quantity || 0,
                 totalRevenue: (item.total?.amount || 0) / 100, // Convert from cents
               });
