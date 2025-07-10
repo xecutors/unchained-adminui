@@ -90,27 +90,25 @@ const ProductTokenizationForm = ({ productId, disabled = false }) => {
     >
       <FormWrapper>
         <Form form={form}>
-          <div className="p-5 pb-7 sm:max-w-full">
-            <div className="my-5 flex items-center">
-              <SelectField
-                className="mt-1 w-full"
-                label={formatMessage({
-                  id: 'contract-standard',
-                  defaultMessage: 'Contract standard',
-                })}
-                placeholder={formatMessage({
-                  id: 'contract-standard',
-                  defaultMessage: 'Contract standard',
-                })}
-                required
-                name="contractStandard"
-                options={convertArrayOfObjectToObject(
-                  smartContractStandards,
-                  'label',
-                  'value',
-                )}
-              />
-            </div>
+          <div className="p-5 pb-7 sm:max-w-full flex flex-col gap-y-5">
+            <SelectField
+              className="w-full"
+              label={formatMessage({
+                id: 'contract-standard',
+                defaultMessage: 'Contract standard',
+              })}
+              placeholder={formatMessage({
+                id: 'contract-standard',
+                defaultMessage: 'Contract standard',
+              })}
+              required
+              name="contractStandard"
+              options={convertArrayOfObjectToObject(
+                smartContractStandards,
+                'label',
+                'value',
+              )}
+            />
             <TextField
               name="contractAddress"
               id="contractAddress"

@@ -42,6 +42,12 @@ const ProductList = ({
                 defaultMessage: 'Name',
               })}
             </Table.Cell>
+            <Table.Cell sortKey="type">
+              {formatMessage({
+                id: 'type',
+                defaultMessage: 'Type',
+              })}
+            </Table.Cell>
             <Table.Cell sortKey="status">
               {formatMessage({
                 id: 'status',
@@ -53,6 +59,12 @@ const ProductList = ({
               {formatMessage({
                 id: 'tags',
                 defaultMessage: 'Tags',
+              })}
+            </Table.Cell>
+            <Table.Cell sortKey="maxQuantity">
+              {formatMessage({
+                id: 'max_quantity',
+                defaultMessage: 'Max Quantity',
               })}
             </Table.Cell>
             <Table.Cell sortKey="sequence" defaultSortDirection="ASC">

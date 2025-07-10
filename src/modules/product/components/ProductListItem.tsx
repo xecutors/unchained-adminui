@@ -81,7 +81,6 @@ const ProductListItem = ({
                   </>
                 )}
               </div>
-              {TypeName}
             </div>
           </Link>
         ) : (
@@ -108,10 +107,13 @@ const ProductListItem = ({
                   </>
                 )}
               </div>
-              {TypeName}
             </div>
           </div>
         )}
+      </Table.Cell>
+
+      <Table.Cell className="whitespace-nowrap px-6">
+        {TypeName}
       </Table.Cell>
 
       <Table.Cell className="whitespace-nowrap px-6">
@@ -151,6 +153,13 @@ const ProductListItem = ({
           </div>
         )}
       </Table.Cell>
+
+      <Table.Cell className="whitespace-nowrap px-6">
+        <span className="text-sm text-slate-900 dark:text-slate-300">
+          {product?.commerce?.maxQuantity || '∞'}
+        </span>
+      </Table.Cell>
+
       {hideSortIndex ? null : (
         <Table.Cell>
           <input
