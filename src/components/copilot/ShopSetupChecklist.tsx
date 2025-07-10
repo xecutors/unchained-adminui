@@ -31,7 +31,10 @@ const ShopSetupChecklist: React.FC<ShopSetupChecklistProps> = ({
     content: false,
   });
   const { isFullyConfigured } = configuration;
-  const [isDismissed, setIsDismissed] = useLocalStorage('shopSetupChecklist:dismissed', false);
+  const [isDismissed, setIsDismissed] = useLocalStorage(
+    'shopSetupChecklist:dismissed',
+    false,
+  );
 
   const toggleSection = (section: keyof typeof expandedSections) => {
     setExpandedSections((prev) => ({
