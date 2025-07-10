@@ -9,6 +9,7 @@ import {
   CheckCircleIcon,
 } from '@heroicons/react/24/outline';
 import useShopConfiguration from '../../modules/common/hooks/useShopConfiguration';
+import useLocalStorage from '../../modules/common/hooks/useLocalStorage';
 import ProgressIndicator from './ProgressIndicator';
 import SetupStepCard from './SetupStepCard';
 import { Step } from '../../modules/common/utils/getSetupStepsConfigurationsMeta';
@@ -30,7 +31,7 @@ const ShopSetupChecklist: React.FC<ShopSetupChecklistProps> = ({
     content: false,
   });
   const { isFullyConfigured } = configuration;
-  const [isDismissed, setIsDismissed] = useState(false);
+  const [isDismissed, setIsDismissed] = useLocalStorage('shopSetupChecklist:dismissed', false);
 
   const toggleSection = (section: keyof typeof expandedSections) => {
     setExpandedSections((prev) => ({

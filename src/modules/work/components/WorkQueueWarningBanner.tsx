@@ -6,11 +6,11 @@ import useWorkQueue from '../hooks/useWorkQueue';
 import { IWorkStatus } from '../../../gql/types';
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
-import { useState } from 'react';
+import useLocalStorage from '../../common/hooks/useLocalStorage';
 
 export const WorkQueueWarningBanner = () => {
   const { formatMessage } = useIntl();
-  const [isDismissed, setIsDismissed] = useState(false);
+  const [isDismissed, setIsDismissed] = useLocalStorage('workQueueWarningBanner:dismissed', false);
   const { workQueue } = useWorkQueue({
     status: [IWorkStatus.Failed],
     pollInterval: 0,
