@@ -5,6 +5,7 @@ import {
   renderSingleProduct,
   renderMultipleProducts,
   renderVariations,
+  renderAssignments,
 } from './tool-renderers/productRenderers';
 import {
   renderSingleAssortment,
@@ -47,6 +48,7 @@ const ToolRenderer: Record<ToolName, ToolRenderFn> = {
   shop_info: renderShopInfo,
   generateImage: renderImage,
   product_variations: renderVariations,
+  product_assignments: renderAssignments,
   ...Object.fromEntries(
     MediaListReturnTools.map((name) => [name, renderMedias]),
   ),
