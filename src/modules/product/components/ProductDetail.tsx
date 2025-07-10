@@ -32,13 +32,26 @@ import ProductAssignmentForm from './ProductAssignmentForm';
 import ProductTokenizationForm from './ProductTokenizationForm';
 import DisplayExtendedFields from '../../common/components/DisplayExtendedFields';
 import ErrorBoundary from '../../common/components/ErrorBoundary';
+import { IProduct, IProductStatus } from '../../../gql/types';
+
+interface GetCurrentTabProps {
+  id: string;
+  selectedView?: string;
+  disableAll?: boolean;
+  [key: string]: any;
+}
+
+interface ProductDetailProps {
+  product: IProduct & { __typename: string };
+  extendedData?: Record<string, any>;
+}
 
 const GetCurrentTab = ({
   id,
   selectedView = '',
   disableAll = false,
   ...extendedData
-}) => {
+}: GetCurrentTabProps) => {
   if (selectedView === 'texts')
     return (
       <LocaleWrapper>
@@ -85,7 +98,7 @@ const GetCurrentTab = ({
     </LocaleWrapper>
   );
 };
-const ProductDetail = ({ product, extendedData = {} }) => {
+const ProductDetail = ({ product, extendedData = {} }: ProductDetailProps) => {
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
   const { updateProduct } = useUpdateProduct();
@@ -200,7 +213,7 @@ const ProductDetail = ({ product, extendedData = {} }) => {
       </div>
       <Tab tabItems={productOptions} defaultTab="texts">
         <GetCurrentTab
-          disableAll={product?.status === 'DELETED'}
+          disableAll={product?.status === IProductStatus.Deleted}
           id={product?._id}
           {...extendedData}
         />

@@ -8,7 +8,6 @@ import Form from '../../forms/components/Form';
 import FieldWithHelp from '../../forms/components/FieldWithHelp';
 import SelectField from '../../forms/components/SelectField';
 import SubmitButton from '../../forms/components/SubmitButton';
-import TextField from '../../forms/components/TextField';
 import HelpText from '../../common/components/HelpText';
 import useForm, { OnSubmitType } from '../../forms/hooks/useForm';
 import useProductVariationTypes from '../hooks/useProductVariationTypes';
