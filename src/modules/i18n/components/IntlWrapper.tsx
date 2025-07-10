@@ -4,6 +4,7 @@ import '@formatjs/intl-relativetimeformat/polyfill';
 import { IntlProvider } from 'react-intl';
 import { useState, useEffect } from 'react';
 import getMessages from '../utils/getMessages';
+import useLocalStorage from '../../common/hooks/useLocalStorage';
 
 const IntlWrapper = ({
   children,
@@ -12,14 +13,13 @@ const IntlWrapper = ({
 }) => {
   const [locale, setLocale] = useState(initialLocale);
   const [messages, setMessages] = useState(initialMessages);
+  const [preferredLanguage] = useLocalStorage('preferred-language', locale);
 
   useEffect(() => {
-    // After hydration, check for stored language preference
     if (typeof window !== 'undefined') {
-      const stored = localStorage.getItem('preferred-language');
-      if (stored && stored !== locale) {
-        setLocale(stored);
-        setMessages(getMessages(stored));
+      if (preferredLanguage) {
+        setLocale(preferredLanguage);
+        setMessages(getMessages(preferredLanguage));
       }
     }
   }, [locale]);

@@ -18,7 +18,12 @@ interface TabProps {
   updateRoute?: boolean;
 }
 
-const Tab = ({ children, tabItems, defaultTab, updateRoute = true }: TabProps) => {
+const Tab = ({
+  children,
+  tabItems,
+  defaultTab,
+  updateRoute = true,
+}: TabProps) => {
   const router = useRouter();
 
   const { tab = defaultTab } = router?.query || {};

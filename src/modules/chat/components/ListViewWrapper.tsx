@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import { Squares2X2Icon, ListBulletIcon } from '@heroicons/react/24/outline';
+import useLocalStorage from '../../common/hooks/useLocalStorage';
 
 type ViewMode = 'grid' | 'list';
 
@@ -15,30 +16,14 @@ const ListViewWrapper: React.FC<ListViewWrapperProps> = ({
   className,
   children,
 }) => {
-  const [viewMode, setViewMode] = useState<ViewMode>('list');
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem(storageKey) as ViewMode | null;
-      if (saved === 'grid' || saved === 'list') {
-        setViewMode(saved);
-      }
-    }
-  }, [storageKey]);
-
-  const updateViewMode = (mode: ViewMode) => {
-    setViewMode(mode);
-    if (typeof window !== 'undefined') {
-      localStorage.setItem(storageKey, mode);
-    }
-  };
+  const [viewMode, setViewMode] = useLocalStorage(storageKey, 'list');
 
   return (
     <div className={classNames('space-y-4', className)}>
       <div className="flex justify-end">
         <div className="flex bg-slate-100 dark:bg-slate-800 rounded-lg p-1">
           <button
-            onClick={() => updateViewMode('grid')}
+            onClick={() => setViewMode('grid')}
             className={classNames(
               'p-2 rounded-md transition-colors',
               viewMode === 'grid'
@@ -49,7 +34,7 @@ const ListViewWrapper: React.FC<ListViewWrapperProps> = ({
             <Squares2X2Icon className="w-4 h-4" />
           </button>
           <button
-            onClick={() => updateViewMode('list')}
+            onClick={() => setViewMode('list')}
             className={classNames(
               'p-2 rounded-md transition-colors',
               viewMode === 'list'

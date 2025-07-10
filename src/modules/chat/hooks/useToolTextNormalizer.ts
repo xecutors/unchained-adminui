@@ -19,6 +19,7 @@ export const SingleProductReturnTools = [
 export const MultipleProductReturnTools = [
   'product_list',
   'assortment_getProducts',
+  'product_variationProducts',
 ] as const;
 
 export const TextsReturnTools = [
