@@ -233,6 +233,7 @@
   "delivered": "Delivered",
   "deliveryProviders_deleted": "DeliveryProviders deleted successfully",
   "delivery_address": "Delivery address",
+  "items_purchased": "Items ordered",
   "delivery_processing": "Shipping & Delivery",
   "delivery_processing_config_description": "Delivery methods are already configured",
   "delivery_provider": "Delivery Provider",

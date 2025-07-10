@@ -157,6 +157,12 @@ const OrderDetail = ({ order }) => {
 
       <div className="mt-20 lg:grid lg:grid-cols-2 lg:gap-10">
         <div>
+          <div className="mb-6 text-xl dark:text-slate-400">
+            {formatMessage({
+              id: 'items_purchased',
+              defaultMessage: 'Items purchased',
+            })}
+          </div>
           <div className="flex gap-5 flex-col">
             {order?.items.map((item) => {
               return <OrderDetailItem key={item._id} item={item} />;
@@ -177,14 +183,9 @@ const OrderDetail = ({ order }) => {
       </div>
 
       {!isCart && (
-        <div className="mt-10 lg:mt-30 lg:grid lg:grid-cols-2 lg:gap-10">
+        <div className="mt-10 lg:mt-30 lg:grid lg:grid-cols-2 xl:grid-cols-3 lg:gap-10">
           <OrderDetailDelivery order={order} />
           <OrderDetailPayment order={order} />
-        </div>
-      )}
-
-      {!isCart && (
-        <div className="mt-10 lg:mt-30">
           <DiscountList discounts={order?.discounts} />
         </div>
       )}

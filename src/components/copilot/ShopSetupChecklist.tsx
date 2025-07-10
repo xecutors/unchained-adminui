@@ -48,27 +48,7 @@ const ShopSetupChecklist: React.FC<ShopSetupChecklistProps> = ({
   };
 
   if (!configuration || loading) {
-    return (
-      <div
-        className={classNames(
-          'p-6 bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700',
-          className,
-        )}
-      >
-        <div className="animate-pulse space-y-4">
-          <div className="h-4 bg-slate-200 dark:bg-slate-700 rounded w-3/4"></div>
-          <div className="h-2 bg-slate-200 dark:bg-slate-700 rounded"></div>
-          <div className="space-y-3">
-            {[1, 2, 3].map((i) => (
-              <div
-                key={i}
-                className="h-16 bg-slate-100 dark:bg-slate-700 rounded"
-              ></div>
-            ))}
-          </div>
-        </div>
-      </div>
-    );
+    return null;
   }
 
   if (error || isDismissed) {

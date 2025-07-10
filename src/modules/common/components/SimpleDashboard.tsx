@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useIntl } from 'react-intl';
 import {
   LineChart,
@@ -12,7 +12,13 @@ import {
   CartesianGrid,
   ResponsiveContainer,
 } from 'recharts';
-import { TrendingUp, Euro, ShoppingCart, Calculator, ArrowRight } from 'lucide-react';
+import {
+  TrendingUp,
+  Euro,
+  ShoppingCart,
+  Calculator,
+  ArrowRight,
+} from 'lucide-react';
 import {
   Card,
   CardContent,
@@ -53,21 +59,85 @@ const SimpleDashboard: React.FC = () => {
     loading: productsLoading,
     error: productsError,
   } = useOrderItemsAnalytics();
+  const [animateBars, setAnimateBars] = useState(false);
+
+  useEffect(() => {
+    if (!loading && !productsLoading) {
+      // Start bar animation after data loads
+      const timer = setTimeout(() => setAnimateBars(true), 100);
+      return () => clearTimeout(timer);
+    }
+  }, [loading, productsLoading]);
 
   if (loading) {
     return (
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-        {[...Array(4)].map((_, i) => (
-          <Card key={i}>
-            <CardHeader className="pb-2">
-              <div className="h-4 w-24 bg-slate-200 dark:bg-slate-700 rounded animate-pulse" />
-              <div className="h-8 w-32 bg-slate-200 dark:bg-slate-700 rounded animate-pulse" />
-            </CardHeader>
-            <CardContent>
-              <div className="h-32 bg-slate-200 dark:bg-slate-700 rounded animate-pulse" />
-            </CardContent>
-          </Card>
-        ))}
+      <div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 mb-8">
+          {[...Array(3)].map((_, i) => (
+            <Card
+              key={i}
+              className="relative overflow-hidden rounded-xl border-0 bg-white"
+            >
+              <CardHeader className="pb-6">
+                <div className="flex items-center justify-between">
+                  <div className="h-4 w-48 bg-slate-200 dark:bg-slate-700 rounded animate-pulse" />
+                </div>
+                <div className="h-10 w-40 bg-slate-200 dark:bg-slate-700 rounded animate-pulse mt-2" />
+                <div className="h-4 w-32 bg-slate-200 dark:bg-slate-700 rounded animate-pulse mt-2" />
+              </CardHeader>
+              <CardContent className="pt-0">
+                <div className="h-49 relative overflow-hidden rounded">
+                  {/* Chart-like skeleton with gradient and curved shape */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-slate-100 via-slate-200 to-slate-100 dark:from-slate-800 dark:via-slate-700 dark:to-slate-800 animate-pulse" />
+                  <svg className="w-full h-full opacity-30" viewBox="0 0 100 40" preserveAspectRatio="none">
+                    <defs>
+                      <linearGradient id="skeleton-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stopColor="currentColor" stopOpacity="0.3" />
+                        <stop offset="100%" stopColor="currentColor" stopOpacity="0.05" />
+                      </linearGradient>
+                    </defs>
+                    <path
+                      d="M0,30 Q20,20 40,25 T80,15 L100,18 L100,40 L0,40 Z"
+                      fill="url(#skeleton-gradient)"
+                      className="text-slate-400 dark:text-slate-500"
+                    />
+                    <path
+                      d="M0,30 Q20,20 40,25 T80,15 L100,18"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1"
+                      className="text-slate-400 dark:text-slate-500"
+                    />
+                  </svg>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+        {/* Top Selling Products Loading */}
+        <Card className="mb-8 relative overflow-hidden rounded-xl border-0 bg-white dark:bg-slate-800">
+          <CardHeader className="pb-6">
+            <div className="flex items-center justify-between">
+              <div className="h-4 w-56 bg-slate-200 dark:bg-slate-700 rounded animate-pulse" />
+            </div>
+          </CardHeader>
+          <CardContent className="pt-0 pb-6">
+            <div className="space-y-4">
+              {[...Array(5)].map((_, i) => (
+                <div key={i} className="flex items-center justify-between min-h-[2rem]">
+                  <div className="flex items-center gap-3 flex-1">
+                    <div className="w-8 h-8 bg-slate-100 dark:bg-slate-700 rounded-md animate-pulse" />
+                    <div className="h-4 w-32 bg-slate-100 dark:bg-slate-700 rounded-lg animate-pulse" />
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-24 h-2 bg-slate-100 dark:bg-slate-700 rounded-full animate-pulse" />
+                    <div className="h-4 w-6 bg-slate-100 dark:bg-slate-700 rounded-lg animate-pulse" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
       </div>
     );
   }
@@ -107,7 +177,8 @@ const SimpleDashboard: React.FC = () => {
     `${currency} ${Math.round(value).toLocaleString(locale || 'en-US')}`;
 
   // Custom formatter for count values in tooltips
-  const formatCount = (value) => Math.round(value).toLocaleString(locale || 'en-US');
+  const formatCount = (value) =>
+    Math.round(value).toLocaleString(locale || 'en-US');
 
   return (
     <div>
@@ -128,7 +199,8 @@ const SimpleDashboard: React.FC = () => {
               </CardDescription>
             </div>
             <CardTitle className="text-4xl font-bold text-slate-900 mt-2">
-              {currency} {Math.round(totalSales).toLocaleString(locale || 'en-US')}
+              {currency}{' '}
+              {Math.round(totalSales).toLocaleString(locale || 'en-US')}
             </CardTitle>
             <div className="flex items-center gap-1 mt-2">
               <TrendingUp
@@ -138,7 +210,8 @@ const SimpleDashboard: React.FC = () => {
                 className={`text-sm font-medium ${salesGrowth >= 0 ? 'text-green-500' : 'text-red-500'}`}
               >
                 {salesGrowth >= 0 ? '+' : ''}
-                {salesGrowth.toFixed(1)}% {formatMessage({
+                {salesGrowth.toFixed(1)}%{' '}
+                {formatMessage({
                   id: 'from_last_month',
                   defaultMessage: 'from last month',
                 })}
@@ -223,7 +296,8 @@ const SimpleDashboard: React.FC = () => {
                 className={`text-sm font-medium ${ordersGrowth >= 0 ? 'text-green-500' : 'text-red-500'}`}
               >
                 {ordersGrowth >= 0 ? '+' : ''}
-                {ordersGrowth.toFixed(1)}% {formatMessage({
+                {ordersGrowth.toFixed(1)}%{' '}
+                {formatMessage({
                   id: 'from_last_month',
                   defaultMessage: 'from last month',
                 })}
@@ -298,7 +372,8 @@ const SimpleDashboard: React.FC = () => {
               </CardDescription>
             </div>
             <CardTitle className="text-4xl font-bold text-slate-900 mt-2">
-              {currency} {Math.round(averageOrderValue).toLocaleString(locale || 'en-US')}
+              {currency}{' '}
+              {Math.round(averageOrderValue).toLocaleString(locale || 'en-US')}
             </CardTitle>
             <div className="flex items-center gap-1 mt-2">
               <TrendingUp
@@ -308,7 +383,8 @@ const SimpleDashboard: React.FC = () => {
                 className={`text-sm font-medium ${avgOrderValueGrowth >= 0 ? 'text-green-500' : 'text-red-500'}`}
               >
                 {avgOrderValueGrowth >= 0 ? '+' : ''}
-                {avgOrderValueGrowth.toFixed(1)}% {formatMessage({
+                {avgOrderValueGrowth.toFixed(1)}%{' '}
+                {formatMessage({
                   id: 'from_last_month',
                   defaultMessage: 'from last month',
                 })}
@@ -418,7 +494,11 @@ const SimpleDashboard: React.FC = () => {
                       />
                     )}
                     <a
-                      href={product.product ? `/products?slug=${generateUniqueId(product.product)}` : `/products`}
+                      href={
+                        product.product
+                          ? `/products?slug=${generateUniqueId(product.product)}`
+                          : `/products`
+                      }
                       className="group flex items-center gap-1 text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-slate-100 text-sm font-medium transition-colors"
                     >
                       <span className="truncate">
@@ -430,9 +510,10 @@ const SimpleDashboard: React.FC = () => {
                   <div className="flex items-center gap-3">
                     <div className="w-24 bg-slate-100 dark:bg-slate-700 rounded-full h-2">
                       <div
-                        className="bg-slate-700 dark:bg-slate-300 h-2 rounded-full transition-all duration-500"
+                        className="bg-slate-700 dark:bg-slate-300 h-2 rounded-full transition-all duration-1000 ease-out"
                         style={{
-                          width: `${Math.min((product.totalQuantity / (displayTopProducts[0]?.totalQuantity || 1)) * 100, 100)}%`,
+                          width: animateBars ? `${Math.min((product.totalQuantity / (displayTopProducts[0]?.totalQuantity || 1)) * 100, 100)}%` : '0%',
+                          transitionDelay: `${index * 150}ms`,
                         }}
                       />
                     </div>
