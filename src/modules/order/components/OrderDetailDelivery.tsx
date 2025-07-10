@@ -56,8 +56,8 @@ const OrderDetailDelivery = ({ order }) => {
       <div className="flex items-baseline gap-2">
         <h2 className="pt-4 text-2xl">
           {formatMessage({
-            id: 'delivered',
-            defaultMessage: 'Delivered',
+            id: 'delivery',
+            defaultMessage: 'Delivery',
           })}
         </h2>
         {order?.delivery?.fee?.currencyCode && (

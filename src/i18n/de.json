@@ -160,6 +160,8 @@
   "currency_config_description": "Währungen für Preise und Zahlungen einrichten",
   "language_config_description": "Sprachen für Inhaltsübersetzung konfigurieren",
   "payment_processing_config_description": "Rechnungs-Zahlungsanbieter ist bereits konfiguriert",
+  "payment": "Zahlung",
+  "delivery": "Lieferung",
   "delivery_processing_config_description": "Liefermethoden sind bereits konfiguriert",
   "products_config_description": "Erstellen Sie Ihre ersten Produkte",
   "assortment_config_description": "Produkte in Kategorien organisieren",
