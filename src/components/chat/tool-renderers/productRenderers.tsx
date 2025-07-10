@@ -1,5 +1,6 @@
 import { ProductList, ProductListItemCompact } from '../../product';
 import AssignmentListCompact from '../../product/AssignmentListCompact';
+import BundleItemCompact from '../../product/BundleItemCompact';
 import VariationListCompact from '../../product/VariationListCompact';
 import ProductResultsSummary from '../ProductResultsSummary';
 
@@ -28,5 +29,12 @@ export const renderAssignments = (data: any) =>
   data?.assignments?.length ? (
     <div className="mb-6">
       <AssignmentListCompact assignments={data.assignments} />
+    </div>
+  ) : null;
+
+export const renderBundles = (data: any) =>
+  data?.bundleItems?.length ? (
+    <div className="mb-6">
+      <BundleItemCompact bundleItems={data.bundleItems} />
     </div>
   ) : null;

@@ -74,11 +74,12 @@ const AssignmentListCompact: React.FC<Props> = ({ assignments }) => {
                 {': '}
                 {assignedProduct?.warehousing?.sku}{' '}
               </div>
+              <span className="text-xs text-slate-500 dark:text-slate-400">
+                {formatMessage({ id: 'id', defaultMessage: 'ID' })}:{' '}
+                {assignedProduct?._id}
+              </span>
             </div>
-            <span className="text-xs text-slate-500 dark:text-slate-400">
-              {formatMessage({ id: 'id', defaultMessage: 'ID' })}:{' '}
-              {assignedProduct?._id}
-            </span>
+
             {price && (
               <div className="text-right text-sm font-semibold text-slate-900 dark:text-white min-w-[80px]">
                 {price}

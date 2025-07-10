@@ -112,9 +112,7 @@ const ProductListItem = ({
         )}
       </Table.Cell>
 
-      <Table.Cell className="whitespace-nowrap px-6">
-        {TypeName}
-      </Table.Cell>
+      <Table.Cell className="whitespace-nowrap px-6">{TypeName}</Table.Cell>
 
       <Table.Cell className="whitespace-nowrap px-6">
         {product?.status !== 'DELETED' ? (

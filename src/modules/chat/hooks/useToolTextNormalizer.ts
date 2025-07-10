@@ -24,6 +24,7 @@ export const MultipleProductReturnTools = [
 
 export const ProductVariationsReturnTools = ['product_variations'] as const;
 export const ProductAssignmentsReturnTools = ['product_assignments'] as const;
+export const ProductBundleReturnTools = ['product_bundleItems'] as const;
 
 export const TextsReturnTools = [
   'product_updateTexts',
@@ -112,6 +113,7 @@ export const AllTools = [
   ...SkippedToolResponse,
   ...ProductVariationsReturnTools,
   ...ProductAssignmentsReturnTools,
+  ...ProductBundleReturnTools,
   ...OtherTools,
 ] as const;
 export type ToolName = (typeof AllTools)[number];
