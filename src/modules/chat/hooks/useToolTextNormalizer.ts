@@ -97,9 +97,13 @@ export const SkippedToolResponse = [
   'product_addMedia',
 ] as const;
 
-export const AllTools = [
-  'product_simulatedPriceRange',
+export const PriceReturnTools = [
   'product_simulatedPrice',
+  'product_catalogPrice',
+  'product_simulatedPriceRange',
+] as const;
+
+export const AllTools = [
   ...SingleProductReturnTools,
   ...MultipleProductReturnTools,
   ...TextsReturnTools,
@@ -116,6 +120,7 @@ export const AllTools = [
   ...ProductVariationsReturnTools,
   ...ProductAssignmentsReturnTools,
   ...ProductBundleReturnTools,
+  ...PriceReturnTools,
   ...OtherTools,
 ] as const;
 export type ToolName = (typeof AllTools)[number];

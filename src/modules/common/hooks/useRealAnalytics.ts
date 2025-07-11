@@ -60,7 +60,10 @@ const useRealAnalytics = () => {
     const averageOrderValue = totalOrders > 0 ? totalSales / totalOrders : 0;
 
     // Get currency from the first order, fallback to shop default or EUR
-    const currency = validOrders[0]?.total?.currencyCode || shopInfo?.country?.defaultCurrency?.isoCode || 'EUR';
+    const currency =
+      validOrders[0]?.total?.currencyCode ||
+      shopInfo?.country?.defaultCurrency?.isoCode ||
+      'EUR';
 
     // Calculate month-over-month growth
     const now = new Date();

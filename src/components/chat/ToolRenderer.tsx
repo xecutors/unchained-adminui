@@ -7,8 +7,7 @@ import {
   renderVariations,
   renderAssignments,
   renderBundles,
-  renderSimulatedPriceRange,
-  renderSimulatedPrice,
+  renderPrice,
 } from './tool-renderers/productRenderers';
 import {
   renderSingleAssortment,
@@ -43,6 +42,7 @@ import {
   SingleLanguageReturnTools,
   MultipleLanguageReturnTools,
   ToolName,
+  PriceReturnTools,
 } from '../../modules/chat/hooks/useToolTextNormalizer';
 
 type ToolRenderFn = (data: any) => ReactElement | null;
@@ -53,8 +53,7 @@ const ToolRenderer: Record<ToolName, ToolRenderFn> = {
   product_variations: renderVariations,
   product_assignments: renderAssignments,
   product_bundleItems: renderBundles,
-  product_simulatedPriceRange: renderSimulatedPriceRange,
-  product_simulatedPrice: renderSimulatedPrice,
+  ...Object.fromEntries(PriceReturnTools.map((name) => [name, renderPrice])),
   ...Object.fromEntries(
     MediaListReturnTools.map((name) => [name, renderMedias]),
   ),
