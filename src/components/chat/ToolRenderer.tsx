@@ -43,6 +43,7 @@ import {
   MultipleLanguageReturnTools,
   ToolName,
   PriceReturnTools,
+  ProductBundleReturnTools,
 } from '../../modules/chat/hooks/useToolTextNormalizer';
 
 type ToolRenderFn = (data: any) => ReactElement | null;
@@ -52,7 +53,9 @@ const ToolRenderer: Record<ToolName, ToolRenderFn> = {
   generateImage: renderImage,
   product_variations: renderVariations,
   product_assignments: renderAssignments,
-  product_bundleItems: renderBundles,
+  ...Object.fromEntries(
+    ProductBundleReturnTools.map((name) => [name, renderBundles]),
+  ),
   ...Object.fromEntries(PriceReturnTools.map((name) => [name, renderPrice])),
   ...Object.fromEntries(
     MediaListReturnTools.map((name) => [name, renderMedias]),

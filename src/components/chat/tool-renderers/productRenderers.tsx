@@ -40,10 +40,10 @@ export const renderAssignments = (data: any) =>
   ) : null;
 
 export const renderBundles = (data: any) =>
-  data?.bundleItems?.length ? (
+  data?.product ? (
     <div className="mb-6">
       <BundleItemCompact
-        bundleItems={data.bundleItems}
+        bundleItems={data?.product?.bundleItems || []}
         product={data?.product}
       />
     </div>

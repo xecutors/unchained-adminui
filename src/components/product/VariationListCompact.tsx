@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductDetailCompact from './ProductDetailCompact';
+import ProductItemWrapperCompact from './ProductItemWrapperCompact';
 
 interface Variation {
   _id: string;
@@ -18,7 +18,7 @@ const VariationListCompact = ({
 }) => {
   if (!variations.length) return null;
   return (
-    <ProductDetailCompact product={product} tab="variations">
+    <ProductItemWrapperCompact product={product} tab="variations">
       <div className="text-sm space-y-2">
         {variations.map(({ _id, type, key, options, productId }) => (
           <div
@@ -40,7 +40,7 @@ const VariationListCompact = ({
           </div>
         ))}
       </div>
-    </ProductDetailCompact>
+    </ProductItemWrapperCompact>
   );
 };
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { IProduct } from '../../gql/types';
 import { useFormatPrice } from '../../modules/common/utils/utils';
-import ProductDetailCompact from './ProductDetailCompact';
+import ProductItemWrapperCompact from './ProductItemWrapperCompact';
 import { useIntl } from 'react-intl';
 
 type Price = {
@@ -48,7 +48,7 @@ const CopilotPriceCompact: React.FC<Props> = ({
     : null;
 
   return (
-    <ProductDetailCompact product={product} tab="commerce">
+    <ProductItemWrapperCompact product={product} tab="commerce">
       <div className="flex flex-col gap-3 text-sm text-center text-slate-700 dark:text-slate-300 min-w-[140px]">
         {price && (
           <>
@@ -110,7 +110,7 @@ const CopilotPriceCompact: React.FC<Props> = ({
           </div>
         )}
       </div>
-    </ProductDetailCompact>
+    </ProductItemWrapperCompact>
   );
 };
 

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import generateUniqueId from '../../modules/common/utils/getUniqueId';
 import { useIntl } from 'react-intl';
 import { IProduct } from '../../gql/types';
-import ProductDetailCompact from './ProductDetailCompact';
+import ProductItemWrapperCompact from './ProductItemWrapperCompact';
 
 type BundleItemCompactProps = {
   bundleItems: {
@@ -22,7 +22,7 @@ const BundleItemCompact: React.FC<BundleItemCompactProps> = ({
   const { formatMessage } = useIntl();
   const { formatPrice } = useFormatPrice();
   return (
-    <ProductDetailCompact product={bundleProduct} tab="bundled_products">
+    <ProductItemWrapperCompact product={bundleProduct} tab="bundled_products">
       {(bundleItems || []).map(({ product, quantity }, index) => {
         const title = product?.texts?.title ?? 'Untitled Product';
         const sku = product?.warehousing?.sku;
@@ -31,7 +31,7 @@ const BundleItemCompact: React.FC<BundleItemCompactProps> = ({
         const price = formatPrice(product?.commerce?.pricing?.[0]);
         return (
           <div
-            key={`${product._id}-${index}`}
+            key={`${product?._id}-${index}`}
             className="flex items-center gap-4 border rounded-xl p-3 shadow-sm bg-white dark:bg-slate-900"
           >
             <ImageWithFallback
@@ -69,7 +69,7 @@ const BundleItemCompact: React.FC<BundleItemCompactProps> = ({
             )}
             <div className="ml-4">
               <Link
-                href={`/products?slug=${generateUniqueId(product)}`}
+                href={`/products?slug=${generateUniqueId({ ...product })}`}
                 className="text-sm px-3 py-1 rounded-md border border-slate-300 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-white"
               >
                 {formatMessage({ id: 'edit', defaultMessage: 'Edit' })}
@@ -78,7 +78,7 @@ const BundleItemCompact: React.FC<BundleItemCompactProps> = ({
           </div>
         );
       })}
-    </ProductDetailCompact>
+    </ProductItemWrapperCompact>
   );
 };
 

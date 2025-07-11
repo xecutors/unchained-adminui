@@ -5,7 +5,7 @@ import { useIntl } from 'react-intl';
 import Link from 'next/link';
 import generateUniqueId from '../../modules/common/utils/getUniqueId';
 import { useFormatPrice } from '../../modules/common/utils/utils';
-import ProductDetailCompact from './ProductDetailCompact';
+import ProductItemWrapperCompact from './ProductItemWrapperCompact';
 
 interface AssignmentData {
   assignment: {
@@ -33,7 +33,7 @@ const AssignmentListCompact: React.FC<Props> = ({ assignments, product }) => {
   if (!assignments.length) return null;
 
   return (
-    <ProductDetailCompact product={product} tab="assignments">
+    <ProductItemWrapperCompact product={product} tab="assignments">
       <div className="space-y-4">
         {assignments.map(({ assignment }, idx) => {
           const assignedProduct = assignment.product;
@@ -100,7 +100,7 @@ const AssignmentListCompact: React.FC<Props> = ({ assignments, product }) => {
           );
         })}
       </div>
-    </ProductDetailCompact>
+    </ProductItemWrapperCompact>
   );
 };
 
