@@ -7,6 +7,8 @@ import {
   renderVariations,
   renderAssignments,
   renderBundles,
+  renderSimulatedPriceRange,
+  renderSimulatedPrice,
 } from './tool-renderers/productRenderers';
 import {
   renderSingleAssortment,
@@ -51,6 +53,8 @@ const ToolRenderer: Record<ToolName, ToolRenderFn> = {
   product_variations: renderVariations,
   product_assignments: renderAssignments,
   product_bundleItems: renderBundles,
+  product_simulatedPriceRange: renderSimulatedPriceRange,
+  product_simulatedPrice: renderSimulatedPrice,
   ...Object.fromEntries(
     MediaListReturnTools.map((name) => [name, renderMedias]),
   ),

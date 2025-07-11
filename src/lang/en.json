@@ -96,6 +96,12 @@
   "add_user": {
     "defaultMessage": "Add User"
   },
+  "add_variation": {
+    "defaultMessage": "Add variation"
+  },
+  "add_variation_option": {
+    "defaultMessage": "Add option"
+  },
   "add_warehousing_provider": {
     "defaultMessage": "Add Warehousing Provider"
   },
@@ -239,6 +245,9 @@
   },
   "avatar": {
     "defaultMessage": "Avatar"
+  },
+  "average_order_value": {
+    "defaultMessage": "Average order value"
   },
   "back_to_home": {
     "defaultMessage": "Back to Home"
@@ -696,6 +705,9 @@
   "delivered": {
     "defaultMessage": "Delivered"
   },
+  "delivery": {
+    "defaultMessage": "Delivery"
+  },
   "deliveryProviders_deleted": {
     "defaultMessage": "DeliveryProviders deleted successfully"
   },
@@ -754,7 +766,7 @@
     "defaultMessage": "Draft"
   },
   "draft_product_description": {
-    "defaultMessage": "Product will not be discoverable and can not be ordered"
+    "defaultMessage": "Product will not be discoverable and can not be orderose"
   },
   "duration": {
     "defaultMessage": "Duration"
@@ -1032,6 +1044,9 @@
   "from": {
     "defaultMessage": "From"
   },
+  "from_last_month": {
+    "defaultMessage": "from last month"
+  },
   "fulfilled": {
     "defaultMessage": "FULFILLED"
   },
@@ -1164,6 +1179,9 @@
   },
   "items_created": {
     "defaultMessage": "{count} items created"
+  },
+  "items_purchased": {
+    "defaultMessage": "Items purchased"
   },
   "key": {
     "defaultMessage": "Key"
@@ -1369,11 +1387,17 @@
   "no_payload": {
     "defaultMessage": "Payload"
   },
+  "no_product_sales_data": {
+    "defaultMessage": "No product sales data available"
+  },
   "no_result_found": {
     "defaultMessage": "No result found"
   },
   "no_tag": {
     "defaultMessage": "No Tag"
+  },
+  "no_variations_found": {
+    "defaultMessage": "No variations found"
   },
   "not-applicable": {
     "defaultMessage": "N/A"
@@ -1494,6 +1518,9 @@
   },
   "payload": {
     "defaultMessage": "Payload"
+  },
+  "payment": {
+    "defaultMessage": "Payment"
   },
   "payment_credentials": {
     "defaultMessage": "Payment credentials"
@@ -1647,6 +1674,9 @@
   },
   "products_count": {
     "defaultMessage": "Products"
+  },
+  "products_data_unavailable": {
+    "defaultMessage": "Product data unavailable"
   },
   "profile": {
     "defaultMessage": "Profile"
@@ -1903,6 +1933,9 @@
   "shortcuts": {
     "defaultMessage": "Shortcuts"
   },
+  "show_all_products": {
+    "defaultMessage": "Show all products"
+  },
   "show_carts": {
     "defaultMessage": "Show carts"
   },
@@ -2062,14 +2095,20 @@
   "tool_fetch_failed_error": {
     "defaultMessage": "Failed to fetch available tools"
   },
+  "top_selling_products": {
+    "defaultMessage": "Top selling products"
+  },
   "total": {
     "defaultMessage": "Total"
   },
   "total_orders": {
-    "defaultMessage": "Total Orders"
+    "defaultMessage": "Total orders"
   },
   "total_records": {
     "defaultMessage": "{total} records found"
+  },
+  "total_sales": {
+    "defaultMessage": "Total sales"
   },
   "trial": {
     "defaultMessage": "Trial"
@@ -2091,9 +2130,6 @@
   },
   "unauthorized_page": {
     "defaultMessage": "Access Forbidden"
-  },
-  "unchained_admin_ui": {
-    "defaultMessage": "Unchained AdminUI"
   },
   "unchained_logo": {
     "defaultMessage": "Unchained Logo"
@@ -2220,9 +2256,6 @@
   },
   "value": {
     "defaultMessage": "Value"
-  },
-  "variation": {
-    "defaultMessage": "Variation product"
   },
   "variation_option_added": {
     "defaultMessage": "Variation option added successfully!"

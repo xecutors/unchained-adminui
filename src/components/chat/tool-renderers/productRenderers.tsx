@@ -1,6 +1,8 @@
 import { ProductList, ProductListItemCompact } from '../../product';
 import AssignmentListCompact from '../../product/AssignmentListCompact';
 import BundleItemCompact from '../../product/BundleItemCompact';
+import SimulatedPriceCompact from '../../product/SimulatedPriceCompact';
+import SimulatedPriceRangeCompact from '../../product/SimulatedPriceRangeCompact';
 import VariationListCompact from '../../product/VariationListCompact';
 import ProductResultsSummary from '../ProductResultsSummary';
 
@@ -36,5 +38,22 @@ export const renderBundles = (data: any) =>
   data?.bundleItems?.length ? (
     <div className="mb-6">
       <BundleItemCompact bundleItems={data.bundleItems} />
+    </div>
+  ) : null;
+
+export const renderSimulatedPriceRange = (data: any) =>
+  data?.priceRange && data?.product ? (
+    <div className="mb-6">
+      <SimulatedPriceRangeCompact
+        priceRange={data?.priceRange}
+        product={data?.product}
+      />
+    </div>
+  ) : null;
+
+export const renderSimulatedPrice = (data: any) =>
+  data?.price && data?.product ? (
+    <div className="mb-6">
+      <SimulatedPriceCompact price={data?.price} product={data?.product} />
     </div>
   ) : null;

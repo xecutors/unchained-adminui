@@ -98,6 +98,8 @@ export const SkippedToolResponse = [
 ] as const;
 
 export const AllTools = [
+  'product_simulatedPriceRange',
+  'product_simulatedPrice',
   ...SingleProductReturnTools,
   ...MultipleProductReturnTools,
   ...TextsReturnTools,
