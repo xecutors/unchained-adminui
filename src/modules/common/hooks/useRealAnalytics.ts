@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import useOrders from '../../order/hooks/useOrders';
+import useShopInfo from './useShopInfo';
 
 interface ProductSales {
   productId: string;
@@ -30,6 +31,7 @@ const useRealAnalytics = () => {
     limit: 1000,
     includeCarts: false,
   });
+  const { shopInfo } = useShopInfo();
 
   const analytics: AnalyticsData = useMemo(() => {
     if (!orders || orders.length === 0) {
@@ -37,7 +39,7 @@ const useRealAnalytics = () => {
         totalSales: 0,
         totalOrders: 0,
         averageOrderValue: 0,
-        currency: 'EUR',
+        currency: shopInfo?.country?.defaultCurrency?.isoCode || 'EUR',
         salesGrowth: 0,
         ordersGrowth: 0,
         avgOrderValueGrowth: 0,
@@ -57,8 +59,8 @@ const useRealAnalytics = () => {
     const totalOrders = validOrders.length;
     const averageOrderValue = totalOrders > 0 ? totalSales / totalOrders : 0;
 
-    // Get currency from the first order
-    const currency = validOrders[0]?.total?.currencyCode || 'EUR';
+    // Get currency from the first order, fallback to shop default or EUR
+    const currency = validOrders[0]?.total?.currencyCode || shopInfo?.country?.defaultCurrency?.isoCode || 'EUR';
 
     // Calculate month-over-month growth
     const now = new Date();
@@ -186,7 +188,7 @@ const useRealAnalytics = () => {
       topProducts,
       salesData,
     };
-  }, [orders]);
+  }, [orders, shopInfo]);
 
   return {
     analytics,

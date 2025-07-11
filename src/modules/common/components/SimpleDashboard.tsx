@@ -34,6 +34,7 @@ import {
 } from '../../../components/ui/chart';
 import useRealAnalytics from '../hooks/useRealAnalytics';
 import useOrderItemsAnalytics from '../hooks/useOrderItemsAnalytics';
+import useShopInfo from '../hooks/useShopInfo';
 import generateUniqueId from '../utils/getUniqueId';
 
 const chartConfig = {
@@ -59,6 +60,7 @@ const SimpleDashboard: React.FC = () => {
     loading: productsLoading,
     error: productsError,
   } = useOrderItemsAnalytics();
+  const { shopInfo } = useShopInfo();
   const [animateBars, setAnimateBars] = useState(false);
 
   useEffect(() => {
@@ -189,17 +191,43 @@ const SimpleDashboard: React.FC = () => {
     salesData,
   } = analytics;
 
+  // Use shop's default currency if available, fallback to order currency or EUR
+  const displayCurrency =
+    shopInfo?.country?.defaultCurrency?.isoCode || currency || 'EUR';
+
   // Use real top products if available, fallback to analytics mock data
   const displayTopProducts =
     realTopProducts.length > 0 ? realTopProducts : topProducts;
 
   // Custom formatter for currency values in tooltips
   const formatCurrency = (value) =>
-    `${currency} ${Math.round(value).toLocaleString(locale || 'en-US')}`;
+    `${displayCurrency} ${Math.round(value).toLocaleString(locale || 'en-US')}`;
 
   // Custom formatter for count values in tooltips
   const formatCount = (value) =>
     Math.round(value).toLocaleString(locale || 'en-US');
+
+  // Show no orders state if there are no orders
+  if (totalOrders === 0) {
+    return (
+      <div className="my-10">
+        <ShoppingCart className="h-16 w-16 text-slate-300 dark:text-slate-600 mb-6" />
+        <h2 className="text-2xl font-bold text-slate-700 dark:text-slate-300 mb-3">
+          {formatMessage({
+            id: 'no_orders_title',
+            defaultMessage: 'No orders yet',
+          })}
+        </h2>
+        <p className="text-slate-500 dark:text-slate-400 max-w-md text-lg">
+          {formatMessage({
+            id: 'no_orders_description',
+            defaultMessage:
+              'Once you receive your first orders, your sales analytics and top-selling products will appear here.',
+          })}
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -220,7 +248,7 @@ const SimpleDashboard: React.FC = () => {
               </CardDescription>
             </div>
             <CardTitle className="text-4xl font-bold text-slate-900 mt-2">
-              {currency}{' '}
+              {displayCurrency}{' '}
               {Math.round(totalSales).toLocaleString(locale || 'en-US')}
             </CardTitle>
             <div className="flex items-center gap-1 mt-2">
@@ -393,7 +421,7 @@ const SimpleDashboard: React.FC = () => {
               </CardDescription>
             </div>
             <CardTitle className="text-4xl font-bold text-slate-900 mt-2">
-              {currency}{' '}
+              {displayCurrency}{' '}
               {Math.round(averageOrderValue).toLocaleString(locale || 'en-US')}
             </CardTitle>
             <div className="flex items-center gap-1 mt-2">
@@ -548,13 +576,23 @@ const SimpleDashboard: React.FC = () => {
               ))}
             </div>
           ) : (
-            <div className="text-center py-8">
-              <span className="text-slate-400 dark:text-slate-500 text-sm">
-                {formatMessage({
-                  id: 'no_product_sales_data',
-                  defaultMessage: 'No product sales data available',
-                })}
-              </span>
+            <div className="text-center py-12">
+              <div className="flex flex-col items-center">
+                <ShoppingCart className="h-12 w-12 text-slate-300 dark:text-slate-600 mb-4" />
+                <h3 className="text-lg font-medium text-slate-600 dark:text-slate-400 mb-2">
+                  {formatMessage({
+                    id: 'no_orders_title',
+                    defaultMessage: 'No orders yet',
+                  })}
+                </h3>
+                <p className="text-sm text-slate-400 dark:text-slate-500 max-w-sm">
+                  {formatMessage({
+                    id: 'no_orders_description',
+                    defaultMessage:
+                      'Once you receive your first orders, your top-selling products will appear here.',
+                  })}
+                </p>
+              </div>
             </div>
           )}
         </CardContent>

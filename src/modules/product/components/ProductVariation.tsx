@@ -191,8 +191,8 @@ const ProductVariation = ({
         {!variations?.length ? (
           <NoData
             message={formatMessage({
-              id: 'no_variations_found',
-              defaultMessage: 'No variations found',
+              id: 'variations',
+              defaultMessage: 'Variations',
             })}
           />
         ) : (
