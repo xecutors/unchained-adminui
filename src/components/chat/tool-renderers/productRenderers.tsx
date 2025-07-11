@@ -22,21 +22,30 @@ export const renderMultipleProducts = (data: any) =>
 export const renderVariations = (data: any) =>
   data?.variations?.length ? (
     <div className="mb-6">
-      <VariationListCompact variations={data.variations} />
+      <VariationListCompact
+        variations={data.variations}
+        product={data.product}
+      />
     </div>
   ) : null;
 
 export const renderAssignments = (data: any) =>
   data?.assignments?.length ? (
     <div className="mb-6">
-      <AssignmentListCompact assignments={data.assignments} />
+      <AssignmentListCompact
+        assignments={data.assignments}
+        product={data?.product}
+      />
     </div>
   ) : null;
 
 export const renderBundles = (data: any) =>
   data?.bundleItems?.length ? (
     <div className="mb-6">
-      <BundleItemCompact bundleItems={data.bundleItems} />
+      <BundleItemCompact
+        bundleItems={data.bundleItems}
+        product={data?.product}
+      />
     </div>
   ) : null;
 

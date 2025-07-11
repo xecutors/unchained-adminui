@@ -18,11 +18,16 @@ type Props = {
     proxy?: { assignments?: any[] };
   };
   children?: React.ReactNode;
+  tab?: string;
 };
 
-const ProductDetailCompact: React.FC<Props> = ({ product, children }) => {
+const ProductDetailCompact: React.FC<Props> = ({
+  product,
+  tab = null,
+  children,
+}) => {
   const { formatMessage } = useIntl();
-
+  if (!product) return children;
   const imageUrl = product?.media?.[0]?.file?.url;
   const totalVariations = product?.variations?.length || 0;
   const totalAssignments = product?.proxy?.assignments?.length ?? 0;
@@ -30,7 +35,7 @@ const ProductDetailCompact: React.FC<Props> = ({ product, children }) => {
   return (
     <div className="relative border rounded-xl p-4 shadow-sm bg-white dark:bg-slate-900 space-y-4">
       <Link
-        href={`/products?slug=${generateUniqueId(product)}`}
+        href={`/products?slug=${generateUniqueId(product)}${tab ? `&tab=${tab}` : ''}`}
         className="absolute top-2 right-2 px-2 py-1 text-xs font-medium text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 border border-slate-300 dark:border-slate-600 rounded-md hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
       >
         {formatMessage({ id: 'edit', defaultMessage: 'Edit' })}
