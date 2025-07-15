@@ -101,8 +101,8 @@ const TagInput = ({
       </div>
       <div
         className={classNames(
-          'flex items-center flex-wrap gap-5',
-          tagList.length > 0 && 'mt-4',
+          'ml-4 flex items-center flex-wrap gap-5',
+          tagList.length > 0 && 'mt-1',
         )}
       >
         {tagList?.map((tag) => (

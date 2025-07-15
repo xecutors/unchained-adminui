@@ -61,12 +61,6 @@ const ProductList = ({
                 defaultMessage: 'Tags',
               })}
             </Table.Cell>
-            <Table.Cell sortKey="maxQuantity">
-              {formatMessage({
-                id: 'max_quantity',
-                defaultMessage: 'Max Quantity',
-              })}
-            </Table.Cell>
             <Table.Cell sortKey="sequence" defaultSortDirection="ASC">
               {formatMessage({
                 id: 'sequence',

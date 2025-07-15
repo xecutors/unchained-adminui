@@ -190,11 +190,6 @@ const ProductListItem = ({
         )}
       </Table.Cell>
 
-      <Table.Cell className="whitespace-nowrap px-6">
-        <span className="text-sm text-slate-900 dark:text-slate-300">
-          {product?.commerce?.maxQuantity || '∞'}
-        </span>
-      </Table.Cell>
 
       {hideSortIndex ? null : (
         <Table.Cell>

@@ -46,6 +46,10 @@ const SearchWithTags = ({
                   id: 'apply',
                   defaultMessage: 'Apply',
                 })}
+                placeholder={formatMessage({
+                  id: 'enter_tag',
+                  defaultMessage: 'Enter tag...',
+                })}
                 tagList={(query?.tags as string)?.split(',')}
                 onChange={handleTagChange}
               />
