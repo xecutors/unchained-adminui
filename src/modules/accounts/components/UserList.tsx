@@ -1,18 +1,66 @@
+import { useIntl } from 'react-intl';
+import useAuth from '../../Auth/useAuth';
+import Table from '../../common/components/Table';
 import UserListItem from './UserListItem';
 
 const UserList = ({ users }) => {
+  const { formatMessage } = useIntl();
+  const { hasRole } = useAuth();
+
   return (
-    <div className="mt-5 flex flex-col dark:rounded-md dark:border-slate-800">
-      <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-        <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-          <ul>
-            {users?.map((person) => (
-              <UserListItem key={person?._id} user={person} />
-            ))}
-          </ul>
-        </div>
-      </div>
-    </div>
+    <Table className="min-w-full">
+      {users?.map((user) => (
+        <Table.Row key={user._id} header>
+          <Table.Cell>
+            {formatMessage({
+              id: 'name',
+              defaultMessage: 'Name',
+            })}
+          </Table.Cell>
+
+          <Table.Cell>
+            {formatMessage({
+              id: 'email',
+              defaultMessage: 'Email',
+            })}
+          </Table.Cell>
+
+          <Table.Cell>
+            {formatMessage({
+              id: 'status',
+              defaultMessage: 'Status',
+            })}
+          </Table.Cell>
+
+          <Table.Cell>
+            {formatMessage({
+              id: 'last_login',
+              defaultMessage: 'Last Login',
+            })}
+          </Table.Cell>
+
+          <Table.Cell>
+            {formatMessage({
+              id: 'cart',
+              defaultMessage: 'Cart',
+            })}
+          </Table.Cell>
+
+          <Table.Cell>
+            {formatMessage({
+              id: 'orders',
+              defaultMessage: 'Orders',
+            })}
+          </Table.Cell>
+
+          <Table.Cell className="text-right">&nbsp;</Table.Cell>
+        </Table.Row>
+      ))}
+
+      {users?.map((user) => (
+        <UserListItem key={`${user?._id}-body`} user={user} />
+      ))}
+    </Table>
   );
 };
 

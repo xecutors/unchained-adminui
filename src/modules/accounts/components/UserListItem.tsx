@@ -1,9 +1,16 @@
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
+import { useRouter } from 'next/router';
 import Badge from '../../common/components/Badge';
 import MiniUserAvatar from '../../common/components/MiniUserAvatar';
+import Table from '../../common/components/Table';
+import TableActionsMenu from '../../common/components/TableActionsMenu';
 import formatUsername from '../../common/utils/formatUsername';
 import useCurrentUser from '../hooks/useCurrentUser';
+import useAuth from '../../Auth/useAuth';
+import useModal from '../../modal/hooks/useModal';
+import DangerMessage from '../../modal/components/DangerMessage';
+import useDeleteUser from '../hooks/useDeleteUser';
 import Loading from '../../common/components/Loading';
 import { ShoppingBagIcon, ShoppingCartIcon } from '@heroicons/react/24/outline';
 
@@ -32,76 +39,131 @@ const UserLastLogin = ({ lastLogin }) => {
 
 const UserListItem = ({ user }) => {
   const { formatMessage, locale } = useIntl();
+  const router = useRouter();
   const { currentUser, loading } = useCurrentUser();
+  const { hasRole } = useAuth();
+  const { setModal } = useModal();
+  const { deleteUser } = useDeleteUser();
   const isVerified = !!user?.primaryEmail?.verified;
 
   if (loading && !currentUser) return <Loading />;
 
+  const handleEdit = () => {
+    router.push(`/users?userId=${user._id}`);
+  };
+
+  const handleDelete = async () => {
+    await setModal(
+      <DangerMessage
+        onCancelClick={async () => setModal('')}
+        message={formatMessage({
+          id: 'delete_user_warning',
+          defaultMessage:
+            'This action will permanently delete this user and all associated data. Are you sure you want to continue?',
+        })}
+        onOkClick={async () => {
+          setModal('');
+          await deleteUser({ userId: user._id });
+        }}
+        okText={formatMessage({
+          id: 'delete_user',
+          defaultMessage: 'Delete User',
+        })}
+      />,
+    );
+  };
+
   return (
-    <li className="mb-3 bg-white dark:bg-slate-800 group border-2 border-slate-100 dark:border-slate-800 hover:border-slate-100 dark:hover:border-slate-600 transition-all duration-200 ease-in-out shadow-xs hover:shadow-sm rounded-md">
-      <Link
-        href={`/users?userId=${user._id}`}
-        className="block px-2 py-2 sm:px-3 sm:py-3"
-      >
-        <div className="flex items-center justify-between flex-wrap gap-3">
-          <div className="flex items-center">
-            <MiniUserAvatar
-              url={user?.avatar?.url}
-              showName={false}
-              name={user.username}
-            />
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center justify-between gap-3">
-                <span className="text-sm font-semibold text-slate-900 dark:text-slate-300 truncate">
-                  {formatUsername(user)}
-                </span>
-                <div className="flex items-center gap-3 justify-between flex-wrap text-xs text-slate-500">
-                  {user.isGuest && (
-                    <Badge
-                      text={formatMessage({
-                        id: 'guest',
-                        defaultMessage: 'Guest',
-                      })}
-                      color="blue"
-                    />
-                  )}
-                </div>
-              </div>
-              <div className="text-sm text-slate-500 dark:text-slate-200">
-                <div className="truncate">{user?.primaryEmail?.address}</div>
-              </div>
-              <UserLastLogin lastLogin={user?.lastLogin} />
+    <Table.Row className="group">
+      <Table.Cell>
+        <Link
+          href={`/users?userId=${user._id}`}
+          className="flex items-center text-sm text-slate-900 dark:text-slate-300 group-hover:text-slate-700 dark:group-hover:text-slate-100"
+        >
+          <MiniUserAvatar
+            url={user?.avatar?.url}
+            showName={false}
+            name={user.username}
+            className="mr-3"
+          />
+          <div className="flex flex-col">
+            <div className="flex items-center gap-2">
+              <span className="font-semibold">{formatUsername(user)}</span>
+              {user.isGuest && (
+                <Badge
+                  text={formatMessage({
+                    id: 'guest',
+                    defaultMessage: 'Guest',
+                  })}
+                  color="blue"
+                />
+              )}
             </div>
           </div>
-          <div className="flex items-end flex-wrap gap-10 text-slate-600">
-            <Badge
-              text={
-                isVerified
-                  ? formatMessage({
-                      id: 'verified',
-                      defaultMessage: 'Verified',
-                    })
-                  : formatMessage({
-                      id: 'unverified',
-                      defaultMessage: 'Unverified',
-                    })
-              }
-              color={isVerified ? 'green' : 'yellow'}
-            />
-            <div className="flex items-center gap-10">
-              <div className="flex items-center gap-3 justify-between flex-wrap">
-                <ShoppingCartIcon className="w-4 h-4 text-slate-500" />
-                <Badge color="yellow" text={user?.cart?.items?.length || 0} />
-              </div>
-              <div className="flex items-center gap-3 justify-between flex-wrap">
-                <ShoppingBagIcon className="w-4 h-4 text-slate-500" />
-                <Badge text={user?.orders?.length || 0} />
-              </div>
-            </div>
+        </Link>
+      </Table.Cell>
+
+      <Table.Cell>
+        <Link href={`/users?userId=${user._id}`} className="block">
+          <div className="text-sm text-slate-900 dark:text-slate-300">
+            {user?.primaryEmail?.address}
           </div>
-        </div>
-      </Link>
-    </li>
+        </Link>
+      </Table.Cell>
+
+      <Table.Cell>
+        <Link href={`/users?userId=${user._id}`} className="block">
+          <Badge
+            text={
+              isVerified
+                ? formatMessage({
+                    id: 'verified',
+                    defaultMessage: 'Verified',
+                  })
+                : formatMessage({
+                    id: 'unverified',
+                    defaultMessage: 'Unverified',
+                  })
+            }
+            color={isVerified ? 'green' : 'yellow'}
+            square
+          />
+        </Link>
+      </Table.Cell>
+
+      <Table.Cell>
+        <Link href={`/users?userId=${user._id}`} className="block">
+          <UserLastLogin lastLogin={user?.lastLogin} />
+        </Link>
+      </Table.Cell>
+
+      <Table.Cell>
+        <Link href={`/users?userId=${user._id}`} className="block">
+          <div className="flex items-center gap-1">
+            <ShoppingCartIcon className="w-4 h-4 text-slate-500" />
+            <span className="text-sm">{user?.cart?.items?.length || 0}</span>
+          </div>
+        </Link>
+      </Table.Cell>
+
+      <Table.Cell>
+        <Link href={`/users?userId=${user._id}`} className="block">
+          <div className="flex items-center gap-1">
+            <ShoppingBagIcon className="w-4 h-4 text-slate-500" />
+            <span className="text-sm">{user?.orders?.length || 0}</span>
+          </div>
+        </Link>
+      </Table.Cell>
+
+      <Table.Cell className="text-right">
+        <TableActionsMenu
+          onEdit={handleEdit}
+          onDelete={hasRole('removeUser') ? handleDelete : undefined}
+          showEdit={true}
+          showDelete={hasRole('removeUser')}
+        />
+      </Table.Cell>
+    </Table.Row>
   );
 };
 
