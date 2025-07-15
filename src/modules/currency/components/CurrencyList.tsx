@@ -23,7 +23,7 @@ const CurrencyList = ({ currencies, onRemoveCurrency, sortable }) => {
           </Table.Cell>
 
           <Table.Cell sortKey="isActive">
-            {formatMessage({ id: 'active', defaultMessage: 'Active' })}
+            {formatMessage({ id: 'status', defaultMessage: 'Status' })}
           </Table.Cell>
           {(hasRole('showCurrency') || hasRole('removeCurrency')) && (
             <Table.Cell>&nbsp;</Table.Cell>

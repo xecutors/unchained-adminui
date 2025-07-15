@@ -30,9 +30,7 @@ const CountryList = ({ countries, onRemoveCountry, sortable }) => {
           </Table.Cell>
 
           <Table.Cell sortKey="isActive">
-            <span className="sr-only">
-              {formatMessage({ id: 'active', defaultMessage: 'Active' })}
-            </span>
+            {formatMessage({ id: 'status', defaultMessage: 'Status' })}
           </Table.Cell>
           {(hasRole('showCountry') || hasRole('removeCountry')) && (
             <Table.Cell>

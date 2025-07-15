@@ -23,7 +23,7 @@ const LanguageList = ({ languages, onRemoveLanguage, sortable }) => {
           </Table.Cell>
 
           <Table.Cell sortKey="isActive">
-            {formatMessage({ id: 'active', defaultMessage: 'Active' })}
+            {formatMessage({ id: 'status', defaultMessage: 'Status' })}
           </Table.Cell>
           {(hasRole('showCountry') || hasRole('removeCountry')) && (
             <Table.Cell>
