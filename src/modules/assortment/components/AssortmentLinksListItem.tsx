@@ -2,8 +2,8 @@ import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { useRouter } from 'next/router';
 import Badge from '../../common/components/Badge';
-import DeleteButton from '../../common/components/DeleteButton';
 import DraggableIcon from '../../common/components/DraggableIcon';
+import TableActionsMenu from '../../common/components/TableActionsMenu';
 import generateUniqueId from '../../common/utils/getUniqueId';
 
 const AssortmentLinksListItem = ({ link, onDelete, linkId, isParent, id }) => {
@@ -15,6 +15,14 @@ const AssortmentLinksListItem = ({ link, onDelete, linkId, isParent, id }) => {
   };
 
   const router = useRouter();
+
+  const handleEdit = () => {
+    router.push(`/assortments?assortmentSlug=${generateUniqueId(link)}`);
+  };
+
+  const handleDelete = () => {
+    onDelete(linkId);
+  };
   return (
     <div
       className="group flex items-center justify-between rounded-sm border-b border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 hover:bg-slate-50/80 dark:hover:bg-slate-700/50 transition-all duration-200 ease-in-out hover:shadow-sm px-2 text-slate-900 dark:text-slate-200 last:border-none hover:cursor-pointer"
@@ -67,7 +75,12 @@ const AssortmentLinksListItem = ({ link, onDelete, linkId, isParent, id }) => {
           >
             <DraggableIcon />
           </button>
-          <DeleteButton onClick={() => onDelete(linkId)} />
+          <TableActionsMenu
+            onEdit={handleEdit}
+            onDelete={handleDelete}
+            showEdit={true}
+            showDelete={true}
+          />
         </div>
       </div>
     </div>

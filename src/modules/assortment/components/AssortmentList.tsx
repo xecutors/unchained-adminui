@@ -41,6 +41,7 @@ const AssortmentList = ({ assortments, showAvatar = true, sortable }) => {
               defaultMessage: 'Display Order',
             })}
           </Table.Cell>
+          <Table.Cell>&nbsp;</Table.Cell>
         </Table.Row>
       ))}
       {assortments?.map((assortment) => (

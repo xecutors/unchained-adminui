@@ -6,9 +6,9 @@ import FormWrapper from '../../common/components/FormWrapper';
 
 import useAddProductAssignment from '../hooks/useAddProductAssignment';
 
-import DeleteButton from '../../common/components/DeleteButton';
 import useProductAssignments from '../hooks/useProductAssignments';
 import Table from '../../common/components/Table';
+import TableActionsMenu from '../../common/components/TableActionsMenu';
 import useRemoveProductAssignment from '../hooks/useRemoveProductAssignment';
 import useModal from '../../modal/hooks/useModal';
 import DangerMessage from '../../modal/components/DangerMessage';
@@ -201,7 +201,10 @@ const ProductAssignmentForm = ({ proxyId, disabled = false }) => {
             </Table.Cell>
             <Table.Cell>
               {variationProduct && variationProduct._id && (
-                <DeleteButton onClick={handleRemoveAssignment(columns)} />
+                <TableActionsMenu
+                  onDelete={handleRemoveAssignment(columns)}
+                  showDelete={true}
+                />
               )}
             </Table.Cell>
           </Table.Row>

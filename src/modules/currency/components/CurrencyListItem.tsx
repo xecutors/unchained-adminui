@@ -1,18 +1,27 @@
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
+import { useRouter } from 'next/router';
 
 import Badge from '../../common/components/Badge';
-import DeleteButton from '../../common/components/DeleteButton';
-import EditIcon from '../../common/components/EditIcon';
 import Table from '../../common/components/Table';
+import TableActionsMenu from '../../common/components/TableActionsMenu';
 import { normalizeCurrencyISOCode } from '../../common/utils/utils';
 
 const CurrencyListItem = ({ currency, onRemove, enableEdit, enableDelete }) => {
   const { locale, formatMessage } = useIntl();
+  const router = useRouter();
 
   const STATUS = {
     true: formatMessage({ id: 'active', defaultMessage: 'Active' }),
     false: formatMessage({ id: 'in_active', defaultMessage: 'In-Active' }),
+  };
+
+  const handleEdit = () => {
+    router.push(`/currency?currencyId=${currency?._id}`);
+  };
+
+  const handleDelete = () => {
+    onRemove(currency?._id);
   };
 
   return (
@@ -32,19 +41,12 @@ const CurrencyListItem = ({ currency, onRemove, enableEdit, enableDelete }) => {
       </Table.Cell>
       {(enableEdit || enableDelete) && (
         <Table.Cell>
-          <div className="flex items-center">
-            {enableEdit && (
-              <Link href={`/currency?currencyId=${currency?._id}`}>
-                <EditIcon />
-              </Link>
-            )}
-            {enableDelete && (
-              <DeleteButton
-                className="ml-1 mr-1"
-                onClick={() => onRemove(currency?._id)}
-              />
-            )}
-          </div>
+          <TableActionsMenu
+            onEdit={enableEdit ? handleEdit : undefined}
+            onDelete={enableDelete ? handleDelete : undefined}
+            showEdit={enableEdit}
+            showDelete={enableDelete}
+          />
         </Table.Cell>
       )}
     </Table.Row>

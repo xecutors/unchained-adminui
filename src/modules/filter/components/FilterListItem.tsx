@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
+import { useRouter } from 'next/router';
 import useAuth from '../../Auth/useAuth';
 import Badge from '../../common/components/Badge';
-import DeleteButton from '../../common/components/DeleteButton';
 import Table from '../../common/components/Table';
+import TableActionsMenu from '../../common/components/TableActionsMenu';
 
 const FILTER_TYPES = {
   SWITCH: 'sky',
@@ -13,9 +14,18 @@ const FILTER_TYPES = {
 const FilterListItem = ({ filter, onRemove }) => {
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
+  const router = useRouter();
   const STATUS = {
     true: formatMessage({ id: 'active', defaultMessage: 'Active' }),
     false: formatMessage({ id: 'in_active', defaultMessage: 'In-Active' }),
+  };
+
+  const handleEdit = () => {
+    router.push(`/filters?filterId=${filter._id}`);
+  };
+
+  const handleDelete = async () => {
+    await onRemove(filter?._id);
   };
   return (
     <Table.Row className="group">
@@ -65,20 +75,14 @@ const FilterListItem = ({ filter, onRemove }) => {
           {filter.options?.length}
         </Link>
       </Table.Cell>
-      {hasRole('removeFilter') && (
-        <Table.Cell>
-          <div className="flex items-center md:justify-center">
-            <DeleteButton
-              className="px-0"
-              onClick={async (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                await onRemove(filter?._id);
-              }}
-            />
-          </div>
-        </Table.Cell>
-      )}
+      <Table.Cell className="text-right">
+        <TableActionsMenu
+          onEdit={handleEdit}
+          onDelete={hasRole('removeFilter') ? handleDelete : undefined}
+          showEdit={true}
+          showDelete={hasRole('removeFilter')}
+        />
+      </Table.Cell>
     </Table.Row>
   );
 };

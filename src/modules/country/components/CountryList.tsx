@@ -8,7 +8,7 @@ const CountryList = ({ countries, onRemoveCountry, sortable }) => {
   const { hasRole } = useAuth();
 
   return (
-    <Table className="min-w-full ">
+    <Table className="min-w-full">
       {countries?.map((country) => (
         <Table.Row key={country._id} header enablesort={sortable}>
           <Table.Cell sortKey="isoCode">

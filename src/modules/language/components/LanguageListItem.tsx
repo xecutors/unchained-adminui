@@ -1,16 +1,25 @@
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
+import { useRouter } from 'next/router';
 import Badge from '../../common/components/Badge';
-import DeleteButton from '../../common/components/DeleteButton';
-import EditIcon from '../../common/components/EditIcon';
 import Table from '../../common/components/Table';
+import TableActionsMenu from '../../common/components/TableActionsMenu';
 import { normalizeLanguageISOCode } from '../../common/utils/utils';
 
 const LanguageListItem = ({ language, onRemove, enableEdit, enableDelete }) => {
   const { locale, formatMessage } = useIntl();
+  const router = useRouter();
   const STATUS = {
     true: formatMessage({ id: 'active', defaultMessage: 'Active' }),
     false: formatMessage({ id: 'in_active', defaultMessage: 'In-Active' }),
+  };
+
+  const handleEdit = () => {
+    router.push(`/language?languageId=${language?._id}`);
+  };
+
+  const handleDelete = async () => {
+    await onRemove(language?._id);
   };
   return (
     <Table.Row className="text-sm">
@@ -44,21 +53,12 @@ const LanguageListItem = ({ language, onRemove, enableEdit, enableDelete }) => {
       </Table.Cell>
       {(enableEdit || enableDelete) && (
         <Table.Cell>
-          <div className="flex">
-            {enableEdit && (
-              <Link href={`/language?languageId=${language?._id}`}>
-                <EditIcon />
-              </Link>
-            )}
-            {enableDelete && (
-              <DeleteButton
-                className="ml-1 mr-1"
-                onClick={async () => {
-                  await onRemove(language?._id);
-                }}
-              />
-            )}
-          </div>
+          <TableActionsMenu
+            onEdit={enableEdit ? handleEdit : undefined}
+            onDelete={enableDelete ? handleDelete : undefined}
+            showEdit={enableEdit}
+            showDelete={enableDelete}
+          />
         </Table.Cell>
       )}
     </Table.Row>

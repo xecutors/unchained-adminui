@@ -73,6 +73,7 @@ const ProductList = ({
                 defaultMessage: 'Display Order',
               })}
             </Table.Cell>
+            <Table.Cell>&nbsp;</Table.Cell>
           </Table.Row>
         ))}
 

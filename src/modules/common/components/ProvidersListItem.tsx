@@ -1,10 +1,10 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import Badge from './Badge';
 import Table from './Table';
+import TableActionsMenu from './TableActionsMenu';
 import { PROVIDER_TYPE_CLASSES } from '../data/miscellaneous';
-import DeleteButton from './DeleteButton';
-import EditIcon from './EditIcon';
 import { getInterfaceLabel } from '../utils/utils';
 import ActiveInActive from './ActiveInActive';
 import ProviderNameConfiguration from './ProviderNameConfiguration';
@@ -16,6 +16,15 @@ const ProviderListItem = ({
   canEdit,
   canDelete,
 }) => {
+  const router = useRouter();
+
+  const handleEdit = () => {
+    router.push(`${providerPath}=${provider?._id}`);
+  };
+
+  const handleDelete = async () => {
+    await onRemove(provider?._id);
+  };
   return (
     <Table.Row>
       <Table.Cell>
@@ -45,20 +54,12 @@ const ProviderListItem = ({
       </Table.Cell>
       {(canEdit || canDelete) && (
         <Table.Cell>
-          <div className="flex items-center gap-1 justify-between flex-wrap">
-            {canEdit && (
-              <Link href={`${providerPath}=${provider?._id}`}>
-                <EditIcon />
-              </Link>
-            )}
-            {canDelete && (
-              <DeleteButton
-                onClick={async () => {
-                  await onRemove(provider?._id);
-                }}
-              />
-            )}
-          </div>
+          <TableActionsMenu
+            onEdit={canEdit ? handleEdit : undefined}
+            onDelete={canDelete ? handleDelete : undefined}
+            showEdit={canEdit}
+            showDelete={canDelete}
+          />
         </Table.Cell>
       )}
     </Table.Row>

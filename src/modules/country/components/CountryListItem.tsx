@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
+import { useRouter } from 'next/router';
 
 import Badge from '../../common/components/Badge';
-import DeleteButton from '../../common/components/DeleteButton';
-import EditIcon from '../../common/components/EditIcon';
 import Table from '../../common/components/Table';
+import TableActionsMenu from '../../common/components/TableActionsMenu';
 
 import {
   normalizeCountryISOCode,
@@ -13,12 +13,21 @@ import {
 
 const CountryListItem = ({ country, onRemove, enableEdit, enableDelete }) => {
   const { locale, formatMessage } = useIntl();
+  const router = useRouter();
   const STATUS = {
     true: formatMessage({ id: 'active', defaultMessage: 'Active' }),
     false: formatMessage({ id: 'in_active', defaultMessage: 'In-Active' }),
   };
   const currencyISOcode =
     country.defaultCurrency && country.defaultCurrency.isoCode;
+
+  const handleEdit = () => {
+    router.push(`/country?countryId=${country._id}`);
+  };
+
+  const handleDelete = async () => {
+    await onRemove(country._id);
+  };
   return (
     <Table.Row className="text-sm">
       <Table.Cell className="whitespace-nowrap">
@@ -56,22 +65,13 @@ const CountryListItem = ({ country, onRemove, enableEdit, enableDelete }) => {
         />
       </Table.Cell>
       {(enableEdit || enableDelete) && (
-        <Table.Cell className="whitespace-nowrap">
-          <div className="flex items-center">
-            {enableEdit && (
-              <Link href={`/country?countryId=${country._id}`}>
-                <EditIcon />
-              </Link>
-            )}
-            {enableDelete && (
-              <DeleteButton
-                className="ml-1 mr-1 "
-                onClick={async () => {
-                  await onRemove(country._id);
-                }}
-              />
-            )}
-          </div>
+        <Table.Cell>
+          <TableActionsMenu
+            onEdit={enableEdit ? handleEdit : undefined}
+            onDelete={enableDelete ? handleDelete : undefined}
+            showEdit={enableEdit}
+            showDelete={enableDelete}
+          />
         </Table.Cell>
       )}
     </Table.Row>

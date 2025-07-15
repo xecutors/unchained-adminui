@@ -3,8 +3,8 @@ import { CSS } from '@dnd-kit/utilities';
 import { useRouter } from 'next/router';
 
 import Badge from '../../common/components/Badge';
-import DeleteButton from '../../common/components/DeleteButton';
 import DraggableIcon from '../../common/components/DraggableIcon';
+import TableActionsMenu from '../../common/components/TableActionsMenu';
 import generateUniqueId from '../../common/utils/getUniqueId';
 
 const AssortmentProductListItem = ({ link, onDelete, id }) => {
@@ -17,6 +17,14 @@ const AssortmentProductListItem = ({ link, onDelete, id }) => {
   };
 
   const router = useRouter();
+
+  const handleEdit = () => {
+    router.push(`/products?slug=${generateUniqueId(link?.product)}`);
+  };
+
+  const handleDelete = () => {
+    onDelete(_id);
+  };
 
   return (
     <div
@@ -56,7 +64,12 @@ const AssortmentProductListItem = ({ link, onDelete, id }) => {
           >
             <DraggableIcon />
           </button>
-          <DeleteButton onClick={() => onDelete(_id)} />
+          <TableActionsMenu
+            onEdit={handleEdit}
+            onDelete={handleDelete}
+            showEdit={true}
+            showDelete={true}
+          />
         </div>
       </div>
     </div>

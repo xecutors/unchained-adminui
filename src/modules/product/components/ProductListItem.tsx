@@ -1,11 +1,17 @@
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
+import { useRouter } from 'next/router';
 import Badge from '../../common/components/Badge';
 import MediaAvatar from '../../common/components/MediaAvatar';
 import Table from '../../common/components/Table';
+import TableActionsMenu from '../../common/components/TableActionsMenu';
 import generateUniqueId from '../../common/utils/getUniqueId';
+import useAuth from '../../Auth/useAuth';
+import useModal from '../../modal/hooks/useModal';
+import DangerMessage from '../../modal/components/DangerMessage';
 
 import useUpdateProduct from '../hooks/useUpdateProduct';
+import useRemoveProduct from '../hooks/useRemoveProduct';
 
 const PRODUCT_STATUS = {
   DRAFT: 'yellow',
@@ -19,7 +25,12 @@ const ProductListItem = ({
   hideSortIndex = false,
 }) => {
   const { formatMessage } = useIntl();
+  const router = useRouter();
+  const { hasRole } = useAuth();
+  const { setModal } = useModal();
   const { updateProduct } = useUpdateProduct();
+  const { removeProduct } = useRemoveProduct();
+  
   const updateProductSequence = async (e) => {
     if (e.target.value)
       await updateProduct({
@@ -28,6 +39,33 @@ const ProductListItem = ({
           sequence: parseInt(e.target.value, 10),
         },
       });
+  };
+
+  const handleEdit = () => {
+    if (product?.status !== 'DELETED') {
+      router.push(`/products?slug=${generateUniqueId(product)}`);
+    }
+  };
+
+  const handleDelete = async () => {
+    await setModal(
+      <DangerMessage
+        onCancelClick={async () => setModal('')}
+        message={formatMessage({
+          id: 'delete_product_warning',
+          defaultMessage:
+            'This action will permanently delete this product and all associated data. Are you sure you want to continue?',
+        })}
+        onOkClick={async () => {
+          setModal('');
+          await removeProduct({ productId: product._id });
+        }}
+        okText={formatMessage({
+          id: 'delete_product',
+          defaultMessage: 'Delete Product',
+        })}
+      />,
+    );
   };
 
   const getStatusLabel = (status: string) => {
@@ -171,6 +209,14 @@ const ProductListItem = ({
           />
         </Table.Cell>
       )}
+      <Table.Cell className="text-right">
+        <TableActionsMenu
+          onEdit={product?.status !== 'DELETED' ? handleEdit : undefined}
+          onDelete={hasRole('removeProduct') && product?.status === 'DRAFT' ? handleDelete : undefined}
+          showEdit={product?.status !== 'DELETED'}
+          showDelete={hasRole('removeProduct') && product?.status === 'DRAFT'}
+        />
+      </Table.Cell>
     </Table.Row>
   );
 };

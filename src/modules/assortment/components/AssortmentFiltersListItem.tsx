@@ -4,8 +4,8 @@ import { CSS } from '@dnd-kit/utilities';
 
 import { useRouter } from 'next/router';
 import Badge from '../../common/components/Badge';
-import DeleteButton from '../../common/components/DeleteButton';
 import DraggableIcon from '../../common/components/DraggableIcon';
+import TableActionsMenu from '../../common/components/TableActionsMenu';
 
 const AssortmentFiltersListItem = ({ link, onDelete, id }) => {
   const { formatMessage } = useIntl();
@@ -18,6 +18,14 @@ const AssortmentFiltersListItem = ({ link, onDelete, id }) => {
     transition,
   };
   const router = useRouter();
+
+  const handleEdit = () => {
+    router.push(`/filters?filterId=${filter._id}`);
+  };
+
+  const handleDelete = () => {
+    onDelete(_id);
+  };
 
   return (
     <div
@@ -69,7 +77,12 @@ const AssortmentFiltersListItem = ({ link, onDelete, id }) => {
           >
             <DraggableIcon />
           </button>
-          <DeleteButton onClick={() => onDelete(_id)} />
+          <TableActionsMenu
+            onEdit={handleEdit}
+            onDelete={handleDelete}
+            showEdit={true}
+            showDelete={true}
+          />
         </div>
       </div>
     </div>

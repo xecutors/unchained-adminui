@@ -1,10 +1,14 @@
 import Badge from '../../common/components/Badge';
-import DeleteButton from '../../common/components/DeleteButton';
 import ImageWithFallback from '../../common/components/ImageWithFallback';
 import NoImage from '../../common/components/NoImage';
+import TableActionsMenu from '../../common/components/TableActionsMenu';
 
 const BundleProductsListItem = ({ item, onDelete, index }) => {
   const { product, quantity } = item;
+
+  const handleDelete = () => {
+    onDelete(index);
+  };
 
   return (
     <div className="group flex w-full items-center justify-between border-b border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 hover:bg-slate-50/80 dark:hover:bg-slate-700/50 transition-all duration-200 ease-in-out hover:shadow-sm last:border-none">
@@ -39,7 +43,10 @@ const BundleProductsListItem = ({ item, onDelete, index }) => {
         </div>
       </div>
 
-      <DeleteButton onClick={() => onDelete(index)} className="ml-2" />
+      <TableActionsMenu
+        onDelete={handleDelete}
+        showDelete={true}
+      />
     </div>
   );
 };

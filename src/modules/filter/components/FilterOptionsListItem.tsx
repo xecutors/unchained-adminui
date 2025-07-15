@@ -5,9 +5,8 @@ import TextField from '../../forms/components/TextField';
 import Form from '../../forms/components/Form';
 import useForm, { OnSubmitType } from '../../forms/hooks/useForm';
 import useUpdateFilterTexts from '../hooks/useUpdateFilterTexts';
-import DeleteButton from '../../common/components/DeleteButton';
 import Badge from '../../common/components/Badge';
-import EditIcon from '../../common/components/EditIcon';
+import TableActionsMenu from '../../common/components/TableActionsMenu';
 import Button from '../../common/components/Button';
 
 const FilterOptionsListItem = ({
@@ -38,6 +37,14 @@ const FilterOptionsListItem = ({
     });
     setIsEdit(false);
     return { success: true };
+  };
+
+  const handleEdit = () => {
+    setIsEdit(!isEdit);
+  };
+
+  const handleDelete = () => {
+    onDelete(option?.value);
   };
 
   const form = useForm({
@@ -115,23 +122,12 @@ const FilterOptionsListItem = ({
                   />
                 </div>
               ) : (
-                <div className="flex items-center gap-2">
-                  <button
-                    onClick={() => setIsEdit(!isEdit)}
-                    type="button"
-                    className="p-1 rounded-full text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 dark:hover:bg-slate-700 transition-colors"
-                    aria-label={formatMessage({
-                      id: 'edit',
-                      defaultMessage: 'Edit',
-                    })}
-                  >
-                    <EditIcon />
-                  </button>
-                  <DeleteButton
-                    onClick={() => onDelete(option?.value)}
-                    className="ml-1 mr-1"
-                  />
-                </div>
+                <TableActionsMenu
+                  onEdit={handleEdit}
+                  onDelete={handleDelete}
+                  showEdit={true}
+                  showDelete={true}
+                />
               )}
             </div>
           </div>
