@@ -18,6 +18,8 @@ import useProductsCount from '../../modules/product/hooks/useProductsCount';
 import ProductDetailPage from './ProductDetailPage';
 import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
 import AnimatedCounter from '../../modules/common/components/AnimatedCounter';
+import ProductExport from '../../modules/product/components/ProductExport';
+import ProductImport from '../../modules/product/components/ProductImport';
 
 const Products = () => {
   const { formatMessage } = useIntl();
@@ -74,7 +76,10 @@ const Products = () => {
             id: 'add_product',
             defaultMessage: 'Add Product',
           })}
-        />
+        >
+          <ProductExport />
+          <ProductImport />
+        </PageHeader>
       </div>
       <div className="min-w-full overflow-x-auto px-1">
         <ListHeader>
