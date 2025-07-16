@@ -62,7 +62,7 @@ const Button: React.FC<ButtonProps> = ({
   ...props
 }) => {
   const baseClasses =
-    'inline-flex items-center justify-center font-medium focus:outline-hidden focus:ring-2 focus:ring-offset-2 transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-50';
+    'inline-flex items-center justify-center font-medium shadow-xs focus:outline-hidden focus:ring-2 focus:ring-offset-2 transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-50';
 
   const sizeClasses = {
     xs: 'px-2.5 py-1.5 text-xs h-6',
