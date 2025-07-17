@@ -294,8 +294,8 @@
   "bundle_product_definition": {
     "defaultMessage": "<h3>Bundle</h3> <p>As the name suggest this product type enables you to create a collection/bundle of products as one and set the price accordingly. This type of product is useful if you have christmas package for example. </p>"
   },
-  "bundles": {
-    "defaultMessage": "Bundles"
+  "bundled_items": {
+    "defaultMessage": "Bundled items"
   },
   "cancel": {
     "defaultMessage": "Cancel"

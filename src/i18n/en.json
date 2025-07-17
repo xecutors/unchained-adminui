@@ -97,7 +97,7 @@
   "bundle_item_added": "Bundle product added successfully",
   "bundle_item_deleted": "Bundle item deleted successfully",
   "bundle_product_definition": "<h3>Bundle</h3> <p>As the name suggest this product type enables you to create a collection/bundle of products as one and set the price accordingly. This type of product is useful if you have christmas package for example. </p>",
-  "bundles": "Bundles",
+  "bundled_items": "Bundled items",
   "cancel": "Cancel",
   "cart": "Cart",
   "cart_created": "Warenkorb erstellt",

@@ -9,7 +9,6 @@ const useLocalStorage = (key, initialValue) => {
       }
       return initialValue;
     } catch (error) {
-      console.error(error);
       return initialValue;
     }
   });

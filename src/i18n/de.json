@@ -107,7 +107,7 @@
   "bundle_item_deleted": "Gebündeltes Produkt erfolgreich gelöscht",
   "bundle_product": "Bundle-Produkt",
   "bundle_product_definition": "<h3>Bündel</h3> <p>Wie der Name schon sagt, ermöglicht Ihnen dieser Produkttyp, eine Sammlung/ein Bündel von Produkten als eines zu erstellen und den Preis entsprechend festzulegen. Dieser Produkttyp ist nützlich, wenn Sie beispielsweise ein Weihnachtspaket haben.</p>",
-  "bundles": "Bündelungen",
+  "bundled_items": "Gebündelte Artikel",
   "cancel": "Abbrechen",
   "cart": "Warenkorb",
   "cart_created": "Warenkorb erstellt",

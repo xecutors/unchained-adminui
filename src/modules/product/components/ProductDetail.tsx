@@ -150,8 +150,8 @@ const ProductDetail = ({ product, extendedData = {} }: ProductDetailProps) => {
     __typename === PRODUCT_TYPES.BundleProduct && {
       id: 'bundled_products',
       title: formatMessage({
-        id: 'bundles',
-        defaultMessage: 'Bundles',
+        id: 'bundled_items',
+        defaultMessage: 'Bundled items',
       }),
       Icon: <PresentationChartLineIcon className="h-5 w-5" />,
     },
