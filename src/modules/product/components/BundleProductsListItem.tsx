@@ -43,10 +43,7 @@ const BundleProductsListItem = ({ item, onDelete, index }) => {
         </div>
       </div>
 
-      <TableActionsMenu
-        onDelete={handleDelete}
-        showDelete={true}
-      />
+      <TableActionsMenu onDelete={handleDelete} showDelete={true} />
     </div>
   );
 };

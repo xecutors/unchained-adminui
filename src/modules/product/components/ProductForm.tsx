@@ -94,7 +94,10 @@ const ProductForm = ({
         <TagInputField
           name="tags"
           label={formatMessage({ id: 'tags', defaultMessage: 'Tags' })}
-          placeholder={formatMessage({ id: 'enter_tag', defaultMessage: 'Enter tag...' })}
+          placeholder={formatMessage({
+            id: 'enter_tag',
+            defaultMessage: 'Enter tag...',
+          })}
         />
         <HelpText
           messageKey="product_tags_help"

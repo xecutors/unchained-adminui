@@ -27,16 +27,16 @@ const ProductImport = () => {
     const lines = csvContent.split('\n');
     if (lines.length < 2) return [];
 
-    const headers = lines[0].split(',').map(h => h.replace(/"/g, '').trim());
-    const rows = lines.slice(1).filter(line => line.trim());
+    const headers = lines[0].split(',').map((h) => h.replace(/"/g, '').trim());
+    const rows = lines.slice(1).filter((line) => line.trim());
 
-    return rows.map(row => {
-      const values = row.split(',').map(v => v.replace(/"/g, '').trim());
+    return rows.map((row) => {
+      const values = row.split(',').map((v) => v.replace(/"/g, '').trim());
       const product: any = {};
-      
+
       headers.forEach((header, index) => {
         const value = values[index] || '';
-        
+
         switch (header) {
           case 'ID':
             product._id = value;
@@ -80,19 +80,26 @@ const ProductImport = () => {
 
   const validateProduct = (product: any): string[] => {
     const errors: string[] = [];
-    
+
     if (!product.title) {
       errors.push('Title is required');
     }
-    
+
     if (!product.type) {
       errors.push('Type is required');
     }
-    
-    if (!['SimpleProduct', 'ConfigurableProduct', 'PlanProduct', 'BundleProduct'].includes(product.type)) {
+
+    if (
+      ![
+        'SimpleProduct',
+        'ConfigurableProduct',
+        'PlanProduct',
+        'BundleProduct',
+      ].includes(product.type)
+    ) {
       errors.push('Invalid product type');
     }
-    
+
     if (!['DRAFT', 'ACTIVE', 'DELETED'].includes(product.status)) {
       errors.push('Invalid status');
     }
@@ -100,7 +107,9 @@ const ProductImport = () => {
     return errors;
   };
 
-  const importProduct = async (productData: any): Promise<{ success: boolean; error?: string }> => {
+  const importProduct = async (
+    productData: any,
+  ): Promise<{ success: boolean; error?: string }> => {
     try {
       const validationErrors = validateProduct(productData);
       if (validationErrors.length > 0) {
@@ -109,7 +118,7 @@ const ProductImport = () => {
 
       // Check if product exists (by ID or slug)
       const isUpdate = productData._id || productData.slug;
-      
+
       if (isUpdate) {
         // Update existing product
         if (productData._id) {
@@ -124,15 +133,17 @@ const ProductImport = () => {
           // Update product texts
           await updateProductTexts({
             productId: productData._id,
-            texts: [{
-              locale: 'en', // Default locale
-              title: productData.title,
-              slug: productData.slug,
-              description: productData.description,
-              vendor: productData.vendor,
-              brand: productData.brand,
-              labels: productData.labels,
-            }],
+            texts: [
+              {
+                locale: 'en', // Default locale
+                title: productData.title,
+                slug: productData.slug,
+                description: productData.description,
+                vendor: productData.vendor,
+                brand: productData.brand,
+                labels: productData.labels,
+              },
+            ],
           });
         }
       } else {
@@ -142,15 +153,19 @@ const ProductImport = () => {
             type: productData.type,
             tags: productData.tags,
           },
-          texts: [{
-            locale: 'en', // Default locale
-            title: productData.title,
-            slug: productData.slug || productData.title.toLowerCase().replace(/\s+/g, '-'),
-            description: productData.description,
-            vendor: productData.vendor,
-            brand: productData.brand,
-            labels: productData.labels,
-          }],
+          texts: [
+            {
+              locale: 'en', // Default locale
+              title: productData.title,
+              slug:
+                productData.slug ||
+                productData.title.toLowerCase().replace(/\s+/g, '-'),
+              description: productData.description,
+              vendor: productData.vendor,
+              brand: productData.brand,
+              labels: productData.labels,
+            },
+          ],
         });
       }
 
@@ -160,7 +175,9 @@ const ProductImport = () => {
     }
   };
 
-  const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     const file = event.target.files?.[0];
     if (!file) return;
 
@@ -178,12 +195,14 @@ const ProductImport = () => {
 
       for (const product of products) {
         const importResult = await importProduct(product);
-        
+
         if (importResult.success) {
           result.success++;
         } else {
           result.failed++;
-          result.errors.push(`Row ${result.success + result.failed}: ${importResult.error}`);
+          result.errors.push(
+            `Row ${result.success + result.failed}: ${importResult.error}`,
+          );
         }
       }
 
@@ -191,26 +210,37 @@ const ProductImport = () => {
       setModal(
         <div className="p-4">
           <h3 className="text-lg font-semibold mb-4">
-            {formatMessage({ id: 'import_results', defaultMessage: 'Import Results' })}
+            {formatMessage({
+              id: 'import_results',
+              defaultMessage: 'Import Results',
+            })}
           </h3>
           <div className="space-y-2">
             <p className="text-green-600">
               {formatMessage(
-                { id: 'products_imported', defaultMessage: '{count} products imported successfully' },
-                { count: result.success }
+                {
+                  id: 'products_imported',
+                  defaultMessage: '{count} products imported successfully',
+                },
+                { count: result.success },
               )}
             </p>
             {result.failed > 0 && (
               <div>
                 <p className="text-red-600">
                   {formatMessage(
-                    { id: 'products_failed', defaultMessage: '{count} products failed to import' },
-                    { count: result.failed }
+                    {
+                      id: 'products_failed',
+                      defaultMessage: '{count} products failed to import',
+                    },
+                    { count: result.failed },
                   )}
                 </p>
                 <div className="mt-2 max-h-40 overflow-y-auto">
                   {result.errors.slice(0, 10).map((error, index) => (
-                    <p key={index} className="text-sm text-red-500">{error}</p>
+                    <p key={index} className="text-sm text-red-500">
+                      {error}
+                    </p>
                   ))}
                   {result.errors.length > 10 && (
                     <p className="text-sm text-gray-500">
@@ -226,7 +256,7 @@ const ProductImport = () => {
             className="mt-4"
             text={formatMessage({ id: 'close', defaultMessage: 'Close' })}
           />
-        </div>
+        </div>,
       );
     } catch (error) {
       setModal(`Import failed: ${error.message}`);

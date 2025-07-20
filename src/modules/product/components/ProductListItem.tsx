@@ -30,7 +30,7 @@ const ProductListItem = ({
   const { setModal } = useModal();
   const { updateProduct } = useUpdateProduct();
   const { removeProduct } = useRemoveProduct();
-  
+
   const updateProductSequence = async (e) => {
     if (e.target.value)
       await updateProduct({
@@ -190,7 +190,6 @@ const ProductListItem = ({
         )}
       </Table.Cell>
 
-
       {hideSortIndex ? null : (
         <Table.Cell>
           <input
@@ -207,7 +206,11 @@ const ProductListItem = ({
       <Table.Cell className="text-right">
         <TableActionsMenu
           onEdit={product?.status !== 'DELETED' ? handleEdit : undefined}
-          onDelete={hasRole('removeProduct') && product?.status === 'DRAFT' ? handleDelete : undefined}
+          onDelete={
+            hasRole('removeProduct') && product?.status === 'DRAFT'
+              ? handleDelete
+              : undefined
+          }
           showEdit={product?.status !== 'DELETED'}
           showDelete={hasRole('removeProduct') && product?.status === 'DRAFT'}
         />

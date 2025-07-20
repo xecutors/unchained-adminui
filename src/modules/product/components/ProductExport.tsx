@@ -1,105 +1,76 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useIntl } from 'react-intl';
 import Button from '../../common/components/Button';
 import useProducts from '../hooks/useProducts';
 import useAuth from '../../Auth/useAuth';
+import { useCSVExport } from '../../common/hooks/useCSVExport';
+import { IProduct } from '../../../gql/types';
+
+const CSV_HEADERS = [
+  'ID',
+  'Title',
+  'Slug',
+  'Status',
+  'Type',
+  'Tags',
+  'Sequence',
+  'Price',
+  'Currency',
+  'Description',
+  'Vendor',
+  'Brand',
+  'Labels',
+  'Created',
+  'Updated',
+  'Published',
+];
+interface Product extends IProduct {
+  type: string;
+  __typename: string;
+  catalogPrice: any;
+}
+const extractProductRow = (product: Product) => ({
+  ID: product._id,
+  Title: product.texts?.title || '',
+  Slug: product.texts?.slug || '',
+  Status: product.status,
+  Type: product.__typename || product.type || 'SimpleProduct',
+  Tags: product.tags?.join(';') || '',
+  Sequence: product.sequence || '',
+  Price: product.catalogPrice?.amount || '',
+  Currency: product.catalogPrice?.currencyCode || '',
+  Description: product.texts?.description || '',
+  Vendor: product.texts?.vendor || '',
+  Brand: product.texts?.brand || '',
+  Labels: product.texts?.labels?.join(';') || '',
+  Created: product.created || '',
+  Updated: product.updated || '',
+  Published: product.published || '',
+});
 
 const ProductExport = () => {
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
-  const [isExporting, setIsExporting] = useState(false);
-  const { products: allProducts } = useProducts({
-    limit: 10000, // Large limit to get all products
+  const { products: allProducts, loading } = useProducts({
+    limit: 10000,
     offset: 0,
     includeDrafts: true,
   });
 
-  const convertToCSV = (products: any[]) => {
-    if (!products || products.length === 0) return '';
-
-    const headers = [
-      'ID',
-      'Title',
-      'Slug',
-      'Status',
-      'Type',
-      'Tags',
-      'Sequence',
-      'Price',
-      'Currency',
-      'Description',
-      'Vendor',
-      'Brand',
-      'Labels',
-      'Created',
-      'Updated',
-      'Published',
-    ];
-
-    const rows = products.map(product => [
-      product._id,
-      product.texts?.title || '',
-      product.texts?.slug || '',
-      product.status,
-      product.__typename || product.type || 'SimpleProduct',
-      product.tags?.join(';') || '',
-      product.sequence || '',
-      product.catalogPrice?.amount || '',
-      product.catalogPrice?.currencyCode || '',
-      product.texts?.description || '',
-      product.texts?.vendor || '',
-      product.texts?.brand || '',
-      product.texts?.labels?.join(';') || '',
-      product.created || '',
-      product.updated || '',
-      product.published || '',
-    ]);
-
-    const csvContent = [headers, ...rows]
-      .map(row => row.map(field => `"${String(field).replace(/"/g, '""')}"`).join(','))
-      .join('\n');
-
-    return csvContent;
-  };
-
-  const downloadCSV = (csvContent: string, filename: string) => {
-    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-    const link = document.createElement('a');
-    
-    if (link.download !== undefined) {
-      const url = URL.createObjectURL(blob);
-      link.setAttribute('href', url);
-      link.setAttribute('download', filename);
-      link.style.visibility = 'hidden';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }
-  };
-
-  const handleExport = () => {
-    if (!hasRole('showProduct') || !allProducts) return;
-
-    setIsExporting(true);
-    try {
-      const csvContent = convertToCSV(allProducts);
-      const timestamp = new Date().toISOString().split('T')[0];
-      const filename = `products_export_${timestamp}.csv`;
-      
-      downloadCSV(csvContent, filename);
-    } catch (error) {
-      console.error('Export failed:', error);
-    } finally {
-      setIsExporting(false);
-    }
-  };
+  const { isExporting, exportCSV } = useCSVExport<Product>(
+    allProducts as Product[],
+    extractProductRow,
+    {
+      headers: CSV_HEADERS,
+    },
+  );
 
   if (!hasRole('showProduct')) return null;
 
   return (
     <Button
-      onClick={handleExport}
-      disabled={isExporting}
+      onClick={() => exportCSV('products_export')}
+      disabled={isExporting || loading || !allProducts?.length}
       variant="secondary"
       text={
         isExporting
