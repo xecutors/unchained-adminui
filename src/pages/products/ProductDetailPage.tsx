@@ -21,6 +21,7 @@ import { useRouter } from 'next/router';
 import useAuth from '../../modules/Auth/useAuth';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { useMemo } from 'react';
+import { IProduct } from '../../gql/types';
 
 const ProductDetailPage = ({ slug }) => {
   const { formatMessage } = useIntl();
@@ -358,7 +359,10 @@ const ProductDetailPage = ({ slug }) => {
         canEdit={hasRole('editProduct')}
       />
 
-      <ProductDetail product={product} extendedData={extendedData} />
+      <ProductDetail
+        product={product as IProduct & { __typename: string }}
+        extendedData={extendedData}
+      />
     </div>
   );
 };

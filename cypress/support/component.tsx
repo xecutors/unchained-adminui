@@ -22,7 +22,7 @@ import './commands';
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
 
-import { mount } from 'cypress/react18';
+import { mount } from 'cypress/react';
 import { IntlProvider } from 'react-intl';
 
 // Augment the Cypress namespace to include type definitions for

@@ -196,7 +196,7 @@ const SimpleDashboard: React.FC = () => {
     shopInfo?.country?.defaultCurrency?.isoCode || currency || 'EUR';
 
   // Use real top products if available, fallback to analytics mock data
-  const displayTopProducts =
+  const displayTopProducts: any =
     realTopProducts.length > 0 ? realTopProducts : topProducts;
 
   // Custom formatter for currency values in tooltips
