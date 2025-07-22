@@ -1,9 +1,27 @@
-// hooks/useProductImport.ts
 import useApp from '../../common/hooks/useApp';
 import { CSVRow } from '../../common/utils/csvUtils';
 import useCreateProduct from './useCreateProduct';
 import useUpdateProduct from './useUpdateProduct';
 import useUpdateProductTexts from './useUpdateProductTexts';
+
+interface ImportableProduct {
+  _id?: string;
+  locale?: string;
+  title: string;
+  slug?: string;
+  status: 'DRAFT' | 'ACTIVE' | 'DELETED';
+  type:
+    | 'SimpleProduct'
+    | 'ConfigurableProduct'
+    | 'PlanProduct'
+    | 'BundleProduct';
+  tags: string[];
+  sequence: number;
+  description?: string;
+  vendor?: string;
+  brand?: string;
+  labels: string[];
+}
 
 export const productMapper = (row: CSVRow) => ({
   _id: row['ID'] || undefined,
@@ -22,8 +40,10 @@ export const productMapper = (row: CSVRow) => ({
 
 export const validateProduct = (product: any): string[] => {
   const errors: string[] = [];
+
   if (!product.title) errors.push('Title is required');
   if (!product.type) errors.push('Type is required');
+
   if (
     ![
       'SimpleProduct',
@@ -34,9 +54,11 @@ export const validateProduct = (product: any): string[] => {
   ) {
     errors.push(`Invalid product type: ${product.type}`);
   }
+
   if (!['DRAFT', 'ACTIVE', 'DELETED'].includes(product.status)) {
     errors.push(`Invalid status: ${product.status}`);
   }
+
   return errors;
 };
 
@@ -46,9 +68,34 @@ const useProductImport = () => {
   const { updateProductTexts } = useUpdateProductTexts();
   const { selectedLocale } = useApp();
 
-  const importProduct = async (product: any) => {
-    const isUpdate = product?._id || product?.slug;
+  const buildText = (product: any, locale: string) => ({
+    locale,
+    title: product.title,
+    slug: product.slug || product.title.toLowerCase().replace(/\s+/g, '-'),
+    description: product.description,
+    vendor: product.vendor,
+    brand: product.brand,
+    labels: product.labels,
+  });
+
+  const create = async (product: any, locale: string): Promise<'created'> => {
+    await createProduct({
+      product: {
+        type: product.type,
+        tags: product.tags,
+      },
+      texts: [buildText(product, locale)],
+    });
+
+    return 'created';
+  };
+
+  const importProduct = async (
+    product: ImportableProduct,
+  ): Promise<'created' | 'updated'> => {
     const normalizedLocale = product?.locale || selectedLocale;
+    const isUpdate = !!(product?._id || product?.slug);
+
     try {
       if (isUpdate) {
         const { errors } = await updateProduct({
@@ -60,67 +107,28 @@ const useProductImport = () => {
         });
 
         if (errors?.length) {
-          throw new Error(
-            errors?.[0]?.extensions?.code || errors?.[0]?.message,
-          );
+          const code: string = (errors[0]?.extensions?.code ||
+            errors[0]?.message ||
+            'unknown error') as string;
+          if (code === 'ProductNotFoundError') {
+            return await create(product, normalizedLocale);
+          }
+          throw new Error(code);
         }
+
         await updateProductTexts({
           productId: product._id,
-          texts: [
-            {
-              locale: normalizedLocale,
-              title: product.title,
-              slug: product.slug,
-              description: product.description,
-              vendor: product.vendor,
-              brand: product.brand,
-              labels: product.labels,
-            },
-          ],
+          texts: [buildText(product, normalizedLocale)],
         });
+        return 'updated';
       } else {
-        await createProduct({
-          product: {
-            type: product.type,
-            tags: product.tags,
-          },
-          texts: [
-            {
-              locale: normalizedLocale,
-              title: product.title,
-              slug:
-                product.slug ||
-                product.title.toLowerCase().replace(/\s+/g, '-'),
-              description: product.description,
-              vendor: product.vendor,
-              brand: product.brand,
-              labels: product.labels,
-            },
-          ],
-        });
+        return await create(product, normalizedLocale);
       }
     } catch (e) {
       if (e.message === 'ProductNotFoundError') {
-        await createProduct({
-          product: {
-            type: product.type,
-            tags: product.tags,
-          },
-          texts: [
-            {
-              locale: normalizedLocale,
-              title: product.title,
-              slug:
-                product.slug ||
-                product.title.toLowerCase().replace(/\s+/g, '-'),
-              description: product.description,
-              vendor: product.vendor,
-              brand: product.brand,
-              labels: product.labels,
-            },
-          ],
-        });
-        return;
+        return await create(product, normalizedLocale);
+      } else {
+        throw e;
       }
     }
   };

@@ -10,6 +10,7 @@ import useProductImport, {
 } from '../hooks/useProductImport';
 
 import parseCSV from 'papaparse';
+import ImportResultMessage from '../../modal/components/ImportResultMessage';
 
 const ProductImport = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -28,7 +29,12 @@ const ProductImport = () => {
     if (!file) return;
 
     if (!file.name.endsWith('.csv')) {
-      setModal('Please select a valid CSV file.');
+      setModal(
+        formatMessage({
+          id: 'select_valid_csv_error',
+          defaultMessage: 'Please select a valid CSV file.',
+        }),
+      );
       return;
     }
 
@@ -42,53 +48,11 @@ const ProductImport = () => {
     const result = await importItems(products);
 
     setModal(
-      <div className="p-4">
-        <h3 className="text-lg font-semibold mb-4">
-          {formatMessage({
-            id: 'import_results',
-            defaultMessage: 'Import Results',
-          })}
-        </h3>
-        <p className="text-green-600">
-          {formatMessage(
-            {
-              id: 'products_imported',
-              defaultMessage: '{count} products imported successfully',
-            },
-            { count: result.success },
-          )}
-        </p>
-        {result.failed > 0 && (
-          <div>
-            <p className="text-red-600">
-              {formatMessage(
-                {
-                  id: 'products_failed',
-                  defaultMessage: '{count} products failed to import',
-                },
-                { count: result.failed },
-              )}
-            </p>
-            <div className="mt-2 max-h-40 overflow-y-auto">
-              {result.errors.slice(0, 10).map((err, i) => (
-                <p key={i} className="text-sm text-red-500">
-                  {err}
-                </p>
-              ))}
-              {result.errors.length > 10 && (
-                <p className="text-sm text-gray-500">
-                  ... and {result.errors.length - 10} more errors
-                </p>
-              )}
-            </div>
-          </div>
-        )}
-        <Button
-          onClick={() => setModal('')}
-          className="mt-4"
-          text={formatMessage({ id: 'close', defaultMessage: 'Close' })}
-        />
-      </div>,
+      <ImportResultMessage
+        result={result}
+        entityName="products"
+        onClose={() => setModal('')}
+      />,
     );
 
     if (fileInputRef.current) fileInputRef.current.value = '';
