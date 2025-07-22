@@ -20,6 +20,7 @@ import Script from 'next/script';
 import AuthWrapper from '../modules/Auth/AuthWrapper';
 import { ChatProvider } from '../modules/chat/ChatContext';
 import ImageWithFallback from '../modules/common/components/ImageWithFallback';
+import { AppContextWrapper } from '../modules/common/components/AppContext';
 
 const handleRouteChange = (url) => {
   matomo.pageView(document.location.origin + url, document.title);
@@ -96,24 +97,26 @@ const UnchainedAdmin = ({ Component, componentName, pageProps, router }) => {
           ) : null}
         </Head>
         <ApolloProvider client={apollo}>
-          <UnchainedContextWrapper>
-            <ThemeWrapper>
-              <ChatProvider>
-                <ToastContainer
-                  position="top-right"
-                  autoClose={5000}
-                  newestOnTop={false}
-                  closeOnClick
-                  pauseOnFocusLoss
-                  draggable
-                  pauseOnHover
-                />
-                <ModalWrapper>
-                  {getLayout(<Component {...pageProps} />)}
-                </ModalWrapper>
-              </ChatProvider>
-            </ThemeWrapper>
-          </UnchainedContextWrapper>
+          <AppContextWrapper>
+            <UnchainedContextWrapper>
+              <ThemeWrapper>
+                <ChatProvider>
+                  <ToastContainer
+                    position="top-right"
+                    autoClose={5000}
+                    newestOnTop={false}
+                    closeOnClick
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                  />
+                  <ModalWrapper>
+                    {getLayout(<Component {...pageProps} />)}
+                  </ModalWrapper>
+                </ChatProvider>
+              </ThemeWrapper>
+            </UnchainedContextWrapper>
+          </AppContextWrapper>
         </ApolloProvider>
       </ErrorBoundary>
     </IntlWrapper>

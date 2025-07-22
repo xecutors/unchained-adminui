@@ -1,51 +1,20 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useContext } from 'react';
 
 import { useIntl } from 'react-intl';
 
-import useLanguages from '../../language/hooks/useLanguages';
-import useCountries from '../../country/hooks/useCountries';
-import useShopInfo from '../hooks/useShopInfo';
 import { FormWrapperContext } from './FormWrapper';
-
-const createLanguageDialectList = (languages, countries) => {
-  const result = [];
-
-  languages.forEach(({ _id: languageId, isoCode: baseIsoCode }) => {
-    result.push({ _id: languageId, isoCode: baseIsoCode });
-    countries.forEach(({ isoCode: countryIsoCode, _id: countryId }) => {
-      const dialectIsoCode = `${baseIsoCode}-${countryIsoCode.toUpperCase()}`;
-      result.push({
-        _id: `${countryId}-${languageId}`,
-        isoCode: dialectIsoCode,
-      });
-    });
-  });
-
-  return result;
-};
+import useApp from '../hooks/useApp';
 
 const LocaleWrapper = ({ children, onlyFull = false }) => {
-  const { languages } = useLanguages();
-  const { shopInfo, loading: shopInfoLoading } = useShopInfo();
-  const { countries } = useCountries();
+  const { languageDialectList, selectedLocale, setSelectedLocale } = useApp();
+
   const { locale } = useIntl();
   const isInsideFormWrapper = useContext(FormWrapperContext);
 
-  const [selectedLocale, setSelectedLocale] = useState(null);
-  useEffect(() => {
-    if (!shopInfoLoading) {
-      const baseLanguage =
-        shopInfo?.language?.isoCode +
-        '-' +
-        shopInfo?.country?.isoCode?.toUpperCase();
-      setSelectedLocale(baseLanguage);
-    }
-  }, [shopInfo, shopInfoLoading, locale]);
+  const displayedLanguages = languageDialectList.filter(
+    (l) => !onlyFull || l.isoCode.includes('-'),
+  );
 
-  const languageDialectList = createLanguageDialectList(
-    languages,
-    countries,
-  ).filter((l) => !onlyFull || l.isoCode.includes('-'));
   return (
     <>
       <div className={`w-fit mt-5 mb-3 ${isInsideFormWrapper ? 'ml-5' : ''}`}>
@@ -58,7 +27,7 @@ const LocaleWrapper = ({ children, onlyFull = false }) => {
             setSelectedLocale(e.target.value);
           }}
         >
-          {languageDialectList?.map((language) => {
+          {displayedLanguages?.map((language) => {
             return (
               <option key={language._id} value={language.isoCode}>
                 {language.isoCode}

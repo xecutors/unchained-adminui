@@ -11,6 +11,7 @@ const ProductBriefFragment = gql`
       vendor
       brand
       labels
+      locale
     }
     _id
     sequence

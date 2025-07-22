@@ -8,6 +8,7 @@ import { IProduct } from '../../../gql/types';
 
 const CSV_HEADERS = [
   'ID',
+  'Locale',
   'Title',
   'Slug',
   'Status',
@@ -31,6 +32,7 @@ interface Product extends IProduct {
 }
 const extractProductRow = (product: Product) => ({
   ID: product._id,
+  Locale: product.texts?.locale || '',
   Title: product.texts?.title || '',
   Slug: product.texts?.slug || '',
   Status: product.status,
