@@ -81,7 +81,6 @@ const UserListItem = ({ user }) => {
           className="flex items-center text-sm text-slate-900 dark:text-slate-300 group-hover:text-slate-700 dark:group-hover:text-slate-100"
         >
           <MiniUserAvatar
-            url={user?.avatar?.url}
             showName={false}
             name={user.username}
             className="mr-3"

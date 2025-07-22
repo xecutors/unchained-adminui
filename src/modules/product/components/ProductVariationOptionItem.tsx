@@ -127,7 +127,6 @@ const ProductVariationOptionItem = ({
                 <TableActionsMenu
                   onEdit={handleEdit}
                   onDelete={handleDelete}
-                  showView={false}
                   showEdit={true}
                   showDelete={true}
                 />

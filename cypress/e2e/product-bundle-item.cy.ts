@@ -97,7 +97,7 @@ describe('Product Subscription', () => {
     );
 
     cy.get('a#bundled_products')
-      .should('contain.text', localizations.en.bundles)
+      .should('contain.text', localizations.en.bundle)
       .click();
 
     cy.wait(fullAliasName(ProductOperations.GetProductBundleItems)).then(

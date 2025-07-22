@@ -707,7 +707,7 @@ describe('Product', () => {
       cy.get('a#texts').should('contain.text', localizations.en.text);
       cy.get('a#media').should('contain.text', localizations.en.media);
       cy.get('a#commerce').should('contain.text', localizations.en.commerce);
-      cy.get('a#bundled_products').should('to.be', localizations.en.bundles);
+      cy.get('a#bundled_products').should('to.be', localizations.en.bundle);
 
       cy.get('a#variations').should('to.be', undefined);
       cy.get('a#assignments').should('to.be', undefined);

@@ -546,6 +546,9 @@
   "delete_account_confirmation": {
     "defaultMessage": "This action might cause inconsistencies with other data that relates to it"
   },
+  "delete_assortment": {
+    "defaultMessage": "Delete Assortment"
+  },
   "delete_assortment_confirmation": {
     "defaultMessage": "This action might cause inconsistencies with other data that relates to it and it is nonreversible. Are you sure you want to delete this assortment?"
   },
@@ -560,6 +563,9 @@
   },
   "delete_assortment_media_confirmation": {
     "defaultMessage": "This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this currency?"
+  },
+  "delete_assortment_warning": {
+    "defaultMessage": "This action will permanently delete this assortment and all associated data. Are you sure you want to continue?"
   },
   "delete_bundle_item": {
     "defaultMessage": "Delete item"
@@ -651,17 +657,26 @@
   "delete_product_variation_confirmation": {
     "defaultMessage": "This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this variation?"
   },
+  "delete_product_warning": {
+    "defaultMessage": "This action will permanently delete this product and all associated data. Are you sure you want to continue?"
+  },
   "delete_review": {
     "defaultMessage": "Delete review"
   },
   "delete_review_confirmation": {
     "defaultMessage": "This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this review?"
   },
+  "delete_user": {
+    "defaultMessage": "Delete User"
+  },
   "delete_user_account": {
     "defaultMessage": "Delete user"
   },
   "delete_user_account_confirmation": {
     "defaultMessage": "This action might cause inconsistencies with other data that relates to it"
+  },
+  "delete_user_warning": {
+    "defaultMessage": "This action will permanently delete this user and all associated data. Are you sure you want to continue?"
   },
   "delete_variation_assignment": {
     "defaultMessage": "Delete assignment"
@@ -861,6 +876,9 @@
   "enrollments": {
     "defaultMessage": "Enrollments"
   },
+  "enter_tag": {
+    "defaultMessage": "Enter tag..."
+  },
   "error": {
     "defaultMessage": "Error"
   },
@@ -952,7 +970,7 @@
     "defaultMessage": "Export"
   },
   "exporting": {
-    "defaultMessage": "Exporting"
+    "defaultMessage": "Exporting..."
   },
   "extended-fields": {
     "defaultMessage": "Extended"
@@ -1110,6 +1128,15 @@
   "image_not_available": {
     "defaultMessage": "Image not available"
   },
+  "import": {
+    "defaultMessage": "Import"
+  },
+  "import_results": {
+    "defaultMessage": "Import Results"
+  },
+  "importing": {
+    "defaultMessage": "Importing..."
+  },
   "in_active": {
     "defaultMessage": "In-Active"
   },
@@ -1179,6 +1206,12 @@
   },
   "items_created": {
     "defaultMessage": "{count} items created"
+  },
+  "items_failed": {
+    "defaultMessage": "{count} {entityName} failed to import"
+  },
+  "items_imported": {
+    "defaultMessage": "{count} {entityName} imported successfully ({created} created, {updated} updated)"
   },
   "items_purchased": {
     "defaultMessage": "Items purchased"
@@ -1384,20 +1417,20 @@
   "no_internet_access": {
     "defaultMessage": "You aren't connected to a working internet connection."
   },
+  "no_orders_description": {
+    "defaultMessage": "Once you receive your first orders, your top-selling products will appear here."
+  },
+  "no_orders_title": {
+    "defaultMessage": "No orders yet"
+  },
   "no_payload": {
     "defaultMessage": "Payload"
-  },
-  "no_product_sales_data": {
-    "defaultMessage": "No product sales data available"
   },
   "no_result_found": {
     "defaultMessage": "No result found"
   },
   "no_tag": {
     "defaultMessage": "No Tag"
-  },
-  "no_variations_found": {
-    "defaultMessage": "No variations found"
   },
   "not-applicable": {
     "defaultMessage": "N/A"
@@ -1602,6 +1635,12 @@
   },
   "product_drafted": {
     "defaultMessage": "Drafted successfully"
+  },
+  "product_import.validation.invalid_type": {
+    "defaultMessage": "Invalid product type: {type}"
+  },
+  "product_import.validation.title_required": {
+    "defaultMessage": "Title is required"
   },
   "product_load_error": {
     "defaultMessage": "Failed to load product"
@@ -1894,6 +1933,9 @@
   "select_type": {
     "defaultMessage": "Select type"
   },
+  "select_valid_csv_error": {
+    "defaultMessage": "Please select a valid CSV file."
+  },
   "send__enrollment_email_button": {
     "defaultMessage": "Send enrollment Email"
   },
@@ -2019,6 +2061,9 @@
   },
   "system_information": {
     "defaultMessage": "System Information"
+  },
+  "table_actions_menu": {
+    "defaultMessage": "Actions menu"
   },
   "tags": {
     "defaultMessage": "Tags"

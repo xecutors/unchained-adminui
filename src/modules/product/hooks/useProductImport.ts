@@ -38,11 +38,26 @@ export const productMapper = (row: CSVRow) => ({
   labels: row['Labels'] ? row['Labels'].split(';') : [],
 });
 
-export const validateProduct = (product: any): string[] => {
+export const validateProduct = (product: any, intl): string[] => {
   const errors: string[] = [];
 
-  if (!product.title) errors.push('Title is required');
-  if (!product.type) errors.push('Type is required');
+  if (!product.title)
+    errors.push(
+      intl.formatMessage({
+        id: 'product_import.validation.title_required',
+        defaultMessage: 'Title is required',
+      }),
+    );
+  if (!product.type)
+    errors.push(
+      intl.formatMessage(
+        {
+          id: 'product_import.validation.invalid_type',
+          defaultMessage: 'Invalid product type: {type}',
+        },
+        { type: product.type },
+      ),
+    );
 
   if (
     ![
@@ -52,13 +67,16 @@ export const validateProduct = (product: any): string[] => {
       'BundleProduct',
     ].includes(product.type)
   ) {
-    errors.push(`Invalid product type: ${product.type}`);
+    errors.push(
+      intl.formatMessage(
+        {
+          id: 'product_import.validation.invalid_type',
+          defaultMessage: 'Invalid product type: {type}',
+        },
+        { type: product.type },
+      ),
+    );
   }
-
-  if (!['DRAFT', 'ACTIVE', 'DELETED'].includes(product.status)) {
-    errors.push(`Invalid status: ${product.status}`);
-  }
-
   return errors;
 };
 

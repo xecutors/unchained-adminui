@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { useIntl } from 'react-intl';
 interface ImportResult {
   success: number;
   failed: number;
@@ -8,12 +9,13 @@ interface ImportResult {
 }
 
 interface UseImportOptions<T> {
-  validate: (item: T) => string[];
+  validate: (item: T, intl: any) => string[];
   process: (item: T) => Promise<'created' | 'updated'>;
 }
 
 export const useCSVImport = <T>({ validate, process }: UseImportOptions<T>) => {
   const [isImporting, setIsImporting] = useState(false);
+  const intl = useIntl();
 
   const importItems = async (items: T[]): Promise<ImportResult> => {
     const result: ImportResult = {
@@ -27,7 +29,7 @@ export const useCSVImport = <T>({ validate, process }: UseImportOptions<T>) => {
     setIsImporting(true);
 
     for (const [index, item] of items.entries()) {
-      const errors = validate(item);
+      const errors = validate(item, intl);
 
       if (errors.length > 0) {
         result.failed++;

@@ -15,11 +15,7 @@ const MessageRenderer: React.FC<MessageRendererProps> = ({ message, user }) => {
     <div className={`flex ${isUser ? 'justify-end' : 'justify-start'}`}>
       {isUser && user && (
         <div className="flex-shrink-0 mr-2">
-          <MiniUserAvatar
-            url={user.avatar?.url}
-            showName={false}
-            name={user.username}
-          />
+          <MiniUserAvatar showName={false} name={user.username} />
         </div>
       )}
       <div
