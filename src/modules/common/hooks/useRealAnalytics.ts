@@ -5,6 +5,8 @@ import useShopInfo from './useShopInfo';
 interface ProductSales {
   productId: string;
   productName: string;
+  productImage?: string;
+  product?: any; // Full product object for URL generation
   totalQuantity: number;
   totalRevenue: number;
 }

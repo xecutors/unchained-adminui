@@ -32,7 +32,7 @@ import ProductAssignmentForm from './ProductAssignmentForm';
 import ProductTokenizationForm from './ProductTokenizationForm';
 import DisplayExtendedFields from '../../common/components/DisplayExtendedFields';
 import ErrorBoundary from '../../common/components/ErrorBoundary';
-import { IProduct, IProductStatus } from '../../../gql/types';
+import { IProductDetailFragment, IProductStatus } from '../../../gql/types';
 
 interface GetCurrentTabProps {
   id: string;
@@ -42,7 +42,7 @@ interface GetCurrentTabProps {
 }
 
 interface ProductDetailProps {
-  product: IProduct & { __typename: string };
+  product: IProductDetailFragment & { __typename?: string };
   extendedData?: Record<string, any>;
 }
 

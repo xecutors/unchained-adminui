@@ -43,7 +43,6 @@ const ProductVariationForm = ({
     <FormWrapper>
       <Form form={form}>
         <div className="max-w-full rounded-md p-2 sm:p-4">
-          {/* General explanation */}
           <div className="mb-6 p-3 bg-slate-50 dark:bg-slate-900/20 rounded-lg border border-slate-200 dark:border-slate-800">
             <h3 className="text-sm font-medium text-slate-900 dark:text-slate-100 mb-2">
               {formatMessage({
@@ -79,8 +78,6 @@ const ProductVariationForm = ({
               className="w-full text-sm text-slate-400 dark:text-slate-200"
             />
           </div>
-
-          {/* Key and Type Fields in Vertical Subgrid */}
           <div className="grid grid-rows-2 gap-4">
             <div className="space-y-1">
               <FieldWithHelp

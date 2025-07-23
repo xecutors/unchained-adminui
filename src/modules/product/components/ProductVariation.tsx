@@ -16,12 +16,10 @@ import SelectField from '../../forms/components/SelectField';
 import SubmitButton from '../../forms/components/SubmitButton';
 import HelpText from '../../common/components/HelpText';
 import convertArrayOfObjectToObject from '../../common/convertArrayOfObjectToObject';
-import ProductVariationForm from './ProductVariationForm';
 
 import ProductVariationsList from './ProductVariationsList';
 import useApp from '../../common/hooks/useApp';
 
-// Modal-specific variation form without FormWrapper styling
 const ProductVariationModalForm = ({ onSubmit, disabled, formatMessage }) => {
   const { variationTypes } = useProductVariationTypes();
   const { hasRole } = useAuth();

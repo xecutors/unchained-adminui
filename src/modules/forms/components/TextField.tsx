@@ -36,6 +36,9 @@ const TextField = ({
         id={field.name}
         name={field.name}
         onChange={field.onChange}
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
         onBlur={field.onBlur}
         placeholder={field.placeholder}
         autoComplete={field.autoComplete || 'off'}

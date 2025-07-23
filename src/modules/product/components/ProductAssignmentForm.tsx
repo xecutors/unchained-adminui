@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
-import Select, { GroupBase, OptionsOrGroups } from 'react-select';
+import { GroupBase, OptionsOrGroups } from 'react-select';
+import { InformationCircleIcon } from '@heroicons/react/24/outline';
 
 import FormWrapper from '../../common/components/FormWrapper';
+import HelpText from '../../common/components/HelpText';
 
 import useAddProductAssignment from '../hooks/useAddProductAssignment';
 
 import useProductAssignments from '../hooks/useProductAssignments';
 import Table from '../../common/components/Table';
-import TableActionsMenu from '../../common/components/TableActionsMenu';
 import useRemoveProductAssignment from '../hooks/useRemoveProductAssignment';
 import useModal from '../../modal/hooks/useModal';
 import DangerMessage from '../../modal/components/DangerMessage';
@@ -17,6 +18,7 @@ import useProducts from '../hooks/useProducts';
 import { ISortDirection } from '../../../gql/types';
 import useTheme from '../../common/hooks/useTheme';
 import UnchainedSelect from '../../common/components/UnchainedSelect';
+import DeleteButton from '../../common/components/DeleteButton';
 
 const matrixGenerator = (columns, rowContainer, currentIndex) => {
   const column = columns[currentIndex];
@@ -151,65 +153,167 @@ const ProductAssignmentForm = ({ proxyId, disabled = false }) => {
     return removeAssignment;
   };
   const debouncedQuery = deBounce(200)(setQueryString);
+
+  const hasVariations = variations.length > 0;
+  const hasVariationOptions = variations.some(
+    (v) => v.options && v.options.length > 0,
+  );
+
   return (
     <FormWrapper>
-      <Table>
-        {rows.map(({ _id, columns, product: variationProduct }) => (
-          <Table.Row key={_id}>
-            {columns.map((columnText) => (
-              <Table.Cell key={`${columnText}${_id}`}>{columnText}</Table.Cell>
-            ))}
+      <div className="mb-6 p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
+        <div className="flex items-start gap-3">
+          <InformationCircleIcon className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+          <div>
+            <h3 className="text-sm font-semibold text-blue-900 dark:text-blue-100 mb-2">
+              {formatMessage({
+                id: 'product_assignments_explanation_title',
+                defaultMessage: 'About Product Assignments',
+              })}
+            </h3>
+            <p className="text-sm text-blue-800 dark:text-blue-200 leading-relaxed">
+              {formatMessage({
+                id: 'product_assignments_explanation_text',
+                defaultMessage:
+                  "Product assignments allow you to link specific products to each unique combination of variation options. For example, if you have a t-shirt with 'Size' and 'Color' variations, you can assign different product SKUs to each combination like 'Large + Red' or 'Small + Blue'. This is useful for managing inventory, pricing, and product details for each specific variant.",
+              })}
+            </p>
+          </div>
+        </div>
+      </div>
+      {!hasVariations && (
+        <div className="text-center py-8">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-100 dark:bg-gray-800 mb-4">
+            <InformationCircleIcon className="w-8 h-8 text-gray-400" />
+          </div>
+          <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">
+            {formatMessage({
+              id: 'no_variations_configured',
+              defaultMessage:
+                'No variations configured yet. Please add variations and their options in the Variations tab first.',
+            })}
+          </h3>
+        </div>
+      )}
+      {hasVariations && hasVariationOptions && (
+        <>
+          <div className="mb-4">
+            <HelpText
+              messageKey="assignment_matrix_help"
+              defaultMessage="Each row represents a unique combination of your product variations. Assign a specific product to each combination to create a complete product catalog."
+            />
+          </div>
 
-            <Table.Cell>
-              {variationProduct ? (
-                variationProduct?.texts?.title
-              ) : product.variations?.length !== columns.length ? (
-                <div className="mt-1 text-sm text-rose-600">
-                  {formatMessage({
-                    id: 'assign_product_needs_variations',
-                    defaultMessage:
-                      'Please configure all variation options before assigning a product.',
-                  })}
-                </div>
-              ) : (
-                <div className="relative w-full">
-                  <UnchainedSelect
-                    name={`productId-${_id}`}
-                    placeholder={formatMessage({
-                      id: 'search_product',
-                      defaultMessage: 'Search product',
-                    })}
-                    isLoading={loading}
-                    isDisabled={disabled}
-                    onChange={handleProductAssignment(columns) as any}
-                    onInputChange={debouncedQuery}
-                    value={queryString}
-                    options={
-                      (products || [])
-                        .map(normalizeProduct)
-                        .filter(
-                          ({ value }) => value !== proxyId,
-                        ) as unknown as OptionsOrGroups<
-                        string,
-                        GroupBase<string>
-                      >
-                    }
-                    className="mt-1 w-full py-2 text-sm font-medium text-slate-500"
-                  />
-                </div>
-              )}
-            </Table.Cell>
-            <Table.Cell>
-              {variationProduct && variationProduct._id && (
-                <TableActionsMenu
-                  onDelete={handleRemoveAssignment(columns)}
-                  showDelete={true}
-                />
-              )}
-            </Table.Cell>
-          </Table.Row>
-        ))}
-      </Table>
+          <Table>
+            <Table.Row>
+              {columnKeys.map((key) => (
+                <Table.Cell
+                  key={key}
+                  className="font-semibold bg-gray-50 dark:bg-gray-800"
+                >
+                  {variations.find((v) => v.key === key)?.texts?.title || key}
+                </Table.Cell>
+              ))}
+              <Table.Cell className="font-semibold bg-gray-50 dark:bg-gray-800">
+                {formatMessage({
+                  id: 'assigned_product_column_header',
+                  defaultMessage: 'Assigned Product',
+                })}
+              </Table.Cell>
+              <Table.Cell className="font-semibold bg-gray-50 dark:bg-gray-800">
+                {formatMessage({
+                  id: 'actions_column_header',
+                  defaultMessage: 'Actions',
+                })}
+              </Table.Cell>
+            </Table.Row>
+
+            {rows.map(({ _id, columns, product: variationProduct }) => (
+              <Table.Row key={_id}>
+                {columns.map((columnText, index) => (
+                  <Table.Cell
+                    key={`${columnText}${_id}`}
+                    className="font-medium"
+                  >
+                    {columnText}
+                  </Table.Cell>
+                ))}
+
+                <Table.Cell>
+                  {variationProduct ? (
+                    <div className="flex items-center">
+                      <span className="text-green-700 dark:text-green-300 font-medium">
+                        {variationProduct?.texts?.title}
+                      </span>
+                    </div>
+                  ) : product.variations?.length !== columns.length ? (
+                    <div className="mt-1 text-sm text-rose-600 italic">
+                      {formatMessage({
+                        id: 'assign_product_needs_variations',
+                        defaultMessage:
+                          'Please configure all variation options before assigning a product.',
+                      })}
+                    </div>
+                  ) : (
+                    <div className="relative w-full">
+                      <UnchainedSelect
+                        name={`productId-${_id}`}
+                        placeholder={formatMessage({
+                          id: 'search_product',
+                          defaultMessage: 'Search product',
+                        })}
+                        isLoading={loading}
+                        isDisabled={disabled}
+                        onChange={handleProductAssignment(columns) as any}
+                        onInputChange={debouncedQuery}
+                        value={queryString}
+                        options={
+                          (products || [])
+                            .map(normalizeProduct)
+                            .filter(
+                              ({ value }) => value !== proxyId,
+                            ) as unknown as OptionsOrGroups<
+                            string,
+                            GroupBase<string>
+                          >
+                        }
+                        className="mt-1 w-full py-2 text-sm font-medium text-slate-500"
+                      />
+                    </div>
+                  )}
+                </Table.Cell>
+                <Table.Cell>
+                  {variationProduct && variationProduct._id && (
+                    <DeleteButton onClick={handleRemoveAssignment(columns)} />
+                  )}
+                </Table.Cell>
+              </Table.Row>
+            ))}
+          </Table>
+        </>
+      )}
+
+      {hasVariations && !hasVariationOptions && (
+        <div className="text-center py-8">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-yellow-100 dark:bg-yellow-900/30 mb-4">
+            <InformationCircleIcon className="w-8 h-8 text-yellow-600 dark:text-yellow-400" />
+          </div>
+          <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">
+            {formatMessage({
+              id: 'assign_product_needs_variations',
+              defaultMessage:
+                'Please configure all variation options before assigning a product.',
+            })}
+          </h3>
+          <p className="text-sm text-gray-600 dark:text-gray-400">
+            {formatMessage({
+              id: 'assignment_matrix_help',
+              defaultMessage:
+                'Each row represents a unique combination of your product variations. Assign a specific product to each combination to create a complete product catalog.',
+            })}
+          </p>
+        </div>
+      )}
     </FormWrapper>
   );
 };
