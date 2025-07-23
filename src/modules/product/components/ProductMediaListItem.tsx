@@ -3,15 +3,17 @@ import MediaListItem from '../../common/components/MediaListItem';
 
 import useTranslatedProductMediaTexts from '../hooks/useTranslatedProductMediaTexts';
 import useUpdateProductMediaTexts from '../hooks/useUpdateProductMediaTexts';
+import useApp from '../../common/hooks/useApp';
 
-const ProductMediaListItem = ({ media, onDelete, locale, id }) => {
+const ProductMediaListItem = ({ media, onDelete, id }) => {
+  const { selectedLocale } = useApp();
   const { updateProductMediaTexts } = useUpdateProductMediaTexts();
   const [isEditing, setIsEditing] = useState(false);
   const { translatedMediaTexts } = useTranslatedProductMediaTexts({
     productMediaId: media._id,
   });
   const mediaText =
-    translatedMediaTexts?.find((text) => text.locale === locale) || {};
+    translatedMediaTexts?.find((text) => text.locale === selectedLocale) || {};
 
   const onUpdateMediaText = async ({ title, subtitle }) => {
     await updateProductMediaTexts({
@@ -19,7 +21,7 @@ const ProductMediaListItem = ({ media, onDelete, locale, id }) => {
       texts: [
         {
           title,
-          locale,
+          locale: selectedLocale,
           subtitle,
         },
       ],
