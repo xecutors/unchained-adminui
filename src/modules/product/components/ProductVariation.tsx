@@ -19,6 +19,7 @@ import convertArrayOfObjectToObject from '../../common/convertArrayOfObjectToObj
 import ProductVariationForm from './ProductVariationForm';
 
 import ProductVariationsList from './ProductVariationsList';
+import useApp from '../../common/hooks/useApp';
 
 // Modal-specific variation form without FormWrapper styling
 const ProductVariationModalForm = ({ onSubmit, disabled, formatMessage }) => {
@@ -138,10 +139,11 @@ const ProductVariationModalForm = ({ onSubmit, disabled, formatMessage }) => {
 
 const ProductVariation = ({
   productId,
-  selectedLocale = null,
+
   disabled = false,
 }) => {
   const { createProductVariation } = useCreateProductVariation();
+  const { selectedLocale } = useApp();
   const { formatMessage } = useIntl();
   const { setModal } = useModal();
 
@@ -198,7 +200,6 @@ const ProductVariation = ({
         ) : (
           variations?.map((variation) => (
             <ProductVariationsList
-              selectedLocale={selectedLocale}
               productVariationId={variation._id}
               key={variation._id}
               variation={variation}

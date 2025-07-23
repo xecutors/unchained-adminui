@@ -19,12 +19,14 @@ import useAssortmentMedia from '../hooks/useAssortmentMedia';
 import useRemoveAssortmentMedia from '../hooks/useRemoveAssortmentMedia';
 import useReorderAssortmentMedia from '../hooks/useReorderAssortmentMedia';
 import AssortmentMediaList from './AssortmentMediaList';
+import useApp from '../../common/hooks/useApp';
 
-const AssortmentMediaForm = ({ assortmentId, selectedLocale = null }) => {
+const AssortmentMediaForm = ({ assortmentId }) => {
   // All hooks must be called first, before any conditional returns
   const { assortmentMedia, loading, error } = useAssortmentMedia({
     assortmentId,
   });
+  const { selectedLocale } = useApp();
   const { formatMessage } = useIntl();
   const { setModal } = useModal();
   const { removeAssortmentMedia } = useRemoveAssortmentMedia();
@@ -55,7 +57,11 @@ const AssortmentMediaForm = ({ assortmentId, selectedLocale = null }) => {
       <div className="mx-auto mt-5 max-w-full bg-white dark:bg-slate-800 py-6 shadow-sm dark:shadow-none lg:rounded-sm">
         <div className="flex items-center justify-center p-8">
           <div className="text-rose-500">
-            Component loading error. Please refresh the page.
+            {formatMessage({
+              id: 'component_loading_error',
+              defaultMessage:
+                'Component loading error. Please refresh the page.',
+            })}
           </div>
         </div>
       </div>
@@ -68,7 +74,10 @@ const AssortmentMediaForm = ({ assortmentId, selectedLocale = null }) => {
       <div className="mx-auto mt-5 max-w-full bg-white dark:bg-slate-800 py-6 shadow-sm dark:shadow-none lg:rounded-sm">
         <div className="flex items-center justify-center p-8">
           <div className="text-slate-500 dark:text-slate-400">
-            Loading media...
+            {formatMessage({
+              id: 'loading_media',
+              defaultMessage: 'Loading media...',
+            })}
           </div>
         </div>
       </div>
@@ -80,7 +89,11 @@ const AssortmentMediaForm = ({ assortmentId, selectedLocale = null }) => {
       <div className="mx-auto mt-5 max-w-full bg-white dark:bg-slate-800 py-6 shadow-sm dark:shadow-none lg:rounded-sm">
         <div className="flex items-center justify-center p-8">
           <div className="text-rose-500">
-            Error loading media: {error.message}
+            {formatMessage({
+              id: 'error_loading_media',
+              defaultMessage: 'Error loading media: ',
+            })}{' '}
+            {error.message}
           </div>
         </div>
       </div>
@@ -187,7 +200,6 @@ const AssortmentMediaForm = ({ assortmentId, selectedLocale = null }) => {
         >
           <AssortmentMediaList
             medias={assortmentMedia}
-            selectedLocale={selectedLocale}
             onDeleteMedia={onRemoveMedia}
             items={items}
           />

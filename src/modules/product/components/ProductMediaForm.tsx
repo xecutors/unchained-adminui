@@ -18,13 +18,12 @@ import useRemoveProductMedia from '../hooks/useRemoveProductMedia';
 
 import ProductMediaList from './ProductMediaList';
 import useReOrderProductMedia from '../hooks/useReOrderProductMedia';
-import useTranslatedProductTexts from '../hooks/useTranslatedProductTexts';
-import { useEffect } from 'react';
 
-const ProductMediaForm = ({ productId, selectedLocale = null }) => {
+const ProductMediaForm = ({ productId }) => {
   const { productMedia } = useProductMedia({ productId });
   const { setModal } = useModal();
   const { formatMessage } = useIntl();
+
   const { removeProductMedia } = useRemoveProductMedia();
   const { addProductMedia } = useAddProductMedia();
   const { reOrderProductMedia } = useReOrderProductMedia();
@@ -139,7 +138,6 @@ const ProductMediaForm = ({ productId, selectedLocale = null }) => {
       >
         <ProductMediaList
           medias={productMedia}
-          selectedLocale={selectedLocale}
           onDeleteMedia={onRemoveMedia}
           items={items}
         />

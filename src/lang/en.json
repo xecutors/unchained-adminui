@@ -357,6 +357,9 @@
   "company": {
     "defaultMessage": "Company"
   },
+  "component_loading_error": {
+    "defaultMessage": "Component loading error. Please refresh the page."
+  },
   "configurable_product_definition": {
     "defaultMessage": "<h3>Configurable</h3> <p>Configurable Product is used to organize varieties of a product. A product might have a variation in color, size or other distinct property in that case you can use a configurable product type to organize all the variation under one category and outline-solid there difference. </p>"
   },
@@ -927,6 +930,9 @@
   "error_language_code": {
     "defaultMessage": "Invalid language code"
   },
+  "error_loading_media": {
+    "defaultMessage": "Error loading media:"
+  },
   "error_number_not_int": {
     "defaultMessage": "Invalid value please provide integer value"
   },
@@ -1284,6 +1290,9 @@
   },
   "loading": {
     "defaultMessage": "Loading ..."
+  },
+  "loading_media": {
+    "defaultMessage": "Loading media..."
   },
   "log_in": {
     "defaultMessage": "Log in"

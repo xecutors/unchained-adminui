@@ -8,11 +8,7 @@ import useRemoveProductVariation from '../hooks/useRemoveProductVariation';
 import Variation from './Variation';
 import ProductVariationOptionsList from './ProductVariationOptionsList';
 
-const ProductVariationsList = ({
-  productVariationId,
-  selectedLocale,
-  variation,
-}) => {
+const ProductVariationsList = ({ productVariationId, variation }) => {
   const { formatMessage } = useIntl();
   const { setModal } = useModal();
   const { options } = variation;
@@ -50,14 +46,12 @@ const ProductVariationsList = ({
       header: (
         <Variation
           onDelete={onDeleteVariation}
-          selectedLocale={selectedLocale}
           variation={variation}
           {...variation}
         />
       ),
       body: (
         <ProductVariationOptionsList
-          selectedLocale={selectedLocale}
           key={productVariationId}
           variationId={variation._id}
           options={options}

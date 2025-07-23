@@ -15,12 +15,14 @@ import SelfDocumentingView from '../../common/components/SelfDocumentingView';
 import MarkdownTextAreaField from '../../forms/components/MarkdownTextAreaField';
 import TagInputField from '../../forms/components/TagInputField';
 import HelpText from '../../common/components/HelpText';
+import useApp from '../../common/hooks/useApp';
 
 const ProductTextsForm = ({
   productId,
-  selectedLocale = null,
+
   disabled = false,
 }) => {
+  const { selectedLocale } = useApp();
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
   const { translatedTexts } = useTranslatedProductTexts({ productId });

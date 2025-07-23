@@ -5,10 +5,10 @@ import InfiniteScroll from '../../common/components/InfiniteScroll';
 import Table from '../../common/components/Table';
 import useFilters from '../hooks/useFilters';
 import FilterListItem from './FilterListItem';
+import useApp from '../../common/hooks/useApp';
 
 const FilterList = ({
   onRemoveFilter,
-  selectedLocale = null,
   sortKeys,
   queryString,
   limit,
@@ -16,6 +16,7 @@ const FilterList = ({
   offset,
 }) => {
   const { formatMessage } = useIntl();
+  const { selectedLocale } = useApp();
   const { hasRole } = useAuth();
   const { filters, filtersCount, loading, loadMore, hasMore } = useFilters({
     queryString,

@@ -12,18 +12,18 @@ import useForm, {
 } from '../../forms/hooks/useForm';
 import HelpText from '../../common/components/HelpText';
 import { PRODUCT_TYPES } from '../ProductTypes';
+import useApp from '../../common/hooks/useApp';
 
 const ProductForm = ({
   onSubmit,
   onSubmitSuccess,
-  selectedLocale = null,
 }: {
   onSubmit: OnSubmitType;
   onSubmitSuccess: OnSubmitSuccessType;
-  selectedLocale?: string | null;
 }) => {
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
+  const { selectedLocale } = useApp();
 
   const successMessage = formatMessage({
     id: 'product_added',

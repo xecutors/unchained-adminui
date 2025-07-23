@@ -2,13 +2,12 @@ import { useState } from 'react';
 import VariationForm from './VariationForm';
 import VariationDisplay from './VariationDisplay';
 
-const Variation = ({ type, variation, selectedLocale, onDelete }) => {
+const Variation = ({ type, variation, onDelete }) => {
   const [isEdit, setIsEdit] = useState(false);
 
   return isEdit ? (
     <VariationForm
       variation={variation}
-      selectedLocale={selectedLocale}
       onCancel={() => setIsEdit(false)}
       onSuccess={() => setIsEdit(false)}
     />

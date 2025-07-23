@@ -13,10 +13,12 @@ import SelfDocumentingView from '../../common/components/SelfDocumentingView';
 import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
 import MarkdownTextAreaField from '../../forms/components/MarkdownTextAreaField';
+import useApp from '../../common/hooks/useApp';
 
-const AssortmentTextForm = ({ assortmentId, selectedLocale = null }) => {
+const AssortmentTextForm = ({ assortmentId }) => {
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
+  const { selectedLocale } = useApp();
 
   const { translatedAssortmentTexts, loading } = useTranslatedAssortmentTexts({
     assortmentId,

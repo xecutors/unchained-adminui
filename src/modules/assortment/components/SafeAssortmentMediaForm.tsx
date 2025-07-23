@@ -22,7 +22,6 @@ import { arrayMove, sortableKeyboardCoordinates } from '@dnd-kit/sortable';
 
 interface SafeAssortmentMediaFormProps {
   assortmentId: string;
-  selectedLocale?: string | null;
 }
 
 const SafeAssortmentMediaForm: React.FC<SafeAssortmentMediaFormProps> = (

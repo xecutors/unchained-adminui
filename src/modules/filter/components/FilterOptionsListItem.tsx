@@ -8,15 +8,12 @@ import useUpdateFilterTexts from '../hooks/useUpdateFilterTexts';
 import Badge from '../../common/components/Badge';
 import TableActionsMenu from '../../common/components/TableActionsMenu';
 import Button from '../../common/components/Button';
+import useApp from '../../common/hooks/useApp';
 
-const FilterOptionsListItem = ({
-  filterId,
-  option,
-  onDelete,
-  selectedLocale,
-}) => {
+const FilterOptionsListItem = ({ filterId, option, onDelete }) => {
   const { formatMessage } = useIntl();
   const [isEdit, setIsEdit] = useState(false);
+  const { selectedLocale } = useApp();
   const successMessage = formatMessage({
     id: 'saved',
     defaultMessage: 'Saved',

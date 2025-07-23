@@ -9,10 +9,11 @@ import FilterOptionForm from './FilterOptionForm';
 
 import FilterOptionsList from './FilterOptionsList';
 import useAuth from '../../Auth/useAuth';
-import { useCallback } from 'react';
+import useApp from '../../common/hooks/useApp';
 
-const FilterOptions = ({ filterId, selectedLocale = null }) => {
+const FilterOptions = ({ filterId }) => {
   const { formatMessage } = useIntl();
+  const { selectedLocale } = useApp();
   const { filterOptions } = useFilterOptions({
     filterId,
     locale: selectedLocale,
@@ -60,11 +61,7 @@ const FilterOptions = ({ filterId, selectedLocale = null }) => {
       }
     >
       <div className="mt-8 w-full border-slate-300 dark:border-slate-800 p-3 sm:mt-0 shadow-md  bg-white dark:bg-slate-900">
-        <FilterOptionsList
-          filterId={filterId}
-          options={filterOptions}
-          selectedLocale={selectedLocale}
-        />
+        <FilterOptionsList filterId={filterId} options={filterOptions} />
       </div>
     </SelfDocumentingView>
   );

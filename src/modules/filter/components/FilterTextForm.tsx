@@ -11,9 +11,11 @@ import useTranslatedFilterTexts from '../hooks/useTranslatedFilterTexts';
 import SelfDocumentingView from '../../common/components/SelfDocumentingView';
 import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
+import useApp from '../../common/hooks/useApp';
 
-const FilterTextForm = ({ filterId, selectedLocale = null }) => {
+const FilterTextForm = ({ filterId }) => {
   const { formatMessage } = useIntl();
+  const { selectedLocale } = useApp();
   const { translatedFilterTexts, loading } = useTranslatedFilterTexts({
     filterId,
   });

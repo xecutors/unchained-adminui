@@ -5,10 +5,12 @@ import useRemoveFilterOption from '../hooks/useRemoveFilterOption';
 import useModal from '../../modal/hooks/useModal';
 import DangerMessage from '../../modal/components/DangerMessage';
 import FilterOptionsListItem from './FilterOptionsListItem';
+import useApp from '../../common/hooks/useApp';
 
-const FilterOptionsList = ({ filterId, options, selectedLocale = null }) => {
+const FilterOptionsList = ({ filterId, options }) => {
   const { formatMessage } = useIntl();
   const { setModal } = useModal();
+  const { selectedLocale } = useApp();
   const { removeFilterOption } = useRemoveFilterOption();
 
   const onRemoveFilterOption = async (filterOptionValue) => {
@@ -47,7 +49,6 @@ const FilterOptionsList = ({ filterId, options, selectedLocale = null }) => {
             key={`${option._id}${selectedLocale}`}
             option={option}
             onDelete={onRemoveFilterOption}
-            selectedLocale={selectedLocale}
           />
         ))}
       </ul>

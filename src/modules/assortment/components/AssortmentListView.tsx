@@ -3,16 +3,12 @@ import InfiniteScroll from '../../common/components/InfiniteScroll';
 import { convertSortFieldsToQueryFormat } from '../../common/utils/utils';
 import useAssortments from '../hooks/useAssortments';
 import AssortmentList from './AssortmentList';
+import useApp from '../../common/hooks/useApp';
 
-const AssortmentListView = ({
-  options,
-  queryString,
-  selectedLocale = null,
-  sortable,
-}) => {
+const AssortmentListView = ({ options, queryString, sortable }) => {
   const { includeInactive, includeLeaves, limit, offset, tags, slug, sort } =
     options;
-
+  const { selectedLocale } = useApp();
   const sortKeys = convertSortFieldsToQueryFormat(sort);
 
   const { assortments, loading, loadMore, hasMore } = useAssortments({

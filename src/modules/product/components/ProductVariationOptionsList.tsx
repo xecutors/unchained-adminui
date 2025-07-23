@@ -9,14 +9,12 @@ import useRemoveProductVariationOption from '../hooks/useRemoveProductVariationO
 
 import ProductVariationOptionForm from './ProductVariationOptionForm';
 import ProductVariationOptionItem from './ProductVariationOptionItem';
+import useApp from '../../common/hooks/useApp';
 
-const ProductVariationOptionsList = ({
-  variationId,
-  options,
-  selectedLocale,
-}) => {
+const ProductVariationOptionsList = ({ variationId, options }) => {
   const { createProductVariationOption } = useCreateProductVariationOption();
   const { formatMessage } = useIntl();
+  const { selectedLocale } = useApp();
   const { setModal } = useModal();
   const { removeProductVariationOption } = useRemoveProductVariationOption();
 
@@ -68,7 +66,6 @@ const ProductVariationOptionsList = ({
             variationId={variationId}
             key={option._id}
             option={option}
-            selectedLocale={selectedLocale}
             onDelete={onDeleteOption}
           />
         ))

@@ -8,7 +8,7 @@ import NoData from '../../common/components/NoData';
 import ProductMediaListItem from './ProductMediaListItem';
 import { IProductMedia } from '../../../gql/types';
 
-const ProductMediaList = ({ medias, selectedLocale, onDeleteMedia, items }) => {
+const ProductMediaList = ({ medias, onDeleteMedia, items }) => {
   const { formatMessage } = useIntl();
 
   return (
@@ -34,7 +34,6 @@ const ProductMediaList = ({ medias, selectedLocale, onDeleteMedia, items }) => {
                       id={id}
                       key={media._id}
                       media={media}
-                      locale={selectedLocale}
                       onDelete={onDeleteMedia}
                     />
                   );

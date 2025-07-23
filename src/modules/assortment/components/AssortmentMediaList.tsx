@@ -7,14 +7,11 @@ import {
 import NoData from '../../common/components/NoData';
 import AssortmentMediaListItem from './AssortmentMediaListItem';
 import { IAssortmentMedia } from '../../../gql/types';
+import useApp from '../../common/hooks/useApp';
 
-const AssortmentMediaList = ({
-  medias = [],
-  selectedLocale,
-  onDeleteMedia,
-  items = [],
-}) => {
+const AssortmentMediaList = ({ medias = [], onDeleteMedia, items = [] }) => {
   const { formatMessage } = useIntl();
+  const { selectedLocale } = useApp();
 
   // Safety check for required components
   if (!SortableContext || !AssortmentMediaListItem || !NoData) {

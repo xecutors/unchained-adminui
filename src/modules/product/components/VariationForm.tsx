@@ -5,10 +5,12 @@ import Button from '../../common/components/Button';
 import Badge from '../../common/components/Badge';
 import useForm, { OnSubmitType } from '../../forms/hooks/useForm';
 import useUpdateProductVariationTexts from '../hooks/useUpdateProductVariationTexts';
+import useApp from '../../common/hooks/useApp';
 
-const VariationForm = ({ variation, selectedLocale, onCancel, onSuccess }) => {
+const VariationForm = ({ variation, onCancel, onSuccess }) => {
   const { updateProductVariationTexts } = useUpdateProductVariationTexts();
   const { formatMessage } = useIntl();
+  const { selectedLocale } = useApp();
 
   const onSubmit: OnSubmitType = async ({ title, subtitle }) => {
     await updateProductVariationTexts({

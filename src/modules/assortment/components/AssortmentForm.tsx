@@ -7,14 +7,12 @@ import SubmitButton from '../../forms/components/SubmitButton';
 import TagInputField from '../../forms/components/TagInputField';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
+import useApp from '../../common/hooks/useApp';
 
-const AssortmentForm = ({
-  onSubmit,
-  onSubmitSuccess,
-  selectedLocale = null,
-}) => {
+const AssortmentForm = ({ onSubmit, onSubmitSuccess }) => {
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
+  const { selectedLocale } = useApp();
   const successMessage = formatMessage({
     id: 'assortment_added',
     defaultMessage: 'Assortment added successfully!',

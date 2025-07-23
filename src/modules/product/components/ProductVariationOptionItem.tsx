@@ -7,14 +7,11 @@ import Form from '../../forms/components/Form';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
 import useUpdateProductVariationTexts from '../hooks/useUpdateProductVariationTexts';
+import useApp from '../../common/hooks/useApp';
 
-const ProductVariationOptionItem = ({
-  option,
-  onDelete,
-  variationId,
-  selectedLocale,
-}) => {
+const ProductVariationOptionItem = ({ option, onDelete, variationId }) => {
   const { formatMessage } = useIntl();
+  const { selectedLocale } = useApp();
   const [isEdit, setIsEdit] = useState(false);
   const successMessage = formatMessage({
     id: 'variation_option_updated',

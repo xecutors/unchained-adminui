@@ -36,11 +36,7 @@ const LocaleWrapper = ({ children, onlyFull = false }) => {
           })}
         </select>
       </div>
-      <div>
-        {React.cloneElement(children, {
-          selectedLocale: selectedLocale || locale,
-        })}
-      </div>
+      <div>{React.cloneElement(children)}</div>
     </>
   );
 };

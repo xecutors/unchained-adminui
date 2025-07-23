@@ -14,18 +14,18 @@ import useForm, {
   OnSubmitType,
 } from '../../forms/hooks/useForm';
 import useFilterTypes from '../hooks/useFilterTypes';
+import useApp from '../../common/hooks/useApp';
 
 const FilterForm = ({
   onSubmit,
   onSubmitSuccess,
-  selectedLocale,
 }: {
   onSubmit: OnSubmitType;
   onSubmitSuccess: OnSubmitSuccessType;
-  selectedLocale?: string;
 }) => {
   const { filterTypes } = useFilterTypes();
   const { formatMessage } = useIntl();
+  const { selectedLocale } = useApp();
   const { hasRole } = useAuth();
   const successMessage = formatMessage({
     id: 'filter_created',

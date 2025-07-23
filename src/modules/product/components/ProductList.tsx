@@ -4,6 +4,7 @@ import InfiniteScroll from '../../common/components/InfiniteScroll';
 import Table from '../../common/components/Table';
 import useProducts from '../hooks/useProducts';
 import ProductListItem from './ProductListItem';
+import useApp from '../../common/hooks/useApp';
 
 const ProductList = ({
   showAvatar = true,
@@ -12,12 +13,12 @@ const ProductList = ({
   offset,
   tags,
   sortKeys,
-  selectedLocale = null,
   includeDrafts,
   sortable,
 }) => {
   const { formatMessage } = useIntl();
-  const { products, productsCount, loading, loadMore, hasMore } = useProducts({
+  const { selectedLocale } = useApp();
+  const { products, loading, loadMore, hasMore } = useProducts({
     queryString,
     includeDrafts,
     limit,
