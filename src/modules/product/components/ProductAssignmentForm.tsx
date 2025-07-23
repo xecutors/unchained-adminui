@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
-import Select, { GroupBase, OptionsOrGroups } from 'react-select';
+import { GroupBase, OptionsOrGroups } from 'react-select';
 import { InformationCircleIcon } from '@heroicons/react/24/outline';
 
 import FormWrapper from '../../common/components/FormWrapper';
@@ -10,7 +10,6 @@ import useAddProductAssignment from '../hooks/useAddProductAssignment';
 
 import useProductAssignments from '../hooks/useProductAssignments';
 import Table from '../../common/components/Table';
-import TableActionsMenu from '../../common/components/TableActionsMenu';
 import useRemoveProductAssignment from '../hooks/useRemoveProductAssignment';
 import useModal from '../../modal/hooks/useModal';
 import DangerMessage from '../../modal/components/DangerMessage';
@@ -19,6 +18,7 @@ import useProducts from '../hooks/useProducts';
 import { ISortDirection } from '../../../gql/types';
 import useTheme from '../../common/hooks/useTheme';
 import UnchainedSelect from '../../common/components/UnchainedSelect';
+import DeleteButton from '../../common/components/DeleteButton';
 
 const matrixGenerator = (columns, rowContainer, currentIndex) => {
   const column = columns[currentIndex];
@@ -154,7 +154,6 @@ const ProductAssignmentForm = ({ proxyId, disabled = false }) => {
   };
   const debouncedQuery = deBounce(200)(setQueryString);
 
-  // Check if we have any variations configured
   const hasVariations = variations.length > 0;
   const hasVariationOptions = variations.some(
     (v) => v.options && v.options.length > 0,
@@ -162,7 +161,6 @@ const ProductAssignmentForm = ({ proxyId, disabled = false }) => {
 
   return (
     <FormWrapper>
-      {/* Explanation Section */}
       <div className="mb-6 p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
         <div className="flex items-start gap-3">
           <InformationCircleIcon className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
@@ -183,8 +181,6 @@ const ProductAssignmentForm = ({ proxyId, disabled = false }) => {
           </div>
         </div>
       </div>
-
-      {/* No variations message */}
       {!hasVariations && (
         <div className="text-center py-8">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-100 dark:bg-gray-800 mb-4">
@@ -199,8 +195,6 @@ const ProductAssignmentForm = ({ proxyId, disabled = false }) => {
           </h3>
         </div>
       )}
-
-      {/* Assignment matrix */}
       {hasVariations && hasVariationOptions && (
         <>
           <div className="mb-4">
@@ -211,7 +205,6 @@ const ProductAssignmentForm = ({ proxyId, disabled = false }) => {
           </div>
 
           <Table>
-            {/* Enhanced table header */}
             <Table.Row>
               {columnKeys.map((key) => (
                 <Table.Cell
@@ -300,7 +293,6 @@ const ProductAssignmentForm = ({ proxyId, disabled = false }) => {
         </>
       )}
 
-      {/* Show when variations exist but no options */}
       {hasVariations && !hasVariationOptions && (
         <div className="text-center py-8">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-yellow-100 dark:bg-yellow-900/30 mb-4">

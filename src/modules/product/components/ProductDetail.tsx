@@ -42,7 +42,7 @@ interface GetCurrentTabProps {
 }
 
 interface ProductDetailProps {
-  product: IProductDetailFragment;
+  product: IProductDetailFragment & { __typename?: string };
   extendedData?: Record<string, any>;
 }
 
