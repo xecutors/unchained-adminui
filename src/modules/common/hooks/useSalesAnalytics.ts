@@ -3,8 +3,8 @@ import { useQuery, gql } from '@apollo/client';
 import { format, parseISO, subDays, startOfDay, endOfDay } from 'date-fns';
 
 const SALES_ANALYTICS_QUERY = gql`
-  query SalesAnalytics($filter: OrderFilterInput) {
-    orders(filter: $filter, limit: 1000) {
+  query SalesAnalytics {
+    orders(limit: 1000) {
       _id
       ordered
       status
