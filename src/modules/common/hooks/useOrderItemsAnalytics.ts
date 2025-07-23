@@ -59,16 +59,6 @@ const useOrderItemsAnalytics = (): OrderItemsAnalytics => {
           // Get product image URL
           const productImage = item.product?.media?.[0]?.file?.url;
 
-          // Debug logging to see what we're getting
-          if (process.env.NODE_ENV === 'development') {
-            console.log('Product data:', {
-              productId,
-              texts: item.product?.texts,
-              productName,
-              fullProduct: item.product,
-            });
-          }
-
           if (productId) {
             const existing = productSalesMap.get(productId);
             if (existing) {

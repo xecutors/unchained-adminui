@@ -13,7 +13,6 @@ export const SingleProductReturnTools = [
   'product_updateSupply',
   'product_updateTokenization',
   'product_updatePlan',
-  'product_createVariation',
 ] as const;
 
 export const MultipleProductReturnTools = [
@@ -22,7 +21,16 @@ export const MultipleProductReturnTools = [
   'assortment_getProducts',
 ] as const;
 
-export const ProductVariationsReturnTools = ['product_variations'] as const;
+export const SingleProductVariationsReturnTools = [
+  'product_variations',
+  'product_createVariation',
+  'product_createVariationOption',
+] as const;
+export const ProductVariationsReturnTools = [
+  'product_variations',
+  'product_createVariation',
+  'product_createVariationOption',
+] as const;
 export const ProductAssignmentsReturnTools = ['product_assignments'] as const;
 export const ProductBundleReturnTools = [
   'product_bundleItems',

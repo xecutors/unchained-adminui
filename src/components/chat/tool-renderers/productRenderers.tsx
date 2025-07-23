@@ -20,10 +20,10 @@ export const renderMultipleProducts = (data: any) =>
   ) : null;
 
 export const renderVariations = (data: any) =>
-  data?.variations?.length ? (
+  data?.product ? (
     <div className="mb-6">
       <VariationListCompact
-        variations={data.variations}
+        variations={data?.product?.variations}
         product={data.product}
       />
     </div>

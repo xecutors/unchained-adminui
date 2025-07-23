@@ -44,6 +44,8 @@ import {
   ToolName,
   PriceReturnTools,
   ProductBundleReturnTools,
+  ProductVariationsReturnTools,
+  ProductAssignmentsReturnTools,
 } from '../../modules/chat/hooks/useToolTextNormalizer';
 
 type ToolRenderFn = (data: any) => ReactElement | null;
@@ -51,11 +53,16 @@ type ToolRenderFn = (data: any) => ReactElement | null;
 const ToolRenderer: Record<ToolName, ToolRenderFn> = {
   shop_info: renderShopInfo,
   generateImage: renderImage,
-  product_variations: renderVariations,
-  product_assignments: renderAssignments,
+  ...Object.fromEntries(
+    ProductAssignmentsReturnTools.map((name) => [name, renderAssignments]),
+  ),
   ...Object.fromEntries(
     ProductBundleReturnTools.map((name) => [name, renderBundles]),
   ),
+  ...Object.fromEntries(
+    ProductVariationsReturnTools.map((name) => [name, renderVariations]),
+  ),
+
   ...Object.fromEntries(PriceReturnTools.map((name) => [name, renderPrice])),
   ...Object.fromEntries(
     MediaListReturnTools.map((name) => [name, renderMedias]),
