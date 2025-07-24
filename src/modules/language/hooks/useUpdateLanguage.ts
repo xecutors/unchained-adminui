@@ -29,6 +29,7 @@ const useUpdateLanguage = () => {
         language: { isoCode, isActive },
         languageId,
       },
+      refetchQueries: ['ShopStatus', 'ShopInfo', 'Languages'],
     });
   };
 

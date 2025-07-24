@@ -25,7 +25,7 @@ const useRemoveLanguage = () => {
   }: IRemoveLanguageMutationVariables) => {
     return removeLanguageMutation({
       variables: { languageId },
-      refetchQueries: ['Languages', 'ShopStatus'],
+      refetchQueries: ['ShopStatus', 'ShopInfo', 'Languages'],
     });
   };
 

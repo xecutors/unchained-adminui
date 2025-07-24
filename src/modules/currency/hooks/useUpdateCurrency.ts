@@ -34,6 +34,7 @@ const useUpdateCurrency = () => {
         },
         currencyId,
       },
+            refetchQueries: ['Currencies', 'ShopStatus', 'ShopInfo'],
     });
   };
 

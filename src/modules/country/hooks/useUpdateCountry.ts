@@ -29,6 +29,7 @@ const useUpdateCountry = () => {
         country,
         countryId,
       },
+      refetchQueries: ['Countries', 'ShopStatus', 'ShopInfo'],
     });
   };
 

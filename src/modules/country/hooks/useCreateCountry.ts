@@ -25,7 +25,7 @@ const useCreateCountry = () => {
   }: ICreateCountryMutationVariables) => {
     return createCountryMutation({
       variables: { country },
-      refetchQueries: ['Countries', 'ShopStatus'],
+      refetchQueries: ['Countries', 'ShopStatus', 'ShopInfo'],
     });
   };
   const newCountry = data?.createCountry;

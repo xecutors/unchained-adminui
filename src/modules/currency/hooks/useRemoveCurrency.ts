@@ -25,7 +25,7 @@ const useRemoveCurrency = () => {
   }: IRemoveCurrencyMutationVariables) => {
     return removeCurrencyMutation({
       variables: { currencyId },
-      refetchQueries: ['Currencies', 'ShopStatus'],
+      refetchQueries: ['Currencies', 'ShopStatus', 'ShopInfo'],
     });
   };
 

@@ -41,7 +41,7 @@
     "codegen": "graphql-codegen --config codegen.ts"
   },
   "engines": {
-    "node": ">=24",
+    "node": ">=22",
     "npm": ">=10"
   },
   "contributors": [
