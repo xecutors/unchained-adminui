@@ -1,43 +1,16 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import { useIntl } from 'react-intl';
-import { GroupBase, OptionsOrGroups } from 'react-select';
 import { InformationCircleIcon } from '@heroicons/react/24/outline';
-
 import FormWrapper from '../../common/components/FormWrapper';
 import HelpText from '../../common/components/HelpText';
-
-import useAddProductAssignment from '../hooks/useAddProductAssignment';
-
 import useProductAssignments from '../hooks/useProductAssignments';
 import Table from '../../common/components/Table';
-import useRemoveProductAssignment from '../hooks/useRemoveProductAssignment';
-import useModal from '../../modal/hooks/useModal';
-import DangerMessage from '../../modal/components/DangerMessage';
-import deBounce from '../../common/utils/deBounce';
-import useProducts from '../hooks/useProducts';
-import { ISortDirection } from '../../../gql/types';
-import useTheme from '../../common/hooks/useTheme';
-import UnchainedSelect from '../../common/components/UnchainedSelect';
-import DeleteButton from '../../common/components/DeleteButton';
-import {
-  getRowVector,
-  matrixGenerator,
-  normalizeProduct,
-} from '../utils/productAssignment.utils';
+import { matrixGenerator } from '../utils/productAssignment.utils';
+import ProductAssignmentRow from './ProductAssignmentRow';
 
 const ProductAssignmentForm = ({ proxyId, disabled = false }) => {
   const { formatMessage } = useIntl();
-  const { addProductAssignment } = useAddProductAssignment();
-  const { removeProductAssignment } = useRemoveProductAssignment();
-  const { setModal } = useModal();
-  const { theme } = useTheme();
 
-  const [queryString, setQueryString] = useState('');
-  const { products } = useProducts({
-    queryString,
-    limit: 50,
-    sort: [{ key: 'created', value: ISortDirection.Desc }],
-  });
   const { product, loading } = useProductAssignments({ productId: proxyId });
   const variations = (product && product?.variations) || [];
   const assignments = (product && product.assignments) || [];
@@ -80,11 +53,12 @@ const ProductAssignmentForm = ({ proxyId, disabled = false }) => {
     return allRowsPossible
       .map((row) => {
         const hash = Object.values(row).join('');
+        const vals = Object.values(row);
         return {
           _id: hash,
           product: allAssignedRows[hash],
-          columns: Object.values(row),
-          columnsText: Object.values(row),
+          columns: vals,
+          columnsText: vals,
         };
       })
       .sort((a, b) => {
@@ -97,57 +71,10 @@ const ProductAssignmentForm = ({ proxyId, disabled = false }) => {
       });
   }, [allRowsPossible, allAssignedRows]);
 
-  assignments.forEach((assignment) => {
-    const selector = {};
-    assignment.vectors.forEach((vector) => {
-      selector[vector?.variation?.key] = vector?.option?.value;
-    });
-    allAssignedRows[Object.values(selector).join('')] = assignment.product;
-  });
-
-  const handleProductAssignment = (context) => {
-    const assignVector = async ({ value: productId }) => {
-      const vectors = context.map((optionValue, index) =>
-        getRowVector(optionValue, index, columnKeys),
-      );
-
-      await addProductAssignment({ proxyId, productId, vectors });
-    };
-
-    return assignVector;
-  };
-
-  const handleRemoveAssignment = (context) => {
-    const removeAssignment = async () => {
-      await setModal(
-        <DangerMessage
-          onCancelClick={async () => setModal('')}
-          message={formatMessage({
-            id: 'delete_product_assignment',
-            defaultMessage:
-              'This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this assignment? ',
-          })}
-          onOkClick={async () => {
-            setModal('');
-            const vectors = context.map((optionValue, index) =>
-              getRowVector(optionValue, index, columnKeys),
-            );
-            await removeProductAssignment({ proxyId, vectors });
-          }}
-          okText={formatMessage({
-            id: 'delete_variation_assignment',
-            defaultMessage: 'Delete assignment',
-          })}
-        />,
-      );
-    };
-    return removeAssignment;
-  };
-  const debouncedQuery = deBounce(200)(setQueryString);
-
-  const hasVariations = variations.length > 0;
-  const hasVariationOptions = variations.some(
-    (v) => v.options && v.options.length > 0,
+  const hasVariations = useMemo(() => variations.length > 0, [variations]);
+  const hasVariationOptions = useMemo(
+    () => variations.some((v) => v.options && v.options.length > 0),
+    [variations],
   );
 
   return (
@@ -219,67 +146,19 @@ const ProductAssignmentForm = ({ proxyId, disabled = false }) => {
               </Table.Cell>
             </Table.Row>
 
-            {rows.map(({ _id, columns, product: variationProduct }) => (
-              <Table.Row key={_id}>
-                {columns.map((columnText, index) => (
-                  <Table.Cell
-                    key={`${columnText}${_id}`}
-                    className="font-medium"
-                  >
-                    {columnText}
-                  </Table.Cell>
-                ))}
-
-                <Table.Cell>
-                  {variationProduct ? (
-                    <div className="flex items-center">
-                      <span className="text-green-700 dark:text-green-300 font-medium">
-                        {variationProduct?.texts?.title}
-                      </span>
-                    </div>
-                  ) : product.variations?.length !== columns.length ? (
-                    <div className="mt-1 text-sm text-rose-600 italic">
-                      {formatMessage({
-                        id: 'assign_product_needs_variations',
-                        defaultMessage:
-                          'Please configure all variation options before assigning a product.',
-                      })}
-                    </div>
-                  ) : (
-                    <div className="relative w-full">
-                      <UnchainedSelect
-                        name={`productId-${_id}`}
-                        placeholder={formatMessage({
-                          id: 'search_product',
-                          defaultMessage: 'Search product',
-                        })}
-                        isLoading={loading}
-                        isDisabled={disabled}
-                        onChange={handleProductAssignment(columns) as any}
-                        onInputChange={debouncedQuery}
-                        value={queryString}
-                        options={
-                          (products || [])
-                            .map(normalizeProduct)
-                            .filter(
-                              ({ value }) => value !== proxyId,
-                            ) as unknown as OptionsOrGroups<
-                            string,
-                            GroupBase<string>
-                          >
-                        }
-                        className="mt-1 w-full py-2 text-sm font-medium text-slate-500"
-                      />
-                    </div>
-                  )}
-                </Table.Cell>
-                <Table.Cell>
-                  {variationProduct && variationProduct._id && (
-                    <DeleteButton onClick={handleRemoveAssignment(columns)} />
-                  )}
-                </Table.Cell>
-              </Table.Row>
-            ))}
+            {rows.length > 0 &&
+              rows.map(({ _id, columns, product: variationProduct }) => (
+                <ProductAssignmentRow
+                  key={_id}
+                  columns={columns}
+                  disabled={disabled}
+                  loading={loading}
+                  product={product}
+                  variationProduct={variationProduct}
+                  columnKeys={columnKeys}
+                  proxyId={proxyId}
+                />
+              ))}
           </Table>
         </>
       )}
