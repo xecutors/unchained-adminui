@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { GroupBase, OptionsOrGroups } from 'react-select';
 import { InformationCircleIcon } from '@heroicons/react/24/outline';
@@ -19,36 +19,11 @@ import { ISortDirection } from '../../../gql/types';
 import useTheme from '../../common/hooks/useTheme';
 import UnchainedSelect from '../../common/components/UnchainedSelect';
 import DeleteButton from '../../common/components/DeleteButton';
-
-const matrixGenerator = (columns, rowContainer, currentIndex) => {
-  const column = columns[currentIndex];
-  const newRows = [];
-  column?.values
-    .filter((v) => v.length)
-    .forEach((value) => {
-      const tempRow = {};
-      tempRow[column.key] = value;
-      if (rowContainer.length > 0) {
-        rowContainer.forEach((oldRow) => {
-          newRows.push({ ...oldRow, ...tempRow });
-        });
-      } else {
-        newRows.push(tempRow);
-      }
-    });
-
-  if (columns.length > currentIndex + 1) {
-    return matrixGenerator(columns, newRows, currentIndex + 1);
-  }
-  return Array.from(new Set(newRows.map((r) => JSON.stringify(r)))).map((r) =>
-    JSON.parse(r),
-  );
-};
-
-const normalizeProduct = ({ _id, texts }: any) => ({
-  value: _id,
-  label: texts?.title,
-});
+import {
+  getRowVector,
+  matrixGenerator,
+  normalizeProduct,
+} from '../utils/productAssignment.utils';
 
 const ProductAssignmentForm = ({ proxyId, disabled = false }) => {
   const { formatMessage } = useIntl();
@@ -64,28 +39,64 @@ const ProductAssignmentForm = ({ proxyId, disabled = false }) => {
     sort: [{ key: 'created', value: ISortDirection.Desc }],
   });
   const { product, loading } = useProductAssignments({ productId: proxyId });
-
   const variations = (product && product?.variations) || [];
-
-  const columnKeys = variations
-    .filter(({ options }) => options.length)
-    .map(({ key }) => key);
-
-  const keyValueCombinations = variations.map(({ key, options }) => ({
-    values: (options || []).map((option) => option.value),
-    key,
-  }));
-
-  const allRowsPossible =
-    keyValueCombinations.length > 0
-      ? matrixGenerator(
-          keyValueCombinations.filter(({ values }) => values.length),
-          [],
-          0,
-        )
-      : [];
   const assignments = (product && product.assignments) || [];
-  const allAssignedRows = {};
+
+  const columnKeys = useMemo(
+    () =>
+      variations.filter(({ options }) => options.length).map(({ key }) => key),
+    [variations],
+  );
+
+  const keyValueCombinations = useMemo(
+    () =>
+      variations.map(({ key, options }) => ({
+        values: options?.map((option) => option.value),
+        key,
+      })),
+    [variations],
+  );
+
+  const allRowsPossible = useMemo(() => {
+    const validCombos = keyValueCombinations.filter(
+      ({ values }) => values?.length,
+    );
+    return validCombos.length > 0 ? matrixGenerator(validCombos, [], 0) : [];
+  }, [keyValueCombinations]);
+
+  const allAssignedRows = useMemo(() => {
+    const map = {};
+    assignments?.forEach((assignment) => {
+      const selector = {};
+      assignment.vectors.forEach((v) => {
+        selector[v?.variation?.key] = v?.option?.value;
+      });
+      map[Object.values(selector).join('')] = assignment.product;
+    });
+    return map;
+  }, [assignments]);
+
+  const rows = useMemo(() => {
+    return allRowsPossible
+      .map((row) => {
+        const hash = Object.values(row).join('');
+        return {
+          _id: hash,
+          product: allAssignedRows[hash],
+          columns: Object.values(row),
+          columnsText: Object.values(row),
+        };
+      })
+      .sort((a, b) => {
+        const aHas = !!a.product;
+        const bHas = !!b.product;
+        if ((aHas && bHas) || (!aHas && !bHas)) {
+          return a.columns.length - b.columns.length;
+        }
+        return aHas ? -1 : 1;
+      });
+  }, [allRowsPossible, allAssignedRows]);
+
   assignments.forEach((assignment) => {
     const selector = {};
     assignment.vectors.forEach((vector) => {
@@ -94,33 +105,11 @@ const ProductAssignmentForm = ({ proxyId, disabled = false }) => {
     allAssignedRows[Object.values(selector).join('')] = assignment.product;
   });
 
-  const rows = allRowsPossible
-    .map((row) => {
-      const hash = Object.values(row).join('');
-      return {
-        _id: hash,
-        product: allAssignedRows[hash],
-        columns: Object.values(row),
-        columnsText: Object.values(row),
-      };
-    })
-    .sort((row, row2) => {
-      if ((row.product && row2.product) || (!row.product && !row2.product)) {
-        return row.columns.length > row2.columns.length ? 1 : -1;
-      }
-      if (row.product) return -1;
-      if (row2.product) return 1;
-      return 0;
-    });
-
-  const getRowVector = (optionValue, index) => ({
-    key: columnKeys[index],
-    value: optionValue,
-  });
-
   const handleProductAssignment = (context) => {
     const assignVector = async ({ value: productId }) => {
-      const vectors = context.map(getRowVector);
+      const vectors = context.map((optionValue, index) =>
+        getRowVector(optionValue, index, columnKeys),
+      );
 
       await addProductAssignment({ proxyId, productId, vectors });
     };
@@ -140,7 +129,9 @@ const ProductAssignmentForm = ({ proxyId, disabled = false }) => {
           })}
           onOkClick={async () => {
             setModal('');
-            const vectors = context.map(getRowVector);
+            const vectors = context.map((optionValue, index) =>
+              getRowVector(optionValue, index, columnKeys),
+            );
             await removeProductAssignment({ proxyId, vectors });
           }}
           okText={formatMessage({

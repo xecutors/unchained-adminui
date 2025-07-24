@@ -19,14 +19,10 @@ import useAssortmentMedia from '../hooks/useAssortmentMedia';
 import useRemoveAssortmentMedia from '../hooks/useRemoveAssortmentMedia';
 import useReorderAssortmentMedia from '../hooks/useReorderAssortmentMedia';
 import AssortmentMediaList from './AssortmentMediaList';
-import useApp from '../../common/hooks/useApp';
-
 const AssortmentMediaForm = ({ assortmentId }) => {
-  // All hooks must be called first, before any conditional returns
   const { assortmentMedia, loading, error } = useAssortmentMedia({
     assortmentId,
   });
-  const { selectedLocale } = useApp();
   const { formatMessage } = useIntl();
   const { setModal } = useModal();
   const { removeAssortmentMedia } = useRemoveAssortmentMedia();
@@ -46,7 +42,6 @@ const AssortmentMediaForm = ({ assortmentId }) => {
 
   const items = (assortmentMedia || []).map((media) => media._id);
 
-  // Safety check for required components after all hooks
   if (!MediaUploader || !DndContext || !AssortmentMediaList) {
     console.error('Required components not loaded:', {
       MediaUploader: !!MediaUploader,
@@ -67,8 +62,6 @@ const AssortmentMediaForm = ({ assortmentId }) => {
       </div>
     );
   }
-
-  // Add loading and error handling after all hooks
   if (loading) {
     return (
       <div className="mx-auto mt-5 max-w-full bg-white dark:bg-slate-800 py-6 shadow-sm dark:shadow-none lg:rounded-sm">
