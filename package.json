@@ -27,7 +27,7 @@
     "lint": "next lint",
     "format": "eslint --fix --ext .ts,.tsx,.js,.jsx .",
     "extract-translation": "formatjs extract 'src/(pages|modules)/**/*.{ts,tsx,jsx}' --out-file src/lang/en.json --id-interpolation-pattern '[sha512:contenthash:base64:6]'",
-    "compile-translation": "formatjs compile  ./src/lang/en.json  --out-file ./src/i18n/en.json --format custom-formatter.js",
+    "compile-translation": "formatjs compile  ./src/lang/en.json  --out-file ./src/i18n/en.json --format custom-formatter.js && node extract-missing-translation-keys.js",
     "serve": "npx serve out",
     "cy:run": "cypress run",
     "cy:open": "cypress run",

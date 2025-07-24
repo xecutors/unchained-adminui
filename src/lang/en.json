@@ -1435,8 +1435,11 @@
   "no_internet_access": {
     "defaultMessage": "You aren't connected to a working internet connection."
   },
-  "no_orders_description": {
+  "no_order_products_description": {
     "defaultMessage": "Once you receive your first orders, your top-selling products will appear here."
+  },
+  "no_orders_description": {
+    "defaultMessage": "Once you receive your first orders, your sales analytics and top-selling products will appear here."
   },
   "no_orders_title": {
     "defaultMessage": "No orders yet"
