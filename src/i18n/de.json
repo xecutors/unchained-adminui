@@ -1144,5 +1144,11 @@
   "verified": "Verifiziert",
   "with_children": "Mit Kindern",
   "work_queue_problem_detected": "Probleme in der Arbeitswarteschlange erkannt",
-  "no_order_products_description": "Sobald Sie Ihre ersten Bestellungen erhalten, erscheinen hier Ihre meistverkauften Produkte."
+  "no_order_products_description": "Sobald Sie Ihre ersten Bestellungen erhalten, erscheinen hier Ihre meistverkauften Produkte.",
+  "product-scaffolded-success": "Produkt erfolgreich gerüstet",
+  "product_creation_failed": "Produkterstellung fehlgeschlagen",
+  "product_delete_blocked_action": "Bitte trennen Sie die Verknüpfung, bevor Sie versuchen, es zu löschen.",
+  "product_delete_blocked_header": "Links vor dem Löschen entfernen",
+  "product_delete_blocked_intro": "Dieses Produkt ist mit den folgenden Produkttypen verknüpft:",
+  "scaffold_product": "Gerüst"
 }

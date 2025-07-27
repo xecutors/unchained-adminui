@@ -1642,6 +1642,9 @@
   "product-image": {
     "defaultMessage": "Product image"
   },
+  "product-scaffolded-success": {
+    "defaultMessage": "Product scaffolded successfully"
+  },
   "product_added": {
     "defaultMessage": "Product added successfully!"
   },
@@ -1653,6 +1656,18 @@
   },
   "product_commerce_info": {
     "defaultMessage": "One price list should have a max quantity field empty and no price should have the same max quantity along with currency and country specified"
+  },
+  "product_creation_failed": {
+    "defaultMessage": "Product creation failed"
+  },
+  "product_delete_blocked_action": {
+    "defaultMessage": "Please unlink it before trying to delete it."
+  },
+  "product_delete_blocked_header": {
+    "defaultMessage": "Remove links before deleting"
+  },
+  "product_delete_blocked_intro": {
+    "defaultMessage": "This product is linked to the following product types:"
   },
   "product_deleted": {
     "defaultMessage": "Product deleted successfully"
@@ -1938,6 +1953,9 @@
   },
   "saved": {
     "defaultMessage": "Saved"
+  },
+  "scaffold_product": {
+    "defaultMessage": "Scaffold"
   },
   "scheduled": {
     "defaultMessage": "Scheduled"

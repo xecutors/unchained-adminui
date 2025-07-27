@@ -1,5 +1,9 @@
 import { useQuery, gql } from '@apollo/client';
-import { IProductQuery, IProductQueryVariables } from '../../../gql/types';
+import {
+  IProduct,
+  IProductQuery,
+  IProductQueryVariables,
+} from '../../../gql/types';
 import { parseUniqueId } from '../../common/utils/getUniqueId';
 import useUnchainedContext from '../../UnchainedContext/useUnchainedContext';
 import ProductDetailFragment from '../fragments/ProductDetailFragment';
@@ -22,6 +26,9 @@ const GetProductQuery = (inlineFragment = '') => gql`
           subtitle
           description
         }
+        proxies {
+        __typename
+      }
       }
       ... on ConfigurableProduct {
         texts {
@@ -38,6 +45,9 @@ const GetProductQuery = (inlineFragment = '') => gql`
           subtitle
           description
         }
+        proxies {
+        __typename
+      }
       }
       ... on BundleProduct {
         texts {
@@ -46,6 +56,9 @@ const GetProductQuery = (inlineFragment = '') => gql`
           subtitle
           description
         }
+        proxies {
+        __typename
+      }
       }
     }
   }
@@ -60,7 +73,7 @@ const useProduct = ({
 
   const { customProperties, hydrateFragment } = useUnchainedContext();
   const { data, loading, error } = useQuery<
-    IProductQuery,
+    IProductQuery & IProduct,
     IProductQueryVariables
   >(GetProductQuery(customProperties?.Product), {
     skip: !id && !parsedId,

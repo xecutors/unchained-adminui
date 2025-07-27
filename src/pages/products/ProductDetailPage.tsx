@@ -22,6 +22,7 @@ import useAuth from '../../modules/Auth/useAuth';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { useMemo } from 'react';
 import { IProduct } from '../../gql/types';
+import AlertMessage from '../../modules/modal/components/AlertMessage';
 
 const ProductDetailPage = ({ slug }) => {
   const { formatMessage } = useIntl();
@@ -39,7 +40,6 @@ const ProductDetailPage = ({ slug }) => {
     slug,
   });
   const status = product?.status || 'DRAFT';
-
   const activeOptions = useMemo(
     () => [
       {
@@ -152,6 +152,44 @@ const ProductDetailPage = ({ slug }) => {
   };
 
   const handleDeleteProduct = async () => {
+    if ('proxies' in product && product.proxies?.length) {
+      await setModal(
+        <AlertMessage
+          headerText={formatMessage({
+            id: 'product_delete_blocked_header',
+            defaultMessage: 'Remove links before deleting',
+          })}
+          message={
+            <div className="space-y-2">
+              <p>
+                {formatMessage({
+                  id: 'product_delete_blocked_intro',
+                  defaultMessage:
+                    'This product is linked to the following product types:',
+                })}
+              </p>
+              <ul className="list-disc list-inside text-sm text-slate-700 dark:text-slate-300">
+                {'proxies' in product &&
+                  product.proxies.map(({ __typename }, idx) => (
+                    <li key={idx}>{__typename.replace('Product', '')}</li>
+                  ))}
+              </ul>
+              <p>
+                {formatMessage({
+                  id: 'product_delete_blocked_action',
+                  defaultMessage:
+                    'Please unlink it before trying to delete it.',
+                })}
+              </p>
+            </div>
+          }
+          buttonText={formatMessage({ id: 'ok', defaultMessage: 'Ok' })}
+          onOkClick={() => setModal(null)}
+        />,
+      );
+      return;
+    }
+
     await setModal(
       <DangerMessage
         onCancelClick={() => setModal('')}
