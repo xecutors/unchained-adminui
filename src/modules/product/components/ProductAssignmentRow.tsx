@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { ISortDirection } from '../../../gql/types';
 import DeleteButton from '../../common/components/DeleteButton';
@@ -14,6 +14,12 @@ import {
   normalizeProduct,
 } from '../utils/productAssignment.utils';
 import Table from '../../common/components/Table';
+import Link from 'next/link';
+import generateUniqueId from '../../common/utils/getUniqueId';
+import { SparklesIcon } from '@heroicons/react/24/outline';
+import Button from '../../common/components/Button';
+import ProductAssignmentScaffoldForm from './ProductAssignmentScaffoldForm';
+import useAuth from '../../Auth/useAuth';
 
 const ProductAssignmentRow = ({
   columns,
@@ -29,59 +35,49 @@ const ProductAssignmentRow = ({
   const [queryString, setQueryString] = useState('');
   const { addProductAssignment } = useAddProductAssignment();
   const { removeProductAssignment } = useRemoveProductAssignment();
+  const { hasRole } = useAuth();
   const { setModal } = useModal();
   const { products } = useProducts({
     queryString,
     limit: 50,
     sort: [{ key: 'created', value: ISortDirection.Desc }],
   });
-
-  const handleProductAssignment = (context) => {
-    const assignVector = async ({ value: productId }) => {
-      const vectors = context.map((optionValue, index) =>
+  const vectors = useMemo(
+    () =>
+      columns.map((optionValue, index) =>
         getRowVector(optionValue, index, columnKeys),
-      );
+      ),
+    [columns, columnKeys],
+  );
 
+  console.log('vectors   ', vectors);
+  const handleProductAssignment = useCallback(
+    async ({ value: productId }) => {
       await addProductAssignment({ proxyId, productId, vectors });
-    };
-
-    return assignVector;
-  };
-
-  const handleRemoveAssignment = (context) => {
-    const removeAssignment = async () => {
-      await setModal(
-        <DangerMessage
-          onCancelClick={async () => setModal('')}
-          message={formatMessage({
-            id: 'delete_product_assignment',
-            defaultMessage:
-              'This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this assignment? ',
-          })}
-          onOkClick={async () => {
-            setModal('');
-            const vectors = context.map((optionValue, index) =>
-              getRowVector(optionValue, index, columnKeys),
-            );
-            await removeProductAssignment({ proxyId, vectors });
-          }}
-          okText={formatMessage({
-            id: 'delete_variation_assignment',
-            defaultMessage: 'Delete assignment',
-          })}
-        />,
-      );
-    };
-    return removeAssignment;
-  };
-  const assignHandler = useMemo(
-    () => handleProductAssignment(columns),
-    [columns, columnKeys, proxyId],
+    },
+    [vectors, addProductAssignment, proxyId],
   );
-  const removeHandler = useMemo(
-    () => handleRemoveAssignment(columns),
-    [columns, columnKeys, proxyId],
-  );
+
+  const handleRemoveAssignment = useCallback(async () => {
+    await setModal(
+      <DangerMessage
+        onCancelClick={async () => setModal('')}
+        message={formatMessage({
+          id: 'delete_product_assignment',
+          defaultMessage:
+            'This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this assignment? ',
+        })}
+        onOkClick={async () => {
+          setModal('');
+          await removeProductAssignment({ proxyId, vectors });
+        }}
+        okText={formatMessage({
+          id: 'delete_variation_assignment',
+          defaultMessage: 'Delete assignment',
+        })}
+      />,
+    );
+  }, [proxyId, vectors, formatMessage, setModal, removeProductAssignment]);
 
   const debouncedQuery = useMemo(() => deBounce(200)(setQueryString), []);
   const showMismatchWarning =
@@ -95,6 +91,18 @@ const ProductAssignmentRow = ({
     );
   }, [products, proxyId]);
 
+  const scaffoldVariationProduct = async () => {
+    await setModal(
+      <ProductAssignmentScaffoldForm
+        proxyProduct={product}
+        vectors={vectors}
+        onSuccess={() => {
+          setModal(null);
+        }}
+      />,
+    );
+  };
+
   return (
     <Table.Row>
       {columns.map((columnText, index) => (
@@ -106,9 +114,11 @@ const ProductAssignmentRow = ({
       <Table.Cell>
         {variationProduct ? (
           <div className="flex items-center">
-            <span className="text-green-700 dark:text-green-300 font-medium">
-              {variationProduct?.texts?.title}
-            </span>
+            <Link href={`/products?slug=${generateUniqueId(variationProduct)}`}>
+              <span className="text-green-700 dark:text-green-300 font-medium">
+                {variationProduct?.texts?.title}
+              </span>
+            </Link>
           </div>
         ) : showMismatchWarning ? (
           <div className="mt-1 text-sm text-rose-600 italic">
@@ -120,25 +130,34 @@ const ProductAssignmentRow = ({
           </div>
         ) : (
           <div className="relative w-full">
-            <UnchainedSelect
-              name={`productId`}
-              placeholder={formatMessage({
-                id: 'search_product',
-                defaultMessage: 'Search product',
-              })}
-              isLoading={loading}
-              isDisabled={disabled}
-              onChange={assignHandler}
-              onInputChange={debouncedQuery}
-              options={selectOptions}
-              className="mt-1 w-full py-2 text-sm font-medium text-slate-500"
-            />
+            <div className="flex items-center gap-2">
+              <div className="flex-1">
+                <UnchainedSelect
+                  name={`productId`}
+                  placeholder={formatMessage({
+                    id: 'search_product',
+                    defaultMessage: 'Search product',
+                  })}
+                  isLoading={loading}
+                  isDisabled={disabled}
+                  onChange={handleProductAssignment}
+                  onInputChange={debouncedQuery}
+                  options={selectOptions}
+                  className="mt-1 w-full py-2 text-sm font-medium text-slate-500"
+                />
+              </div>
+              {hasRole('addProduct') && (
+                <Button onClick={scaffoldVariationProduct}>
+                  <SparklesIcon className="h-5 w-5" />
+                </Button>
+              )}
+            </div>
           </div>
         )}
       </Table.Cell>
       <Table.Cell>
         {variationProduct && variationProduct._id && (
-          <DeleteButton onClick={removeHandler} />
+          <DeleteButton onClick={handleRemoveAssignment} />
         )}
       </Table.Cell>
     </Table.Row>
