@@ -10,7 +10,7 @@ function useScaffoldVariationProduct({ proxyProduct, vectors, onSuccess }) {
   const { addProductAssignment } = useAddProductAssignment();
   const { formatMessage } = useIntl();
 
-  return async ({ title }) => {
+  return async ({ title, type }) => {
     const texts = [
       {
         title,
@@ -19,7 +19,7 @@ function useScaffoldVariationProduct({ proxyProduct, vectors, onSuccess }) {
       },
     ];
     const { data } = await createProduct({
-      product: { type: PRODUCT_TYPES.SimpleProduct },
+      product: { type: type || PRODUCT_TYPES.SimpleProduct },
       texts,
     });
 

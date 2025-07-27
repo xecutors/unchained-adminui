@@ -6,6 +6,8 @@ import SubmitButton from '../../forms/components/SubmitButton';
 import useAuth from '../../Auth/useAuth';
 import { useMemo } from 'react';
 import useScaffoldVariationProduct from '../hooks/useScaffoldVariationProduct';
+import SelectField from '../../forms/components/SelectField';
+import { PRODUCT_TYPES } from '../ProductTypes';
 
 const ProductAssignmentScaffoldForm = ({
   proxyProduct,
@@ -30,9 +32,9 @@ const ProductAssignmentScaffoldForm = ({
     return `${variations.join('-')} ${baseTitle}`.trim();
   }, [variations, proxyProduct]);
 
-  const onSubmit: OnSubmitType = async ({ title }) => {
+  const onSubmit: OnSubmitType = async ({ title, type }) => {
     try {
-      await scaffoldProduct({ title });
+      await scaffoldProduct({ title, type });
       return { success: true };
     } catch (e) {
       return { success: false, errors: [{ message: e?.message }] };
@@ -48,6 +50,7 @@ const ProductAssignmentScaffoldForm = ({
     enableReinitialize: true,
     initialValues: {
       title: defaultTitle,
+      type: PRODUCT_TYPES.SimpleProduct,
     },
   });
 
@@ -63,6 +66,18 @@ const ProductAssignmentScaffoldForm = ({
           })}
           required
           className="block w-full max-w-full rounded-md border-slate-300 dark:border-slate-800 text-sm focus:ring-slate-800 sm:text-sm"
+        />
+        <SelectField
+          className="mt-1 w-full"
+          label={formatMessage({ id: 'type', defaultMessage: 'Type' })}
+          placeholder={formatMessage({ id: 'type', defaultMessage: 'Type' })}
+          required
+          name="type"
+          options={Object.fromEntries(
+            Object.entries(PRODUCT_TYPES).filter(
+              ([, value]) => value !== PRODUCT_TYPES.ConfigurableProduct,
+            ),
+          )}
         />
       </div>
 

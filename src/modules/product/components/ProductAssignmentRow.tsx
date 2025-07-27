@@ -44,13 +44,14 @@ const ProductAssignmentRow = ({
   });
   const vectors = useMemo(
     () =>
-      columns.map((optionValue, index) =>
-        getRowVector(optionValue, index, columnKeys),
-      ),
+      columns
+        .map((optionValue, index) =>
+          getRowVector(optionValue, index, columnKeys),
+        )
+        .filter(({ value }) => value),
     [columns, columnKeys],
   );
 
-  console.log('vectors   ', vectors);
   const handleProductAssignment = useCallback(
     async ({ value: productId }) => {
       await addProductAssignment({ proxyId, productId, vectors });

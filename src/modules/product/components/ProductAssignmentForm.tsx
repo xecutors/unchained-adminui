@@ -37,39 +37,61 @@ const ProductAssignmentForm = ({ proxyId, disabled = false }) => {
     return validCombos.length > 0 ? matrixGenerator(validCombos, [], 0) : [];
   }, [keyValueCombinations]);
 
-  const allAssignedRows = useMemo(() => {
-    const map = {};
-    assignments?.forEach((assignment) => {
-      const selector = {};
-      assignment.vectors.forEach((v) => {
-        selector[v?.variation?.key] = v?.option?.value;
+  const partialRowsFromAssignments = useMemo(() => {
+    return assignments.map((assignment) => {
+      const row = {};
+      columnKeys.forEach((key) => {
+        const vector = assignment.vectors.find((v) => v.variation?.key === key);
+        row[key] = vector?.option?.value ?? '';
       });
-      map[Object.values(selector).join('')] = assignment.product;
+      return row;
     });
-    return map;
-  }, [assignments]);
+  }, [assignments, columnKeys]);
 
-  const rows = useMemo(() => {
-    return allRowsPossible
-      .map((row) => {
-        const hash = Object.values(row).join('');
-        const vals = Object.values(row);
-        return {
-          _id: hash,
-          product: allAssignedRows[hash],
-          columns: vals,
-          columnsText: vals,
-        };
-      })
-      .sort((a, b) => {
-        const aHas = !!a.product;
-        const bHas = !!b.product;
-        if ((aHas && bHas) || (!aHas && !bHas)) {
-          return a.columns.length - b.columns.length;
+  const combinedRows = useMemo(() => {
+    const all = [...allRowsPossible, ...partialRowsFromAssignments];
+
+    const seen = new Set();
+    return all.filter((row) => {
+      const hash = Object.values(row).join('::');
+      if (seen.has(hash)) return false;
+      seen.add(hash);
+      return true;
+    });
+  }, [allRowsPossible, partialRowsFromAssignments]);
+
+  const assignmentMap = useMemo(() => {
+    return assignments.map((assignment) => {
+      const vectorMap = {};
+      assignment.vectors.forEach((v) => {
+        if (v?.variation?.key && v?.option?.value) {
+          vectorMap[v.variation.key] = v.option.value;
         }
-        return aHas ? -1 : 1;
       });
-  }, [allRowsPossible, allAssignedRows]);
+      return {
+        keys: vectorMap,
+        product: assignment.product,
+      };
+    });
+  }, [assignments]);
+  const rows = useMemo(() => {
+    return combinedRows.map((row) => {
+      const rowKeyValues = row;
+
+      const assigned = assignmentMap.find(({ keys }) => {
+        return Object.entries(keys).every(([k, v]) => rowKeyValues[k] === v);
+      });
+
+      const hash = Object.values(row).join('::');
+
+      return {
+        _id: hash,
+        product: assigned?.product,
+        columns: Object.values(row),
+        columnsText: Object.values(row),
+      };
+    });
+  }, [combinedRows, assignmentMap]);
 
   const hasVariations = useMemo(() => variations.length > 0, [variations]);
   const hasVariationOptions = useMemo(
