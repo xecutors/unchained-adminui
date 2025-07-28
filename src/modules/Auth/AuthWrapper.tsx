@@ -6,10 +6,12 @@ import AuthContext from './AuthContext';
 import loadRoleConfig from '../common/utils/loadRoleConfig';
 import Loading from '../common/components/Loading';
 import useUsersCount from '../accounts/hooks/useUsersCount';
+import useApp from '../common/hooks/useApp';
 
 const AuthWrapper = ({ children }) => {
   const router = useRouter();
   const { currentUser, loading } = useCurrentUser();
+  const { isSystemReady } = useApp();
   const {
     loading: usersCountLoading,
     usersCount,
@@ -50,6 +52,11 @@ const AuthWrapper = ({ children }) => {
         router.pathname !== '/423'
       ) {
         nextPathname = '/423';
+      } else if (
+        !isSystemReady &&
+        ['/products', '/filters', '/assortments'].includes(router.pathname)
+      ) {
+        nextPathname = '/';
       }
     } else if (!usersCountLoading && !userCountError && usersCount === 0) {
       nextPathname = '/install';
