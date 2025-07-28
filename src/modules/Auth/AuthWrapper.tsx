@@ -52,11 +52,6 @@ const AuthWrapper = ({ children }) => {
         router.pathname !== '/423'
       ) {
         nextPathname = '/423';
-      } else if (
-        !isSystemReady &&
-        ['/products', '/filters', '/assortments'].includes(router.pathname)
-      ) {
-        nextPathname = '/';
       }
     } else if (!usersCountLoading && !userCountError && usersCount === 0) {
       nextPathname = '/install';

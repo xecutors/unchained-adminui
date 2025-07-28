@@ -93,22 +93,32 @@ const AssortmentsView = () => {
   };
   if (assortmentSlug)
     return <AssortmentDetailPage assortmentSlug={assortmentSlug} />;
+  const headerText =
+    assortmentsCount === 1
+      ? formatMessage({
+          id: 'assortments_header',
+          defaultMessage: '1 Assortment',
+        })
+      : formatMessage(
+          {
+            id: 'assortments_count_header',
+            defaultMessage: '{count} Assortments',
+          },
+          { count: <AnimatedCounter value={assortmentsCount} /> },
+        );
   return (
     <>
       <BreadCrumbs />
       <PageHeader
-        headerText={formatMessage(
-          (assortmentsCount ?? 0) === 1
-            ? {
-                id: 'assortment_count_header_singular',
-                defaultMessage: '1 Assortment',
-              }
-            : {
-                id: 'assortments_count_header',
-                defaultMessage: '{count} Assortments',
-              },
-          { count: <AnimatedCounter value={assortmentsCount ?? 0} /> },
+        title={formatMessage(
+          {
+            id: 'assortments_page_title',
+            defaultMessage:
+              '{count, plural, one {# Assortment} other {# Assortments}}',
+          },
+          { count: assortmentsCount },
         )}
+        headerText={headerText}
         addPath={hasRole('addAssortment') && '/assortments/new'}
         addButtonText={formatMessage({
           id: 'add_assortment',

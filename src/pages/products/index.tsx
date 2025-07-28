@@ -53,23 +53,34 @@ const Products = () => {
   });
 
   if (slug) return <ProductDetailPage slug={slug} />;
+  const headerText =
+    productsCount === 1
+      ? formatMessage({
+          id: 'products_header',
+          defaultMessage: '1 Product',
+        })
+      : formatMessage(
+          {
+            id: 'products_count_header',
+            defaultMessage: '{count} Products',
+          },
+          { count: <AnimatedCounter value={productsCount ?? 0} /> },
+        );
   return (
     <>
       <BreadCrumbs />
       <div className="w-full">
         <PageHeader
-          headerText={formatMessage(
-            (productsCount ?? 0) === 1
-              ? {
-                  id: 'product_count_header_singular',
-                  defaultMessage: '1 Product',
-                }
-              : {
-                  id: 'products_count_header',
-                  defaultMessage: '{count} Products',
-                },
-            { count: <AnimatedCounter value={productsCount ?? 0} /> },
+          title={formatMessage(
+            {
+              id: 'product_page_title',
+              defaultMessage:
+                '{count, plural, one {# Product} other {# Products}}',
+            },
+
+            { count: productsCount },
           )}
+          headerText={headerText}
           addPath={hasRole('addProduct') && '/products/new'}
           addButtonText={formatMessage({
             id: 'add_product',

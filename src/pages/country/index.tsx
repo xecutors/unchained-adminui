@@ -93,22 +93,33 @@ const Country = () => {
 
   if (countryId) return <CountryDetailPage countryId={countryId} />;
 
+  const headerText =
+    countriesCount === 1
+      ? formatMessage({
+          id: 'country_header',
+          defaultMessage: '1 Country',
+        })
+      : formatMessage(
+          {
+            id: 'country_count_header',
+            defaultMessage: '{count} Countries',
+          },
+          { count: <AnimatedCounter value={countriesCount} /> },
+        );
+
   return (
     <>
       <BreadCrumbs />
       <PageHeader
-        headerText={formatMessage(
-          (countriesCount ?? 0) === 1
-            ? {
-                id: 'country_count_header_singular',
-                defaultMessage: '1 Country',
-              }
-            : {
-                id: 'countries_count_header',
-                defaultMessage: '{count} Countries',
-              },
-          { count: <AnimatedCounter value={countriesCount ?? 0} /> },
+        title={formatMessage(
+          {
+            id: 'countries_page_title',
+            defaultMessage:
+              '{count, plural, one {# Country} other {# Countries}}',
+          },
+          { count: countriesCount },
         )}
+        headerText={headerText}
         addPath={hasRole('addCountry') && '/country/new'}
         addButtonText={formatMessage({
           id: 'add_country',

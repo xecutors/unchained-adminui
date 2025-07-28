@@ -64,6 +64,20 @@ const WorkQueueView = () => {
     });
 
   if (workerId) return <WorkDetailPage workerId={workerId} />;
+
+  const headerText =
+    total === 1
+      ? formatMessage({
+          id: 'work_header',
+          defaultMessage: '1 Work Item',
+        })
+      : formatMessage(
+          {
+            id: 'work_count_header',
+            defaultMessage: '{count} Work Items',
+          },
+          { count: <AnimatedCounter value={total} /> },
+        );
   return (
     <>
       <BreadCrumbs
@@ -74,18 +88,15 @@ const WorkQueueView = () => {
         })}
       />
       <PageHeader
-        headerText={formatMessage(
-          (total ?? 0) === 1
-            ? {
-                id: 'work_item_count_header_singular',
-                defaultMessage: '1 Work Item',
-              }
-            : {
-                id: 'work_queue_count_header',
-                defaultMessage: '{count} Work Items',
-              },
-          { count: <AnimatedCounter value={total ?? 0} /> },
+        title={formatMessage(
+          {
+            id: 'work_page_title',
+            defaultMessage:
+              '{count, plural, one {# Work Item} other {# Work Items}}',
+          },
+          { count: total },
         )}
+        headerText={headerText}
         addPath={
           (hasRole('allocateWork') || hasRole('addWork')) && '/works/management'
         }

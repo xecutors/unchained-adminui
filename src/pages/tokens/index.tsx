@@ -40,16 +40,32 @@ const TokensPage = () => {
   });
 
   if (tokenId) return <TokenDetailPage tokenId={tokenId} />;
+
+  const headerText =
+    tokensCount === 1
+      ? formatMessage({
+          id: 'token_header',
+          defaultMessage: '1 Token',
+        })
+      : formatMessage(
+          {
+            id: 'token_count_header',
+            defaultMessage: '{count} Tokens',
+          },
+          { count: <AnimatedCounter value={tokensCount} /> },
+        );
   return (
     <>
       <BreadCrumbs />
       <PageHeader
-        headerText={formatMessage(
-          (tokensCount ?? 0) === 1
-            ? { id: 'token_count_header_singular', defaultMessage: '1 Token' }
-            : { id: 'tokens_count_header', defaultMessage: '{count} Tokens' },
-          { count: <AnimatedCounter value={tokensCount ?? 0} /> },
+        title={formatMessage(
+          {
+            id: 'token_page_title',
+            defaultMessage: '{count, plural, one {# Token} other {# Tokens}}',
+          },
+          { count: tokensCount },
         )}
+        headerText={headerText}
       />
       <div className="mt-5 inline-block min-w-full overflow-x-auto px-1 pb-5">
         <ListHeader />

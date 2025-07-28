@@ -71,22 +71,33 @@ const EnrollmentListView = () => {
   };
 
   if (enrollmentId) return <EnrollmentDetailPage enrollmentId={enrollmentId} />;
+
+  const headerText =
+    enrollmentsCount === 1
+      ? formatMessage({
+          id: 'enrollment_header',
+          defaultMessage: '1 Enrollment',
+        })
+      : formatMessage(
+          {
+            id: 'enrollment_count_header',
+            defaultMessage: '{count} Enrollments',
+          },
+          { count: <AnimatedCounter value={enrollmentsCount} /> },
+        );
   return (
     <>
       <BreadCrumbs />
       <PageHeader
-        headerText={formatMessage(
-          (enrollmentsCount ?? 0) === 1
-            ? {
-                id: 'enrollment_count_header_singular',
-                defaultMessage: '1 Enrollment',
-              }
-            : {
-                id: 'enrollments_count_header',
-                defaultMessage: '{count} Enrollments',
-              },
-          { count: <AnimatedCounter value={enrollmentsCount ?? 0} /> },
+        title={formatMessage(
+          {
+            id: 'enrollment_page_title',
+            defaultMessage:
+              '{count, plural, one {# Enrollment} other {# Enrollments}}',
+          },
+          { count: enrollmentsCount },
         )}
+        headerText={headerText}
       />
       <div>
         <p className="mt-5 text-sm text-slate-400 dark:text-slate-200 lg:gap-7 lg:leading-6 ">

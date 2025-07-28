@@ -51,22 +51,33 @@ const Quotations = () => {
     });
 
   if (quotationId) return <QuotationDetailPage quotationId={quotationId} />;
+
+  const headerText =
+    quotationsCount === 1
+      ? formatMessage({
+          id: 'quotation_header',
+          defaultMessage: '1 Quotation',
+        })
+      : formatMessage(
+          {
+            id: 'quotation_count_header',
+            defaultMessage: '{count} Quotations',
+          },
+          { count: <AnimatedCounter value={quotationsCount} /> },
+        );
   return (
     <>
       <BreadCrumbs />
       <PageHeader
-        headerText={formatMessage(
-          (quotationsCount ?? 0) === 1
-            ? {
-                id: 'quotation_count_header_singular',
-                defaultMessage: '1 Quotation',
-              }
-            : {
-                id: 'quotations_count_header',
-                defaultMessage: '{count} Quotations',
-              },
-          { count: <AnimatedCounter value={quotationsCount ?? 0} /> },
+        title={formatMessage(
+          {
+            id: 'quotation_page_title',
+            defaultMessage:
+              '{count, plural, one {# Quotation} other {# Quotations}}',
+          },
+          { count: quotationsCount },
         )}
+        headerText={headerText}
       />
       <div className="min-w-full overflow-x-auto px-1">
         <ListHeader />
