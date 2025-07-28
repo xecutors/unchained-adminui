@@ -31,6 +31,7 @@ import { toast } from 'react-toastify';
 import logOut from '../../accounts/hooks/logOut';
 import { useRouter } from 'next/router';
 import { ArrowRightEndOnRectangleIcon } from '@heroicons/react/24/outline';
+import useApp from '../hooks/useApp';
 
 const QuotationIcon = ({ className }) => (
   <svg
@@ -50,6 +51,7 @@ const Layout = ({
   componentName,
   /* navigationType = 'default', */
 }) => {
+  const { isSystemReady } = useApp();
   const { formatMessage } = useIntl();
   const { currentUser } = useCurrentUser();
   const { shopInfo } = useShopInfo();
@@ -96,7 +98,7 @@ const Layout = ({
       icon: InboxStackIcon,
       href: '/orders',
     },
-    {
+    isSystemReady && {
       name: formatMessage({
         id: 'products',
         defaultMessage: 'Products',
@@ -105,13 +107,13 @@ const Layout = ({
       icon: CubeIcon,
       href: '/products',
     },
-    {
+    isSystemReady && {
       name: formatMessage({ id: 'assortments', defaultMessage: 'Assortments' }),
       icon: RectangleStackIcon,
       href: '/assortments',
       requiredRole: 'manageAssortments',
     },
-    {
+    isSystemReady && {
       name: formatMessage({ id: 'filters', defaultMessage: 'Filters' }),
       icon: AdjustmentsHorizontalIcon,
       requiredRole: 'manageFilters',

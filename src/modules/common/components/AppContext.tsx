@@ -6,6 +6,7 @@ import useShopInfo from '../hooks/useShopInfo';
 
 interface AppContextProps {
   selectedLocale: string;
+  isSystemReady: boolean;
   setSelectedLocale: (locale: string) => void;
   languageDialectList: { _id: string; isoCode: string }[];
 }
@@ -54,10 +55,15 @@ export const AppContextWrapper = ({
     languages,
     countries,
   ).filter((l) => !onlyFull || l.isoCode.includes('-'));
-
+  const isSystemReady = !!shopInfo?.language && !!shopInfo?.country;
   return (
     <AppContext.Provider
-      value={{ selectedLocale, setSelectedLocale, languageDialectList }}
+      value={{
+        selectedLocale,
+        setSelectedLocale,
+        languageDialectList,
+        isSystemReady,
+      }}
     >
       {children}
     </AppContext.Provider>
