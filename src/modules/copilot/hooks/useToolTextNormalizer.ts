@@ -107,6 +107,7 @@ export const SkippedToolResponse = [
   'assortment_removeMedia',
   'productMedia_remove',
   'product_addMedia',
+  'paymentProvider_remove',
 ] as const;
 
 export const PriceReturnTools = [
@@ -115,7 +116,24 @@ export const PriceReturnTools = [
   'product_simulatedPriceRange',
 ] as const;
 
+export const SinglePaymentProviderReturnTools = [
+  'paymentProvider_create',
+  'paymentProvider_update',
+  'paymentProvider_get',
+] as const;
+
+export const MultiplePaymentProviderReturnTools = [
+  'paymentProviders_list',
+] as const;
+
+export const MultiplePaymentInterfaceReturnTools = [
+  'paymentInterfaces_list',
+] as const;
+
 export const AllTools = [
+  ...MultiplePaymentInterfaceReturnTools,
+  ...SinglePaymentProviderReturnTools,
+  ...MultiplePaymentProviderReturnTools,
   ...SingleProductReturnTools,
   ...MultipleProductReturnTools,
   ...TextsReturnTools,

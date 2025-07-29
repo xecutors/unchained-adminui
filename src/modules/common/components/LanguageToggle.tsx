@@ -19,9 +19,6 @@ const LanguageToggle = ({ narrowNav = false }) => {
     const languageNames: Record<string, string> = {
       en: 'English',
       de: 'Deutsch',
-      fr: 'Français',
-      es: 'Español',
-      it: 'Italiano',
     };
 
     return languageNames[langCode] || langCode.toUpperCase();

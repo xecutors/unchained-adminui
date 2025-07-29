@@ -923,6 +923,5 @@
   "worker": "Arbeiter",
   "worker_dynamic": "{worker}",
   "write_review": "Bewertung schreiben",
- "complete_system_setup": "Setup abschließen"
-
+  "complete_system_setup": "Setup abschließen"
 }

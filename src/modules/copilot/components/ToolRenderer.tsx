@@ -46,13 +46,39 @@ import {
   ProductBundleReturnTools,
   ProductVariationsReturnTools,
   ProductAssignmentsReturnTools,
+  MultiplePaymentProviderReturnTools,
+  SinglePaymentProviderReturnTools,
+  MultiplePaymentInterfaceReturnTools,
 } from '../hooks/useToolTextNormalizer';
+import {
+  renderMultiplePaymentInterfaces,
+  renderMultiplePaymentProviders,
+  renderSinglePaymentProvider,
+} from './tool-renderers/paymentProviderRenderes';
 
 type ToolRenderFn = (data: any) => ReactElement | null;
 
 const ToolRenderer: Record<ToolName, ToolRenderFn> = {
   shop_info: renderShopInfo,
   generateImage: renderImage,
+  ...Object.fromEntries(
+    MultiplePaymentInterfaceReturnTools.map((name) => [
+      name,
+      renderMultiplePaymentInterfaces,
+    ]),
+  ),
+  ...Object.fromEntries(
+    MultiplePaymentProviderReturnTools.map((name) => [
+      name,
+      renderMultiplePaymentProviders,
+    ]),
+  ),
+  ...Object.fromEntries(
+    SinglePaymentProviderReturnTools.map((name) => [
+      name,
+      renderSinglePaymentProvider,
+    ]),
+  ),
   ...Object.fromEntries(
     ProductAssignmentsReturnTools.map((name) => [name, renderAssignments]),
   ),
