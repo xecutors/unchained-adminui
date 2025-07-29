@@ -1,7 +1,6 @@
 import React from 'react';
-
-import { Copilot } from '../../components/copilot';
-import { ChatProvider } from '../../modules/chat';
+import { ChatProvider } from '../../modules/copilot';
+import { Copilot } from '../../modules/copilot/components';
 
 const HomePage: React.FC = () => {
   return (
