@@ -32,6 +32,7 @@ import logOut from '../../accounts/hooks/logOut';
 import { useRouter } from 'next/router';
 import { ArrowRightEndOnRectangleIcon } from '@heroicons/react/24/outline';
 import useApp from '../hooks/useApp';
+import useShopConfiguration from '../hooks/useShopConfiguration';
 
 const QuotationIcon = ({ className }) => (
   <svg
@@ -54,6 +55,8 @@ const Layout = ({
   const { isSystemReady } = useApp();
   const { formatMessage } = useIntl();
   const { currentUser } = useCurrentUser();
+  const { configuration } = useShopConfiguration();
+
   const { shopInfo } = useShopInfo();
   const [hideNav, setHideNav] = useState(true);
   const [narrowNav, setNarrowNav] = useState(false);
@@ -77,10 +80,16 @@ const Layout = ({
       ),
     );
   };
+  const conditionalDashboardTitle = configuration.isFullyConfigured
+    ? formatMessage({ id: 'dashboard', defaultMessage: 'Dashboard' })
+    : formatMessage({
+        id: 'complete_system_setup',
+        defaultMessage: 'Complete Setup',
+      });
 
   const defaultNavigation = [
     {
-      name: formatMessage({ id: 'dashboard', defaultMessage: 'Dashboard' }),
+      name: conditionalDashboardTitle,
       icon: HomeModernIcon,
       href: '/',
     },

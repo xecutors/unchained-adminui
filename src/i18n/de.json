@@ -922,5 +922,7 @@
   "work_type_header": "Typ",
   "worker": "Arbeiter",
   "worker_dynamic": "{worker}",
-  "write_review": "Bewertung schreiben"
+  "write_review": "Bewertung schreiben",
+ "complete_system_setup": "Setup abschließen"
+
 }
