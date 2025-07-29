@@ -15,6 +15,7 @@ const InitializeUserPage = () => {
         defaultMessage: 'Create Administrator',
       })}
       disableLoginRedirectLink
+      successRedirectPath="/"
     />
   );
 };
