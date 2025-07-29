@@ -132,6 +132,9 @@
   "address_notice": {
     "defaultMessage": "This information will be displayed publicly so be careful what you share."
   },
+  "all": {
+    "defaultMessage": "All"
+  },
   "allocate_work": {
     "defaultMessage": "Allocate Work"
   },
@@ -342,6 +345,15 @@
   "change_password": {
     "defaultMessage": "Change password"
   },
+  "chat_disabled_message": {
+    "defaultMessage": "Copilot chat is currently disabled in this shop. Please check your engine configuration"
+  },
+  "chat_disabled_title": {
+    "defaultMessage": "Chat is Disabled"
+  },
+  "chat_error_retry_message": {
+    "defaultMessage": "An error occurred while processing your request, please reload the conversation and submit something shorter."
+  },
   "check_work_queue_details": {
     "defaultMessage": "Check Work Queue for Details"
   },
@@ -356,6 +368,9 @@
   },
   "city": {
     "defaultMessage": "City"
+  },
+  "clear_history": {
+    "defaultMessage": "Clear History"
   },
   "close": {
     "defaultMessage": "Close"
@@ -372,8 +387,17 @@
   "commerce": {
     "defaultMessage": "Commerce"
   },
+  "commerce_setup": {
+    "defaultMessage": "Commerce Setup"
+  },
+  "commerce_setup_description": {
+    "defaultMessage": "Payment and delivery configuration for transactions"
+  },
   "company": {
     "defaultMessage": "Company"
+  },
+  "complete_shop_setup": {
+    "defaultMessage": "Complete Your Shop Setup"
   },
   "component_loading_error": {
     "defaultMessage": "Component loading error. Please refresh the page."
@@ -426,6 +450,12 @@
   "contact_admin_help": {
     "defaultMessage": "Contact system administrator for further information."
   },
+  "content_setup": {
+    "defaultMessage": "Content Setup"
+  },
+  "content_setup_description": {
+    "defaultMessage": "Products and categories to start selling"
+  },
   "continue": {
     "defaultMessage": "Continue"
   },
@@ -449,6 +479,15 @@
   },
   "copilot": {
     "defaultMessage": "Copilot"
+  },
+  "copilot-into-message": {
+    "defaultMessage": "Hello! Please introduce yourself and explain what you can help me with in managing my Unchained Commerce store. Be friendly and informative about your current capabilities."
+  },
+  "copilot_welcome_description": {
+    "defaultMessage": "Your AI assistant is ready to help you manage your Unchained Commerce store."
+  },
+  "copilot_welcome_title": {
+    "defaultMessage": "Welcome to Unchained Copilot"
   },
   "copy_to_clipboard": {
     "defaultMessage": "Copy to clipboard"
@@ -575,6 +614,9 @@
   },
   "default_currency": {
     "defaultMessage": "Default currency"
+  },
+  "default_system_locale": {
+    "defaultMessage": "Default Locale"
   },
   "delete": {
     "defaultMessage": "Delete"
@@ -999,6 +1041,12 @@
   "error_text_area_required": {
     "defaultMessage": "{label} is required"
   },
+  "essential_setup": {
+    "defaultMessage": "Essential Setup"
+  },
+  "essential_setup_description": {
+    "defaultMessage": "Core settings required for your shop to function"
+  },
   "event": {
     "defaultMessage": "Events"
   },
@@ -1043,6 +1091,9 @@
   },
   "fail_upload": {
     "defaultMessage": "Media upload failed"
+  },
+  "failed_tool_response": {
+    "defaultMessage": "Failed to parse tool result."
   },
   "female": {
     "defaultMessage": "Female"
@@ -1173,6 +1224,9 @@
   "goodbye_user": {
     "defaultMessage": "See you later, {name}!"
   },
+  "gross_price": {
+    "defaultMessage": "Gross"
+  },
   "guest": {
     "defaultMessage": "Guest"
   },
@@ -1184,6 +1238,9 @@
   },
   "height": {
     "defaultMessage": "Height (Millimeter)"
+  },
+  "hide_available_tools": {
+    "defaultMessage": "Hide Available Tools"
   },
   "home": {
     "defaultMessage": "Home"
@@ -1519,6 +1576,9 @@
   "no_variations_configured": {
     "defaultMessage": "No variations configured yet. Please add variations and their options in the Variations tab first."
   },
+  "non_taxable": {
+    "defaultMessage": "Non-Taxable"
+  },
   "not-applicable": {
     "defaultMessage": "N/A"
   },
@@ -1612,6 +1672,9 @@
   "original_work_id": {
     "defaultMessage": "Original Work Id"
   },
+  "overall_progress": {
+    "defaultMessage": "Overall Progress"
+  },
   "page_not_found": {
     "defaultMessage": "Page Not Found"
   },
@@ -1701,6 +1764,9 @@
   },
   "price": {
     "defaultMessage": "Price"
+  },
+  "price_range": {
+    "defaultMessage": "Price Range"
   },
   "priority": {
     "defaultMessage": "Priority"
@@ -1840,8 +1906,14 @@
   "products_data_unavailable": {
     "defaultMessage": "Product data unavailable"
   },
+  "products_found": {
+    "defaultMessage": "{count} products found"
+  },
   "products_header": {
     "defaultMessage": "1 Product"
+  },
+  "products_not_found": {
+    "defaultMessage": "No {status} products found in these results"
   },
   "profile": {
     "defaultMessage": "Profile"
@@ -1957,6 +2029,9 @@
   "required-role-not-satisfied": {
     "defaultMessage": "Current account does not have access, please log in with an account that has the required role."
   },
+  "required_steps_note": {
+    "defaultMessage": "Required for basic shop functionality"
+  },
   "reset_link_sent": {
     "defaultMessage": "Password reset link sent to {email}"
   },
@@ -1991,7 +2066,7 @@
     "defaultMessage": "Retries"
   },
   "retry": {
-    "defaultMessage": "Retry Connection"
+    "defaultMessage": "Retry"
   },
   "retry-work": {
     "defaultMessage": "Retry"
@@ -2043,6 +2118,9 @@
   },
   "saved": {
     "defaultMessage": "Saved"
+  },
+  "say_hi_get_to_know_me": {
+    "defaultMessage": "Say Hi and Get To Know Me"
   },
   "scaffold_product": {
     "defaultMessage": "Scaffold"
@@ -2101,14 +2179,32 @@
   "set_password": {
     "defaultMessage": "Set password"
   },
+  "setup_complete": {
+    "defaultMessage": "Complete"
+  },
+  "setup_now": {
+    "defaultMessage": "Setup Now"
+  },
   "shipping": {
     "defaultMessage": "Shipping"
   },
   "shipping_method": {
     "defaultMessage": "SHIPPING"
   },
+  "shop_info": {
+    "defaultMessage": "Shop Info"
+  },
   "shop_info_tool_definition": {
     "defaultMessage": "Show shop configuration"
+  },
+  "shop_setup_complete": {
+    "defaultMessage": "Shop Setup Complete!"
+  },
+  "shop_setup_complete_description": {
+    "defaultMessage": "Congratulations! Your shop is fully configured and ready to accept orders."
+  },
+  "shop_setup_description": {
+    "defaultMessage": "Follow these steps to configure your shop and start selling."
   },
   "shortcuts": {
     "defaultMessage": "Shortcuts"
@@ -2116,17 +2212,26 @@
   "show_all_products": {
     "defaultMessage": "Show all products"
   },
+  "show_available_tools": {
+    "defaultMessage": "Show Available Tools"
+  },
   "show_carts": {
     "defaultMessage": "Show carts"
   },
   "show_error_details": {
     "defaultMessage": "Show error details"
   },
+  "show_full_response": {
+    "defaultMessage": "Show full response"
+  },
   "show_guests": {
     "defaultMessage": "Show Guests"
   },
   "show_inactive": {
     "defaultMessage": "Show Inactive"
+  },
+  "show_less": {
+    "defaultMessage": "Show less"
   },
   "sign_address_header": {
     "defaultMessage": "Sign address"
@@ -2212,6 +2317,9 @@
   "tax": {
     "defaultMessage": "Tax"
   },
+  "taxable": {
+    "defaultMessage": "Taxable"
+  },
   "terminate_enrollment": {
     "defaultMessage": "Terminate Enrollment"
   },
@@ -2235,6 +2343,9 @@
   },
   "thank_you_for_verifying": {
     "defaultMessage": "Thank you for verifying your email address."
+  },
+  "tiered_pricing": {
+    "defaultMessage": "Tiered Pricing"
   },
   "time": {
     "defaultMessage": "Time"
@@ -2286,6 +2397,9 @@
   },
   "tool_fetch_failed_error": {
     "defaultMessage": "Failed to fetch available tools"
+  },
+  "tool_response": {
+    "defaultMessage": "Tool Response"
   },
   "top_selling_products": {
     "defaultMessage": "Top selling products"
@@ -2458,6 +2572,12 @@
   "value": {
     "defaultMessage": "Value"
   },
+  "variation_id": {
+    "defaultMessage": "Variation ID"
+  },
+  "variation_option": {
+    "defaultMessage": "Variation option"
+  },
   "variation_option_added": {
     "defaultMessage": "Variation option added successfully!"
   },
@@ -2514,6 +2634,9 @@
   },
   "verify_email_token_invalid_error": {
     "defaultMessage": "The email verification token is either invalid or expired."
+  },
+  "version": {
+    "defaultMessage": "Version"
   },
   "wallet-address": {
     "defaultMessage": "Wallet {walletAddress}"
