@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl';
 import { Cog6ToothIcon } from '@heroicons/react/24/outline';
 import Badge from '../../common/components/Badge';
 
-export const PaymentInterfaceItemCompact = ({ iface }) => {
+export const InterfaceItemCompact = ({ iface }) => {
   const { formatMessage } = useIntl();
 
   return (
@@ -31,12 +31,12 @@ export const PaymentInterfaceItemCompact = ({ iface }) => {
   );
 };
 
-const CopilotPaymentInterfaceList = ({ paymentInterfaces }) => {
-  if (!paymentInterfaces?.length) return null;
+const CopilotProviderInterfaceList = ({ interfaces }) => {
+  if (!interfaces?.length) return null;
 
-  return paymentInterfaces.map((iface) => (
-    <PaymentInterfaceItemCompact key={iface._id} iface={iface} />
+  return interfaces.map((iface) => (
+    <InterfaceItemCompact key={iface._id} iface={iface} />
   ));
 };
 
-export default CopilotPaymentInterfaceList;
+export default CopilotProviderInterfaceList;

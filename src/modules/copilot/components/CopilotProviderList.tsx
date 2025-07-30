@@ -3,9 +3,8 @@ import Link from 'next/link';
 import React from 'react';
 import Badge from '../../common/components/Badge';
 import { useIntl } from 'react-intl';
-export const CopilotPaymentProviderListItem = ({ provider }) => {
+export const CopilotProviderListItem = ({ provider }) => {
   const { formatMessage } = useIntl();
-
   return (
     <div className="relative border rounded-xl p-4 shadow-sm bg-white dark:bg-slate-900 flex flex-col gap-4 w-full">
       <div className="flex items-start gap-4">
@@ -67,18 +66,15 @@ export const CopilotPaymentProviderListItem = ({ provider }) => {
   );
 };
 
-const CopilotPaymentProviderList = ({ paymentProviders }) => {
-  if (!paymentProviders?.length) return null;
+const CopilotProviderList = ({ providers }) => {
+  if (!providers?.length) return null;
   return (
     <div className="space-y-4">
-      {paymentProviders.map((provider) => (
-        <CopilotPaymentProviderListItem
-          key={provider._id}
-          provider={provider}
-        />
+      {providers.map((provider) => (
+        <CopilotProviderListItem key={provider._id} provider={provider} />
       ))}
     </div>
   );
 };
 
-export default CopilotPaymentProviderList;
+export default CopilotProviderList;

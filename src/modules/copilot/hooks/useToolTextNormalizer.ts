@@ -107,7 +107,6 @@ export const SkippedToolResponse = [
   'assortment_removeMedia',
   'productMedia_remove',
   'product_addMedia',
-  'paymentProvider_remove',
 ] as const;
 
 export const PriceReturnTools = [
@@ -116,24 +115,37 @@ export const PriceReturnTools = [
   'product_simulatedPriceRange',
 ] as const;
 
-export const SinglePaymentProviderReturnTools = [
-  'paymentProvider_create',
+export const SingleProviderReturnTools = [
+  'paymentProvider_add',
   'paymentProvider_update',
   'paymentProvider_get',
+  'deliveryProvider_get',
+  'deliveryProvider_add',
+  'deliveryProvider_update',
+  'deliveryProvider_remove',
+  'paymentProvider_remove',
+  'warehousingProvider_get',
+  'warehousingProvider_add',
+  'warehousingProvider_update',
+  'warehousingProvider_remove',
 ] as const;
 
-export const MultiplePaymentProviderReturnTools = [
+export const MultipleProviderReturnTools = [
   'paymentProviders_list',
+  'deliveryProviders_list',
+  'warehousingProviders_list',
 ] as const;
 
-export const MultiplePaymentInterfaceReturnTools = [
+export const MultipleInterfaceReturnTools = [
   'paymentInterfaces_list',
+  'deliveryInterfaces_list',
+  'warehousingInterfaces_list',
 ] as const;
 
 export const AllTools = [
-  ...MultiplePaymentInterfaceReturnTools,
-  ...SinglePaymentProviderReturnTools,
-  ...MultiplePaymentProviderReturnTools,
+  ...MultipleInterfaceReturnTools,
+  ...SingleProviderReturnTools,
+  ...MultipleProviderReturnTools,
   ...SingleProductReturnTools,
   ...MultipleProductReturnTools,
   ...TextsReturnTools,

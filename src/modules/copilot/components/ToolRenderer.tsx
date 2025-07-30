@@ -46,15 +46,15 @@ import {
   ProductBundleReturnTools,
   ProductVariationsReturnTools,
   ProductAssignmentsReturnTools,
-  MultiplePaymentProviderReturnTools,
-  SinglePaymentProviderReturnTools,
-  MultiplePaymentInterfaceReturnTools,
+  MultipleProviderReturnTools,
+  SingleProviderReturnTools,
+  MultipleInterfaceReturnTools,
 } from '../hooks/useToolTextNormalizer';
 import {
-  renderMultiplePaymentInterfaces,
-  renderMultiplePaymentProviders,
-  renderSinglePaymentProvider,
-} from './tool-renderers/paymentProviderRenderes';
+  renderMultipleInterfaces,
+  renderMultipleProviders,
+  renderSingleProvider,
+} from './tool-renderers/providerRenderes';
 
 type ToolRenderFn = (data: any) => ReactElement | null;
 
@@ -62,22 +62,16 @@ const ToolRenderer: Record<ToolName, ToolRenderFn> = {
   shop_info: renderShopInfo,
   generateImage: renderImage,
   ...Object.fromEntries(
-    MultiplePaymentInterfaceReturnTools.map((name) => [
+    MultipleInterfaceReturnTools.map((name) => [
       name,
-      renderMultiplePaymentInterfaces,
+      renderMultipleInterfaces,
     ]),
   ),
   ...Object.fromEntries(
-    MultiplePaymentProviderReturnTools.map((name) => [
-      name,
-      renderMultiplePaymentProviders,
-    ]),
+    MultipleProviderReturnTools.map((name) => [name, renderMultipleProviders]),
   ),
   ...Object.fromEntries(
-    SinglePaymentProviderReturnTools.map((name) => [
-      name,
-      renderSinglePaymentProvider,
-    ]),
+    SingleProviderReturnTools.map((name) => [name, renderSingleProvider]),
   ),
   ...Object.fromEntries(
     ProductAssignmentsReturnTools.map((name) => [name, renderAssignments]),
