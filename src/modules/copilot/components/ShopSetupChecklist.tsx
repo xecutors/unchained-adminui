@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import {
   ChevronDownIcon,
   ChevronUpIcon,
-  XMarkIcon,
   RocketLaunchIcon,
   CheckCircleIcon,
 } from '@heroicons/react/24/outline';
