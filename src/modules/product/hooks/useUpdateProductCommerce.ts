@@ -4,6 +4,8 @@ import {
   IUpdateProductCommerceMutationVariables,
 } from '../../../gql/types';
 import ProductDetailFragment from '../fragments/ProductDetailFragment';
+import useCurrencies from '../../currency/hooks/useCurrencies';
+import { toMinorUnit } from '../utils/price.utils';
 
 const UpdateProductCommerceMutation = gql`
   mutation UpdateProductCommerce(
@@ -22,16 +24,28 @@ const useUpdateProductCommerce = () => {
     IUpdateProductCommerceMutation,
     IUpdateProductCommerceMutationVariables
   >(UpdateProductCommerceMutation);
+  const { currencies } = useCurrencies();
 
   const updateProductCommerce = async ({
     productId,
     commerce: { pricing },
   }: IUpdateProductCommerceMutationVariables) => {
+    const normalizedPricing = pricing.map((price) => {
+      const currency = currencies.find(
+        ({ isoCode }) => isoCode === price.currencyCode,
+      );
+      const amount = toMinorUnit(price.amount.toString(), currency.decimals);
+      return {
+        ...price,
+        amount,
+      };
+    });
+
     return updateProductCommerceMutation({
       variables: {
         productId,
         commerce: {
-          pricing,
+          pricing: normalizedPricing,
         },
       },
       refetchQueries: ['Products'],

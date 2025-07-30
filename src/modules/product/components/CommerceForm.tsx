@@ -21,16 +21,24 @@ import {
 } from '../../forms/lib/validators';
 import useProductCatalogPrices from '../hooks/useProductCatalogPrices';
 import useUpdateProductCommerce from '../hooks/useUpdateProductCommerce';
+import { fromMinorUnit } from '../utils/price.utils';
 
-const normalizeCatalogPrices = (prices = []) => {
-  return prices.map((price) => ({
-    countryCode: price.country.isoCode,
-    currencyCode: price.currency.isoCode,
-    isTaxable: !!price.isTaxable,
-    isNetPrice: !!price.isNetPrice,
-    amount: price.amount,
-    maxQuantity: price.maxQuantity,
-  }));
+const normalizeCatalogPrices = (prices = [], currencies = []) => {
+  if (!currencies.length) return [];
+  return prices.map((price) => {
+    const currency = currencies.find(
+      ({ isoCode }) =>
+        isoCode.toLowerCase() === price.currency.isoCode.toLowerCase(),
+    );
+    return {
+      countryCode: price.country.isoCode,
+      currencyCode: price.currency.isoCode,
+      isTaxable: !!price.isTaxable,
+      isNetPrice: !!price.isNetPrice,
+      amount: fromMinorUnit(price.amount, currency?.decimals),
+      maxQuantity: price.maxQuantity,
+    };
+  });
 };
 
 const CommerceForm = ({ productId, disabled = false }) => {
@@ -54,6 +62,10 @@ const CommerceForm = ({ productId, disabled = false }) => {
     id: 'saved',
     defaultMessage: 'Saved',
   });
+  const normalizedCatalogPrices = normalizeCatalogPrices(
+    catalogPrices,
+    currencies,
+  );
   const form = useForm({
     disabled,
     submit: onSubmit,
@@ -61,16 +73,18 @@ const CommerceForm = ({ productId, disabled = false }) => {
     enableReinitialize: true,
     initialValues: {
       pricing: [
-        ...(normalizeCatalogPrices(catalogPrices) || [
-          {
-            maxQuantity: '',
-            amount: null,
-            isTaxable: false,
-            isNetPrice: false,
-            currencyCode: defaultCurrencyValue,
-            countryCode: defaultCountryValue,
-          },
-        ]),
+        ...(normalizedCatalogPrices?.length
+          ? normalizedCatalogPrices
+          : [
+              {
+                maxQuantity: '',
+                amount: null,
+                isTaxable: false,
+                isNetPrice: false,
+                currencyCode: defaultCurrencyValue,
+                countryCode: defaultCountryValue,
+              },
+            ]),
       ],
     },
   });
