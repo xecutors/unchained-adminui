@@ -68,10 +68,13 @@ const ToolRenderer: Record<ToolName, ToolRenderFn> = {
     ]),
   ),
   ...Object.fromEntries(
-    MultipleProviderReturnTools.map((name) => [name, renderMultipleProviders]),
+    MultipleProviderReturnTools.map((name) => [
+      name,
+      renderMultipleProviders(name),
+    ]),
   ),
   ...Object.fromEntries(
-    SingleProviderReturnTools.map((name) => [name, renderSingleProvider]),
+    SingleProviderReturnTools.map((name) => [name, renderSingleProvider(name)]),
   ),
   ...Object.fromEntries(
     ProductAssignmentsReturnTools.map((name) => [name, renderAssignments]),

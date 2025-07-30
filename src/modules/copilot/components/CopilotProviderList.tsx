@@ -3,7 +3,16 @@ import Link from 'next/link';
 import React from 'react';
 import Badge from '../../common/components/Badge';
 import { useIntl } from 'react-intl';
-export const CopilotProviderListItem = ({ provider }) => {
+
+const getNormalizedDetailPageLink = (type, provider) => {
+  if (type === 'payment')
+    return `/payment-provider?paymentProviderId=${provider._id}`;
+  if (type === 'delivery')
+    return `/delivery-provider?deliveryProviderId=${provider._id}`;
+  if (type === 'warehousing')
+    return `/warehousing-provider?warehousingProviderId=${provider._id}`;
+};
+export const CopilotProviderListItem = ({ provider, type }) => {
   const { formatMessage } = useIntl();
   return (
     <div className="relative border rounded-xl p-4 shadow-sm bg-white dark:bg-slate-900 flex flex-col gap-4 w-full">
@@ -18,7 +27,7 @@ export const CopilotProviderListItem = ({ provider }) => {
               {provider.adapterKey}
             </h3>
             <Link
-              href={`/payment-provider?paymentProviderId=${provider._id}`}
+              href={getNormalizedDetailPageLink(type, provider)}
               className="px-3 py-1.5 text-sm text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 border border-slate-300 dark:border-slate-600 rounded-md hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
             >
               {formatMessage({ id: 'edit', defaultMessage: 'Edit' })}
@@ -66,12 +75,17 @@ export const CopilotProviderListItem = ({ provider }) => {
   );
 };
 
-const CopilotProviderList = ({ providers }) => {
+const CopilotProviderList = ({ providers, type }) => {
+  console.log(providers);
   if (!providers?.length) return null;
   return (
     <div className="space-y-4">
       {providers.map((provider) => (
-        <CopilotProviderListItem key={provider._id} provider={provider} />
+        <CopilotProviderListItem
+          type={type}
+          key={provider._id}
+          provider={provider}
+        />
       ))}
     </div>
   );
