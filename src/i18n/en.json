@@ -348,7 +348,7 @@
   "error_tag_required": "{label} you must provide at least one tag",
   "error_text_area_required": "{label} is required",
   "essential_setup": "Essential Setup",
-  "essential_setup_description": "Core settings required for your shop to function",
+  "essential_setup_description": "Core settings required for your shop to function. Products and assortments can only be added after completing these steps.",
   "event": "Events",
   "event_count_header": "{count} Events",
   "event_detail": "Event Detail",

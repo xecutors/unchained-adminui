@@ -9,7 +9,6 @@ import {
   CheckCircleIcon,
 } from '@heroicons/react/24/outline';
 import useShopConfiguration from '../../common/hooks/useShopConfiguration';
-import useLocalStorage from '../../common/hooks/useLocalStorage';
 import ProgressIndicator from './ProgressIndicator';
 import SetupStepCard from './SetupStepCard';
 import { Step } from '../../common/utils/getSetupStepsConfigurationsMeta';
@@ -33,23 +32,12 @@ const ShopSetupChecklist: React.FC<ShopSetupChecklistProps> = ({
     content: false,
   });
   const { isFullyConfigured } = configuration;
-  const [isDismissed, setIsDismissed] = useLocalStorage(
-    'shopSetupChecklist:dismissed',
-    false,
-  );
 
   const toggleSection = (section: keyof typeof expandedSections) => {
     setExpandedSections((prev) => ({
       ...prev,
       [section]: !prev[section],
     }));
-  };
-
-  const handleDismiss = () => {
-    setIsDismissed(true);
-    if (onDismiss) {
-      onDismiss();
-    }
   };
 
   useEffect(() => {
@@ -67,7 +55,7 @@ const ShopSetupChecklist: React.FC<ShopSetupChecklistProps> = ({
     return null;
   }
 
-  if (error || isDismissed) {
+  if (error) {
     return null;
   }
 
@@ -98,12 +86,6 @@ const ShopSetupChecklist: React.FC<ShopSetupChecklistProps> = ({
               })}
             </p>
           </div>
-          <button
-            onClick={handleDismiss}
-            className="flex-shrink-0 p-1 text-emerald-600 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-200"
-          >
-            <XMarkIcon className="w-5 h-5" />
-          </button>
         </div>
       </div>
     );
@@ -256,12 +238,6 @@ const ShopSetupChecklist: React.FC<ShopSetupChecklistProps> = ({
               />
             </div>
           </div>
-          <button
-            onClick={handleDismiss}
-            className="flex-shrink-0 p-1 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
-          >
-            <XMarkIcon className="w-5 h-5" />
-          </button>
         </div>
       </div>
 

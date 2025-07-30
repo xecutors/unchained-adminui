@@ -347,7 +347,7 @@
   "error_tag_required": "{label} mindestens ein Tag erforderlich",
   "error_text_area_required": "{label} ist ein Pflichtfeld",
   "essential_setup": "Grundeinrichtung",
-  "essential_setup_description": "Kerneinstellungen, die für das Funktionieren Ihres Shops erforderlich sind",
+  "essential_setup_description": "Grundlegende Einstellungen, die für das Funktionieren Ihres Shops erforderlich sind. Produkte und Sortimente können erst nach Abschluss dieser Schritte hinzugefügt werden.",
   "event": "Events",
   "event_count_header": "{count} Ereignisse",
   "event_detail": "Event Details",
