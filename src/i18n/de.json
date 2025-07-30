@@ -404,7 +404,7 @@
   "filter_created": "Filter erfolgreich erstellt!",
   "filter_deactivated": "Filter deaktiviert!",
   "filter_deleted": "Filter erfolgreich gelöscht",
-  "filter_detail": "Filter Detail",
+  "filter_detail": "Filterdetails",
   "filter_detail_title": "Filter Details",
   "filter_key": "Key",
   "filter_key_already_exists": "Filterschlüssel existiert bereits",
