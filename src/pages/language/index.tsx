@@ -21,6 +21,8 @@ import {
 import SearchWithTags from '../../modules/common/components/SearchWithTags';
 import LanguageDetailPage from './LanguageDetailPage';
 import AnimatedCounter from '../../modules/common/components/AnimatedCounter';
+import { InformationCircleIcon } from '@heroicons/react/24/outline';
+import InfoTextBanner from '../../modules/common/components/InfoTextBanner';
 
 const Languages = () => {
   const { formatMessage } = useIntl();
@@ -105,6 +107,17 @@ const Languages = () => {
   return (
     <>
       <BreadCrumbs />
+      <InfoTextBanner
+        title={formatMessage({
+          id: 'default_language_info_title',
+          defaultMessage: 'About base language',
+        })}
+        description={formatMessage({
+          id: 'default_language_info_description',
+          defaultMessage:
+            "If you support multiple languages, please set the base language by adjusting the environment variable UNCHAINED_LANG, for ex. UNCHAINED_LANG=en. That way, Unchained knows what localization needs to be sent if the user agent's language is unknown",
+        })}
+      />
       <PageHeader
         title={formatMessage(
           {

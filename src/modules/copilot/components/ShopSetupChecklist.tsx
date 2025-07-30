@@ -14,12 +14,10 @@ import { Step } from '../../common/utils/getSetupStepsConfigurationsMeta';
 import useApp from '../../common/hooks/useApp';
 
 interface ShopSetupChecklistProps {
-  onDismiss?: () => void;
   className?: string;
 }
 
 const ShopSetupChecklist: React.FC<ShopSetupChecklistProps> = ({
-  onDismiss,
   className,
 }) => {
   const { formatMessage } = useIntl();

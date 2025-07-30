@@ -24,6 +24,7 @@ import {
 import SearchWithTags from '../../modules/common/components/SearchWithTags';
 import CountryDetailPage from './CountryDetailPage';
 import AnimatedCounter from '../../modules/common/components/AnimatedCounter';
+import InfoTextBanner from '../../modules/common/components/InfoTextBanner';
 
 const Country = () => {
   const { formatMessage } = useIntl();
@@ -110,6 +111,17 @@ const Country = () => {
   return (
     <>
       <BreadCrumbs />
+      <InfoTextBanner
+        title={formatMessage({
+          id: 'default_country_info_title',
+          defaultMessage: 'About base country',
+        })}
+        description={formatMessage({
+          id: 'default_country_info_description',
+          defaultMessage:
+            'If you support multiple countries, please set the base country by adjusting the environment variable UNCHAINED_COUNTRY, for ex. UNCHAINED_COUNTRY=ch. That way, Unchained knows what localization needs to be sent if it can not determine country from user agent set header',
+        })}
+      />
       <PageHeader
         title={formatMessage(
           {

@@ -615,8 +615,26 @@
   "decimals": {
     "defaultMessage": "decimals"
   },
+  "default_country_info_description": {
+    "defaultMessage": "If you support multiple countries, please set the base country by adjusting the environment variable UNCHAINED_COUNTRY, for ex. UNCHAINED_COUNTRY=ch. That way, Unchained knows what localization needs to be sent if it can not determine country from user agent set header"
+  },
+  "default_country_info_title": {
+    "defaultMessage": "About base country"
+  },
   "default_currency": {
     "defaultMessage": "Default currency"
+  },
+  "default_currency_info_description": {
+    "defaultMessage": "Please set the base currency by adjusting the environment variable UNCHAINED_CURRENCY, for ex. UNCHAINED_CURRENCY=CHF. That way, Unchained knows what currency to use as a fallback if it is unable to determine it from context"
+  },
+  "default_currency_info_title": {
+    "defaultMessage": "About base currency"
+  },
+  "default_language_info_description": {
+    "defaultMessage": "If you support multiple languages, please set the base language by adjusting the environment variable UNCHAINED_LANG, for ex. UNCHAINED_LANG=en. That way, Unchained knows what localization needs to be sent if the user agent's language is unknown"
+  },
+  "default_language_info_title": {
+    "defaultMessage": "About base language"
   },
   "default_system_locale": {
     "defaultMessage": "Default Locale"

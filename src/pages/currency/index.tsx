@@ -22,6 +22,7 @@ import {
 import SearchWithTags from '../../modules/common/components/SearchWithTags';
 import CurrencyDetailPage from './CurrencyDetailPage';
 import AnimatedCounter from '../../modules/common/components/AnimatedCounter';
+import InfoTextBanner from '../../modules/common/components/InfoTextBanner';
 
 const Currencies = () => {
   const { formatMessage } = useIntl();
@@ -106,6 +107,17 @@ const Currencies = () => {
   return (
     <>
       <BreadCrumbs />
+      <InfoTextBanner
+        title={formatMessage({
+          id: 'default_currency_info_title',
+          defaultMessage: 'About base currency',
+        })}
+        description={formatMessage({
+          id: 'default_currency_info_description',
+          defaultMessage:
+            'Please set the base currency by adjusting the environment variable UNCHAINED_CURRENCY, for ex. UNCHAINED_CURRENCY=CHF. That way, Unchained knows what currency to use as a fallback if it is unable to determine it from context',
+        })}
+      />
       <PageHeader
         title={formatMessage(
           {

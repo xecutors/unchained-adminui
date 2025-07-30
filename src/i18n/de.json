@@ -923,5 +923,11 @@
   "worker": "Arbeiter",
   "worker_dynamic": "{worker}",
   "write_review": "Bewertung schreiben",
-  "complete_system_setup": "Setup abschließen"
+  "complete_system_setup": "Setup abschließen",
+  "default_country_info_description": "Wenn Sie mehrere Länder unterstützen, legen Sie bitte das Basisland fest, indem Sie die Umgebungsvariable UNCHAINED_COUNTRY setzen, z. B. UNCHAINED_COUNTRY=ch. Auf diese Weise weiß Unchained, welche Lokalisierung gesendet werden soll, wenn das Land nicht anhand des User-Agent-Headers bestimmt werden kann.",
+  "default_country_info_title": "Über das Basisland",
+  "default_currency_info_description": "Bitte legen Sie die Basiswährung fest, indem Sie die Umgebungsvariable UNCHAINED_CURRENCY setzen, z. B. UNCHAINED_CURRENCY=CHF. So weiß Unchained, welche Währung als Fallback verwendet werden soll, wenn sie nicht aus dem Kontext ermittelt werden kann.",
+  "default_currency_info_title": "Über die Basiswährung",
+  "default_language_info_description": "Bitte legen Sie die Basissprache fest, indem Sie die Umgebungsvariable UNCHAINED_LANG setzen, z. B. UNCHAINED_LANG=en. So weiß Unchained, welche Lokalisierung gesendet werden soll, wenn die Sprache des User-Agent nicht erkannt werden kann.",
+  "default_language_info_title": "Über die Basissprache"
 }

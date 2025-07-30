@@ -7,6 +7,7 @@ import useProductAssignments from '../hooks/useProductAssignments';
 import Table from '../../common/components/Table';
 import { matrixGenerator } from '../utils/productAssignment.utils';
 import ProductAssignmentRow from './ProductAssignmentRow';
+import InfoTextBanner from '../../common/components/InfoTextBanner';
 
 const ProductAssignmentForm = ({ proxyId, disabled = false }) => {
   const { formatMessage } = useIntl();
@@ -101,26 +102,17 @@ const ProductAssignmentForm = ({ proxyId, disabled = false }) => {
 
   return (
     <FormWrapper>
-      <div className="mb-6 p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
-        <div className="flex items-start gap-3">
-          <InformationCircleIcon className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
-          <div>
-            <h3 className="text-sm font-semibold text-blue-900 dark:text-blue-100 mb-2">
-              {formatMessage({
-                id: 'product_assignments_explanation_title',
-                defaultMessage: 'About Product Assignments',
-              })}
-            </h3>
-            <p className="text-sm text-blue-800 dark:text-blue-200 leading-relaxed">
-              {formatMessage({
-                id: 'product_assignments_explanation_text',
-                defaultMessage:
-                  "Product assignments allow you to link specific products to each unique combination of variation options. For example, if you have a t-shirt with 'Size' and 'Color' variations, you can assign different product SKUs to each combination like 'Large + Red' or 'Small + Blue'. This is useful for managing inventory, pricing, and product details for each specific variant.",
-              })}
-            </p>
-          </div>
-        </div>
-      </div>
+      <InfoTextBanner
+        title={formatMessage({
+          id: 'product_assignments_explanation_title',
+          defaultMessage: 'About Product Assignments',
+        })}
+        description={formatMessage({
+          id: 'product_assignments_explanation_text',
+          defaultMessage:
+            "Product assignments allow you to link specific products to each unique combination of variation options. For example, if you have a t-shirt with 'Size' and 'Color' variations, you can assign different product SKUs to each combination like 'Large + Red' or 'Small + Blue'. This is useful for managing inventory, pricing, and product details for each specific variant.",
+        })}
+      />
       {!hasVariations && (
         <div className="text-center py-8">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-100 dark:bg-gray-800 mb-4">
