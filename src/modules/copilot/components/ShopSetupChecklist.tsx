@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import classNames from 'classnames';
 import {
@@ -13,6 +13,7 @@ import useLocalStorage from '../../common/hooks/useLocalStorage';
 import ProgressIndicator from './ProgressIndicator';
 import SetupStepCard from './SetupStepCard';
 import { Step } from '../../common/utils/getSetupStepsConfigurationsMeta';
+import useApp from '../../common/hooks/useApp';
 
 interface ShopSetupChecklistProps {
   onDismiss?: () => void;
@@ -25,8 +26,9 @@ const ShopSetupChecklist: React.FC<ShopSetupChecklistProps> = ({
 }) => {
   const { formatMessage } = useIntl();
   const { configuration, loading, error } = useShopConfiguration();
+  const { isSystemReady } = useApp();
   const [expandedSections, setExpandedSections] = useState({
-    essential: false,
+    essential: true,
     commerce: false,
     content: false,
   });
@@ -49,6 +51,17 @@ const ShopSetupChecklist: React.FC<ShopSetupChecklistProps> = ({
       onDismiss();
     }
   };
+
+  useEffect(() => {
+    if (configuration)
+      setExpandedSections({
+        commerce: !configuration.commerceStepsComplete,
+        essential: !configuration.essentialStepsComplete,
+        content:
+          configuration.commerceStepsComplete &&
+          !configuration.contentStepsComplete,
+      });
+  }, [configuration]);
 
   if (!configuration || loading) {
     return null;
@@ -203,7 +216,6 @@ const ShopSetupChecklist: React.FC<ShopSetupChecklistProps> = ({
         className,
       )}
     >
-      {/* Header */}
       <div className="p-6 bg-gradient-to-r from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-700 border-b border-slate-200 dark:border-slate-600">
         <div className="flex items-start gap-4">
           <div className="flex-shrink-0">
@@ -260,16 +272,18 @@ const ShopSetupChecklist: React.FC<ShopSetupChecklistProps> = ({
           configuration.essentialSteps,
           configuration.essentialStepsComplete,
         )}
-        {renderSection(
-          'commerce',
-          configuration.commerceSteps,
-          configuration.commerceStepsComplete,
-        )}
-        {renderSection(
-          'content',
-          configuration.contentSteps,
-          configuration.contentStepsComplete,
-        )}
+        {isSystemReady &&
+          renderSection(
+            'commerce',
+            configuration.commerceSteps,
+            configuration.commerceStepsComplete,
+          )}
+        {isSystemReady &&
+          renderSection(
+            'content',
+            configuration.contentSteps,
+            configuration.contentStepsComplete,
+          )}
 
         {/* Footer note */}
         <div className="pt-4 border-t border-slate-200 dark:border-slate-700">

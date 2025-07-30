@@ -98,7 +98,7 @@ const Layout = ({
       icon: CommandLineIcon,
       href: '/copilot',
     },
-    {
+    isSystemReady && {
       name: formatMessage({
         id: 'orders',
         defaultMessage: 'Orders',
@@ -134,7 +134,7 @@ const Layout = ({
       href: '/users',
       requiredRole: 'viewUsers',
     },
-    {
+    isSystemReady && {
       name: formatMessage({
         id: 'enrollments',
         defaultMessage: 'Enrollments',
@@ -144,7 +144,7 @@ const Layout = ({
       requiredRole: 'viewEnrollments',
       icon: CalendarIcon,
     },
-    {
+    isSystemReady && {
       name: formatMessage({
         id: 'quotations',
         defaultMessage: 'Quotations',
@@ -153,7 +153,7 @@ const Layout = ({
       icon: QuotationIcon,
       requiredRole: 'viewQuotations',
     },
-    {
+    isSystemReady && {
       name: formatMessage({ id: 'tokens', defaultMessage: 'Tokens' }),
       icon: QrCodeIcon,
       href: '/tokens',
@@ -181,7 +181,7 @@ const Layout = ({
           href: '/language',
           requiredRole: 'manageLanguages',
         },
-        {
+        isSystemReady && {
           name: formatMessage({
             id: 'delivery_providers',
             defaultMessage: 'Delivery providers',
@@ -189,7 +189,7 @@ const Layout = ({
           requiredRole: 'manageDeliveryProviders',
           href: '/delivery-provider',
         },
-        {
+        isSystemReady && {
           name: formatMessage({
             id: 'payment_providers',
             defaultMessage: 'Payment providers',
@@ -197,7 +197,7 @@ const Layout = ({
           requiredRole: 'managePaymentProviders',
           href: '/payment-provider',
         },
-        {
+        isSystemReady && {
           name: formatMessage({
             id: 'warehousing_provider',
             defaultMessage: 'Warehousing provider',
@@ -205,7 +205,7 @@ const Layout = ({
           requiredRole: 'manageWarehousingProviders',
           href: '/warehousing-provider',
         },
-      ],
+      ].filter(Boolean),
     },
     {
       name: formatMessage({ id: 'activities', defaultMessage: 'Activities' }),

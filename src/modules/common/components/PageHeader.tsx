@@ -14,7 +14,6 @@ const PageHeader = ({
   addButtonText = null,
 }) => {
   const { formatMessage } = useIntl();
-  console.log(title || headerText);
   return (
     <>
       <Head>
