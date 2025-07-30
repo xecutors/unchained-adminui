@@ -587,7 +587,7 @@ const SimpleDashboard: React.FC = () => {
                 </h3>
                 <p className="text-sm text-slate-400 dark:text-slate-500 max-w-sm">
                   {formatMessage({
-                    id: 'no_orders_description',
+                    id: 'no_order_products_description',
                     defaultMessage:
                       'Once you receive your first orders, your top-selling products will appear here.',
                   })}

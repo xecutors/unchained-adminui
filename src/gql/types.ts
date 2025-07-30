@@ -6584,6 +6584,10 @@ export type IAssortmentProductsQuery = {
             tags?: Array<any> | null;
             updated?: any | null;
             published?: any | null;
+            proxies: Array<
+              | { __typename: 'BundleProduct' }
+              | { __typename: 'ConfigurableProduct' }
+            >;
             texts?: {
               _id: string;
               slug?: string | null;
@@ -6633,6 +6637,10 @@ export type IAssortmentProductsQuery = {
             updated?: any | null;
             published?: any | null;
             catalogPrice?: { amount: number; currencyCode: string } | null;
+            proxies: Array<
+              | { __typename: 'BundleProduct' }
+              | { __typename: 'ConfigurableProduct' }
+            >;
             texts?: {
               _id: string;
               slug?: string | null;
@@ -6658,6 +6666,10 @@ export type IAssortmentProductsQuery = {
             updated?: any | null;
             published?: any | null;
             catalogPrice?: { amount: number; currencyCode: string } | null;
+            proxies: Array<
+              | { __typename: 'BundleProduct' }
+              | { __typename: 'ConfigurableProduct' }
+            >;
             texts?: {
               _id: string;
               slug?: string | null;
@@ -10988,6 +11000,10 @@ export type IUserProductReviewsQuery = {
               tags?: Array<any> | null;
               file?: { _id: string; url?: string | null } | null;
             }>;
+            proxies: Array<
+              | { __typename: 'BundleProduct' }
+              | { __typename: 'ConfigurableProduct' }
+            >;
           }
         | {
             _id: string;
@@ -11037,6 +11053,10 @@ export type IUserProductReviewsQuery = {
               file?: { _id: string; url?: string | null } | null;
             }>;
             catalogPrice?: { amount: number; currencyCode: string } | null;
+            proxies: Array<
+              | { __typename: 'BundleProduct' }
+              | { __typename: 'ConfigurableProduct' }
+            >;
           }
         | {
             _id: string;
@@ -11062,6 +11082,10 @@ export type IUserProductReviewsQuery = {
               file?: { _id: string; url?: string | null } | null;
             }>;
             catalogPrice?: { amount: number; currencyCode: string } | null;
+            proxies: Array<
+              | { __typename: 'BundleProduct' }
+              | { __typename: 'ConfigurableProduct' }
+            >;
           }
         | {
             _id: string;
@@ -11185,6 +11209,9 @@ type IProductBriefFragment_BundleProduct = {
   tags?: Array<any> | null;
   updated?: any | null;
   published?: any | null;
+  proxies: Array<
+    { __typename: 'BundleProduct' } | { __typename: 'ConfigurableProduct' }
+  >;
   texts?: {
     _id: string;
     slug?: string | null;
@@ -11236,6 +11263,9 @@ type IProductBriefFragment_PlanProduct = {
   updated?: any | null;
   published?: any | null;
   catalogPrice?: { amount: number; currencyCode: string } | null;
+  proxies: Array<
+    { __typename: 'BundleProduct' } | { __typename: 'ConfigurableProduct' }
+  >;
   texts?: {
     _id: string;
     slug?: string | null;
@@ -11262,6 +11292,9 @@ type IProductBriefFragment_SimpleProduct = {
   updated?: any | null;
   published?: any | null;
   catalogPrice?: { amount: number; currencyCode: string } | null;
+  proxies: Array<
+    { __typename: 'BundleProduct' } | { __typename: 'ConfigurableProduct' }
+  >;
   texts?: {
     _id: string;
     slug?: string | null;
@@ -12234,6 +12267,10 @@ export type IProductQuery = {
           subtitle?: string | null;
           description?: string | null;
         } | null;
+        proxies: Array<
+          | { __typename: 'BundleProduct' }
+          | { __typename: 'ConfigurableProduct' }
+        >;
         media: Array<{
           _id: string;
           tags?: Array<any> | null;
@@ -12368,6 +12405,10 @@ export type IProductQuery = {
           subtitle?: string | null;
           description?: string | null;
         } | null;
+        proxies: Array<
+          | { __typename: 'BundleProduct' }
+          | { __typename: 'ConfigurableProduct' }
+        >;
         media: Array<{
           _id: string;
           tags?: Array<any> | null;
@@ -12435,6 +12476,10 @@ export type IProductQuery = {
           subtitle?: string | null;
           description?: string | null;
         } | null;
+        proxies: Array<
+          | { __typename: 'BundleProduct' }
+          | { __typename: 'ConfigurableProduct' }
+        >;
         media: Array<{
           _id: string;
           tags?: Array<any> | null;
@@ -12681,6 +12726,10 @@ export type IProductBundleItemsQuery = {
                 tags?: Array<any> | null;
                 updated?: any | null;
                 published?: any | null;
+                proxies: Array<
+                  | { __typename: 'BundleProduct' }
+                  | { __typename: 'ConfigurableProduct' }
+                >;
                 texts?: {
                   _id: string;
                   slug?: string | null;
@@ -12730,6 +12779,10 @@ export type IProductBundleItemsQuery = {
                 updated?: any | null;
                 published?: any | null;
                 catalogPrice?: { amount: number; currencyCode: string } | null;
+                proxies: Array<
+                  | { __typename: 'BundleProduct' }
+                  | { __typename: 'ConfigurableProduct' }
+                >;
                 texts?: {
                   _id: string;
                   slug?: string | null;
@@ -12755,6 +12808,10 @@ export type IProductBundleItemsQuery = {
                 updated?: any | null;
                 published?: any | null;
                 catalogPrice?: { amount: number; currencyCode: string } | null;
+                proxies: Array<
+                  | { __typename: 'BundleProduct' }
+                  | { __typename: 'ConfigurableProduct' }
+                >;
                 texts?: {
                   _id: string;
                   slug?: string | null;
@@ -13202,6 +13259,10 @@ export type IProductsQuery = {
         tags?: Array<any> | null;
         updated?: any | null;
         published?: any | null;
+        proxies: Array<
+          | { __typename: 'BundleProduct' }
+          | { __typename: 'ConfigurableProduct' }
+        >;
         texts?: {
           _id: string;
           slug?: string | null;
@@ -13251,6 +13312,10 @@ export type IProductsQuery = {
         updated?: any | null;
         published?: any | null;
         catalogPrice?: { amount: number; currencyCode: string } | null;
+        proxies: Array<
+          | { __typename: 'BundleProduct' }
+          | { __typename: 'ConfigurableProduct' }
+        >;
         texts?: {
           _id: string;
           slug?: string | null;
@@ -13276,6 +13341,10 @@ export type IProductsQuery = {
         updated?: any | null;
         published?: any | null;
         catalogPrice?: { amount: number; currencyCode: string } | null;
+        proxies: Array<
+          | { __typename: 'BundleProduct' }
+          | { __typename: 'ConfigurableProduct' }
+        >;
         texts?: {
           _id: string;
           slug?: string | null;

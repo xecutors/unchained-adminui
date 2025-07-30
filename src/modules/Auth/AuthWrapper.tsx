@@ -6,10 +6,12 @@ import AuthContext from './AuthContext';
 import loadRoleConfig from '../common/utils/loadRoleConfig';
 import Loading from '../common/components/Loading';
 import useUsersCount from '../accounts/hooks/useUsersCount';
+import useApp from '../common/hooks/useApp';
 
 const AuthWrapper = ({ children }) => {
   const router = useRouter();
   const { currentUser, loading } = useCurrentUser();
+  const { isSystemReady } = useApp();
   const {
     loading: usersCountLoading,
     usersCount,

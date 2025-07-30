@@ -35,7 +35,7 @@ const UserList = ({ users }) => {
           <Table.Cell>
             {formatMessage({
               id: 'last_login',
-              defaultMessage: 'Last Login',
+              defaultMessage: 'Last Login:',
             })}
           </Table.Cell>
 

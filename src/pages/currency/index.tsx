@@ -89,22 +89,33 @@ const Currencies = () => {
   };
 
   if (currencyId) return <CurrencyDetailPage currencyId={currencyId} />;
+
+  const headerText =
+    currenciesCount === 1
+      ? formatMessage({
+          id: 'currency_header',
+          defaultMessage: '1 Currency',
+        })
+      : formatMessage(
+          {
+            id: 'currency_count_header',
+            defaultMessage: '{count} Currencies',
+          },
+          { count: <AnimatedCounter value={currenciesCount} /> },
+        );
   return (
     <>
       <BreadCrumbs />
       <PageHeader
-        headerText={formatMessage(
-          (currenciesCount ?? 0) === 1
-            ? {
-                id: 'currency_count_header_singular',
-                defaultMessage: '1 Currency',
-              }
-            : {
-                id: 'currencies_count_header',
-                defaultMessage: '{count} Currencies',
-              },
-          { count: <AnimatedCounter value={currenciesCount ?? 0} /> },
+        title={formatMessage(
+          {
+            id: 'currencies_page_title',
+            defaultMessage:
+              '{count, plural, one {# Currency} other {# Currencies}}',
+          },
+          { count: currenciesCount },
         )}
+        headerText={headerText}
         addPath={hasRole('addCurrency') && '/currency/new'}
         addButtonText={formatMessage({
           id: 'add_currency',

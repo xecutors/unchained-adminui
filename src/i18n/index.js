@@ -3,7 +3,7 @@ import de from './de.json';
 
 const defaultTranslations = {
   en,
-  de,
+  de,  
 };
 
 export default defaultTranslations;

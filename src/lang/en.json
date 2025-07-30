@@ -132,6 +132,9 @@
   "address_notice": {
     "defaultMessage": "This information will be displayed publicly so be careful what you share."
   },
+  "all": {
+    "defaultMessage": "All"
+  },
   "allocate_work": {
     "defaultMessage": "Allocate Work"
   },
@@ -252,6 +255,15 @@
   "assortments": {
     "defaultMessage": "Assortments"
   },
+  "assortments_count_header": {
+    "defaultMessage": "{count} Assortments"
+  },
+  "assortments_header": {
+    "defaultMessage": "1 Assortment"
+  },
+  "assortments_page_title": {
+    "defaultMessage": "{count, plural, one {# Assortment} other {# Assortments}}"
+  },
   "avatar": {
     "defaultMessage": "Avatar"
   },
@@ -333,6 +345,15 @@
   "change_password": {
     "defaultMessage": "Change password"
   },
+  "chat_disabled_message": {
+    "defaultMessage": "Copilot chat is currently disabled in this shop. Please check your engine configuration"
+  },
+  "chat_disabled_title": {
+    "defaultMessage": "Chat is Disabled"
+  },
+  "chat_error_retry_message": {
+    "defaultMessage": "An error occurred while processing your request, please reload the conversation and submit something shorter."
+  },
   "check_work_queue_details": {
     "defaultMessage": "Check Work Queue for Details"
   },
@@ -347,6 +368,9 @@
   },
   "city": {
     "defaultMessage": "City"
+  },
+  "clear_history": {
+    "defaultMessage": "Clear History"
   },
   "close": {
     "defaultMessage": "Close"
@@ -363,8 +387,20 @@
   "commerce": {
     "defaultMessage": "Commerce"
   },
+  "commerce_setup": {
+    "defaultMessage": "Commerce Setup"
+  },
+  "commerce_setup_description": {
+    "defaultMessage": "Payment and delivery configuration for transactions"
+  },
   "company": {
     "defaultMessage": "Company"
+  },
+  "complete_shop_setup": {
+    "defaultMessage": "Complete Your Shop Setup"
+  },
+  "complete_system_setup": {
+    "defaultMessage": "Complete Setup"
   },
   "component_loading_error": {
     "defaultMessage": "Component loading error. Please refresh the page."
@@ -373,7 +409,7 @@
     "defaultMessage": "<h3>Configurable</h3> <p>Configurable Product is used to organize varieties of a product. A product might have a variation in color, size or other distinct property in that case you can use a configurable product type to organize all the variation under one category and outline-solid there difference. </p>"
   },
   "configuration": {
-    "defaultMessage": "Configuration"
+    "defaultMessage": "Config items"
   },
   "configuration_invalid": {
     "defaultMessage": "Invalid configuration"
@@ -417,6 +453,12 @@
   "contact_admin_help": {
     "defaultMessage": "Contact system administrator for further information."
   },
+  "content_setup": {
+    "defaultMessage": "Content Setup"
+  },
+  "content_setup_description": {
+    "defaultMessage": "Products and categories to start selling"
+  },
   "continue": {
     "defaultMessage": "Continue"
   },
@@ -441,6 +483,15 @@
   "copilot": {
     "defaultMessage": "Copilot"
   },
+  "copilot-into-message": {
+    "defaultMessage": "Hello! Please introduce yourself and explain what you can help me with in managing my Unchained Commerce store. Be friendly and informative about your current capabilities."
+  },
+  "copilot_welcome_description": {
+    "defaultMessage": "Your AI assistant is ready to help you manage your Unchained Commerce store."
+  },
+  "copilot_welcome_title": {
+    "defaultMessage": "Welcome to Unchained Copilot"
+  },
   "copy_to_clipboard": {
     "defaultMessage": "Copy to clipboard"
   },
@@ -449,6 +500,9 @@
   },
   "countries_config_description": {
     "defaultMessage": "Configure countries and assign default currencies"
+  },
+  "countries_page_title": {
+    "defaultMessage": "{count, plural, one {# Country} other {# Countries}}"
   },
   "country": {
     "defaultMessage": "Country"
@@ -459,6 +513,9 @@
   "country_code": {
     "defaultMessage": "Country code"
   },
+  "country_count_header": {
+    "defaultMessage": "{count} Countries"
+  },
   "country_currency": {
     "defaultMessage": "Currency"
   },
@@ -467,6 +524,9 @@
   },
   "country_exists": {
     "defaultMessage": "Country with the same ISO code already exists"
+  },
+  "country_header": {
+    "defaultMessage": "1 Country"
   },
   "country_updated": {
     "defaultMessage": "Country updated successfully!"
@@ -495,6 +555,9 @@
   "currencies": {
     "defaultMessage": "Currencies"
   },
+  "currencies_page_title": {
+    "defaultMessage": "{count, plural, one {# Currency} other {# Currencies}}"
+  },
   "currency": {
     "defaultMessage": "Currency"
   },
@@ -507,11 +570,17 @@
   "currency_contract_address_description": {
     "defaultMessage": "Contract address is optional and represents address of the 40 character long deployed token contract on the ethereum network."
   },
+  "currency_count_header": {
+    "defaultMessage": "{count} Currencies"
+  },
   "currency_deleted": {
     "defaultMessage": "Currency deleted successfully"
   },
   "currency_exists": {
     "defaultMessage": "Currency with the same ISO code already exists"
+  },
+  "currency_header": {
+    "defaultMessage": "1 Currency"
   },
   "currency_updated": {
     "defaultMessage": "Currency updated successfully!"
@@ -548,6 +617,9 @@
   },
   "default_currency": {
     "defaultMessage": "Default currency"
+  },
+  "default_system_locale": {
+    "defaultMessage": "Default Locale"
   },
   "delete": {
     "defaultMessage": "Delete"
@@ -864,6 +936,9 @@
   "enrollment": {
     "defaultMessage": "enrollment"
   },
+  "enrollment_count_header": {
+    "defaultMessage": "{count} Enrollments"
+  },
   "enrollment_detail": {
     "defaultMessage": "Enrollment Detail"
   },
@@ -873,8 +948,14 @@
   "enrollment_error": {
     "defaultMessage": "Failed sending email, please try again"
   },
+  "enrollment_header": {
+    "defaultMessage": "1 Enrollment"
+  },
   "enrollment_number": {
     "defaultMessage": "Enrollment number"
+  },
+  "enrollment_page_title": {
+    "defaultMessage": "{count, plural, one {# Enrollment} other {# Enrollments}}"
   },
   "enrollment_success": {
     "defaultMessage": "Email sent to the user successfully"
@@ -963,14 +1044,29 @@
   "error_text_area_required": {
     "defaultMessage": "{label} is required"
   },
+  "essential_setup": {
+    "defaultMessage": "Essential Setup"
+  },
+  "essential_setup_description": {
+    "defaultMessage": "Core settings required for your shop to function"
+  },
   "event": {
     "defaultMessage": "Events"
+  },
+  "event_count_header": {
+    "defaultMessage": "{count} Events"
   },
   "event_detail": {
     "defaultMessage": "Event Detail"
   },
   "event_detail_title": {
     "defaultMessage": "Event {id}"
+  },
+  "event_header": {
+    "defaultMessage": "1 Event"
+  },
+  "event_page_title": {
+    "defaultMessage": "{count, plural, one {# Event} other {# Events}}"
   },
   "expand_navigation": {
     "defaultMessage": "Expand navigation"
@@ -999,6 +1095,9 @@
   "fail_upload": {
     "defaultMessage": "Media upload failed"
   },
+  "failed_tool_response": {
+    "defaultMessage": "Failed to parse tool result."
+  },
   "female": {
     "defaultMessage": "Female"
   },
@@ -1018,6 +1117,9 @@
   "filter_by_type": {
     "defaultMessage": "Filter by type"
   },
+  "filter_count_header": {
+    "defaultMessage": "{count} Filters"
+  },
   "filter_created": {
     "defaultMessage": "Filter created successfully!"
   },
@@ -1034,6 +1136,9 @@
   "filter_detail_title": {
     "defaultMessage": "Filter {id}"
   },
+  "filter_header": {
+    "defaultMessage": "1 Filter"
+  },
   "filter_key": {
     "defaultMessage": "Key",
     "description": "Filter form key"
@@ -1049,6 +1154,9 @@
   },
   "filter_option_value": {
     "defaultMessage": "Value"
+  },
+  "filter_page_title": {
+    "defaultMessage": "{count, plural, one {# Filter} other {# Filters}}"
   },
   "filter_text_form_description": {
     "defaultMessage": "<ul> <li>You can change the language of filter using the dropdown found at top left corner</li> </ul>"
@@ -1119,6 +1227,9 @@
   "goodbye_user": {
     "defaultMessage": "See you later, {name}!"
   },
+  "gross_price": {
+    "defaultMessage": "Gross"
+  },
   "guest": {
     "defaultMessage": "Guest"
   },
@@ -1130,6 +1241,9 @@
   },
   "height": {
     "defaultMessage": "Height (Millimeter)"
+  },
+  "hide_available_tools": {
+    "defaultMessage": "Hide Available Tools"
   },
   "home": {
     "defaultMessage": "Home"
@@ -1249,11 +1363,20 @@
   "language_config_description": {
     "defaultMessage": "Configure languages for content localization"
   },
+  "language_count_header": {
+    "defaultMessage": "{count} Languages"
+  },
   "language_deleted": {
     "defaultMessage": "Language deleted successfully"
   },
   "language_exists": {
     "defaultMessage": "Language with the same ISO code already exists"
+  },
+  "language_header": {
+    "defaultMessage": "1 Language"
+  },
+  "language_page_title": {
+    "defaultMessage": "{count, plural, one {# Language} other {# Languages}}"
   },
   "language_updated": {
     "defaultMessage": "Language updated successfully!"
@@ -1388,7 +1511,7 @@
     "defaultMessage": "Name"
   },
   "net_price": {
-    "defaultMessage": "Net Price"
+    "defaultMessage": "Net"
   },
   "new_assortment_header": {
     "defaultMessage": "New Assortment"
@@ -1435,8 +1558,11 @@
   "no_internet_access": {
     "defaultMessage": "You aren't connected to a working internet connection."
   },
-  "no_orders_description": {
+  "no_order_products_description": {
     "defaultMessage": "Once you receive your first orders, your top-selling products will appear here."
+  },
+  "no_orders_description": {
+    "defaultMessage": "Once you receive your first orders, your sales analytics and top-selling products will appear here."
   },
   "no_orders_title": {
     "defaultMessage": "No orders yet"
@@ -1452,6 +1578,9 @@
   },
   "no_variations_configured": {
     "defaultMessage": "No variations configured yet. Please add variations and their options in the Variations tab first."
+  },
+  "non_taxable": {
+    "defaultMessage": "Non-Taxable"
   },
   "not-applicable": {
     "defaultMessage": "N/A"
@@ -1504,17 +1633,26 @@
   "order_confirmed_success": {
     "defaultMessage": "Order confirmed successfully"
   },
+  "order_count_header": {
+    "defaultMessage": "{count} Orders"
+  },
   "order_date": {
     "defaultMessage": "Order date"
   },
   "order_deleted": {
     "defaultMessage": "Order deleted successfully"
   },
+  "order_header": {
+    "defaultMessage": "1 Order"
+  },
   "order_id": {
     "defaultMessage": "Order"
   },
   "order_number": {
     "defaultMessage": "Order #"
+  },
+  "order_page_title": {
+    "defaultMessage": "{count, plural, one {# Order} other {# Orders}}"
   },
   "order_paid": {
     "defaultMessage": "Order payed successfully"
@@ -1536,6 +1674,9 @@
   },
   "original_work_id": {
     "defaultMessage": "Original Work Id"
+  },
+  "overall_progress": {
+    "defaultMessage": "Overall Progress"
   },
   "page_not_found": {
     "defaultMessage": "Page Not Found"
@@ -1627,6 +1768,9 @@
   "price": {
     "defaultMessage": "Price"
   },
+  "price_range": {
+    "defaultMessage": "Price Range"
+  },
   "priority": {
     "defaultMessage": "Priority"
   },
@@ -1639,6 +1783,9 @@
   "product-image": {
     "defaultMessage": "Product image"
   },
+  "product-scaffolded-success": {
+    "defaultMessage": "Product scaffolded successfully"
+  },
   "product_added": {
     "defaultMessage": "Product added successfully!"
   },
@@ -1650,6 +1797,18 @@
   },
   "product_commerce_info": {
     "defaultMessage": "One price list should have a max quantity field empty and no price should have the same max quantity along with currency and country specified"
+  },
+  "product_creation_failed": {
+    "defaultMessage": "Product creation failed"
+  },
+  "product_delete_blocked_action": {
+    "defaultMessage": "Please unlink it before trying to delete it."
+  },
+  "product_delete_blocked_header": {
+    "defaultMessage": "Remove links before deleting"
+  },
+  "product_delete_blocked_intro": {
+    "defaultMessage": "This product is linked to the following product types:"
   },
   "product_deleted": {
     "defaultMessage": "Product deleted successfully"
@@ -1680,6 +1839,9 @@
   },
   "product_media_upload": {
     "defaultMessage": "Media uploaded successfully"
+  },
+  "product_page_title": {
+    "defaultMessage": "{count, plural, one {# Product} other {# Products}}"
   },
   "product_publish_error": {
     "defaultMessage": "Failed to publish product"
@@ -1741,8 +1903,20 @@
   "products_count": {
     "defaultMessage": "Products"
   },
+  "products_count_header": {
+    "defaultMessage": "{count} Products"
+  },
   "products_data_unavailable": {
     "defaultMessage": "Product data unavailable"
+  },
+  "products_found": {
+    "defaultMessage": "{count} products found"
+  },
+  "products_header": {
+    "defaultMessage": "1 Product"
+  },
+  "products_not_found": {
+    "defaultMessage": "No {status} products found in these results"
   },
   "profile": {
     "defaultMessage": "Profile"
@@ -1783,14 +1957,23 @@
   "quotation-verified-successfully": {
     "defaultMessage": "Quotation verified successfully"
   },
+  "quotation_count_header": {
+    "defaultMessage": "{count} Quotations"
+  },
   "quotation_detail": {
     "defaultMessage": "Quotation Detail"
   },
   "quotation_detail_title": {
     "defaultMessage": "Quotation {id}"
   },
+  "quotation_header": {
+    "defaultMessage": "1 Quotation"
+  },
   "quotation_number": {
     "defaultMessage": "Quotation number"
+  },
+  "quotation_page_title": {
+    "defaultMessage": "{count, plural, one {# Quotation} other {# Quotations}}"
   },
   "quotation_updated": {
     "defaultMessage": "Quotation updated successfuly"
@@ -1849,6 +2032,9 @@
   "required-role-not-satisfied": {
     "defaultMessage": "Current account does not have access, please log in with an account that has the required role."
   },
+  "required_steps_note": {
+    "defaultMessage": "Required for basic shop functionality"
+  },
   "reset_link_sent": {
     "defaultMessage": "Password reset link sent to {email}"
   },
@@ -1883,7 +2069,7 @@
     "defaultMessage": "Retries"
   },
   "retry": {
-    "defaultMessage": "Retry Connection"
+    "defaultMessage": "Retry"
   },
   "retry-work": {
     "defaultMessage": "Retry"
@@ -1935,6 +2121,12 @@
   },
   "saved": {
     "defaultMessage": "Saved"
+  },
+  "say_hi_get_to_know_me": {
+    "defaultMessage": "Say Hi and Get To Know Me"
+  },
+  "scaffold_product": {
+    "defaultMessage": "Scaffold"
   },
   "scheduled": {
     "defaultMessage": "Scheduled"
@@ -1990,14 +2182,32 @@
   "set_password": {
     "defaultMessage": "Set password"
   },
+  "setup_complete": {
+    "defaultMessage": "Complete"
+  },
+  "setup_now": {
+    "defaultMessage": "Setup Now"
+  },
   "shipping": {
     "defaultMessage": "Shipping"
   },
   "shipping_method": {
     "defaultMessage": "SHIPPING"
   },
+  "shop_info": {
+    "defaultMessage": "Shop Info"
+  },
   "shop_info_tool_definition": {
     "defaultMessage": "Show shop configuration"
+  },
+  "shop_setup_complete": {
+    "defaultMessage": "Shop Setup Complete!"
+  },
+  "shop_setup_complete_description": {
+    "defaultMessage": "Congratulations! Your shop is fully configured and ready to accept orders."
+  },
+  "shop_setup_description": {
+    "defaultMessage": "Follow these steps to configure your shop and start selling."
   },
   "shortcuts": {
     "defaultMessage": "Shortcuts"
@@ -2005,17 +2215,26 @@
   "show_all_products": {
     "defaultMessage": "Show all products"
   },
+  "show_available_tools": {
+    "defaultMessage": "Show Available Tools"
+  },
   "show_carts": {
     "defaultMessage": "Show carts"
   },
   "show_error_details": {
     "defaultMessage": "Show error details"
   },
+  "show_full_response": {
+    "defaultMessage": "Show full response"
+  },
   "show_guests": {
     "defaultMessage": "Show Guests"
   },
   "show_inactive": {
     "defaultMessage": "Show Inactive"
+  },
+  "show_less": {
+    "defaultMessage": "Show less"
   },
   "sign_address_header": {
     "defaultMessage": "Sign address"
@@ -2036,7 +2255,7 @@
     "defaultMessage": "<h3>Simple</h3> <p>Simple product is the most commonly used type of product type. It accepts configuration values for price, dimension and warehousing. Most e-commerce product needs are satisfied by this type </p>"
   },
   "sku": {
-    "defaultMessage": "SKU"
+    "defaultMessage": "Sku"
   },
   "slug": {
     "defaultMessage": "Slug"
@@ -2101,6 +2320,9 @@
   "tax": {
     "defaultMessage": "Tax"
   },
+  "taxable": {
+    "defaultMessage": "Taxable"
+  },
   "terminate_enrollment": {
     "defaultMessage": "Terminate Enrollment"
   },
@@ -2124,6 +2346,9 @@
   },
   "thank_you_for_verifying": {
     "defaultMessage": "Thank you for verifying your email address."
+  },
+  "tiered_pricing": {
+    "defaultMessage": "Tiered Pricing"
   },
   "time": {
     "defaultMessage": "Time"
@@ -2149,11 +2374,20 @@
   "token-supply": {
     "defaultMessage": "Supply"
   },
+  "token_count_header": {
+    "defaultMessage": "{count} Tokens"
+  },
+  "token_header": {
+    "defaultMessage": "1 Token"
+  },
   "token_invalid_expired": {
     "defaultMessage": "Token Invalid/Expired"
   },
   "token_invalidation_date": {
     "defaultMessage": "Invalidated"
+  },
+  "token_page_title": {
+    "defaultMessage": "{count, plural, one {# Token} other {# Tokens}}"
   },
   "token_updated": {
     "defaultMessage": "Token update successfully!"
@@ -2166,6 +2400,9 @@
   },
   "tool_fetch_failed_error": {
     "defaultMessage": "Failed to fetch available tools"
+  },
+  "tool_response": {
+    "defaultMessage": "Tool Response"
   },
   "top_selling_products": {
     "defaultMessage": "Top selling products"
@@ -2290,11 +2527,20 @@
   "user_avatar": {
     "defaultMessage": "User avatar"
   },
+  "user_count_header": {
+    "defaultMessage": "{count} Users"
+  },
   "user_deleted": {
     "defaultMessage": "User deleted successfully"
   },
   "user_detail_title": {
     "defaultMessage": "User {id}"
+  },
+  "user_header": {
+    "defaultMessage": "1 User"
+  },
+  "user_page_title": {
+    "defaultMessage": "{count, plural, one {# User} other {# Users}}"
   },
   "user_password_not_set": {
     "defaultMessage": "User password not set"
@@ -2328,6 +2574,12 @@
   },
   "value": {
     "defaultMessage": "Value"
+  },
+  "variation_id": {
+    "defaultMessage": "Variation ID"
+  },
+  "variation_option": {
+    "defaultMessage": "Variation option"
   },
   "variation_option_added": {
     "defaultMessage": "Variation option added successfully!"
@@ -2385,6 +2637,9 @@
   },
   "verify_email_token_invalid_error": {
     "defaultMessage": "The email verification token is either invalid or expired."
+  },
+  "version": {
+    "defaultMessage": "Version"
   },
   "wallet-address": {
     "defaultMessage": "Wallet {walletAddress}"
@@ -2455,6 +2710,9 @@
   "work_allocated_success": {
     "defaultMessage": "Allocate work successfully!"
   },
+  "work_count_header": {
+    "defaultMessage": "{count} Work Items"
+  },
   "work_created": {
     "defaultMessage": "Created"
   },
@@ -2470,11 +2728,17 @@
   "work_finished": {
     "defaultMessage": "Finished"
   },
+  "work_header": {
+    "defaultMessage": "1 Work Item"
+  },
   "work_management_setting_list_header": {
     "defaultMessage": "Work Management Settings"
   },
   "work_original": {
     "defaultMessage": "Original Work"
+  },
+  "work_page_title": {
+    "defaultMessage": "{count, plural, one {# Work Item} other {# Work Items}}"
   },
   "work_priority": {
     "defaultMessage": "Priority"

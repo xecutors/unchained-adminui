@@ -22,6 +22,9 @@ const GetProductQuery = (inlineFragment = '') => gql`
           subtitle
           description
         }
+        proxies {
+        __typename
+      }
       }
       ... on ConfigurableProduct {
         texts {
@@ -38,6 +41,9 @@ const GetProductQuery = (inlineFragment = '') => gql`
           subtitle
           description
         }
+        proxies {
+        __typename
+      }
       }
       ... on BundleProduct {
         texts {
@@ -46,6 +52,9 @@ const GetProductQuery = (inlineFragment = '') => gql`
           subtitle
           description
         }
+        proxies {
+        __typename
+      }
       }
     }
   }

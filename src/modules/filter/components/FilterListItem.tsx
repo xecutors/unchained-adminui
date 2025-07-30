@@ -34,8 +34,8 @@ const FilterListItem = ({ filter, onRemove }) => {
           href={`/filters?filterId=${filter._id}`}
           className="flex items-center text-sm text-slate-900 dark:text-slate-300 group-hover:text-slate-700 dark:group-hover:text-slate-100"
         >
-          {filter?.texts &&
-            (filter?.texts.title || (
+          {filter?.key &&
+            (filter?.key || (
               <>
                 {filter._id}{' '}
                 <Badge

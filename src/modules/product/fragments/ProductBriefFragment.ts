@@ -28,16 +28,27 @@ const ProductBriefFragment = gql`
         url
       }
     }
+    ... on BundleProduct {
+      proxies {
+        __typename
+      }
+    }
     ... on SimpleProduct {
       catalogPrice {
         amount
         currencyCode
+      }
+      proxies {
+        __typename
       }
     }
     ... on PlanProduct {
       catalogPrice {
         amount
         currencyCode
+      }
+      proxies {
+        __typename
       }
     }
   }

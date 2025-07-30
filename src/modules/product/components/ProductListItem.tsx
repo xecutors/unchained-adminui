@@ -212,7 +212,11 @@ const ProductListItem = ({
               : undefined
           }
           showEdit={product?.status !== 'DELETED'}
-          showDelete={hasRole('removeProduct') && product?.status === 'DRAFT'}
+          showDelete={
+            hasRole('removeProduct') &&
+            product?.status === 'DRAFT' &&
+            !product?.proxies?.length
+          }
         />
       </Table.Cell>
     </Table.Row>

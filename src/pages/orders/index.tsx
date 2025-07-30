@@ -53,16 +53,32 @@ const Orders = () => {
 
   if (orderId) return <OrderDetailPage orderId={orderId} />;
 
+  const headerText =
+    ordersCount === 1
+      ? formatMessage({
+          id: 'order_header',
+          defaultMessage: '1 Order',
+        })
+      : formatMessage(
+          {
+            id: 'order_count_header',
+            defaultMessage: '{count} Orders',
+          },
+          { count: <AnimatedCounter value={ordersCount} /> },
+        );
+
   return (
     <>
       <BreadCrumbs />
       <PageHeader
-        headerText={formatMessage(
-          (ordersCount ?? 0) === 1
-            ? { id: 'order_count_header_singular', defaultMessage: '1 Order' }
-            : { id: 'orders_count_header', defaultMessage: '{count} Orders' },
-          { count: <AnimatedCounter value={ordersCount ?? 0} /> },
+        title={formatMessage(
+          {
+            id: 'order_page_title',
+            defaultMessage: '{count, plural, one {# Order} other {# Orders}}',
+          },
+          { count: ordersCount },
         )}
+        headerText={headerText}
       />
       <div className="mt-5 inline-block min-w-full overflow-x-auto px-1 pb-5">
         <ListHeader>

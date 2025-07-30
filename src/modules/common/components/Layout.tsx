@@ -31,6 +31,8 @@ import { toast } from 'react-toastify';
 import logOut from '../../accounts/hooks/logOut';
 import { useRouter } from 'next/router';
 import { ArrowRightEndOnRectangleIcon } from '@heroicons/react/24/outline';
+import useApp from '../hooks/useApp';
+import useShopConfiguration from '../hooks/useShopConfiguration';
 
 const QuotationIcon = ({ className }) => (
   <svg
@@ -50,8 +52,11 @@ const Layout = ({
   componentName,
   /* navigationType = 'default', */
 }) => {
+  const { isSystemReady } = useApp();
   const { formatMessage } = useIntl();
   const { currentUser } = useCurrentUser();
+  const { configuration } = useShopConfiguration();
+
   const { shopInfo } = useShopInfo();
   const [hideNav, setHideNav] = useState(true);
   const [narrowNav, setNarrowNav] = useState(false);
@@ -75,10 +80,16 @@ const Layout = ({
       ),
     );
   };
+  const conditionalDashboardTitle = configuration.isFullyConfigured
+    ? formatMessage({ id: 'dashboard', defaultMessage: 'Dashboard' })
+    : formatMessage({
+        id: 'complete_system_setup',
+        defaultMessage: 'Complete Setup',
+      });
 
   const defaultNavigation = [
     {
-      name: formatMessage({ id: 'dashboard', defaultMessage: 'Dashboard' }),
+      name: conditionalDashboardTitle,
       icon: HomeModernIcon,
       href: '/',
     },
@@ -87,7 +98,7 @@ const Layout = ({
       icon: CommandLineIcon,
       href: '/copilot',
     },
-    {
+    isSystemReady && {
       name: formatMessage({
         id: 'orders',
         defaultMessage: 'Orders',
@@ -96,7 +107,7 @@ const Layout = ({
       icon: InboxStackIcon,
       href: '/orders',
     },
-    {
+    isSystemReady && {
       name: formatMessage({
         id: 'products',
         defaultMessage: 'Products',
@@ -105,13 +116,13 @@ const Layout = ({
       icon: CubeIcon,
       href: '/products',
     },
-    {
+    isSystemReady && {
       name: formatMessage({ id: 'assortments', defaultMessage: 'Assortments' }),
       icon: RectangleStackIcon,
       href: '/assortments',
       requiredRole: 'manageAssortments',
     },
-    {
+    isSystemReady && {
       name: formatMessage({ id: 'filters', defaultMessage: 'Filters' }),
       icon: AdjustmentsHorizontalIcon,
       requiredRole: 'manageFilters',
@@ -123,7 +134,7 @@ const Layout = ({
       href: '/users',
       requiredRole: 'viewUsers',
     },
-    {
+    isSystemReady && {
       name: formatMessage({
         id: 'enrollments',
         defaultMessage: 'Enrollments',
@@ -133,7 +144,7 @@ const Layout = ({
       requiredRole: 'viewEnrollments',
       icon: CalendarIcon,
     },
-    {
+    isSystemReady && {
       name: formatMessage({
         id: 'quotations',
         defaultMessage: 'Quotations',
@@ -142,7 +153,7 @@ const Layout = ({
       icon: QuotationIcon,
       requiredRole: 'viewQuotations',
     },
-    {
+    isSystemReady && {
       name: formatMessage({ id: 'tokens', defaultMessage: 'Tokens' }),
       icon: QrCodeIcon,
       href: '/tokens',
@@ -170,7 +181,7 @@ const Layout = ({
           href: '/language',
           requiredRole: 'manageLanguages',
         },
-        {
+        isSystemReady && {
           name: formatMessage({
             id: 'delivery_providers',
             defaultMessage: 'Delivery providers',
@@ -178,7 +189,7 @@ const Layout = ({
           requiredRole: 'manageDeliveryProviders',
           href: '/delivery-provider',
         },
-        {
+        isSystemReady && {
           name: formatMessage({
             id: 'payment_providers',
             defaultMessage: 'Payment providers',
@@ -186,7 +197,7 @@ const Layout = ({
           requiredRole: 'managePaymentProviders',
           href: '/payment-provider',
         },
-        {
+        isSystemReady && {
           name: formatMessage({
             id: 'warehousing_provider',
             defaultMessage: 'Warehousing provider',
@@ -194,7 +205,7 @@ const Layout = ({
           requiredRole: 'manageWarehousingProviders',
           href: '/warehousing-provider',
         },
-      ],
+      ].filter(Boolean),
     },
     {
       name: formatMessage({ id: 'activities', defaultMessage: 'Activities' }),

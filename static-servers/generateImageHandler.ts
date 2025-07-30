@@ -1,7 +1,6 @@
 import { experimental_generateImage, ImageModel, tool } from 'ai';
 import { fileTypeFromBuffer } from 'file-type';
 import { z } from 'zod';
-import fs from 'fs';
 
 const generateImageHandler =
   (req: any) =>

@@ -82,23 +82,34 @@ const FiltersListView = () => {
   };
 
   if (filterId) return <FilterDetailPage filterId={filterId} />;
+
+  const headerText =
+    filtersCount === 1
+      ? formatMessage({
+          id: 'filter_header',
+          defaultMessage: '1 Filter',
+        })
+      : formatMessage(
+          {
+            id: 'filter_count_header',
+            defaultMessage: '{count} Filters',
+          },
+          { count: <AnimatedCounter value={filtersCount} /> },
+        );
   return (
     <>
       <BreadCrumbs />
       <div className="w-full">
         <PageHeader
-          headerText={formatMessage(
-            (filtersCount ?? 0) === 1
-              ? {
-                  id: 'filter_count_header_singular',
-                  defaultMessage: '1 Filter',
-                }
-              : {
-                  id: 'filters_count_header',
-                  defaultMessage: '{count} Filters',
-                },
-            { count: <AnimatedCounter value={filtersCount ?? 0} /> },
+          title={formatMessage(
+            {
+              id: 'filter_page_title',
+              defaultMessage:
+                '{count, plural, one {# Filter} other {# Filters}}',
+            },
+            { count: filtersCount },
           )}
+          headerText={headerText}
           addPath={hasRole('addFilter') && '/filters/new'}
           addButtonText={formatMessage({
             id: 'add_filter',

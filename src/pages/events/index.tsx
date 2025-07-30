@@ -69,17 +69,33 @@ const Events = () => {
   const { eventsType } = useEventTypes();
 
   if (eventId) return <EventDetailPage eventId={eventId} />;
+
+  const headerText =
+    eventsCount === 1
+      ? formatMessage({
+          id: 'event_header',
+          defaultMessage: '1 Event',
+        })
+      : formatMessage(
+          {
+            id: 'event_count_header',
+            defaultMessage: '{count} Events',
+          },
+          { count: <AnimatedCounter value={eventsCount} /> },
+        );
   return (
     <>
       <BreadCrumbs />
       <div className="w-full">
         <PageHeader
-          headerText={formatMessage(
-            (eventsCount ?? 0) === 1
-              ? { id: 'event_count_header_singular', defaultMessage: '1 Event' }
-              : { id: 'events_count_header', defaultMessage: '{count} Events' },
-            { count: <AnimatedCounter value={eventsCount ?? 0} /> },
+          title={formatMessage(
+            {
+              id: 'event_page_title',
+              defaultMessage: '{count, plural, one {# Event} other {# Events}}',
+            },
+            { count: eventsCount },
           )}
+          headerText={headerText}
         />
         <div>
           <div className="mt-4">

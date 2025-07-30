@@ -159,7 +159,6 @@ const ChildrenNav = ({ item, hasRole, onSelected, narrowView }) => {
 };
 
 const SideNav = ({ navigation, onClick = null, narrowView = false }) => {
-  const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
   const router = useRouter();
 

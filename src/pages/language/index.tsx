@@ -88,22 +88,33 @@ const Languages = () => {
     );
   };
 
+  const headerText =
+    languagesCount === 1
+      ? formatMessage({
+          id: 'language_header',
+          defaultMessage: '1 Language',
+        })
+      : formatMessage(
+          {
+            id: 'language_count_header',
+            defaultMessage: '{count} Languages',
+          },
+          { count: <AnimatedCounter value={languagesCount} /> },
+        );
+
   return (
     <>
       <BreadCrumbs />
       <PageHeader
-        headerText={formatMessage(
-          (languagesCount ?? 0) === 1
-            ? {
-                id: 'language_count_header_singular',
-                defaultMessage: '1 Language',
-              }
-            : {
-                id: 'languages_count_header',
-                defaultMessage: '{count} Languages',
-              },
-          { count: <AnimatedCounter value={languagesCount ?? 0} /> },
+        title={formatMessage(
+          {
+            id: 'language_page_title',
+            defaultMessage:
+              '{count, plural, one {# Language} other {# Languages}}',
+          },
+          { count: languagesCount },
         )}
+        headerText={headerText}
         addPath={hasRole('addLanguage') && '/language/new'}
         addButtonText={formatMessage({
           id: 'add_language',

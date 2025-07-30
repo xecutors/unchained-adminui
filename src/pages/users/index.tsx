@@ -67,16 +67,32 @@ const Users = () => {
 
   if (userId) return <UserDetailPage userId={userId} />;
 
+  const headerText =
+    usersCount === 1
+      ? formatMessage({
+          id: 'user_header',
+          defaultMessage: '1 User',
+        })
+      : formatMessage(
+          {
+            id: 'user_count_header',
+            defaultMessage: '{count} Users',
+          },
+          { count: <AnimatedCounter value={usersCount} /> },
+        );
+
   return (
     <div className="mb-10">
       <BreadCrumbs />
       <PageHeader
-        headerText={formatMessage(
-          (usersCount ?? 0) === 1
-            ? { id: 'user_count_header_singular', defaultMessage: '1 User' }
-            : { id: 'users_count_header', defaultMessage: '{count} Users' },
-          { count: <AnimatedCounter value={usersCount ?? 0} /> },
+        title={formatMessage(
+          {
+            id: 'user_page_title',
+            defaultMessage: '{count, plural, one {# User} other {# Users}}',
+          },
+          { count: usersCount },
         )}
+        headerText={headerText}
         addPath="/users/new"
         addButtonText={formatMessage({
           id: 'add_user',

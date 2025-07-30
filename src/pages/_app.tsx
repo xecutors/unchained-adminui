@@ -18,7 +18,7 @@ import ErrorBoundary from '../modules/common/components/ErrorBoundary';
 import Head from 'next/head';
 import Script from 'next/script';
 import AuthWrapper from '../modules/Auth/AuthWrapper';
-import { ChatProvider } from '../modules/chat/ChatContext';
+import { ChatProvider } from '../modules/copilot/ChatContext';
 import ImageWithFallback from '../modules/common/components/ImageWithFallback';
 import { AppContextWrapper } from '../modules/common/components/AppContext';
 
