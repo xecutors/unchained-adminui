@@ -17,6 +17,7 @@ import {
 import SearchWithTags from '../../modules/common/components/SearchWithTags';
 import OrderDetailPage from './OrderDetailPage';
 import AnimatedCounter from '../../modules/common/components/AnimatedCounter';
+import DateRangeFilterInput from '../../modules/common/components/DateRangeFilterInput';
 
 const Orders = () => {
   const { formatMessage } = useIntl();
@@ -26,7 +27,6 @@ const Orders = () => {
   const offset = parseInt(query?.skip as string, 10) || 0;
   const includeCarts = query?.includeCarts === 'true';
   const sort = query?.sort || '';
-
   const { queryString, orderId, ...restQuery } = query;
 
   const setQueryString = (searchString) => {
@@ -49,8 +49,11 @@ const Orders = () => {
     queryString: queryString as string,
     offset,
     sort: sortKeys,
+    dateRange:
+      query?.start || query?.end
+        ? { start: query?.start, end: query?.end }
+        : null,
   });
-
   if (orderId) return <OrderDetailPage orderId={orderId} />;
 
   const headerText =
@@ -90,6 +93,7 @@ const Orders = () => {
             toggleKey="includeCarts"
             active={includeCarts}
           />
+          <DateRangeFilterInput />
         </ListHeader>
 
         <SearchWithTags

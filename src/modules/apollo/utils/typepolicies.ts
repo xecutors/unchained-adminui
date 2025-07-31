@@ -99,6 +99,7 @@ const keyMappings: any = {
           'queryString',
           'sort',
           'limit',
+          'dateRange',
         ]),
       },
     },

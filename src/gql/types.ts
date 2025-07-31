@@ -3032,16 +3032,22 @@ export type IQueryOrderStatisticsArgs = {
 };
 
 export type IQueryOrdersArgs = {
+  dateRange?: InputMaybe<IDateFilterInput>;
+  deliveryProviderTypes?: InputMaybe<Array<IDeliveryProviderType>>;
   includeCarts?: InputMaybe<Scalars['Boolean']['input']>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
+  paymentProviderTypes?: InputMaybe<Array<IPaymentProviderType>>;
   queryString?: InputMaybe<Scalars['String']['input']>;
   sort?: InputMaybe<Array<ISortOptionInput>>;
   status?: InputMaybe<Array<IOrderStatus>>;
 };
 
 export type IQueryOrdersCountArgs = {
+  dateRange?: InputMaybe<IDateFilterInput>;
+  deliveryProviderTypes?: InputMaybe<Array<IDeliveryProviderType>>;
   includeCarts?: InputMaybe<Scalars['Boolean']['input']>;
+  paymentProviderTypes?: InputMaybe<Array<IPaymentProviderType>>;
   queryString?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -3979,6 +3985,8 @@ export enum IWorkStatus {
 }
 
 export enum IWorkType {
+  Budgetsms = 'BUDGETSMS',
+  Bulkgate = 'BULKGATE',
   BulkImport = 'BULK_IMPORT',
   Email = 'EMAIL',
   EnrollmentOrderGenerator = 'ENROLLMENT_ORDER_GENERATOR',
@@ -3989,7 +3997,7 @@ export enum IWorkType {
   HttpRequest = 'HTTP_REQUEST',
   Message = 'MESSAGE',
   Push = 'PUSH',
-  Sms = 'SMS',
+  Twilio = 'TWILIO',
   Unknown = 'UNKNOWN',
   UpdateCoinbaseRates = 'UPDATE_COINBASE_RATES',
   UpdateEcbRates = 'UPDATE_ECB_RATES',
@@ -9847,6 +9855,9 @@ export type IOrdersQueryVariables = Exact<{
   includeCarts?: InputMaybe<Scalars['Boolean']['input']>;
   queryString?: InputMaybe<Scalars['String']['input']>;
   sort?: InputMaybe<Array<ISortOptionInput>>;
+  paymentProviderTypes?: InputMaybe<Array<IPaymentProviderType>>;
+  deliveryProviderTypes?: InputMaybe<Array<IDeliveryProviderType>>;
+  dateRange?: InputMaybe<IDateFilterInput>;
 }>;
 
 export type IOrdersQuery = {

@@ -76,7 +76,6 @@ export const CopilotProviderListItem = ({ provider, type }) => {
 };
 
 const CopilotProviderList = ({ providers, type }) => {
-  console.log(providers);
   if (!providers?.length) return null;
   return (
     <div className="space-y-4">

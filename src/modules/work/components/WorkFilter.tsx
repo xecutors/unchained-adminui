@@ -1,18 +1,15 @@
-import { VariableIcon } from '@heroicons/react/24/outline';
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 
 import MultipleSelect from '../../common/components/MultipleSelect';
 import StatusFilter from '../../common/components/StatusFilter';
 import { extractQuery } from '../../common/utils/normalizeFilterKeys';
-import useFormatDateTime from '../../common/utils/useFormatDateTime';
 import { normalizeQuery } from '../../common/utils/utils';
-import DateInputField from '../../common/components/DateInput';
+import DateRangeFilterInput from '../../common/components/DateRangeFilterInput';
 
 const WORK_STATUSES = ['NEW', 'ALLOCATED', 'SUCCESS', 'FAILED', 'DELETED'];
 
 const WorkFilter = ({ workTypes = [] }) => {
-  const { parseDate } = useFormatDateTime();
   const router = useRouter();
   const { formatMessage } = useIntl();
   const appliedStatuses = extractQuery(router.query.status);
@@ -52,66 +49,7 @@ const WorkFilter = ({ workTypes = [] }) => {
         })}
       </div>
       <div className="mt-3">
-        <div className="flex items-center justify-center">
-          <label className="ml-1 mr-2" htmlFor="work-start">
-            {formatMessage({ id: 'from', defaultMessage: 'From' })}
-          </label>
-          <DateInputField
-            id="work-start"
-            onChange={(value: any) => {
-              if (value)
-                router.push({
-                  query: normalizeQuery(
-                    router.query,
-                    new Date(value).toISOString(),
-                    'start',
-                  ),
-                });
-              else {
-                const { start, ...rest } = router.query;
-                router.push({ query: { ...rest } });
-              }
-            }}
-            placeholder={formatMessage({
-              id: 'start_date',
-              defaultMessage: 'Start date',
-            })}
-            value={
-              router?.query?.start ? parseDate(router?.query?.start) : null
-            }
-            containerClassName="w-full"
-          />
-          <label className="mr-2 ml-3 " htmlFor="report-end">
-            {formatMessage({ id: 'to', defaultMessage: 'To' })}
-          </label>
-          <DateInputField
-            id="work-end"
-            onChange={(value: any) => {
-              if (value)
-                router.push({
-                  query: normalizeQuery(
-                    router.query,
-                    new Date(value).toISOString(),
-                    'end',
-                  ),
-                });
-              else {
-                const { end, ...rest } = router.query;
-                router.push({ query: { ...rest } });
-              }
-            }}
-            placeholder={formatMessage({
-              id: 'end_date',
-              defaultMessage: 'End Date',
-            })}
-            value={
-              router?.query?.end
-                ? parseDate(router?.query?.end)
-                : parseDate(new Date())
-            }
-            containerClassName="w-full"
-          />
-        </div>
+        <DateRangeFilterInput />
       </div>
 
       <div className="mt-5">
