@@ -17,12 +17,20 @@ import {
 import SearchWithTags from '../../modules/common/components/SearchWithTags';
 import OrderDetailPage from './OrderDetailPage';
 import AnimatedCounter from '../../modules/common/components/AnimatedCounter';
-import DateRangeFilterInput from '../../modules/common/components/DateRangeFilterInput';
+import OrderFilters from '../../modules/order/components/OrderFilters';
+import {
+  IDeliveryProviderType,
+  IOrderStatus,
+  IPaymentProviderType,
+} from '../../gql/types';
+import usePaymentProviderTypes from '../../modules/payment-providers/hooks/usePaymentProviderTypes';
+import useDeliveryProviderTypes from '../../modules/delivery-provider/hooks/useDeliveryProviderTypes';
 
 const Orders = () => {
   const { formatMessage } = useIntl();
   const { query, push } = useRouter();
-
+  const { paymentProviderType } = usePaymentProviderTypes();
+  const { deliveryProviderType } = useDeliveryProviderTypes();
   const limit = parseInt(query?.limit as string, 10) || DefaultLimit;
   const offset = parseInt(query?.skip as string, 10) || 0;
   const includeCarts = query?.includeCarts === 'true';
@@ -53,6 +61,13 @@ const Orders = () => {
       query?.start || query?.end
         ? { start: query?.start, end: query?.end }
         : null,
+    status: (query?.status as string)?.split(',') as IOrderStatus[],
+    deliveryProviderTypes: (query?.delivery_providers as string)?.split(
+      ',',
+    ) as IDeliveryProviderType[],
+    paymentProviderTypes: (query?.payment_providers as string)?.split(
+      ',',
+    ) as IPaymentProviderType[],
   });
   if (orderId) return <OrderDetailPage orderId={orderId} />;
 
@@ -93,9 +108,11 @@ const Orders = () => {
             toggleKey="includeCarts"
             active={includeCarts}
           />
-          <DateRangeFilterInput />
         </ListHeader>
-
+        <OrderFilters
+          deliveryProviders={deliveryProviderType}
+          paymentProviders={paymentProviderType}
+        />
         <SearchWithTags
           onSearchChange={setQueryString}
           defaultSearchValue={queryString}

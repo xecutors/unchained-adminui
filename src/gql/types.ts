@@ -3049,6 +3049,7 @@ export type IQueryOrdersCountArgs = {
   includeCarts?: InputMaybe<Scalars['Boolean']['input']>;
   paymentProviderTypes?: InputMaybe<Array<IPaymentProviderType>>;
   queryString?: InputMaybe<Scalars['String']['input']>;
+  status?: InputMaybe<Array<IOrderStatus>>;
 };
 
 export type IQueryPaymentInterfacesArgs = {
@@ -9858,6 +9859,7 @@ export type IOrdersQueryVariables = Exact<{
   paymentProviderTypes?: InputMaybe<Array<IPaymentProviderType>>;
   deliveryProviderTypes?: InputMaybe<Array<IDeliveryProviderType>>;
   dateRange?: InputMaybe<IDateFilterInput>;
+  status?: InputMaybe<Array<IOrderStatus>>;
 }>;
 
 export type IOrdersQuery = {

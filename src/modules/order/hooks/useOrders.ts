@@ -17,6 +17,7 @@ const OrdersQuery = gql`
     $paymentProviderTypes: [PaymentProviderType!]
     $deliveryProviderTypes: [DeliveryProviderType!]
     $dateRange: DateFilterInput
+    $status: [OrderStatus!]
   ) {
     orders(
       limit: $limit
@@ -27,6 +28,7 @@ const OrdersQuery = gql`
       paymentProviderTypes: $paymentProviderTypes
       deliveryProviderTypes: $deliveryProviderTypes
       dateRange: $dateRange
+      status: $status
     ) {
       ...OrderFragment
     }
@@ -36,6 +38,7 @@ const OrdersQuery = gql`
       paymentProviderTypes: $paymentProviderTypes
       deliveryProviderTypes: $deliveryProviderTypes
       dateRange: $dateRange
+      status: $status
     )
   }
   ${OrderFragment}
@@ -48,6 +51,9 @@ const useOrders = ({
   queryString = '',
   sort: sortOptions = [],
   dateRange,
+  status,
+  deliveryProviderTypes,
+  paymentProviderTypes,
 }: IOrdersQueryVariables = {}) => {
   const { data, loading, error, fetchMore } = useQuery<
     IOrdersQuery,
@@ -55,10 +61,17 @@ const useOrders = ({
   >(OrdersQuery, {
     variables: {
       limit,
+      deliveryProviderTypes: deliveryProviderTypes?.length
+        ? deliveryProviderTypes
+        : null,
+      paymentProviderTypes: paymentProviderTypes?.length
+        ? paymentProviderTypes
+        : null,
       offset,
       includeCarts,
       queryString,
       dateRange,
+      status,
       sort: sortOptions.length
         ? [...sortOptions, { key: 'created', value: ISortDirection.Desc }]
         : [
