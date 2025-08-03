@@ -7592,7 +7592,15 @@ export type IOrdersWithItemsQuery = {
   }>;
 };
 
-export type ISalesAnalyticsQueryVariables = Exact<{ [key: string]: never }>;
+export type ISalesAnalyticsQueryVariables = Exact<{
+  includeCarts?: InputMaybe<Scalars['Boolean']['input']>;
+  queryString?: InputMaybe<Scalars['String']['input']>;
+  status?: InputMaybe<Array<IOrderStatus>>;
+  sort?: InputMaybe<Array<ISortOptionInput>>;
+  paymentProviderTypes?: InputMaybe<Array<IPaymentProviderType>>;
+  deliveryProviderTypes?: InputMaybe<Array<IDeliveryProviderType>>;
+  dateRange?: InputMaybe<IDateFilterInput>;
+}>;
 
 export type ISalesAnalyticsQuery = {
   orders: Array<{
@@ -7600,16 +7608,6 @@ export type ISalesAnalyticsQuery = {
     ordered?: any | null;
     status?: IOrderStatus | null;
     total?: { amount: number; currencyCode: string } | null;
-    items?: Array<{
-      quantity: number;
-      product:
-        | { _id: string; texts?: { title?: string | null } | null }
-        | { _id: string; texts?: { title?: string | null } | null }
-        | { _id: string; texts?: { title?: string | null } | null }
-        | { _id: string; texts?: { title?: string | null } | null }
-        | { _id: string; texts?: { title?: string | null } | null };
-      total?: { amount: number } | null;
-    }> | null;
   }>;
 };
 
