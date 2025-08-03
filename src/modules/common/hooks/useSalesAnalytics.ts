@@ -73,9 +73,9 @@ const buildSalesData = (
   Array.from(dailySales.entries())
     .map(([date, { sales, orders }]) => ({
       date,
-      sales: Number(sales.toFixed(2)) / 100,
+      sales: Number(sales.toFixed(2)),
       orders,
-      avgOrderValue: orders > 0 ? Math.round(sales / orders) / 100 : 0,
+      avgOrderValue: orders > 0 ? Math.round(sales / orders) : 0,
     }))
     .reverse();
 

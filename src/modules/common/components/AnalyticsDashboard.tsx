@@ -139,8 +139,15 @@ const AnalyticsDashboard: React.FC = () => {
               />
               <YAxis hide />
               <ChartTooltip
+                wrapperStyle={{ pointerEvents: 'auto', zIndex: 50 }}
                 cursor={false}
-                content={<ChartTooltipContent hideLabel />}
+                content={
+                  <ChartTooltipContent
+                    formatter={(value) =>
+                      formatPrice({ currencyCode, amount: value })
+                    }
+                  />
+                }
               />
               <Line
                 dataKey="sales"
@@ -223,7 +230,14 @@ const AnalyticsDashboard: React.FC = () => {
               <YAxis hide />
               <ChartTooltip
                 cursor={false}
-                content={<ChartTooltipContent hideLabel />}
+                content={
+                  <ChartTooltipContent
+                    hideLabel
+                    formatter={(value) =>
+                      formatPrice({ currencyCode, amount: value })
+                    }
+                  />
+                }
               />
               <Line
                 dataKey="avgOrderValue"
