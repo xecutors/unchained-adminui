@@ -21,10 +21,11 @@ import { CurrencyIcon } from 'lucide-react';
 
 const SalesSummeryReport = ({
   currencyCode,
-  totalSales,
-  totalOrders,
+  orderCount,
   averageOrderValue,
-  salesData = [],
+  dailySummary = [],
+  totalSalesAmount,
+  dateRange,
 }) => {
   const { formatMessage } = useIntl();
   const { formatPrice } = useFormatPrice();
@@ -52,12 +53,12 @@ const SalesSummeryReport = ({
           id: 'total_sales',
           defaultMessage: 'Total sales',
         })}
-        value={formatPrice({ currencyCode, amount: totalSales })}
+        value={formatPrice({ currencyCode, amount: totalSalesAmount })}
         chart={
           <ChartContainer config={chartConfig}>
             <LineChart
               accessibilityLayer
-              data={salesData}
+              data={dailySummary}
               margin={{
                 left: 12,
                 right: 12,
@@ -93,7 +94,7 @@ const SalesSummeryReport = ({
             </LineChart>
           </ChartContainer>
         }
-        /* dateRange={dateRange} */
+        dateRange={dateRange}
       />
 
       <MetricGraphCard
@@ -102,12 +103,12 @@ const SalesSummeryReport = ({
           id: 'total_orders',
           defaultMessage: 'Total orders',
         })}
-        value={totalOrders}
+        value={orderCount}
         chart={
           <ChartContainer config={chartConfig}>
             <BarChart
               accessibilityLayer
-              data={salesData}
+              data={dailySummary}
               margin={{
                 left: 12,
                 right: 12,
@@ -129,7 +130,7 @@ const SalesSummeryReport = ({
             </BarChart>
           </ChartContainer>
         }
-        /* dateRange={dateRange} */
+        dateRange={dateRange}
       />
 
       <MetricGraphCard
@@ -143,7 +144,7 @@ const SalesSummeryReport = ({
           <ChartContainer config={chartConfig}>
             <LineChart
               accessibilityLayer
-              data={salesData}
+              data={dailySummary}
               margin={{
                 left: 12,
                 right: 12,
@@ -179,7 +180,7 @@ const SalesSummeryReport = ({
             </LineChart>
           </ChartContainer>
         }
-        /* dateRange={dateRange} */
+        dateRange={dateRange}
       />
     </div>
   );
