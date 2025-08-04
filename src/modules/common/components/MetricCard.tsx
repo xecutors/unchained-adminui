@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
@@ -6,7 +7,7 @@ interface MetricCardProps {
   value: number | string;
   icon: React.ReactNode;
   loading?: boolean;
-  onClick?: () => void;
+  href: string;
 }
 
 const MetricCard: React.FC<MetricCardProps> = ({
@@ -14,23 +15,16 @@ const MetricCard: React.FC<MetricCardProps> = ({
   value,
   icon,
   loading = false,
-  onClick,
+
+  href,
 }) => {
   const { formatNumber } = useIntl();
 
-  const handleClick = () => {
-    if (onClick) {
-      onClick();
-    }
-  };
-
   return (
-    <div
-      className={`
-        bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 p-6
-        ${onClick ? 'cursor-pointer hover:border-slate-500 border-1 dark:hover:bg-slate-750 transition-colors' : ''}
-      `}
-      onClick={handleClick}
+    <Link
+      href={href}
+      className={`bg-white dark:bg-slate-800 rounded-lg border-slate-200 dark:border-slate-700 p-6
+        cursor-pointer hover:border-slate-500 border-1 dark:hover:bg-slate-750 transition-colors`}
     >
       <div className="flex items-center justify-between">
         <div>
@@ -53,7 +47,7 @@ const MetricCard: React.FC<MetricCardProps> = ({
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

@@ -2,7 +2,7 @@ import { useIntl } from 'react-intl';
 import { CheckIcon } from '@heroicons/react/24/outline';
 import useFormatDateTime from '../utils/useFormatDateTime';
 import { classNames } from '../utils/utils';
-import Badge from './Badge';
+import { OrderStatusBadge } from '../../order/components/OrderStatusBadge';
 
 const StatusProgress = ({ data, statusTypes, timeline }) => {
   const { formatMessage } = useIntl();
@@ -75,53 +75,8 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
 
       <div className=" p-4 bg-white shadow-sm dark:shadow-none dark:border dark:border-slate-700 sm:rounded-lg dark:bg-slate-900">
         <p className="font-medium flex items-center justify-between">
-          <span className="text-2xl">
-            {data?.status === 'CONFIRMED' ? (
-              <Badge
-                text={formatMessage({
-                  id: 'confirmed',
-                  defaultMessage: 'CONFIRMED',
-                })}
-                color="lime"
-                className="rounded-md uppercase"
-              />
-            ) : data?.status === 'PENDING' ? (
-              <Badge
-                text={formatMessage({
-                  id: 'pending',
-                  defaultMessage: 'PENDING',
-                })}
-                color="amber"
-                className="rounded-md uppercase"
-              />
-            ) : data?.status === 'OPEN' ? (
-              <Badge
-                text={formatMessage({ id: 'open', defaultMessage: 'OPEN' })}
-                color="sky"
-                className="rounded-md uppercase"
-              />
-            ) : data?.status === 'FULLFILLED' ? (
-              <Badge
-                text={formatMessage({
-                  id: 'fulfilled',
-                  defaultMessage: 'FULFILLED',
-                })}
-                color="emerald"
-                className="rounded-md uppercase"
-              />
-            ) : data?.status === 'REJECTED' ? (
-              <Badge
-                text={formatMessage({
-                  id: 'rejected',
-                  defaultMessage: 'REJECTED',
-                })}
-                color="rose"
-                className="rounded-md uppercase"
-              />
-            ) : (
-              <span className="uppercase">{data?.status?.toLowerCase()}</span>
-            )}
-          </span>
+          <OrderStatusBadge status={data.status} />
+
           <span>
             {data[content]
               ? formatDateTime(data[content], {

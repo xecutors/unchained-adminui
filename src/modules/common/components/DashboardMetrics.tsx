@@ -1,8 +1,6 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import { useRouter } from 'next/router';
 import {
-  InboxStackIcon,
   CubeIcon,
   UsersIcon,
   RectangleStackIcon,
@@ -12,7 +10,6 @@ import useDashboardMetrics from '../hooks/useDashboardMetrics';
 
 const DashboardMetrics: React.FC = () => {
   const { formatMessage } = useIntl();
-  const router = useRouter();
   const { metrics } = useDashboardMetrics();
 
   const metricCards = [
@@ -24,7 +21,7 @@ const DashboardMetrics: React.FC = () => {
       value: metrics.products.value,
       icon: <CubeIcon className="h-6 w-6 text-slate-700 dark:text-slate-300" />,
       loading: metrics.products.loading,
-      onClick: () => router.push('/products'),
+      href: '/products',
     },
     {
       title: formatMessage({
@@ -36,7 +33,7 @@ const DashboardMetrics: React.FC = () => {
         <RectangleStackIcon className="h-6 w-6 text-slate-700 dark:text-slate-300" />
       ),
       loading: metrics.categories.loading,
-      onClick: () => router.push('/assortments'),
+      href: '/assortments',
     },
     {
       title: formatMessage({
@@ -48,7 +45,7 @@ const DashboardMetrics: React.FC = () => {
         <UsersIcon className="h-6 w-6 text-slate-700 dark:text-slate-300" />
       ),
       loading: metrics.customers.loading,
-      onClick: () => router.push('/users'),
+      href: '/users',
     },
   ];
 
@@ -61,7 +58,7 @@ const DashboardMetrics: React.FC = () => {
           value={metric.value}
           icon={metric.icon}
           loading={metric.loading}
-          onClick={metric.onClick}
+          href={metric.href}
         />
       ))}
     </div>
