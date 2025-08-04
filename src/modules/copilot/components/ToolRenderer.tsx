@@ -67,6 +67,7 @@ const ToolRenderer: Record<ToolName, ToolRenderFn> = {
   shop_info: renderShopInfo,
   generateImage: renderImage,
   ordersSales_summary: renderSalesSummary,
+  monthly_sales_breakdown: renderSalesSummary,
   ...Object.fromEntries(
     MultipleOrderReturnTool.map((name) => [name, renderMultipleOrders]),
   ),

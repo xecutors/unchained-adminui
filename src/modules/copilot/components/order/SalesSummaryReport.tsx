@@ -23,7 +23,7 @@ const SalesSummeryReport = ({
   currencyCode,
   orderCount,
   averageOrderValue,
-  dailySummary = [],
+  summary = [],
   totalSalesAmount,
   dateRange,
 }) => {
@@ -58,7 +58,7 @@ const SalesSummeryReport = ({
           <ChartContainer config={chartConfig}>
             <LineChart
               accessibilityLayer
-              data={dailySummary}
+              data={summary}
               margin={{
                 left: 12,
                 right: 12,
@@ -108,7 +108,7 @@ const SalesSummeryReport = ({
           <ChartContainer config={chartConfig}>
             <BarChart
               accessibilityLayer
-              data={dailySummary}
+              data={summary}
               margin={{
                 left: 12,
                 right: 12,
@@ -122,10 +122,7 @@ const SalesSummeryReport = ({
                 tickMargin={8}
               />
               <YAxis hide />
-              <ChartTooltip
-                cursor={false}
-                content={<ChartTooltipContent hideLabel />}
-              />
+              <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
               <Bar dataKey="orders" fill="var(--color-orders)" radius={4} />
             </BarChart>
           </ChartContainer>
@@ -144,7 +141,7 @@ const SalesSummeryReport = ({
           <ChartContainer config={chartConfig}>
             <LineChart
               accessibilityLayer
-              data={dailySummary}
+              data={summary}
               margin={{
                 left: 12,
                 right: 12,
@@ -163,7 +160,6 @@ const SalesSummeryReport = ({
                 cursor={false}
                 content={
                   <ChartTooltipContent
-                    hideLabel
                     formatter={(value) =>
                       formatPrice({ currencyCode, amount: value })
                     }
