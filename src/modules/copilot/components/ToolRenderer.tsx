@@ -56,13 +56,17 @@ import {
   renderMultipleProviders,
   renderSingleProvider,
 } from './tool-renderers/providerRenderes';
-import { renderMultipleOrders } from './tool-renderers/orderRenderers';
+import {
+  renderMultipleOrders,
+  renderSalesSummary,
+} from './tool-renderers/orderRenderers';
 
 type ToolRenderFn = (data: any) => ReactElement | null;
 
 const ToolRenderer: Record<ToolName, ToolRenderFn> = {
   shop_info: renderShopInfo,
   generateImage: renderImage,
+  ordersSales_summary: renderSalesSummary,
   ...Object.fromEntries(
     MultipleOrderReturnTool.map((name) => [name, renderMultipleOrders]),
   ),

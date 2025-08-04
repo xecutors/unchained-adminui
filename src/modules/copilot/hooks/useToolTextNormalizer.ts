@@ -145,6 +145,7 @@ export const MultipleInterfaceReturnTools = [
 export const MultipleOrderReturnTool = ['orders_list'] as const;
 
 export const AllTools = [
+  'ordersSales_summary',
   ...MultipleInterfaceReturnTools,
   ...SingleProviderReturnTools,
   ...MultipleProviderReturnTools,

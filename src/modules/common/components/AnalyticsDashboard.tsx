@@ -15,13 +15,7 @@ import {
   Calculator,
   CurrencyIcon,
 } from 'lucide-react';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '../../../components/ui/card';
+import { Card, CardContent, CardHeader } from '../../../components/ui/card';
 import {
   ChartContainer,
   ChartTooltip,
@@ -30,7 +24,7 @@ import {
 } from '../../../components/ui/chart';
 import useSalesAnalytics from '../hooks/useSalesAnalytics';
 import { useFormatPrice } from '../utils/utils';
-import { format, parseISO } from 'date-fns';
+import MetricGraphCard from './MetricGraphCard';
 
 const chartConfig = {
   sales: {
@@ -46,39 +40,6 @@ const chartConfig = {
     color: 'hsl(var(--chart-3))',
   },
 } satisfies ChartConfig;
-
-const MetricCard = ({
-  icon,
-  title,
-  value,
-  chart,
-  dateRange,
-}: {
-  icon: React.ReactNode;
-  title: string;
-  value: string | number;
-  chart: React.ReactNode;
-  dateRange: { start: string; end: string };
-}) => (
-  <Card>
-    <CardHeader className="pb-2">
-      <CardDescription className="flex items-center gap-2">
-        {icon} {title}
-      </CardDescription>
-      <CardTitle className="text-3xl">{value}</CardTitle>
-    </CardHeader>
-    <CardContent>
-      {chart}
-      <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400 mt-2">
-        <TrendingUp className="h-4 w-4" />
-        <span>
-          {format(parseISO(dateRange.start), 'MMM d')} {'-'}{' '}
-          {format(parseISO(dateRange.end), 'MMM d')}
-        </span>
-      </div>
-    </CardContent>
-  </Card>
-);
 
 const AnalyticsDashboard: React.FC = () => {
   const { formatMessage } = useIntl();
@@ -112,7 +73,7 @@ const AnalyticsDashboard: React.FC = () => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-      <MetricCard
+      <MetricGraphCard
         icon={<CurrencyIcon className="h-4 w-4" />}
         title={formatMessage({
           id: 'total_sales',
@@ -164,7 +125,7 @@ const AnalyticsDashboard: React.FC = () => {
 
       {/* Total Orders Chart */}
 
-      <MetricCard
+      <MetricGraphCard
         icon={<ShoppingCart className="h-4 w-4" />}
         title={formatMessage({
           id: 'total_orders',
@@ -202,7 +163,7 @@ const AnalyticsDashboard: React.FC = () => {
 
       {/* Average Order Value Chart */}
 
-      <MetricCard
+      <MetricGraphCard
         icon={<Calculator className="h-4 w-4" />}
         title={formatMessage({
           id: 'average_order_value',
