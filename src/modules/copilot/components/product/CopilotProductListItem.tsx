@@ -4,15 +4,7 @@ import { useIntl } from 'react-intl';
 import { useFormatPrice } from '../../../common/utils/utils';
 import ImageWithFallback from '../../../common/components/ImageWithFallback';
 import generateUniqueId from '../../../common/utils/getUniqueId';
-import Badge from '../../../common/components/Badge';
-
-const PRODUCT_STATUS = {
-  DRAFT: 'yellow',
-  ACTIVE: 'emerald',
-  DELETED: 'amber',
-  null: 'yellow',
-  undefined: 'yellow',
-};
+import { ProductStatusBadge } from '../../../product/components/ProductStatusBadge';
 
 interface ProductListItemProps {
   product: any;
@@ -28,19 +20,6 @@ const CopilotProductListItem: React.FC<ProductListItemProps> = ({
 
   // Get price from either catalogPrice or commerce.pricing
   const price = catalogPrice || commerce?.pricing?.[0];
-
-  const getStatusLabel = (status: string) => {
-    switch (status) {
-      case 'ACTIVE':
-        return formatMessage({ id: 'active', defaultMessage: 'Active' });
-      case 'DRAFT':
-        return formatMessage({ id: 'draft', defaultMessage: 'Draft' });
-      case 'DELETED':
-        return formatMessage({ id: 'deleted', defaultMessage: 'Deleted' });
-      default:
-        return formatMessage({ id: 'draft', defaultMessage: 'Draft' });
-    }
-  };
 
   return (
     <div
@@ -73,12 +52,7 @@ const CopilotProductListItem: React.FC<ProductListItemProps> = ({
         {text.title}
       </h3>
       <div className="px-4 flex items-center gap-2">
-        <Badge
-          text={getStatusLabel(product?.status)}
-          color={PRODUCT_STATUS[product?.status] || 'yellow'}
-          square
-          dotted
-        />
+        <ProductStatusBadge status={product?.status} />
         <span className="text-xs text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-600 px-2 py-1 rounded">
           {(product.__typename || product.type || 'SimpleProduct').replace(
             'Product',

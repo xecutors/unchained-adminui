@@ -59,6 +59,7 @@ import {
 import {
   renderMultipleOrders,
   renderSalesSummary,
+  renderTopSellingProducts,
 } from './tool-renderers/orderRenderers';
 
 type ToolRenderFn = (data: any) => ReactElement | null;
@@ -67,7 +68,8 @@ const ToolRenderer: Record<ToolName, ToolRenderFn> = {
   shop_info: renderShopInfo,
   generateImage: renderImage,
   ordersSales_summary: renderSalesSummary,
-  monthly_sales_breakdown: renderSalesSummary,
+  ordersSales_monthlyBreakdown: renderSalesSummary,
+  topSelling_products: renderTopSellingProducts,
   ...Object.fromEntries(
     MultipleOrderReturnTool.map((name) => [name, renderMultipleOrders]),
   ),

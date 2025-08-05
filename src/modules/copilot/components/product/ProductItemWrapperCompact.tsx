@@ -5,7 +5,7 @@ import { IProduct } from '../../../../gql/types';
 import ImageWithFallback from '../../../common/components/ImageWithFallback';
 import generateUniqueId from '../../../common/utils/getUniqueId';
 import { useFormatPrice } from '../../../common/utils/utils';
-import Badge from '../../../common/components/Badge';
+import { ProductStatusBadge } from '../../../product/components/ProductStatusBadge';
 
 type Variation = {
   key: string;
@@ -42,25 +42,6 @@ const ProductItemWrapperCompact: React.FC<Props> = ({
   const imageUrl = media?.[0]?.file?.url;
   const totalVariations = product?.variations?.length || 0;
   const totalAssignments = product?.proxy?.assignments?.length ?? 0;
-  const PRODUCT_STATUS = {
-    DRAFT: 'yellow',
-    ACTIVE: 'emerald',
-    DELETED: 'amber',
-    null: 'yellow',
-    undefined: 'yellow',
-  };
-  const getStatusLabel = (status: string) => {
-    switch (status) {
-      case 'ACTIVE':
-        return formatMessage({ id: 'active', defaultMessage: 'Active' });
-      case 'DRAFT':
-        return formatMessage({ id: 'draft', defaultMessage: 'Draft' });
-      case 'DELETED':
-        return formatMessage({ id: 'deleted', defaultMessage: 'Deleted' });
-      default:
-        return formatMessage({ id: 'draft', defaultMessage: 'Draft' });
-    }
-  };
 
   return (
     <div className="relative border rounded-xl p-4 shadow-sm bg-white dark:bg-slate-900 space-y-4">
@@ -84,12 +65,7 @@ const ProductItemWrapperCompact: React.FC<Props> = ({
             {text?.title || 'Untitled Product'}
           </div>
           <div className="flex items-center gap-3 mt-1">
-            <Badge
-              text={getStatusLabel(product?.status)}
-              color={PRODUCT_STATUS[product?.status] || 'yellow'}
-              square
-              dotted
-            />
+            <ProductStatusBadge status={product?.status} />
             <span className="text-xs text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-600 px-2 py-1 rounded">
               {(product.__typename || product.type || 'SimpleProduct').replace(
                 'Product',
