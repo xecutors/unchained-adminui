@@ -50,7 +50,7 @@ const BundleItemCompact: React.FC<BundleItemCompactProps> = ({
               </div>
 
               <div className="text-xs text-slate-500 dark:text-slate-400">
-                {type} ·{formatMessage({ id: 'sku', defaultMessage: 'Sku' })}:{' '}
+                {type} ·{formatMessage({ id: 'sku', defaultMessage: 'SKU' })}:{' '}
                 {sku}
               </div>
 

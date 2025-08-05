@@ -81,7 +81,7 @@ const CurrencyForm = ({
           className="mt-4"
           label={formatMessage({
             id: 'decimals',
-            defaultMessage: 'decimals',
+            defaultMessage: 'Decimals',
           })}
           required
           name="decimals"

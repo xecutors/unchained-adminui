@@ -49,7 +49,7 @@ const OrderFilters = ({ paymentProviders = [], deliveryProviders = [] }) => {
         <h3 className="text-sm font-semibold text-gray-700 dark:text-slate-200 uppercase tracking-wide">
           {formatMessage({
             id: 'filter_by_creation_date',
-            defaultMessage: 'Creation Date',
+            defaultMessage: 'Filter by creation date',
           })}
         </h3>
         <div className="mt-3">
@@ -60,7 +60,7 @@ const OrderFilters = ({ paymentProviders = [], deliveryProviders = [] }) => {
         <MultipleSelect
           label={formatMessage({
             id: 'payment_providers',
-            defaultMessage: 'Payment Providers',
+            defaultMessage: 'Payment providers',
           })}
           tagList={appliedPaymentProvidersFilter}
           onChange={typeChangeHandler('payment_providers')}

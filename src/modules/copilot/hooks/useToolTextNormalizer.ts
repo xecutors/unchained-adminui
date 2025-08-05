@@ -148,6 +148,7 @@ export const AllTools = [
   'ordersSales_summary',
   'ordersSales_monthlyBreakdown',
   'topSelling_products',
+  'orders_topCustomers',
   ...MultipleInterfaceReturnTools,
   ...SingleProviderReturnTools,
   ...MultipleProviderReturnTools,

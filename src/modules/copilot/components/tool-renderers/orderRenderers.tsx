@@ -1,5 +1,6 @@
 import CopilotOrderList from '../order/CopilotOrderList';
 import SalesSummeryReport from '../order/SalesSummaryReport';
+import TopCustomerList from '../order/TopCustomerList';
 import TopSellingProductList from '../order/TopSellingProductList';
 
 export const renderMultipleOrders = (data: any) =>
@@ -10,3 +11,6 @@ export const renderSalesSummary = (data: any) =>
 
 export const renderTopSellingProducts = (data: any) =>
   data ? <TopSellingProductList {...data} /> : null;
+
+export const renderTopCustomers = (data: any) =>
+  data ? <TopCustomerList {...data} /> : null;

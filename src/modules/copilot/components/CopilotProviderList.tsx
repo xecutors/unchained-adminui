@@ -46,7 +46,7 @@ export const CopilotProviderListItem = ({ provider, type }) => {
             </span>
             <span>
               {formatMessage({
-                id: 'configuration',
+                id: 'provider_configuration_items',
                 defaultMessage: 'Config items',
               })}
               : {provider.configuration?.length ?? 0}

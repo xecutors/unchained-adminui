@@ -59,6 +59,7 @@ import {
 import {
   renderMultipleOrders,
   renderSalesSummary,
+  renderTopCustomers,
   renderTopSellingProducts,
 } from './tool-renderers/orderRenderers';
 
@@ -70,6 +71,7 @@ const ToolRenderer: Record<ToolName, ToolRenderFn> = {
   ordersSales_summary: renderSalesSummary,
   ordersSales_monthlyBreakdown: renderSalesSummary,
   topSelling_products: renderTopSellingProducts,
+  orders_topCustomers: renderTopCustomers,
   ...Object.fromEntries(
     MultipleOrderReturnTool.map((name) => [name, renderMultipleOrders]),
   ),
