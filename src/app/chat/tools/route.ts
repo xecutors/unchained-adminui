@@ -1,5 +1,5 @@
 import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
-import { experimental_createMCPClient as createMCPClient } from 'ai';
+import { experimental_createMCPClient as createMCPClient, MCPTransport } from 'ai';
 export const dynamic = 'force-static';
 const unchainedMCPUrl = process.env.MCP_API_URL || 'http://localhost:4010/mcp';
 
@@ -19,16 +19,20 @@ export async function GET(req: Request) {
         timestamp: cacheTimestamp,
       });
     }
-
-    // Fetch fresh tools from MCP
-    const client = await createMCPClient({
-      transport: new StreamableHTTPClientTransport(new URL(unchainedMCPUrl), {
+    const httpTransport = new StreamableHTTPClientTransport(
+      new URL('http://localhost:3000/mcp'),
+      {
         requestInit: {
           headers: {
             Cookie: req.headers.get('cookie') || '',
           },
         },
-      }),
+      }
+    );
+
+    // Fetch fresh tools from MCP
+    const client = await createMCPClient({
+      transport: httpTransport as MCPTransport,
     });
 
     const mcpTools = await client.tools();
@@ -37,7 +41,7 @@ export async function GET(req: Request) {
     const tools = Object.entries(mcpTools).map(([name, tool]) => ({
       name,
       description: tool.description || '',
-      parameters: tool.parameters || {},
+      parameters: tool.inputSchema || {},
       // Add category based on tool name patterns
       category: categorize(name),
     }));
