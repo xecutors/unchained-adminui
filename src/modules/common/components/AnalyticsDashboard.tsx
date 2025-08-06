@@ -55,7 +55,7 @@ const AnalyticsDashboard: React.FC = () => {
   const { formatPrice } = useFormatPrice();
   if (loading) {
     return (
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
         {[1, 2, 3].map((i) => (
           <Card key={i} className="animate-pulse">
             <CardHeader className="pb-2">
@@ -72,7 +72,7 @@ const AnalyticsDashboard: React.FC = () => {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
       <MetricGraphCard
         icon={<CurrencyIcon className="h-4 w-4" />}
         title={formatMessage({

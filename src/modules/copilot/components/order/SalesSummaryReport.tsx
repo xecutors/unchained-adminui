@@ -46,7 +46,7 @@ const SalesSummeryReport = ({
   } satisfies ChartConfig;
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
       <MetricGraphCard
         icon={<CurrencyIcon className="h-4 w-4" />}
         title={formatMessage({

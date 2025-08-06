@@ -167,7 +167,7 @@ const SimpleDashboard: React.FC = () => {
 
   if (error) {
     return (
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
         <Card className="col-span-2">
           <CardContent className="p-6">
             <p className="text-rose-600 dark:text-rose-400">
