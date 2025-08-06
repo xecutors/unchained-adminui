@@ -2197,6 +2197,9 @@
   "select_language": {
     "defaultMessage": "Select Language"
   },
+  "select_option": {
+    "defaultMessage": "Select an option"
+  },
   "select_options_toggle": {
     "defaultMessage": "Change {type} status"
   },

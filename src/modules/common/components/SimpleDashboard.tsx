@@ -287,8 +287,8 @@ const SimpleDashboard: React.FC = () => {
                     x2="0"
                     y2="1"
                   >
-                    <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.4} />
-                    <stop offset="95%" stopColor="#3b82f6" stopOpacity={0.05} />
+                    <stop offset="0%" stopColor="#3b82f6" stopOpacity={0.8} />
+                    <stop offset="100%" stopColor="#3b82f6" stopOpacity={0.1} />
                   </linearGradient>
                 </defs>
                 <XAxis
@@ -308,9 +308,9 @@ const SimpleDashboard: React.FC = () => {
                 />
                 <Area
                   dataKey="sales"
-                  type="monotone"
+                  type="natural"
                   stroke="#3b82f6"
-                  strokeWidth={2}
+                  strokeWidth={3}
                   fill="url(#salesGradient)"
                   dot={false}
                 />
@@ -373,8 +373,8 @@ const SimpleDashboard: React.FC = () => {
                     x2="0"
                     y2="1"
                   >
-                    <stop offset="5%" stopColor="#10b981" stopOpacity={0.4} />
-                    <stop offset="95%" stopColor="#10b981" stopOpacity={0.05} />
+                    <stop offset="0%" stopColor="#10b981" stopOpacity={0.8} />
+                    <stop offset="100%" stopColor="#10b981" stopOpacity={0.1} />
                   </linearGradient>
                 </defs>
                 <XAxis
@@ -394,9 +394,9 @@ const SimpleDashboard: React.FC = () => {
                 />
                 <Area
                   dataKey="orders"
-                  type="monotone"
+                  type="natural"
                   stroke="#10b981"
-                  strokeWidth={2}
+                  strokeWidth={3}
                   fill="url(#ordersGradient)"
                   dot={false}
                 />
@@ -460,8 +460,8 @@ const SimpleDashboard: React.FC = () => {
                     x2="0"
                     y2="1"
                   >
-                    <stop offset="5%" stopColor="#8b5cf6" stopOpacity={0.4} />
-                    <stop offset="95%" stopColor="#8b5cf6" stopOpacity={0.05} />
+                    <stop offset="0%" stopColor="#8b5cf6" stopOpacity={0.8} />
+                    <stop offset="100%" stopColor="#8b5cf6" stopOpacity={0.1} />
                   </linearGradient>
                 </defs>
                 <XAxis
@@ -481,9 +481,9 @@ const SimpleDashboard: React.FC = () => {
                 />
                 <Area
                   dataKey="avgOrderValue"
-                  type="monotone"
+                  type="natural"
                   stroke="#8b5cf6"
-                  strokeWidth={2}
+                  strokeWidth={3}
                   fill="url(#avgOrderGradient)"
                   dot={false}
                 />

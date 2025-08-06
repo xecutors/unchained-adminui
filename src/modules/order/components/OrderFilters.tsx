@@ -44,9 +44,9 @@ const OrderFilters = ({ paymentProviders = [], deliveryProviders = [] }) => {
   };
 
   return (
-    <div className="space-y-8 p-6 dark:bg-slate-900">
+    <div className="space-y-6 dark:bg-slate-900">
       <div>
-        <h3 className="text-sm font-semibold text-gray-700 dark:text-slate-200 uppercase tracking-wide">
+        <h3 className="text-sm font-semibold text-gray-700 dark:text-slate-200 uppercase tracking-wide mb-3">
           {formatMessage({
             id: 'filter_by_creation_date',
             defaultMessage: 'Filter by creation date',
@@ -56,6 +56,7 @@ const OrderFilters = ({ paymentProviders = [], deliveryProviders = [] }) => {
           <DateRangeFilterInput />
         </div>
       </div>
+      
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <MultipleSelect
           label={formatMessage({
@@ -72,7 +73,7 @@ const OrderFilters = ({ paymentProviders = [], deliveryProviders = [] }) => {
         <MultipleSelect
           label={formatMessage({
             id: 'delivery_providers',
-            defaultMessage: 'Delivery Providers',
+            defaultMessage: 'Delivery providers',
           })}
           tagList={appliedDeliveryProvidersFilter}
           onChange={typeChangeHandler('delivery_providers')}
@@ -82,9 +83,10 @@ const OrderFilters = ({ paymentProviders = [], deliveryProviders = [] }) => {
           }))}
         />
       </div>
+      
       <div>
-        <h3 className="text-sm font-semibold text-gray-700 dark:text-slate-200 uppercase tracking-wide mb-2">
-          {formatMessage({ id: 'status', defaultMessage: 'Status' })}
+        <h3 className="text-sm font-semibold text-gray-700 dark:text-slate-200 uppercase tracking-wide mb-3">
+          {formatMessage({ id: 'order_status', defaultMessage: 'Order status' })}
         </h3>
         <div className="flex flex-wrap gap-3">
           <StatusFilter

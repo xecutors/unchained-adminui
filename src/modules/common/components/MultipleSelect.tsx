@@ -28,6 +28,11 @@ const MultipleSelect = ({ tagList: tags, onChange, options, label }) => {
 
   return (
     <div className="mt-2 flex-col sm:mt-0">
+      {label && (
+        <h3 className="text-sm font-semibold text-gray-700 dark:text-slate-200 uppercase tracking-wide mb-3">
+          {label}
+        </h3>
+      )}
       <div>
         {tagList.map((tag) => (
           <Badge
@@ -49,8 +54,8 @@ const MultipleSelect = ({ tagList: tags, onChange, options, label }) => {
             >
               <option value="">
                 {formatMessage({
-                  id: 'type',
-                  defaultMessage: 'Type',
+                  id: 'select_option',
+                  defaultMessage: 'Select an option',
                 })}
               </option>
               {options.map((option) => (

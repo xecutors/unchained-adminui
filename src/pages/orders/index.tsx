@@ -109,31 +109,35 @@ const Orders = () => {
             active={includeCarts}
           />
         </ListHeader>
-        <OrderFilters
-          deliveryProviders={deliveryProviderType}
-          paymentProviders={paymentProviderType}
-        />
-        <SearchWithTags
-          onSearchChange={setQueryString}
-          defaultSearchValue={queryString}
-        >
-          <InfiniteScroll
-            loading={loading}
-            hasMore={hasMore}
-            onLoadMore={loadMore}
+        <div className="mt-5 pt-5">
+          <OrderFilters
+            deliveryProviders={deliveryProviderType}
+            paymentProviders={paymentProviderType}
+          />
+        </div>
+        <div className="mt-5 pt-5">
+          <SearchWithTags
+            onSearchChange={setQueryString}
+            defaultSearchValue={queryString}
           >
-            {loading && orders?.length === 0 ? (
-              <Loading />
-            ) : (
-              <OrderList
-                loading={loading && orders?.length > 0}
-                orders={orders}
-                showUser
-                sortable
-              />
-            )}
-          </InfiniteScroll>
-        </SearchWithTags>
+            <InfiniteScroll
+              loading={loading}
+              hasMore={hasMore}
+              onLoadMore={loadMore}
+            >
+              {loading && orders?.length === 0 ? (
+                <Loading />
+              ) : (
+                <OrderList
+                  loading={loading && orders?.length > 0}
+                  orders={orders}
+                  showUser
+                  sortable
+                />
+              )}
+            </InfiniteScroll>
+          </SearchWithTags>
+        </div>
       </div>
     </>
   );
