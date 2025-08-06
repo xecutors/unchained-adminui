@@ -3,6 +3,7 @@ import { useChat } from '@ai-sdk/react';
 import { ChatMessage } from '../types';
 import { chatUtils } from '../utils/chatUtils';
 import useLocalStorage from '../../common/hooks/useLocalStorage';
+import { DefaultChatTransport } from 'ai';
 
 function formatFileLink(url: string): string {
   const extension = url.split('.').pop()?.toLowerCase().split('?')[0] || '';
@@ -28,21 +29,21 @@ export const useChatManager = () => {
 
   const {
     messages,
-    input,
+    /* input,
     handleInputChange,
-    isLoading,
+    isLoading, */
     error,
+    resumeStream,
     status,
     setMessages,
     stop,
-    reload,
-    append,
+    regenerate: reload,
+    /* reload,
+    append, */
+    sendMessage,
   } = useChat({
-    streamProtocol: 'data',
-    maxSteps: 5,
-    credentials: 'include',
-    api: process.env.NEXT_PUBLIC_CHAT_URL || '/chat',
-    initialMessages: chatHistory,
+    transport: new DefaultChatTransport({ api: process.env.NEXT_PUBLIC_CHAT_URL || '/chat', credentials: 'include' }),
+    messages: chatHistory,
     onError: (error) => {
       console.error('Chat error:', error);
 
@@ -101,26 +102,23 @@ export const useChatManager = () => {
     setMessages((prev) => [...prev, interruptionMessage]);
   };
   const handleSubmit = async (
-    e: React.FormEvent<HTMLFormElement>,
+    inputText: string,
     imageUrls?: string[],
   ) => {
-    e.preventDefault();
+
 
     try {
-      const messageText = input.trim();
+
       const assets = imageUrls?.map(formatFileLink).join('\n') ?? '';
 
-      const messageContent = [messageText, assets].filter(Boolean).join('\n');
-      handleInputChange({
-        target: { value: '' },
-      } as React.ChangeEvent<HTMLInputElement>);
+      const messageContent = [inputText, assets].filter(Boolean).join('\n');
 
-      if (messageContent) {
-        await append({
-          id: `msg-${Date.now()}`,
-          role: 'user',
-          content: messageContent,
-        });
+
+      if (inputText) {
+        sendMessage({
+          text: messageContent,
+        }
+        );
       }
     } catch (error) {
       console.error('Error in handleSubmit:', error);
@@ -155,16 +153,20 @@ export const useChatManager = () => {
 
   return {
     messages: messages as ChatMessage[],
-    input,
+    /* input,
     handleInputChange,
+    
+    isLoading, */
     handleSubmit,
-    isLoading,
     error,
     status,
     clearHistory,
     stop,
     addInterruptionMessage,
+    sendMessage,
     reload,
-    append,
+    /*
+   append, */
+    resumeStream
   };
 };

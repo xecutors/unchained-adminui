@@ -6,15 +6,15 @@ import {
   XMarkIcon,
   StopIcon,
 } from '@heroicons/react/24/outline';
-import { useChatContext } from '..';
 import useLocalStorage from '../../common/hooks/useLocalStorage';
+import { useChatContext } from '../ChatContext';
 const CopilotInput: React.FC = () => {
+  const [input, setInput] = useState('');
   const {
-    input,
-    handleInputChange,
-    handleSubmit,
+    sendMessage,    
     status,
     stop,
+    handleSubmit,
     addInterruptionMessage,
   } = useChatContext();
   const [inputHistory, setInputHistory] = useLocalStorage(
@@ -51,7 +51,7 @@ const CopilotInput: React.FC = () => {
         setHistoryIndex(-1);
         const imgs = [...imageUrls];
         setImageUrls([]);
-        await handleSubmit(e, imgs);
+         handleSubmit(input, imgs);
       }
     } catch (e) {
       // Don't log authentication errors to console as they're handled in the UI
@@ -103,9 +103,7 @@ const CopilotInput: React.FC = () => {
   };
 
   const setInputValue = (value: string) =>
-    handleInputChange({
-      target: { value },
-    } as React.ChangeEvent<HTMLInputElement>);
+    setInput(value);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
@@ -146,7 +144,7 @@ const CopilotInput: React.FC = () => {
         <div className="flex items-center gap-2">
           <input
             value={input}
-            onChange={handleInputChange}
+            onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="Type your message..."
             className="flex-1 border-0 bg-slate-50 dark:bg-slate-700 dark:text-slate-200 dark:placeholder-slate-400 rounded-md px-4 py-2 focus:ring-2 focus:ring-slate-400"

@@ -14,7 +14,7 @@ import CopilotErrorState from './CopilotErrorState';
 const Copilot = () => {
   const { formatMessage } = useIntl();
   const chatContext = useChatContext();
-  const { messages, status, reload, append } = chatContext;
+  const { messages, status, reload, sendMessage } = chatContext;
   const { chatEnabled } = useChatEndpointChecker();
   const { currentUser } = useCurrentUser();
   const {
@@ -34,11 +34,9 @@ const Copilot = () => {
     });
 
     try {
-      await append({
-        id: `intro-message`,
-        role: 'user',
-        content: introMessage,
-      });
+       sendMessage(
+        {  text: introMessage },
+      );
     } catch (error) {
       console.error('Failed to append introduction:', error);
     }

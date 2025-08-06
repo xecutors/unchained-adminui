@@ -1,8 +1,7 @@
 import {
   ImageModel,
-  InvalidToolArgumentsError,
   NoSuchToolError,
-  ToolExecutionError,
+  InvalidArgumentError,
   streamText,
 } from 'ai';
 
@@ -14,10 +13,11 @@ export interface ChatConfiguration extends StreamTextParams {
 }
 
 export const errorHandler = (error: any): string => {
+  console.log(error)
   if (NoSuchToolError.isInstance(error)) return 'NoSuchToolError';
-  if (InvalidToolArgumentsError.isInstance(error))
+  if (InvalidArgumentError.isInstance(error))
     return 'InvalidToolArgumentsError';
-  if (ToolExecutionError.isInstance(error)) return 'ToolExecutionError';
+  /* if (ToolExecutionError.isInstance(error)) return 'ToolExecutionError'; */
   if (error?.message?.toLowerCase()?.includes('forbidden'))
     return 'NetworkError';
   if (error?.message?.toLowerCase()?.includes('limit')) return 'LimitExceeded';

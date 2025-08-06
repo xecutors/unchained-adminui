@@ -8,8 +8,6 @@ export interface ChatMessage {
 
 export interface ChatContextType {
   messages: ChatMessage[];
-  input: string;
-  handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleSubmit: (
     e: React.FormEvent<HTMLFormElement>,
     attachments?: string[],
@@ -20,8 +18,9 @@ export interface ChatContextType {
   stop: () => void;
   addInterruptionMessage: (currentStatus: string) => void;
   status: 'error' | 'submitted' | 'streaming' | 'ready';
+
+  sendMessage: (param: { text: string }) => void
   reload: () => void;
-  append: (message: any) => void;
 }
 
 export type ChatStatus = 'error' | 'submitted' | 'streaming' | 'ready';

@@ -21,17 +21,19 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
 
   const value: ChatContextType = {
     messages: chatManager.messages,
-    input: chatManager.input,
+    /* input: chatManager.input,
     handleInputChange: chatManager.handleInputChange,
+    
+    isLoading: chatManager.isLoading, */
     handleSubmit: chatManager.handleSubmit,
-    isLoading: chatManager.isLoading,
     error: chatManager.error,
     clearHistory: chatManager.clearHistory,
     stop: chatManager.stop,
     addInterruptionMessage: chatManager.addInterruptionMessage,
     status: chatManager.status,
-    reload: chatManager.reload,
-    append: chatManager.append,
+     reload: chatManager.reload,
+    /*append: chatManager.append, */
+    sendMessage: chatManager.sendMessage,
   };
 
   return <ChatContext.Provider value={value}>{children}</ChatContext.Provider>;
