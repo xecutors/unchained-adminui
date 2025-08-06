@@ -71,6 +71,7 @@ const ShopSetupChecklist: React.FC<ShopSetupChecklistProps> = ({
     return null;
   }
 
+  // Show success message only once when setup is complete
   if (isFullyConfigured && !isSetupMessageDismissed) {
     return (
       <div
@@ -111,6 +112,11 @@ const ShopSetupChecklist: React.FC<ShopSetupChecklistProps> = ({
         </div>
       </div>
     );
+  }
+
+  // Hide entire setup checklist if setup is complete and has been acknowledged
+  if (isFullyConfigured && isSetupMessageDismissed) {
+    return null;
   }
 
   const getCategoryProgress = (steps: Step[]) => {
