@@ -51,7 +51,7 @@ const ShopInfoCard = ({ shopInfo }: { shopInfo: ShopInfo }) => {
   ];
 
   return (
-    <div className="flex items-center gap-4 p-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
+    <div className="mt-5 flex gap-4 p-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
       <div className="w-12 h-12 flex-shrink-0 bg-slate-100 dark:bg-slate-700 rounded-md flex items-center justify-center text-blue-500">
         <InformationCircleIcon className="w-6 h-6" />
       </div>

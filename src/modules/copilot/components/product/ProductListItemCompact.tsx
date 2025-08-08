@@ -4,16 +4,7 @@ import { useIntl } from 'react-intl';
 import { useFormatPrice } from '../../../common/utils/utils';
 import ImageWithFallback from '../../../common/components/ImageWithFallback';
 import generateUniqueId from '../../../common/utils/getUniqueId';
-import Badge from '../../../common/components/Badge';
-
-const PRODUCT_STATUS = {
-  DRAFT: 'yellow',
-  ACTIVE: 'emerald',
-  DELETED: 'amber',
-  null: 'yellow',
-  undefined: 'yellow',
-};
-
+import { ProductStatusBadge } from '../../../product/components/ProductStatusBadge';
 interface ProductListItemCompactProps {
   product: any;
 }
@@ -28,19 +19,6 @@ const ProductListItemCompact: React.FC<ProductListItemCompactProps> = ({
 
   // Get price from either catalogPrice or commerce.pricing
   const price = catalogPrice || commerce?.pricing?.[0];
-
-  const getStatusLabel = (status: string) => {
-    switch (status) {
-      case 'ACTIVE':
-        return formatMessage({ id: 'active', defaultMessage: 'Active' });
-      case 'DRAFT':
-        return formatMessage({ id: 'draft', defaultMessage: 'Draft' });
-      case 'DELETED':
-        return formatMessage({ id: 'deleted', defaultMessage: 'Deleted' });
-      default:
-        return formatMessage({ id: 'draft', defaultMessage: 'Draft' });
-    }
-  };
 
   return (
     <div className="flex items-center gap-4 p-3 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-md transition-shadow duration-200 max-w-full overflow-hidden">
@@ -65,12 +43,7 @@ const ProductListItemCompact: React.FC<ProductListItemCompactProps> = ({
           {text.title || 'Untitled Product'}
         </h3>
         <div className="flex items-center gap-3 mt-1">
-          <Badge
-            text={getStatusLabel(product?.status)}
-            color={PRODUCT_STATUS[product?.status] || 'yellow'}
-            square
-            dotted
-          />
+          <ProductStatusBadge status={product?.status} />
           <span className="text-xs text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-600 px-2 py-1 rounded">
             {(product.__typename || product.type || 'SimpleProduct').replace(
               'Product',

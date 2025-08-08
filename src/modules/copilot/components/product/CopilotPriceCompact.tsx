@@ -58,7 +58,10 @@ const CopilotPriceCompact: React.FC<Props> = ({
             </span>
             <span className="text-xs text-slate-500 dark:text-slate-400">
               {price.isNetPrice
-                ? formatMessage({ id: 'net_price', defaultMessage: 'Net' })
+                ? formatMessage({
+                    id: 'net_price',
+                    defaultMessage: 'Net Price',
+                  })
                 : formatMessage({ id: 'gross_price', defaultMessage: 'Gross' })}
               {' · '}
               {price.isTaxable

@@ -6,6 +6,7 @@ import {
   ChevronUpIcon,
   RocketLaunchIcon,
   CheckCircleIcon,
+  XMarkIcon,
 } from '@heroicons/react/24/outline';
 import useShopConfiguration from '../../common/hooks/useShopConfiguration';
 import ProgressIndicator from './ProgressIndicator';
@@ -28,6 +29,13 @@ const ShopSetupChecklist: React.FC<ShopSetupChecklistProps> = ({
     commerce: false,
     content: false,
   });
+  const [isSetupMessageDismissed, setIsSetupMessageDismissed] = useState(() => {
+    // Check if the setup complete message was already dismissed
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('shop_setup_message_dismissed') === 'true';
+    }
+    return false;
+  });
   const { isFullyConfigured } = configuration;
 
   const toggleSection = (section: keyof typeof expandedSections) => {
@@ -35,6 +43,13 @@ const ShopSetupChecklist: React.FC<ShopSetupChecklistProps> = ({
       ...prev,
       [section]: !prev[section],
     }));
+  };
+
+  const handleDismissSetupMessage = () => {
+    setIsSetupMessageDismissed(true);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('shop_setup_message_dismissed', 'true');
+    }
   };
 
   useEffect(() => {
@@ -56,7 +71,8 @@ const ShopSetupChecklist: React.FC<ShopSetupChecklistProps> = ({
     return null;
   }
 
-  if (isFullyConfigured) {
+  // Show success message only once when setup is complete
+  if (isFullyConfigured && !isSetupMessageDismissed) {
     return (
       <div
         className={classNames(
@@ -83,9 +99,24 @@ const ShopSetupChecklist: React.FC<ShopSetupChecklistProps> = ({
               })}
             </p>
           </div>
+          <button
+            onClick={handleDismissSetupMessage}
+            className="flex-shrink-0 p-1 rounded-md hover:bg-emerald-100 dark:hover:bg-emerald-800/50 transition-colors"
+            title={formatMessage({
+              id: 'dismiss',
+              defaultMessage: 'Dismiss',
+            })}
+          >
+            <XMarkIcon className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+          </button>
         </div>
       </div>
     );
+  }
+
+  // Hide entire setup checklist if setup is complete and has been acknowledged
+  if (isFullyConfigured && isSetupMessageDismissed) {
+    return null;
   }
 
   const getCategoryProgress = (steps: Step[]) => {

@@ -46,7 +46,7 @@ export const CopilotProviderListItem = ({ provider, type }) => {
             </span>
             <span>
               {formatMessage({
-                id: 'configuration',
+                id: 'provider_configuration_items',
                 defaultMessage: 'Config items',
               })}
               : {provider.configuration?.length ?? 0}
@@ -76,7 +76,6 @@ export const CopilotProviderListItem = ({ provider, type }) => {
 };
 
 const CopilotProviderList = ({ providers, type }) => {
-  console.log(providers);
   if (!providers?.length) return null;
   return (
     <div className="space-y-4">

@@ -142,7 +142,13 @@ export const MultipleInterfaceReturnTools = [
   'warehousingInterfaces_list',
 ] as const;
 
+export const MultipleOrderReturnTool = ['orders_list'] as const;
+
 export const AllTools = [
+  'ordersSales_summary',
+  'ordersSales_monthlyBreakdown',
+  'topSelling_products',
+  'orders_topCustomers',
   ...MultipleInterfaceReturnTools,
   ...SingleProviderReturnTools,
   ...MultipleProviderReturnTools,
@@ -164,7 +170,9 @@ export const AllTools = [
   ...ProductBundleReturnTools,
   ...PriceReturnTools,
   ...OtherTools,
+  ...MultipleOrderReturnTool,
 ] as const;
+
 export type ToolName = (typeof AllTools)[number];
 const useToolTextNormalizer = () => {
   const { formatMessage } = useIntl();

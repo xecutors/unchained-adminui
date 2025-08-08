@@ -49,18 +49,32 @@ import {
   MultipleProviderReturnTools,
   SingleProviderReturnTools,
   MultipleInterfaceReturnTools,
+  MultipleOrderReturnTool,
 } from '../hooks/useToolTextNormalizer';
 import {
   renderMultipleInterfaces,
   renderMultipleProviders,
   renderSingleProvider,
 } from './tool-renderers/providerRenderes';
+import {
+  renderMultipleOrders,
+  renderSalesSummary,
+  renderTopCustomers,
+  renderTopSellingProducts,
+} from './tool-renderers/orderRenderers';
 
 type ToolRenderFn = (data: any) => ReactElement | null;
 
 const ToolRenderer: Record<ToolName, ToolRenderFn> = {
   shop_info: renderShopInfo,
   generateImage: renderImage,
+  ordersSales_summary: renderSalesSummary,
+  ordersSales_monthlyBreakdown: renderSalesSummary,
+  topSelling_products: renderTopSellingProducts,
+  orders_topCustomers: renderTopCustomers,
+  ...Object.fromEntries(
+    MultipleOrderReturnTool.map((name) => [name, renderMultipleOrders]),
+  ),
   ...Object.fromEntries(
     MultipleInterfaceReturnTools.map((name) => [
       name,

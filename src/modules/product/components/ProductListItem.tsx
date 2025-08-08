@@ -12,12 +12,7 @@ import DangerMessage from '../../modal/components/DangerMessage';
 
 import useUpdateProduct from '../hooks/useUpdateProduct';
 import useRemoveProduct from '../hooks/useRemoveProduct';
-
-const PRODUCT_STATUS = {
-  DRAFT: 'yellow',
-  ACTIVE: 'emerald',
-  DELETED: 'amber',
-};
+import { ProductStatusBadge } from './ProductStatusBadge';
 
 const ProductListItem = ({
   product,
@@ -66,19 +61,6 @@ const ProductListItem = ({
         })}
       />,
     );
-  };
-
-  const getStatusLabel = (status: string) => {
-    switch (status) {
-      case 'ACTIVE':
-        return formatMessage({ id: 'active', defaultMessage: 'Active' });
-      case 'DRAFT':
-        return formatMessage({ id: 'draft', defaultMessage: 'Draft' });
-      case 'DELETED':
-        return formatMessage({ id: 'deleted', defaultMessage: 'Deleted' });
-      default:
-        return formatMessage({ id: 'draft', defaultMessage: 'Draft' });
-    }
   };
   const productUrl = `/products?slug=${generateUniqueId(product)}`;
   const TypeName = (
@@ -155,20 +137,10 @@ const ProductListItem = ({
       <Table.Cell className="whitespace-nowrap px-6">
         {product?.status !== 'DELETED' ? (
           <Link href={productUrl} className="block">
-            <Badge
-              text={getStatusLabel(product?.status)}
-              color={PRODUCT_STATUS[product?.status]}
-              square
-              dotted
-            />
+            <ProductStatusBadge status={product?.status} />
           </Link>
         ) : (
-          <Badge
-            text={getStatusLabel(product?.status)}
-            color={PRODUCT_STATUS[product?.status]}
-            square
-            dotted
-          />
+          <ProductStatusBadge status={product?.status} />
         )}
       </Table.Cell>
 

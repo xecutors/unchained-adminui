@@ -17,16 +17,24 @@ import {
 import SearchWithTags from '../../modules/common/components/SearchWithTags';
 import OrderDetailPage from './OrderDetailPage';
 import AnimatedCounter from '../../modules/common/components/AnimatedCounter';
+import OrderFilters from '../../modules/order/components/OrderFilters';
+import {
+  IDeliveryProviderType,
+  IOrderStatus,
+  IPaymentProviderType,
+} from '../../gql/types';
+import usePaymentProviderTypes from '../../modules/payment-providers/hooks/usePaymentProviderTypes';
+import useDeliveryProviderTypes from '../../modules/delivery-provider/hooks/useDeliveryProviderTypes';
 
 const Orders = () => {
   const { formatMessage } = useIntl();
   const { query, push } = useRouter();
-
+  const { paymentProviderType } = usePaymentProviderTypes();
+  const { deliveryProviderType } = useDeliveryProviderTypes();
   const limit = parseInt(query?.limit as string, 10) || DefaultLimit;
   const offset = parseInt(query?.skip as string, 10) || 0;
   const includeCarts = query?.includeCarts === 'true';
   const sort = query?.sort || '';
-
   const { queryString, orderId, ...restQuery } = query;
 
   const setQueryString = (searchString) => {
@@ -49,8 +57,18 @@ const Orders = () => {
     queryString: queryString as string,
     offset,
     sort: sortKeys,
+    dateRange:
+      query?.start || query?.end
+        ? { start: query?.start, end: query?.end }
+        : null,
+    status: (query?.status as string)?.split(',') as IOrderStatus[],
+    deliveryProviderTypes: (query?.delivery_providers as string)?.split(
+      ',',
+    ) as IDeliveryProviderType[],
+    paymentProviderTypes: (query?.payment_providers as string)?.split(
+      ',',
+    ) as IPaymentProviderType[],
   });
-
   if (orderId) return <OrderDetailPage orderId={orderId} />;
 
   const headerText =
@@ -91,28 +109,35 @@ const Orders = () => {
             active={includeCarts}
           />
         </ListHeader>
-
-        <SearchWithTags
-          onSearchChange={setQueryString}
-          defaultSearchValue={queryString}
-        >
-          <InfiniteScroll
-            loading={loading}
-            hasMore={hasMore}
-            onLoadMore={loadMore}
+        <div className="mt-5 pt-5">
+          <OrderFilters
+            deliveryProviders={deliveryProviderType}
+            paymentProviders={paymentProviderType}
+          />
+        </div>
+        <div className="mt-5 pt-5">
+          <SearchWithTags
+            onSearchChange={setQueryString}
+            defaultSearchValue={queryString}
           >
-            {loading && orders?.length === 0 ? (
-              <Loading />
-            ) : (
-              <OrderList
-                loading={loading && orders?.length > 0}
-                orders={orders}
-                showUser
-                sortable
-              />
-            )}
-          </InfiniteScroll>
-        </SearchWithTags>
+            <InfiniteScroll
+              loading={loading}
+              hasMore={hasMore}
+              onLoadMore={loadMore}
+            >
+              {loading && orders?.length === 0 ? (
+                <Loading />
+              ) : (
+                <OrderList
+                  loading={loading && orders?.length > 0}
+                  orders={orders}
+                  showUser
+                  sortable
+                />
+              )}
+            </InfiniteScroll>
+          </SearchWithTags>
+        </div>
       </div>
     </>
   );

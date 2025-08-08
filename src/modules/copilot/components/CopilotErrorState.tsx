@@ -17,7 +17,7 @@ const CopilotErrorState = ({ onRetry }: { onRetry: () => void }) => {
           onClick={onRetry}
           className="mt-6 bg-white hover:bg-slate-950 text-slate-950 hover:text-white dark:hover:text-white rounded-sm shadow-sm hover:shadow-lg py-2 px-4 border border-slate-950 dark:border-slate-200 hover:border-transparent"
         >
-          {formatMessage({ id: 'retry', defaultMessage: 'Retry' })}
+          {formatMessage({ id: 'retry_prompt', defaultMessage: 'Retry' })}
         </button>
       </div>
     </div>

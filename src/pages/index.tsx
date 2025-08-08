@@ -5,6 +5,7 @@ import SystemInfoPanel from '../modules/common/components/SystemInfoPanel';
 import DashboardShortcutCard from '../modules/common/components/DashboardShortcutCard';
 import useShopConfiguration from '../modules/common/hooks/useShopConfiguration';
 import DashboardMetrics from '../modules/common/components/DashboardMetrics';
+import AnalyticsDashboard from '../modules/common/components/AnalyticsDashboard';
 
 const HomePage = () => {
   const { configuration } = useShopConfiguration();
@@ -24,6 +25,7 @@ const HomePage = () => {
       <div className="mx-auto py-6">
         <ShopSetupChecklist className="mb-8" />
         {isFullyConfigured && <DashboardMetrics />}
+        <AnalyticsDashboard />
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {isFullyConfigured && (
             <div className="bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 p-6">
