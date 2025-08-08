@@ -75,9 +75,9 @@ const useOrders = ({
       sort: sortOptions.length
         ? [...sortOptions, { key: 'created', value: ISortDirection.Desc }]
         : [
-          { key: 'ordered', value: ISortDirection.Desc },
-          { key: 'created', value: ISortDirection.Desc },
-        ],
+            { key: 'ordered', value: ISortDirection.Desc },
+            { key: 'created', value: ISortDirection.Desc },
+          ],
     },
   });
   const orders = data?.orders || [];

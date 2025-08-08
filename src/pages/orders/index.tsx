@@ -31,11 +31,16 @@ const Orders = () => {
   const { query, push } = useRouter();
 
   const { paymentProviders } = usePaymentProviders();
-  const {deliveryProviders} = useDeliveryProviders()
-const paymentInterfaces = paymentProviders.map((provider) => ({ value: provider._id,  label: provider.interface.label}))
-const deliveryInterfaces = deliveryProviders.map((provider) => ({ value: provider._id,  label: provider.interface.label}))
-  
-  
+  const { deliveryProviders } = useDeliveryProviders();
+  const paymentInterfaces = paymentProviders.map((provider) => ({
+    value: provider._id,
+    label: provider.interface.label,
+  }));
+  const deliveryInterfaces = deliveryProviders.map((provider) => ({
+    value: provider._id,
+    label: provider.interface.label,
+  }));
+
   const limit = parseInt(query?.limit as string, 10) || DefaultLimit;
   const offset = parseInt(query?.skip as string, 10) || 0;
   const includeCarts = query?.includeCarts === 'true';
@@ -115,7 +120,7 @@ const deliveryInterfaces = deliveryProviders.map((provider) => ({ value: provide
           />
         </ListHeader>
         <div className="mt-5 pt-5">
-          <OrderFilters          
+          <OrderFilters
             deliveryProviders={deliveryInterfaces}
             paymentProviders={paymentInterfaces}
           />
