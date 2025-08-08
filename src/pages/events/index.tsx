@@ -67,6 +67,7 @@ const Events = () => {
   });
 
   const { eventsType } = useEventTypes();
+  console.log(eventsType);
 
   if (eventId) return <EventDetailPage eventId={eventId} />;
 

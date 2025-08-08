@@ -23,7 +23,11 @@ const EventQuery = gql`
     ) {
       ...EventFragment
     }
-    eventsCount
+    eventsCount(
+      types: $types
+
+      queryString: $queryString
+    )
   }
   ${EventFragment}
 `;

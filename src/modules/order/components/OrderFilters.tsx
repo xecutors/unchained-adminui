@@ -6,6 +6,7 @@ import StatusFilter from '../../common/components/StatusFilter';
 import { extractQuery } from '../../common/utils/normalizeFilterKeys';
 import { normalizeQuery } from '../../common/utils/utils';
 import DateRangeFilterInput from '../../common/components/DateRangeFilterInput';
+import { useMemo } from 'react';
 
 const ORDER_STATUSES = ['PENDING', 'REJECTED', 'CONFIRMED', 'FULLFILLED'];
 
@@ -21,7 +22,7 @@ const OrderFilters = ({ paymentProviders = [], deliveryProviders = [] }) => {
   );
   const typeChangeHandler = (filterKey) => (selectedTypes) => {
     const { [filterKey]: _, ...rest } = router.query;
-
+    console.log(selectedTypes);
     if (selectedTypes?.length) {
       router.push({
         query: normalizeQuery(rest, selectedTypes.join(','), filterKey),
@@ -42,18 +43,33 @@ const OrderFilters = ({ paymentProviders = [], deliveryProviders = [] }) => {
     }
   };
 
-  const normalizedAppliedPaymentProvidersFilter =
-    appliedPaymentProvidersFilter.map((providerId) => {
-      const provider = paymentProviders.find((p) => p.value === providerId);
-      return provider?.label;
-    });
+  const normalizedAppliedPaymentProvidersFilter = useMemo(
+    () =>
+      appliedPaymentProvidersFilter
+        .map((providerId) => {
+          const provider = paymentProviders.find((p) => p.value === providerId);
+          return provider?.label;
+        })
+        .filter(Boolean),
+    [paymentProviders],
+  );
 
-  const normalizedAppliedDeliveryProvidersFilter =
-    appliedDeliveryProvidersFilter.map((providerId) => {
-      const provider = deliveryProviders.find((p) => p.value === providerId);
-      return provider?.label;
-    });
-
+  const normalizedAppliedDeliveryProvidersFilter = useMemo(
+    () =>
+      appliedDeliveryProvidersFilter
+        .map((providerId) => {
+          const provider = deliveryProviders.find(
+            (p) => p.value === providerId,
+          );
+          return provider?.label;
+        })
+        .filter(Boolean),
+    [deliveryProviders],
+  );
+  console.log({
+    normalizedAppliedPaymentProvidersFilter,
+    normalizedAppliedDeliveryProvidersFilter,
+  });
   return (
     <div className="space-y-6 dark:bg-slate-900">
       <div>
@@ -81,6 +97,7 @@ const OrderFilters = ({ paymentProviders = [], deliveryProviders = [] }) => {
             value,
           }))}
         />
+
         <MultipleSelect
           label={formatMessage({
             id: 'delivery_providers',
