@@ -56,7 +56,7 @@ const OrderFilters = ({ paymentProviders = [], deliveryProviders = [] }) => {
           <DateRangeFilterInput />
         </div>
       </div>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <MultipleSelect
           label={formatMessage({
@@ -83,10 +83,13 @@ const OrderFilters = ({ paymentProviders = [], deliveryProviders = [] }) => {
           }))}
         />
       </div>
-      
+
       <div>
         <h3 className="text-sm font-semibold text-gray-700 dark:text-slate-200 uppercase tracking-wide mb-3">
-          {formatMessage({ id: 'order_status', defaultMessage: 'Order status' })}
+          {formatMessage({
+            id: 'order_status',
+            defaultMessage: 'Order status',
+          })}
         </h3>
         <div className="flex flex-wrap gap-3">
           <StatusFilter
