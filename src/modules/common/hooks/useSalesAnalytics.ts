@@ -8,8 +8,8 @@ const SALES_ANALYTICS_QUERY = gql`
     $queryString: String
     $status: [OrderStatus!]
     $sort: [SortOptionInput!]
-    $paymentProviderTypes: [PaymentProviderType!]
-    $deliveryProviderTypes: [DeliveryProviderType!]
+    $paymentProviderIds: [String!]
+    $deliveryProviderIds: [String!]
     $dateRange: DateFilterInput
   ) {
     orders(
@@ -18,8 +18,8 @@ const SALES_ANALYTICS_QUERY = gql`
       status: $status
       queryString: $queryString
       sort: $sort
-      paymentProviderTypes: $paymentProviderTypes
-      deliveryProviderTypes: $deliveryProviderTypes
+      paymentProviderIds: $paymentProviderIds
+      deliveryProviderIds: $deliveryProviderIds
       dateRange: $dateRange
     ) {
       _id
@@ -81,13 +81,13 @@ const buildSalesData = (
 
 const useSalesAnalytics = ({
   days = 30,
-  paymentProviderTypes = [],
-  deliveryProviderTypes = [],
+  paymentProviderIds = [],
+  deliveryProviderIds = [],
   queryString = '',
 }: {
   days?: number;
-  paymentProviderTypes?: string[];
-  deliveryProviderTypes?: string[];
+  paymentProviderIds?: string[];
+  deliveryProviderIds?: string[];
   queryString?: string;
 }): SalesAnalyticsResult => {
   const endDate = useMemo(() => new Date(), []);
@@ -105,8 +105,8 @@ const useSalesAnalytics = ({
     variables: {
       status: ['CONFIRMED', 'FULLFILLED'],
       queryString,
-      paymentProviderTypes,
-      deliveryProviderTypes,
+      paymentProviderIds,
+      deliveryProviderIds,
       dateRange,
     },
     errorPolicy: 'all',

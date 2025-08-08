@@ -19,7 +19,6 @@ const OrderFilters = ({ paymentProviders = [], deliveryProviders = [] }) => {
   const appliedDeliveryProvidersFilter = extractQuery(
     router.query?.['delivery_providers'],
   );
-
   const typeChangeHandler = (filterKey) => (selectedTypes) => {
     const { [filterKey]: _, ...rest } = router.query;
 
@@ -43,6 +42,16 @@ const OrderFilters = ({ paymentProviders = [], deliveryProviders = [] }) => {
     }
   };
 
+  const normalizedAppliedPaymentProvidersFilter = appliedPaymentProvidersFilter.map((providerId) => {
+    const provider = paymentProviders.find((p) => p.value === providerId);
+    return provider ? provider.label : providerId;
+  })
+
+  const normalizedAppliedDeliveryProvidersFilter = appliedDeliveryProvidersFilter.map((providerId) => {
+    const provider = deliveryProviders.find((p) => p.value === providerId);    
+    return provider ? provider.label : providerId;
+  })
+
   return (
     <div className="space-y-6 dark:bg-slate-900">
       <div>
@@ -63,7 +72,8 @@ const OrderFilters = ({ paymentProviders = [], deliveryProviders = [] }) => {
             id: 'payment_providers',
             defaultMessage: 'Payment providers',
           })}
-          tagList={appliedPaymentProvidersFilter}
+          key={router.query?.['payment_providers'] as string}
+          tagList={normalizedAppliedPaymentProvidersFilter}
           onChange={typeChangeHandler('payment_providers')}
           options={paymentProviders.map(({ value, label }) => ({
             label,
@@ -75,7 +85,8 @@ const OrderFilters = ({ paymentProviders = [], deliveryProviders = [] }) => {
             id: 'delivery_providers',
             defaultMessage: 'Delivery providers',
           })}
-          tagList={appliedDeliveryProvidersFilter}
+          key={router.query?.['delivery_providers'] as string}
+          tagList={normalizedAppliedDeliveryProvidersFilter}
           onChange={typeChangeHandler('delivery_providers')}
           options={deliveryProviders.map(({ value, label }) => ({
             value,

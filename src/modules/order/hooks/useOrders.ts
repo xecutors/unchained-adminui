@@ -14,8 +14,8 @@ const OrdersQuery = gql`
     $includeCarts: Boolean
     $queryString: String
     $sort: [SortOptionInput!]
-    $paymentProviderTypes: [PaymentProviderType!]
-    $deliveryProviderTypes: [DeliveryProviderType!]
+    $paymentProviderIds: [String!]
+    $deliveryProviderIds: [String!]
     $dateRange: DateFilterInput
     $status: [OrderStatus!]
   ) {
@@ -25,8 +25,8 @@ const OrdersQuery = gql`
       includeCarts: $includeCarts
       queryString: $queryString
       sort: $sort
-      paymentProviderTypes: $paymentProviderTypes
-      deliveryProviderTypes: $deliveryProviderTypes
+      paymentProviderIds: $paymentProviderIds
+      deliveryProviderIds: $deliveryProviderIds
       dateRange: $dateRange
       status: $status
     ) {
@@ -35,8 +35,8 @@ const OrdersQuery = gql`
     ordersCount(
       includeCarts: $includeCarts
       queryString: $queryString
-      paymentProviderTypes: $paymentProviderTypes
-      deliveryProviderTypes: $deliveryProviderTypes
+      paymentProviderIds: $paymentProviderIds
+      deliveryProviderIds: $deliveryProviderIds
       dateRange: $dateRange
       status: $status
     )
@@ -52,8 +52,8 @@ const useOrders = ({
   sort: sortOptions = [],
   dateRange,
   status,
-  deliveryProviderTypes,
-  paymentProviderTypes,
+  deliveryProviderIds,
+  paymentProviderIds,
 }: IOrdersQueryVariables = {}) => {
   const { data, loading, error, fetchMore } = useQuery<
     IOrdersQuery,
@@ -61,11 +61,11 @@ const useOrders = ({
   >(OrdersQuery, {
     variables: {
       limit,
-      deliveryProviderTypes: deliveryProviderTypes?.length
-        ? deliveryProviderTypes
+      deliveryProviderIds: deliveryProviderIds?.length
+        ? deliveryProviderIds
         : null,
-      paymentProviderTypes: paymentProviderTypes?.length
-        ? paymentProviderTypes
+      paymentProviderIds: paymentProviderIds?.length
+        ? paymentProviderIds
         : null,
       offset,
       includeCarts,
@@ -75,9 +75,9 @@ const useOrders = ({
       sort: sortOptions.length
         ? [...sortOptions, { key: 'created', value: ISortDirection.Desc }]
         : [
-            { key: 'ordered', value: ISortDirection.Desc },
-            { key: 'created', value: ISortDirection.Desc },
-          ],
+          { key: 'ordered', value: ISortDirection.Desc },
+          { key: 'created', value: ISortDirection.Desc },
+        ],
     },
   });
   const orders = data?.orders || [];

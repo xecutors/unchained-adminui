@@ -5,7 +5,7 @@ import {
 } from '../../../gql/types';
 
 const DeliveryInterfacesQuery = gql`
-  query DeliveryInterfaces($providerType: DeliveryProviderType!) {
+  query DeliveryInterfaces($providerType: DeliveryProviderType) {
     deliveryInterfaces(type: $providerType) {
       _id
       value: _id

@@ -23,14 +23,19 @@ import {
   IOrderStatus,
   IPaymentProviderType,
 } from '../../gql/types';
-import usePaymentProviderTypes from '../../modules/payment-providers/hooks/usePaymentProviderTypes';
-import useDeliveryProviderTypes from '../../modules/delivery-provider/hooks/useDeliveryProviderTypes';
+import usePaymentProviders from '../../modules/payment-providers/hooks/usePaymentProviders';
+import useDeliveryProviders from '../../modules/delivery-provider/hooks/useDeliveryProviders';
 
 const Orders = () => {
   const { formatMessage } = useIntl();
   const { query, push } = useRouter();
-  const { paymentProviderType } = usePaymentProviderTypes();
-  const { deliveryProviderType } = useDeliveryProviderTypes();
+
+  const { paymentProviders } = usePaymentProviders();
+  const {deliveryProviders} = useDeliveryProviders()
+const paymentInterfaces = paymentProviders.map((provider) => ({ value: provider._id,  label: provider.interface.label}))
+const deliveryInterfaces = deliveryProviders.map((provider) => ({ value: provider._id,  label: provider.interface.label}))
+  
+  
   const limit = parseInt(query?.limit as string, 10) || DefaultLimit;
   const offset = parseInt(query?.skip as string, 10) || 0;
   const includeCarts = query?.includeCarts === 'true';
@@ -62,10 +67,10 @@ const Orders = () => {
         ? { start: query?.start, end: query?.end }
         : null,
     status: (query?.status as string)?.split(',') as IOrderStatus[],
-    deliveryProviderTypes: (query?.delivery_providers as string)?.split(
+    deliveryProviderIds: (query?.delivery_providers as string)?.split(
       ',',
     ) as IDeliveryProviderType[],
-    paymentProviderTypes: (query?.payment_providers as string)?.split(
+    paymentProviderIds: (query?.payment_providers as string)?.split(
       ',',
     ) as IPaymentProviderType[],
   });
@@ -110,9 +115,9 @@ const Orders = () => {
           />
         </ListHeader>
         <div className="mt-5 pt-5">
-          <OrderFilters
-            deliveryProviders={deliveryProviderType}
-            paymentProviders={paymentProviderType}
+          <OrderFilters          
+            deliveryProviders={deliveryInterfaces}
+            paymentProviders={paymentInterfaces}
           />
         </div>
         <div className="mt-5 pt-5">
