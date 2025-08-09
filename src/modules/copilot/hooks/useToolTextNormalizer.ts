@@ -77,7 +77,7 @@ export const PriceReturnTools = [
   'product_simulatedPriceRange',
 ] as const;
 
-export const OrderTools = ['orders_analytics'] as const;
+export const OrderTools = ['order_management'] as const;
 export const ProviderTools = ['provider_management'] as const;
 export const LocalizationTools = ['localization_management'] as const;
 export const AllTools = [
