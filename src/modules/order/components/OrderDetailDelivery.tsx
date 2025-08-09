@@ -75,7 +75,7 @@ const OrderDetailDelivery = ({ order }) => {
       <div>
         <span className="mb-5 block font-mono text-xs">
           <Link
-            href={`/delivery-provider?deliveryProviderId=${order?.delivery?.provider._id}`}
+            href={`/delivery-provider?deliveryProviderId=${order?.delivery?.provider?._id}`}
             className="text-slate-500 dark:text-slate-300 hover:text-slate-800 dark:hover:text-slate-600"
           >
             {getInterfaceLabel(order?.delivery?.provider?.interface)}
