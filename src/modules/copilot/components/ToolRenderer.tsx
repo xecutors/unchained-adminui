@@ -13,19 +13,7 @@ import {
   renderSingleAssortment,
   renderMultipleAssortments,
 } from './tool-renderers/assortmentRenderers';
-import {
-  renderSingleCountry,
-  renderMultipleCountries,
-} from './tool-renderers/countryRenderers';
-import {
-  renderSingleCurrency,
-  renderMultipleCurrencies,
-} from './tool-renderers/currencyRenderers';
-import renderImage from './tool-renderers/imageRenderer';
-import {
-  renderSingleLanguage,
-  renderMultipleLanguages,
-} from './tool-renderers/languageRenderers';
+
 import { renderTexts } from './tool-renderers/textRenderers';
 import { renderMedias } from './tool-renderers/renderMedias';
 import {
@@ -35,60 +23,33 @@ import {
   TextsReturnTools,
   SingleAssortmentReturnTools,
   MultipleAssortmentReturnTools,
-  SingleCountryReturnTools,
-  MultipleCountryReturnTools,
-  SingleCurrencyReturnTools,
-  MultipleCurrencyReturnTools,
-  SingleLanguageReturnTools,
-  MultipleLanguageReturnTools,
   ToolName,
   PriceReturnTools,
   ProductBundleReturnTools,
   ProductVariationsReturnTools,
   ProductAssignmentsReturnTools,
-  MultipleProviderReturnTools,
-  SingleProviderReturnTools,
-  MultipleInterfaceReturnTools,
-  MultipleOrderReturnTool,
+  OrderTools,
+  ProviderTools,
+  LocalizationTools,
 } from '../hooks/useToolTextNormalizer';
-import {
-  renderMultipleInterfaces,
-  renderMultipleProviders,
-  renderSingleProvider,
-} from './tool-renderers/providerRenderes';
-import {
-  renderMultipleOrders,
-  renderSalesSummary,
-  renderTopCustomers,
-  renderTopSellingProducts,
-} from './tool-renderers/orderRenderers';
+import { renderProvidersToolResponses } from './tool-renderers/providerRenderes';
+import { renderOrderToolResponses } from './tool-renderers/orderRenderers';
+import { renderLocalizationToolResponses } from './tool-renderers/localizationRenderes';
+import renderImage from './tool-renderers/imageRenderer';
 
 type ToolRenderFn = (data: any) => ReactElement | null;
 
 const ToolRenderer: Record<ToolName, ToolRenderFn> = {
   shop_info: renderShopInfo,
   generateImage: renderImage,
-  ordersSales_summary: renderSalesSummary,
-  ordersSales_monthlyBreakdown: renderSalesSummary,
-  topSelling_products: renderTopSellingProducts,
-  orders_topCustomers: renderTopCustomers,
   ...Object.fromEntries(
-    MultipleOrderReturnTool.map((name) => [name, renderMultipleOrders]),
+    LocalizationTools.map((name) => [name, renderLocalizationToolResponses]),
   ),
   ...Object.fromEntries(
-    MultipleInterfaceReturnTools.map((name) => [
-      name,
-      renderMultipleInterfaces,
-    ]),
+    OrderTools.map((name) => [name, renderOrderToolResponses]),
   ),
   ...Object.fromEntries(
-    MultipleProviderReturnTools.map((name) => [
-      name,
-      renderMultipleProviders(name),
-    ]),
-  ),
-  ...Object.fromEntries(
-    SingleProviderReturnTools.map((name) => [name, renderSingleProvider(name)]),
+    ProviderTools.map((name) => [name, renderProvidersToolResponses]),
   ),
   ...Object.fromEntries(
     ProductAssignmentsReturnTools.map((name) => [name, renderAssignments]),
@@ -123,24 +84,6 @@ const ToolRenderer: Record<ToolName, ToolRenderFn> = {
       renderMultipleAssortments,
     ]),
   ),
-  ...Object.fromEntries(
-    SingleCountryReturnTools.map((name) => [name, renderSingleCountry]),
-  ),
-  ...Object.fromEntries(
-    MultipleCountryReturnTools.map((name) => [name, renderMultipleCountries]),
-  ),
-  ...Object.fromEntries(
-    SingleCurrencyReturnTools.map((name) => [name, renderSingleCurrency]),
-  ),
-  ...Object.fromEntries(
-    MultipleCurrencyReturnTools.map((name) => [name, renderMultipleCurrencies]),
-  ),
-  ...Object.fromEntries(
-    SingleLanguageReturnTools.map((name) => [name, renderSingleLanguage]),
-  ),
-  ...(Object.fromEntries(
-    MultipleLanguageReturnTools.map((name) => [name, renderMultipleLanguages]),
-  ) as any),
 };
 
 export default ToolRenderer;

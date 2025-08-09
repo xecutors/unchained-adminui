@@ -75,12 +75,14 @@ const OrderDetailPayment = ({ order }) => {
 
       <div>
         <span className="mb-5 block text-xs font-mono">
-          <Link
-            href={`/payment-provider?paymentProviderId=${order.payment.provider._id}`}
-            className="text-slate-500 dark:text-slate-300 hover:text-slate-800 dark:hover:text-slate-600"
-          >
-            {getInterfaceLabel(order.payment?.provider?.interface)}
-          </Link>
+          {order?.payment?.provider && (
+            <Link
+              href={`/payment-provider?paymentProviderId=${order.payment.provider._id}`}
+              className="text-slate-500 dark:text-slate-300 hover:text-slate-800 dark:hover:text-slate-600"
+            >
+              {getInterfaceLabel(order.payment?.provider?.interface)}
+            </Link>
+          )}
         </span>
         <div className="mt-3 text-sm text-slate-500 dark:text-slate-200">
           {formatMessage({

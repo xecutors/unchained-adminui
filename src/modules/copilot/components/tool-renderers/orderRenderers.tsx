@@ -14,3 +14,20 @@ export const renderTopSellingProducts = (data: any) =>
 
 export const renderTopCustomers = (data: any) =>
   data ? <TopCustomerList {...data} /> : null;
+
+export const renderOrderToolResponses = ({ action, data }) => {
+  switch (action) {
+    case 'TOP_CUSTOMERS':
+      return renderTopCustomers(data);
+    case 'MONTHLY_BREAKDOWN':
+      return renderSalesSummary(data);
+    case 'SALES_SUMMARY':
+      return renderSalesSummary(data);
+    case 'TOP_PRODUCTS':
+      return renderTopSellingProducts(data);
+    case 'LIST_ORDERS':
+      return renderMultipleOrders(data);
+    default:
+      return null;
+  }
+};

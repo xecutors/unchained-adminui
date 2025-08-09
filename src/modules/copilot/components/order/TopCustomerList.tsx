@@ -83,7 +83,7 @@ const TopCustomerList = ({ customers, dateRange }) => {
                     <strong>
                       {formatPrice({
                         amount: customer.totalSpent,
-                        currencyCode: customer?.currencyCode,
+                        currencyCode: customer?.currencyCode || 'CHF',
                       })}
                     </strong>
                   </div>

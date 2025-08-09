@@ -4,15 +4,9 @@ import { useIntl } from 'react-intl';
 export const SingleProductReturnTools = [
   'product_get',
   'product_create',
-  'product_update',
-  'product_updateCommerce',
   'product_remove',
-  'product_publish',
-  'product_unpublish',
-  'product_updateWarehousing',
-  'product_updateSupply',
-  'product_updateTokenization',
-  'product_updatePlan',
+  'product_updateStatus',
+  'product_update',
 ] as const;
 
 export const MultipleProductReturnTools = [
@@ -21,11 +15,6 @@ export const MultipleProductReturnTools = [
   'assortment_getProducts',
 ] as const;
 
-export const SingleProductVariationsReturnTools = [
-  'product_variations',
-  'product_createVariation',
-  'product_createVariationOption',
-] as const;
 export const ProductVariationsReturnTools = [
   'product_variations',
   'product_createVariation',
@@ -65,31 +54,6 @@ export const MultipleAssortmentReturnTools = [
   'assortment_list',
 ] as const;
 
-export const SingleCountryReturnTools = [
-  'country_create',
-  'country_update',
-  'country_remove',
-  'country_get',
-] as const;
-
-export const MultipleCountryReturnTools = ['country_list'] as const;
-
-export const SingleCurrencyReturnTools = [
-  'currency_create',
-  'currency_update',
-  'currency_remove',
-  'currency_get',
-] as const;
-
-export const MultipleCurrencyReturnTools = ['currency_list'] as const;
-
-export const SingleLanguageReturnTools = [
-  'language_create',
-  'language_update',
-  'language_remove',
-  'language_get',
-] as const;
-
 export const MediaListReturnTools = [
   'product_getMedias',
   'assortment_getMedias',
@@ -99,8 +63,6 @@ export const MediaListReturnTools = [
 ] as const;
 
 export const OtherTools = ['shop_info', 'generateImage'] as const;
-
-export const MultipleLanguageReturnTools = ['languages_list'] as const;
 
 export const SkippedToolResponse = [
   'assortment_addMedia',
@@ -115,54 +77,18 @@ export const PriceReturnTools = [
   'product_simulatedPriceRange',
 ] as const;
 
-export const SingleProviderReturnTools = [
-  'paymentProvider_add',
-  'paymentProvider_update',
-  'paymentProvider_get',
-  'deliveryProvider_get',
-  'deliveryProvider_add',
-  'deliveryProvider_update',
-  'deliveryProvider_remove',
-  'paymentProvider_remove',
-  'warehousingProvider_get',
-  'warehousingProvider_add',
-  'warehousingProvider_update',
-  'warehousingProvider_remove',
-] as const;
-
-export const MultipleProviderReturnTools = [
-  'paymentProviders_list',
-  'deliveryProviders_list',
-  'warehousingProviders_list',
-] as const;
-
-export const MultipleInterfaceReturnTools = [
-  'paymentInterfaces_list',
-  'deliveryInterfaces_list',
-  'warehousingInterfaces_list',
-] as const;
-
-export const MultipleOrderReturnTool = ['orders_list'] as const;
-
+export const OrderTools = ['orders_analytics'] as const;
+export const ProviderTools = ['provider_management'] as const;
+export const LocalizationTools = ['localization_management'] as const;
 export const AllTools = [
-  'ordersSales_summary',
-  'ordersSales_monthlyBreakdown',
-  'topSelling_products',
-  'orders_topCustomers',
-  ...MultipleInterfaceReturnTools,
-  ...SingleProviderReturnTools,
-  ...MultipleProviderReturnTools,
+  ...LocalizationTools,
+  ...OrderTools,
+  ...ProviderTools,
   ...SingleProductReturnTools,
   ...MultipleProductReturnTools,
   ...TextsReturnTools,
   ...SingleAssortmentReturnTools,
   ...MultipleAssortmentReturnTools,
-  ...SingleCountryReturnTools,
-  ...MultipleCountryReturnTools,
-  ...SingleCurrencyReturnTools,
-  ...MultipleCurrencyReturnTools,
-  ...SingleLanguageReturnTools,
-  ...MultipleLanguageReturnTools,
   ...MediaListReturnTools,
   ...SkippedToolResponse,
   ...ProductVariationsReturnTools,
@@ -170,7 +96,6 @@ export const AllTools = [
   ...ProductBundleReturnTools,
   ...PriceReturnTools,
   ...OtherTools,
-  ...MultipleOrderReturnTool,
 ] as const;
 
 export type ToolName = (typeof AllTools)[number];
@@ -219,14 +144,6 @@ const useToolTextNormalizer = () => {
         product_create: formatMessage({
           id: 'create_product_tool_definition',
           defaultMessage: 'Create a new product',
-        }),
-        product_publish: formatMessage({
-          id: 'publish_product_tool_definition',
-          defaultMessage: 'Publish product XYZ456',
-        }),
-        product_unpublish: formatMessage({
-          id: 'unpublish_product_tool_definition',
-          defaultMessage: 'Unpublish the winter collection',
         }),
         product_remove: formatMessage({
           id: 'delete_product_tool_definition',

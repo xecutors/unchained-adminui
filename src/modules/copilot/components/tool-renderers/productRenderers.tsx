@@ -19,8 +19,8 @@ export const renderMultipleProducts = (data: any) =>
     </div>
   ) : null;
 
-export const renderVariations = (data: any) =>
-  data?.product ? (
+export const renderVariations = (data: any) => {
+  return data?.product ? (
     <div className="mb-6">
       <VariationListCompact
         variations={data?.product?.variations}
@@ -28,6 +28,7 @@ export const renderVariations = (data: any) =>
       />
     </div>
   ) : null;
+};
 
 export const renderAssignments = (data: any) =>
   data?.assignments?.length ? (

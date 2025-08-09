@@ -25,7 +25,7 @@ const OrderDetailAddresses = ({ order }) => {
         <div>
           <span className="block">
             {order?.billingAddress?.firstName && order?.billingAddress?.lastName
-              ? `${order.billingAddress.firstName} ${order.billingAddress.lastName}`
+              ? `${order?.billingAddress?.firstName} ${order?.billingAddress?.lastName}`
               : order?.billingAddress?.firstName ||
                 order?.billingAddress?.lastName ||
                 ''}
