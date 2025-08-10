@@ -1,7 +1,5 @@
 import React from 'react';
-import Link from 'next/link';
 import Badge from '../../common/components/Badge';
-import generateUniqueId from '../../common/utils/getUniqueId';
 import { GlobeAltIcon } from '@heroicons/react/24/outline';
 import { useIntl } from 'react-intl';
 
@@ -26,43 +24,13 @@ interface ProductText {
 
 interface Props {
   text: ProductText;
-  tool: string;
-  productId?: string | null;
-  assortmentId?: string | null;
 }
 
 export const TextItemCompact = ({
-  tool,
   text,
-  productId = null,
-  assortmentId = null,
 }: Props) => {
   const { formatMessage } = useIntl();
-  let normalizedHref = '';
-  switch (tool) {
-    case 'product_getTexts':
-      normalizedHref = `/products?slug=${generateUniqueId({ texts: text, _id: text?.productId })}`;
-      break;
-    case 'productMedia_getTexts':
-    case 'productMedia_updateTexts':
-      normalizedHref = `/products?slug=${generateUniqueId({ texts: text, _id: productId })}&tab=media`;
-      break;
-    case 'assortment_getTexts':
-      normalizedHref = `/assortments?assortmentSlug=${generateUniqueId({ texts: text, _id: text?.assortmentId })}`;
-      break;
-    case 'assortmentMedia_getTexts':
-    case 'assortmentMedia_updateTexts':
-      normalizedHref = `/assortments?assortmentSlug=${generateUniqueId({ texts: text, _id: assortmentId })}&tab=media`;
-      break;
-    case 'productVariation_updateTexts':
-    case 'productVariation_getTexts':
-      normalizedHref = `/products?slug=${generateUniqueId({ texts: text, _id: productId })}&tab=variations`;
-      break;
-
-    default:
-      normalizedHref = `/products?slug=${generateUniqueId({ texts: text, _id: text?.productId })}`;
-      break;
-  }
+  
 
   const infoRow = (label: string, value: string | null | undefined) => {
     if (!value) return null;
@@ -137,22 +105,15 @@ export const TextItemCompact = ({
           {formatMessage({ id: 'id', defaultMessage: 'ID' })}: {text._id}
         </div>
       </div>
-
-      <Link
-        href={normalizedHref}
-        className="mt-2 px-3 py-1.5 text-sm text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 border border-slate-300 dark:border-slate-600 rounded-md hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
-      >
-        {formatMessage({ id: 'edit', defaultMessage: 'Edit' })}
-      </Link>
     </div>
   );
 };
 
-const TextsList = ({ tool, texts, ...rest }) => {
+const TextsList = ({ texts, ...rest }) => {
   return (
     <div className="space-y-3">
       {texts.map((text) => (
-        <TextItemCompact tool={tool} key={text._id} text={text} {...rest} />
+        <TextItemCompact key={text._id} text={text} {...rest} />
       ))}
     </div>
   );

@@ -1,9 +1,12 @@
 import { ProductListItemCompact, ProductList } from '../product';
 import AssignmentListCompact from '../product/AssignmentListCompact';
+import AssignmentListItemCompact from '../product/AssignmentListItemCompact';
 import BundleItemCompact from '../product/BundleItemCompact';
 import CopilotPriceCompact from '../product/CopilotPriceCompact';
 import VariationListCompact from '../product/VariationListCompact';
+import VariationListItemCompact from '../product/VariationListItemCompact';
 import ProductResultsSummary from '../ProductResultsSummary';
+import { renderTexts } from './textRenderers';
 
 export const renderSingleProduct = (data: any) =>
   data?.product ? <ProductListItemCompact product={data.product} /> : null;
@@ -61,3 +64,31 @@ export const renderPrice = (data: any) =>
       />
     </div>
   ) : null;
+
+const toolsMap = {
+  GET_BUNDLE_ITEMS: renderBundles,
+  LIST: renderMultipleProducts,
+  GET_VARIATION_PRODUCTS: renderMultipleProducts,
+  GET_PRODUCTS: renderMultipleProducts,
+  GET: renderSingleProduct,
+  CREATE: renderSingleProduct,
+  UPDATE: renderSingleProduct,
+  REMOVE: renderSingleProduct,
+  UPDATE_STATUS: renderSingleProduct,
+  CREATE_OPTION: renderVariations,
+  CREATE_VARIATION: VariationListItemCompact,
+  ADD_VARIATION_OPTION: VariationListItemCompact,
+  GET_PRODUCT_TEXTS: renderTexts('GET_PRODUCT_TEXTS'),
+  GET_VARIATION_TEXTS: renderTexts('GET_VARIATION_TEXTS'),
+  GET_MEDIA_TEXTS: renderTexts('GET_MEDIA_TEXTS'),
+  UPDATE_VARIATION_TEXTS: renderTexts('UPDATE_VARIATION_TEXTS'),
+  UPDATE_MEDIA_TEXTS: renderTexts('UPDATE_MEDIA_TEXTS'),
+  ADD_ASSIGNMENT: AssignmentListItemCompact,
+  GET_ASSIGNMENTS: AssignmentListCompact
+  
+}
+  export const renderProductToolResponses = ({action, data}) => {
+    const Component = toolsMap?.[action];
+    console.log(action, data)
+    return Component ?  <Component {...data} /> : JSON.stringify( {action, data}, null, 2);
+  }

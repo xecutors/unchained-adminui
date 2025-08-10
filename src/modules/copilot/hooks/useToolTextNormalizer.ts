@@ -1,24 +1,9 @@
 import { useCallback } from 'react';
 import { useIntl } from 'react-intl';
 
-export const SingleProductReturnTools = [
-  'product_get',
-  'product_create',
-  'product_remove',
-  'product_updateStatus',
-  'product_update',
-] as const;
-
-export const MultipleProductReturnTools = [
-  'product_list',
-  'product_variationProducts',
-  'assortment_getProducts',
-] as const;
 
 export const ProductVariationsReturnTools = [
   'product_variations',
-  'product_createVariation',
-  'product_createVariationOption',
 ] as const;
 export const ProductAssignmentsReturnTools = ['product_assignments'] as const;
 export const ProductBundleReturnTools = [
@@ -27,18 +12,6 @@ export const ProductBundleReturnTools = [
   'product_addBundleItem',
 ] as const;
 
-export const TextsReturnTools = [
-  'product_updateTexts',
-  'productMedia_updateTexts',
-  'product_getTexts',
-  'productMedia_getTexts',
-  'assortmentMedia_updateTexts',
-  'assortmentMedia_getTexts',
-  'assortment_getTexts',
-  'assortment_updateTexts',
-  'productVariation_updateTexts',
-  'productVariation_getTexts',
-] as const;
 
 export const SingleAssortmentReturnTools = [
   'assortment_create',
@@ -80,13 +53,12 @@ export const PriceReturnTools = [
 export const OrderTools = ['order_management'] as const;
 export const ProviderTools = ['provider_management'] as const;
 export const LocalizationTools = ['localization_management'] as const;
+export const ProductTools = ['product_management'] as const
 export const AllTools = [
+  ...ProductTools,
   ...LocalizationTools,
   ...OrderTools,
   ...ProviderTools,
-  ...SingleProductReturnTools,
-  ...MultipleProductReturnTools,
-  ...TextsReturnTools,
   ...SingleAssortmentReturnTools,
   ...MultipleAssortmentReturnTools,
   ...MediaListReturnTools,
@@ -135,11 +107,6 @@ const useToolTextNormalizer = () => {
         product_list: formatMessage({
           id: 'list_product_tool_definition',
           defaultMessage: 'Show me all draft products',
-        }),
-
-        product_get: formatMessage({
-          id: 'get_product_tool_definition',
-          defaultMessage: 'Get details for product ABC123',
         }),
         product_create: formatMessage({
           id: 'create_product_tool_definition',

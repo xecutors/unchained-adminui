@@ -31,13 +31,13 @@ interface Props {
 const AssignmentListCompact: React.FC<Props> = ({ assignments, product }) => {
   const { formatMessage } = useIntl();
   const { formatPrice } = useFormatPrice();
-  if (!assignments.length) return null;
+  if (!assignments?.length) return null;
 
   return (
-    <ProductItemWrapperCompact product={product} tab="assignments">
+    
       <div className="space-y-4">
-        {assignments.map(({ assignment }, idx) => {
-          const assignedProduct = assignment.product;
+        {assignments.map(({ assignment, product: assignedProduct }, idx) => {
+          
 
           const price = formatPrice(assignedProduct?.commerce?.pricing?.[0]);
           const image = assignedProduct?.media?.[0]?.file?.url;
@@ -101,7 +101,7 @@ const AssignmentListCompact: React.FC<Props> = ({ assignments, product }) => {
           );
         })}
       </div>
-    </ProductItemWrapperCompact>
+    
   );
 };
 
