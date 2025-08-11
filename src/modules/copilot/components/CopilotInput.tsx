@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import Image from 'next/image';
 import {
   CameraIcon,
@@ -8,6 +8,7 @@ import {
 } from '@heroicons/react/24/outline';
 import { useChatContext } from '..';
 import useLocalStorage from '../../common/hooks/useLocalStorage';
+import deBounce from '../../common/utils/deBounce';
 const CopilotInput: React.FC = () => {
   const {
     input,
@@ -21,6 +22,8 @@ const CopilotInput: React.FC = () => {
     'copilot-input-history',
     [],
   );
+
+  const debounceInputChange = useMemo(() => deBounce(200)(handleInputChange), []);
 
   const [historyIndex, setHistoryIndex] = useState(-1);
 
@@ -136,7 +139,6 @@ const CopilotInput: React.FC = () => {
     }, 500);
     return () => clearTimeout(timeout);
   }, [inputHistory]);
-
   return (
     <div className="sticky bottom-6 max-w-4xl mx-auto w-full">
       <form
@@ -144,9 +146,8 @@ const CopilotInput: React.FC = () => {
         className="bg-white dark:bg-slate-800 shadow-2xl border border-slate-300 dark:border-slate-700 rounded-md p-3"
       >
         <div className="flex items-center gap-2">
-          <input
-            value={input}
-            onChange={handleInputChange}
+          <input          
+            onChange={debounceInputChange}
             onKeyDown={handleKeyDown}
             placeholder="Type your message..."
             className="flex-1 border-0 bg-slate-50 dark:bg-slate-700 dark:text-slate-200 dark:placeholder-slate-400 rounded-md px-4 py-2 focus:ring-2 focus:ring-slate-400"
