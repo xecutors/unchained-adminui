@@ -13,7 +13,9 @@ interface VariationListItemCompactProps {
   };
 }
 
-const VariationListItemCompact: React.FC<VariationListItemCompactProps> = ({ variation }) => {
+const VariationListItemCompact: React.FC<VariationListItemCompactProps> = ({
+  variation,
+}) => {
   const { formatMessage } = useIntl();
 
   return (
@@ -21,14 +23,19 @@ const VariationListItemCompact: React.FC<VariationListItemCompactProps> = ({ var
       {/* Left: Variation Key & Type */}
       <div className="flex-1 min-w-0">
         <h3 className="text-sm font-medium text-slate-900 dark:text-slate-100 truncate">
-          {variation.key || formatMessage({ id: 'variation.untitled', defaultMessage: 'Untitled Variation' })}
+          {variation.key ||
+            formatMessage({
+              id: 'variation.untitled',
+              defaultMessage: 'Untitled Variation',
+            })}
         </h3>
         <div className="flex items-center gap-3 mt-1 text-xs">
           <span className="text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-600 px-2 py-0.5 rounded">
             {variation.type}
           </span>
           <span className="text-slate-400 truncate">
-            {formatMessage({ id: 'variation.id', defaultMessage: 'ID' })}: {variation._id}
+            {formatMessage({ id: 'variation.id', defaultMessage: 'ID' })}:{' '}
+            {variation._id}
           </span>
         </div>
       </div>
@@ -48,13 +55,25 @@ const VariationListItemCompact: React.FC<VariationListItemCompactProps> = ({ var
       {/* Right: Metadata */}
       <div className="flex flex-col items-end text-xs text-slate-500 dark:text-slate-400 whitespace-nowrap">
         <span>
-          {formatMessage({ id: 'variation.productId', defaultMessage: 'Product ID' })}: {variation.productId}
+          {formatMessage({
+            id: 'variation.productId',
+            defaultMessage: 'Product ID',
+          })}
+          : {variation.productId}
         </span>
         <span>
-          {formatMessage({ id: 'variation.created', defaultMessage: 'Created' })}: {new Date(variation.created).toLocaleString()}
+          {formatMessage({
+            id: 'variation.created',
+            defaultMessage: 'Created',
+          })}
+          : {new Date(variation.created).toLocaleString()}
         </span>
         <span>
-          {formatMessage({ id: 'variation.updated', defaultMessage: 'Updated' })}: {new Date(variation.updated).toLocaleString()}
+          {formatMessage({
+            id: 'variation.updated',
+            defaultMessage: 'Updated',
+          })}
+          : {new Date(variation.updated).toLocaleString()}
         </span>
       </div>
     </div>

@@ -1,17 +1,13 @@
 import { useCallback } from 'react';
 import { useIntl } from 'react-intl';
 
-
-export const ProductVariationsReturnTools = [
-  'product_variations',
-] as const;
+export const ProductVariationsReturnTools = ['product_variations'] as const;
 export const ProductAssignmentsReturnTools = ['product_assignments'] as const;
 export const ProductBundleReturnTools = [
   'product_bundleItems',
   'product_removeBundleItem',
   'product_addBundleItem',
 ] as const;
-
 
 export const SingleAssortmentReturnTools = [
   'assortment_create',
@@ -53,7 +49,7 @@ export const PriceReturnTools = [
 export const OrderTools = ['order_management'] as const;
 export const ProviderTools = ['provider_management'] as const;
 export const LocalizationTools = ['localization_management'] as const;
-export const ProductTools = ['product_management'] as const
+export const ProductTools = ['product_management'] as const;
 export const AllTools = [
   ...ProductTools,
   ...LocalizationTools,

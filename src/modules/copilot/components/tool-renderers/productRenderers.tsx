@@ -2,6 +2,7 @@ import { ProductListItemCompact, ProductList } from '../product';
 import AssignmentListCompact from '../product/AssignmentListCompact';
 import AssignmentListItemCompact from '../product/AssignmentListItemCompact';
 import BundleItemCompact from '../product/BundleItemCompact';
+import CopilotMediaList from '../product/CopilotMediaList';
 import CopilotPriceCompact from '../product/CopilotPriceCompact';
 import VariationListCompact from '../product/VariationListCompact';
 import VariationListItemCompact from '../product/VariationListItemCompact';
@@ -84,11 +85,16 @@ const toolsMap = {
   UPDATE_VARIATION_TEXTS: renderTexts('UPDATE_VARIATION_TEXTS'),
   UPDATE_MEDIA_TEXTS: renderTexts('UPDATE_MEDIA_TEXTS'),
   ADD_ASSIGNMENT: AssignmentListItemCompact,
-  GET_ASSIGNMENTS: AssignmentListCompact
-  
-}
-  export const renderProductToolResponses = ({action, data}) => {
-    const Component = toolsMap?.[action];
-    console.log(action, data)
-    return Component ?  <Component {...data} /> : JSON.stringify( {action, data}, null, 2);
-  }
+  GET_ASSIGNMENTS: AssignmentListCompact,
+  ADD_MEDIA: CopilotMediaList,
+  GET_MEDIA: CopilotMediaList,
+  REORDER_MEDIA: CopilotMediaList,
+};
+export const renderProductToolResponses = ({ action, data }) => {
+  const Component = toolsMap?.[action];
+  return Component ? (
+    <Component {...data} />
+  ) : (
+    JSON.stringify({ action, data }, null, 2)
+  );
+};
