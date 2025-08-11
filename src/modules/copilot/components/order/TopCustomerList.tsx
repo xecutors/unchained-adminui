@@ -9,6 +9,7 @@ const TopCustomerList = ({ customers, dateRange }) => {
   const { formatMessage } = useIntl();
   const { formatPrice } = useFormatPrice();
   const { formatDateTime } = useFormatDateTime();
+  console.log(customers);
   return (
     <div className="space-y-4">
       {(dateRange?.start || dateRange?.end) && (
@@ -71,7 +72,7 @@ const TopCustomerList = ({ customers, dateRange }) => {
                     <strong>
                       {formatPrice({
                         amount: customer.averageOrderValue,
-                        currencyCode: 'CHF',
+                        currencyCode: customer?.currencyCode,
                       })}
                     </strong>{' '}
                     •{' '}

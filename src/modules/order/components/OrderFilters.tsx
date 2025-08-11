@@ -22,7 +22,6 @@ const OrderFilters = ({ paymentProviders = [], deliveryProviders = [] }) => {
   );
   const typeChangeHandler = (filterKey) => (selectedTypes) => {
     const { [filterKey]: _, ...rest } = router.query;
-    console.log(selectedTypes);
     if (selectedTypes?.length) {
       router.push({
         query: normalizeQuery(rest, selectedTypes.join(','), filterKey),
@@ -66,10 +65,6 @@ const OrderFilters = ({ paymentProviders = [], deliveryProviders = [] }) => {
         .filter(Boolean),
     [deliveryProviders],
   );
-  console.log({
-    normalizedAppliedPaymentProvidersFilter,
-    normalizedAppliedDeliveryProvidersFilter,
-  });
   return (
     <div className="space-y-6 dark:bg-slate-900">
       <div>
