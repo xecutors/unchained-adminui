@@ -1,7 +1,8 @@
 import { ProductListItemCompact, ProductList } from '../product';
 import AssignmentListCompact from '../product/AssignmentListCompact';
 import AssignmentListItemCompact from '../product/AssignmentListItemCompact';
-import BundleItemCompact from '../product/BundleItemCompact';
+import { BundleItemList } from '../product/BundleItemCompact';
+import BundleProductCompact from '../product/BundleProductCompact';
 import CopilotMediaList from '../product/CopilotMediaList';
 import CopilotPriceCompact from '../product/CopilotPriceCompact';
 import RemovedVectorsDisplay from '../product/RemovedVectorsDisplay';
@@ -48,7 +49,7 @@ export const renderAssignments = (data: any) =>
 export const renderBundles = (data: any) =>
   data?.product ? (
     <div className="mb-6">
-      <BundleItemCompact
+      <BundleProductCompact
         bundleItems={data?.product?.bundleItems || []}
         product={data?.product}
       />
@@ -68,7 +69,7 @@ export const renderPrice = (data: any) =>
   ) : null;
 
 const toolsMap = {
-  GET_BUNDLE_ITEMS: renderBundles,
+
   LIST: renderMultipleProducts,
   GET_VARIATION_PRODUCTS: renderMultipleProducts,
   GET_PRODUCTS: renderMultipleProducts,
@@ -93,6 +94,7 @@ const toolsMap = {
   REMOVE_ASSIGNMENT: RemovedVectorsDisplay,
   ADD_BUNDLE_ITEM: renderBundles,
   REMOVE_BUNDLE_ITEM: renderBundles,
+  GET_BUNDLE_ITEMS: BundleItemList
 };
 export const renderProductToolResponses = ({ action, data }) => {
   const Component = toolsMap?.[action];
