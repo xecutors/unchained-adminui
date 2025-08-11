@@ -4,6 +4,7 @@ import AssignmentListItemCompact from '../product/AssignmentListItemCompact';
 import BundleItemCompact from '../product/BundleItemCompact';
 import CopilotMediaList from '../product/CopilotMediaList';
 import CopilotPriceCompact from '../product/CopilotPriceCompact';
+import RemovedVectorsDisplay from '../product/RemovedVectorsDisplay';
 import VariationListCompact from '../product/VariationListCompact';
 import VariationListItemCompact from '../product/VariationListItemCompact';
 import ProductResultsSummary from '../ProductResultsSummary';
@@ -89,6 +90,9 @@ const toolsMap = {
   ADD_MEDIA: CopilotMediaList,
   GET_MEDIA: CopilotMediaList,
   REORDER_MEDIA: CopilotMediaList,
+  REMOVE_ASSIGNMENT: RemovedVectorsDisplay,
+  ADD_BUNDLE_ITEM: renderBundles,
+  REMOVE_BUNDLE_ITEM: renderBundles,
 };
 export const renderProductToolResponses = ({ action, data }) => {
   const Component = toolsMap?.[action];

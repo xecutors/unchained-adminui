@@ -10,7 +10,7 @@ interface CopilotMediaListProps {
     size: number;
     type: string;
     url?: string;
-    file?: { url?: string; size?: number; type?: string; };
+    file?: { url?: string; size?: number; type?: string };
     created: string;
     updated: string;
   }[];

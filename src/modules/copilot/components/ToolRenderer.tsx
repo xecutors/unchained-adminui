@@ -21,7 +21,6 @@ import {
   MultipleAssortmentReturnTools,
   ToolName,
   PriceReturnTools,
-  ProductBundleReturnTools,
   ProductVariationsReturnTools,
   ProductAssignmentsReturnTools,
 } from '../hooks/useToolTextNormalizer';
@@ -41,9 +40,6 @@ const ToolRenderer: Record<ToolName, ToolRenderFn> = {
   provider_management: renderProvidersToolResponses,
   ...Object.fromEntries(
     ProductAssignmentsReturnTools.map((name) => [name, renderAssignments]),
-  ),
-  ...Object.fromEntries(
-    ProductBundleReturnTools.map((name) => [name, renderBundles]),
   ),
   ...Object.fromEntries(
     ProductVariationsReturnTools.map((name) => [name, renderVariations]),

@@ -3,11 +3,6 @@ import { useIntl } from 'react-intl';
 
 export const ProductVariationsReturnTools = ['product_variations'] as const;
 export const ProductAssignmentsReturnTools = ['product_assignments'] as const;
-export const ProductBundleReturnTools = [
-  'product_bundleItems',
-  'product_removeBundleItem',
-  'product_addBundleItem',
-] as const;
 
 export const SingleAssortmentReturnTools = [
   'assortment_create',
@@ -61,7 +56,6 @@ export const AllTools = [
   ...SkippedToolResponse,
   ...ProductVariationsReturnTools,
   ...ProductAssignmentsReturnTools,
-  ...ProductBundleReturnTools,
   ...PriceReturnTools,
   ...OtherTools,
 ] as const;
