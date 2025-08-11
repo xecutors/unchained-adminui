@@ -1,40 +1,6 @@
 import { useCallback } from 'react';
 import { useIntl } from 'react-intl';
 
-export const ProductVariationsReturnTools = ['product_variations'] as const;
-export const ProductAssignmentsReturnTools = ['product_assignments'] as const;
-
-export const SingleAssortmentReturnTools = [
-  'assortment_create',
-  'assortment_update',
-  'assortment_remove',
-  'assortment_setBase',
-  'assortment_get',
-  'assortment_searchProducts',
-] as const;
-
-export const MultipleAssortmentReturnTools = [
-  'assortment_getChildren',
-  'assortment_list',
-] as const;
-
-export const MediaListReturnTools = [
-  'product_getMedias',
-  'assortment_getMedias',
-  'product_reorderMedias',
-  'assortment_reorderMedias',
-  'generateImage',
-] as const;
-
-export const OtherTools = ['shop_info', 'generateImage'] as const;
-
-export const SkippedToolResponse = [
-  'assortment_addMedia',
-  'assortment_removeMedia',
-  'productMedia_remove',
-  'product_addMedia',
-] as const;
-
 export const PriceReturnTools = [
   'product_simulatedPrice',
   'product_catalogPrice',
@@ -46,18 +12,14 @@ export const ProviderTools = ['provider_management'] as const;
 export const LocalizationTools = ['localization_management'] as const;
 export const ProductTools = ['product_management'] as const;
 export const AllTools = [
+  'shop_info',
+  'generateImage',
+  'assortment_management',
   ...ProductTools,
   ...LocalizationTools,
   ...OrderTools,
   ...ProviderTools,
-  ...SingleAssortmentReturnTools,
-  ...MultipleAssortmentReturnTools,
-  ...MediaListReturnTools,
-  ...SkippedToolResponse,
-  ...ProductVariationsReturnTools,
-  ...ProductAssignmentsReturnTools,
   ...PriceReturnTools,
-  ...OtherTools,
 ] as const;
 
 export type ToolName = (typeof AllTools)[number];
@@ -94,33 +56,9 @@ const useToolTextNormalizer = () => {
       const name = toolName.toLowerCase();
 
       const TOOL_TO_DESCRIPTION_MATCH: Partial<Record<ToolName, string>> = {
-        product_list: formatMessage({
+        product_management: formatMessage({
           id: 'list_product_tool_definition',
           defaultMessage: 'Show me all draft products',
-        }),
-        product_create: formatMessage({
-          id: 'create_product_tool_definition',
-          defaultMessage: 'Create a new product',
-        }),
-        product_remove: formatMessage({
-          id: 'delete_product_tool_definition',
-          defaultMessage: 'Delete product OLD123',
-        }),
-        productMedia_remove: formatMessage({
-          id: 'remove_product_media_tool_definition',
-          defaultMessage: 'Remove product media',
-        }),
-        product_addMedia: formatMessage({
-          id: 'add_product_media_tool_definition',
-          defaultMessage: 'Add media to product',
-        }),
-        shop_info: formatMessage({
-          id: 'shop_info_tool_definition',
-          defaultMessage: 'Show shop configuration',
-        }),
-        generateImage: formatMessage({
-          id: 'generate_image_tool_definition',
-          defaultMessage: 'Generate a hero banner image',
         }),
       };
       if (TOOL_TO_DESCRIPTION_MATCH[name]) {

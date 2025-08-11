@@ -1,3 +1,6 @@
+import { ReactElement } from 'react';
+
+// Product components
 import { ProductListItemCompact, ProductList } from '../product';
 import AssignmentListCompact from '../product/AssignmentListCompact';
 import AssignmentListItemCompact from '../product/AssignmentListItemCompact';
@@ -9,12 +12,20 @@ import RemovedVectorsDisplay from '../product/RemovedVectorsDisplay';
 import VariationListCompact from '../product/VariationListCompact';
 import VariationListItemCompact from '../product/VariationListItemCompact';
 import ProductResultsSummary from '../ProductResultsSummary';
+
 import { renderTexts } from './textRenderers';
 
-export const renderSingleProduct = (data: any) =>
+type RendererFn = (data: unknown) => ReactElement | null;
+
+interface RendererParams {
+  action?: string;
+  data?: unknown;
+}
+
+const renderSingleProduct: RendererFn = (data: any) =>
   data?.product ? <ProductListItemCompact product={data.product} /> : null;
 
-export const renderMultipleProducts = (data: any) =>
+const renderMultipleProducts: RendererFn = (data: any) =>
   data?.products?.length ? (
     <div className="mb-6">
       <ProductResultsSummary
@@ -25,8 +36,8 @@ export const renderMultipleProducts = (data: any) =>
     </div>
   ) : null;
 
-export const renderVariations = (data: any) => {
-  return data?.product ? (
+const renderVariations: RendererFn = (data: any) =>
+  data?.product ? (
     <div className="mb-6">
       <VariationListCompact
         variations={data?.product?.variations}
@@ -34,9 +45,8 @@ export const renderVariations = (data: any) => {
       />
     </div>
   ) : null;
-};
 
-export const renderAssignments = (data: any) =>
+const renderAssignments: RendererFn = (data: any) =>
   data?.assignments?.length ? (
     <div className="mb-6">
       <AssignmentListCompact
@@ -46,7 +56,7 @@ export const renderAssignments = (data: any) =>
     </div>
   ) : null;
 
-export const renderBundles = (data: any) =>
+const renderBundles: RendererFn = (data: any) =>
   data?.product ? (
     <div className="mb-6">
       <BundleProductCompact
@@ -56,7 +66,7 @@ export const renderBundles = (data: any) =>
     </div>
   ) : null;
 
-export const renderPrice = (data: any) =>
+export const renderPrice: RendererFn = (data: any) =>
   data?.product ? (
     <div className="mb-6">
       <CopilotPriceCompact
@@ -68,8 +78,7 @@ export const renderPrice = (data: any) =>
     </div>
   ) : null;
 
-const toolsMap = {
-
+const toolsMap: Record<string, RendererFn> = {
   LIST: renderMultipleProducts,
   GET_VARIATION_PRODUCTS: renderMultipleProducts,
   GET_PRODUCTS: renderMultipleProducts,
@@ -78,29 +87,48 @@ const toolsMap = {
   UPDATE: renderSingleProduct,
   REMOVE: renderSingleProduct,
   UPDATE_STATUS: renderSingleProduct,
+
   CREATE_OPTION: renderVariations,
-  CREATE_VARIATION: VariationListItemCompact,
-  ADD_VARIATION_OPTION: VariationListItemCompact,
+  CREATE_VARIATION: (data) => <VariationListItemCompact {...(data as any)} />,
+  ADD_VARIATION_OPTION: (data) => (
+    <VariationListItemCompact {...(data as any)} />
+  ),
+
   GET_PRODUCT_TEXTS: renderTexts('GET_PRODUCT_TEXTS'),
   GET_VARIATION_TEXTS: renderTexts('GET_VARIATION_TEXTS'),
   GET_MEDIA_TEXTS: renderTexts('GET_MEDIA_TEXTS'),
   UPDATE_VARIATION_TEXTS: renderTexts('UPDATE_VARIATION_TEXTS'),
   UPDATE_MEDIA_TEXTS: renderTexts('UPDATE_MEDIA_TEXTS'),
-  ADD_ASSIGNMENT: AssignmentListItemCompact,
-  GET_ASSIGNMENTS: AssignmentListCompact,
-  ADD_MEDIA: CopilotMediaList,
-  GET_MEDIA: CopilotMediaList,
-  REORDER_MEDIA: CopilotMediaList,
-  REMOVE_ASSIGNMENT: RemovedVectorsDisplay,
+
+  ADD_ASSIGNMENT: (data) => <AssignmentListItemCompact {...(data as any)} />,
+  GET_ASSIGNMENTS: (data) => <AssignmentListCompact {...(data as any)} />,
+
+  ADD_MEDIA: (data) => <CopilotMediaList {...(data as any)} />,
+  GET_MEDIA: (data) => <CopilotMediaList {...(data as any)} />,
+  REORDER_MEDIA: (data) => <CopilotMediaList {...(data as any)} />,
+
+  REMOVE_ASSIGNMENT: (data) => <RemovedVectorsDisplay {...(data as any)} />,
+
   ADD_BUNDLE_ITEM: renderBundles,
   REMOVE_BUNDLE_ITEM: renderBundles,
-  GET_BUNDLE_ITEMS: BundleItemList
+
+  GET_BUNDLE_ITEMS: (data) => <BundleItemList {...(data as any)} />,
+
+  GET_SIBLINGS: renderMultipleProducts,
 };
-export const renderProductToolResponses = ({ action, data }) => {
-  const Component = toolsMap?.[action];
-  return Component ? (
-    <Component {...data} />
-  ) : (
-    JSON.stringify({ action, data }, null, 2)
-  );
+export const ProductRenderers = ({ action, data }: RendererParams) => {
+  if (!action) return null;
+
+  const renderFn = toolsMap[action];
+  if (!renderFn) {
+    return (
+      <pre className="p-2 bg-gray-100 rounded text-xs overflow-auto">
+        {JSON.stringify({ action, data }, null, 2)}
+      </pre>
+    );
+  }
+
+  return renderFn(data);
 };
+
+export default ProductRenderers;

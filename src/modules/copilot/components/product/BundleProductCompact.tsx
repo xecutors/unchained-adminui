@@ -18,7 +18,13 @@ const BundleProductCompact: React.FC<BundleProductCompactProps> = ({
 }) => {
   return (
     <ProductItemWrapperCompact product={bundleProduct} tab="bundled_products">
-      {(bundleItems || []).map(({ product, quantity }, index) => <BundleItemCompact key={`${index}-${product._id}`} product={product} quantity={quantity} />)}
+      {(bundleItems || []).map(({ product, quantity }, index) => (
+        <BundleItemCompact
+          key={`${index}-${product._id}`}
+          product={product}
+          quantity={quantity}
+        />
+      ))}
     </ProductItemWrapperCompact>
   );
 };

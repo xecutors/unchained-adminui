@@ -1,7 +1,6 @@
 import React from 'react';
 import UnknownToolResponse from './UnknownToolResponse';
 import ToolRenderer from './ToolRenderer';
-import { SkippedToolResponse } from '../hooks/useToolTextNormalizer';
 import { useIntl } from 'react-intl';
 
 interface ToolInvocationRendererProps {
@@ -40,9 +39,7 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
 
     const parsed = { toolCallId, ...JSON.parse(textString || '{}') };
 
-    if (SkippedToolResponse.includes(toolName)) return null;
-
-    const renderer = ToolRenderer[toolName];
+    const renderer = ToolRenderer?.[toolName];
 
     return (
       <div className="mb-6">

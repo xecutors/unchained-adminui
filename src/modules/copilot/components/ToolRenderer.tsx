@@ -1,63 +1,29 @@
-import { ReactElement } from 'react';
+import { ReactNode } from 'react';
 
 import renderShopInfo from './tool-renderers/shopRenderers';
 import {
-  renderVariations,
-  renderAssignments,
-  renderBundles,
   renderPrice,
-  renderProductToolResponses,
-} from './tool-renderers/productRenderers';
-import {
-  renderSingleAssortment,
-  renderMultipleAssortments,
-} from './tool-renderers/assortmentRenderers';
+  ProductRenderers,
+} from './tool-renderers/ProductRenderers';
+import assortmentRenderers from './tool-renderers/AssortmentRenderers';
 
-import { renderTexts } from './tool-renderers/textRenderers';
-import { renderMedias } from './tool-renderers/renderMedias';
-import {
-  MediaListReturnTools,
-  SingleAssortmentReturnTools,
-  MultipleAssortmentReturnTools,
-  ToolName,
-  PriceReturnTools,
-  ProductVariationsReturnTools,
-  ProductAssignmentsReturnTools,
-} from '../hooks/useToolTextNormalizer';
+import { ToolName, PriceReturnTools } from '../hooks/useToolTextNormalizer';
 import { renderProvidersToolResponses } from './tool-renderers/providerRenderes';
 import { renderOrderToolResponses } from './tool-renderers/orderRenderers';
 import { renderLocalizationToolResponses } from './tool-renderers/localizationRenderes';
 import renderImage from './tool-renderers/imageRenderer';
 
-type ToolRenderFn = (data: any) => ReactElement | null;
+type ToolRenderFn = (data: any) => ReactNode | null;
 
 const ToolRenderer: Record<ToolName, ToolRenderFn> = {
   shop_info: renderShopInfo,
   generateImage: renderImage,
-  product_management: renderProductToolResponses,
+  product_management: ProductRenderers,
   localization_management: renderLocalizationToolResponses,
+  assortment_management: assortmentRenderers,
   order_management: renderOrderToolResponses,
   provider_management: renderProvidersToolResponses,
-  ...Object.fromEntries(
-    ProductAssignmentsReturnTools.map((name) => [name, renderAssignments]),
-  ),
-  ...Object.fromEntries(
-    ProductVariationsReturnTools.map((name) => [name, renderVariations]),
-  ),
-
   ...Object.fromEntries(PriceReturnTools.map((name) => [name, renderPrice])),
-  ...Object.fromEntries(
-    MediaListReturnTools.map((name) => [name, renderMedias]),
-  ),
-  ...Object.fromEntries(
-    SingleAssortmentReturnTools.map((name) => [name, renderSingleAssortment]),
-  ),
-  ...Object.fromEntries(
-    MultipleAssortmentReturnTools.map((name) => [
-      name,
-      renderMultipleAssortments,
-    ]),
-  ),
 };
 
 export default ToolRenderer;
