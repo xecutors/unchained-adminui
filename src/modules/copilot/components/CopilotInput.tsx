@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import Image from 'next/image';
 import {
   CameraIcon,
@@ -8,22 +8,19 @@ import {
 } from '@heroicons/react/24/outline';
 import { useChatContext } from '..';
 import useLocalStorage from '../../common/hooks/useLocalStorage';
-import deBounce from '../../common/utils/deBounce';
 const CopilotInput: React.FC = () => {
-  const {
-    input,
-    handleInputChange,
-    handleSubmit,
+  const {          
     status,
     stop,
     addInterruptionMessage,
+    append,
   } = useChatContext();
+  const [localInput, setLocalInput] = useState('');
   const [inputHistory, setInputHistory] = useLocalStorage(
     'copilot-input-history',
     [],
   );
 
-  const debounceInputChange = useMemo(() => deBounce(200)(handleInputChange), []);
 
   const [historyIndex, setHistoryIndex] = useState(-1);
 
@@ -37,27 +34,55 @@ const CopilotInput: React.FC = () => {
     }
   }, [status]);
 
-  const handleStop = () => {
+  const handleLocalInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setLocalInput(e.target.value);
+  }, []);
+
+  const handleStop = useCallback(() => {
     const currentStatus = status;
     setIsStopped(true);
     stop();
     setTimeout(() => {
       addInterruptionMessage(currentStatus);
     }, 100);
+  }, [status, stop, addInterruptionMessage]);
+
+  const formatFileLink = (url: string): string => {
+    const extension = url.split('.').pop()?.toLowerCase().split('?')[0] || '';
+    const imageExtensions = ['png', 'jpg', 'jpeg', 'gif', 'webp', 'bmp', 'svg'];
+    const isImage = imageExtensions.includes(extension);
+    
+    if (isImage) {
+      return `![image](${url})`;
+    }
+    
+    const filename = url.split('/').pop() || 'file';
+    return `[${filename}](${url})`;
   };
 
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      if (input.trim() || imageUrls.length > 0) {
-        setInputHistory((prev) => [...prev, input]);
+      if (localInput.trim() || imageUrls.length > 0) {
+        setInputHistory((prev) => [...prev, localInput]);
         setHistoryIndex(-1);
         const imgs = [...imageUrls];
-        setImageUrls([]);
-        await handleSubmit(e, imgs);
+        setImageUrls([]);              
+        setLocalInput('');                
+        
+        const messageText = localInput.trim();
+        const assets = imgs.map(formatFileLink).join('\n');
+        const messageContent = [messageText, assets].filter(Boolean).join('\n');
+        
+        if (messageContent) {
+          await append({
+            id: `msg-${Date.now()}`,
+            role: 'user',
+            content: messageContent,
+          });
+        }
       }
-    } catch (e) {
-      // Don't log authentication errors to console as they're handled in the UI
+    } catch (e) {      
       const errorMessage = e instanceof Error ? e.message : String(e);
       if (
         !errorMessage.includes('401') &&
@@ -66,7 +91,7 @@ const CopilotInput: React.FC = () => {
         console.error(e);
       }
     }
-  };
+  }, [localInput, imageUrls, append]);
 
   const uploadImage = async (file: File): Promise<string | null> => {
     const formData = new FormData();
@@ -105,12 +130,11 @@ const CopilotInput: React.FC = () => {
     setUploading(false);
   };
 
-  const setInputValue = (value: string) =>
-    handleInputChange({
-      target: { value },
-    } as React.ChangeEvent<HTMLInputElement>);
+  const setInputValue = useCallback((value: string) => {
+    setLocalInput(value);
+  }, []);
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
       e.preventDefault();
       let newIndex = historyIndex;
@@ -129,16 +153,16 @@ const CopilotInput: React.FC = () => {
       setHistoryIndex(newIndex);
       setInputValue(newIndex === -1 ? '' : inputHistory[newIndex]);
     }
-  };
+  }, [historyIndex, inputHistory, setInputValue]);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      if (inputHistory.length > 0) {
-        setInputHistory(JSON.stringify(inputHistory.slice(-50)));
+      if (inputHistory.length > 50) {
+        setInputHistory(inputHistory.slice(-50));
       }
     }, 500);
     return () => clearTimeout(timeout);
-  }, [inputHistory]);
+  }, [inputHistory.length]);
   return (
     <div className="sticky bottom-6 max-w-4xl mx-auto w-full">
       <form
@@ -146,8 +170,9 @@ const CopilotInput: React.FC = () => {
         className="bg-white dark:bg-slate-800 shadow-2xl border border-slate-300 dark:border-slate-700 rounded-md p-3"
       >
         <div className="flex items-center gap-2">
-          <input          
-            onChange={debounceInputChange}
+          <input
+            value={localInput}
+            onChange={handleLocalInputChange}
             onKeyDown={handleKeyDown}
             placeholder="Type your message..."
             className="flex-1 border-0 bg-slate-50 dark:bg-slate-700 dark:text-slate-200 dark:placeholder-slate-400 rounded-md px-4 py-2 focus:ring-2 focus:ring-slate-400"
@@ -181,7 +206,7 @@ const CopilotInput: React.FC = () => {
           ) : (
             <button
               type="submit"
-              disabled={!input.trim() && imageUrls.length === 0}
+              disabled={!localInput.trim() && imageUrls.length === 0}
               className="p-2 bg-slate-900 dark:bg-slate-700 text-white hover:bg-slate-800 dark:hover:bg-slate-800 disabled:bg-slate-200 disabled:text-slate-900 dark:disabled:bg-slate-600 disabled:cursor-not-allowed focus:ring-2 focus:ring-sky-300 focus:outline-hidden rounded transition-colors"
             >
               <PaperAirplaneIcon className="h-6 w-6" strokeWidth={2} />
