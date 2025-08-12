@@ -9,18 +9,12 @@ import {
 import { useChatContext } from '..';
 import useLocalStorage from '../../common/hooks/useLocalStorage';
 const CopilotInput: React.FC = () => {
-  const {          
-    status,
-    stop,
-    addInterruptionMessage,
-    append,
-  } = useChatContext();
+  const { status, stop, addInterruptionMessage, append } = useChatContext();
   const [localInput, setLocalInput] = useState('');
   const [inputHistory, setInputHistory] = useLocalStorage(
     'copilot-input-history',
     [],
   );
-
 
   const [historyIndex, setHistoryIndex] = useState(-1);
 
@@ -34,9 +28,12 @@ const CopilotInput: React.FC = () => {
     }
   }, [status]);
 
-  const handleLocalInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    setLocalInput(e.target.value);
-  }, []);
+  const handleLocalInputChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setLocalInput(e.target.value);
+    },
+    [],
+  );
 
   const handleStop = useCallback(() => {
     const currentStatus = status;
@@ -51,47 +48,52 @@ const CopilotInput: React.FC = () => {
     const extension = url.split('.').pop()?.toLowerCase().split('?')[0] || '';
     const imageExtensions = ['png', 'jpg', 'jpeg', 'gif', 'webp', 'bmp', 'svg'];
     const isImage = imageExtensions.includes(extension);
-    
+
     if (isImage) {
       return `![image](${url})`;
     }
-    
+
     const filename = url.split('/').pop() || 'file';
     return `[${filename}](${url})`;
   };
 
-  const onSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    try {
-      if (localInput.trim() || imageUrls.length > 0) {
-        setInputHistory((prev) => [...prev, localInput]);
-        setHistoryIndex(-1);
-        const imgs = [...imageUrls];
-        setImageUrls([]);              
-        setLocalInput('');                
-        
-        const messageText = localInput.trim();
-        const assets = imgs.map(formatFileLink).join('\n');
-        const messageContent = [messageText, assets].filter(Boolean).join('\n');
-        
-        if (messageContent) {
-          await append({
-            id: `msg-${Date.now()}`,
-            role: 'user',
-            content: messageContent,
-          });
+  const onSubmit = useCallback(
+    async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      try {
+        if (localInput.trim() || imageUrls.length > 0) {
+          setInputHistory((prev) => [...prev, localInput]);
+          setHistoryIndex(-1);
+          const imgs = [...imageUrls];
+          setImageUrls([]);
+          setLocalInput('');
+
+          const messageText = localInput.trim();
+          const assets = imgs.map(formatFileLink).join('\n');
+          const messageContent = [messageText, assets]
+            .filter(Boolean)
+            .join('\n');
+
+          if (messageContent) {
+            await append({
+              id: `msg-${Date.now()}`,
+              role: 'user',
+              content: messageContent,
+            });
+          }
+        }
+      } catch (e) {
+        const errorMessage = e instanceof Error ? e.message : String(e);
+        if (
+          !errorMessage.includes('401') &&
+          !errorMessage.includes('invalid_token')
+        ) {
+          console.error(e);
         }
       }
-    } catch (e) {      
-      const errorMessage = e instanceof Error ? e.message : String(e);
-      if (
-        !errorMessage.includes('401') &&
-        !errorMessage.includes('invalid_token')
-      ) {
-        console.error(e);
-      }
-    }
-  }, [localInput, imageUrls, append]);
+    },
+    [localInput, imageUrls, append],
+  );
 
   const uploadImage = async (file: File): Promise<string | null> => {
     const formData = new FormData();
@@ -134,26 +136,29 @@ const CopilotInput: React.FC = () => {
     setLocalInput(value);
   }, []);
 
-  const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
-      e.preventDefault();
-      let newIndex = historyIndex;
-      if (e.key === 'ArrowUp') {
-        newIndex =
-          historyIndex === -1
-            ? inputHistory.length - 1
-            : Math.max(0, historyIndex - 1);
-      } else if (e.key === 'ArrowDown') {
-        newIndex = historyIndex + 1;
-        if (newIndex >= inputHistory.length) {
-          newIndex = -1;
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+        e.preventDefault();
+        let newIndex = historyIndex;
+        if (e.key === 'ArrowUp') {
+          newIndex =
+            historyIndex === -1
+              ? inputHistory.length - 1
+              : Math.max(0, historyIndex - 1);
+        } else if (e.key === 'ArrowDown') {
+          newIndex = historyIndex + 1;
+          if (newIndex >= inputHistory.length) {
+            newIndex = -1;
+          }
         }
-      }
 
-      setHistoryIndex(newIndex);
-      setInputValue(newIndex === -1 ? '' : inputHistory[newIndex]);
-    }
-  }, [historyIndex, inputHistory, setInputValue]);
+        setHistoryIndex(newIndex);
+        setInputValue(newIndex === -1 ? '' : inputHistory[newIndex]);
+      }
+    },
+    [historyIndex, inputHistory, setInputValue],
+  );
 
   useEffect(() => {
     const timeout = setTimeout(() => {

@@ -12,7 +12,7 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
   part,
 }) => {
   const { formatMessage } = useIntl();
-  const { toolName, result } = part.toolInvocation ?? {};
+  const { toolName, result, toolCallId } = part.toolInvocation ?? {};
   if (!toolName || !result?.content?.length) return null;
 
   const content = result.content[0];
@@ -36,7 +36,7 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
       );
     }
 
-    const parsed = JSON.parse(textString);
+    const parsed = { toolCallId, ...JSON.parse(textString || '{}') };
 
     if (SkippedToolResponse.includes(toolName)) return null;
 

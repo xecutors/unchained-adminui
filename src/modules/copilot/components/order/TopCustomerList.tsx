@@ -9,7 +9,6 @@ const TopCustomerList = ({ customers, dateRange }) => {
   const { formatMessage } = useIntl();
   const { formatPrice } = useFormatPrice();
   const { formatDateTime } = useFormatDateTime();
-  console.log(customers);
   return (
     <div className="space-y-4">
       {(dateRange?.start || dateRange?.end) && (
