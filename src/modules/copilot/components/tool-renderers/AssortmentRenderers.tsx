@@ -10,12 +10,7 @@ import CopilotFilterList, {
   CopilotFilterItem,
 } from '../product/CopilotFilterList';
 
-export const renderSingleAssortment = (data: any) =>
-  data?.assortment ? (
-    <AssortmentListItemCompact assortment={data.assortment} />
-  ) : null;
-
-export const renderMultipleAssortments = (data: any) =>
+const renderMultipleAssortments = (data: any) =>
   data?.assortments ? (
     <div className="mb-6">
       <AssortmentResultsSummary
@@ -28,13 +23,16 @@ export const renderMultipleAssortments = (data: any) =>
 
 const toolsMap = {
   LIST: renderMultipleAssortments,
-  GET_CHILDREN: renderMultipleAssortments,
-  GET: renderSingleAssortment,
-  CREATE: renderSingleAssortment,
-  UPDATE: renderSingleAssortment,
-  REMOVE: renderSingleAssortment,
-  SET_BASE: renderSingleAssortment,
-  UPDATE_STATUS: renderSingleAssortment,
+  GET_CHILDREN: CopilotAssortmentList,
+  GET_LINKS: CopilotAssortmentList,
+  REORDER_LINKS: CopilotAssortmentList,
+  ADD_LINK: AssortmentListItemCompact,
+  GET: AssortmentListItemCompact,
+  CREATE: AssortmentListItemCompact,
+  UPDATE: AssortmentListItemCompact,
+  REMOVE: AssortmentListItemCompact,
+  SET_BASE: AssortmentListItemCompact,
+  UPDATE_STATUS: AssortmentListItemCompact,
   GET_TEXTS: renderTexts('GET_TEXTS'),
   GET_MEDIA_TEXTS: renderTexts('GET_MEDIA_TEXTS'),
   UPDATE_MEDIA_TEXTS: renderTexts('UPDATE_MEDIA_TEXTS'),

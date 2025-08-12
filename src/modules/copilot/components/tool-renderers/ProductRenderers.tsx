@@ -1,6 +1,5 @@
 import { ReactElement } from 'react';
 
-// Product components
 import { ProductListItemCompact, ProductList } from '../product';
 import AssignmentListCompact from '../product/AssignmentListCompact';
 import AssignmentListItemCompact from '../product/AssignmentListItemCompact';

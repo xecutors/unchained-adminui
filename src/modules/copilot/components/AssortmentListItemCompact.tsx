@@ -16,7 +16,7 @@ const AssortmentListItemCompact: React.FC<AssortmentListItemCompactProps> = ({
   className,
 }) => {
   const { formatMessage } = useIntl();
-
+  if (!assortment) return null;
   const getStatusBadge = (isActive: boolean) => {
     return (
       <Badge
@@ -39,12 +39,12 @@ const AssortmentListItemCompact: React.FC<AssortmentListItemCompactProps> = ({
   };
 
   const getAssortmentThumbnail = () => {
-    const media = assortment.media?.[0];
+    const media = assortment?.media?.[0];
     if (media?.file?.url) {
       return (
         <img
-          src={media.file.url}
-          alt={assortment.texts?.title || 'Assortment'}
+          src={media?.file?.url}
+          alt={assortment?.texts?.title || 'Assortment'}
           className="w-12 h-12 object-cover rounded-lg"
         />
       );
@@ -69,55 +69,49 @@ const AssortmentListItemCompact: React.FC<AssortmentListItemCompactProps> = ({
       )}
     >
       <div className="flex items-center gap-4">
-        {/* Thumbnail */}
         <div className="flex-shrink-0">{getAssortmentThumbnail()}</div>
 
-        {/* Content */}
         <div className="flex-1 min-w-0">
           <div className="flex items-center justify-between gap-4">
             <div className="flex-1 min-w-0">
-              {/* Title and Status */}
               <div className="flex items-center gap-2 mb-1">
                 <h3 className="font-medium text-slate-900 dark:text-slate-100 truncate">
-                  {assortment.texts?.title ||
+                  {assortment?.texts?.title ||
                     formatMessage({
                       id: 'untitled_assortment',
                       defaultMessage: 'Untitled Assortment',
                     })}
                 </h3>
-                {getStatusBadge(assortment.isActive)}
+                {getStatusBadge(assortment?.isActive)}
               </div>
 
-              {/* Subtitle */}
-              {assortment.texts?.subtitle && (
+              {assortment?.texts?.subtitle && (
                 <p className="text-sm text-slate-600 dark:text-slate-400 truncate mb-1">
-                  {assortment.texts.subtitle}
+                  {assortment?.texts?.subtitle}
                 </p>
               )}
 
-              {/* Metadata */}
               <div className="flex items-center gap-4 text-xs text-slate-500 dark:text-slate-500">
-                <span>Updated: {formatDate(assortment.updated)}</span>
-                {assortment.sequence && (
-                  <span className="font-mono">#{assortment.sequence}</span>
+                <span>Updated: {formatDate(assortment?.updated)}</span>
+                {assortment?.sequence && (
+                  <span className="font-mono">#{assortment?.sequence}</span>
                 )}
-                {assortment.childrenCount > 0 && (
+                {assortment?.childrenCount > 0 && (
                   <span>
                     {formatMessage(
                       {
                         id: 'children_count',
                         defaultMessage: '{count} children',
                       },
-                      { count: assortment.childrenCount },
+                      { count: assortment?.childrenCount },
                     )}
                   </span>
                 )}
               </div>
 
-              {/* Tags */}
-              {assortment.tags && assortment.tags.length > 0 && (
+              {assortment?.tags && assortment?.tags.length > 0 && (
                 <div className="flex items-center gap-1 mt-2">
-                  {assortment.tags
+                  {assortment?.tags
                     .slice(0, 2)
                     .map((tag: string, index: number) => (
                       <span
@@ -127,19 +121,18 @@ const AssortmentListItemCompact: React.FC<AssortmentListItemCompactProps> = ({
                         {tag}
                       </span>
                     ))}
-                  {assortment.tags.length > 2 && (
+                  {assortment?.tags.length > 2 && (
                     <span className="text-xs text-slate-500 dark:text-slate-500">
-                      +{assortment.tags.length - 2} more
+                      +{assortment?.tags.length - 2} more
                     </span>
                   )}
                 </div>
               )}
               <span className="text-xs text-slate-500 dark:text-slate-400 truncate">
-                ID: {assortment._id}
+                ID: {assortment?._id}
               </span>
             </div>
 
-            {/* Action */}
             <div className="flex-shrink-0">
               <Link
                 href={`/assortments?assortmentSlug=${generateUniqueId(assortment)}`}

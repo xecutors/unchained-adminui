@@ -12,6 +12,7 @@ const CopilotAssortmentList: React.FC<AssortmentListProps> = ({
   assortments,
   className,
 }) => {
+  if (!assortments?.length) return null;
   return (
     <ListViewWrapper className={className}>
       {(viewMode) =>
@@ -24,7 +25,7 @@ const CopilotAssortmentList: React.FC<AssortmentListProps> = ({
               gridTemplateRows: 'span 6',
             }}
           >
-            {assortments.map((assortment) => (
+            {assortments?.map((assortment) => (
               <AssortmentListItem
                 key={assortment._id}
                 assortment={assortment}
