@@ -48,10 +48,7 @@ const renderVariations: RendererFn = (data: any) =>
 const renderAssignments: RendererFn = (data: any) =>
   data?.assignments?.length ? (
     <div className="mb-6">
-      <AssignmentListCompact
-        assignments={data.assignments}
-        product={data?.product}
-      />
+      <AssignmentListCompact assignments={data.assignments} />
     </div>
   ) : null;
 

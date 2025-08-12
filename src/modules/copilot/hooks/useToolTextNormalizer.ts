@@ -12,7 +12,7 @@ export const ProviderTools = ['provider_management'] as const;
 export const LocalizationTools = ['localization_management'] as const;
 export const ProductTools = ['product_management'] as const;
 export const AllTools = [
-  'shop_info',
+  'system_management',
   'generateImage',
   'assortment_management',
   ...ProductTools,

@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import renderShopInfo from './tool-renderers/shopRenderers';
+import renderSystemInfo from './tool-renderers/systemInfoRenderers';
 import {
   renderPrice,
   ProductRenderers,
@@ -15,8 +15,8 @@ import renderImage from './tool-renderers/imageRenderer';
 
 type ToolRenderFn = (data: any) => ReactNode | null;
 
-const ToolRenderer: Record<ToolName, ToolRenderFn> = {
-  shop_info: renderShopInfo,
+const ToolRenderer: Record<string, ToolRenderFn> = {
+  system_management: renderSystemInfo,
   generateImage: renderImage,
   product_management: ProductRenderers,
   localization_management: renderLocalizationToolResponses,

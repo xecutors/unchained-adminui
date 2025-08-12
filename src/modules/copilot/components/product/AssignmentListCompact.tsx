@@ -2,33 +2,11 @@ import React from 'react';
 
 import { useIntl } from 'react-intl';
 import Link from 'next/link';
-import ProductItemWrapperCompact from './ProductItemWrapperCompact';
-import { IProduct } from '../../../../gql/types';
 import ImageWithFallback from '../../../common/components/ImageWithFallback';
 import generateUniqueId from '../../../common/utils/getUniqueId';
 import { useFormatPrice } from '../../../common/utils/utils';
 
-interface AssignmentData {
-  assignment: {
-    vector: Record<string, string>;
-    productId: string;
-    product?: IProduct & { commerce: any } & {
-      warehousing?: { sku?: string };
-    } & { type?: string } & { media?: { file: { url: string } }[] };
-  };
-  product: {
-    _id: string;
-    slugs: string[];
-    texts?: { title?: string };
-  };
-}
-
-interface Props {
-  assignments: AssignmentData[];
-  product?: any;
-}
-
-const AssignmentListCompact: React.FC<Props> = ({ assignments, product }) => {
+const AssignmentListCompact = ({ assignments }) => {
   const { formatMessage } = useIntl();
   const { formatPrice } = useFormatPrice();
   if (!assignments?.length) return null;
@@ -57,7 +35,7 @@ const AssignmentListCompact: React.FC<Props> = ({ assignments, product }) => {
               </div>
 
               <div className="flex flex-wrap gap-2 text-xs">
-                {Object.entries(assignment.vector).map(([key, value]) => (
+                {Object.entries(assignment.vector).map(([key, value]: any) => (
                   <span
                     key={key}
                     className="bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-white px-2 py-0.5 rounded"
