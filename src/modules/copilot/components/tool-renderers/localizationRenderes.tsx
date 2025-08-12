@@ -33,7 +33,10 @@ export const renderLocalizationToolResponses = ({
   localizationType,
   action,
   data,
+  ...rest
 }) => {
   const Component = localizationDisplayMap?.[localizationType]?.[action];
-  return Component ? <Component type={localizationType} {...data} /> : null;
+  return Component ? (
+    <Component type={localizationType} {...data} {...rest} />
+  ) : null;
 };

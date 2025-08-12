@@ -3,36 +3,9 @@ import { useIntl } from 'react-intl';
 import useFormatDateTime from '../../../common/utils/useFormatDateTime';
 import Link from 'next/link';
 
-interface FilterOption {
-  _id: string;
-  created: string;
-  isActive: boolean;
-  key?: string;
-  texts?: { locale?: string; name?: string };
-  filterOption?: string;
-}
-
-interface Filter {
-  _id: string;
-  created: string;
-  updated?: string;
-  isActive: boolean;
-  type: string;
-  key: string;
-  options?: FilterOption[] | null;
-  tags?: string[];
-  sortKey?: number;
-  texts?: { locale?: string; name?: string };
-}
-
-interface CopilotFilterListProps {
-  filters: Filter[];
-}
-
-export const CopilotFilterItem: React.FC<{ filter: Filter }> = ({ filter }) => {
+export const CopilotFilterItem = ({ filter, toolCallId = '' }) => {
   const { formatMessage } = useIntl();
   const { formatDateTime } = useFormatDateTime();
-
   return (
     <div className="flex items-center gap-4 p-3 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-md transition-shadow duration-200 w-full overflow-hidden">
       <div className="flex-1 min-w-0">
@@ -70,14 +43,14 @@ export const CopilotFilterItem: React.FC<{ filter: Filter }> = ({ filter }) => {
         {filter.options?.length ? (
           filter.options.map((opt) => (
             <span
-              key={opt._id}
+              key={`${toolCallId}-${opt.filterOption}`}
               className={`inline-block px-2 py-1 text-xs font-medium rounded ${
                 opt.isActive
                   ? 'bg-blue-100 text-blue-700 dark:bg-blue-800 dark:text-blue-200'
                   : 'bg-slate-100 text-slate-500 dark:bg-slate-700 dark:text-slate-400'
               }`}
             >
-              {opt.filterOption || opt.key || opt._id}
+              {opt.filterOption || opt.key}
             </span>
           ))
         ) : (
@@ -105,7 +78,7 @@ export const CopilotFilterItem: React.FC<{ filter: Filter }> = ({ filter }) => {
           <div className="flex flex-wrap gap-1 mt-1">
             {filter.tags.map((tag) => (
               <span
-                key={tag}
+                key={`${toolCallId}-${tag}`}
                 className="bg-yellow-100 text-yellow-800 dark:bg-yellow-800 dark:text-yellow-200 px-2 py-0.5 rounded"
               >
                 {tag}
@@ -125,13 +98,17 @@ export const CopilotFilterItem: React.FC<{ filter: Filter }> = ({ filter }) => {
   );
 };
 
-const CopilotFilterList: React.FC<CopilotFilterListProps> = ({ filters }) => {
+const CopilotFilterList = ({ filters, toolCallId = '' }) => {
   if (!filters?.length) return null;
 
   return (
     <div className="flex flex-col gap-3 w-full">
       {filters.map((filter) => (
-        <CopilotFilterItem key={filter._id} filter={filter} />
+        <CopilotFilterItem
+          key={`${toolCallId}-${filter._id}`}
+          filter={filter}
+          toolCallId={toolCallId}
+        />
       ))}
     </div>
   );

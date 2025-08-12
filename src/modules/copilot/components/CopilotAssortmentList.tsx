@@ -6,11 +6,13 @@ import ListViewWrapper from './ListViewWrapper';
 interface AssortmentListProps {
   assortments: any[];
   className?: string;
+  toolCallId?: string;
 }
 
 const CopilotAssortmentList: React.FC<AssortmentListProps> = ({
   assortments,
   className,
+  toolCallId,
 }) => {
   if (!assortments?.length) return null;
   return (
@@ -27,7 +29,7 @@ const CopilotAssortmentList: React.FC<AssortmentListProps> = ({
           >
             {assortments?.map((assortment) => (
               <AssortmentListItem
-                key={assortment._id}
+                key={`${toolCallId}-${assortment._id}`}
                 assortment={assortment}
               />
             ))}

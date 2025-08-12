@@ -17,7 +17,7 @@ const renderMultipleAssortments = (data: any) =>
         assortments={data.assortments}
         requestedFilters={data.filters}
       />
-      <CopilotAssortmentList assortments={data.assortments} />
+      <CopilotAssortmentList {...data} />
     </div>
   ) : null;
 
@@ -48,10 +48,10 @@ const toolsMap = {
   REORDER_FILTERS: CopilotFilterList,
 };
 
-const AssortmentRenderers = ({ data, action }) => {
+const AssortmentRenderers = ({ data, action, toolCallId }) => {
   const Component = toolsMap?.[action];
   return Component ? (
-    <Component {...data} />
+    <Component {...{ toolCallId, ...data }} />
   ) : (
     JSON.stringify({ action, data }, null, 2)
   );

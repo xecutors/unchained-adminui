@@ -69,12 +69,15 @@ export const CurrencyItemCompact = ({ currency }: { currency: Currency }) => {
   );
 };
 
-const CopilotCurrencyList = ({ currencies }) => {
+const CopilotCurrencyList = ({ currencies, toolCallId }) => {
   if (!currencies?.length) return null;
   return (
     <div>
       {currencies.map((currency) => (
-        <CurrencyItemCompact currency={currency} key={currency._id} />
+        <CurrencyItemCompact
+          currency={currency}
+          key={`${toolCallId}-${currency._id}`}
+        />
       ))}
     </div>
   );
