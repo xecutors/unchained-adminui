@@ -33,6 +33,14 @@ const setupMCPChatHandler = (
     ...restChatConfig
   } = chatConfiguration;
 
+  const system =
+    chatConfiguration.system ??
+    `Do not include the data in your summary, just write a summary about it in one short paragraph and never list all the fields of a result, just summarize paragraph about your findings, if necessary.
+    Rules for using the Unchained MCP tools:
+    - All prices are integer type and to correctly determine the currency decimal points you need to check currencies.
+    - Determine the currently used language / locale for updating products, filters and assortments by checking Shop Info.
+    `;
+
   const mcpChatHandler: RequestHandler = async (
     req: Request,
     res: Response,
@@ -85,6 +93,7 @@ const setupMCPChatHandler = (
       const { messages } = req.body;
       const result = streamText({
         ...restChatConfig,
+        system,
         model,
         messages,
         tools: {
