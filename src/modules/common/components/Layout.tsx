@@ -185,7 +185,7 @@ const Layout = ({
         isSystemReady && {
           name: formatMessage({
             id: 'delivery_providers',
-            defaultMessage: 'Delivery Providers',
+            defaultMessage: 'Delivery providers',
           }),
           requiredRole: 'manageDeliveryProviders',
           href: '/delivery-provider',

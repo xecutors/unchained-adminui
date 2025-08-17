@@ -1,9 +1,14 @@
 import { ReactElement } from 'react';
 import ShopInfoCard from '../ShopInfo';
+import CopilotEventList, { CopilotEventListItem } from '../CopilotEventList';
+import CopilotEventStatistics from '../CopilotEventStatistics';
 
 type RendererFn = (data: unknown) => ReactElement | null;
 const toolsMap: Record<string, RendererFn> = {
   SHOP_INFO: ShopInfoCard,
+  EVENT_LIST: CopilotEventList,
+  EVENT_GET: CopilotEventListItem,
+  EVENT_STATISTICS: CopilotEventStatistics,
 };
 
 const systemInfoRenderers = ({ action, data, ...rest }) => {

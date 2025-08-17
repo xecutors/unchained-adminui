@@ -1,5 +1,5 @@
 import React from 'react';
-import UnknownToolResponse from './UnknownToolResponse';
+import JSONView from './JSONView';
 import ToolRenderer from './ToolRenderer';
 import { useIntl } from 'react-intl';
 
@@ -43,7 +43,7 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
 
     return (
       <div className="mb-6">
-        {renderer ? renderer(parsed) : <UnknownToolResponse data={parsed} />}
+        {renderer ? renderer(parsed) : <JSONView data={parsed} />}
       </div>
     );
   } catch (error) {
