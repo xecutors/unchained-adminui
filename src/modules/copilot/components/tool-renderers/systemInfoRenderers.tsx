@@ -2,6 +2,7 @@ import { ReactElement } from 'react';
 import ShopInfoCard from '../ShopInfo';
 import CopilotEventList, { CopilotEventListItem } from '../CopilotEventList';
 import CopilotEventStatistics from '../CopilotEventStatistics';
+import CopilotWorkerList, { CopilotWorkerListItem } from '../CopilotWorkerList';
 
 type RendererFn = (data: unknown) => ReactElement | null;
 const toolsMap: Record<string, RendererFn> = {
@@ -9,6 +10,13 @@ const toolsMap: Record<string, RendererFn> = {
   EVENT_LIST: CopilotEventList,
   EVENT_GET: CopilotEventListItem,
   EVENT_STATISTICS: CopilotEventStatistics,
+  WORKER_LIST: CopilotWorkerList,
+  WORKER_GET: CopilotWorkerListItem,
+  WORKER_ADD: CopilotWorkerListItem,
+  WORKER_REMOVE: CopilotWorkerListItem,
+  WORKER_ALLOCATE: CopilotWorkerListItem,
+  WORKER_PROCESS_NEXT: CopilotWorkerListItem,
+  WORKER_FINISH_WORK: CopilotWorkerListItem,
 };
 
 const systemInfoRenderers = ({ action, data, ...rest }) => {

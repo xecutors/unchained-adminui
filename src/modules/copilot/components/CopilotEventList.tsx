@@ -20,7 +20,7 @@ export const CopilotEventListItem = ({ event: evt }) => {
             {evt.type}
           </h3>
           <p className="text-xs text-slate-500 dark:text-slate-400 truncate">
-            {evt.payload.type} ({evt.payload.scheduleId})
+            {evt.payload.type}
           </p>
           <p className="text-[11px] text-slate-400 dark:text-slate-500 break-all">
             {formatMessage({ id: 'id', defaultMessage: 'ID' })}: {evt._id}
@@ -28,7 +28,14 @@ export const CopilotEventListItem = ({ event: evt }) => {
         </div>
 
         <div className="text-xs text-slate-500 dark:text-slate-400 text-right whitespace-nowrap mr-4">
-          {formatDateTime(evt.created)}
+          {formatDateTime(evt.created, {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+          })}
         </div>
 
         <div className="flex flex-col text-xs items-end space-y-1">
