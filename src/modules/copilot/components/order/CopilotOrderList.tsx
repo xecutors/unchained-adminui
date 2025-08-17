@@ -7,29 +7,7 @@ import { useIntl } from 'react-intl';
 import { OrderStatusBadge } from '../../../order/components/OrderStatusBadge';
 import Link from 'next/link';
 
-type Order = {
-  _id: string;
-  orderNumber: string;
-  status: string;
-  currencyCode: string;
-  calculation: { category: string; amount: number }[];
-  billingAddress: {
-    firstName: string;
-    lastName: string;
-    company: string;
-    city: string;
-    countryCode: string;
-  };
-  confirmed?: string;
-  ordered?: string;
-  fullfilled?: string;
-};
-
-type CopilotOrderListProps = {
-  orders: Order[];
-};
-
-const CopilotOrderList: React.FC<CopilotOrderListProps> = ({ orders }) => {
+const CopilotOrderList = ({ orders }) => {
   const { formatPrice } = useFormatPrice();
   const { formatDateTime } = useFormatDateTime();
   const { formatMessage } = useIntl();

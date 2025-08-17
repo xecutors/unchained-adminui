@@ -12,6 +12,7 @@ import { renderProvidersToolResponses } from './tool-renderers/providerRenderes'
 import { renderOrderToolResponses } from './tool-renderers/orderRenderers';
 import { renderLocalizationToolResponses } from './tool-renderers/localizationRenderes';
 import renderImage from './tool-renderers/imageRenderer';
+import userRenderers from './tool-renderers/userRenderers';
 
 type ToolRenderFn = (data: any) => ReactNode | null;
 
@@ -23,6 +24,7 @@ const ToolRenderer: Record<string, ToolRenderFn> = {
   assortment_management: assortmentRenderers,
   order_management: renderOrderToolResponses,
   provider_management: renderProvidersToolResponses,
+  users_management: userRenderers,
   ...Object.fromEntries(PriceReturnTools.map((name) => [name, renderPrice])),
 };
 
