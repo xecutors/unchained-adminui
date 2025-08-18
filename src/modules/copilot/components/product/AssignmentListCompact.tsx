@@ -63,15 +63,16 @@ const AssignmentListCompact = ({ assignments }) => {
                 {price}
               </div>
             )}
-
-            <div className="ml-4">
-              <Link
-                href={`/products?slug=${generateUniqueId(assignedProduct)}`}
-                className="text-sm px-3 py-1 rounded-md border border-slate-300 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-white"
-              >
-                {formatMessage({ id: 'edit', defaultMessage: 'Edit' })}
-              </Link>
-            </div>
+            {assignedProduct && (
+              <div className="ml-4">
+                <Link
+                  href={`/products?slug=${generateUniqueId(assignedProduct)}`}
+                  className="text-sm px-3 py-1 rounded-md border border-slate-300 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-white"
+                >
+                  {formatMessage({ id: 'edit', defaultMessage: 'Edit' })}
+                </Link>
+              </div>
+            )}
           </div>
         );
       })}

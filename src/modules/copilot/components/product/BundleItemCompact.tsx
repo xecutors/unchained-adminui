@@ -29,7 +29,10 @@ const BundleItemCompact = ({ product, quantity }) => {
         </div>
 
         <div className="text-xs text-slate-500 dark:text-slate-400">
-          {type} ·{formatMessage({ id: 'sku', defaultMessage: 'SKU' })}: {sku}
+          <span className="text-xs text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-600 px-2 py-1 rounded">
+            {type?.replace('_PRODUCT', '')}
+          </span>{' '}
+          ·{formatMessage({ id: 'sku', defaultMessage: 'SKU' })}: {sku}
         </div>
 
         <div className="text-xs text-slate-600 dark:text-slate-300">

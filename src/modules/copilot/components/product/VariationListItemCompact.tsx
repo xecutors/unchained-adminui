@@ -20,7 +20,6 @@ const VariationListItemCompact: React.FC<VariationListItemCompactProps> = ({
 
   return (
     <div className="flex items-center gap-4 p-3 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-md transition-shadow duration-200 w-full overflow-hidden">
-      {/* Left: Variation Key & Type */}
       <div className="flex-1 min-w-0">
         <h3 className="text-sm font-medium text-slate-900 dark:text-slate-100 truncate">
           {variation.key ||
