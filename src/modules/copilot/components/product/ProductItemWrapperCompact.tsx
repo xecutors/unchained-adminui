@@ -5,12 +5,16 @@ import ImageWithFallback from '../../../common/components/ImageWithFallback';
 import generateUniqueId from '../../../common/utils/getUniqueId';
 import { useFormatPrice } from '../../../common/utils/utils';
 import { ProductStatusBadge } from '../../../product/components/ProductStatusBadge';
-const ProductItemWrapperCompact = ({ product, tab = null, children }) => {
+const ProductItemWrapperCompact = ({
+  product,
+  tab = null,
+  children,
+  ...rest
+}) => {
   const { formatMessage } = useIntl();
   const { formatPrice } = useFormatPrice();
 
   if (!product) return children;
-
   const {
     texts = [],
     media = [],
@@ -25,6 +29,7 @@ const ProductItemWrapperCompact = ({ product, tab = null, children }) => {
     _id,
     type,
     status,
+    reviews = [],
   } = product;
   const text = Array.isArray(texts) ? texts[0] : texts;
   const price = catalogPrice || commerce?.pricing?.[0];
@@ -32,6 +37,7 @@ const ProductItemWrapperCompact = ({ product, tab = null, children }) => {
   const totalVariations = variations.length;
   const totalAssignments = proxy?.assignments?.length ?? 0;
   const totalBundleItemsLength = bundleItems.length;
+  const totalReviews = reviews?.length;
   const productSlug = generateUniqueId(product);
 
   return (
@@ -134,7 +140,16 @@ const ProductItemWrapperCompact = ({ product, tab = null, children }) => {
                 : <strong>{totalBundleItemsLength}</strong>
               </Link>
             )}
-
+            <Link
+              href={`/products?slug=${productSlug}&tab=reviews`}
+              className="px-2 py-0.5 text-xs rounded-full bg-blue-100 dark:bg-blue-700 text-blue-800 dark:text-blue-200 hover:underline"
+            >
+              {formatMessage({
+                id: 'reviews',
+                defaultMessage: 'Reviews',
+              })}
+              : <strong>{totalReviews}</strong>
+            </Link>
             {warehousing.sku && (
               <div>
                 {formatMessage({ id: 'sku', defaultMessage: 'SKU' })}:{' '}

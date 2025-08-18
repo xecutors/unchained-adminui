@@ -1,6 +1,4 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
-import { useFormatPrice } from '../../../common/utils/utils';
 import ProductItemWrapperCompact from './ProductItemWrapperCompact';
 import BundleItemCompact from './BundleItemCompact';
 import VariationListItemCompact from './VariationListItemCompact';
@@ -36,13 +34,13 @@ const EditTabMap = {
   CONFIGURABLE_PRODUCT: 'variations',
 };
 
-const ProductListItemCompact = ({ product }) => {
+const ProductListItemCompact = ({ product, ...rest }) => {
   const Component = ProductTypeMap?.[product?.type];
   const tab = EditTabMap?.[product?.type];
 
   let renderedChildren = null;
   if (Component) {
-    const output = Component({ ...product });
+    const output = Component({ ...product, ...rest });
     if (output && (Array.isArray(output) ? output.length > 0 : true)) {
       renderedChildren = output;
     }

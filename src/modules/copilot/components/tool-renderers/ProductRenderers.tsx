@@ -3,26 +3,21 @@ import { ReactElement } from 'react';
 import { ProductListItemCompact, ProductList } from '../product';
 import AssignmentListCompact from '../product/AssignmentListCompact';
 import AssignmentListItemCompact from '../product/AssignmentListItemCompact';
-import { BundleItemList } from '../product/BundleItemCompact';
-import BundleProductCompact from '../product/BundleProductCompact';
 import CopilotMediaList from '../product/CopilotMediaList';
 import CopilotPriceCompact from '../product/CopilotPriceCompact';
-import RemovedVectorsDisplay from '../product/RemovedVectorsDisplay';
 import VariationListCompact from '../product/VariationListCompact';
 import VariationListItemCompact from '../product/VariationListItemCompact';
 import ProductResultsSummary from '../ProductResultsSummary';
 
 import { renderTexts } from './textRenderers';
+import OperationStatusIndicator from '../OperationStatusIndicator';
 
 type RendererFn = (data: unknown) => ReactElement | null;
 
 interface RendererParams {
   action?: string;
-  data?: unknown;
+  data?: any;
 }
-
-const renderSingleProduct: RendererFn = (data: any) =>
-  data?.product ? <ProductListItemCompact product={data.product} /> : null;
 
 const renderMultipleProducts: RendererFn = (data: any) =>
   data?.products?.length ? (
@@ -45,23 +40,6 @@ const renderVariations: RendererFn = (data: any) =>
     </div>
   ) : null;
 
-const renderAssignments: RendererFn = (data: any) =>
-  data?.assignments?.length ? (
-    <div className="mb-6">
-      <AssignmentListCompact assignments={data.assignments} />
-    </div>
-  ) : null;
-
-const renderBundles: RendererFn = (data: any) =>
-  data?.product ? (
-    <div className="mb-6">
-      <BundleProductCompact
-        bundleItems={data?.product?.bundleItems || []}
-        product={data?.product}
-      />
-    </div>
-  ) : null;
-
 export const renderPrice: RendererFn = (data: any) =>
   data?.product ? (
     <div className="mb-6">
@@ -78,17 +56,15 @@ const toolsMap: Record<string, RendererFn> = {
   LIST: renderMultipleProducts,
   GET_VARIATION_PRODUCTS: renderMultipleProducts,
   GET_PRODUCTS: renderMultipleProducts,
-  GET: renderSingleProduct,
-  CREATE: renderSingleProduct,
-  UPDATE: renderSingleProduct,
-  REMOVE: renderSingleProduct,
-  UPDATE_STATUS: renderSingleProduct,
+  GET: (data) => <ProductListItemCompact {...(data as any)} />,
+  CREATE: (data) => <ProductListItemCompact {...(data as any)} />,
+  UPDATE: (data) => <ProductListItemCompact {...(data as any)} />,
+  REMOVE: (data) => <OperationStatusIndicator {...(data as any)} />,
+  UPDATE_STATUS: (data) => <ProductListItemCompact {...(data as any)} />,
 
-  CREATE_OPTION: renderVariations,
-  CREATE_VARIATION: (data) => <VariationListItemCompact {...(data as any)} />,
-  ADD_VARIATION_OPTION: (data) => (
-    <VariationListItemCompact {...(data as any)} />
-  ),
+  CREATE_OPTION: (data) => <ProductListItemCompact {...(data as any)} />,
+  CREATE_VARIATION: (data) => <ProductListItemCompact {...(data as any)} />,
+  ADD_VARIATION_OPTION: (data) => <ProductListItemCompact {...(data as any)} />,
 
   GET_PRODUCT_TEXTS: renderTexts('GET_PRODUCT_TEXTS'),
   GET_VARIATION_TEXTS: renderTexts('GET_VARIATION_TEXTS'),
@@ -103,16 +79,16 @@ const toolsMap: Record<string, RendererFn> = {
   GET_MEDIA: (data) => <CopilotMediaList {...(data as any)} />,
   REORDER_MEDIA: (data) => <CopilotMediaList {...(data as any)} />,
 
-  REMOVE_ASSIGNMENT: (data) => <RemovedVectorsDisplay {...(data as any)} />,
+  REMOVE_ASSIGNMENT: (data) => <OperationStatusIndicator {...(data as any)} />,
+  REMOVE_MEDIA: (data) => <OperationStatusIndicator {...(data as any)} />,
+  ADD_BUNDLE_ITEM: (data) => <ProductListItemCompact {...(data as any)} />,
+  REMOVE_BUNDLE_ITEM: (data) => <OperationStatusIndicator {...(data as any)} />,
 
-  ADD_BUNDLE_ITEM: renderBundles,
-  REMOVE_BUNDLE_ITEM: renderBundles,
-
-  GET_BUNDLE_ITEMS: (data) => <BundleItemList {...(data as any)} />,
+  GET_BUNDLE_ITEMS: (data) => <ProductListItemCompact {...(data as any)} />,
 
   GET_SIBLINGS: renderMultipleProducts,
 };
-export const ProductRenderers = ({ action, data }: RendererParams) => {
+export const ProductRenderers = ({ action, data, ...rest }: RendererParams) => {
   if (!action) return null;
 
   const renderFn = toolsMap[action];
@@ -124,7 +100,7 @@ export const ProductRenderers = ({ action, data }: RendererParams) => {
     );
   }
 
-  return renderFn(data);
+  return renderFn({ ...data, ...rest });
 };
 
 export default ProductRenderers;
