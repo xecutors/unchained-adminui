@@ -39,9 +39,18 @@ const EditTabMap = {
 const ProductListItemCompact = ({ product }) => {
   const Component = ProductTypeMap?.[product?.type];
   const tab = EditTabMap?.[product?.type];
+
+  let renderedChildren = null;
+  if (Component) {
+    const output = Component({ ...product });
+    if (output && (Array.isArray(output) ? output.length > 0 : true)) {
+      renderedChildren = output;
+    }
+  }
+
   return (
     <ProductItemWrapperCompact product={product} tab={tab}>
-      {Component && <Component {...product} />}
+      {renderedChildren}
     </ProductItemWrapperCompact>
   );
 };

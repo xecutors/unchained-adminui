@@ -39,7 +39,7 @@ export const useChatManager = () => {
     append,
   } = useChat({
     streamProtocol: 'data',
-    maxSteps: 5,
+    maxSteps: 2,
     credentials: 'include',
     api: process.env.NEXT_PUBLIC_CHAT_URL || '/chat',
     initialMessages: chatHistory,
