@@ -33,7 +33,7 @@ const CopilotProductListItem: React.FC<ProductListItemProps> = ({
       <div className="aspect-square bg-slate-50 dark:bg-slate-700 relative">
         {media?.length ? (
           <ImageWithFallback
-            src={media[0]?.file.url}
+            src={media[0]?.file?.url}
             alt={text?.title}
             className="w-full h-full object-contain p-4"
             width={300}

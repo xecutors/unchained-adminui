@@ -49,7 +49,7 @@ const ProductItemWrapperCompact = ({
         {formatMessage({ id: 'edit', defaultMessage: 'Edit' })}
       </Link>
 
-      {tags.length > 0 && (
+      {tags?.length > 0 && (
         <div className="absolute top-10 right-2 flex flex-wrap gap-1 justify-end max-w-[60%]">
           {tags.map((tag, idx) => (
             <span

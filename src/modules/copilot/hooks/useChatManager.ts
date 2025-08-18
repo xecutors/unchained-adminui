@@ -24,8 +24,12 @@ export const useChatManager = () => {
     'copilot-chat-history',
     [],
   );
+  const normalizedHistory = (chatHistory || [])?.filter(
+    (h) =>
+      h?.toolInvocations === undefined ||
+      h?.toolInvocations?.every((t) => t?.result),
+  );
   const hasInitialized = useRef(false);
-
   const {
     messages,
     input,
@@ -42,7 +46,7 @@ export const useChatManager = () => {
     maxSteps: 2,
     credentials: 'include',
     api: process.env.NEXT_PUBLIC_CHAT_URL || '/chat',
-    initialMessages: chatHistory,
+    initialMessages: normalizedHistory,
     onError: (error) => {
       console.error('Chat error:', error);
 
@@ -84,7 +88,14 @@ export const useChatManager = () => {
 
   // Save messages to localStorage whenever they change
   useEffect(() => {
-    setChatHistory(messages as ChatMessage[]);
+    if (
+      (messages || [])?.filter(
+        (h) =>
+          h?.toolInvocations === undefined ||
+          h?.toolInvocations?.every((t) => t?.state === 'result'),
+      )
+    )
+      setChatHistory(messages as ChatMessage[]);
   }, [messages]);
 
   const clearHistory = () => {
@@ -115,13 +126,11 @@ export const useChatManager = () => {
         target: { value: '' },
       } as React.ChangeEvent<HTMLInputElement>);
 
-      if (messageContent) {
-        await append({
-          id: `msg-${Date.now()}`,
-          role: 'user',
-          content: messageContent,
-        });
-      }
+      await append({
+        id: `msg-${Date.now()}`,
+        role: 'user',
+        content: messageContent || '',
+      });
     } catch (error) {
       console.error('Error in handleSubmit:', error);
 

@@ -9,7 +9,8 @@ import {
 import { useChatContext } from '..';
 import useLocalStorage from '../../common/hooks/useLocalStorage';
 const CopilotInput: React.FC = () => {
-  const { status, stop, addInterruptionMessage, append } = useChatContext();
+  const { status, stop, addInterruptionMessage, append, messages } =
+    useChatContext();
   const [localInput, setLocalInput] = useState('');
   const [inputHistory, setInputHistory] = useLocalStorage(
     'copilot-input-history',

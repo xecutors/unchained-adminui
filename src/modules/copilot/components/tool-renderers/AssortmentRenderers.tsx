@@ -5,10 +5,9 @@ import {
 } from '../assortment';
 import CopilotMediaList from '../product/CopilotMediaList';
 import { renderTexts } from './textRenderers';
-import { ProductList, ProductListItemCompact } from '../product';
-import CopilotFilterList, {
-  CopilotFilterItem,
-} from '../product/CopilotFilterList';
+import { ProductList } from '../product';
+import CopilotFilterList from '../product/CopilotFilterList';
+import CopilotProductList from '../product/CopilotProductList';
 
 const renderMultipleAssortments = (data: any) =>
   data?.assortments ? (
@@ -21,10 +20,42 @@ const renderMultipleAssortments = (data: any) =>
     </div>
   ) : null;
 
+const AssortmentProducts = ({ assortment, products }) => {
+  return (
+    <AssortmentListItemCompact assortment={assortment}>
+      <CopilotProductList products={products} />
+    </AssortmentListItemCompact>
+  );
+};
+
+const AssortmentLinks = ({ assortment, links }) => {
+  return (
+    <AssortmentListItemCompact assortment={assortment}>
+      <CopilotAssortmentList assortments={links} />
+    </AssortmentListItemCompact>
+  );
+};
+
+const AssortmentChildren = ({ assortment, children }) => {
+  return (
+    <AssortmentListItemCompact assortment={assortment}>
+      <CopilotAssortmentList assortments={children} />
+    </AssortmentListItemCompact>
+  );
+};
+
+const AssortmentFilters = ({ assortment, filters }) => {
+  return (
+    <AssortmentListItemCompact assortment={assortment}>
+      <CopilotFilterList filters={filters} />
+    </AssortmentListItemCompact>
+  );
+};
+
 const toolsMap = {
   LIST: renderMultipleAssortments,
-  GET_CHILDREN: CopilotAssortmentList,
-  GET_LINKS: CopilotAssortmentList,
+  GET_CHILDREN: AssortmentChildren,
+  GET_LINKS: AssortmentLinks,
   REORDER_LINKS: CopilotAssortmentList,
   ADD_LINK: AssortmentListItemCompact,
   GET: AssortmentListItemCompact,
@@ -38,13 +69,13 @@ const toolsMap = {
   UPDATE_MEDIA_TEXTS: renderTexts('UPDATE_MEDIA_TEXTS'),
   REMOVE_MEDIA: CopilotMediaList,
   GET_MEDIA: CopilotMediaList,
-  ADD_MEDIA: CopilotMediaList,
+  ADD_MEDIA: AssortmentListItemCompact,
   REORDER_MEDIA: CopilotMediaList,
-  GET_PRODUCTS: ProductList,
-  ADD_PRODUCT: ProductListItemCompact,
+  GET_PRODUCTS: AssortmentProducts,
+  ADD_PRODUCT: AssortmentListItemCompact,
   REORDER_PRODUCTS: ProductList,
-  ADD_FILTER: CopilotFilterItem,
-  GET_FILTERS: CopilotFilterList,
+  ADD_FILTER: AssortmentListItemCompact,
+  GET_FILTERS: AssortmentFilters,
   REORDER_FILTERS: CopilotFilterList,
 };
 
