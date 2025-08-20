@@ -6,7 +6,7 @@ import {
 import { anthropic } from '@ai-sdk/anthropic';
 import { openai } from '@ai-sdk/openai';
 import generateImageHandler from '../../../static-servers/generateImageHandler';
-import { errorHandler } from '../../../static-servers';
+import { defaultSystemPrompt, errorHandler } from '../../../static-servers';
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
@@ -28,8 +28,7 @@ export async function POST(req: Request) {
   const mcpTools = await client.tools();
   const result = streamText({
     maxSteps: 1,
-    system:
-      'do not include the data in your summary, just write a summary about it in one short paragraph and never list all the fields of a result, just summarize paragraph about your findings, if necessary',
+    system: defaultSystemPrompt,
     model: anthropic('claude-3-haiku-20240307'),
     messages,
     tools: {
