@@ -18,7 +18,7 @@ const BundleProductsListItem = ({ item, onDelete, index }) => {
             <div className="relative m-1 mr-2 mt-1 flex items-center  justify-center rounded-full ">
               <ImageWithFallback
                 className="mx-auto w-auto"
-                src={product.media[0]?.file.url}
+                src={product.media[0]?.file?.url}
                 width={160}
                 height={100}
                 alt={product?.texts?.title || product?.texts?.subtitle}

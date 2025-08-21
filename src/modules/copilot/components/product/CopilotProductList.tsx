@@ -13,7 +13,6 @@ const CopilotProductList: React.FC<ProductListProps> = ({ products }) => {
 
   const [statusFilter, setStatusFilter] = useState<string>('ALL');
 
-  // Filter products based on selected status
   const filteredProducts =
     statusFilter === 'ALL'
       ? products
@@ -23,7 +22,6 @@ const CopilotProductList: React.FC<ProductListProps> = ({ products }) => {
             (statusFilter === 'DRAFT' && !p.status),
         );
 
-  // Get unique statuses from products
   const availableStatuses = [
     ...new Set(products.map((p) => (p.status ? p.status : 'DRAFT'))),
   ].filter(Boolean);

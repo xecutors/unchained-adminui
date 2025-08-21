@@ -14,6 +14,7 @@ import {
   streamText,
 } from 'ai';
 import generateImageHandler from './generateImageHandler';
+import defaultSystemPrompt from './defaultSystemPrompt';
 
 const staticPath = path.join(__dirname, '..', 'out');
 
@@ -51,6 +52,8 @@ const setupMCPChatHandler = (chatConfiguration: ChatConfiguration) => {
     imageGenerationTool,
     ...restChatConfig
   } = chatConfiguration;
+
+  const system = chatConfiguration.system ?? defaultSystemPrompt;
 
   const mcpChatHandler: RouteHandlerMethod = async (
     req: FastifyRequest,
@@ -97,6 +100,7 @@ const setupMCPChatHandler = (chatConfiguration: ChatConfiguration) => {
       const result = streamText({
         ...restChatConfig,
         messages,
+        system,
         tools: { ...defaultUnchainedTools, ...customTools },
         onFinish: async () => {
           await client?.close();

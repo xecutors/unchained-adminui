@@ -40,8 +40,8 @@ const ProductVariationOptionItem = ({ option, onDelete, variationId }) => {
     submit: onUpdate,
     successMessage,
     initialValues: {
-      title: option?.texts.title,
-      subtitle: option?.texts.subtitle,
+      title: option?.texts?.title,
+      subtitle: option?.texts?.subtitle,
     },
   });
   return (

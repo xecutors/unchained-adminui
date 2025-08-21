@@ -1,146 +1,31 @@
-import { ReactElement } from 'react';
+import { ReactNode } from 'react';
 
-import renderShopInfo from './tool-renderers/shopRenderers';
+import renderSystemInfo from './tool-renderers/systemInfoRenderers';
 import {
-  renderSingleProduct,
-  renderMultipleProducts,
-  renderVariations,
-  renderAssignments,
-  renderBundles,
   renderPrice,
-} from './tool-renderers/productRenderers';
-import {
-  renderSingleAssortment,
-  renderMultipleAssortments,
-} from './tool-renderers/assortmentRenderers';
-import {
-  renderSingleCountry,
-  renderMultipleCountries,
-} from './tool-renderers/countryRenderers';
-import {
-  renderSingleCurrency,
-  renderMultipleCurrencies,
-} from './tool-renderers/currencyRenderers';
+  ProductRenderers,
+} from './tool-renderers/ProductRenderers';
+import assortmentRenderers from './tool-renderers/AssortmentRenderers';
+
+import { ToolName, PriceReturnTools } from '../hooks/useToolTextNormalizer';
+import { renderProvidersToolResponses } from './tool-renderers/providerRenderes';
+import { renderOrderToolResponses } from './tool-renderers/orderRenderers';
+import { renderLocalizationToolResponses } from './tool-renderers/localizationRenderes';
 import renderImage from './tool-renderers/imageRenderer';
-import {
-  renderSingleLanguage,
-  renderMultipleLanguages,
-} from './tool-renderers/languageRenderers';
-import { renderTexts } from './tool-renderers/textRenderers';
-import { renderMedias } from './tool-renderers/renderMedias';
-import {
-  MediaListReturnTools,
-  SingleProductReturnTools,
-  MultipleProductReturnTools,
-  TextsReturnTools,
-  SingleAssortmentReturnTools,
-  MultipleAssortmentReturnTools,
-  SingleCountryReturnTools,
-  MultipleCountryReturnTools,
-  SingleCurrencyReturnTools,
-  MultipleCurrencyReturnTools,
-  SingleLanguageReturnTools,
-  MultipleLanguageReturnTools,
-  ToolName,
-  PriceReturnTools,
-  ProductBundleReturnTools,
-  ProductVariationsReturnTools,
-  ProductAssignmentsReturnTools,
-  MultipleProviderReturnTools,
-  SingleProviderReturnTools,
-  MultipleInterfaceReturnTools,
-  MultipleOrderReturnTool,
-} from '../hooks/useToolTextNormalizer';
-import {
-  renderMultipleInterfaces,
-  renderMultipleProviders,
-  renderSingleProvider,
-} from './tool-renderers/providerRenderes';
-import {
-  renderMultipleOrders,
-  renderSalesSummary,
-  renderTopCustomers,
-  renderTopSellingProducts,
-} from './tool-renderers/orderRenderers';
+import userRenderers from './tool-renderers/userRenderers';
 
-type ToolRenderFn = (data: any) => ReactElement | null;
+type ToolRenderFn = (data: any) => ReactNode | null;
 
-const ToolRenderer: Record<ToolName, ToolRenderFn> = {
-  shop_info: renderShopInfo,
+const ToolRenderer: Record<string, ToolRenderFn> = {
+  system_management: renderSystemInfo,
   generateImage: renderImage,
-  ordersSales_summary: renderSalesSummary,
-  ordersSales_monthlyBreakdown: renderSalesSummary,
-  topSelling_products: renderTopSellingProducts,
-  orders_topCustomers: renderTopCustomers,
-  ...Object.fromEntries(
-    MultipleOrderReturnTool.map((name) => [name, renderMultipleOrders]),
-  ),
-  ...Object.fromEntries(
-    MultipleInterfaceReturnTools.map((name) => [
-      name,
-      renderMultipleInterfaces,
-    ]),
-  ),
-  ...Object.fromEntries(
-    MultipleProviderReturnTools.map((name) => [
-      name,
-      renderMultipleProviders(name),
-    ]),
-  ),
-  ...Object.fromEntries(
-    SingleProviderReturnTools.map((name) => [name, renderSingleProvider(name)]),
-  ),
-  ...Object.fromEntries(
-    ProductAssignmentsReturnTools.map((name) => [name, renderAssignments]),
-  ),
-  ...Object.fromEntries(
-    ProductBundleReturnTools.map((name) => [name, renderBundles]),
-  ),
-  ...Object.fromEntries(
-    ProductVariationsReturnTools.map((name) => [name, renderVariations]),
-  ),
-
+  product_management: ProductRenderers,
+  localization_management: renderLocalizationToolResponses,
+  assortment_management: assortmentRenderers,
+  order_management: renderOrderToolResponses,
+  provider_management: renderProvidersToolResponses,
+  users_management: userRenderers,
   ...Object.fromEntries(PriceReturnTools.map((name) => [name, renderPrice])),
-  ...Object.fromEntries(
-    MediaListReturnTools.map((name) => [name, renderMedias]),
-  ),
-  ...Object.fromEntries(
-    SingleProductReturnTools.map((name) => [name, renderSingleProduct]),
-  ),
-  ...Object.fromEntries(
-    MultipleProductReturnTools.map((name) => [name, renderMultipleProducts]),
-  ),
-  ...Object.fromEntries(
-    TextsReturnTools.map((name) => [name, renderTexts(name)]),
-  ),
-
-  ...Object.fromEntries(
-    SingleAssortmentReturnTools.map((name) => [name, renderSingleAssortment]),
-  ),
-  ...Object.fromEntries(
-    MultipleAssortmentReturnTools.map((name) => [
-      name,
-      renderMultipleAssortments,
-    ]),
-  ),
-  ...Object.fromEntries(
-    SingleCountryReturnTools.map((name) => [name, renderSingleCountry]),
-  ),
-  ...Object.fromEntries(
-    MultipleCountryReturnTools.map((name) => [name, renderMultipleCountries]),
-  ),
-  ...Object.fromEntries(
-    SingleCurrencyReturnTools.map((name) => [name, renderSingleCurrency]),
-  ),
-  ...Object.fromEntries(
-    MultipleCurrencyReturnTools.map((name) => [name, renderMultipleCurrencies]),
-  ),
-  ...Object.fromEntries(
-    SingleLanguageReturnTools.map((name) => [name, renderSingleLanguage]),
-  ),
-  ...(Object.fromEntries(
-    MultipleLanguageReturnTools.map((name) => [name, renderMultipleLanguages]),
-  ) as any),
 };
 
 export default ToolRenderer;

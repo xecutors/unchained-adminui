@@ -78,12 +78,15 @@ export const CountryItemCompact = ({ country }: { country: Country }) => {
   );
 };
 
-const CopilotCountryList = ({ countries }) => {
+const CopilotCountryList = ({ countries, toolCallId }) => {
   if (!countries?.length) return null;
   return (
     <div>
       {countries.map((country) => (
-        <CountryItemCompact country={country} key={country?._id} />
+        <CountryItemCompact
+          country={country}
+          key={`${toolCallId}-${country?._id}`}
+        />
       ))}
       ;
     </div>

@@ -90,9 +90,6 @@
   "add_product": {
     "defaultMessage": "Add Product"
   },
-  "add_product_media_tool_definition": {
-    "defaultMessage": "Add media to product"
-  },
   "add_review": {
     "defaultMessage": "Add Review"
   },
@@ -158,6 +155,12 @@
   },
   "assigned_products": {
     "defaultMessage": "Assigned Products"
+  },
+  "assignment.sku": {
+    "defaultMessage": "SKU"
+  },
+  "assignment.title": {
+    "defaultMessage": "Product Assignment"
   },
   "assignment_matrix_help": {
     "defaultMessage": "Each row represents a unique combination of your product variations. Assign a specific product to each combination to create a complete product catalog."
@@ -543,9 +546,6 @@
   "create_new_account": {
     "defaultMessage": "Create new account?"
   },
-  "create_product_tool_definition": {
-    "defaultMessage": "Create a new product"
-  },
   "create_provider": {
     "defaultMessage": "Create provider"
   },
@@ -759,9 +759,6 @@
   "delete_product_media_confirmation": {
     "defaultMessage": "This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this media?"
   },
-  "delete_product_tool_definition": {
-    "defaultMessage": "Delete product OLD123"
-  },
   "delete_product_variation": {
     "defaultMessage": "Delete variation"
   },
@@ -856,7 +853,7 @@
     "defaultMessage": "Delivery provider {id}"
   },
   "delivery_providers": {
-    "defaultMessage": "Delivery Providers"
+    "defaultMessage": "Delivery providers"
   },
   "delivery_status": {
     "defaultMessage": "Status"
@@ -879,6 +876,9 @@
   "discounts": {
     "defaultMessage": "Discounts"
   },
+  "dismiss": {
+    "defaultMessage": "Dismiss"
+  },
   "displayName": {
     "defaultMessage": "Display Name"
   },
@@ -887,6 +887,9 @@
   },
   "display_name": {
     "defaultMessage": "Display name"
+  },
+  "documentation": {
+    "defaultMessage": "Documentation"
   },
   "dont_have_account": {
     "defaultMessage": "Don't have an account yet?"
@@ -1137,6 +1140,24 @@
   "filter": {
     "defaultMessage": "Filter"
   },
+  "filter.active": {
+    "defaultMessage": "Active"
+  },
+  "filter.created": {
+    "defaultMessage": "Created"
+  },
+  "filter.inactive": {
+    "defaultMessage": "Inactive"
+  },
+  "filter.noOptions": {
+    "defaultMessage": "No options"
+  },
+  "filter.sortKey": {
+    "defaultMessage": "Sort"
+  },
+  "filter.updated": {
+    "defaultMessage": "Updated"
+  },
   "filter_activated": {
     "defaultMessage": "Filter activated!",
     "description": "shown on successful toggle of filter status"
@@ -1236,12 +1257,6 @@
   "general_tool_definition": {
     "defaultMessage": "\"Help me with {toolName}\""
   },
-  "generate_image_tool_definition": {
-    "defaultMessage": "Generate a hero banner image"
-  },
-  "get_product_tool_definition": {
-    "defaultMessage": "Get details for product ABC123"
-  },
   "go_back": {
     "defaultMessage": "Go Back"
   },
@@ -1274,6 +1289,9 @@
   },
   "hide_available_tools": {
     "defaultMessage": "Hide Available Tools"
+  },
+  "hide_payload": {
+    "defaultMessage": "Hide Payload"
   },
   "home": {
     "defaultMessage": "Home"
@@ -1513,6 +1531,18 @@
   "media": {
     "defaultMessage": "Media"
   },
+  "media.created": {
+    "defaultMessage": "Created"
+  },
+  "media.size": {
+    "defaultMessage": "Size"
+  },
+  "media.type": {
+    "defaultMessage": "Type"
+  },
+  "media.updated": {
+    "defaultMessage": "Updated"
+  },
   "media_add_tool_definition": {
     "defaultMessage": "\"Add media files\""
   },
@@ -1591,6 +1621,9 @@
   "no_data_message": {
     "defaultMessage": "<p>No <span> {message} available</span> </p>"
   },
+  "no_event_found": {
+    "defaultMessage": "No event found"
+  },
   "no_internet_access": {
     "defaultMessage": "You aren't connected to a working internet connection."
   },
@@ -1608,6 +1641,9 @@
   },
   "no_result_found": {
     "defaultMessage": "No result found"
+  },
+  "no_statistics_available": {
+    "defaultMessage": "No statistics available"
   },
   "no_tag": {
     "defaultMessage": "No Tag"
@@ -1701,6 +1737,9 @@
   },
   "order_reject_success": {
     "defaultMessage": "Order rejected successfully"
+  },
+  "order_status": {
+    "defaultMessage": "Order status"
   },
   "order_total": {
     "defaultMessage": "Order total"
@@ -1987,9 +2026,6 @@
   "publish_product_description": {
     "defaultMessage": "Product will be searchable and is available for orders"
   },
-  "publish_product_tool_definition": {
-    "defaultMessage": "Publish product XYZ456"
-  },
   "published": {
     "defaultMessage": "Published"
   },
@@ -2064,9 +2100,6 @@
   },
   "rejected": {
     "defaultMessage": "REJECTED"
-  },
-  "remove_product_media_tool_definition": {
-    "defaultMessage": "Remove product media"
   },
   "reorder_original": {
     "defaultMessage": "Reorder to original location"
@@ -2257,9 +2290,6 @@
   "shop_info": {
     "defaultMessage": "Shop Info"
   },
-  "shop_info_tool_definition": {
-    "defaultMessage": "Show shop configuration"
-  },
   "shop_setup_complete": {
     "defaultMessage": "Shop Setup Complete!"
   },
@@ -2292,6 +2322,9 @@
   },
   "show_less": {
     "defaultMessage": "Show less"
+  },
+  "show_payload": {
+    "defaultMessage": "Show Payload"
   },
   "sign_address_header": {
     "defaultMessage": "Sign address"
@@ -2506,9 +2539,6 @@
   "unchained_logo": {
     "defaultMessage": "Unchained Logo"
   },
-  "unpublish_product_tool_definition": {
-    "defaultMessage": "Unpublish the winter collection"
-  },
   "untitled_assortment": {
     "defaultMessage": "Untitled Assortment"
   },
@@ -2638,6 +2668,21 @@
   "value": {
     "defaultMessage": "Value"
   },
+  "variation.created": {
+    "defaultMessage": "Created"
+  },
+  "variation.id": {
+    "defaultMessage": "ID"
+  },
+  "variation.productId": {
+    "defaultMessage": "Product ID"
+  },
+  "variation.untitled": {
+    "defaultMessage": "Untitled Variation"
+  },
+  "variation.updated": {
+    "defaultMessage": "Updated"
+  },
   "variation_id": {
     "defaultMessage": "Variation ID"
   },
@@ -2703,6 +2748,9 @@
   },
   "version": {
     "defaultMessage": "Version"
+  },
+  "view": {
+    "defaultMessage": "View"
   },
   "wallet-address": {
     "defaultMessage": "Wallet {walletAddress}"

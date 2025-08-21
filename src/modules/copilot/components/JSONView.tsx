@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 
-interface UnknownToolResponseProps {
+interface JSONViewProps {
   data: any;
 }
 
-const UnknownToolResponse: React.FC<UnknownToolResponseProps> = ({ data }) => {
+const JSONView: React.FC<JSONViewProps> = ({ data }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const { formatMessage } = useIntl();
 
@@ -48,4 +48,4 @@ const UnknownToolResponse: React.FC<UnknownToolResponseProps> = ({ data }) => {
   );
 };
 
-export default UnknownToolResponse;
+export default JSONView;

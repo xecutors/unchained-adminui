@@ -50,12 +50,15 @@ export const LanguageItemCompact = ({ language }: { language: Language }) => {
   );
 };
 
-const CopilotLanguageList = ({ languages }) => {
+const CopilotLanguageList = ({ languages, toolCallId }) => {
   if (!languages?.length) return null;
   return (
     <div>
       {languages.map((language) => (
-        <LanguageItemCompact key={language._id} language={language} />
+        <LanguageItemCompact
+          key={`${toolCallId}-${language._id}`}
+          language={language}
+        />
       ))}
     </div>
   );

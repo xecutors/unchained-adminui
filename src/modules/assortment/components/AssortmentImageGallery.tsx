@@ -28,8 +28,8 @@ const AssortmentImageGallery = ({
               onClick={() => handleImageClick(item._id)}
             >
               <ImageWithFallback
-                src={item.file.url}
-                alt={item.texts?.[0]?.title || item.file.url}
+                src={item?.file?.url}
+                alt={item.texts?.[0]?.title || item?.file?.url}
                 width={128}
                 height={128}
                 className="w-full h-full object-cover"

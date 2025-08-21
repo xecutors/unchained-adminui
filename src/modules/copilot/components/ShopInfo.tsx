@@ -19,7 +19,7 @@ type ShopInfo = {
   };
 };
 
-const ShopInfoCard = ({ shopInfo }: { shopInfo: ShopInfo }) => {
+const ShopInfoCard = (shopInfo: ShopInfo) => {
   const { formatMessage, locale } = useIntl();
   const items = [
     {

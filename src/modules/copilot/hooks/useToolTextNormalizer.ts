@@ -1,176 +1,25 @@
 import { useCallback } from 'react';
 import { useIntl } from 'react-intl';
 
-export const SingleProductReturnTools = [
-  'product_get',
-  'product_create',
-  'product_update',
-  'product_updateCommerce',
-  'product_remove',
-  'product_publish',
-  'product_unpublish',
-  'product_updateWarehousing',
-  'product_updateSupply',
-  'product_updateTokenization',
-  'product_updatePlan',
-] as const;
-
-export const MultipleProductReturnTools = [
-  'product_list',
-  'product_variationProducts',
-  'assortment_getProducts',
-] as const;
-
-export const SingleProductVariationsReturnTools = [
-  'product_variations',
-  'product_createVariation',
-  'product_createVariationOption',
-] as const;
-export const ProductVariationsReturnTools = [
-  'product_variations',
-  'product_createVariation',
-  'product_createVariationOption',
-] as const;
-export const ProductAssignmentsReturnTools = ['product_assignments'] as const;
-export const ProductBundleReturnTools = [
-  'product_bundleItems',
-  'product_removeBundleItem',
-  'product_addBundleItem',
-] as const;
-
-export const TextsReturnTools = [
-  'product_updateTexts',
-  'productMedia_updateTexts',
-  'product_getTexts',
-  'productMedia_getTexts',
-  'assortmentMedia_updateTexts',
-  'assortmentMedia_getTexts',
-  'assortment_getTexts',
-  'assortment_updateTexts',
-  'productVariation_updateTexts',
-  'productVariation_getTexts',
-] as const;
-
-export const SingleAssortmentReturnTools = [
-  'assortment_create',
-  'assortment_update',
-  'assortment_remove',
-  'assortment_setBase',
-  'assortment_get',
-  'assortment_searchProducts',
-] as const;
-
-export const MultipleAssortmentReturnTools = [
-  'assortment_getChildren',
-  'assortment_list',
-] as const;
-
-export const SingleCountryReturnTools = [
-  'country_create',
-  'country_update',
-  'country_remove',
-  'country_get',
-] as const;
-
-export const MultipleCountryReturnTools = ['country_list'] as const;
-
-export const SingleCurrencyReturnTools = [
-  'currency_create',
-  'currency_update',
-  'currency_remove',
-  'currency_get',
-] as const;
-
-export const MultipleCurrencyReturnTools = ['currency_list'] as const;
-
-export const SingleLanguageReturnTools = [
-  'language_create',
-  'language_update',
-  'language_remove',
-  'language_get',
-] as const;
-
-export const MediaListReturnTools = [
-  'product_getMedias',
-  'assortment_getMedias',
-  'product_reorderMedias',
-  'assortment_reorderMedias',
-  'generateImage',
-] as const;
-
-export const OtherTools = ['shop_info', 'generateImage'] as const;
-
-export const MultipleLanguageReturnTools = ['languages_list'] as const;
-
-export const SkippedToolResponse = [
-  'assortment_addMedia',
-  'assortment_removeMedia',
-  'productMedia_remove',
-  'product_addMedia',
-] as const;
-
 export const PriceReturnTools = [
   'product_simulatedPrice',
   'product_catalogPrice',
   'product_simulatedPriceRange',
 ] as const;
 
-export const SingleProviderReturnTools = [
-  'paymentProvider_add',
-  'paymentProvider_update',
-  'paymentProvider_get',
-  'deliveryProvider_get',
-  'deliveryProvider_add',
-  'deliveryProvider_update',
-  'deliveryProvider_remove',
-  'paymentProvider_remove',
-  'warehousingProvider_get',
-  'warehousingProvider_add',
-  'warehousingProvider_update',
-  'warehousingProvider_remove',
-] as const;
-
-export const MultipleProviderReturnTools = [
-  'paymentProviders_list',
-  'deliveryProviders_list',
-  'warehousingProviders_list',
-] as const;
-
-export const MultipleInterfaceReturnTools = [
-  'paymentInterfaces_list',
-  'deliveryInterfaces_list',
-  'warehousingInterfaces_list',
-] as const;
-
-export const MultipleOrderReturnTool = ['orders_list'] as const;
-
+export const OrderTools = ['order_management'] as const;
+export const ProviderTools = ['provider_management'] as const;
+export const LocalizationTools = ['localization_management'] as const;
+export const ProductTools = ['product_management'] as const;
 export const AllTools = [
-  'ordersSales_summary',
-  'ordersSales_monthlyBreakdown',
-  'topSelling_products',
-  'orders_topCustomers',
-  ...MultipleInterfaceReturnTools,
-  ...SingleProviderReturnTools,
-  ...MultipleProviderReturnTools,
-  ...SingleProductReturnTools,
-  ...MultipleProductReturnTools,
-  ...TextsReturnTools,
-  ...SingleAssortmentReturnTools,
-  ...MultipleAssortmentReturnTools,
-  ...SingleCountryReturnTools,
-  ...MultipleCountryReturnTools,
-  ...SingleCurrencyReturnTools,
-  ...MultipleCurrencyReturnTools,
-  ...SingleLanguageReturnTools,
-  ...MultipleLanguageReturnTools,
-  ...MediaListReturnTools,
-  ...SkippedToolResponse,
-  ...ProductVariationsReturnTools,
-  ...ProductAssignmentsReturnTools,
-  ...ProductBundleReturnTools,
+  'system_management',
+  'generateImage',
+  'assortment_management',
+  ...ProductTools,
+  ...LocalizationTools,
+  ...OrderTools,
+  ...ProviderTools,
   ...PriceReturnTools,
-  ...OtherTools,
-  ...MultipleOrderReturnTool,
 ] as const;
 
 export type ToolName = (typeof AllTools)[number];
@@ -207,46 +56,9 @@ const useToolTextNormalizer = () => {
       const name = toolName.toLowerCase();
 
       const TOOL_TO_DESCRIPTION_MATCH: Partial<Record<ToolName, string>> = {
-        product_list: formatMessage({
+        product_management: formatMessage({
           id: 'list_product_tool_definition',
           defaultMessage: 'Show me all draft products',
-        }),
-
-        product_get: formatMessage({
-          id: 'get_product_tool_definition',
-          defaultMessage: 'Get details for product ABC123',
-        }),
-        product_create: formatMessage({
-          id: 'create_product_tool_definition',
-          defaultMessage: 'Create a new product',
-        }),
-        product_publish: formatMessage({
-          id: 'publish_product_tool_definition',
-          defaultMessage: 'Publish product XYZ456',
-        }),
-        product_unpublish: formatMessage({
-          id: 'unpublish_product_tool_definition',
-          defaultMessage: 'Unpublish the winter collection',
-        }),
-        product_remove: formatMessage({
-          id: 'delete_product_tool_definition',
-          defaultMessage: 'Delete product OLD123',
-        }),
-        productMedia_remove: formatMessage({
-          id: 'remove_product_media_tool_definition',
-          defaultMessage: 'Remove product media',
-        }),
-        product_addMedia: formatMessage({
-          id: 'add_product_media_tool_definition',
-          defaultMessage: 'Add media to product',
-        }),
-        shop_info: formatMessage({
-          id: 'shop_info_tool_definition',
-          defaultMessage: 'Show shop configuration',
-        }),
-        generateImage: formatMessage({
-          id: 'generate_image_tool_definition',
-          defaultMessage: 'Generate a hero banner image',
         }),
       };
       if (TOOL_TO_DESCRIPTION_MATCH[name]) {

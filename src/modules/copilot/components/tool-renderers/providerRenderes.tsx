@@ -40,3 +40,38 @@ export const renderMultipleInterfaces = (data: any) =>
       <CopilotProviderInterfaceList interfaces={data.interfaces} />
     </div>
   ) : null;
+
+const providerDisplayMap = {
+  PAYMENT: {
+    CREATE: CopilotProviderListItem,
+    UPDATE: CopilotProviderListItem,
+    REMOVE: CopilotProviderListItem,
+    GET: CopilotProviderListItem,
+    LIST: CopilotProviderList,
+    INTERFACES: CopilotProviderInterfaceList,
+  },
+  DELIVERY: {
+    CREATE: CopilotProviderListItem,
+    UPDATE: CopilotProviderListItem,
+    REMOVE: CopilotProviderListItem,
+    GET: CopilotProviderListItem,
+    LIST: CopilotProviderList,
+    INTERFACES: CopilotProviderInterfaceList,
+  },
+  WAREHOUSING: {
+    CREATE: CopilotProviderListItem,
+    UPDATE: CopilotProviderListItem,
+    REMOVE: CopilotProviderListItem,
+    GET: CopilotProviderListItem,
+    LIST: CopilotProviderList,
+    INTERFACES: CopilotProviderInterfaceList,
+  },
+};
+export const renderProvidersToolResponses = ({
+  providerType,
+  action,
+  data,
+}) => {
+  const Component = providerDisplayMap?.[providerType]?.[action];
+  return Component ? <Component type={providerType} {...data} /> : null;
+};

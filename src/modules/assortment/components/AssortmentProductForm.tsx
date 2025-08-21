@@ -18,7 +18,7 @@ const normalizeProducts = (productsList = []) => {
     id: _id,
     tag: status,
     ...texts,
-    image: media?.length ? media[0]?.file.url : null,
+    image: media?.length ? media[0]?.file?.url : null,
   }));
 };
 

@@ -1,149 +1,95 @@
 import React from 'react';
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
-import classNames from 'classnames';
-import { FolderIcon } from '@heroicons/react/24/outline';
+import ImageWithFallback from '../../common/components/ImageWithFallback';
 import Badge from '../../common/components/Badge';
 import generateUniqueId from '../../common/utils/getUniqueId';
 
-interface AssortmentListItemCompactProps {
-  assortment: any;
-  className?: string;
-}
-
-const AssortmentListItemCompact: React.FC<AssortmentListItemCompactProps> = ({
-  assortment,
-  className,
-}) => {
+const AssortmentListItemCompact = ({ assortment, children = null }) => {
   const { formatMessage } = useIntl();
+  if (!assortment) return null;
 
-  const getStatusBadge = (isActive: boolean) => {
-    return (
-      <Badge
-        text={
-          isActive
-            ? formatMessage({
-                id: 'active',
-                defaultMessage: 'Active',
-              })
-            : formatMessage({
-                id: 'inactive',
-                defaultMessage: 'In-Active',
-              })
-        }
-        color={isActive ? 'green' : 'yellow'}
-        square
-        dotted
-      />
-    );
-  };
+  const {
+    texts = {},
+    media = [],
+    tags = [],
+    _id,
+    updated,
+    sequence,
+    products = [],
+    links = [],
+    filters = [],
+    isActive,
+  } = assortment;
+  const productsCount = products?.length ?? 0;
+  const filtersCount = filters?.length ?? 0;
+  const linksCount = links?.length ?? 0;
+  const assortmentSlug = generateUniqueId(assortment);
+  const thumbnailUrl = media[0]?.file?.url;
 
-  const getAssortmentThumbnail = () => {
-    const media = assortment.media?.[0];
-    if (media?.file?.url) {
-      return (
-        <img
-          src={media.file.url}
-          alt={assortment.texts?.title || 'Assortment'}
-          className="w-12 h-12 object-cover rounded-lg"
-        />
-      );
-    }
-    return (
-      <div className="w-12 h-12 bg-slate-100 dark:bg-slate-800 rounded-lg flex items-center justify-center">
-        <FolderIcon className="w-6 h-6 text-slate-400 dark:text-slate-600" />
-      </div>
-    );
-  };
-
-  const formatDate = (dateString: string) => {
-    if (!dateString) return '';
-    return new Date(dateString).toLocaleDateString();
-  };
+  const formatDate = (dateString?: string) =>
+    dateString ? new Date(dateString).toLocaleDateString() : '';
 
   return (
-    <div
-      className={classNames(
-        'bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 p-4 hover:shadow-sm transition-shadow',
-        className,
-      )}
-    >
-      <div className="flex items-center gap-4">
-        {/* Thumbnail */}
-        <div className="flex-shrink-0">{getAssortmentThumbnail()}</div>
+    <div className="relative border rounded-xl p-4 shadow-sm bg-white dark:bg-slate-900 space-y-4">
+      <div className="flex items-start gap-4">
+        <div className="w-16 h-16 flex-shrink-0 bg-slate-50 dark:bg-slate-700 rounded-md overflow-hidden">
+          {thumbnailUrl ? (
+            <ImageWithFallback
+              src={thumbnailUrl}
+              alt={texts.title || 'Assortment'}
+              className="w-full h-full object-cover"
+              width={64}
+              height={64}
+            />
+          ) : (
+            <div className="flex items-center justify-center h-full text-slate-400 text-2xl">
+              📁
+            </div>
+          )}
+        </div>
 
-        {/* Content */}
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center justify-between gap-4">
-            <div className="flex-1 min-w-0">
-              {/* Title and Status */}
-              <div className="flex items-center gap-2 mb-1">
-                <h3 className="font-medium text-slate-900 dark:text-slate-100 truncate">
-                  {assortment.texts?.title ||
-                    formatMessage({
-                      id: 'untitled_assortment',
-                      defaultMessage: 'Untitled Assortment',
-                    })}
-                </h3>
-                {getStatusBadge(assortment.isActive)}
+        <div className="flex-1 overflow-hidden">
+          <div className="flex justify-between items-start gap-4">
+            <div className="overflow-hidden">
+              <div className="text-sm font-semibold text-slate-900 dark:text-white truncate">
+                {texts.title ||
+                  formatMessage({
+                    id: 'untitled_assortment',
+                    defaultMessage: 'Untitled Assortment',
+                  })}
               </div>
 
-              {/* Subtitle */}
-              {assortment.texts?.subtitle && (
-                <p className="text-sm text-slate-600 dark:text-slate-400 truncate mb-1">
-                  {assortment.texts.subtitle}
-                </p>
-              )}
-
-              {/* Metadata */}
-              <div className="flex items-center gap-4 text-xs text-slate-500 dark:text-slate-500">
-                <span>Updated: {formatDate(assortment.updated)}</span>
-                {assortment.sequence && (
-                  <span className="font-mono">#{assortment.sequence}</span>
-                )}
-                {assortment.childrenCount > 0 && (
-                  <span>
-                    {formatMessage(
-                      {
-                        id: 'children_count',
-                        defaultMessage: '{count} children',
-                      },
-                      { count: assortment.childrenCount },
-                    )}
-                  </span>
-                )}
-              </div>
-
-              {/* Tags */}
-              {assortment.tags && assortment.tags.length > 0 && (
-                <div className="flex items-center gap-1 mt-2">
-                  {assortment.tags
-                    .slice(0, 2)
-                    .map((tag: string, index: number) => (
-                      <span
-                        key={index}
-                        className="px-2 py-1 text-xs bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 rounded"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  {assortment.tags.length > 2 && (
-                    <span className="text-xs text-slate-500 dark:text-slate-500">
-                      +{assortment.tags.length - 2} more
-                    </span>
-                  )}
+              {texts.subtitle && (
+                <div className="text-xs text-slate-500 dark:text-slate-400 truncate">
+                  {texts.subtitle}
                 </div>
               )}
-              <span className="text-xs text-slate-500 dark:text-slate-400 truncate">
-                ID: {assortment._id}
-              </span>
+
+              {tags?.length > 0 && (
+                <div className="flex flex-wrap gap-1 mt-1">
+                  {tags.map((tag, idx) => (
+                    <span
+                      key={tag + idx}
+                      className="px-2 py-0.5 text-xs rounded-full bg-blue-100 dark:bg-blue-700 
+                                 text-blue-800 dark:text-blue-200"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
             </div>
 
-            {/* Action */}
-            <div className="flex-shrink-0">
+            <div className="text-xs text-slate-500 dark:text-slate-400 flex flex-col items-end gap-1 shrink-0">
+              {sequence && <span className="font-mono">#{sequence}</span>}
+              {updated && <span>{formatDate(updated)}</span>}
               <Link
-                href={`/assortments?assortmentSlug=${generateUniqueId(assortment)}`}
-                className="px-3 py-1.5 text-sm text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 border border-slate-300 dark:border-slate-600 rounded-md hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
+                href={`/assortments?assortmentSlug=${assortmentSlug}`}
+                className="px-2 py-1 text-xs font-medium text-slate-700 dark:text-slate-300 
+                           hover:text-slate-900 dark:hover:text-slate-100 border border-slate-300 
+                           dark:border-slate-600 rounded-md hover:bg-slate-50 dark:hover:bg-slate-700 
+                           transition-colors"
               >
                 {formatMessage({ id: 'edit', defaultMessage: 'Edit' })}
               </Link>
@@ -151,6 +97,63 @@ const AssortmentListItemCompact: React.FC<AssortmentListItemCompactProps> = ({
           </div>
         </div>
       </div>
+
+      <div className="flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400 flex-wrap">
+        <Badge
+          text={
+            isActive
+              ? formatMessage({ id: 'active', defaultMessage: 'Active' })
+              : formatMessage({ id: 'inactive', defaultMessage: 'In-Active' })
+          }
+          color={isActive ? 'green' : 'yellow'}
+          square
+          dotted
+        />
+        <span>ID: {_id}</span>
+      </div>
+
+      <div className="flex items-center justify-between text-xs text-slate-600 dark:text-slate-400 border-t pt-2 mt-2">
+        <Link
+          href={`/assortments/?assortmentSlug=${assortmentSlug}&tab=links`}
+          className="flex items-center gap-1 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+        >
+          {formatMessage({ id: 'children', defaultMessage: 'Children' })}
+          <span className="px-2 py-0.5 text-[10px] font-medium rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200">
+            {linksCount}
+          </span>
+        </Link>
+
+        <Link
+          href={`/assortments?assortmentSlug=${assortmentSlug}&tab=filters`}
+          className="flex items-center gap-1 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+        >
+          {formatMessage({ id: 'filters', defaultMessage: 'Filters' })}
+          <span className="px-2 py-0.5 text-[10px] font-medium rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200">
+            {filtersCount}
+          </span>
+        </Link>
+
+        <Link
+          href={`/assortments?assortmentSlug=${assortmentSlug}&tab=products`}
+          className="flex items-center gap-1 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+        >
+          {formatMessage({ id: 'products', defaultMessage: 'Products' })}
+          <span className="px-2 py-0.5 text-[10px] font-medium rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200">
+            {productsCount}
+          </span>
+        </Link>
+      </div>
+
+      {children && (
+        <div className="pt-2">
+          <div
+            className="p-3 bg-slate-50 dark:bg-slate-800 rounded-lg shadow-inner 
+                          border border-slate-200 dark:border-slate-700"
+          >
+            {children}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
