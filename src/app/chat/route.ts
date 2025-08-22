@@ -8,7 +8,7 @@ import {
 } from 'ai';
 import { openai } from '@ai-sdk/openai';
 import generateImageHandler from '../../../static-servers/generateImageHandler';
-import { errorHandler } from '../../../static-servers';
+import { defaultSystemPrompt, errorHandler } from '../../../static-servers';
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
@@ -40,8 +40,7 @@ export async function POST(req: Request) {
   }
 
   const result = streamText({
-    system:
-      'do not include the data in your summary, just write a summary about it in one short paragraph and never list all the fields of a result, just summarize paragraph about your findings, if necessary',
+    system: defaultSystemPrompt,
     model: openai.chat('gpt-4.1-mini'),
     messages: convertToModelMessages(messages, {
       tools,

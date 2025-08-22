@@ -2,93 +2,68 @@ import React from 'react';
 
 import { useIntl } from 'react-intl';
 import Link from 'next/link';
-import ProductItemWrapperCompact from './ProductItemWrapperCompact';
-import { IProduct } from '../../../../gql/types';
 import ImageWithFallback from '../../../common/components/ImageWithFallback';
 import generateUniqueId from '../../../common/utils/getUniqueId';
 import { useFormatPrice } from '../../../common/utils/utils';
 
-interface AssignmentData {
-  assignment: {
-    vector: Record<string, string>;
-    productId: string;
-    product?: IProduct & { commerce: any } & {
-      warehousing?: { sku?: string };
-    } & { type?: string } & { media?: { file: { url: string } }[] };
-  };
-  product: {
-    _id: string;
-    slugs: string[];
-    texts?: { title?: string };
-  };
-}
-
-interface Props {
-  assignments: AssignmentData[];
-  product?: any;
-}
-
-const AssignmentListCompact: React.FC<Props> = ({ assignments, product }) => {
+const AssignmentListCompact = ({ assignments }) => {
   const { formatMessage } = useIntl();
   const { formatPrice } = useFormatPrice();
-  if (!assignments.length) return null;
+  if (!assignments?.length) return null;
 
   return (
-    <ProductItemWrapperCompact product={product} tab="assignments">
-      <div className="space-y-4">
-        {assignments.map(({ assignment }, idx) => {
-          const assignedProduct = assignment.product;
+    <div className="space-y-4">
+      {assignments.map(({ assignment, product: assignedProduct }, idx) => {
+        const price = formatPrice(assignedProduct?.commerce?.pricing?.[0]);
+        const image = assignedProduct?.media?.[0]?.file?.url;
+        return (
+          <div
+            key={idx}
+            className="flex gap-4 items-center border rounded-xl p-3 shadow-sm bg-white dark:bg-slate-900"
+          >
+            <ImageWithFallback
+              src={image}
+              alt="Product image"
+              width={60}
+              height={60}
+              className="rounded-md object-cover"
+            />
 
-          const price = formatPrice(assignedProduct?.commerce?.pricing?.[0]);
-          const image = assignedProduct?.media?.[0]?.file?.url;
-          return (
-            <div
-              key={idx}
-              className="flex gap-4 items-center border rounded-xl p-3 shadow-sm bg-white dark:bg-slate-900"
-            >
-              <ImageWithFallback
-                src={image}
-                alt="Product image"
-                width={60}
-                height={60}
-                className="rounded-md object-cover"
-              />
-
-              <div className="flex-1 space-y-1">
-                <div className="text-sm font-semibold text-slate-900 dark:text-white">
-                  {assignedProduct?.texts?.title}{' '}
-                </div>
-
-                <div className="flex flex-wrap gap-2 text-xs">
-                  {Object.entries(assignment.vector).map(([key, value]) => (
-                    <span
-                      key={key}
-                      className="bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-white px-2 py-0.5 rounded"
-                    >
-                      {key}: {value}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="text-xs text-slate-500 dark:text-slate-400">
-                  {assignedProduct?.type?.replace('_PRODUCT', '')} ·{' '}
-                  {assignedProduct?.warehousing?.sku &&
-                    formatMessage({ id: 'sku', defaultMessage: 'SKU' })}
-                  {': '}
-                  {assignedProduct?.warehousing?.sku}{' '}
-                </div>
-                <span className="text-xs text-slate-500 dark:text-slate-400">
-                  {formatMessage({ id: 'id', defaultMessage: 'ID' })}:{' '}
-                  {assignedProduct?._id}
-                </span>
+            <div className="flex-1 space-y-1">
+              <div className="text-sm font-semibold text-slate-900 dark:text-white">
+                {assignedProduct?.texts?.title}{' '}
               </div>
 
-              {price && (
-                <div className="text-right text-sm font-semibold text-slate-900 dark:text-white min-w-[80px]">
-                  {price}
-                </div>
-              )}
+              <div className="flex flex-wrap gap-2 text-xs">
+                {Object.entries(assignment.vector).map(([key, value]: any) => (
+                  <span
+                    key={key}
+                    className="bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-white px-2 py-0.5 rounded"
+                  >
+                    {key}: {value}
+                  </span>
+                ))}
+              </div>
 
+              <div className="text-xs text-slate-500 dark:text-slate-400">
+                {assignedProduct?.type?.replace('_PRODUCT', '')} ·{' '}
+                {assignedProduct?.warehousing?.sku &&
+                  formatMessage({ id: 'sku', defaultMessage: 'SKU' })}
+                {': '}
+                {assignedProduct?.warehousing?.sku}{' '}
+              </div>
+              <span className="text-xs text-slate-500 dark:text-slate-400">
+                {formatMessage({ id: 'id', defaultMessage: 'ID' })}:{' '}
+                {assignedProduct?._id}
+              </span>
+            </div>
+
+            {price && (
+              <div className="text-right text-sm font-semibold text-slate-900 dark:text-white min-w-[80px]">
+                {price}
+              </div>
+            )}
+            {assignedProduct && (
               <div className="ml-4">
                 <Link
                   href={`/products?slug=${generateUniqueId(assignedProduct)}`}
@@ -97,11 +72,11 @@ const AssignmentListCompact: React.FC<Props> = ({ assignments, product }) => {
                   {formatMessage({ id: 'edit', defaultMessage: 'Edit' })}
                 </Link>
               </div>
-            </div>
-          );
-        })}
-      </div>
-    </ProductItemWrapperCompact>
+            )}
+          </div>
+        );
+      })}
+    </div>
   );
 };
 

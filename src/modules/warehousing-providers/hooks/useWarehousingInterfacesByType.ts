@@ -5,7 +5,7 @@ import {
 } from '../../../gql/types';
 
 const WarehousingInterfacesQuery = gql`
-  query WarehousingInterfaces($providerType: WarehousingProviderType!) {
+  query WarehousingInterfaces($providerType: WarehousingProviderType) {
     warehousingInterfaces(type: $providerType) {
       _id
       value: _id

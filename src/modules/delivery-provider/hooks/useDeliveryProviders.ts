@@ -17,7 +17,7 @@ const DeliveryProvidersQuery = gql`
 
 const useDeliveryProviders = ({
   type = null,
-}: IDeliveryProvidersQueryVariables) => {
+}: IDeliveryProvidersQueryVariables = {}) => {
   const { data, loading, error } = useQuery<
     IDeliveryProvidersQuery,
     IDeliveryProvidersQueryVariables

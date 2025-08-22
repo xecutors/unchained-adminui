@@ -1,12 +1,11 @@
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
 import Badge from '../../common/components/Badge';
-import MediaAvatar from '../../common/components/MediaAvatar';
 import Table from '../../common/components/Table';
-import { ORDER_STATUSES } from '../../common/data/miscellaneous';
 import formatUsername from '../../common/utils/formatUsername';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
 import { useFormatPrice } from '../../common/utils/utils';
+import { OrderStatusBadge } from './OrderStatusBadge';
 
 const OrderListItem = ({ order, showUser }) => {
   const { formatMessage } = useIntl();
@@ -62,33 +61,7 @@ const OrderListItem = ({ order, showUser }) => {
       )}
       <Table.Cell>
         <Link href={`/orders?orderId=${order._id}`} className="block">
-          <Badge
-            text={
-              order?.status === 'CONFIRMED'
-                ? formatMessage({
-                    id: 'confirmed',
-                    defaultMessage: 'CONFIRMED',
-                  })
-                : order?.status === 'PENDING'
-                  ? formatMessage({ id: 'pending', defaultMessage: 'PENDING' })
-                  : order?.status === 'OPEN'
-                    ? formatMessage({ id: 'open', defaultMessage: 'OPEN' })
-                    : order?.status === 'FULLFILLED'
-                      ? formatMessage({
-                          id: 'fulfilled',
-                          defaultMessage: 'FULFILLED',
-                        })
-                      : order?.status === 'REJECTED'
-                        ? formatMessage({
-                            id: 'rejected',
-                            defaultMessage: 'REJECTED',
-                          })
-                        : order?.status
-            }
-            color={ORDER_STATUSES[order.status]}
-            square
-            className="uppercase"
-          />
+          <OrderStatusBadge status={order.status} />
         </Link>
       </Table.Cell>
     </Table.Row>

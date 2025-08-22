@@ -2933,7 +2933,7 @@ export type IQueryCurrencyArgs = {
 };
 
 export type IQueryDeliveryInterfacesArgs = {
-  type: IDeliveryProviderType;
+  type?: InputMaybe<IDeliveryProviderType>;
 };
 
 export type IQueryDeliveryProviderArgs = {
@@ -3032,21 +3032,28 @@ export type IQueryOrderStatisticsArgs = {
 };
 
 export type IQueryOrdersArgs = {
+  dateRange?: InputMaybe<IDateFilterInput>;
+  deliveryProviderIds?: InputMaybe<Array<Scalars['String']['input']>>;
   includeCarts?: InputMaybe<Scalars['Boolean']['input']>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
+  paymentProviderIds?: InputMaybe<Array<Scalars['String']['input']>>;
   queryString?: InputMaybe<Scalars['String']['input']>;
   sort?: InputMaybe<Array<ISortOptionInput>>;
   status?: InputMaybe<Array<IOrderStatus>>;
 };
 
 export type IQueryOrdersCountArgs = {
+  dateRange?: InputMaybe<IDateFilterInput>;
+  deliveryProviderIds?: InputMaybe<Array<Scalars['String']['input']>>;
   includeCarts?: InputMaybe<Scalars['Boolean']['input']>;
+  paymentProviderIds?: InputMaybe<Array<Scalars['String']['input']>>;
   queryString?: InputMaybe<Scalars['String']['input']>;
+  status?: InputMaybe<Array<IOrderStatus>>;
 };
 
 export type IQueryPaymentInterfacesArgs = {
-  type: IPaymentProviderType;
+  type?: InputMaybe<IPaymentProviderType>;
 };
 
 export type IQueryPaymentProviderArgs = {
@@ -3203,7 +3210,7 @@ export type IQueryValidateVerifyEmailTokenArgs = {
 };
 
 export type IQueryWarehousingInterfacesArgs = {
-  type: IWarehousingProviderType;
+  type?: InputMaybe<IWarehousingProviderType>;
 };
 
 export type IQueryWarehousingProviderArgs = {
@@ -3979,6 +3986,8 @@ export enum IWorkStatus {
 }
 
 export enum IWorkType {
+  Budgetsms = 'BUDGETSMS',
+  Bulkgate = 'BULKGATE',
   BulkImport = 'BULK_IMPORT',
   Email = 'EMAIL',
   EnrollmentOrderGenerator = 'ENROLLMENT_ORDER_GENERATOR',
@@ -3989,7 +3998,7 @@ export enum IWorkType {
   HttpRequest = 'HTTP_REQUEST',
   Message = 'MESSAGE',
   Push = 'PUSH',
-  Sms = 'SMS',
+  Twilio = 'TWILIO',
   Unknown = 'UNKNOWN',
   UpdateCoinbaseRates = 'UPDATE_COINBASE_RATES',
   UpdateEcbRates = 'UPDATE_ECB_RATES',
@@ -7583,7 +7592,15 @@ export type IOrdersWithItemsQuery = {
   }>;
 };
 
-export type ISalesAnalyticsQueryVariables = Exact<{ [key: string]: never }>;
+export type ISalesAnalyticsQueryVariables = Exact<{
+  includeCarts?: InputMaybe<Scalars['Boolean']['input']>;
+  queryString?: InputMaybe<Scalars['String']['input']>;
+  status?: InputMaybe<Array<IOrderStatus>>;
+  sort?: InputMaybe<Array<ISortOptionInput>>;
+  paymentProviderIds?: InputMaybe<Array<Scalars['String']['input']>>;
+  deliveryProviderIds?: InputMaybe<Array<Scalars['String']['input']>>;
+  dateRange?: InputMaybe<IDateFilterInput>;
+}>;
 
 export type ISalesAnalyticsQuery = {
   orders: Array<{
@@ -7591,16 +7608,6 @@ export type ISalesAnalyticsQuery = {
     ordered?: any | null;
     status?: IOrderStatus | null;
     total?: { amount: number; currencyCode: string } | null;
-    items?: Array<{
-      quantity: number;
-      product:
-        | { _id: string; texts?: { title?: string | null } | null }
-        | { _id: string; texts?: { title?: string | null } | null }
-        | { _id: string; texts?: { title?: string | null } | null }
-        | { _id: string; texts?: { title?: string | null } | null }
-        | { _id: string; texts?: { title?: string | null } | null };
-      total?: { amount: number } | null;
-    }> | null;
   }>;
 };
 
@@ -7868,7 +7875,7 @@ export type ICreateDeliveryProviderMutation = {
 };
 
 export type IDeliveryInterfacesQueryVariables = Exact<{
-  providerType: IDeliveryProviderType;
+  providerType?: InputMaybe<IDeliveryProviderType>;
 }>;
 
 export type IDeliveryInterfacesQuery = {
@@ -9847,6 +9854,10 @@ export type IOrdersQueryVariables = Exact<{
   includeCarts?: InputMaybe<Scalars['Boolean']['input']>;
   queryString?: InputMaybe<Scalars['String']['input']>;
   sort?: InputMaybe<Array<ISortOptionInput>>;
+  paymentProviderIds?: InputMaybe<Array<Scalars['String']['input']>>;
+  deliveryProviderIds?: InputMaybe<Array<Scalars['String']['input']>>;
+  dateRange?: InputMaybe<IDateFilterInput>;
+  status?: InputMaybe<Array<IOrderStatus>>;
 }>;
 
 export type IOrdersQuery = {
@@ -9989,7 +10000,7 @@ export type ICreatePaymentProviderMutation = {
 };
 
 export type IPaymentInterfacesQueryVariables = Exact<{
-  providerType: IPaymentProviderType;
+  providerType?: InputMaybe<IPaymentProviderType>;
 }>;
 
 export type IPaymentInterfacesQuery = {
@@ -16005,7 +16016,7 @@ export type IUpdateWarehousingProviderMutation = {
 };
 
 export type IWarehousingInterfacesQueryVariables = Exact<{
-  providerType: IWarehousingProviderType;
+  providerType?: InputMaybe<IWarehousingProviderType>;
 }>;
 
 export type IWarehousingInterfacesQuery = {

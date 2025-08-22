@@ -3,26 +3,31 @@ import { useQuery, gql } from '@apollo/client';
 import { format, parseISO, subDays, startOfDay, endOfDay } from 'date-fns';
 
 const SALES_ANALYTICS_QUERY = gql`
-  query SalesAnalytics {
-    orders(limit: 1000) {
+  query SalesAnalytics(
+    $includeCarts: Boolean = false
+    $queryString: String
+    $status: [OrderStatus!]
+    $sort: [SortOptionInput!]
+    $paymentProviderIds: [String!]
+    $deliveryProviderIds: [String!]
+    $dateRange: DateFilterInput
+  ) {
+    orders(
+      limit: 0
+      includeCarts: $includeCarts
+      status: $status
+      queryString: $queryString
+      sort: $sort
+      paymentProviderIds: $paymentProviderIds
+      deliveryProviderIds: $deliveryProviderIds
+      dateRange: $dateRange
+    ) {
       _id
       ordered
       status
       total {
         amount
         currencyCode
-      }
-      items {
-        product {
-          _id
-          texts {
-            title
-          }
-        }
-        quantity
-        total {
-          amount
-        }
       }
     }
   }
@@ -35,132 +40,123 @@ export interface SalesData {
   avgOrderValue: number;
 }
 
-export interface TopProduct {
-  name: string;
-  sales: number;
-  quantity: number;
-}
-
 export interface SalesAnalyticsResult {
   totalSales: number;
   totalOrders: number;
   averageOrderValue: number;
   salesData: SalesData[];
-  topProducts: TopProduct[];
   loading: boolean;
+  dateRange?: { start: string; end: string };
+  currencyCode?: string;
   error: any;
 }
 
-const useSalesAnalytics = (days: number = 30): SalesAnalyticsResult => {
-  const endDate = new Date();
+interface Order {
+  _id: string;
+  ordered: string;
+  status: string;
+  total: { amount: number; currencyCode: string };
+}
+
+const initializeDailySales = (days: number, endDate: Date) => {
+  const map = new Map<string, { sales: number; orders: number }>();
+  for (let i = 0; i < days; i++) {
+    const date = format(subDays(endDate, i), 'MMM d');
+    map.set(date, { sales: 0, orders: 0 });
+  }
+  return map;
+};
+
+const buildSalesData = (
+  dailySales: Map<string, { sales: number; orders: number }>,
+): SalesData[] =>
+  Array.from(dailySales.entries())
+    .map(([date, { sales, orders }]) => ({
+      date,
+      sales: Number(sales.toFixed(2)),
+      orders,
+      avgOrderValue: orders > 0 ? Math.round(sales / orders) : 0,
+    }))
+    .reverse();
+
+const useSalesAnalytics = ({
+  days = 30,
+  paymentProviderIds = [],
+  deliveryProviderIds = [],
+  queryString = '',
+}: {
+  days?: number;
+  paymentProviderIds?: string[];
+  deliveryProviderIds?: string[];
+  queryString?: string;
+}): SalesAnalyticsResult => {
+  const endDate = useMemo(() => new Date(), []);
   const startDate = subDays(endDate, days);
+
+  const dateRange = useMemo(
+    () => ({
+      start: startOfDay(startDate).toISOString(),
+      end: endOfDay(endDate).toISOString(),
+    }),
+    [startDate, endDate],
+  );
 
   const { data, loading, error } = useQuery(SALES_ANALYTICS_QUERY, {
     variables: {
-      filter: {
-        ordered: {
-          gte: startOfDay(startDate).toISOString(),
-          lte: endOfDay(endDate).toISOString(),
-        },
-        status: 'CONFIRMED',
-      },
+      status: ['CONFIRMED', 'FULLFILLED'],
+      queryString,
+      paymentProviderIds,
+      deliveryProviderIds,
+      dateRange,
     },
     errorPolicy: 'all',
   });
 
   return useMemo(() => {
-    if (!data?.orders) {
+    const orders: Order[] = data?.orders || [];
+    if (!orders.length) {
       return {
         totalSales: 0,
         totalOrders: 0,
         averageOrderValue: 0,
         salesData: [],
-        topProducts: [],
         loading,
         error,
+        dateRange,
       };
     }
 
-    const orders = data.orders;
+    let totalSales = 0;
+    const dailySales = initializeDailySales(days, endDate);
+    orders.forEach((order) => {
+      if (!order.ordered || order.total?.amount == null) return;
 
-    // Calculate total metrics
-    const totalSales =
-      orders.reduce(
-        (sum: number, order: any) => sum + (order.total?.amount || 0),
-        0,
-      ) / 100; // Convert from cents
+      const date = format(parseISO(order.ordered), 'MMM d');
+      const daily = dailySales.get(date);
+
+      const orderAmount = Number(order.total?.amount ?? 0);
+      if (daily) {
+        daily.sales += orderAmount;
+        daily.orders += 1;
+      }
+
+      totalSales += orderAmount;
+    });
 
     const totalOrders = orders.length;
     const averageOrderValue = totalOrders > 0 ? totalSales / totalOrders : 0;
 
-    // Generate daily sales data
-    const dailySales = new Map<string, { sales: number; orders: number }>();
-
-    // Initialize all days with 0
-    for (let i = 0; i < days; i++) {
-      const date = format(subDays(endDate, i), 'MMM d');
-      dailySales.set(date, { sales: 0, orders: 0 });
-    }
-
-    // Aggregate orders by date
-    orders.forEach((order: any) => {
-      if (order.ordered && order.total?.amount) {
-        const orderDate = format(parseISO(order.ordered), 'MMM d');
-        const existing = dailySales.get(orderDate) || { sales: 0, orders: 0 };
-        existing.sales += order.total.amount / 100; // Convert from cents
-        existing.orders += 1;
-        dailySales.set(orderDate, existing);
-      }
-    });
-
-    const salesData: SalesData[] = Array.from(dailySales.entries())
-      .map(([date, data]) => ({
-        date,
-        sales: Math.round(data.sales),
-        orders: data.orders,
-        avgOrderValue:
-          data.orders > 0 ? Math.round(data.sales / data.orders) : 0,
-      }))
-      .reverse(); // Reverse to show chronological order
-
-    // Calculate top products
-    const productSales = new Map<
-      string,
-      { name: string; sales: number; quantity: number }
-    >();
-
-    orders.forEach((order: any) => {
-      order.items?.forEach((item: any) => {
-        const productName = item.product?.texts?.title || 'Unknown Product';
-        const existing = productSales.get(productName) || {
-          name: productName,
-          sales: 0,
-          quantity: 0,
-        };
-        existing.sales += item.total?.amount / 100 || 0; // Convert from cents
-        existing.quantity += item.quantity || 0;
-        productSales.set(productName, existing);
-      });
-    });
-
-    const topProducts: TopProduct[] = Array.from(productSales.values())
-      .sort((a, b) => b.sales - a.sales)
-      .slice(0, 10)
-      .map((product) => ({
-        ...product,
-        sales: Math.round(product.sales),
-      }));
-
     return {
       totalSales: Math.round(totalSales),
+      currencyCode: orders[0]?.total?.currencyCode ?? 'USD',
       totalOrders,
       averageOrderValue: Math.round(averageOrderValue),
-      salesData,
-      topProducts,
+      salesData: buildSalesData(dailySales),
       loading,
       error,
+      dateRange,
     };
-  }, [data, loading, error, days]);
+  }, [data, loading, error, dateRange, days, endDate]);
 };
 
 export default useSalesAnalytics;

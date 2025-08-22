@@ -11,6 +11,7 @@ import {
 } from 'ai';
 import { ChatConfiguration, errorHandler } from './utils';
 import generateImageHandler from './generateImageHandler';
+import defaultSystemPrompt from './defaultSystemPrompt';
 import normalizeToolsIndex from './normalizeToolsIndex';
 
 export const expressRouter = express.Router();
@@ -36,6 +37,8 @@ const setupMCPChatHandler = (
     imageGenerationTool,
     ...restChatConfig
   } = chatConfiguration;
+
+  const system = chatConfiguration.system ?? defaultSystemPrompt;
 
   const mcpChatHandler: RequestHandler = async (
     req: Request,
@@ -79,6 +82,7 @@ const setupMCPChatHandler = (
       const { messages } = req.body;
       const result = streamText({
         ...restChatConfig,
+        system,
         model,
         messages: convertToModelMessages(messages, { tools }),
         tools,

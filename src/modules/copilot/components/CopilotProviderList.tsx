@@ -5,11 +5,11 @@ import Badge from '../../common/components/Badge';
 import { useIntl } from 'react-intl';
 
 const getNormalizedDetailPageLink = (type, provider) => {
-  if (type === 'payment')
+  if (type === 'PAYMENT')
     return `/payment-provider?paymentProviderId=${provider._id}`;
-  if (type === 'delivery')
+  if (type === 'DELIVERY')
     return `/delivery-provider?deliveryProviderId=${provider._id}`;
-  if (type === 'warehousing')
+  if (type === 'WAREHOUSING')
     return `/warehousing-provider?warehousingProviderId=${provider._id}`;
 };
 export const CopilotProviderListItem = ({ provider, type }) => {
@@ -27,7 +27,7 @@ export const CopilotProviderListItem = ({ provider, type }) => {
               {provider.adapterKey}
             </h3>
             <Link
-              href={getNormalizedDetailPageLink(type, provider)}
+              href={getNormalizedDetailPageLink(type, provider) || '/'}
               className="px-3 py-1.5 text-sm text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 border border-slate-300 dark:border-slate-600 rounded-md hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
             >
               {formatMessage({ id: 'edit', defaultMessage: 'Edit' })}
@@ -46,7 +46,7 @@ export const CopilotProviderListItem = ({ provider, type }) => {
             </span>
             <span>
               {formatMessage({
-                id: 'configuration',
+                id: 'provider_configuration_items',
                 defaultMessage: 'Config items',
               })}
               : {provider.configuration?.length ?? 0}
@@ -76,7 +76,6 @@ export const CopilotProviderListItem = ({ provider, type }) => {
 };
 
 const CopilotProviderList = ({ providers, type }) => {
-  console.log(providers);
   if (!providers?.length) return null;
   return (
     <div className="space-y-4">

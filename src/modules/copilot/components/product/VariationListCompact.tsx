@@ -16,11 +16,10 @@ const VariationListCompact = ({
   variations: Variation[];
   product?: any;
 }) => {
-  if (!variations.length) return null;
   return (
     <ProductItemWrapperCompact product={product} tab="variations">
       <div className="text-sm space-y-2">
-        {variations.map(({ _id, type, key, options, productId }) => (
+        {variations?.map(({ _id, type, key, options }) => (
           <div
             key={_id}
             className="flex items-center justify-between gap-4 p-3 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-md"

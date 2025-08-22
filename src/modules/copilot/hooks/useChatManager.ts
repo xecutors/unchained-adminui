@@ -25,8 +25,12 @@ export const useChatManager = () => {
     'copilot-chat-history',
     [],
   );
+  const normalizedHistory = (chatHistory || [])?.filter(
+    (h) =>
+      h?.toolInvocations === undefined ||
+      h?.toolInvocations?.every((t) => t?.result),
+  );
   const hasInitialized = useRef(false);
-
   const {
     messages,
     /* input,
@@ -46,7 +50,7 @@ export const useChatManager = () => {
       api: process.env.NEXT_PUBLIC_CHAT_URL || '/chat',
       credentials: 'include',
     }),
-    messages: chatHistory,
+    messages: normalizedHistory,
     onError: (error) => {
       console.error('Chat error:', error);
 
@@ -88,7 +92,14 @@ export const useChatManager = () => {
 
   // Save messages to localStorage whenever they change
   useEffect(() => {
-    setChatHistory(messages as ChatMessage[]);
+    if (
+      (messages || [])?.filter(
+        (h) =>
+          h?.toolInvocations === undefined ||
+          h?.toolInvocations?.every((t) => t?.state === 'result'),
+      )
+    )
+      setChatHistory(messages as ChatMessage[]);
   }, [messages]);
 
   const clearHistory = () => {

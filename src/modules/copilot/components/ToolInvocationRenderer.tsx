@@ -1,7 +1,6 @@
 import React from 'react';
-import UnknownToolResponse from './UnknownToolResponse';
+import JSONView from './JSONView';
 import ToolRenderer from './ToolRenderer';
-import { SkippedToolResponse } from '../hooks/useToolTextNormalizer';
 import { useIntl } from 'react-intl';
 
 interface ToolInvocationRendererProps {
@@ -12,7 +11,7 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
   part,
 }) => {
   const { formatMessage } = useIntl();
-  const { toolName, output } = part ?? {};
+  const { toolName, output, toolCallId } = part ?? {};
   if (!toolName || !output?.content?.length) return null;
 
   const content = output.content[0];
@@ -21,30 +20,31 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
     const textString = typeof text === 'string' ? text : JSON.stringify(text);
 
     if (textString.startsWith('Error')) {
-      return (
-        <div className="mt-4 text-sm border border-amber-200 text-amber-700 dark:text-amber-400 mb-4 p-3 bg-amber-50 dark:bg-amber-950 rounded-md">
-          <div className="font-medium mb-1">
-            {' '}
-            {formatMessage({
-              id: 'tool_response',
-              defaultMessage: 'Tool Response',
-            })}{' '}
-            :
+      if (process.env.NODE_ENV === 'development')
+        return (
+          <div className="mt-4 text-sm border border-amber-200 text-amber-700 dark:text-amber-400 mb-4 p-3 bg-amber-50 dark:bg-amber-950 rounded-md">
+            <div className="font-medium mb-1">
+              {' '}
+              {formatMessage({
+                id: 'tool_response',
+                defaultMessage: 'Tool Response',
+              })}{' '}
+              :
+            </div>
+            <div>{textString}</div>
           </div>
-          <div>{textString}</div>
-        </div>
-      );
+        );
+      else return null;
     }
 
-    const parsed = JSON.parse(textString);
+    const parsed = JSON.parse(textString || '{}');
 
-    if (SkippedToolResponse.includes(toolName)) return null;
+    const renderer = ToolRenderer?.[toolName];
 
-    const renderer = ToolRenderer[toolName];
-
+    console.log(output);
     return (
       <div className="mb-6">
-        {renderer ? renderer(parsed) : <UnknownToolResponse data={parsed} />}
+        {renderer ? renderer(parsed) : <JSONView data={parsed} />}
       </div>
     );
   } catch (error) {

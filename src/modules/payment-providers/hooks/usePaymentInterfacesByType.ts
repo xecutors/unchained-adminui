@@ -5,7 +5,7 @@ import {
 } from '../../../gql/types';
 
 const PaymentInterfacesQuery = gql`
-  query PaymentInterfaces($providerType: PaymentProviderType!) {
+  query PaymentInterfaces($providerType: PaymentProviderType) {
     paymentInterfaces(type: $providerType) {
       _id
       value: _id
