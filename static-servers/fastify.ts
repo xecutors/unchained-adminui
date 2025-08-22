@@ -6,14 +6,17 @@ import {
   FastifyRequest,
 } from 'fastify';
 import fastifyStatic from '@fastify/static';
-import { categorizeTools, ChatConfiguration, errorHandler } from './utils';
+import { ChatConfiguration, errorHandler } from './utils';
 import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
 import {
+  convertToModelMessages,
   experimental_createMCPClient as createMCPClient,
-  ImageModel,
+  MCPTransport,
   streamText,
+  ToolSet,
 } from 'ai';
 import generateImageHandler from './generateImageHandler';
+import normalizeToolsIndex from './normalizeToolsIndex';
 
 const staticPath = path.join(__dirname, '..', 'out');
 
@@ -40,13 +43,12 @@ export const fastifyRouter: FastifyPluginAsync<FastifyRouterOptions> = async (
 };
 
 const setupMCPChatHandler = (chatConfiguration: ChatConfiguration) => {
-  let client: any;
   if (!chatConfiguration?.model) {
     throw new Error('Model is required');
   }
 
   const {
-    tools = {},
+    tools: additionalTools = {},
     unchainedMCPUrl = `${process.env.ROOT_URL}/mcp`,
     imageGenerationTool,
     ...restChatConfig
@@ -56,48 +58,39 @@ const setupMCPChatHandler = (chatConfiguration: ChatConfiguration) => {
     req: FastifyRequest,
     res,
   ) => {
+    const client = await createMCPClient({
+      transport: new StreamableHTTPClientTransport(new URL(unchainedMCPUrl), {
+        requestInit: {
+          headers: {
+            Cookie: req.headers.cookie || '',
+          },
+        },
+      }) as MCPTransport,
+    });
+
     try {
       if (req.method === 'OPTIONS') return res.send();
 
-      client = await createMCPClient({
-        transport: new StreamableHTTPClientTransport(new URL(unchainedMCPUrl), {
-          requestInit: {
-            headers: {
-              Cookie: req.headers.cookie || '',
-            },
-          },
-        }),
-      });
-
       const defaultUnchainedTools = await client.tools();
-      const customTools: Record<string, any> = { ...tools };
-
+      const tools: ToolSet = {
+        ...defaultUnchainedTools,
+        ...additionalTools,
+      };
       if (imageGenerationTool) {
-        customTools.generateImage =
-          generateImageHandler(req)(imageGenerationTool);
+        tools.generateImage = generateImageHandler(req)(imageGenerationTool);
       }
 
       if (req.method === 'GET') {
-        const mcpTools = {
-          ...defaultUnchainedTools,
-          ...customTools,
-        };
-        const tools = Object.entries(mcpTools).map(([name, tool]: any) => ({
-          name,
-          description: tool.description || '',
-          parameters: tool.parameters || {},
-          category: categorizeTools(name),
-        }));
         return res.status(200).send({
-          tools,
+          tools: normalizeToolsIndex(tools),
         });
       }
 
       const { messages } = req.body as any;
       const result = streamText({
         ...restChatConfig,
-        messages,
-        tools: { ...defaultUnchainedTools, ...customTools },
+        messages: convertToModelMessages(messages, { tools }),
+        tools,
         onFinish: async () => {
           await client?.close();
         },
@@ -105,11 +98,7 @@ const setupMCPChatHandler = (chatConfiguration: ChatConfiguration) => {
 
       res.header('X-Vercel-AI-Data-Stream', 'v1');
       res.header('Content-Type', 'text/plain; charset=utf-8');
-      return res.send(
-        result.toDataStream({
-          getErrorMessage: errorHandler,
-        }),
-      );
+      return res.send(result.toUIMessageStream({ onError: errorHandler }));
     } catch (e: any) {
       res.status(503);
       return res.send(

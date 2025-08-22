@@ -1,7 +1,6 @@
 import { experimental_generateImage, ImageModel, tool } from 'ai';
 import { fileTypeFromBuffer } from 'file-type';
 import { z } from 'zod';
-
 const generateImageHandler =
   (req: any) =>
   ({
@@ -11,9 +10,12 @@ const generateImageHandler =
     model: ImageModel;
     uploadUrl?: string;
   }) => {
-    return tool({
+    return tool<
+      { prompt: string; size?: string },
+      string | { imageUrl: string; prompt: string }
+    >({
       description: 'Generate an image based on the prompt',
-      parameters: z.object({
+      inputSchema: z.object({
         prompt: z.string().describe('The prompt to generate the image from'),
         size: z
           .enum([
@@ -37,7 +39,7 @@ const generateImageHandler =
           const { image } = await experimental_generateImage({
             model,
             prompt,
-            size,
+            size: size as any,
           });
 
           const buffer = Buffer.from(image.base64, 'base64');
@@ -64,23 +66,9 @@ const generateImageHandler =
           }
 
           const { url } = await uploadRes.json();
-          return {
-            content: [
-              {
-                type: 'text' as const,
-                text: JSON.stringify({ imageUrl: url, prompt }),
-              },
-            ],
-          };
+          return { imageUrl: url, prompt };
         } catch (error) {
-          return {
-            content: [
-              {
-                type: 'text' as const,
-                text: `Error Generating image: ${(error as Error).message}`,
-              },
-            ],
-          };
+          return `Error Generating image: ${(error as Error).message}`;
         }
       },
     });

@@ -19,7 +19,7 @@ export interface ChatContextType {
   addInterruptionMessage: (currentStatus: string) => void;
   status: 'error' | 'submitted' | 'streaming' | 'ready';
 
-  sendMessage: (param: { text: string }) => void
+  sendMessage: (param: { text: string }) => void;
   reload: () => void;
 }
 

@@ -42,7 +42,10 @@ export const useChatManager = () => {
     append, */
     sendMessage,
   } = useChat({
-    transport: new DefaultChatTransport({ api: process.env.NEXT_PUBLIC_CHAT_URL || '/chat', credentials: 'include' }),
+    transport: new DefaultChatTransport({
+      api: process.env.NEXT_PUBLIC_CHAT_URL || '/chat',
+      credentials: 'include',
+    }),
     messages: chatHistory,
     onError: (error) => {
       console.error('Chat error:', error);
@@ -101,24 +104,16 @@ export const useChatManager = () => {
     );
     setMessages((prev) => [...prev, interruptionMessage]);
   };
-  const handleSubmit = async (
-    inputText: string,
-    imageUrls?: string[],
-  ) => {
-
-
+  const handleSubmit = async (inputText: string, imageUrls?: string[]) => {
     try {
-
       const assets = imageUrls?.map(formatFileLink).join('\n') ?? '';
 
       const messageContent = [inputText, assets].filter(Boolean).join('\n');
 
-
       if (inputText) {
         sendMessage({
           text: messageContent,
-        }
-        );
+        });
       }
     } catch (error) {
       console.error('Error in handleSubmit:', error);
@@ -167,6 +162,6 @@ export const useChatManager = () => {
     reload,
     /*
    append, */
-    resumeStream
+    resumeStream,
   };
 };

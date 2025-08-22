@@ -2,9 +2,10 @@ import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/
 import {
   experimental_createMCPClient as createMCPClient,
   MCPTransport,
+  convertToModelMessages,
   streamText,
+  ToolSet,
 } from 'ai';
-import { anthropic } from '@ai-sdk/anthropic';
 import { openai } from '@ai-sdk/openai';
 import generateImageHandler from '../../../static-servers/generateImageHandler';
 import { errorHandler } from '../../../static-servers';
@@ -17,32 +18,35 @@ const unchainedMCPUrl = process.env.MCP_API_URL || 'http://localhost:4010/mcp';
 export async function POST(req: Request) {
   const { messages } = await req.json();
   const httpTransport = new StreamableHTTPClientTransport(
-    new URL('http://localhost:3000/mcp'),
+    new URL(unchainedMCPUrl),
     {
       requestInit: {
         headers: {
           Cookie: req.headers.get('cookie') || '',
         },
       },
-    }
+    },
   );
   const client = await createMCPClient({
     transport: httpTransport as MCPTransport,
   });
-  const mcpTools = await client.tools();
-  const result = streamText({
+  const defaultUnchainedTools = await client.tools();
+  const tools: ToolSet = defaultUnchainedTools;
+  if (process.env.NEXT_PUBLIC_TEMP_FILE_UPLOAD_URL) {
+    tools.generateImage = generateImageHandler(req)({
+      model: openai.image('dall-e-3'),
+      uploadUrl: process.env.NEXT_PUBLIC_TEMP_FILE_UPLOAD_URL,
+    });
+  }
 
+  const result = streamText({
     system:
       'do not include the data in your summary, just write a summary about it in one short paragraph and never list all the fields of a result, just summarize paragraph about your findings, if necessary',
-    model: anthropic('claude-3-haiku-20240307'),
-    messages,
-    tools: {
-      ...mcpTools,
-      generateImage: generateImageHandler(req)({
-        model: openai.image('dall-e-3'),
-        uploadUrl: process.env.NEXT_PUBLIC_TEMP_FILE_UPLOAD_URL,
-      }),
-    },
+    model: openai.chat('gpt-4.1-mini'),
+    messages: convertToModelMessages(messages, {
+      tools,
+    }),
+    tools,
     onError: async (e) => {
       console.log(e);
     },

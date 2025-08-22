@@ -10,13 +10,8 @@ import useLocalStorage from '../../common/hooks/useLocalStorage';
 import { useChatContext } from '../ChatContext';
 const CopilotInput: React.FC = () => {
   const [input, setInput] = useState('');
-  const {
-    sendMessage,    
-    status,
-    stop,
-    handleSubmit,
-    addInterruptionMessage,
-  } = useChatContext();
+  const { sendMessage, status, stop, handleSubmit, addInterruptionMessage } =
+    useChatContext();
   const [inputHistory, setInputHistory] = useLocalStorage(
     'copilot-input-history',
     [],
@@ -51,7 +46,7 @@ const CopilotInput: React.FC = () => {
         setHistoryIndex(-1);
         const imgs = [...imageUrls];
         setImageUrls([]);
-         handleSubmit(input, imgs);
+        handleSubmit(input, imgs);
       }
     } catch (e) {
       // Don't log authentication errors to console as they're handled in the UI
@@ -102,8 +97,7 @@ const CopilotInput: React.FC = () => {
     setUploading(false);
   };
 
-  const setInputValue = (value: string) =>
-    setInput(value);
+  const setInputValue = (value: string) => setInput(value);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {

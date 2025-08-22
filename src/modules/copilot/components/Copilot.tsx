@@ -34,9 +34,7 @@ const Copilot = () => {
     });
 
     try {
-       sendMessage(
-        {  text: introMessage },
-      );
+      sendMessage({ text: introMessage });
     } catch (error) {
       console.error('Failed to append introduction:', error);
     }

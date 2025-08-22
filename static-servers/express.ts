@@ -3,11 +3,15 @@ import type { Express, Request, RequestHandler, Response } from 'express';
 import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
 import path from 'node:path';
 import {
+  convertToModelMessages,
   experimental_createMCPClient as createMCPClient,
+  MCPTransport,
   streamText,
+  ToolSet,
 } from 'ai';
-import { categorizeTools, ChatConfiguration, errorHandler } from './utils';
+import { ChatConfiguration, errorHandler } from './utils';
 import generateImageHandler from './generateImageHandler';
+import normalizeToolsIndex from './normalizeToolsIndex';
 
 export const expressRouter = express.Router();
 const staticPath = path.join(__dirname, '..', 'out');
@@ -26,7 +30,7 @@ const setupMCPChatHandler = (
   }
 
   const {
-    tools = {},
+    tools: additionalTools = {},
     unchainedMCPUrl = `${process.env.ROOT_URL}/mcp`,
     model,
     imageGenerationTool,
@@ -46,39 +50,29 @@ const setupMCPChatHandler = (
       return;
     }
 
-    let client: any;
-    try {
-      client = await createMCPClient({
-        transport: new StreamableHTTPClientTransport(new URL(unchainedMCPUrl), {
-          requestInit: {
-            headers: {
-              Cookie: req.headers.cookie || '',
-            },
+    const client = await createMCPClient({
+      transport: new StreamableHTTPClientTransport(new URL(unchainedMCPUrl), {
+        requestInit: {
+          headers: {
+            Cookie: req.headers.cookie || '',
           },
-        }),
-      });
+        },
+      }) as MCPTransport,
+    });
 
+    try {
       const defaultUnchainedTools = await client.tools();
-      const customTools: Record<string, any> = { ...tools };
-
+      const tools: ToolSet = {
+        ...defaultUnchainedTools,
+        ...additionalTools,
+      };
       if (imageGenerationTool) {
-        customTools.generateImage =
-          generateImageHandler(req)(imageGenerationTool);
+        tools.generateImage = generateImageHandler(req)(imageGenerationTool);
       }
 
       if (req.method === 'GET') {
-        const mcpTools = {
-          ...defaultUnchainedTools,
-          ...customTools,
-        };
-        const tools = Object.entries(mcpTools).map(([name, tool]: any) => ({
-          name,
-          description: tool.description || '',
-          parameters: tool.parameters || {},
-          category: categorizeTools(name),
-        }));
         res.status(200).json({
-          tools,
+          tools: normalizeToolsIndex(tools),
         });
         return;
       }
@@ -86,18 +80,15 @@ const setupMCPChatHandler = (
       const result = streamText({
         ...restChatConfig,
         model,
-        messages,
-        tools: {
-          ...defaultUnchainedTools,
-          ...customTools,
-        },
+        messages: convertToModelMessages(messages, { tools }),
+        tools,
         onFinish: async () => {
           await client?.close();
         },
       });
 
-      result.pipeDataStreamToResponse(res, {
-        getErrorMessage: errorHandler,
+      result.pipeUIMessageStreamToResponse(res, {
+        onError: errorHandler,
       });
     } catch (err) {
       await client?.close();

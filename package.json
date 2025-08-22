@@ -51,15 +51,15 @@
     "Mikael Araya Mengistu <mikael@unchained.shop> (http://www.unchained.shop)"
   ],
   "devDependencies": {
-    "@ai-sdk/anthropic": "^2.0.1",
-    "@ai-sdk/openai": "^2.0.4",
-    "@ai-sdk/react": "^2.0.5",
-    "@apollo/client": "^3.13.9",
+    "@ai-sdk/anthropic": "^2.0.6",
+    "@ai-sdk/openai": "^2.0.19",
+    "@ai-sdk/react": "^2.0.22",
+    "@apollo/client": "^3.14.0",
     "@dnd-kit/core": "^6.3.1",
     "@dnd-kit/sortable": "^10.0.0",
     "@dnd-kit/utilities": "^3.2.2",
     "@eslint/eslintrc": "^3.3.1",
-    "@eslint/js": "^10.0.0",
+    "@eslint/js": "^9.33.0",
     "@formatjs/cli": "^6.7.2",
     "@formatjs/intl-pluralrules": "^5.4.4",
     "@formatjs/intl-relativetimeformat": "^11.4.11",
@@ -69,23 +69,23 @@
     "@heroicons/react": "^2.2.0",
     "@radix-ui/react-slot": "^1.2.3",
     "@tailwindcss/forms": "^0.5.10",
-    "@tailwindcss/postcss": "^4.1.11",
+    "@tailwindcss/postcss": "^4.1.12",
     "@tailwindcss/typography": "^0.5.16",
     "@types/express": "^5.0.3",
-    "@types/react": "^19.1.9",
-    "@typescript-eslint/eslint-plugin": "^8.39.0",
-    "@typescript-eslint/parser": "^8.39.0",
+    "@types/react": "^19.1.10",
+    "@typescript-eslint/eslint-plugin": "^8.40.0",
+    "@typescript-eslint/parser": "^8.40.0",
     "classnames": "^2.5.1",
     "clsx": "^2.1.1",
-    "cypress": "^14.5.3",
+    "cypress": "^14.5.4",
     "d3": "^7.9.0",
     "date-fns": "^4.1.0",
     "date-fns-tz": "^3.2.0",
     "deepmerge": "^4.3.1",
-    "eslint": "^9.32.0",
-    "eslint-config-next": "15.4.5",
+    "eslint": "^9.33.0",
+    "eslint-config-next": "^15.5.0",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-cypress": "^5.1.0",
+    "eslint-plugin-cypress": "^5.1.1",
     "eslint-plugin-formatjs": "^5.4.0",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
@@ -96,8 +96,8 @@
     "graphql": "^16.11.0",
     "intl-messageformat": "^10.7.16",
     "lodash.isequal": "^4.5.0",
-    "lucide-react": "^0.536.0",
-    "next": "15.4.5",
+    "lucide-react": "^0.540.0",
+    "next": "^15.5.0",
     "npm-run-all": "^4.1.5",
     "papaparse": "^5.5.3",
     "prettier": "^3.6.2",
@@ -119,12 +119,11 @@
   },
   "peerDependencies": {
     "@fastify/static": "^8.2.0",
-    "@modelcontextprotocol/sdk": "^1.17.1",
+    "@modelcontextprotocol/sdk": "^1.17.3",
     "ai": "^5.0.5",
     "express": "^5.1.0",
-    "fastify": "^5.4.0",
-    "file-type": "^21.0.0",
-    "zod": "^3.25.76"
+    "fastify": "^5.5.0",
+    "file-type": "^21.0.0"
   },
   "peerDependencyMeta": {
     "express": {
@@ -136,5 +135,8 @@
     "@fastify/static": {
       "optional": true
     }
+  },
+  "dependencies": {
+    "zod": "^4.0.17"
   }
 }
