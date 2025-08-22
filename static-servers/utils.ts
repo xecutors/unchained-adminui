@@ -10,7 +10,7 @@ type StreamTextParams = Parameters<typeof streamText>[0];
 export type ChatConfiguration = StreamTextParams & {
   unchainedMCPUrl?: string;
   imageGenerationTool?: { model: ImageModel; uploadUrl?: string };
-}
+};
 
 export const errorHandler = (error: any): string => {
   console.log(error);
