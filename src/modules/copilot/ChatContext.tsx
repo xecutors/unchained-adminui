@@ -25,7 +25,7 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
     handleInputChange: chatManager.handleInputChange,
     
     isLoading: chatManager.isLoading, */
-    handleSubmit: chatManager.handleSubmit,
+    handleSubmit: chatManager.handleSubmit as any,
     error: chatManager.error,
     clearHistory: chatManager.clearHistory,
     stop: chatManager.stop,
@@ -34,7 +34,7 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
     reload: chatManager.reload,
     /*append: chatManager.append, */
     sendMessage: chatManager.sendMessage,
-  };
+  } as any;
 
   return <ChatContext.Provider value={value}>{children}</ChatContext.Provider>;
 };

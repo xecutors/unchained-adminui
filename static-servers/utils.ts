@@ -7,13 +7,13 @@ import {
 
 type StreamTextParams = Parameters<typeof streamText>[0];
 
-export interface ChatConfiguration extends StreamTextParams {
+export type ChatConfiguration = StreamTextParams & {
   unchainedMCPUrl?: string;
   imageGenerationTool?: { model: ImageModel; uploadUrl?: string };
 }
 
 export const errorHandler = (error: any): string => {
-  console.log(error)
+  console.log(error);
   if (NoSuchToolError.isInstance(error)) return 'NoSuchToolError';
   if (InvalidArgumentError.isInstance(error))
     return 'InvalidToolArgumentsError';

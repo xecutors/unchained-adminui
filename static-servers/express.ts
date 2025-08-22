@@ -24,7 +24,7 @@ expressRouter.get(/(.*)/, (_, res) => {
 });
 
 const setupMCPChatHandler = (
-  chatConfiguration: ChatConfiguration,
+  chatConfiguration: ChatConfiguration & any,
 ): RequestHandler => {
   if (!chatConfiguration || !chatConfiguration.model) {
     throw new Error('Model is required');
@@ -36,7 +36,7 @@ const setupMCPChatHandler = (
     model,
     imageGenerationTool,
     ...restChatConfig
-  } = chatConfiguration;
+  }: any = chatConfiguration;
 
   const system = chatConfiguration.system ?? defaultSystemPrompt;
 

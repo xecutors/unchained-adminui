@@ -86,7 +86,7 @@ export const useChatManager = () => {
         role: 'assistant',
         content: errorContent,
       };
-      setMessages((prev) => [...prev, errorMessage]);
+      setMessages((prev: any) => [...prev, errorMessage]);
     },
   });
 
@@ -94,7 +94,7 @@ export const useChatManager = () => {
   useEffect(() => {
     if (
       (messages || [])?.filter(
-        (h) =>
+        (h: any) =>
           h?.toolInvocations === undefined ||
           h?.toolInvocations?.every((t) => t?.state === 'result'),
       )
@@ -113,7 +113,7 @@ export const useChatManager = () => {
     const interruptionMessage = chatUtils.createInterruptionMessage(
       currentStatus as any,
     );
-    setMessages((prev) => [...prev, interruptionMessage]);
+    setMessages((prev: any) => [...prev, interruptionMessage]);
   };
   const handleSubmit = async (inputText: string, imageUrls?: string[]) => {
     try {
@@ -144,7 +144,7 @@ export const useChatManager = () => {
           role: 'assistant',
           content: `🔐 **Authentication Error**\n\nYour session has expired or the authentication token is invalid.\n\n**To fix this:**\n1. **Refresh the page** (Ctrl+R / Cmd+R) to renew your session\n2. If the problem persists, log out and log back in\n3. Check that you have proper permissions for chat functionality\n\n**Quick action:** Click [here to refresh the page](javascript:window.location.reload())\n\n*This happens when your session expires after being idle for too long.*`,
         };
-        setMessages((prev) => [...prev, authErrorMessage]);
+        setMessages((prev: any) => [...prev, authErrorMessage]);
       } else {
         // Handle other errors
         const generalErrorMessage: ChatMessage = {
@@ -152,7 +152,7 @@ export const useChatManager = () => {
           role: 'assistant',
           content: `❌ **Submission Error**\n\nFailed to send your message. This usually happens when the backend server is not running.\n\n**Error:** ${errorMessage}\n\n*Please ensure the Unchained Commerce backend is running on localhost:4010.*`,
         };
-        setMessages((prev) => [...prev, generalErrorMessage]);
+        setMessages((prev: any) => [...prev, generalErrorMessage]);
       }
     }
   };

@@ -7,7 +7,7 @@ import {
 } from './tool-renderers/ProductRenderers';
 import assortmentRenderers from './tool-renderers/AssortmentRenderers';
 
-import { ToolName, PriceReturnTools } from '../hooks/useToolTextNormalizer';
+import { PriceReturnTools } from '../hooks/useToolTextNormalizer';
 import { renderProvidersToolResponses } from './tool-renderers/providerRenderes';
 import { renderOrderToolResponses } from './tool-renderers/orderRenderers';
 import { renderLocalizationToolResponses } from './tool-renderers/localizationRenderes';

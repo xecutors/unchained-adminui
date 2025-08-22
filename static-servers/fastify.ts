@@ -43,7 +43,7 @@ export const fastifyRouter: FastifyPluginAsync<FastifyRouterOptions> = async (
   });
 };
 
-const setupMCPChatHandler = (chatConfiguration: ChatConfiguration) => {
+const setupMCPChatHandler = (chatConfiguration: ChatConfiguration & any) => {
   if (!chatConfiguration?.model) {
     throw new Error('Model is required');
   }

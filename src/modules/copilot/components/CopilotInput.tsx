@@ -46,7 +46,7 @@ const CopilotInput: React.FC = () => {
         setHistoryIndex(-1);
         const imgs = [...imageUrls];
         setImageUrls([]);
-        handleSubmit(input, imgs);
+        handleSubmit(input as any, imgs);
       }
     } catch (e) {
       // Don't log authentication errors to console as they're handled in the UI

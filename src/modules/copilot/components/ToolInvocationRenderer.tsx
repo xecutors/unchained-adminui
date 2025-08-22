@@ -40,11 +40,10 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
     const parsed = JSON.parse(textString || '{}');
 
     const renderer = ToolRenderer?.[toolName];
-
-    console.log(output);
+    
     return (
       <div className="mb-6">
-        {renderer ? renderer(parsed) : <JSONView data={parsed} />}
+        {renderer ? renderer({...parsed, toolCallId}) : <JSONView data={parsed} />}
       </div>
     );
   } catch (error) {
