@@ -59,7 +59,7 @@
     "@dnd-kit/sortable": "^10.0.0",
     "@dnd-kit/utilities": "^3.2.2",
     "@eslint/eslintrc": "^3.3.1",
-    "@eslint/js": "^9.33.0",
+    "@eslint/js": "^9.34.0",
     "@formatjs/cli": "^6.7.2",
     "@formatjs/intl-pluralrules": "^5.4.4",
     "@formatjs/intl-relativetimeformat": "^11.4.11",
@@ -72,17 +72,17 @@
     "@tailwindcss/postcss": "^4.1.12",
     "@tailwindcss/typography": "^0.5.16",
     "@types/express": "^5.0.3",
-    "@types/react": "^19.1.10",
+    "@types/react": "^19.1.11",
     "@typescript-eslint/eslint-plugin": "^8.40.0",
     "@typescript-eslint/parser": "^8.40.0",
     "classnames": "^2.5.1",
     "clsx": "^2.1.1",
-    "cypress": "^14.5.4",
+    "cypress": "^15.0.0",
     "d3": "^7.9.0",
     "date-fns": "^4.1.0",
     "date-fns-tz": "^3.2.0",
     "deepmerge": "^4.3.1",
-    "eslint": "^9.33.0",
+    "eslint": "^9.34.0",
     "eslint-config-next": "^15.5.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-cypress": "^5.1.1",
@@ -96,7 +96,7 @@
     "graphql": "^16.11.0",
     "intl-messageformat": "^10.7.16",
     "lodash.isequal": "^4.5.0",
-    "lucide-react": "^0.540.0",
+    "lucide-react": "^0.541.0",
     "next": "^15.5.0",
     "npm-run-all": "^4.1.5",
     "papaparse": "^5.5.3",
@@ -113,9 +113,10 @@
     "remark-gfm": "^4.0.1",
     "start-server-and-test": "^2.0.13",
     "tailwind-merge": "^3.3.1",
-    "tailwindcss": "^4.1.11",
+    "tailwindcss": "^4.1.12",
     "typescript": "^5.9.2",
-    "validator": "^13.15.15"
+    "validator": "^13.15.15",
+    "rxjs": "^7.8.2"
   },
   "peerDependencies": {
     "@fastify/static": "^8.2.0",
@@ -136,8 +137,7 @@
       "optional": true
     }
   },
-  "dependencies": {
-    "rxjs": "^7.8.2",
+  "dependencies": {    
     "zod": "^4.0.17"
   }
 }

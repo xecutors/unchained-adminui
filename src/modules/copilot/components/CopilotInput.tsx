@@ -5,12 +5,13 @@ import {
   PaperAirplaneIcon,
   XMarkIcon,
   StopIcon,
+  ArrowPathIcon,
 } from '@heroicons/react/24/outline';
 import useLocalStorage from '../../common/hooks/useLocalStorage';
 import { useChatContext } from '../ChatContext';
 const CopilotInput: React.FC = () => {
   const [input, setInput] = useState('');
-  const { status, stop, handleSubmit, addInterruptionMessage } =
+  const { status, stop, handleSubmit, addInterruptionMessage, reload } =
     useChatContext();
   const [inputHistory, setInputHistory] = useLocalStorage(
     'copilot-input-history',
@@ -170,13 +171,25 @@ const CopilotInput: React.FC = () => {
               <StopIcon className="h-6 w-6" strokeWidth={2} />
             </button>
           ) : (
-            <button
-              type="submit"
-              disabled={!input.trim() && imageUrls.length === 0}
-              className="p-2 bg-slate-900 dark:bg-slate-700 text-white hover:bg-slate-800 dark:hover:bg-slate-800 disabled:bg-slate-200 disabled:text-slate-900 dark:disabled:bg-slate-600 disabled:cursor-not-allowed focus:ring-2 focus:ring-sky-300 focus:outline-hidden rounded transition-colors"
-            >
-              <PaperAirplaneIcon className="h-6 w-6" strokeWidth={2} />
-            </button>
+            <>
+              <button
+                type="submit"
+                disabled={!input.trim() && imageUrls.length === 0}
+                className="p-2 bg-slate-900 dark:bg-slate-700 text-white hover:bg-slate-800 dark:hover:bg-slate-800 disabled:bg-slate-200 disabled:text-slate-900 dark:disabled:bg-slate-600 disabled:cursor-not-allowed focus:ring-2 focus:ring-sky-300 focus:outline-hidden rounded transition-colors"
+              >
+                <PaperAirplaneIcon className="h-6 w-6" strokeWidth={2} />
+              </button>
+              {(status === 'ready' || isStopped) && (
+                <button
+                  type="button"
+                  onClick={reload}
+                  className="p-2 bg-slate-500 dark:bg-slate-600 text-white hover:bg-slate-600 dark:hover:bg-slate-500 rounded transition-colors ml-2"
+                  title="Regenerate last response"
+                >
+                  <ArrowPathIcon className="h-4 w-4" />
+                </button>
+              )}
+            </>
           )}
         </div>
 

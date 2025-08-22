@@ -61,7 +61,7 @@ export async function POST(req: Request) {
     stopWhen: stepCountIs(3),
     tools,
     onError: async (e) => {
-      console.log(e);
+      console.error(e);
     },
     onFinish: async () => {
       await client?.close();

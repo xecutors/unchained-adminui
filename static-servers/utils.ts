@@ -13,7 +13,6 @@ export type ChatConfiguration = StreamTextParams & {
 };
 
 export const errorHandler = (error: any): string => {
-  console.log(error);
   if (NoSuchToolError.isInstance(error)) return 'NoSuchToolError';
   if (InvalidArgumentError.isInstance(error))
     return 'InvalidToolArgumentsError';
