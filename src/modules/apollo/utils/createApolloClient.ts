@@ -95,7 +95,7 @@ const createApolloClient = ({
     link: ApolloLink.from([errorLink, localeLink, httpLink].filter(Boolean)),
     cache,
     devtools: {
-      enabled: typeof window !== 'undefined',
+      enabled: process.env.NODE_ENV === 'development',
     },
   });
 
