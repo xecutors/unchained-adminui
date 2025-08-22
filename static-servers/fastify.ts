@@ -12,6 +12,7 @@ import {
   convertToModelMessages,
   experimental_createMCPClient as createMCPClient,
   MCPTransport,
+  stepCountIs,
   streamText,
   ToolSet,
 } from 'ai';
@@ -91,6 +92,7 @@ const setupMCPChatHandler = (chatConfiguration: ChatConfiguration & any) => {
 
       const { messages } = req.body as any;
       const result = streamText({
+        stopWhen: stepCountIs(3),
         ...restChatConfig,
         messages: convertToModelMessages(messages, { tools }),
         system,

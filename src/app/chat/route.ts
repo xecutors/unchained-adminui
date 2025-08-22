@@ -5,6 +5,7 @@ import {
   convertToModelMessages,
   streamText,
   ToolSet,
+  stepCountIs,
 } from 'ai';
 import { createAnthropic } from '@ai-sdk/anthropic';
 import generateImageHandler from '../../../static-servers/generateImageHandler';
@@ -57,6 +58,7 @@ export async function POST(req: Request) {
     messages: convertToModelMessages(messages, {
       tools,
     }),
+    stopWhen: stepCountIs(3),
     tools,
     onError: async (e) => {
       console.log(e);

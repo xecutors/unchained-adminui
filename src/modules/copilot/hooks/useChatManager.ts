@@ -46,6 +46,7 @@ export const useChatManager = () => {
     append, */
     sendMessage,
   } = useChat({
+    maxSteps: 3,
     transport: new DefaultChatTransport({
       api: process.env.NEXT_PUBLIC_CHAT_URL || '/chat',
       credentials: 'include',
