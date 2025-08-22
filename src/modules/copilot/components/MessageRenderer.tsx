@@ -3,6 +3,7 @@ import { IUser } from '../../../gql/types';
 import MiniUserAvatar from '../../common/components/MiniUserAvatar';
 import MarkdownText from './MarkdownText';
 import ToolInvocationRenderer from './ToolInvocationRenderer';
+import renderImage from './tool-renderers/imageRenderer';
 
 interface MessageRendererProps {
   message: any;
@@ -32,11 +33,25 @@ const MessageRenderer: React.FC<MessageRendererProps> = ({ message, user }) => {
                 <MarkdownText key={index} text={part.text} className="mb-0" />
               );
 
-            case 'tool-invocation':
+            case 'dynamic-tool':
               return <ToolInvocationRenderer key={index} part={part} />;
 
             case 'step-start':
               return null;
+
+            case 'tool-generateImage':
+              console.log(part);
+              return (
+                <ToolInvocationRenderer
+                  key={index}
+                  part={{
+                    toolName: 'generateImage',
+                    output: {
+                      content: [{ text: part.output }],
+                    },
+                  }}
+                />
+              );
 
             default:
               return (

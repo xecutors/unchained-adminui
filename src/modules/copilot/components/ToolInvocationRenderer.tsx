@@ -12,10 +12,10 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
   part,
 }) => {
   const { formatMessage } = useIntl();
-  const { toolName, result } = part.toolInvocation ?? {};
-  if (!toolName || !result?.content?.length) return null;
+  const { toolName, output } = part ?? {};
+  if (!toolName || !output?.content?.length) return null;
 
-  const content = result.content[0];
+  const content = output.content[0];
   const text = content?.text ?? content;
   try {
     const textString = typeof text === 'string' ? text : JSON.stringify(text);
@@ -62,7 +62,7 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
           <pre className="text-xs mt-1 p-2 bg-rose-50 dark:bg-rose-950 rounded overflow-auto">
             {`Tool: ${toolName}
 Error: ${error?.message || 'Unknown error'}
-Content: ${JSON.stringify(result?.content, null, 2)}`}
+Content: ${JSON.stringify(output?.content, null, 2)}`}
           </pre>
         </details>
       </div>
