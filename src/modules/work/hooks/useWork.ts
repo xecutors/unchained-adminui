@@ -1,4 +1,5 @@
-import { useQuery, gql } from '@apollo/client';
+import { gql } from '@apollo/client';
+import { useQuery } from '@apollo/client/react';
 import { IWorkQuery, IWorkQueryVariables } from '../../../gql/types';
 import useUnchainedContext from '../../UnchainedContext/useUnchainedContext';
 import WorkFragment from '../fragments/WorkFragment';

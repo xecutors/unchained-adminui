@@ -1,4 +1,5 @@
-import { useQuery, gql } from '@apollo/client';
+import { gql } from '@apollo/client';
+import { useQuery } from '@apollo/client/react';
 import { ICountryQuery, ICountryQueryVariables } from '../../../gql/types';
 import useUnchainedContext from '../../UnchainedContext/useUnchainedContext';
 import CountryFragment from '../fragments/CountryFragment';

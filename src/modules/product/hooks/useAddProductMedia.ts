@@ -1,4 +1,5 @@
-import { useMutation, gql } from '@apollo/client';
+import { gql } from '@apollo/client';
+import { useMutation } from '@apollo/client/react';
 import PUTMedia from '../../common/utils/PUTMedia';
 import useConfirmMediaUpload from '../../common/hooks/useConfirmMediaUpload';
 import {

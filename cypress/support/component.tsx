@@ -15,7 +15,7 @@
 
 // Import commands.js using ES2015 syntax:
 import '../../styles/globals.css';
-import { MockedProvider } from '@apollo/client/testing/testing.cjs';
+import { MockedProvider } from '@apollo/client/testing/react';
 import Router from 'next/router';
 import './commands';
 

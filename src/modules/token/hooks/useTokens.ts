@@ -1,4 +1,5 @@
-import { useQuery, gql } from '@apollo/client';
+import { gql } from '@apollo/client';
+import { useQuery } from '@apollo/client/react';
 import { ITokensQuery, ITokensQueryVariables } from '../../../gql/types';
 import TokenFragment from '../../product/fragments/TokenFragment';
 import ProductBriefFragment from '../../product/fragments/ProductBriefFragment';

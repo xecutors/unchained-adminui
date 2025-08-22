@@ -4,6 +4,7 @@ import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
 import ToolGrid from './ToolGrid';
 import { IUser } from '../../../gql/types';
 import { useIntl } from 'react-intl';
+import { ChatMessage } from '../types';
 
 const CopilotMessageList = ({
   messages,
@@ -15,7 +16,7 @@ const CopilotMessageList = ({
   toolsLoading,
   toolsError,
 }: {
-  messages: any[];
+  messages: ChatMessage[];
   loading: boolean;
   currentUser: IUser;
   showTools: boolean;

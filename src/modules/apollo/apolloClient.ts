@@ -12,7 +12,7 @@ let apolloClient;
 const initializeApollo = (
   initialState = null,
   { headers = {}, locale = '' } = {},
-): ApolloClient<NormalizedCacheObject> => {
+): ApolloClient => {
   const client =
     apolloClient ??
     createApolloClient({

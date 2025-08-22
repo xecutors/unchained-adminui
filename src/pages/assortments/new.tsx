@@ -19,12 +19,12 @@ const AddAssortments = () => {
   };
 
   const onSubmit = async ({ title, subtitle, isRoot, tags, locale }) => {
-    const { data, errors } = await createAssortment({
+    const { data, error } = await createAssortment({
       isRoot,
       texts: [{ title, subtitle, locale }],
       tags,
     });
-    if (errors?.length) return false;
+    if (error) return false;
     return { success: true, data: data?.createAssortment };
   };
 

@@ -44,14 +44,14 @@ const RegistrationContainer = ({
       return { success: true };
     }
 
-    const { data, errors } = await createUser({
+    const { data, error } = await createUser({
       username,
       email,
       plainPassword,
     });
 
     const { _id } = data?.createUser || {};
-    return _id ? { success: true } : { success: false, data, errors };
+    return _id ? { success: true } : { success: false, data, error };
   };
 
   const onSubmitSuccess: OnSubmitSuccessType = () => {

@@ -2,7 +2,7 @@ import { useIntl } from 'react-intl';
 import defaultNextImageLoader from '../utils/defaultNextImageLoader';
 import formatUsername from '../utils/formatUsername';
 import ImageWithFallback from './ImageWithFallback';
-import { useApolloClient } from '@apollo/client';
+import { useApolloClient } from '@apollo/client/react';
 import { toast } from 'react-toastify';
 import logOut from '../../accounts/hooks/logOut';
 import { UserCircleIcon } from '@heroicons/react/24/outline';

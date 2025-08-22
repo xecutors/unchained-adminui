@@ -5,7 +5,6 @@ import { useIntl } from 'react-intl';
 export interface Tool {
   name: ToolName;
   description: string;
-  parameters: any;
   category: string;
 }
 
@@ -89,6 +88,5 @@ export const useAvailableTools = (): UseAvailableToolsReturn => {
       {} as Record<string, Tool[]>,
     );
   }, [tools]);
-
   return { tools, groupedTools, loading, error };
 };

@@ -24,8 +24,8 @@ const AllocateWorkForm = () => {
   const { hasRole } = useAuth();
 
   const onSubmit: OnSubmitType = async ({ types, worker }) => {
-    const { data, errors } = await allocateWork({ types, worker });
-    return { success: !!data?.allocateWork, data: data?.allocateWork, errors };
+    const { data, error } = await allocateWork({ types, worker });
+    return { success: !!data?.allocateWork, data: data?.allocateWork, error };
   };
 
   const onSubmitSuccess: OnSubmitSuccessType = (_, { _id }) => {

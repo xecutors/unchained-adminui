@@ -1,4 +1,4 @@
-import { ApolloProvider } from '@apollo/client';
+import { ApolloProvider } from '@apollo/client/react';
 import App from 'next/app';
 import { Router } from 'next/router';
 import { ToastContainer } from 'react-toastify';

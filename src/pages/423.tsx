@@ -5,7 +5,7 @@ import {
   ArrowLeftIcon,
 } from '@heroicons/react/24/outline';
 import logOut from '../modules/accounts/hooks/logOut';
-import { useApolloClient } from '@apollo/client';
+import { useApolloClient } from '@apollo/client/react';
 import { toast } from 'react-toastify';
 import FormWrapper from '../modules/common/components/FormWrapper';
 import ImageWithFallback from '../modules/common/components/ImageWithFallback';

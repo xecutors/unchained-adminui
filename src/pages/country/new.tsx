@@ -12,8 +12,8 @@ const AddCountries = () => {
   const { replace } = useRouter();
   const { createCountry } = useCreateCountry();
   const onCreateCountry = async ({ isoCode }) => {
-    const { data, errors } = await createCountry({ country: { isoCode } });
-    if (errors?.length) return false;
+    const { data, error } = await createCountry({ country: { isoCode } });
+    if (error) return false;
     return { success: true, data: data?.createCountry };
   };
 

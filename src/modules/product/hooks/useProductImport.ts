@@ -116,7 +116,7 @@ const useProductImport = () => {
 
     try {
       if (isUpdate) {
-        const { errors } = await updateProduct({
+        const { error } = await updateProduct({
           productId: product._id,
           product: {
             sequence: product.sequence,
@@ -124,10 +124,8 @@ const useProductImport = () => {
           },
         });
 
-        if (errors?.length) {
-          const code: string = (errors[0]?.extensions?.code ||
-            errors[0]?.message ||
-            'unknown error') as string;
+        if (error) {
+          const code: string = (error.message || 'unknown error') as string;
           if (code === 'ProductNotFoundError') {
             return await create(product, normalizedLocale);
           }

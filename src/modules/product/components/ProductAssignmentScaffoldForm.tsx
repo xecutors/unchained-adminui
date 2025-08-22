@@ -37,7 +37,7 @@ const ProductAssignmentScaffoldForm = ({
       await scaffoldProduct({ title, type });
       return { success: true };
     } catch (e) {
-      return { success: false, errors: [{ message: e?.message }] };
+      return { success: false, error: { message: e?.message } };
     }
   };
   const successMessage = formatMessage({

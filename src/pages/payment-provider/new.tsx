@@ -25,10 +25,10 @@ const NewPaymentProvider = () => {
   });
   const { hasRole } = useAuth();
   const onSubmit = async ({ adapterKey, type }) => {
-    const { data, errors } = await createPaymentProvider({
+    const { data, error } = await createPaymentProvider({
       paymentProvider: { adapterKey, type },
     });
-    if (errors?.length) return false;
+    if (error) return false;
     return { success: true, data: data?.createPaymentProvider };
   };
 

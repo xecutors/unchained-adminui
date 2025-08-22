@@ -1,9 +1,16 @@
 import { useEffect, useRef } from 'react';
 import { useChat } from '@ai-sdk/react';
-import { ChatMessage } from '../types';
+
 import { chatUtils } from '../utils/chatUtils';
 import useLocalStorage from '../../common/hooks/useLocalStorage';
-import { DefaultChatTransport } from 'ai';
+import {
+  ChatStatus,
+  DefaultChatTransport,
+  UIDataTypes,
+  UIMessage,
+  UITools,
+} from 'ai';
+import { ChatMessage } from '../types';
 
 function formatFileLink(url: string): string {
   const extension = url.split('.').pop()?.toLowerCase().split('?')[0] || '';
@@ -25,33 +32,24 @@ export const useChatManager = () => {
     'copilot-chat-history',
     [],
   );
-  const normalizedHistory = (chatHistory || [])?.filter(
-    (h) =>
-      h?.toolInvocations === undefined ||
-      h?.toolInvocations?.every((t) => t?.result),
-  );
+
   const hasInitialized = useRef(false);
   const {
     messages,
-    /* input,
-    handleInputChange,
-    isLoading, */
     error,
     resumeStream,
     status,
     setMessages,
     stop,
     regenerate: reload,
-    /* reload,
-    append, */
+
     sendMessage,
   } = useChat({
-    maxSteps: 3,
     transport: new DefaultChatTransport({
       api: process.env.NEXT_PUBLIC_CHAT_URL || '/chat',
       credentials: 'include',
     }),
-    messages: normalizedHistory,
+    messages: chatHistory,
     onError: (error) => {
       console.error('Chat error:', error);
 
@@ -87,34 +85,30 @@ export const useChatManager = () => {
         role: 'assistant',
         content: errorContent,
       };
-      setMessages((prev: any) => [...prev, errorMessage]);
+      setMessages((prev) => [
+        ...prev,
+        errorMessage as UIMessage<unknown, UIDataTypes, UITools>,
+      ]);
     },
   });
 
-  // Save messages to localStorage whenever they change
   useEffect(() => {
-    if (
-      (messages || [])?.filter(
-        (h: any) =>
-          h?.toolInvocations === undefined ||
-          h?.toolInvocations?.every((t) => t?.state === 'result'),
-      )
-    )
-      setChatHistory(messages as ChatMessage[]);
+    setChatHistory(messages as ChatMessage[]);
   }, [messages]);
 
   const clearHistory = () => {
     setMessages([]);
     setChatHistory([]);
-    hasInitialized.current = false; // Reset initialization flag
+    hasInitialized.current = false;
   };
 
-  // Add interruption message
-  const addInterruptionMessage = (currentStatus: string) => {
-    const interruptionMessage = chatUtils.createInterruptionMessage(
-      currentStatus as any,
-    );
-    setMessages((prev: any) => [...prev, interruptionMessage]);
+  const addInterruptionMessage = (currentStatus: ChatStatus) => {
+    const interruptionMessage =
+      chatUtils.createInterruptionMessage(currentStatus);
+    setMessages((prev) => [
+      ...prev,
+      interruptionMessage as UIMessage<unknown, UIDataTypes, UITools>,
+    ]);
   };
   const handleSubmit = async (inputText: string, imageUrls?: string[]) => {
     try {
@@ -133,7 +127,6 @@ export const useChatManager = () => {
       const errorMessage =
         error instanceof Error ? error.message : 'Unknown error';
 
-      // Check for authentication errors first
       if (
         errorMessage.includes('401') ||
         errorMessage.includes('invalid_token') ||
@@ -145,7 +138,10 @@ export const useChatManager = () => {
           role: 'assistant',
           content: `🔐 **Authentication Error**\n\nYour session has expired or the authentication token is invalid.\n\n**To fix this:**\n1. **Refresh the page** (Ctrl+R / Cmd+R) to renew your session\n2. If the problem persists, log out and log back in\n3. Check that you have proper permissions for chat functionality\n\n**Quick action:** Click [here to refresh the page](javascript:window.location.reload())\n\n*This happens when your session expires after being idle for too long.*`,
         };
-        setMessages((prev: any) => [...prev, authErrorMessage]);
+        setMessages((prev) => [
+          ...prev,
+          authErrorMessage as UIMessage<unknown, UIDataTypes, UITools>,
+        ]);
       } else {
         // Handle other errors
         const generalErrorMessage: ChatMessage = {
@@ -153,17 +149,16 @@ export const useChatManager = () => {
           role: 'assistant',
           content: `❌ **Submission Error**\n\nFailed to send your message. This usually happens when the backend server is not running.\n\n**Error:** ${errorMessage}\n\n*Please ensure the Unchained Commerce backend is running on localhost:4010.*`,
         };
-        setMessages((prev: any) => [...prev, generalErrorMessage]);
+        setMessages((prev) => [
+          ...prev,
+          generalErrorMessage as UIMessage<unknown, UIDataTypes, UITools>,
+        ]);
       }
     }
   };
 
   return {
-    messages: messages as ChatMessage[],
-    /* input,
-    handleInputChange,
-    
-    isLoading, */
+    messages,
     handleSubmit,
     error,
     status,
@@ -172,8 +167,6 @@ export const useChatManager = () => {
     addInterruptionMessage,
     sendMessage,
     reload,
-    /*
-   append, */
     resumeStream,
   };
 };

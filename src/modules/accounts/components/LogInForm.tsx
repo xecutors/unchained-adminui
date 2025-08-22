@@ -4,7 +4,6 @@ import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 
 import FormWrapper from '../../common/components/FormWrapper';
-import ImageWithFallback from '../../common/components/ImageWithFallback';
 import Form from '../../forms/components/Form';
 import FormErrors from '../../forms/components/FormErrors';
 import PasswordField from '../../forms/components/PasswordField';
@@ -98,48 +97,48 @@ const LogInForm = () => {
       username,
     });
     if (webAuthnPublicKeyCredentials) {
-      const { data, errors } = await loginWithWebAuthn({
+      const { data, error } = await loginWithWebAuthn({
         webAuthnPublicKeyCredentials,
       });
       if (data && data?.loginWithWebAuthn) {
-        return { success: true, errors };
+        return { success: true, error };
       }
     }
-    return { success: false, errors: [] };
+    return { success: false, error: null };
   };
 
   const onSubmit: OnSubmitType = async ({ usernameOrEmail, password }) => {
     if (step === 1) {
-      const { success, errors } = await logInWithWebAuth(usernameOrEmail);
-      if (errors.length) return { success: true, errors };
+      const { success, error } = await logInWithWebAuth(usernameOrEmail);
+      if (error) return { success: true, error };
       if (!success) nextStep();
     }
     if (step === 2) {
-      const { data, errors } = await logInWithPassword({
+      const { data, error } = await logInWithPassword({
         usernameOrEmail,
         password,
       });
-      if (!errors?.length) {
+      if (!error) {
         const { _id } = data.loginWithPassword;
         return { success: Boolean(_id), ...data.loginWithPassword };
       }
-      const [error] = errors;
+
       if (error?.message?.includes('2FA code required')) {
         nextStep();
       } else {
-        return { success: false, errors };
+        return { success: false, error };
       }
     }
     if (step === 3) {
-      const { data, errors } = await logInWithPassword({
+      const { data, error } = await logInWithPassword({
         usernameOrEmail,
         password,
       });
-      if (!errors?.length) {
+      if (!error) {
         const { _id } = data.loginWithPassword;
         return { success: Boolean(_id), ...data.loginWithPassword };
       }
-      return { success: false, errors };
+      return { success: false, error };
     }
     return { success: false };
   };

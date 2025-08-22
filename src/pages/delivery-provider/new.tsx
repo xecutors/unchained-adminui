@@ -25,10 +25,10 @@ const NewDeliveryProvider = () => {
   const { hasRole } = useAuth();
 
   const onSubmit = async ({ adapterKey, type }) => {
-    const { data, errors } = await createDeliveryProvider({
+    const { data, error } = await createDeliveryProvider({
       deliveryProvider: { adapterKey, type },
     });
-    if (errors?.length) return false;
+    if (error) return false;
     return { success: true, data: data?.createDeliveryProvider };
   };
 

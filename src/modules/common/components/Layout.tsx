@@ -27,7 +27,7 @@ import useOutsideClick from '../hooks/useOutsideClick';
 import ImageWithFallback from './ImageWithFallback';
 import AuthWrapper from '../../Auth/AuthWrapper';
 import formatUsername from '../utils/formatUsername';
-import { useApolloClient } from '@apollo/client';
+import { useApolloClient } from '@apollo/client/react';
 import { toast } from 'react-toastify';
 import logOut from '../../accounts/hooks/logOut';
 import { useRouter } from 'next/router';

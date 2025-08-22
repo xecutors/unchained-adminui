@@ -1,4 +1,5 @@
-import { useQuery, gql } from '@apollo/client';
+import { gql } from '@apollo/client';
+import { useQuery } from '@apollo/client/react';
 import { ILanguagesQuery, ILanguagesQueryVariables } from '../../../gql/types';
 import LanguageFragment from '../fragments/LanguageFragment';
 

@@ -1,4 +1,5 @@
-import { useQuery, gql } from '@apollo/client';
+import { gql } from '@apollo/client';
+import { useQuery } from '@apollo/client/react';
 import { IUsersQuery, IUsersQueryVariables } from '../../../gql/types';
 import UserFragment from '../fragment/UserFragment';
 

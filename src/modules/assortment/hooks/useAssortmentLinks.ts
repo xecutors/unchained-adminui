@@ -1,4 +1,5 @@
-import { useQuery, gql } from '@apollo/client';
+import { gql } from '@apollo/client';
+import { useQuery } from '@apollo/client/react';
 import { IAssortmentLinksQuery } from '../../../gql/types';
 import { parseUniqueId } from '../../common/utils/getUniqueId';
 import AssortmentFragment from '../fragments/AssortmentFragment';

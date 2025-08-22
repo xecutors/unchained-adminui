@@ -44,7 +44,7 @@ const WorkForm = () => {
     const parsedRetry = parseInt(inputRetry, 10);
     const parsedPriority = parseInt(inputPriority, 10);
 
-    const { data, errors } = await addWork({
+    const { data, error } = await addWork({
       type,
       retries: Number.isNaN(parsedRetry) ? undefined : parsedRetry,
       priority: Number.isNaN(parsedPriority) ? undefined : parsedPriority,
@@ -52,7 +52,7 @@ const WorkForm = () => {
       scheduled,
       originalWorkId,
     });
-    if (errors?.length) return { success: false };
+    if (error) return { success: false };
     return { success: true, data: data?.addWork };
   };
 

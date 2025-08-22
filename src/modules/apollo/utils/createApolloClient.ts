@@ -1,12 +1,9 @@
-import {
-  ApolloClient,
-  ApolloLink,
-  HttpLink,
-  NormalizedCacheObject,
-} from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
-import { onError } from '@apollo/client/link/error';
+import { ApolloClient, ApolloLink, HttpLink } from '@apollo/client';
+import { loadErrorMessages, loadDevMessages } from '@apollo/client/dev';
+import { SetContextLink } from '@apollo/client/link/context';
+import { ErrorLink } from '@apollo/client/link/error';
 import apolloCache from './apolloCache';
+import { CombinedGraphQLErrors } from '@apollo/client';
 
 const allowedHeaders = [
   'accept-language',
@@ -50,9 +47,9 @@ const resolveUri = () => {
 const createApolloClient = ({
   headers: headersOverride = {},
   locale,
-}): ApolloClient<NormalizedCacheObject> => {
-  const localeLink = setContext((_, { headers: contextHeaders = {} }) => {
-    return setLocale({ ...headersOverride, ...contextHeaders }, locale);
+}): ApolloClient => {
+  const localeLink = new SetContextLink((prevContext) => {
+    return setLocale({ ...headersOverride, ...prevContext.headers }, locale);
   });
 
   const uri = resolveUri();
@@ -63,30 +60,27 @@ const createApolloClient = ({
     includeExtensions: true,
   });
 
-  const errorLink = onError(
-    ({ response, graphQLErrors, networkError, operation, forward }) => {
-      if (graphQLErrors) {
-        graphQLErrors.forEach(({ message, locations, path, extensions }) => {
-          console.error(
-            `[GraphQL error]: Message: ${message}, Location: ${JSON.stringify(
-              locations,
-            )}, Path: ${path}, Extensions: ${JSON.stringify(extensions)}, Operation: ${operation.operationName}`,
-          );
-        });
-      }
-
-      if (networkError) {
+  const errorLink = new ErrorLink(({ error, operation, forward }) => {
+    if (CombinedGraphQLErrors.is(error)) {
+      error.errors.forEach(({ message, locations, path, extensions }) => {
         console.error(
-          `[Network error]: ${networkError}, Operation: ${operation.operationName}`,
+          `[GraphQL error]: Message: ${message}, Location: ${JSON.stringify(
+            locations,
+          )}, Path: ${path}, Extensions: ${JSON.stringify(extensions)}, Operation: ${operation.operationName}`,
         );
-      }
-    },
-  );
+      });
+    }
+
+    if (error) {
+      console.error(
+        `[Network error]: ${error.message}, ${error.name} Operation: ${operation.operationName}`,
+      );
+    }
+  });
 
   const cache = apolloCache(locale);
 
   const apolloClient = new ApolloClient({
-    connectToDevTools: typeof window !== 'undefined',
     defaultOptions: {
       watchQuery: {
         fetchPolicy: 'cache-and-network',
@@ -96,12 +90,21 @@ const createApolloClient = ({
         errorPolicy: 'all',
       },
     },
+
     ssrMode: typeof window === 'undefined',
     link: ApolloLink.from([errorLink, localeLink, httpLink].filter(Boolean)),
     cache,
+    devtools: {
+      enabled: typeof window !== 'undefined',
+    },
   });
 
   return apolloClient;
 };
+
+if (process.env.NODE_ENV === 'development') {
+  loadDevMessages();
+  loadErrorMessages();
+}
 
 export default createApolloClient;

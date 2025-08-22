@@ -12,7 +12,7 @@ export type OnSubmitSuccessType = (
 
 export type OnSubmitType = (
   variables: Record<string, any>,
-) => Promise<{ success: boolean; data?: any; errors?: any }>;
+) => Promise<{ success: boolean; data?: any; error?: any }>;
 
 /**
  * @param onSubmitSuccess Return `false` to skip redirect
@@ -106,12 +106,12 @@ const useForm = ({
 
       const success =
         (typeof result === 'boolean' ? result : result?.success) ??
-        !result?.errors?.length;
+        !result?.error;
       if (success) {
         if (successMessage) toast.success(successMessage);
         await onSubmitSuccess(success, result?.data || values);
       } else {
-        const errors = typeof result === 'boolean' ? !result : result?.errors;
+        const errors = typeof result === 'boolean' ? !result : result?.error;
 
         if (Array.isArray(errors)) {
           errors.forEach((error) => {

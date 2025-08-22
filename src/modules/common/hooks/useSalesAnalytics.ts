@@ -1,6 +1,12 @@
 import { useMemo } from 'react';
-import { useQuery, gql } from '@apollo/client';
+import { gql } from '@apollo/client';
+import { useQuery } from '@apollo/client/react';
 import { format, parseISO, subDays, startOfDay, endOfDay } from 'date-fns';
+import {
+  IOrderStatus,
+  ISalesAnalyticsQuery,
+  ISalesAnalyticsQueryVariables,
+} from '../../../gql/types';
 
 const SALES_ANALYTICS_QUERY = gql`
   query SalesAnalytics(
@@ -101,9 +107,12 @@ const useSalesAnalytics = ({
     [startDate, endDate],
   );
 
-  const { data, loading, error } = useQuery(SALES_ANALYTICS_QUERY, {
+  const { data, loading, error } = useQuery<
+    ISalesAnalyticsQuery,
+    ISalesAnalyticsQueryVariables
+  >(SALES_ANALYTICS_QUERY, {
     variables: {
-      status: ['CONFIRMED', 'FULLFILLED'],
+      status: [IOrderStatus.Confirmed, IOrderStatus.Fullfilled],
       queryString,
       paymentProviderIds,
       deliveryProviderIds,
@@ -113,7 +122,7 @@ const useSalesAnalytics = ({
   });
 
   return useMemo(() => {
-    const orders: Order[] = data?.orders || [];
+    const orders = data?.orders || [];
     if (!orders.length) {
       return {
         totalSales: 0,

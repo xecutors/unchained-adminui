@@ -1,6 +1,11 @@
-import { useQuery, gql } from '@apollo/client';
+import { gql } from '@apollo/client';
+import { useQuery } from '@apollo/client/react';
 import { useMemo } from 'react';
 import OrderDetailFragment from '../../order/fragments/OrderDetailFragment';
+import {
+  IOrdersWithItemsQuery,
+  IOrdersWithItemsQueryVariables,
+} from '../../../gql/types';
 
 const ORDERS_WITH_ITEMS_QUERY = gql`
   query OrdersWithItems($limit: Int, $includeCarts: Boolean) {
@@ -27,7 +32,10 @@ interface OrderItemsAnalytics {
 }
 
 const useOrderItemsAnalytics = (): OrderItemsAnalytics => {
-  const { data, loading, error } = useQuery(ORDERS_WITH_ITEMS_QUERY, {
+  const { data, loading, error } = useQuery<
+    IOrdersWithItemsQuery,
+    IOrdersWithItemsQueryVariables
+  >(ORDERS_WITH_ITEMS_QUERY, {
     variables: {
       limit: 500, // Get recent orders to analyze
       includeCarts: false,

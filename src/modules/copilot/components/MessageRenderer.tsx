@@ -40,7 +40,6 @@ const MessageRenderer: React.FC<MessageRendererProps> = ({ message, user }) => {
               return null;
 
             case 'tool-generateImage':
-              console.log(part);
               return (
                 <ToolInvocationRenderer
                   key={index}

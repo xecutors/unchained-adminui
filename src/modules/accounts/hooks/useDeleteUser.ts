@@ -1,4 +1,5 @@
-import { gql, useMutation } from '@apollo/client';
+import { gql } from '@apollo/client';
+import { useMutation } from '@apollo/client/react';
 const DeleteUserMutation = gql`
   mutation DeleteUser($userId: ID) {
     removeUser(userId: $userId) {

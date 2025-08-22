@@ -25,7 +25,7 @@ const AddFilter = () => {
     locale,
   }) => {
     try {
-      const { data, errors } = await createFilter({
+      const { data, error } = await createFilter({
         filter: {
           options,
           key,
@@ -34,9 +34,9 @@ const AddFilter = () => {
         texts: [{ title, locale }],
       });
       return {
-        success: !errors?.length,
+        success: !error,
         data: data?.createFilter,
-        errors,
+        error,
       };
     } catch (error) {
       return { success: false, error };
