@@ -43,6 +43,7 @@ const CopilotInput: React.FC = () => {
     e.preventDefault();
     try {
       if (input.trim() || imageUrls.length > 0) {
+        setInput('');
         setInputHistory((prev) => [...prev, input]);
         setHistoryIndex(-1);
         const imgs = [...imageUrls];

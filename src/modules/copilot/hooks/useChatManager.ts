@@ -99,7 +99,7 @@ export const useChatManager = () => {
   });
   useEffect(() => {
     setChatHistory(messages as ChatMessage[]);
-  }, [messages?.length]);
+  }, [messages]);
 
   const clearHistory = () => {
     setMessages([]);
@@ -152,7 +152,7 @@ export const useChatManager = () => {
       setMessages((prev) => [...prev, chatError]);
     }
   };
-
+  console.log(messages);
   return {
     messages,
     handleSubmit,
