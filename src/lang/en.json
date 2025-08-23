@@ -321,6 +321,9 @@
   "bundle_product_definition": {
     "defaultMessage": "<h3>Bundle</h3> <p>As the name suggest this product type enables you to create a collection/bundle of products as one and set the price accordingly. This type of product is useful if you have christmas package for example. </p>"
   },
+  "bundle_products": {
+    "defaultMessage": "Bundles"
+  },
   "bundled_items": {
     "defaultMessage": "Bundled items"
   },
@@ -351,6 +354,21 @@
   "change_password": {
     "defaultMessage": "Change password"
   },
+  "chat.error.auth": {
+    "defaultMessage": "🔐 **Authentication Error** Your session has expired or the authentication token is invalid. *Please refresh or log in again.*"
+  },
+  "chat.error.connection": {
+    "defaultMessage": "🚫 **Connection Error** Cannot connect to the chat API server at {chatUrl}. **To enable chat:** 1. Start the backend 2. Ensure chat/MCP endpoint is configured 3. Check NEXT_PUBLIC_CHAT_URL **Current configuration:** - Chat URL: {chatUrl} *Please start the backend.*"
+  },
+  "chat.error.stream": {
+    "defaultMessage": "⚠️ **Stream Processing Error** There was an error processing the AI response stream. **Possible causes:** 1. Backend not running 2. MCP server not responding 3. Missing/invalid API keys 4. Network issues **Error details:** {details}"
+  },
+  "chat.error.submission": {
+    "defaultMessage": "❌ **Submission Error** Failed to send your message. **Error:** {details} *Please ensure the backend is running.*"
+  },
+  "chat.error.unexpected": {
+    "defaultMessage": "❌ **Chat Error** An unexpected error occurred: {details} *Please try again or check the console for details.*"
+  },
   "chat_disabled_message": {
     "defaultMessage": "Copilot chat is currently disabled in this shop. Please check your engine configuration"
   },
@@ -367,7 +385,7 @@
     "defaultMessage": "Sub-Assortment"
   },
   "children": {
-    "defaultMessage": "Children:"
+    "defaultMessage": "Children"
   },
   "children_count": {
     "defaultMessage": "{count} children"
@@ -864,6 +882,9 @@
   "detail": {
     "defaultMessage": "Detail"
   },
+  "dimensions": {
+    "defaultMessage": "Dimensions"
+  },
   "discount": {
     "defaultMessage": "Discount"
   },
@@ -1324,7 +1345,7 @@
     "defaultMessage": "InValid"
   },
   "inactive": {
-    "defaultMessage": "In-Active"
+    "defaultMessage": "Inactive"
   },
   "include_drafts": {
     "defaultMessage": "Include drafts"
@@ -1436,7 +1457,7 @@
     "defaultMessage": "Last name"
   },
   "last_login": {
-    "defaultMessage": "Last Login:"
+    "defaultMessage": "Last log in"
   },
   "last_order_date": {
     "defaultMessage": "Last order"
@@ -1533,6 +1554,9 @@
   },
   "media.created": {
     "defaultMessage": "Created"
+  },
+  "media.id": {
+    "defaultMessage": "ID"
   },
   "media.size": {
     "defaultMessage": "Size"
@@ -1639,6 +1663,9 @@
   "no_payload": {
     "defaultMessage": "Payload"
   },
+  "no_price": {
+    "defaultMessage": "N/A"
+  },
   "no_result_found": {
     "defaultMessage": "No result found"
   },
@@ -1648,8 +1675,14 @@
   "no_tag": {
     "defaultMessage": "No Tag"
   },
+  "no_users_found": {
+    "defaultMessage": "No users found"
+  },
   "no_variations_configured": {
     "defaultMessage": "No variations configured yet. Please add variations and their options in the Variations tab first."
+  },
+  "no_works_found": {
+    "defaultMessage": "No works found"
   },
   "non_taxable": {
     "defaultMessage": "Non-Taxable"
@@ -1683,6 +1716,12 @@
   },
   "open_sidebar": {
     "defaultMessage": "Open sidebar"
+  },
+  "operation_failed": {
+    "defaultMessage": "Operation failed!!"
+  },
+  "operation_success": {
+    "defaultMessage": "Operation succeeded!"
   },
   "option": {
     "defaultMessage": "Option"
@@ -2539,8 +2578,14 @@
   "unchained_logo": {
     "defaultMessage": "Unchained Logo"
   },
+  "unit": {
+    "defaultMessage": "Unit"
+  },
   "untitled_assortment": {
     "defaultMessage": "Untitled Assortment"
+  },
+  "untitled_product": {
+    "defaultMessage": "Untitled product"
   },
   "unverified": {
     "defaultMessage": "Unverified"
@@ -2802,6 +2847,9 @@
   },
   "web_authentication": {
     "defaultMessage": "Web Authentication"
+  },
+  "weight": {
+    "defaultMessage": "Weight"
   },
   "weight_gram": {
     "defaultMessage": "Weight (Gram)"

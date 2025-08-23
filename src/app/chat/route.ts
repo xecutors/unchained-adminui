@@ -58,7 +58,7 @@ export async function POST(req: Request) {
     messages: convertToModelMessages(messages, {
       tools,
     }),
-    stopWhen: stepCountIs(3),
+    stopWhen: stepCountIs(10),
     tools,
     onError: async (e) => {
       console.error(e);

@@ -970,5 +970,21 @@
   "variation.productId": null,
   "variation.untitled": null,
   "variation.updated": null,
-  "view": null
+  "view": null,
+  "bundle_products": null,
+  "chat.error.auth": null,
+  "chat.error.connection": null,
+  "chat.error.stream": null,
+  "chat.error.submission": null,
+  "chat.error.unexpected": null,
+  "dimensions": null,
+  "media.id": null,
+  "no_price": null,
+  "no_users_found": null,
+  "no_works_found": null,
+  "operation_failed": null,
+  "operation_success": null,
+  "unit": null,
+  "untitled_product": null,
+  "weight": null
 }

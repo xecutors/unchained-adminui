@@ -60,7 +60,7 @@ const createApolloClient = ({
     includeExtensions: true,
   });
 
-  const errorLink = new ErrorLink(({ error, operation, forward }) => {
+  const errorLink = new ErrorLink(({ error, operation }) => {
     if (CombinedGraphQLErrors.is(error)) {
       error.errors.forEach(({ message, locations, path, extensions }) => {
         console.error(

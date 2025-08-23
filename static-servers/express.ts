@@ -82,7 +82,7 @@ const setupMCPChatHandler = (
       }
       const { messages } = req.body;
       const result = streamText({
-        stopWhen: stepCountIs(3),
+        stopWhen: stepCountIs(10),
         ...restChatConfig,
         system,
         model,

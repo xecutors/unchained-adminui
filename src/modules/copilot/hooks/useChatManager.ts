@@ -130,18 +130,18 @@ export const useChatManager = () => {
       const localizedError =
         errorMessage.includes('401') || errorMessage.includes('Unauthorized')
           ? intl.formatMessage({
-              id: 'chat.error.auth',
-              defaultMessage:
-                '🔐 **Authentication Error**\n\nYour session has expired or the authentication token is invalid.\n\n*Please refresh or log in again.*',
-            })
+            id: 'chat.error.auth',
+            defaultMessage:
+              '🔐 **Authentication Error**\n\nYour session has expired or the authentication token is invalid.\n\n*Please refresh or log in again.*',
+          })
           : intl.formatMessage(
-              {
-                id: 'chat.error.submission',
-                defaultMessage:
-                  '❌ **Submission Error**\n\nFailed to send your message.\n\n**Error:** {details}\n\n*Please ensure the backend is running.*',
-              },
-              { details: errorMessage },
-            );
+            {
+              id: 'chat.error.submission',
+              defaultMessage:
+                '❌ **Submission Error**\n\nFailed to send your message.\n\n**Error:** {details}\n\n*Please ensure the backend is running.*',
+            },
+            { details: errorMessage },
+          );
 
       const chatError: UIMessage = {
         id: `error-${Date.now()}`,
@@ -152,7 +152,6 @@ export const useChatManager = () => {
       setMessages((prev) => [...prev, chatError]);
     }
   };
-  console.log(messages);
   return {
     messages,
     handleSubmit,

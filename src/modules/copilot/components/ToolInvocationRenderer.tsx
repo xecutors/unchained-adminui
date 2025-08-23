@@ -38,7 +38,6 @@ const ToolInvocationRenderer: React.FC<ToolInvocationRendererProps> = ({
     }
 
     const parsed = JSON.parse(textString || '{}');
-
     const renderer = ToolRenderer?.[toolName];
 
     return (
