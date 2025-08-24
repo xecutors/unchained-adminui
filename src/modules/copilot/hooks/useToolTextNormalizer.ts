@@ -1,28 +1,7 @@
 import { useCallback } from 'react';
 import { useIntl } from 'react-intl';
 
-export const PriceReturnTools = [
-  'product_simulatedPrice',
-  'product_catalogPrice',
-  'product_simulatedPriceRange',
-] as const;
-
-export const OrderTools = ['order_management'] as const;
-export const ProviderTools = ['provider_management'] as const;
-export const LocalizationTools = ['localization_management'] as const;
-export const ProductTools = ['product_management'] as const;
-export const AllTools = [
-  'system_management',
-  'generateImage',
-  'assortment_management',
-  ...ProductTools,
-  ...LocalizationTools,
-  ...OrderTools,
-  ...ProviderTools,
-  ...PriceReturnTools,
-] as const;
-
-export type ToolName = (typeof AllTools)[number];
+export type ToolName = any;
 const useToolTextNormalizer = () => {
   const { formatMessage } = useIntl();
 

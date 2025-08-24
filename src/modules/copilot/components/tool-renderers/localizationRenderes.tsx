@@ -1,3 +1,4 @@
+import copilotCount from '../copilotCount';
 import CopilotCountryList, { CountryItemCompact } from '../CopilotCountryList';
 import CopilotCurrencyList, {
   CurrencyItemCompact,
@@ -5,30 +6,28 @@ import CopilotCurrencyList, {
 import CopilotLanguageList, {
   LanguageItemCompact,
 } from '../CopilotLanguageList';
+import { createActionMappings } from './shared/createRenderer';
+
+const SHARED_ACTIONS = ['CREATE', 'UPDATE', 'REMOVE', 'GET'];
 
 const localizationDisplayMap = {
   COUNTRY: {
-    CREATE: CountryItemCompact,
-    UPDATE: CountryItemCompact,
-    REMOVE: CountryItemCompact,
-    GET: CountryItemCompact,
+    ...createActionMappings(SHARED_ACTIONS, CountryItemCompact),
     LIST: CopilotCountryList,
+    COUNT: copilotCount('COUNTRY'),
   },
   CURRENCY: {
-    CREATE: CurrencyItemCompact,
-    UPDATE: CurrencyItemCompact,
-    REMOVE: CurrencyItemCompact,
-    GET: CurrencyItemCompact,
+    ...createActionMappings(SHARED_ACTIONS, CurrencyItemCompact),
     LIST: CopilotCurrencyList,
+    COUNT: copilotCount('CURRENCY'),
   },
   LANGUAGE: {
-    CREATE: LanguageItemCompact,
-    UPDATE: LanguageItemCompact,
-    REMOVE: LanguageItemCompact,
-    GET: LanguageItemCompact,
+    ...createActionMappings(SHARED_ACTIONS, LanguageItemCompact),
     LIST: CopilotLanguageList,
+    COUNT: copilotCount('LANGUAGE'),
   },
 };
+
 export const renderLocalizationToolResponses = ({
   localizationType,
   action,

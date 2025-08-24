@@ -986,5 +986,17 @@
   "operation_success": null,
   "unit": null,
   "untitled_product": null,
-  "weight": null
+  "weight": null,
+  "active_types": null,
+  "events": null,
+  "items": null,
+  "no_active_types": null,
+  "worker.dateRange": null,
+  "worker.deleteCount": null,
+  "worker.errorCount": null,
+  "worker.newCount": null,
+  "worker.noStatistics": null,
+  "worker.startCount": null,
+  "worker.successCount": null,
+  "workers": null
 }

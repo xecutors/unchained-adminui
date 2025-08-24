@@ -1,13 +1,9 @@
 import { ReactNode } from 'react';
 
 import renderSystemInfo from './tool-renderers/systemInfoRenderers';
-import {
-  renderPrice,
-  ProductRenderers,
-} from './tool-renderers/ProductRenderers';
+import { ProductRenderers } from './tool-renderers/ProductRenderers';
 import assortmentRenderers from './tool-renderers/AssortmentRenderers';
 
-import { PriceReturnTools } from '../hooks/useToolTextNormalizer';
 import { renderProvidersToolResponses } from './tool-renderers/providerRenderes';
 import { renderOrderToolResponses } from './tool-renderers/orderRenderers';
 import { renderLocalizationToolResponses } from './tool-renderers/localizationRenderes';
@@ -28,7 +24,6 @@ const ToolRenderer: Record<string, ToolRenderFn> = {
   filter_manage: filterRenderers,
   filter_management: filterRenderers,
   users_management: userRenderers,
-  ...Object.fromEntries(PriceReturnTools.map((name) => [name, renderPrice])),
 };
 
 export default ToolRenderer;

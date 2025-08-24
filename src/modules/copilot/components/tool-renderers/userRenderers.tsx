@@ -1,38 +1,41 @@
-import { ReactElement } from 'react';
+import copilotCount from '../copilotCount';
 import CopilotUserList, { CopilotUserListItem } from '../CopilotUserList';
 import OperationStatusIndicator from '../OperationStatusIndicator';
 import CopilotOrderList from '../order/CopilotOrderList';
+import {
+  createRenderer,
+  createActionMappings,
+  mergeMappings,
+} from './shared/createRenderer';
 
-type RendererFn = (data: unknown) => ReactElement | null;
-const toolsMap: Record<string, RendererFn> = {
-  LIST: CopilotUserList,
-  GET: CopilotUserListItem,
-  UPDATE: CopilotUserListItem,
-  CREATE: CopilotUserListItem,
-  SET_TAGS: CopilotUserListItem,
-  SEND_VERIFICATION_EMAIL: OperationStatusIndicator,
-  SEND_ENROLLMENT_EMAIL: OperationStatusIndicator,
-  REMOVE: OperationStatusIndicator,
-  REMOVE_PRODUCT_REVIEWS: OperationStatusIndicator,
-  SET_USERNAME: CopilotUserListItem,
-  ADD_EMAIL: CopilotUserListItem,
-  ENROLL: CopilotUserListItem,
-  REMOVE_EMAIL: OperationStatusIndicator,
-  GET_ORDERS: CopilotOrderList,
-};
+const USER_ITEM_ACTIONS = [
+  'GET',
+  'UPDATE',
+  'CREATE',
+  'SET_TAGS',
+  'SET_USERNAME',
+  'ADD_EMAIL',
+  'ENROLL',
+];
+const STATUS_ACTIONS = [
+  'SEND_VERIFICATION_EMAIL',
+  'SEND_ENROLLMENT_EMAIL',
+  'REMOVE',
+  'REMOVE_PRODUCT_REVIEWS',
+  'REMOVE_EMAIL',
+];
 
-const userRenderers = ({ action, data, ...rest }) => {
-  if (!action) return null;
+const toolsMap = mergeMappings(
+  {
+    LIST: CopilotUserList,
+    GET_ORDERS: CopilotOrderList,
+    COUNT: copilotCount('USER'),
+  },
+  createActionMappings(USER_ITEM_ACTIONS, CopilotUserListItem),
+  createActionMappings(STATUS_ACTIONS, OperationStatusIndicator),
+);
 
-  const Component = toolsMap?.[action];
-  if (!Component) {
-    return (
-      <pre className="p-2 bg-gray-100 rounded text-xs overflow-auto">
-        {JSON.stringify({ action, data }, null, 2)}
-      </pre>
-    );
-  }
-
-  return <Component {...data} {...rest} />;
-};
+const userRenderers = createRenderer({
+  toolsMap,
+});
 export default userRenderers;

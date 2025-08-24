@@ -8,6 +8,12 @@ import { renderTexts } from './textRenderers';
 import { ProductList } from '../product';
 import CopilotFilterList from '../product/CopilotFilterList';
 import CopilotProductList from '../product/CopilotProductList';
+import {
+  createRenderer,
+  createActionMappings,
+  mergeMappings,
+} from './shared/createRenderer';
+import copilotCount from '../copilotCount';
 
 const renderMultipleAssortments = (data: any) =>
   data?.assortments ? (
@@ -52,39 +58,43 @@ const AssortmentFilters = ({ assortment, filters }) => {
   );
 };
 
-const toolsMap = {
-  LIST: renderMultipleAssortments,
-  GET_CHILDREN: AssortmentChildren,
-  GET_LINKS: AssortmentLinks,
-  REORDER_LINKS: CopilotAssortmentList,
-  ADD_LINK: AssortmentListItemCompact,
-  GET: AssortmentListItemCompact,
-  CREATE: AssortmentListItemCompact,
-  UPDATE: AssortmentListItemCompact,
-  REMOVE: AssortmentListItemCompact,
-  SET_BASE: AssortmentListItemCompact,
-  UPDATE_STATUS: AssortmentListItemCompact,
-  GET_TEXTS: renderTexts('GET_TEXTS'),
-  GET_MEDIA_TEXTS: renderTexts('GET_MEDIA_TEXTS'),
-  UPDATE_MEDIA_TEXTS: renderTexts('UPDATE_MEDIA_TEXTS'),
-  REMOVE_MEDIA: CopilotMediaList,
-  GET_MEDIA: CopilotMediaList,
-  ADD_MEDIA: AssortmentListItemCompact,
-  REORDER_MEDIA: CopilotMediaList,
-  GET_PRODUCTS: AssortmentProducts,
-  ADD_PRODUCT: AssortmentListItemCompact,
-  REORDER_PRODUCTS: ProductList,
-  ADD_FILTER: AssortmentListItemCompact,
-  GET_FILTERS: AssortmentFilters,
-  REORDER_FILTERS: CopilotFilterList,
-};
+const ASSORTMENT_ITEM_ACTIONS = [
+  'GET',
+  'CREATE',
+  'UPDATE',
+  'REMOVE',
+  'SET_BASE',
+  'UPDATE_STATUS',
+  'ADD_LINK',
+  'ADD_MEDIA',
+  'ADD_PRODUCT',
+  'ADD_FILTER',
+];
+const MEDIA_ACTIONS = ['REMOVE_MEDIA', 'GET_MEDIA', 'REORDER_MEDIA'];
+const TEXT_ACTIONS = ['GET_TEXTS', 'GET_MEDIA_TEXTS', 'UPDATE_MEDIA_TEXTS'];
 
-const AssortmentRenderers = ({ data, action, toolCallId }) => {
-  const Component = toolsMap?.[action];
-  return Component ? (
-    <Component {...{ toolCallId, ...data }} />
-  ) : (
-    JSON.stringify({ action, data }, null, 2)
-  );
-};
+const toolsMap = mergeMappings(
+  {
+    LIST: renderMultipleAssortments,
+    GET_CHILDREN: AssortmentChildren,
+    GET_LINKS: AssortmentLinks,
+    GET_PRODUCTS: AssortmentProducts,
+    GET_FILTERS: AssortmentFilters,
+    REORDER_LINKS: CopilotAssortmentList,
+    REORDER_PRODUCTS: ProductList,
+    REORDER_FILTERS: CopilotFilterList,
+    COUNT: copilotCount('ASSORTMENT'),
+  },
+  createActionMappings(ASSORTMENT_ITEM_ACTIONS, AssortmentListItemCompact),
+  createActionMappings(MEDIA_ACTIONS, CopilotMediaList),
+  Object.fromEntries(
+    TEXT_ACTIONS.map((action) => [action, renderTexts(action)]),
+  ),
+);
+
+const AssortmentRenderers = createRenderer({
+  toolsMap,
+  fallbackComponent: ({ action, data }) =>
+    JSON.stringify({ action, data }, null, 2),
+});
 export default AssortmentRenderers;

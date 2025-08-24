@@ -1,36 +1,41 @@
-import { ReactElement } from 'react';
 import ShopInfoCard from '../ShopInfo';
 import CopilotEventList, { CopilotEventListItem } from '../CopilotEventList';
 import CopilotEventStatistics from '../CopilotEventStatistics';
 import CopilotWorkerList, { CopilotWorkerListItem } from '../CopilotWorkerList';
+import CopilotWorkerActiveTypes from '../WorkerActiveTypesCard';
+import copilotCount from '../copilotCount';
+import {
+  createRenderer,
+  createActionMappings,
+  mergeMappings,
+} from './shared/createRenderer';
+import CopilotWorkerStatistics from '../CopilotWorkerStatistics';
 
-type RendererFn = (data: unknown) => ReactElement | null;
-const toolsMap: Record<string, RendererFn> = {
-  SHOP_INFO: ShopInfoCard,
-  EVENT_LIST: CopilotEventList,
-  EVENT_GET: CopilotEventListItem,
-  EVENT_STATISTICS: CopilotEventStatistics,
-  WORKER_LIST: CopilotWorkerList,
-  WORKER_GET: CopilotWorkerListItem,
-  WORKER_ADD: CopilotWorkerListItem,
-  WORKER_REMOVE: CopilotWorkerListItem,
-  WORKER_ALLOCATE: CopilotWorkerListItem,
-  WORKER_PROCESS_NEXT: CopilotWorkerListItem,
-  WORKER_FINISH_WORK: CopilotWorkerListItem,
-};
+const WORKER_ACTIONS = [
+  'WORKER_GET',
+  'WORKER_ADD',
+  'WORKER_REMOVE',
+  'WORKER_ALLOCATE',
+  'WORKER_PROCESS_NEXT',
+  'WORKER_FINISH_WORK',
+];
 
-const systemInfoRenderers = ({ action, data, ...rest }) => {
-  if (!action) return null;
+const toolsMap = mergeMappings(
+  {
+    SHOP_INFO: ShopInfoCard,
+    EVENT_LIST: CopilotEventList,
+    EVENT_GET: CopilotEventListItem,
+    EVENT_STATISTICS: CopilotEventStatistics,
+    WORKER_LIST: CopilotWorkerList,
+    WORKER_ACTIVE_WORK_TYPES: CopilotWorkerActiveTypes,
+    WORKER_STATISTICS: CopilotWorkerStatistics,
+    EVENT_COUNT: copilotCount('EVENT'),
+    WORKER_COUNT: copilotCount('WORKER'),
+  },
+  createActionMappings(WORKER_ACTIONS, CopilotWorkerListItem),
+);
 
-  const Component = toolsMap?.[action];
-  if (!Component) {
-    return (
-      <pre className="p-2 bg-gray-100 rounded text-xs overflow-auto">
-        {JSON.stringify({ action, data }, null, 2)}
-      </pre>
-    );
-  }
-
-  return <Component {...data} {...rest} />;
-};
+const systemInfoRenderers = createRenderer({
+  toolsMap,
+});
 export default systemInfoRenderers;

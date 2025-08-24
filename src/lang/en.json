@@ -45,6 +45,9 @@
   "active": {
     "defaultMessage": "Active"
   },
+  "active_types": {
+    "defaultMessage": "Active Worker Types ({count})"
+  },
   "activities": {
     "defaultMessage": "Activities"
   },
@@ -1122,6 +1125,9 @@
   "event_page_title": {
     "defaultMessage": "{count, plural, one {# Event} other {# Events}}"
   },
+  "events": {
+    "defaultMessage": "Events"
+  },
   "expand_navigation": {
     "defaultMessage": "Expand navigation"
   },
@@ -1402,6 +1408,9 @@
   "item_quantity": {
     "defaultMessage": "Quantity:"
   },
+  "items": {
+    "defaultMessage": "Items"
+  },
   "items_created": {
     "defaultMessage": "{count} items created"
   },
@@ -1635,6 +1644,9 @@
   },
   "next": {
     "defaultMessage": "Next"
+  },
+  "no_active_types": {
+    "defaultMessage": "No active worker types found"
   },
   "no_assortments_found": {
     "defaultMessage": "No assortments found matching your criteria"
@@ -2702,7 +2714,7 @@
     "defaultMessage": "Username updated successfully!"
   },
   "users": {
-    "defaultMessage": "Users"
+    "defaultMessage": "users"
   },
   "users_setting_list_header": {
     "defaultMessage": "User settings"
@@ -2932,8 +2944,32 @@
   "worker": {
     "defaultMessage": "Worker"
   },
+  "worker.dateRange": {
+    "defaultMessage": "Date Range"
+  },
+  "worker.deleteCount": {
+    "defaultMessage": "Deleted"
+  },
+  "worker.errorCount": {
+    "defaultMessage": "Error"
+  },
+  "worker.newCount": {
+    "defaultMessage": "New"
+  },
+  "worker.noStatistics": {
+    "defaultMessage": "No statistics available"
+  },
+  "worker.startCount": {
+    "defaultMessage": "Start"
+  },
+  "worker.successCount": {
+    "defaultMessage": "Success"
+  },
   "worker_dynamic": {
     "defaultMessage": "{worker}"
+  },
+  "workers": {
+    "defaultMessage": "Workers"
   },
   "write_review": {
     "defaultMessage": "Write a Review"

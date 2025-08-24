@@ -12,6 +12,9 @@ export const CopilotFilterItem = ({ filter, toolCallId = '' }) => {
         <h3 className="text-sm font-medium text-slate-900 dark:text-slate-100 truncate">
           {filter.texts?.name || filter.key}
         </h3>
+        <p className="text-xs text-slate-400 truncate">
+          {formatMessage({ id: 'id', defaultMessage: 'ID' })}: {filter._id}
+        </p>
         <div className="flex items-center gap-3 mt-1 text-xs">
           <span
             className={`px-2 py-0.5 rounded ${
