@@ -39,7 +39,7 @@ const CopilotOrderItemWrapper = ({ order, children = null }) => {
         <div className="flex-1 min-w-0 space-y-1 overflow-hidden">
           <div className="text-sm font-semibold text-slate-900 dark:text-white truncate">
             {formatMessage({ id: 'order_number', defaultMessage: 'Order #' })}{' '}
-            {order?.orderNumber}
+            {order?.orderNumber || order?._id}
           </div>
 
           <div className="text-sm text-slate-500 dark:text-slate-400 truncate">

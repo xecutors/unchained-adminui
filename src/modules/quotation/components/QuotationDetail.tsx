@@ -193,7 +193,7 @@ const QuotationDetail = ({ quotation }) => {
                     quotation?.product?.media[0]?.file?.url || '/no-image.jpg'
                   }
                   layout="responsive"
-                  width="100"
+                  width={100}
                   height={100}
                   alt={formatMessage({
                     id: 'image-not-found',
