@@ -11,14 +11,12 @@ export const CopilotOrderListItem = ({ order }) => {
   const { formatPrice } = useFormatPrice();
   const { formatDateTime } = useFormatDateTime();
   const { formatMessage } = useIntl();
+  if (!order) return null;
   const itemsTotal =
     order?.calculation?.find((c) => c.category === 'ITEMS')?.amount ?? 0;
 
   return (
-    <div
-      key={order._id}
-      className="border rounded-xl shadow-sm p-4 flex justify-between items-start bg-white dark:bg-zinc-900"
-    >
+    <div className="border rounded-xl shadow-sm p-4 flex justify-between items-start bg-white dark:bg-zinc-900">
       <div className="space-y-1">
         <div className="text-sm font-semibold text-zinc-800 dark:text-zinc-100">
           {formatMessage({
@@ -29,7 +27,7 @@ export const CopilotOrderListItem = ({ order }) => {
         </div>
         <div className="text-sm text-zinc-500 dark:text-zinc-400">
           {order?.billingAddress?.firstName} {order?.billingAddress?.lastName} —{' '}
-          {order.billingAddress.company}
+          {order?.billingAddress?.company}
         </div>
         <div className="text-xs text-zinc-400">
           {order?.billingAddress?.city}, {order?.billingAddress?.countryCode}

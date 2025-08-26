@@ -24,13 +24,22 @@ export const CopilotUserListItem = ({ user }) => {
           {user?.emails?.length > 0 && (
             <p className="text-xs text-slate-500 dark:text-slate-400">
               {user.emails[0].address}{' '}
-              {!user.emails[0].verified && (
+              {!user.emails[0].verified ? (
                 <Badge
                   text={formatMessage({
                     id: 'unverified',
                     defaultMessage: 'Unverified',
                   })}
                   color="yellow"
+                  square
+                />
+              ) : (
+                <Badge
+                  text={formatMessage({
+                    id: 'verified',
+                    defaultMessage: 'Verified',
+                  })}
+                  color="green"
                   square
                 />
               )}
@@ -43,7 +52,7 @@ export const CopilotUserListItem = ({ user }) => {
           </p>
 
           <p className="text-xs text-slate-400 mt-1">
-            {formatMessage({ id: 'created', defaultMessage: 'Created' })}:{' '}
+            {formatMessage({ id: 'registered', defaultMessage: 'Registered' })}:{' '}
             {formatDateTime(user.created)}
           </p>
         </div>

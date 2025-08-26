@@ -36,10 +36,12 @@ export const OrderStatusBadge: React.FC<OrderStatusBadgeProps> = ({
     REJECTED: formatMessage({ id: 'rejected', defaultMessage: 'REJECTED' }),
   };
 
-  const message = statusMessages?.[status] ?? {
-    id: status,
-    defaultMessage: status,
-  };
+  const message =
+    statusMessages?.[status] ??
+    formatMessage({
+      id: 'cart',
+      defaultMessage: 'Cart',
+    });
   const color = statusColors?.[status] ?? 'bg-gray-200 text-gray-800';
 
   return (

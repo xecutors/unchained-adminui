@@ -22,6 +22,7 @@ const orderToolsMap = {
   TOP_PRODUCTS: renderTopSellingProducts,
   LIST: CopilotOrderList,
   GET: CopilotOrderListItem,
+  GET_CART: CopilotOrderListItem,
 };
 
 export const renderOrderToolResponses = createRenderer({
