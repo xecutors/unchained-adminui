@@ -82,7 +82,7 @@ export const CopilotUserListItem = ({ user }) => {
 
           <div className="flex-1 min-w-0">
             <h3 className="text-sm font-medium text-slate-900 dark:text-slate-100 truncate">
-              {user?.name}
+              {user?.name} {' - '} {user?.username ? `@${user?.username}` : ''}
             </h3>
 
             {user?.emails?.length > 0 && (
