@@ -1,4 +1,4 @@
-import React, { createContext, useContext, ReactNode } from 'react';
+import React, { createContext, useContext, ReactNode, useMemo } from 'react';
 import { ChatContextType } from './types';
 import { useChatManager } from './hooks/useChatManager';
 
@@ -19,18 +19,33 @@ interface ChatProviderProps {
 export const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
   const chatManager = useChatManager();
 
-  const value: ChatContextType = {
-    messages: chatManager.messages,
-    handleSubmit: chatManager.handleSubmit,
-    error: chatManager.error,
-    clearHistory: chatManager.clearHistory,
-    stop: chatManager.stop,
-    addInterruptionMessage: chatManager.addInterruptionMessage,
-    status: chatManager.status,
-    reload: chatManager.reload,
-    sendMessage: chatManager.sendMessage,
-    ...chatManager,
-  } as any;
+  const value: ChatContextType = useMemo(
+    () =>
+      ({
+        messages: chatManager.messages,
+        handleSubmit: chatManager.handleSubmit,
+        error: chatManager.error,
+        clearHistory: chatManager.clearHistory,
+        stop: chatManager.stop,
+        addInterruptionMessage: chatManager.addInterruptionMessage,
+        status: chatManager.status,
+        reload: chatManager.reload,
+        sendMessage: chatManager.sendMessage,
+        resumeStream: chatManager.resumeStream,
+      }) as any,
+    [
+      chatManager.messages,
+      chatManager.handleSubmit,
+      chatManager.error,
+      chatManager.clearHistory,
+      chatManager.stop,
+      chatManager.addInterruptionMessage,
+      chatManager.status,
+      chatManager.reload,
+      chatManager.sendMessage,
+      chatManager.resumeStream,
+    ],
+  );
 
   return <ChatContext.Provider value={value}>{children}</ChatContext.Provider>;
 };

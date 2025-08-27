@@ -42,20 +42,29 @@ const Copilot = () => {
 
   useLayoutEffect(() => {
     const el = bottomRef.current;
-    if (!el || messages.length === 0) return;
+    if (!el || !messages || messages.length === 0) return;
+
     const id = requestAnimationFrame(() => {
-      el.scrollIntoView({ behavior: 'smooth' });
+      if (el && el.scrollIntoView) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
     });
-    return () => cancelAnimationFrame(id);
+
+    return () => {
+      if (id) {
+        cancelAnimationFrame(id);
+      }
+    };
   }, [messages.length]);
 
   const visibleMessages = useMemo(() => {
+    if (!Array.isArray(messages)) return [];
     return messages.filter((message) => {
       if (
         message.role === 'assistant' &&
         (!message.parts ||
           message.parts.length === 0 ||
-          (message.parts[0].type === 'text' && !message.parts[0].text))
+          (message.parts[0]?.type === 'text' && !message.parts[0]?.text))
       )
         return false;
       if (message.id === 'intro-message') return false;

@@ -11,7 +11,6 @@ export interface ChatContextType {
     e: React.FormEvent<HTMLFormElement>,
     attachments?: string[],
   ) => void;
-  isLoading: boolean;
   error: any;
   clearHistory: () => void;
   stop: () => void;
