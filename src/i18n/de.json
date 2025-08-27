@@ -998,5 +998,7 @@
   "worker.noStatistics": null,
   "worker.startCount": null,
   "worker.successCount": null,
-  "workers": null
+  "workers": null,
+  "ordered": null,
+  "registered": null
 }
