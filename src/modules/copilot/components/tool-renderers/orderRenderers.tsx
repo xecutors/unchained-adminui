@@ -23,6 +23,8 @@ const orderToolsMap = {
   LIST: CopilotOrderList,
   GET: CopilotOrderListItem,
   GET_CART: CopilotOrderListItem,
+  PAY_ORDER: CopilotOrderListItem,
+  DELIVER_ORDER: CopilotOrderListItem,
 };
 
 export const renderOrderToolResponses = createRenderer({

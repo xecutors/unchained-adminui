@@ -3,6 +3,11 @@ import useFormatDateTime from '../../../common/utils/useFormatDateTime';
 import { useFormatPrice } from '../../../common/utils/utils';
 import { OrderStatusBadge } from '../../../order/components/OrderStatusBadge';
 import Link from 'next/link';
+import Badge from '../../../common/components/Badge';
+import {
+  DELIVERY_STATUSES,
+  PAYMENT_STATUSES,
+} from '../../../common/data/miscellaneous';
 
 const CopilotOrderItemWrapper = ({ order, children = null }) => {
   const { formatPrice } = useFormatPrice();
@@ -31,8 +36,26 @@ const CopilotOrderItemWrapper = ({ order, children = null }) => {
         </Link>
       </div>
 
-      <div className="absolute top-12 right-2">
+      <div className="absolute top-12 right-2 flex gap-2 items-end">
         <OrderStatusBadge status={order?.status} />
+
+        {order?.delivery?.status && (
+          <Badge
+            text={order.delivery.status}
+            color={DELIVERY_STATUSES[order.delivery.status]}
+            square
+            className="uppercase"
+          />
+        )}
+
+        {order?.payment?.status && (
+          <Badge
+            text={order.payment.status}
+            color={PAYMENT_STATUSES[order.payment.status]}
+            square
+            className="uppercase"
+          />
+        )}
       </div>
 
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
@@ -68,6 +91,21 @@ const CopilotOrderItemWrapper = ({ order, children = null }) => {
                   defaultMessage: 'Fulfilled',
                 })}
                 : <strong>{formatDateTime(order?.fullfilled)}</strong>
+              </span>
+            )}
+            {order?.delivery?.delivered && (
+              <span>
+                {formatMessage({
+                  id: 'delivered',
+                  defaultMessage: 'Delivered',
+                })}
+                : <strong>{formatDateTime(order?.delivery?.delivered)}</strong>
+              </span>
+            )}
+            {order?.payment?.paid && (
+              <span>
+                {formatMessage({ id: 'paid', defaultMessage: 'Paid' })}:{' '}
+                <strong>{formatDateTime(order?.payment?.paid)}</strong>
               </span>
             )}
           </div>

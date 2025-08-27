@@ -844,3 +844,15 @@ export const TOKEN_STATUSES = {
   EXPORTING: 'amber',
   DECENTRALIZED: 'emerald',
 };
+
+export const PAYMENT_STATUSES = {
+  PAID: 'green',
+  REFUNDED: 'red',
+  OPEN: 'yellow',
+};
+
+export const DELIVERY_STATUSES = {
+  DELIVERED: 'green',
+  RETURNED: 'red',
+  OPEN: 'yellow',
+};
