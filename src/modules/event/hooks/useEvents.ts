@@ -14,6 +14,7 @@ const EventQuery = gql`
     $offset: Int
     $sort: [SortOptionInput!]
     $queryString: String
+    $created: DateFilterInput
   ) {
     events(
       types: $types
@@ -21,14 +22,11 @@ const EventQuery = gql`
       offset: $offset
       sort: $sort
       queryString: $queryString
+      created: $created
     ) {
       ...EventFragment
     }
-    eventsCount(
-      types: $types
-
-      queryString: $queryString
-    )
+    eventsCount(types: $types, created: $created, queryString: $queryString)
   }
   ${EventFragment}
 `;
@@ -39,6 +37,7 @@ const useEvents = ({
   offset = 0,
   sort: sortOptions = [],
   queryString = null,
+  created = null,
 }: IEventsQueryVariables = {}) => {
   const { data, loading, error, fetchMore, previousData } = useQuery<
     IEventsQuery,
@@ -52,6 +51,7 @@ const useEvents = ({
         ? sortOptions
         : [{ key: 'created', value: ISortDirection.Desc }],
       queryString,
+      created,
     },
   });
   const events = data?.events || previousData?.events || [];

@@ -20,6 +20,8 @@ import ListHeader from '../../modules/common/components/ListHeader';
 import SearchWithTags from '../../modules/common/components/SearchWithTags';
 import EventDetailPage from './EventDetailPage';
 import AnimatedCounter from '../../modules/common/components/AnimatedCounter';
+import DateRangeFilterInput from '../../modules/common/components/DateRangeFilterInput';
+import { useMemo } from 'react';
 
 const Events = () => {
   const { formatMessage } = useIntl();
@@ -57,13 +59,19 @@ const Events = () => {
       });
     }
   };
-
+  const created = useMemo(() => {
+    return {
+      start: query?.start,
+      end: query?.end,
+    };
+  }, [query?.start, query?.end]);
   const { events, eventsCount, loading, loadMore, hasMore } = useEvents({
     limit,
     types: (query?.types as string)?.split(','),
     offset,
     queryString: queryString as string,
     sort: sortKeys,
+    created,
   });
 
   const { eventsType } = useEventTypes();
@@ -98,6 +106,9 @@ const Events = () => {
           headerText={headerText}
         />
         <div>
+          <div className="mt-3">
+            <DateRangeFilterInput />
+          </div>
           <div className="mt-4">
             <MultipleSelect
               label={formatMessage({
