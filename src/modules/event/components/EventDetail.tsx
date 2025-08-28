@@ -52,7 +52,10 @@ const EventDetail = ({ event }) => {
           </div>
           <div className="my-1 pb-1 font-mono text-lg">
             <span className="ml-2 font-semibold">
-              {formatDateTime(event?.created)}
+              {formatDateTime(new Date(event?.created), {
+                dateStyle: 'short',
+                timeStyle: 'short',
+              })}
             </span>
           </div>
         </div>
