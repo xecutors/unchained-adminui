@@ -8,6 +8,7 @@ import useFormatDateTime from '../../common/utils/useFormatDateTime';
 const EventListItem = ({ event }) => {
   const { formatMessage } = useIntl();
   const { formatDateTime } = useFormatDateTime();
+
   return (
     <Table.Row>
       <Table.Cell className="whitespace-nowrap px-6">
@@ -34,7 +35,7 @@ const EventListItem = ({ event }) => {
 
       <Table.Cell className="whitespace-nowrap px-6">
         <div className="flex items-center text-sm">
-          {formatDateTime(event.created, {
+          {formatDateTime(new Date(event.created), {
             dateStyle: 'short',
             timeStyle: 'short',
           })}
