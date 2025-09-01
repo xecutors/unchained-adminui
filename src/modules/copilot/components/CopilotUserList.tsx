@@ -60,7 +60,7 @@ export const CopilotUserListItem = ({ user }) => {
   return (
     <div
       key={user._id}
-      className="flex flex-col p-4 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 w-full"
+      className="relative border rounded-xl p-4 shadow-sm bg-white dark:bg-slate-900 space-y-4 w-full"
     >
       <div className="flex justify-between items-start w-full">
         <div className="flex items-start gap-3 flex-1 min-w-0">
@@ -133,6 +133,12 @@ export const CopilotUserListItem = ({ user }) => {
         </div>
 
         <div className="flex flex-col items-end text-xs text-slate-500 dark:text-slate-400 ml-4 whitespace-nowrap gap-1">
+          <Link
+            href={`/users?userId=${user._id}`}
+            className="mt-2 px-2 py-1 text-xs font-medium text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 border border-slate-300 dark:border-slate-600 rounded-md hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
+          >
+            {formatMessage({ id: 'edit', defaultMessage: 'Edit' })}
+          </Link>
           <span>
             {formatMessage({ id: 'id', defaultMessage: 'ID' })}: {user._id}
           </span>
@@ -162,13 +168,6 @@ export const CopilotUserListItem = ({ user }) => {
               })}
             </span>
           )}
-
-          <Link
-            href={`/users?userId=${user._id}`}
-            className="mt-2 px-3 py-1.5 text-sm text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 border border-slate-300 dark:border-slate-600 rounded-md hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
-          >
-            {formatMessage({ id: 'view', defaultMessage: 'View' })}
-          </Link>
         </div>
       </div>
       {user?.tags?.length > 0 && (

@@ -15,23 +15,24 @@ const getNormalizedDetailPageLink = (type, provider) => {
 export const CopilotProviderListItem = ({ provider, type }) => {
   const { formatMessage } = useIntl();
   return (
-    <div className="relative border rounded-xl p-4 shadow-sm bg-white dark:bg-slate-900 flex flex-col gap-4 w-full">
+    <div className="relative border rounded-xl p-4 shadow-sm bg-white dark:bg-slate-900 space-y-4 w-full">
+      <Link
+        href={getNormalizedDetailPageLink(type, provider) || '/'}
+        className="absolute top-2 right-2 px-2 py-1 text-xs font-medium text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 border border-slate-300 dark:border-slate-600 rounded-md hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
+      >
+        {formatMessage({ id: 'edit', defaultMessage: 'Edit' })}
+      </Link>
+
       <div className="flex items-start gap-4">
         <div className="shrink-0 mt-1 text-slate-500 dark:text-slate-300">
           <CreditCardIcon className="w-8 h-8" />
         </div>
 
         <div className="flex-1 min-w-0 space-y-1">
-          <div className="flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2">
             <h3 className="text-sm font-semibold text-slate-900 dark:text-white truncate">
               {provider.adapterKey}
             </h3>
-            <Link
-              href={getNormalizedDetailPageLink(type, provider) || '/'}
-              className="px-3 py-1.5 text-sm text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 border border-slate-300 dark:border-slate-600 rounded-md hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
-            >
-              {formatMessage({ id: 'edit', defaultMessage: 'Edit' })}
-            </Link>
           </div>
 
           <div className="flex items-center flex-wrap gap-3 text-xs text-slate-500 dark:text-slate-400">
@@ -55,20 +56,22 @@ export const CopilotProviderListItem = ({ provider, type }) => {
         </div>
       </div>
       {provider.configuration?.length > 0 && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-600 dark:text-slate-300 bg-slate-50 dark:bg-slate-800 px-3 py-2 rounded-md">
-          {provider.configuration.map(({ key, value }) => (
-            <div
-              key={key}
-              className="flex justify-between items-center gap-2 truncate"
-            >
-              <span className="font-medium text-slate-700 dark:text-slate-200 truncate">
-                {key}
-              </span>
-              <span className="truncate text-right text-slate-500 dark:text-slate-400">
-                {value}
-              </span>
-            </div>
-          ))}
+        <div className="p-3 bg-slate-50 dark:bg-slate-800 rounded-lg shadow-inner border border-slate-200 dark:border-slate-700">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-600 dark:text-slate-300">
+            {provider.configuration.map(({ key, value }) => (
+              <div
+                key={key}
+                className="flex justify-between items-center gap-2 truncate"
+              >
+                <span className="font-medium text-slate-700 dark:text-slate-200 truncate">
+                  {key}
+                </span>
+                <span className="truncate text-right text-slate-500 dark:text-slate-400">
+                  {value}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
       )}
     </div>

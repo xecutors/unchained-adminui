@@ -17,26 +17,20 @@ const CopilotOrderItemWrapper = ({ order, children = null }) => {
   if (!order) return children;
   return (
     <div className="relative border rounded-xl p-4 shadow-sm bg-white dark:bg-slate-900 space-y-4">
-      <div className="absolute top-2 right-2 flex gap-2">
-        <div className="text-lg font-semibold text-slate-900 dark:text-slate-100 whitespace-nowrap flex-shrink-0 sm:pl-4">
+      <Link
+        href={`/orders?orderId=${order?._id}`}
+        className="absolute top-2 right-2 px-2 py-1 text-xs font-medium text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 border border-slate-300 dark:border-slate-600 rounded-md hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
+      >
+        {formatMessage({ id: 'view', defaultMessage: 'View' })}
+      </Link>
+
+      <div className="absolute top-10 right-2 flex gap-2 items-end">
+        <div className="text-sm font-semibold text-slate-900 dark:text-slate-100 whitespace-nowrap">
           {formatPrice(order?.total)}
         </div>
-        <Link
-          href={`/orders?orderId=${order?._id}`}
-          className="px-2 py-1 text-xs font-medium text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 border border-slate-300 dark:border-slate-600 rounded-md hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
-        >
-          {formatMessage({ id: 'detail', defaultMessage: 'Detail' })}
-        </Link>
-
-        <Link
-          href={`/users?userId=${order?.userId}`}
-          className="px-2 py-1 text-xs font-medium text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 border border-slate-300 dark:border-slate-600 rounded-md hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
-        >
-          {formatMessage({ id: 'user', defaultMessage: 'User' })}
-        </Link>
       </div>
 
-      <div className="absolute top-12 right-2 flex gap-2 items-end">
+      <div className="absolute top-16 right-2 flex gap-2 items-end">
         <OrderStatusBadge status={order?.status} />
 
         {order?.delivery?.status && (
