@@ -5,6 +5,7 @@ import ImageWithFallback from '../../../common/components/ImageWithFallback';
 import generateUniqueId from '../../../common/utils/getUniqueId';
 import { useFormatPrice } from '../../../common/utils/utils';
 import { ProductStatusBadge } from '../../../product/components/ProductStatusBadge';
+import CopyableId from '../shared/CopyableId';
 const ProductItemWrapperCompact = ({
   product,
   tab = null,
@@ -96,9 +97,7 @@ const ProductItemWrapperCompact = ({
               )}
             </span>
 
-            <span className="text-xs text-slate-500 dark:text-slate-400 truncate">
-              {formatMessage({ id: 'id', defaultMessage: 'ID' })}: {_id}
-            </span>
+            <CopyableId id={_id} />
           </div>
 
           <div className="flex flex-wrap text-xs gap-2 mt-2">

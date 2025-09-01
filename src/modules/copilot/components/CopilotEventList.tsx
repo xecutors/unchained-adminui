@@ -3,6 +3,7 @@ import { useIntl } from 'react-intl';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
 import Link from 'next/link';
 import JSONView from './JSONView';
+import CopyableId from './shared/CopyableId';
 
 export const CopilotEventListItem = ({ event: evt }) => {
   const { formatDateTime } = useFormatDateTime();
@@ -22,9 +23,10 @@ export const CopilotEventListItem = ({ event: evt }) => {
           <p className="text-xs text-slate-500 dark:text-slate-400 truncate">
             {evt.payload.type}
           </p>
-          <p className="text-[11px] text-slate-400 dark:text-slate-500 break-all">
-            {formatMessage({ id: 'id', defaultMessage: 'ID' })}: {evt._id}
-          </p>
+          <CopyableId
+            id={evt._id}
+            className="text-[11px] text-slate-400 dark:text-slate-500 break-all"
+          />
         </div>
 
         <div className="text-xs text-slate-500 dark:text-slate-400 text-right whitespace-nowrap mr-4">

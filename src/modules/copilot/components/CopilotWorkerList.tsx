@@ -4,6 +4,7 @@ import useFormatDateTime from '../../common/utils/useFormatDateTime';
 import Link from 'next/link';
 import Badge from '../../common/components/Badge';
 import { WORK_STATUSES } from '../../common/data/miscellaneous';
+import CopyableId from './shared/CopyableId';
 
 const normalizeWorkerStatus = (work) => {
   if (work?.deleted) {
@@ -39,9 +40,10 @@ export const CopilotWorkerListItem = ({ work }) => {
         <h3 className="text-sm font-medium text-slate-900 dark:text-slate-100 truncate">
           {work.type}
         </h3>
-        <p className="text-xs text-slate-500 dark:text-slate-400 break-all">
-          {formatMessage({ id: 'id', defaultMessage: 'ID' })}: {work._id}
-        </p>
+        <CopyableId
+          id={work._id}
+          className="text-xs text-slate-500 dark:text-slate-400 break-all"
+        />
         {work.worker && (
           <p className="text-xs text-blue-600 dark:text-blue-300">
             {formatMessage({ id: 'worker', defaultMessage: 'Worker' })}:{' '}

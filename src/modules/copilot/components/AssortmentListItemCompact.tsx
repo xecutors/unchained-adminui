@@ -4,6 +4,7 @@ import { useIntl } from 'react-intl';
 import ImageWithFallback from '../../common/components/ImageWithFallback';
 import Badge from '../../common/components/Badge';
 import generateUniqueId from '../../common/utils/getUniqueId';
+import CopyableId from './shared/CopyableId';
 
 const AssortmentListItemCompact = ({ assortment, children = null }) => {
   const { formatMessage } = useIntl();
@@ -109,7 +110,7 @@ const AssortmentListItemCompact = ({ assortment, children = null }) => {
           square
           dotted
         />
-        <span>ID: {_id}</span>
+        <CopyableId id={_id} />
       </div>
 
       <div className="flex items-center justify-between text-xs text-slate-600 dark:text-slate-400 border-t pt-2 mt-2">

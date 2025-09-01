@@ -3,6 +3,7 @@ import Link from 'next/link';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
 import Badge from '../../common/components/Badge';
 import ImageWithFallback from '../../common/components/ImageWithFallback';
+import CopyableId from './shared/CopyableId';
 
 export const CopilotUserListItem = ({ user }) => {
   const { formatMessage } = useIntl();
@@ -139,9 +140,7 @@ export const CopilotUserListItem = ({ user }) => {
           >
             {formatMessage({ id: 'edit', defaultMessage: 'Edit' })}
           </Link>
-          <span>
-            {formatMessage({ id: 'id', defaultMessage: 'ID' })}: {user._id}
-          </span>
+          <CopyableId id={user._id} />
 
           {!!user.guest && (
             <Badge

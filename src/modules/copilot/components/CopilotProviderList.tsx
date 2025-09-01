@@ -3,6 +3,7 @@ import Link from 'next/link';
 import React from 'react';
 import Badge from '../../common/components/Badge';
 import { useIntl } from 'react-intl';
+import CopyableId from './shared/CopyableId';
 
 const getNormalizedDetailPageLink = (type, provider) => {
   if (type === 'PAYMENT')
@@ -37,10 +38,10 @@ export const CopilotProviderListItem = ({ provider, type }) => {
 
           <div className="flex items-center flex-wrap gap-3 text-xs text-slate-500 dark:text-slate-400">
             <Badge text={provider.type} square dotted />
-            <span className="bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded">
-              {formatMessage({ id: 'id', defaultMessage: 'ID' })}:{' '}
-              {provider._id}
-            </span>
+            <CopyableId
+              id={provider._id}
+              className="bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded text-xs text-slate-500 dark:text-slate-400"
+            />
             <span>
               {formatMessage({ id: 'created', defaultMessage: 'Created' })}:{' '}
               {new Date(provider.created).toLocaleDateString()}
