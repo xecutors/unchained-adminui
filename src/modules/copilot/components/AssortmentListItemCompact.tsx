@@ -33,6 +33,13 @@ const AssortmentListItemCompact = ({ assortment, children = null }) => {
 
   return (
     <div className="relative border rounded-xl p-4 shadow-sm bg-white dark:bg-slate-900 space-y-4">
+      <Link
+        href={`/assortments?assortmentSlug=${assortmentSlug}`}
+        className="absolute top-2 right-2 px-2 py-1 text-xs font-medium text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 border border-slate-300 dark:border-slate-600 rounded-md hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
+      >
+        {formatMessage({ id: 'edit', defaultMessage: 'Edit' })}
+      </Link>
+
       <div className="flex items-start gap-4">
         <div className="w-16 h-16 flex-shrink-0 bg-slate-50 dark:bg-slate-700 rounded-md overflow-hidden">
           {thumbnailUrl ? (
@@ -50,67 +57,49 @@ const AssortmentListItemCompact = ({ assortment, children = null }) => {
           )}
         </div>
 
-        <div className="flex-1 overflow-hidden">
-          <div className="flex justify-between items-start gap-4">
-            <div className="overflow-hidden">
-              <div className="text-sm font-semibold text-slate-900 dark:text-white truncate">
-                {texts.title ||
-                  formatMessage({
-                    id: 'untitled_assortment',
-                    defaultMessage: 'Untitled Assortment',
-                  })}
-              </div>
-
-              {texts.subtitle && (
-                <div className="text-xs text-slate-500 dark:text-slate-400 truncate">
-                  {texts.subtitle}
-                </div>
-              )}
-
-              {tags?.length > 0 && (
-                <div className="flex flex-wrap gap-1 mt-1">
-                  {tags.map((tag, idx) => (
-                    <span
-                      key={tag + idx}
-                      className="px-2 py-0.5 text-xs rounded-full bg-blue-100 dark:bg-blue-700 
-                                 text-blue-800 dark:text-blue-200"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            <div className="text-xs text-slate-500 dark:text-slate-400 flex flex-col items-end gap-1 shrink-0">
-              {sequence && <span className="font-mono">#{sequence}</span>}
-              {updated && <span>{formatDate(updated)}</span>}
-              <Link
-                href={`/assortments?assortmentSlug=${assortmentSlug}`}
-                className="px-2 py-1 text-xs font-medium text-slate-700 dark:text-slate-300 
-                           hover:text-slate-900 dark:hover:text-slate-100 border border-slate-300 
-                           dark:border-slate-600 rounded-md hover:bg-slate-50 dark:hover:bg-slate-700 
-                           transition-colors"
-              >
-                {formatMessage({ id: 'edit', defaultMessage: 'Edit' })}
-              </Link>
-            </div>
+        <div className="flex-1 min-w-0">
+          <div className="text-sm font-semibold text-slate-900 dark:text-white truncate">
+            {texts.title ||
+              formatMessage({
+                id: 'untitled_assortment',
+                defaultMessage: 'Untitled Assortment',
+              })}
           </div>
-        </div>
-      </div>
 
-      <div className="flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400 flex-wrap">
-        <Badge
-          text={
-            isActive
-              ? formatMessage({ id: 'active', defaultMessage: 'Active' })
-              : formatMessage({ id: 'inactive', defaultMessage: 'In-Active' })
-          }
-          color={isActive ? 'green' : 'yellow'}
-          square
-          dotted
-        />
-        <CopyableId id={_id} />
+          {texts.subtitle && (
+            <div className="text-xs text-slate-500 dark:text-slate-400 truncate mt-1">
+              {texts.subtitle}
+            </div>
+          )}
+          <CopyableId id={_id} />
+          {tags?.length > 0 && (
+            <div className="flex flex-wrap gap-1 mt-2">
+              {tags.map((tag, idx) => (
+                <span
+                  key={tag + idx}
+                  className="px-2 py-0.5 text-xs rounded-full bg-blue-100 dark:bg-blue-700 text-blue-800 dark:text-blue-200"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <div className="flex flex-col items-end text-xs text-slate-500 dark:text-slate-400 whitespace-nowrap mt-8 gap-1">
+          <Badge
+            text={
+              isActive
+                ? formatMessage({ id: 'active', defaultMessage: 'Active' })
+                : formatMessage({ id: 'inactive', defaultMessage: 'In-Active' })
+            }
+            color={isActive ? 'green' : 'yellow'}
+            square
+            dotted
+          />
+          {sequence && <span className="font-mono">#{sequence}</span>}
+          {updated && <span>{formatDate(updated)}</span>}
+        </div>
       </div>
 
       <div className="flex items-center justify-between text-xs text-slate-600 dark:text-slate-400 border-t pt-2 mt-2">

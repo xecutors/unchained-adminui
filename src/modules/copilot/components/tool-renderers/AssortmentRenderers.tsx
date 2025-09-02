@@ -14,6 +14,7 @@ import {
   mergeMappings,
 } from './shared/createRenderer';
 import copilotCount from '../copilotCount';
+import OperationStatusIndicator from '../OperationStatusIndicator';
 
 const renderMultipleAssortments = (data: any) =>
   data?.assortments ? (
@@ -62,7 +63,6 @@ const ASSORTMENT_ITEM_ACTIONS = [
   'GET',
   'CREATE',
   'UPDATE',
-  'REMOVE',
   'SET_BASE',
   'UPDATE_STATUS',
   'ADD_LINK',
@@ -70,7 +70,7 @@ const ASSORTMENT_ITEM_ACTIONS = [
   'ADD_PRODUCT',
   'ADD_FILTER',
 ];
-const MEDIA_ACTIONS = ['REMOVE_MEDIA', 'GET_MEDIA', 'REORDER_MEDIA'];
+const MEDIA_ACTIONS = ['GET_MEDIA', 'REORDER_MEDIA'];
 const TEXT_ACTIONS = ['GET_TEXTS', 'GET_MEDIA_TEXTS', 'UPDATE_MEDIA_TEXTS'];
 
 const toolsMap = mergeMappings(
@@ -85,6 +85,7 @@ const toolsMap = mergeMappings(
     REORDER_FILTERS: CopilotFilterList,
     COUNT: copilotCount('ASSORTMENT'),
   },
+  createActionMappings(['REMOVE_MEDIA', 'REMOVE'], OperationStatusIndicator),
   createActionMappings(ASSORTMENT_ITEM_ACTIONS, AssortmentListItemCompact),
   createActionMappings(MEDIA_ACTIONS, CopilotMediaList),
   Object.fromEntries(

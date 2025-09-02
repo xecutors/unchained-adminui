@@ -15,30 +15,14 @@ export const CopilotFilterItem = ({ filter, toolCallId = '' }) => {
       >
         {formatMessage({ id: 'edit', defaultMessage: 'Edit' })}
       </Link>
-      <div className="flex items-start gap-4 pr-16">
+      <div className="flex items-start gap-4">
         <div className="flex-1 min-w-0">
           <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-100 truncate">
             {filter.texts?.name || filter.key}
           </h3>
           <CopyableId id={filter._id} />
+
           <div className="flex items-center gap-2 mt-1 text-xs">
-            <span
-              className={`px-2 py-0.5 rounded ${
-                filter.isActive
-                  ? 'bg-green-100 text-green-700 dark:bg-green-800 dark:text-green-200'
-                  : 'bg-red-100 text-red-700 dark:bg-red-800 dark:text-red-200'
-              }`}
-            >
-              {filter.isActive
-                ? formatMessage({
-                    id: 'filter.active',
-                    defaultMessage: 'Active',
-                  })
-                : formatMessage({
-                    id: 'filter.inactive',
-                    defaultMessage: 'Inactive',
-                  })}
-            </span>
             <span className="bg-slate-100 dark:bg-slate-600 text-slate-500 dark:text-slate-300 px-2 py-0.5 rounded">
               {filter.type}
             </span>
@@ -52,33 +36,52 @@ export const CopilotFilterItem = ({ filter, toolCallId = '' }) => {
               </span>
             )}
           </div>
-        </div>
 
-        <div className="flex flex-wrap gap-1 max-w-[40%]">
-          {filter.options?.length ? (
-            filter.options.map((opt) => (
-              <span
-                key={`${toolCallId}-${opt.filterOption}`}
-                className={`inline-block px-2 py-0.5 text-xs font-medium rounded ${
-                  opt.isActive
-                    ? 'bg-blue-100 text-blue-700 dark:bg-blue-800 dark:text-blue-200'
-                    : 'bg-slate-100 text-slate-500 dark:bg-slate-700 dark:text-slate-400'
-                }`}
-              >
-                {opt.filterOption || opt.key}
-              </span>
-            ))
-          ) : (
-            <span className="text-xs text-slate-400">
-              {formatMessage({
-                id: 'filter.noOptions',
-                defaultMessage: 'No options',
-              })}
-            </span>
+          {filter.options?.length > 0 && (
+            <div className="mt-2">
+              <div className="text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
+                {formatMessage({
+                  id: 'filter.options',
+                  defaultMessage: 'Options',
+                })}
+                :
+              </div>
+              <div className="flex flex-wrap gap-1">
+                {filter.options.map((opt) => (
+                  <span
+                    key={`${toolCallId}-${opt.filterOption}`}
+                    className={`inline-block px-2 py-0.5 text-xs font-medium rounded ${
+                      opt.isActive
+                        ? 'bg-blue-100 text-blue-700 dark:bg-blue-800 dark:text-blue-200'
+                        : 'bg-slate-100 text-slate-500 dark:bg-slate-700 dark:text-slate-400'
+                    }`}
+                  >
+                    {opt.filterOption || opt.key}
+                  </span>
+                ))}
+              </div>
+            </div>
           )}
         </div>
 
-        <div className="flex flex-col items-end text-xs text-slate-500 dark:text-slate-400 whitespace-nowrap">
+        <div className="flex flex-col items-end text-xs text-slate-500 dark:text-slate-400 whitespace-nowrap mt-8 gap-1">
+          <span
+            className={`text-xs font-medium rounded px-2 py-0.5 ${
+              filter.isActive
+                ? 'bg-green-100 text-green-700 dark:bg-green-800 dark:text-green-200'
+                : 'bg-red-100 text-red-700 dark:bg-red-800 dark:text-red-200'
+            }`}
+          >
+            {filter.isActive
+              ? formatMessage({
+                  id: 'filter.active',
+                  defaultMessage: 'Active',
+                })
+              : formatMessage({
+                  id: 'filter.inactive',
+                  defaultMessage: 'Inactive',
+                })}
+          </span>
           <span>
             {formatMessage({ id: 'filter.created', defaultMessage: 'Created' })}
             : {formatDateTime(filter.created)}
