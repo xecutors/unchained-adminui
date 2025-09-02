@@ -1,13 +1,11 @@
 import React from 'react';
-import {
-  ChatBubbleLeftIcon,
-  PencilSquareIcon,
-} from '@heroicons/react/24/outline';
+import { ChatBubbleLeftIcon } from '@heroicons/react/24/outline';
 import { normalizeLanguageISOCode } from '../../common/utils/utils';
 import { useIntl } from 'react-intl';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
 import getFlagEmoji from '../../common/utils/getFlagEmoji';
 import Link from 'next/link';
+import CopyableId from './shared/CopyableId';
 
 export const LanguageItemCompact = ({ language }) => {
   const { locale, formatMessage } = useIntl();
@@ -15,58 +13,48 @@ export const LanguageItemCompact = ({ language }) => {
   const flag = getFlagEmoji(language.isoCode);
 
   return (
-    <div className="flex items-start gap-4 p-4 bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow duration-200">
-      <div className="w-12 h-12 flex-shrink-0 bg-slate-100 dark:bg-slate-700 rounded-md flex items-center justify-center text-xl">
-        {flag || <ChatBubbleLeftIcon className="w-6 h-6 text-blue-500" />}
-      </div>
+    <div className="relative border rounded-xl p-4 shadow-sm bg-white dark:bg-slate-900 space-y-4">
+      <Link
+        href={`/language?languageId=${language._id}`}
+        className="absolute top-2 right-2 px-2 py-1 text-xs font-medium text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 border border-slate-300 dark:border-slate-600 rounded-md hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
+      >
+        {formatMessage({ id: 'edit', defaultMessage: 'Edit' })}
+      </Link>
 
-      <div className="flex-1 min-w-0 space-y-1">
-        <div className="flex items-center justify-between gap-2">
-          <h3 className="text-base font-semibold text-slate-900 dark:text-white truncate">
-            {normalizeLanguageISOCode(locale, language.isoCode)}
-          </h3>
-          <div className="flex items-center gap-2 flex-shrink-0">
-            <span
-              className={`text-xs font-medium rounded-full px-2 py-0.5 ${
-                language.isActive
-                  ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-300'
-                  : 'bg-rose-100 text-rose-800 dark:bg-rose-900 dark:text-rose-300'
-              }`}
-            >
-              {language.isActive
-                ? formatMessage({ id: 'active', defaultMessage: 'Active' })
-                : formatMessage({ id: 'inactive', defaultMessage: 'Inactive' })}
-            </span>
-            <Link
-              href={`/language?languageId=${language._id}`}
-              className="flex items-center text-xs text-blue-600 hover:underline dark:text-blue-400"
-            >
-              <PencilSquareIcon className="w-4 h-4 mr-1" />
-              {formatMessage({ id: 'edit', defaultMessage: 'Edit' })}
-            </Link>
-          </div>
+      <div className="flex items-start gap-4">
+        <div className="w-12 h-12 flex-shrink-0 bg-slate-100 dark:bg-slate-700 rounded-md flex items-center justify-center text-xl">
+          {flag || <ChatBubbleLeftIcon className="w-6 h-6 text-blue-500" />}
         </div>
 
-        <div className="flex items-start justify-between text-sm">
-          <span className="text-slate-600 dark:text-slate-300">
-            <div className="text-xs text-slate-500 dark:text-slate-400 truncate">
-              {formatMessage({ id: 'id', defaultMessage: 'ID' })}:{' '}
-              {language._id}
-            </div>
-          </span>
+        <div className="flex-1 min-w-0">
+          <h3 className="text-sm font-semibold text-slate-900 dark:text-white truncate">
+            {normalizeLanguageISOCode(locale, language.isoCode)}
+          </h3>
+          <CopyableId id={language._id} />
+        </div>
 
-          <div className="flex justify-end gap-4 text-[11px] text-slate-500 dark:text-slate-400">
+        <div className="flex flex-col items-end text-xs text-slate-500 dark:text-slate-400 whitespace-nowrap mt-8 gap-1">
+          <span
+            className={`text-xs font-medium rounded px-2 py-0.5 ${
+              language.isActive
+                ? 'bg-green-100 text-green-700 dark:bg-green-800 dark:text-green-200'
+                : 'bg-red-100 text-red-700 dark:bg-red-800 dark:text-red-200'
+            }`}
+          >
+            {language.isActive
+              ? formatMessage({ id: 'active', defaultMessage: 'Active' })
+              : formatMessage({ id: 'inactive', defaultMessage: 'Inactive' })}
+          </span>
+          <span>
+            {formatMessage({ id: 'created', defaultMessage: 'Created' })}:{' '}
+            {formatDateTime(language.created)}
+          </span>
+          {language.updated && (
             <span>
-              {formatMessage({ id: 'created', defaultMessage: 'Created' })}:{' '}
-              {formatDateTime(language.created)}
+              {formatMessage({ id: 'updated', defaultMessage: 'Updated' })}:{' '}
+              {formatDateTime(language.updated)}
             </span>
-            {language.updated && (
-              <span>
-                {formatMessage({ id: 'updated', defaultMessage: 'Updated' })}:{' '}
-                {formatDateTime(language.updated)}
-              </span>
-            )}
-          </div>
+          )}
         </div>
       </div>
     </div>

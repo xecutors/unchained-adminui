@@ -98,7 +98,14 @@ export const useChatManager = () => {
     },
   });
   useEffect(() => {
-    setChatHistory(messages as ChatMessage[]);
+    const validMessages = messages.filter((m) => {
+      if (m.role !== 'assistant') return true;
+      return !!m?.parts?.every((p) => {
+        if (p.type === 'dynamic-tool') return !!p.input && !!p.output;
+        return true;
+      });
+    });
+    setChatHistory(validMessages as ChatMessage[]);
   }, [messages]);
 
   const clearHistory = () => {
