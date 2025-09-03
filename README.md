@@ -27,3 +27,11 @@ To do that only for local development, you can create a .env.local and add the E
 ## Change logo
 Set company logo by using  `NEXT_PUBLIC_LOGO` to provide url of the logo
 
+
+## Enable Local AI
+
+
+```
+brew install llama.cpp
+llama-server -hf ggml-org/gpt-oss-20b-GGUF --ctx-size 0 --jinja -ub 2048 -b 2048
+```

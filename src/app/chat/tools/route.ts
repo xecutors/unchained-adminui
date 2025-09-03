@@ -6,7 +6,8 @@ import {
 } from 'ai';
 import normalizeToolsIndex from '../../../../static-servers/normalizeToolsIndex';
 import { generateImageHandler } from '../../../../static-servers';
-import { openai } from '@ai-sdk/openai';
+import { imageModel } from '../local-provider';
+
 export const dynamic = 'force-static';
 
 const unchainedMCPUrl = process.env.MCP_API_URL || 'http://localhost:4010/mcp';
@@ -26,9 +27,9 @@ export async function GET(req: Request) {
 
     const defaultUnchainedTools = await client.tools();
     const tools: ToolSet = defaultUnchainedTools;
-    if (process.env.NEXT_PUBLIC_TEMP_FILE_UPLOAD_URL) {
+    if (process.env.NEXT_PUBLIC_TEMP_FILE_UPLOAD_URL && imageModel) {
       tools.generateImage = generateImageHandler(req)({
-        model: openai.image('dall-e-3'),
+        model: imageModel,
         uploadUrl: process.env.NEXT_PUBLIC_TEMP_FILE_UPLOAD_URL,
       });
     }

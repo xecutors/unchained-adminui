@@ -6,24 +6,16 @@ import {
   streamText,
   ToolSet,
   stepCountIs,
+  wrapLanguageModel,
 } from 'ai';
-import { createAnthropic } from '@ai-sdk/anthropic';
 import generateImageHandler from '../../../static-servers/generateImageHandler';
 import { defaultSystemPrompt, errorHandler } from '../../../static-servers';
-import { createOpenAI } from '@ai-sdk/openai';
+import { chatModel, imageModel } from './local-provider';
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
 
 const unchainedMCPUrl = process.env.MCP_API_URL || 'http://localhost:4010/mcp';
-
-const anthropic = createAnthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY || '',
-});
-
-const openai = createOpenAI({
-  apiKey: process.env.OPENAI_API_KEY || '',
-});
 
 export async function POST(req: Request) {
   const { messages } = await req.json();
@@ -41,22 +33,21 @@ export async function POST(req: Request) {
     transport: httpTransport as MCPTransport,
   });
   const defaultUnchainedTools = await client.tools();
+  console.log('Available tools:', defaultUnchainedTools);
   const tools: ToolSet = defaultUnchainedTools;
-  if (
-    process.env.NEXT_PUBLIC_TEMP_FILE_UPLOAD_URL &&
-    process.env.OPENAI_API_KEY
-  ) {
+  if (process.env.NEXT_PUBLIC_TEMP_FILE_UPLOAD_URL && imageModel) {
     tools.generateImage = generateImageHandler(req)({
-      model: openai.image('dall-e-3'),
+      model: imageModel,
       uploadUrl: process.env.NEXT_PUBLIC_TEMP_FILE_UPLOAD_URL,
     });
   }
 
   const result = streamText({
     system: defaultSystemPrompt,
-    model: anthropic.chat('claude-sonnet-4-20250514'),
+    model: chatModel,
     messages: convertToModelMessages(messages, {
       tools,
+      ignoreIncompleteToolCalls: true,
     }),
     stopWhen: stepCountIs(10),
     tools,
