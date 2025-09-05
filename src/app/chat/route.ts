@@ -39,7 +39,7 @@ export async function POST(req: Request) {
     tools.generateImage = generateImageHandler(req)({
       model: imageModel,
       uploadUrl: process.env.NEXT_PUBLIC_TEMP_FILE_UPLOAD_URL,
-    });
+    }) as any;
   }
 
   const result = streamText({

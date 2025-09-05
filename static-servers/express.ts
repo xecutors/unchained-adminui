@@ -71,7 +71,9 @@ const setupMCPChatHandler = (
         ...additionalTools,
       };
       if (imageGenerationTool) {
-        tools.generateImage = generateImageHandler(req)(imageGenerationTool);
+        tools.generateImage = generateImageHandler(req)(
+          imageGenerationTool,
+        ) as any;
       }
 
       if (req.method === 'GET') {

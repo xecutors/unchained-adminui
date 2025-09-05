@@ -31,7 +31,7 @@ export async function GET(req: Request) {
       tools.generateImage = generateImageHandler(req)({
         model: imageModel,
         uploadUrl: process.env.NEXT_PUBLIC_TEMP_FILE_UPLOAD_URL,
-      });
+      }) as any;
     }
 
     // Update cache
