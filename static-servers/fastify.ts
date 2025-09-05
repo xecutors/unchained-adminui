@@ -89,6 +89,7 @@ const setupMCPChatHandler = (chatConfiguration: ChatConfiguration & any) => {
       if (req.method === 'GET') {
         return res.status(200).send({
           tools: normalizeToolsIndex(tools),
+          cached: false,
         });
       }
 
@@ -96,7 +97,10 @@ const setupMCPChatHandler = (chatConfiguration: ChatConfiguration & any) => {
       const result = streamText({
         stopWhen: stepCountIs(10),
         ...restChatConfig,
-        messages: convertToModelMessages(messages, { tools }),
+        messages: convertToModelMessages(messages, {
+          tools,
+          ignoreIncompleteToolCalls: true,
+        }),
         system,
         tools,
         onFinish: async () => {
@@ -104,14 +108,15 @@ const setupMCPChatHandler = (chatConfiguration: ChatConfiguration & any) => {
         },
       });
 
-      res.header('X-Vercel-AI-Data-Stream', 'v1');
-      res.header('Content-Type', 'text/plain; charset=utf-8');
-      return res.send(result.toUIMessageStream({ onError: errorHandler }));
-    } catch (e: any) {
-      res.status(503);
       return res.send(
-        JSON.stringify({ name: e.name, code: e.code, message: e.message }),
+        result.toUIMessageStreamResponse({
+          onError: errorHandler,
+        }),
       );
+    } catch (err: any) {
+      await client?.close();
+      res.status(500);
+      return res.send(JSON.stringify({ error: errorHandler(err) }));
     }
   };
   return mcpChatHandler;

@@ -6,7 +6,6 @@ import {
   streamText,
   ToolSet,
   stepCountIs,
-  wrapLanguageModel,
 } from 'ai';
 import generateImageHandler from '../../../static-servers/generateImageHandler';
 import { defaultSystemPrompt, errorHandler } from '../../../static-servers';

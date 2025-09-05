@@ -79,6 +79,7 @@ const setupMCPChatHandler = (
       if (req.method === 'GET') {
         res.status(200).json({
           tools: normalizeToolsIndex(tools),
+          cached: false,
         });
         return;
       }
@@ -88,8 +89,10 @@ const setupMCPChatHandler = (
         ...restChatConfig,
         system,
         model,
-
-        messages: convertToModelMessages(messages, { tools }),
+        messages: convertToModelMessages(messages, {
+          tools,
+          ignoreIncompleteToolCalls: true,
+        }),
         tools,
         onFinish: async () => {
           await client?.close();
