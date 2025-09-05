@@ -7,7 +7,7 @@ import {
 
 type StreamTextParams = Parameters<typeof streamText>[0];
 
-export type ChatConfiguration = StreamTextParams & {
+export type ChatConfiguration = Omit<StreamTextParams, 'messages'> & {
   unchainedMCPUrl?: string;
   imageGenerationTool?: { model: ImageModel; uploadUrl?: string };
 };

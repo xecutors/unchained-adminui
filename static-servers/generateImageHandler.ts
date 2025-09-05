@@ -1,6 +1,6 @@
 import { experimental_generateImage, ImageModel, tool } from 'ai';
 import { fileTypeFromBuffer } from 'file-type';
-import { z } from 'zod';
+import { z, ZodAny } from 'zod';
 
 const inputSchema = z.object({
   prompt: z.string().describe('The prompt to generate the image from'),
@@ -31,9 +31,10 @@ const generateImageHandler =
     model: ImageModel;
     uploadUrl?: string;
   }) => {
-    return tool<z.infer<typeof inputSchema>>({
+    return tool<any>({
       description: 'Generate an image based on the prompt',
-      inputSchema,
+      inputSchema: inputSchema as any,
+      name: 'generate_image',
       execute: async ({ prompt, size = '1024x1024' }) => {
         try {
           const { image } = await experimental_generateImage({
