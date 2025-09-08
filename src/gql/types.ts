@@ -2263,10 +2263,60 @@ export enum IOrderPriceCategory {
 
 export type IOrderStatistics = {
   checkoutCount: Scalars['Int']['output'];
+  checkoutRecords: Array<IOrderStatisticsRecord>;
   confirmCount: Scalars['Int']['output'];
+  confirmRecords: Array<IOrderStatisticsRecord>;
   fulfillCount: Scalars['Int']['output'];
+  fulfilledRecords: Scalars['Int']['output'];
   newCount: Scalars['Int']['output'];
+  newRecords: Array<IOrderStatisticsRecord>;
   rejectCount: Scalars['Int']['output'];
+  rejectRecords: Array<IOrderStatisticsRecord>;
+};
+
+export type IOrderStatisticsCheckoutCountArgs = {
+  dateRange?: InputMaybe<IDateFilterInput>;
+};
+
+export type IOrderStatisticsCheckoutRecordsArgs = {
+  dateRange?: InputMaybe<IDateFilterInput>;
+};
+
+export type IOrderStatisticsConfirmCountArgs = {
+  dateRange?: InputMaybe<IDateFilterInput>;
+};
+
+export type IOrderStatisticsConfirmRecordsArgs = {
+  dateRange?: InputMaybe<IDateFilterInput>;
+};
+
+export type IOrderStatisticsFulfillCountArgs = {
+  dateRange?: InputMaybe<IDateFilterInput>;
+};
+
+export type IOrderStatisticsFulfilledRecordsArgs = {
+  dateRange?: InputMaybe<IDateFilterInput>;
+};
+
+export type IOrderStatisticsNewCountArgs = {
+  dateRange?: InputMaybe<IDateFilterInput>;
+};
+
+export type IOrderStatisticsNewRecordsArgs = {
+  dateRange?: InputMaybe<IDateFilterInput>;
+};
+
+export type IOrderStatisticsRejectCountArgs = {
+  dateRange?: InputMaybe<IDateFilterInput>;
+};
+
+export type IOrderStatisticsRejectRecordsArgs = {
+  dateRange?: InputMaybe<IDateFilterInput>;
+};
+
+export type IOrderStatisticsRecord = {
+  date: Scalars['String']['output'];
+  total: IPrice;
 };
 
 export enum IOrderStatus {
@@ -2975,7 +3025,7 @@ export type IQueryEventStatisticsArgs = {
 };
 
 export type IQueryEventsArgs = {
-  created?: InputMaybe<Scalars['DateTimeISO']['input']>;
+  created?: InputMaybe<IDateFilterInput>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   queryString?: InputMaybe<Scalars['String']['input']>;
@@ -2984,7 +3034,7 @@ export type IQueryEventsArgs = {
 };
 
 export type IQueryEventsCountArgs = {
-  created?: InputMaybe<Scalars['DateTimeISO']['input']>;
+  created?: InputMaybe<IDateFilterInput>;
   queryString?: InputMaybe<Scalars['String']['input']>;
   types?: InputMaybe<Array<Scalars['String']['input']>>;
 };
@@ -8350,6 +8400,7 @@ export type IEventsQueryVariables = Exact<{
   offset?: InputMaybe<Scalars['Int']['input']>;
   sort?: InputMaybe<Array<ISortOptionInput>>;
   queryString?: InputMaybe<Scalars['String']['input']>;
+  created?: InputMaybe<IDateFilterInput>;
 }>;
 
 export type IEventsQuery = {

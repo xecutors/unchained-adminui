@@ -11,7 +11,6 @@ import WorkList from '../../modules/work/components/WorkList';
 import useWorkQueue from '../../modules/work/hooks/useWorkQueue';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 import useAuth from '../../modules/Auth/useAuth';
-import SearchField from '../../modules/common/components/SearchField';
 import {
   convertSortFieldsToQueryFormat,
   normalizeQuery,

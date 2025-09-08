@@ -74,7 +74,13 @@ const keyMappings: any = {
         ]),
       },
       events: {
-        ...offsetLimitPagination(['types', 'queryString', 'sort', 'limit']),
+        ...offsetLimitPagination([
+          'types',
+          'queryString',
+          'sort',
+          'limit',
+          'created',
+        ]),
       },
       users: {
         ...offsetLimitPagination([
