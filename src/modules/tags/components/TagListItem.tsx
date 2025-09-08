@@ -31,14 +31,18 @@ const TagListItem = ({ tag }: TagListItemProps) => {
 
   const handleEdit = () => {
     // For custom tags, route to edit page. For system tags, could open inline edit or modal
-    if (tag.name.includes('sample') || localStorage.getItem('customTags')?.includes(tag.name)) {
+    if (
+      tag.name.includes('sample') ||
+      localStorage.getItem('customTags')?.includes(tag.name)
+    ) {
       router.push(`/tags?tagId=${encodeURIComponent(tag.name)}`);
     } else {
       // For system-generated tags from products/assortments, show info modal
       toast.info(
         formatMessage({
           id: 'system_tag_info',
-          defaultMessage: 'This tag is automatically generated from your content. Edit the source products or assortments to modify.',
+          defaultMessage:
+            'This tag is automatically generated from your content. Edit the source products or assortments to modify.',
         }),
       );
     }
@@ -49,7 +53,8 @@ const TagListItem = ({ tag }: TagListItemProps) => {
       toast.warning(
         formatMessage({
           id: 'cannot_delete_tag_in_use',
-          defaultMessage: 'Cannot delete tag that is currently in use. Remove it from all content first.',
+          defaultMessage:
+            'Cannot delete tag that is currently in use. Remove it from all content first.',
         }),
       );
       return;
@@ -58,10 +63,14 @@ const TagListItem = ({ tag }: TagListItemProps) => {
     await setModal(
       <DangerMessage
         onCancelClick={async () => setModal('')}
-        message={formatMessage({
-          id: 'delete_tag_confirmation',
-          defaultMessage: 'Are you sure you want to delete the tag "{tagName}"? This action cannot be undone.',
-        }, { tagName: tag.name })}
+        message={formatMessage(
+          {
+            id: 'delete_tag_confirmation',
+            defaultMessage:
+              'Are you sure you want to delete the tag "{tagName}"? This action cannot be undone.',
+          },
+          { tagName: tag.name },
+        )}
         onOkClick={async () => {
           try {
             setModal('');
@@ -116,7 +125,7 @@ const TagListItem = ({ tag }: TagListItemProps) => {
         <div className="text-sm text-slate-900 dark:text-slate-300">
           {tag.usage.products}
           {tag.usage.products > 0 && (
-            <Link 
+            <Link
               href={`/products?tags=${encodeURIComponent(tag.name)}`}
               className="ml-2 text-blue-600 dark:text-blue-400 hover:underline"
             >
@@ -134,7 +143,7 @@ const TagListItem = ({ tag }: TagListItemProps) => {
         <div className="text-sm text-slate-900 dark:text-slate-300">
           {tag.usage.assortments}
           {tag.usage.assortments > 0 && (
-            <Link 
+            <Link
               href={`/assortments?tags=${encodeURIComponent(tag.name)}`}
               className="ml-2 text-blue-600 dark:text-blue-400 hover:underline"
             >
@@ -160,7 +169,7 @@ const TagListItem = ({ tag }: TagListItemProps) => {
           >
             <PencilIcon className="w-4 h-4" />
           </button>
-          
+
           {tag.usage.total === 0 && (
             <button
               onClick={handleDelete}

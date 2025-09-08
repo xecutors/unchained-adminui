@@ -24,9 +24,11 @@ const TagDetailPage = ({ tagId }: TagDetailPageProps) => {
     // Load tag data (in real implementation, this would be a GraphQL query)
     const loadTag = () => {
       try {
-        const customTags = JSON.parse(localStorage.getItem('customTags') || '[]');
+        const customTags = JSON.parse(
+          localStorage.getItem('customTags') || '[]',
+        );
         const foundTag = customTags.find((t: any) => t.id === tagId);
-        
+
         if (foundTag) {
           setTag(foundTag);
         } else {
@@ -48,7 +50,11 @@ const TagDetailPage = ({ tagId }: TagDetailPageProps) => {
     loadTag();
   }, [tagId]);
 
-  const handleSubmit = async (tagData: { name: string; description?: string; category?: string }) => {
+  const handleSubmit = async (tagData: {
+    name: string;
+    description?: string;
+    category?: string;
+  }) => {
     try {
       await updateTag(tagId, tagData);
       toast.success(
@@ -76,10 +82,13 @@ const TagDetailPage = ({ tagId }: TagDetailPageProps) => {
     <>
       <BreadCrumbs />
       <PageHeader
-        headerText={formatMessage({
-          id: 'edit_tag',
-          defaultMessage: 'Edit Tag: {tagName}',
-        }, { tagName: tag?.name || tagId })}
+        headerText={formatMessage(
+          {
+            id: 'edit_tag',
+            defaultMessage: 'Edit Tag: {tagName}',
+          },
+          { tagName: tag?.name || tagId },
+        )}
       />
       <div className="max-w-2xl mx-auto p-6">
         <TagForm

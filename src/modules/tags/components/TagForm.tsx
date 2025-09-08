@@ -21,11 +21,11 @@ interface TagFormProps {
   isLoading?: boolean;
 }
 
-const TagForm = ({ 
-  initialValues = {}, 
-  onSubmit, 
+const TagForm = ({
+  initialValues = {},
+  onSubmit,
   submitButtonText = 'Save',
-  isLoading = false 
+  isLoading = false,
 }: TagFormProps) => {
   const { formatMessage } = useIntl();
 
@@ -38,7 +38,8 @@ const TagForm = ({
     },
     intlMessageDescriptor: {
       id: 'tag_name_format',
-      defaultMessage: 'Tag name must be 2-50 characters and contain only lowercase letters, numbers, hyphens, and underscores',
+      defaultMessage:
+        'Tag name must be 2-50 characters and contain only lowercase letters, numbers, hyphens, and underscores',
     },
   };
 
@@ -67,7 +68,7 @@ const TagForm = ({
             defaultMessage: 'Tag Information',
           })}
         </h3>
-        
+
         <div className="space-y-4">
           <TextField
             name="name"
@@ -81,7 +82,8 @@ const TagForm = ({
             })}
             help={formatMessage({
               id: 'tag_name_help',
-              defaultMessage: 'Use lowercase letters, numbers, hyphens, and underscores only. This will be used in URLs and filters.',
+              defaultMessage:
+                'Use lowercase letters, numbers, hyphens, and underscores only. This will be used in URLs and filters.',
             })}
             required
             maxLength={50}
@@ -96,11 +98,13 @@ const TagForm = ({
             })}
             placeholder={formatMessage({
               id: 'tag_description_placeholder',
-              defaultMessage: 'Describe when and how this tag should be used...',
+              defaultMessage:
+                'Describe when and how this tag should be used...',
             })}
             help={formatMessage({
               id: 'tag_description_help',
-              defaultMessage: 'Optional description to help team members understand when to use this tag.',
+              defaultMessage:
+                'Optional description to help team members understand when to use this tag.',
             })}
             maxLength={200}
             rows={3}
@@ -118,7 +122,8 @@ const TagForm = ({
             })}
             help={formatMessage({
               id: 'tag_category_help',
-              defaultMessage: 'Optional category to group related tags together (e.g., "product-type", "theme", "campaign").',
+              defaultMessage:
+                'Optional category to group related tags together (e.g., "product-type", "theme", "campaign").',
             })}
             maxLength={50}
           />
@@ -136,9 +141,7 @@ const TagForm = ({
             defaultMessage: 'Cancel',
           })}
         </Button>
-        <SubmitButton
-          label={submitButtonText}
-        />
+        <SubmitButton label={submitButtonText} />
       </div>
     </Form>
   );

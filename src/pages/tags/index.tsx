@@ -77,7 +77,8 @@ const Tags = () => {
           <div className="text-sm text-slate-600 dark:text-slate-400">
             {formatMessage({
               id: 'tags_management_description',
-              defaultMessage: 'Manage tags used across products, assortments, and other content',
+              defaultMessage:
+                'Manage tags used across products, assortments, and other content',
             })}
           </div>
         </ListHeader>
@@ -94,10 +95,7 @@ const Tags = () => {
             {loading && tags?.length === 0 ? (
               <Loading />
             ) : (
-              <TagList
-                tags={tags}
-                sortable
-              />
+              <TagList tags={tags} sortable />
             )}
           </InfiniteScroll>
         </SearchWithTags>

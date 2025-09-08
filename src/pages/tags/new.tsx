@@ -12,7 +12,11 @@ const NewTag = () => {
   const router = useRouter();
   const { createTag } = useCreateTag();
 
-  const handleSubmit = async (tagData: { name: string; description?: string; category?: string }) => {
+  const handleSubmit = async (tagData: {
+    name: string;
+    description?: string;
+    category?: string;
+  }) => {
     try {
       await createTag(tagData);
       toast.success(

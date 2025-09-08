@@ -15,14 +15,16 @@ const useUpdateTag = () => {
     setLoading(true);
     try {
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
       console.log('Updating tag:', tagId, tagData);
-      
+
       // For now, we'll update in localStorage for demo purposes
-      const existingTags = JSON.parse(localStorage.getItem('customTags') || '[]');
+      const existingTags = JSON.parse(
+        localStorage.getItem('customTags') || '[]',
+      );
       const tagIndex = existingTags.findIndex((tag: any) => tag.id === tagId);
-      
+
       if (tagIndex !== -1) {
         existingTags[tagIndex] = {
           ...existingTags[tagIndex],
@@ -32,7 +34,7 @@ const useUpdateTag = () => {
         localStorage.setItem('customTags', JSON.stringify(existingTags));
         return existingTags[tagIndex];
       }
-      
+
       throw new Error('Tag not found');
     } finally {
       setLoading(false);
@@ -43,15 +45,17 @@ const useUpdateTag = () => {
     setLoading(true);
     try {
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 500));
-      
+      await new Promise((resolve) => setTimeout(resolve, 500));
+
       console.log('Deleting tag:', tagId);
-      
+
       // For now, we'll delete from localStorage for demo purposes
-      const existingTags = JSON.parse(localStorage.getItem('customTags') || '[]');
+      const existingTags = JSON.parse(
+        localStorage.getItem('customTags') || '[]',
+      );
       const filteredTags = existingTags.filter((tag: any) => tag.id !== tagId);
       localStorage.setItem('customTags', JSON.stringify(filteredTags));
-      
+
       return true;
     } finally {
       setLoading(false);

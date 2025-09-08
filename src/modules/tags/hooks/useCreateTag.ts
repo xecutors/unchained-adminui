@@ -15,27 +15,29 @@ const useCreateTag = () => {
     setLoading(true);
     try {
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
       // In real implementation, this would be:
       // const result = await createTagMutation({
       //   variables: { input: tagData }
       // });
-      
+
       console.log('Creating tag:', tagData);
-      
+
       // For now, we'll store in localStorage for demo purposes
-      const existingTags = JSON.parse(localStorage.getItem('customTags') || '[]');
+      const existingTags = JSON.parse(
+        localStorage.getItem('customTags') || '[]',
+      );
       const newTag = {
         ...tagData,
         id: Date.now().toString(),
         createdAt: new Date().toISOString(),
-        usage: { products: 0, assortments: 0, total: 0 }
+        usage: { products: 0, assortments: 0, total: 0 },
       };
-      
+
       existingTags.push(newTag);
       localStorage.setItem('customTags', JSON.stringify(existingTags));
-      
+
       return newTag;
     } finally {
       setLoading(false);

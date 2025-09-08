@@ -25,65 +25,68 @@ const useTags = (options: UseTagsOptions = {}) => {
   const [loading, setLoading] = useState(true);
 
   // Fetch products with tags using existing hook
-  const { 
-    products, 
-    loading: productsLoading 
-  } = useProducts({
+  const { products, loading: productsLoading } = useProducts({
     limit: 1000, // Get all products for now to aggregate tags
     offset: 0,
-    includeDrafts: true 
+    includeDrafts: true,
   });
 
   // Fetch assortments with tags using existing hook
-  const { 
-    assortments, 
-    loading: assortmentsLoading 
-  } = useAssortments({
+  const { assortments, loading: assortmentsLoading } = useAssortments({
     limit: 1000, // Get all assortments for now to aggregate tags
     offset: 0,
-    includeInactive: true 
+    includeInactive: true,
   });
 
   // Process and aggregate tags
   const aggregatedTags = useMemo(() => {
-    console.log('Processing tags...', { products: products?.length, assortments: assortments?.length });
-    
+    console.log('Processing tags...', {
+      products: products?.length,
+      assortments: assortments?.length,
+    });
+
     if (!products && !assortments) {
-      console.log('Missing data:', { products: !!products, assortments: !!assortments });
+      console.log('Missing data:', {
+        products: !!products,
+        assortments: !!assortments,
+      });
       return [];
     }
 
     // Load custom tags from localStorage
     const customTags = JSON.parse(localStorage.getItem('customTags') || '[]');
-    
+
     // Temporary: Add some sample tags for testing
-    if ((!products || products.length === 0) && (!assortments || assortments.length === 0)) {
+    if (
+      (!products || products.length === 0) &&
+      (!assortments || assortments.length === 0)
+    ) {
       const sampleTags = [
         {
           name: 'electronics',
-          usage: { products: 5, assortments: 2, total: 7 }
+          usage: { products: 5, assortments: 2, total: 7 },
         },
         {
           name: 'clothing',
-          usage: { products: 3, assortments: 1, total: 4 }
+          usage: { products: 3, assortments: 1, total: 4 },
         },
         {
           name: 'outdoor',
-          usage: { products: 2, assortments: 0, total: 2 }
-        }
+          usage: { products: 2, assortments: 0, total: 2 },
+        },
       ];
-      
+
       // Combine sample tags with custom tags
       const allTags = [...sampleTags];
       customTags.forEach((customTag: any) => {
-        if (!allTags.find(tag => tag.name === customTag.name)) {
+        if (!allTags.find((tag) => tag.name === customTag.name)) {
           allTags.push({
             name: customTag.name,
-            usage: customTag.usage || { products: 0, assortments: 0, total: 0 }
+            usage: customTag.usage || { products: 0, assortments: 0, total: 0 },
           });
         }
       });
-      
+
       return allTags;
     }
 
@@ -151,18 +154,18 @@ const useTags = (options: UseTagsOptions = {}) => {
     // Apply search filter
     if (queryString) {
       const searchLower = queryString.toLowerCase();
-      filtered = filtered.filter(tag => 
-        tag.name.toLowerCase().includes(searchLower)
+      filtered = filtered.filter((tag) =>
+        tag.name.toLowerCase().includes(searchLower),
       );
     }
 
     // Apply sorting
     const sortKey = Object.keys(sort)[0];
     const sortDirection = sortKey ? sort[sortKey] : 'ASC';
-    
+
     filtered.sort((a, b) => {
       let comparison = 0;
-      
+
       switch (sortKey) {
         case 'usage':
           comparison = a.usage.total - b.usage.total;
@@ -172,7 +175,7 @@ const useTags = (options: UseTagsOptions = {}) => {
           comparison = a.name.localeCompare(b.name);
           break;
       }
-      
+
       return sortDirection === 'DESC' ? -comparison : comparison;
     });
 

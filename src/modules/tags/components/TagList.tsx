@@ -70,10 +70,7 @@ const TagList = ({ tags, sortable = false }: TagListProps) => {
 
         {/* Table Body */}
         {tags.map((tag) => (
-          <TagListItem
-            key={tag.name}
-            tag={tag}
-          />
+          <TagListItem key={tag.name} tag={tag} />
         ))}
       </Table>
     </div>
