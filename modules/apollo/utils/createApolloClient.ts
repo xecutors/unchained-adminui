@@ -76,7 +76,7 @@ const createApolloClient = ({
   const uri = resolveUri(endpoint);
   const httpLink = createUploadLink({
     uri,
-    credentials: 'same-origin',
+    credentials: 'include',
     includeExtensions: true,
     headers: {
       'apollo-require-preflight': true,
