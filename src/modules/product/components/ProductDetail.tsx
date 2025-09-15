@@ -118,12 +118,11 @@ const ProductDetail = ({ product, extendedData = {} }: ProductDetailProps) => {
       title: formatMessage({ id: 'media', defaultMessage: 'Media' }),
       Icon: <FilmIcon className="h-5 w-5" />,
     },
-    __typename !== PRODUCT_TYPES.ConfigurableProduct &&
-      __typename !== PRODUCT_TYPES.BundleProduct && {
-        id: 'commerce',
-        title: formatMessage({ id: 'commerce', defaultMessage: 'Commerce' }),
-        Icon: <ShoppingBagIcon className="h-5 w-5" />,
-      },
+    __typename !== PRODUCT_TYPES.ConfigurableProduct && {
+      id: 'commerce',
+      title: formatMessage({ id: 'commerce', defaultMessage: 'Commerce' }),
+      Icon: <ShoppingBagIcon className="h-5 w-5" />,
+    },
     __typename === PRODUCT_TYPES.SimpleProduct && {
       id: 'supply',
       title: formatMessage({
