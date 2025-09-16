@@ -33,7 +33,6 @@ export const useChatManager = () => {
     stop,
     regenerate: reload,
     sendMessage,
-
   } = useChat({
     transport: new DefaultChatTransport({
       api: process.env.NEXT_PUBLIC_CHAT_URL || '/chat',
@@ -133,18 +132,18 @@ export const useChatManager = () => {
       const localizedError =
         errorMessage.includes('401') || errorMessage.includes('Unauthorized')
           ? intl.formatMessage({
-            id: 'chat.error.auth',
-            defaultMessage:
-              '🔐 **Authentication Error**\n\nYour session has expired or the authentication token is invalid.\n\n*Please refresh or log in again.*',
-          })
-          : intl.formatMessage(
-            {
-              id: 'chat.error.submission',
+              id: 'chat.error.auth',
               defaultMessage:
-                '❌ **Submission Error**\n\nFailed to send your message.\n\n**Error:** {details}\n\n*Please ensure the backend is running.*',
-            },
-            { details: errorMessage },
-          );
+                '🔐 **Authentication Error**\n\nYour session has expired or the authentication token is invalid.\n\n*Please refresh or log in again.*',
+            })
+          : intl.formatMessage(
+              {
+                id: 'chat.error.submission',
+                defaultMessage:
+                  '❌ **Submission Error**\n\nFailed to send your message.\n\n**Error:** {details}\n\n*Please ensure the backend is running.*',
+              },
+              { details: errorMessage },
+            );
 
       const chatError: UIMessage = {
         id: `error-${Date.now()}`,
