@@ -1010,5 +1010,6 @@
   "message_status_undeliverable": null,
   "messages": null,
   "no_retries": null,
-  "retry_remaining": null
+  "retry_remaining": null,
+  "all_workers": null
 }

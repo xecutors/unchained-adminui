@@ -17,6 +17,7 @@ import {
 } from '../../modules/common/utils/utils';
 import { ISortOptionInput, IWorkStatus, IWorkType } from '../../gql/types';
 import groupMessageWorks from '../../modules/work/utils/groupMessageWorks';
+import { EnvelopeIcon, RectangleStackIcon } from '@heroicons/react/24/outline';
 
 const WorkQueueListView = () => {
   const { query, push } = useRouter();
@@ -60,11 +61,13 @@ const WorkQueueListView = () => {
     () => [
       {
         id: 'all',
-        title: formatMessage({ id: 'all_works', defaultMessage: 'All Works' }),
+        title: formatMessage({ id: 'all_workers', defaultMessage: 'All Workers' }),
+        Icon: <RectangleStackIcon className="h-5 w-5" />,
       },
       {
         id: 'messages',
         title: formatMessage({ id: 'messages', defaultMessage: 'Messages' }),
+        Icon: <EnvelopeIcon className="h-5 w-5" />,
       },
     ],
     [formatMessage],

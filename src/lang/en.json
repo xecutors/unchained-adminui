@@ -138,8 +138,8 @@
   "all": {
     "defaultMessage": "All"
   },
-  "all_works": {
-    "defaultMessage": "All Works"
+  "all_workers": {
+    "defaultMessage": "All Workers"
   },
   "allocate_work": {
     "defaultMessage": "Allocate Work"
