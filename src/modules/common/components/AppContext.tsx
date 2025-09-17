@@ -4,6 +4,16 @@ import useLanguages from '../../language/hooks/useLanguages';
 import useCountries from '../../country/hooks/useCountries';
 import useShopInfo from '../hooks/useShopInfo';
 
+const isSupportedLocale = (locale) => {
+  try {
+    const dtf = new Intl.DateTimeFormat(locale);
+    const resolved = dtf.resolvedOptions().locale;
+    return resolved.toLowerCase() === locale.toLowerCase();
+  } catch (e) {
+    return false;
+  }
+};
+
 interface AppContextProps {
   selectedLocale: string;
   isSystemReady: boolean;
@@ -12,18 +22,20 @@ interface AppContextProps {
 }
 
 const AppContext = createContext<AppContextProps | undefined>(undefined);
-
 const createLanguageDialectList = (languages, countries) => {
   const result = [];
 
   languages.forEach(({ _id: languageId, isoCode: baseIsoCode }) => {
     result.push({ _id: languageId, isoCode: baseIsoCode });
     countries.forEach(({ isoCode: countryIsoCode, _id: countryId }) => {
-      const dialectIsoCode = `${baseIsoCode}-${countryIsoCode.toUpperCase()}`;
-      result.push({
-        _id: `${countryId}-${languageId}`,
-        isoCode: dialectIsoCode,
-      });
+      const dialectIsoCode = [baseIsoCode, countryIsoCode.toUpperCase()].join(
+        '-',
+      );
+      if (isSupportedLocale(dialectIsoCode))
+        result.push({
+          _id: `${countryId}-${languageId}`,
+          isoCode: dialectIsoCode,
+        });
     });
   });
 

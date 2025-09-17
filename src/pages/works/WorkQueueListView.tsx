@@ -61,7 +61,10 @@ const WorkQueueListView = () => {
     () => [
       {
         id: 'all',
-        title: formatMessage({ id: 'all_workers', defaultMessage: 'All Workers' }),
+        title: formatMessage({
+          id: 'all_workers',
+          defaultMessage: 'All Workers',
+        }),
         Icon: <RectangleStackIcon className="h-5 w-5" />,
       },
       {
