@@ -91,9 +91,11 @@ const ProductTextsForm = ({
       ...(value || {}),
     });
   }, [translatedTexts, selectedLocale]);
-
   useEffect(() => {
     if (shopInfo && translatedTexts?.length) {
+      if (translatedTexts?.find(({ locale }) => locale === selectedLocale)) {
+        return;
+      }
       if (
         defaultLocale &&
         translatedTexts?.find(({ locale }) => locale === defaultLocale)
@@ -106,7 +108,7 @@ const ProductTextsForm = ({
         )
       ) {
         setSelectedLocale(defaultLocale.split('-')[0]);
-      } else {        
+      } else {
         const firstAvailableText = translatedTexts?.find(
           ({ locale }) =>
             locale &&

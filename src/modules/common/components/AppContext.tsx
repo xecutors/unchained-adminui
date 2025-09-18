@@ -3,6 +3,7 @@ import { useIntl } from 'react-intl';
 import useLanguages from '../../language/hooks/useLanguages';
 import useCountries from '../../country/hooks/useCountries';
 import useShopInfo from '../hooks/useShopInfo';
+import useLocalStorage from '../hooks/useLocalStorage';
 
 const isSupportedLocale = (locale) => {
   try {
@@ -50,16 +51,29 @@ export const AppContextWrapper = ({
   onlyFull?: boolean;
 }) => {
   const { languages } = useLanguages();
+  const { locale } = useIntl();
+  const [storedLocale, setStoredLocale] = useLocalStorage(
+    'selectedLocale',
+    null,
+  );
   const { shopInfo, loading: shopInfoLoading } = useShopInfo();
   const { countries } = useCountries();
-  const { locale } = useIntl();
 
   const [selectedLocale, setSelectedLocale] = useState<string>(locale);
+  const setSelectedLocaleWrapper = (newLocale: string) => {
+    setStoredLocale(newLocale);
+    setSelectedLocale(newLocale);
+  };
 
   useEffect(() => {
+    if (storedLocale) {
+      setSelectedLocale(storedLocale);
+
+      return;
+    }
     if (!shopInfoLoading) {
       const baseLanguage = `${shopInfo?.language?.isoCode}-${shopInfo?.country?.isoCode?.toUpperCase()}`;
-      setSelectedLocale(baseLanguage);
+      setSelectedLocaleWrapper(baseLanguage);
     }
   }, [shopInfo, shopInfoLoading, locale]);
 
@@ -72,7 +86,7 @@ export const AppContextWrapper = ({
     <AppContext.Provider
       value={{
         selectedLocale,
-        setSelectedLocale,
+        setSelectedLocale: setSelectedLocaleWrapper,
         languageDialectList,
         isSystemReady,
       }}
