@@ -33,7 +33,7 @@ const useUpdateAssortment = () => {
         assortment: { isRoot, tags, sequence, isActive },
         assortmentId,
       },
-      refetchQueries: ['Assortments', 'Assortment'],
+      refetchQueries: ['Assortments', 'Assortment', 'ShopStatus', 'ShopInfo'],
     });
   };
 
