@@ -117,6 +117,7 @@ const TagInput = ({
   selectOptions = [],
   className = '',
   buttonText = '',
+  showTagsInline = true,
 }) => {
   const { formatMessage } = useIntl();
   const { theme } = useTheme();
@@ -165,51 +166,57 @@ const TagInput = ({
   useMemo(() => {
     setTagList(normalizeTagValue(tags));
   }, [tags]);
+  const TagInputComponent = (
+    <CreatableSelect
+      id={id || name}
+      name={name}
+      placeholder={placeholder}
+      components={{ SingleValue: () => null }}
+      isDisabled={disabled}
+      inputValue={inputValue}
+      onInputChange={(newValue, { action }) => {
+        if (action !== 'input-blur' && action !== 'menu-close') {
+          setInputValue(newValue);
+        }
+      }}
+      onChange={(option) => option && addTag(option.value)}
+      onCreateOption={addTag}
+      options={selectOptions.filter(
+        (option) => !(tagList || []).includes(option.value),
+      )}
+      value={null}
+      formatCreateLabel={(value) =>
+        buttonText ||
+        formatMessage(
+          { id: 'add_new_tag', defaultMessage: 'Add "{inputValue}"' },
+          { inputValue: value },
+        )
+      }
+      noOptionsMessage={({ inputValue: input }) =>
+        input
+          ? formatMessage(
+              {
+                id: 'no_options',
+                defaultMessage: 'No options found for "{inputValue}"',
+              },
+              { inputValue: input },
+            )
+          : placeholder
+      }
+      styles={getCreatableSelectStyles(theme)}
+      className={`w-full tag-input-creatable ${className}`}
+      classNamePrefix="react-select"
+      menuPortalTarget={getGlobalPortal()}
+      menuShouldBlockScroll={false}
+    />
+  );
+  if (!showTagsInline) {
+    return TagInputComponent;
+  }
 
   return (
     <>
-      <CreatableSelect
-        id={id || name}
-        name={name}
-        placeholder={placeholder}
-        components={{ SingleValue: () => null }}
-        isDisabled={disabled}
-        inputValue={inputValue}
-        onInputChange={(newValue, { action }) => {
-          if (action !== 'input-blur' && action !== 'menu-close') {
-            setInputValue(newValue);
-          }
-        }}
-        onChange={(option) => option && addTag(option.value)}
-        onCreateOption={addTag}
-        options={selectOptions.filter(
-          (option) => !(tagList || []).includes(option.value),
-        )}
-        value={null}
-        formatCreateLabel={(value) =>
-          buttonText ||
-          formatMessage(
-            { id: 'add_new_tag', defaultMessage: 'Add "{inputValue}"' },
-            { inputValue: value },
-          )
-        }
-        noOptionsMessage={({ inputValue: input }) =>
-          input
-            ? formatMessage(
-                {
-                  id: 'no_options',
-                  defaultMessage: 'No options found for "{inputValue}"',
-                },
-                { inputValue: input },
-              )
-            : placeholder
-        }
-        styles={getCreatableSelectStyles(theme)}
-        className={`w-full tag-input-creatable ${className}`}
-        classNamePrefix="react-select"
-        menuPortalTarget={getGlobalPortal()}
-        menuShouldBlockScroll={false}
-      />
+      {TagInputComponent}
 
       <div
         className={classNames(

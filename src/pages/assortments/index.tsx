@@ -23,9 +23,9 @@ const GetCurrentView = ({
   queryString,
   onSearchChange,
   defaultSearchValue,
-  availableTagOptions
+  availableTagOptions,
 }) => {
-  const { graph, ...rest } = options;  
+  const { graph, ...rest } = options;
   return (
     <SearchWithTags
       onSearchChange={onSearchChange}
@@ -50,7 +50,7 @@ const GetCurrentView = ({
 
 const AssortmentsView = () => {
   const { formatMessage } = useIntl();
-  const {shopInfo} = useApp()
+  const { shopInfo } = useApp();
   const router = useRouter();
   const { hasRole } = useAuth();
   const { query, push } = router;
@@ -159,7 +159,9 @@ const AssortmentsView = () => {
           </div>
         </ListHeader>
         <GetCurrentView
-        availableTagOptions={(shopInfo?.adminUiConfig?.assortmentTags || []).map((tag) => ({ value: tag, label: tag }))}
+          availableTagOptions={(
+            shopInfo?.adminUiConfig?.assortmentTags || []
+          ).map((tag) => ({ value: tag, label: tag }))}
           queryString={queryString}
           onSearchChange={setQueryString}
           defaultSearchValue={queryString}

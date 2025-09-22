@@ -59,7 +59,9 @@ const AssortmentForm = ({ onSubmit, onSubmitSuccess }) => {
           name="tags"
           id="tags"
           label={formatMessage({ id: 'tags', defaultMessage: 'Tags' })}
-          selectOptions={(shopInfo?.adminUiConfig?.assortmentTags || []).map((tag) => ({value: tag, label: tag}))}
+          selectOptions={(shopInfo?.adminUiConfig?.assortmentTags || []).map(
+            (tag) => ({ value: tag, label: tag }),
+          )}
         />
       </div>
       <div className="mx-5 mb-5">

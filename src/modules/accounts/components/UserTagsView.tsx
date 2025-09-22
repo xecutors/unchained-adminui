@@ -6,7 +6,7 @@ import useApp from '../../common/hooks/useApp';
 const UserTagsView = ({ tags: defaultTags = [], userId }) => {
   const { hasRole } = useAuth();
   const { setUserTags } = useSetUserTags();
-  const {shopInfo} = useApp()
+  const { shopInfo } = useApp();
   const updateUserTags = async ({ tags }) => {
     await setUserTags({ tags, userId });
   };
@@ -15,7 +15,12 @@ const UserTagsView = ({ tags: defaultTags = [], userId }) => {
       defaultValue={defaultTags}
       onSubmit={updateUserTags}
       enableEdit={hasRole('editUserTags')}
-      availableTagOptions={shopInfo?.adminUiConfig?.userTags?.map(tag => ({ label: tag, value: tag })) || []}
+      availableTagOptions={
+        shopInfo?.adminUiConfig?.userTags?.map((tag) => ({
+          label: tag,
+          value: tag,
+        })) || []
+      }
     />
   );
 };

@@ -67,7 +67,7 @@ const AssortmentDetail = ({
 }) => {
   const { isActive, isBase, isRoot } = assortment || {};
   const { hasRole } = useAuth();
-  const {shopInfo} = useApp();
+  const { shopInfo } = useApp();
   const { formatMessage } = useIntl();
   const { updateAssortment } = useUpdateAssortment();
   const { setBaseAssortment } = useSetBaseAssortment();
@@ -332,7 +332,12 @@ const AssortmentDetail = ({
           defaultValue={assortment?.tags}
           onSubmit={updateAssortmentTags}
           enableEdit={hasRole('editAssortment')}
-          availableTagOptions={shopInfo?.adminUiConfig?.assortmentTags?.map((tag) => ({ value: tag, label: tag })) || []}
+          availableTagOptions={
+            shopInfo?.adminUiConfig?.assortmentTags?.map((tag) => ({
+              value: tag,
+              label: tag,
+            })) || []
+          }
         />
         {!hideControls && (
           <div className="mt-5 flex flex-wrap gap-3">
