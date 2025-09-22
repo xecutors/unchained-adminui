@@ -14,6 +14,7 @@ import {
   QrCodeIcon,
   CubeIcon,
   DocumentTextIcon,
+  TagIcon,
 } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import React, { useState } from 'react';
@@ -128,6 +129,12 @@ const Layout = ({
       icon: AdjustmentsHorizontalIcon,
       requiredRole: 'manageFilters',
       href: '/filters',
+    },
+    {
+      name: formatMessage({ id: 'tags', defaultMessage: 'Tags' }),
+      icon: TagIcon,
+      requiredRole: 'manageTags',
+      href: '/tags',
     },
     {
       name: formatMessage({ id: 'users', defaultMessage: 'Users' }),
