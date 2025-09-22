@@ -11,6 +11,7 @@ const SearchWithTags = ({
   onSearchChange,
   defaultSearchValue,
   showTagFilter = false,
+  availableTagOptions = [],
 }) => {
   const { formatMessage } = useIntl();
 
@@ -52,6 +53,7 @@ const SearchWithTags = ({
                 })}
                 tagList={(query?.tags as string)?.split(',')}
                 onChange={handleTagChange}
+                selectOptions={availableTagOptions}
               />
             </div>
           )}

@@ -5,9 +5,11 @@ import { useIntl } from 'react-intl';
 import TagInput from '../../common/components/TagInput';
 import { isTruthy } from '../../common/utils/normalizeFilterKeys';
 import { normalizeQuery } from '../../common/utils/utils';
+import useApp from '../../common/hooks/useApp';
 
 const ProductFilter = () => {
   const router = useRouter();
+  const { shopInfo } = useApp();
   const { formatMessage } = useIntl();
 
   const handleOnChange = (value) => {
@@ -34,6 +36,9 @@ const ProductFilter = () => {
           })}
           tagList={(router?.query?.tags as string)?.split(',')}
           onChange={handleOnChange}
+          selectOptions={(shopInfo.adminUiConfig?.productTags || []).map(
+            (tag) => ({ value: tag, label: tag }),
+          )}
         />
       </div>
     </div>
