@@ -2,18 +2,8 @@ import { useIntl } from 'react-intl';
 import Table from '../../common/components/Table';
 import TagListItem from './TagListItem';
 
-interface TagData {
-  name: string;
-  usage: {
-    products: number;
-    assortments: number;
-    total: number;
-  };
-  lastUsed?: Date;
-}
-
 interface TagListProps {
-  tags: TagData[];
+  tags: string[];
   sortable?: boolean;
 }
 
@@ -60,17 +50,10 @@ const TagList = ({ tags, sortable = false }: TagListProps) => {
               defaultMessage: 'Assortments',
             })}
           </Table.Cell>
-          <Table.Cell>
-            {formatMessage({
-              id: 'actions',
-              defaultMessage: 'Actions',
-            })}
-          </Table.Cell>
         </Table.Row>
 
-        {/* Table Body */}
-        {tags.map((tag) => (
-          <TagListItem key={tag.name} tag={tag} />
+        {tags.map((tag, index) => (
+          <TagListItem key={`${tag}-${index}`} tag={tag} />
         ))}
       </Table>
     </div>

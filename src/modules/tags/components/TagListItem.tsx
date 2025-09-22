@@ -1,132 +1,41 @@
 import { useIntl } from 'react-intl';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { toast } from 'react-toastify';
-import { PencilIcon, TrashIcon } from '@heroicons/react/24/outline';
 import Badge from '../../common/components/Badge';
 import Table from '../../common/components/Table';
-import useUpdateTag from '../hooks/useUpdateTag';
-import useModal from '../../modal/hooks/useModal';
-import DangerMessage from '../../modal/components/DangerMessage';
-
-interface TagData {
-  name: string;
-  usage: {
-    products: number;
-    assortments: number;
-    total: number;
-  };
-  lastUsed?: Date;
-}
+import useTagsCount from '../hooks/useTagsCount';
 
 interface TagListItemProps {
-  tag: TagData;
+  tag: string;
 }
 
 const TagListItem = ({ tag }: TagListItemProps) => {
   const { formatMessage } = useIntl();
-  const router = useRouter();
-  const { deleteTag } = useUpdateTag();
-  const { setModal } = useModal();
 
-  const handleEdit = () => {
-    // For custom tags, route to edit page. For system tags, could open inline edit or modal
-    if (
-      tag.name.includes('sample') ||
-      localStorage.getItem('customTags')?.includes(tag.name)
-    ) {
-      router.push(`/tags?tagId=${encodeURIComponent(tag.name)}`);
-    } else {
-      // For system-generated tags from products/assortments, show info modal
-      toast.info(
-        formatMessage({
-          id: 'system_tag_info',
-          defaultMessage:
-            'This tag is automatically generated from your content. Edit the source products or assortments to modify.',
-        }),
-      );
-    }
-  };
-
-  const handleDelete = async () => {
-    if (tag.usage.total > 0) {
-      toast.warning(
-        formatMessage({
-          id: 'cannot_delete_tag_in_use',
-          defaultMessage:
-            'Cannot delete tag that is currently in use. Remove it from all content first.',
-        }),
-      );
-      return;
-    }
-
-    await setModal(
-      <DangerMessage
-        onCancelClick={async () => setModal('')}
-        message={formatMessage(
-          {
-            id: 'delete_tag_confirmation',
-            defaultMessage:
-              'Are you sure you want to delete the tag "{tagName}"? This action cannot be undone.',
-          },
-          { tagName: tag.name },
-        )}
-        onOkClick={async () => {
-          try {
-            setModal('');
-            await deleteTag(tag.name);
-            toast.success(
-              formatMessage({
-                id: 'tag_deleted_successfully',
-                defaultMessage: 'Tag deleted successfully',
-              }),
-            );
-            // Refresh the page to update the list
-            router.reload();
-          } catch (error) {
-            toast.error(
-              formatMessage({
-                id: 'tag_deletion_failed',
-                defaultMessage: 'Failed to delete tag',
-              }),
-            );
-          }
-        }}
-        okText={formatMessage({
-          id: 'delete_tag',
-          defaultMessage: 'Delete Tag',
-        })}
-      />,
-    );
-  };
+  const { productsCount, assortmentsCount } = useTagsCount({ tag });
 
   return (
     <Table.Row className="group">
       {/* Tag Name */}
       <Table.Cell>
         <div className="flex items-center">
-          <Badge
-            text={tag.name}
-            color="slate"
-            className="text-sm font-medium"
-          />
+          <Badge text={tag} color="slate" className="text-sm font-medium" />
         </div>
       </Table.Cell>
 
       {/* Total Usage */}
       <Table.Cell className="whitespace-nowrap px-6">
         <div className="text-sm font-medium text-slate-900 dark:text-slate-100">
-          {tag.usage.total}
+          {assortmentsCount + productsCount}
         </div>
       </Table.Cell>
 
       {/* Products Usage */}
       <Table.Cell className="whitespace-nowrap px-6">
         <div className="text-sm text-slate-900 dark:text-slate-300">
-          {tag.usage.products}
-          {tag.usage.products > 0 && (
+          {productsCount}
+          {productsCount > 0 && (
             <Link
-              href={`/products?tags=${encodeURIComponent(tag.name)}`}
+              href={`/products?tags=${encodeURIComponent(tag)}`}
               className="ml-2 text-blue-600 dark:text-blue-400 hover:underline"
             >
               {formatMessage({
@@ -141,10 +50,10 @@ const TagListItem = ({ tag }: TagListItemProps) => {
       {/* Assortments Usage */}
       <Table.Cell className="whitespace-nowrap px-6">
         <div className="text-sm text-slate-900 dark:text-slate-300">
-          {tag.usage.assortments}
-          {tag.usage.assortments > 0 && (
+          {assortmentsCount}
+          {assortmentsCount > 0 && (
             <Link
-              href={`/assortments?tags=${encodeURIComponent(tag.name)}`}
+              href={`/assortments?tags=${encodeURIComponent(tag)}`}
               className="ml-2 text-blue-600 dark:text-blue-400 hover:underline"
             >
               {formatMessage({
@@ -157,7 +66,7 @@ const TagListItem = ({ tag }: TagListItemProps) => {
       </Table.Cell>
 
       {/* Actions */}
-      <Table.Cell className="whitespace-nowrap px-6">
+      {/*    <Table.Cell className="whitespace-nowrap px-6">
         <div className="flex items-center space-x-2">
           <button
             onClick={handleEdit}
@@ -183,7 +92,7 @@ const TagListItem = ({ tag }: TagListItemProps) => {
             </button>
           )}
         </div>
-      </Table.Cell>
+      </Table.Cell> */}
     </Table.Row>
   );
 };

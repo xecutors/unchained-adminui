@@ -16,8 +16,8 @@ export type MakeEmpty<
 export type Incremental<T> =
   | T
   | {
-    [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never;
-  };
+      [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never;
+    };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: { input: string; output: string };
@@ -302,7 +302,6 @@ export type IBundleProductSiblingsArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
 };
 
-<<<<<<< HEAD
 /** A Bundle product consists of multiple products */
 export type IBundleProductSimulatedPriceArgs = {
   configuration?: InputMaybe<Array<IProductConfigurationParameterInput>>;
@@ -311,8 +310,6 @@ export type IBundleProductSimulatedPriceArgs = {
   useNetPrice?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-=======
->>>>>>> 5f70cd4a (Lint)
 /** A Bundle product consists of multiple products */
 export type IBundleProductTextsArgs = {
   forceLocale?: InputMaybe<Scalars['Locale']['input']>;
@@ -1952,7 +1949,6 @@ export type IMutationUpdateCartItemArgs = {
   quantity?: InputMaybe<Scalars['Int']['input']>;
 };
 
-<<<<<<< HEAD
 export type IMutationUpdateCartPaymentGenericArgs = {
   meta?: InputMaybe<Scalars['JSON']['input']>;
   orderId?: InputMaybe<Scalars['ID']['input']>;
@@ -1965,8 +1961,6 @@ export type IMutationUpdateCartPaymentInvoiceArgs = {
   paymentProviderId: Scalars['ID']['input'];
 };
 
-=======
->>>>>>> 5f70cd4a (Lint)
 export type IMutationUpdateCountryArgs = {
   country: IUpdateCountryInput;
   countryId: Scalars['ID']['input'];
@@ -2020,14 +2014,6 @@ export type IMutationUpdateOrderDeliveryShippingArgs = {
   orderDeliveryId: Scalars['ID']['input'];
 };
 
-<<<<<<< HEAD
-=======
-export type IMutationUpdateOrderPaymentCardArgs = {
-  meta?: InputMaybe<Scalars['JSON']['input']>;
-  orderPaymentId: Scalars['ID']['input'];
-};
-
->>>>>>> 5f70cd4a (Lint)
 export type IMutationUpdateOrderPaymentGenericArgs = {
   meta?: InputMaybe<Scalars['JSON']['input']>;
   orderPaymentId: Scalars['ID']['input'];
@@ -6683,140 +6669,140 @@ export type IAssortmentProductsQuery = {
       sortKey: number;
       tags?: Array<any> | null;
       product:
-      | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        proxies: Array<
-          | { __typename: 'BundleProduct' }
-          | { __typename: 'ConfigurableProduct' }
-        >;
-        texts?: {
-          _id: string;
-          slug?: string | null;
-          title?: string | null;
-          subtitle?: string | null;
-          description?: string | null;
-          vendor?: string | null;
-          brand?: string | null;
-          labels?: Array<string> | null;
-          locale: any;
-        } | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        texts?: {
-          _id: string;
-          slug?: string | null;
-          title?: string | null;
-          subtitle?: string | null;
-          description?: string | null;
-          vendor?: string | null;
-          brand?: string | null;
-          labels?: Array<string> | null;
-          locale: any;
-        } | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        catalogPrice?: { amount: number; currencyCode: string } | null;
-        proxies: Array<
-          | { __typename: 'BundleProduct' }
-          | { __typename: 'ConfigurableProduct' }
-        >;
-        texts?: {
-          _id: string;
-          slug?: string | null;
-          title?: string | null;
-          subtitle?: string | null;
-          description?: string | null;
-          vendor?: string | null;
-          brand?: string | null;
-          labels?: Array<string> | null;
-          locale: any;
-        } | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        catalogPrice?: { amount: number; currencyCode: string } | null;
-        proxies: Array<
-          | { __typename: 'BundleProduct' }
-          | { __typename: 'ConfigurableProduct' }
-        >;
-        texts?: {
-          _id: string;
-          slug?: string | null;
-          title?: string | null;
-          subtitle?: string | null;
-          description?: string | null;
-          vendor?: string | null;
-          brand?: string | null;
-          labels?: Array<string> | null;
-          locale: any;
-        } | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        texts?: {
-          _id: string;
-          slug?: string | null;
-          title?: string | null;
-          subtitle?: string | null;
-          description?: string | null;
-          vendor?: string | null;
-          brand?: string | null;
-          labels?: Array<string> | null;
-          locale: any;
-        } | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      };
+        | {
+            _id: string;
+            sequence: number;
+            status: IProductStatus;
+            tags?: Array<any> | null;
+            updated?: any | null;
+            published?: any | null;
+            proxies: Array<
+              | { __typename: 'BundleProduct' }
+              | { __typename: 'ConfigurableProduct' }
+            >;
+            texts?: {
+              _id: string;
+              slug?: string | null;
+              title?: string | null;
+              subtitle?: string | null;
+              description?: string | null;
+              vendor?: string | null;
+              brand?: string | null;
+              labels?: Array<string> | null;
+              locale: any;
+            } | null;
+            media: Array<{
+              _id: string;
+              tags?: Array<any> | null;
+              file?: { _id: string; url?: string | null } | null;
+            }>;
+          }
+        | {
+            _id: string;
+            sequence: number;
+            status: IProductStatus;
+            tags?: Array<any> | null;
+            updated?: any | null;
+            published?: any | null;
+            texts?: {
+              _id: string;
+              slug?: string | null;
+              title?: string | null;
+              subtitle?: string | null;
+              description?: string | null;
+              vendor?: string | null;
+              brand?: string | null;
+              labels?: Array<string> | null;
+              locale: any;
+            } | null;
+            media: Array<{
+              _id: string;
+              tags?: Array<any> | null;
+              file?: { _id: string; url?: string | null } | null;
+            }>;
+          }
+        | {
+            _id: string;
+            sequence: number;
+            status: IProductStatus;
+            tags?: Array<any> | null;
+            updated?: any | null;
+            published?: any | null;
+            catalogPrice?: { amount: number; currencyCode: string } | null;
+            proxies: Array<
+              | { __typename: 'BundleProduct' }
+              | { __typename: 'ConfigurableProduct' }
+            >;
+            texts?: {
+              _id: string;
+              slug?: string | null;
+              title?: string | null;
+              subtitle?: string | null;
+              description?: string | null;
+              vendor?: string | null;
+              brand?: string | null;
+              labels?: Array<string> | null;
+              locale: any;
+            } | null;
+            media: Array<{
+              _id: string;
+              tags?: Array<any> | null;
+              file?: { _id: string; url?: string | null } | null;
+            }>;
+          }
+        | {
+            _id: string;
+            sequence: number;
+            status: IProductStatus;
+            tags?: Array<any> | null;
+            updated?: any | null;
+            published?: any | null;
+            catalogPrice?: { amount: number; currencyCode: string } | null;
+            proxies: Array<
+              | { __typename: 'BundleProduct' }
+              | { __typename: 'ConfigurableProduct' }
+            >;
+            texts?: {
+              _id: string;
+              slug?: string | null;
+              title?: string | null;
+              subtitle?: string | null;
+              description?: string | null;
+              vendor?: string | null;
+              brand?: string | null;
+              labels?: Array<string> | null;
+              locale: any;
+            } | null;
+            media: Array<{
+              _id: string;
+              tags?: Array<any> | null;
+              file?: { _id: string; url?: string | null } | null;
+            }>;
+          }
+        | {
+            _id: string;
+            sequence: number;
+            status: IProductStatus;
+            tags?: Array<any> | null;
+            updated?: any | null;
+            published?: any | null;
+            texts?: {
+              _id: string;
+              slug?: string | null;
+              title?: string | null;
+              subtitle?: string | null;
+              description?: string | null;
+              vendor?: string | null;
+              brand?: string | null;
+              labels?: Array<string> | null;
+              locale: any;
+            } | null;
+            media: Array<{
+              _id: string;
+              tags?: Array<any> | null;
+              file?: { _id: string; url?: string | null } | null;
+            }>;
+          };
     }> | null;
   } | null;
 };
@@ -7182,391 +7168,391 @@ export type IOrdersWithItemsQuery = {
       };
       discounted?: Array<
         | {
-          _id: string;
-          orderDiscount: {
             _id: string;
+            orderDiscount: {
+              _id: string;
+              total: {
+                amount: number;
+                currencyCode: string;
+                isTaxable: boolean;
+                isNetPrice: boolean;
+              };
+            };
             total: {
               amount: number;
               currencyCode: string;
               isTaxable: boolean;
               isNetPrice: boolean;
             };
-          };
-          total: {
-            amount: number;
-            currencyCode: string;
-            isTaxable: boolean;
-            isNetPrice: boolean;
-          };
-        }
+          }
         | {
-          _id: string;
-          orderDiscount: {
             _id: string;
+            orderDiscount: {
+              _id: string;
+              total: {
+                amount: number;
+                currencyCode: string;
+                isTaxable: boolean;
+                isNetPrice: boolean;
+              };
+            };
             total: {
               amount: number;
               currencyCode: string;
               isTaxable: boolean;
               isNetPrice: boolean;
             };
-          };
-          total: {
-            amount: number;
-            currencyCode: string;
-            isTaxable: boolean;
-            isNetPrice: boolean;
-          };
-        }
+          }
         | {
-          _id: string;
-          orderDiscount: {
             _id: string;
+            orderDiscount: {
+              _id: string;
+              total: {
+                amount: number;
+                currencyCode: string;
+                isTaxable: boolean;
+                isNetPrice: boolean;
+              };
+            };
             total: {
               amount: number;
               currencyCode: string;
               isTaxable: boolean;
               isNetPrice: boolean;
             };
-          };
-          total: {
-            amount: number;
-            currencyCode: string;
-            isTaxable: boolean;
-            isNetPrice: boolean;
-          };
-        }
+          }
         | {
-          _id: string;
-          orderDiscount: {
             _id: string;
+            orderDiscount: {
+              _id: string;
+              total: {
+                amount: number;
+                currencyCode: string;
+                isTaxable: boolean;
+                isNetPrice: boolean;
+              };
+            };
             total: {
               amount: number;
               currencyCode: string;
               isTaxable: boolean;
               isNetPrice: boolean;
             };
-          };
-          total: {
-            amount: number;
-            currencyCode: string;
-            isTaxable: boolean;
-            isNetPrice: boolean;
-          };
-        }
+          }
       > | null;
     }> | null;
     payment?:
-    | {
-      _id: string;
-      status?: IOrderPaymentStatus | null;
-      paid?: any | null;
-      provider?: {
-        _id: string;
-        type?: IPaymentProviderType | null;
-        interface?: {
+      | {
           _id: string;
-          label?: string | null;
-          version?: string | null;
-        } | null;
-      } | null;
-      fee?: { currencyCode: string; amount: number } | null;
-    }
-    | {
-      _id: string;
-      status?: IOrderPaymentStatus | null;
-      paid?: any | null;
-      provider?: {
-        _id: string;
-        type?: IPaymentProviderType | null;
-        interface?: {
+          status?: IOrderPaymentStatus | null;
+          paid?: any | null;
+          provider?: {
+            _id: string;
+            type?: IPaymentProviderType | null;
+            interface?: {
+              _id: string;
+              label?: string | null;
+              version?: string | null;
+            } | null;
+          } | null;
+          fee?: { currencyCode: string; amount: number } | null;
+        }
+      | {
           _id: string;
-          label?: string | null;
-          version?: string | null;
-        } | null;
-      } | null;
-      fee?: { currencyCode: string; amount: number } | null;
-    }
-    | {
-      _id: string;
-      status?: IOrderPaymentStatus | null;
-      paid?: any | null;
-      provider?: {
-        _id: string;
-        type?: IPaymentProviderType | null;
-        interface?: {
+          status?: IOrderPaymentStatus | null;
+          paid?: any | null;
+          provider?: {
+            _id: string;
+            type?: IPaymentProviderType | null;
+            interface?: {
+              _id: string;
+              label?: string | null;
+              version?: string | null;
+            } | null;
+          } | null;
+          fee?: { currencyCode: string; amount: number } | null;
+        }
+      | {
           _id: string;
-          label?: string | null;
-          version?: string | null;
-        } | null;
-      } | null;
-      fee?: { currencyCode: string; amount: number } | null;
-    }
-    | null;
+          status?: IOrderPaymentStatus | null;
+          paid?: any | null;
+          provider?: {
+            _id: string;
+            type?: IPaymentProviderType | null;
+            interface?: {
+              _id: string;
+              label?: string | null;
+              version?: string | null;
+            } | null;
+          } | null;
+          fee?: { currencyCode: string; amount: number } | null;
+        }
+      | null;
     delivery?:
-    | {
-      _id: string;
-      status?: IOrderDeliveryStatus | null;
-      delivered?: any | null;
-      provider?: {
-        _id: string;
-        type?: IDeliveryProviderType | null;
-        created?: any | null;
-        updated?: any | null;
-        deleted?: any | null;
-        configuration?: any | null;
-        interface?: {
+      | {
           _id: string;
-          label?: string | null;
-          version?: string | null;
-        } | null;
-      } | null;
-      fee?: {
-        isTaxable: boolean;
-        isNetPrice: boolean;
-        amount: number;
-        currencyCode: string;
-      } | null;
-      discounts?: Array<{
-        _id: string;
-        orderDiscount: {
-          _id: string;
-          trigger: IOrderDiscountTrigger;
-          code?: string | null;
-          order: { _id: string; orderNumber?: string | null };
-          interface?: {
+          status?: IOrderDeliveryStatus | null;
+          delivered?: any | null;
+          provider?: {
             _id: string;
-            label?: string | null;
-            version?: string | null;
+            type?: IDeliveryProviderType | null;
+            created?: any | null;
+            updated?: any | null;
+            deleted?: any | null;
+            configuration?: any | null;
+            interface?: {
+              _id: string;
+              label?: string | null;
+              version?: string | null;
+            } | null;
           } | null;
-          total: {
+          fee?: {
             isTaxable: boolean;
             isNetPrice: boolean;
             amount: number;
             currencyCode: string;
-          };
-          discounted?: Array<
-            | {
-              _id: string;
-              orderDiscount: {
-                _id: string;
-                trigger: IOrderDiscountTrigger;
-                code?: string | null;
-                order: { _id: string; orderNumber?: string | null };
-                interface?: {
-                  _id: string;
-                  label?: string | null;
-                  version?: string | null;
-                } | null;
-                total: {
-                  isTaxable: boolean;
-                  isNetPrice: boolean;
-                  amount: number;
-                  currencyCode: string;
-                };
-              };
-            }
-            | {
-              _id: string;
-              orderDiscount: {
-                _id: string;
-                trigger: IOrderDiscountTrigger;
-                code?: string | null;
-                order: { _id: string; orderNumber?: string | null };
-                interface?: {
-                  _id: string;
-                  label?: string | null;
-                  version?: string | null;
-                } | null;
-                total: {
-                  isTaxable: boolean;
-                  isNetPrice: boolean;
-                  amount: number;
-                  currencyCode: string;
-                };
-              };
-            }
-            | {
-              _id: string;
-              orderDiscount: {
-                _id: string;
-                trigger: IOrderDiscountTrigger;
-                code?: string | null;
-                order: { _id: string; orderNumber?: string | null };
-                interface?: {
-                  _id: string;
-                  label?: string | null;
-                  version?: string | null;
-                } | null;
-                total: {
-                  isTaxable: boolean;
-                  isNetPrice: boolean;
-                  amount: number;
-                  currencyCode: string;
-                };
-              };
-            }
-            | {
-              _id: string;
-              orderDiscount: {
-                _id: string;
-                trigger: IOrderDiscountTrigger;
-                code?: string | null;
-                order: { _id: string; orderNumber?: string | null };
-                interface?: {
-                  _id: string;
-                  label?: string | null;
-                  version?: string | null;
-                } | null;
-                total: {
-                  isTaxable: boolean;
-                  isNetPrice: boolean;
-                  amount: number;
-                  currencyCode: string;
-                };
-              };
-            }
-          > | null;
-        };
-      }> | null;
-    }
-    | {
-      _id: string;
-      status?: IOrderDeliveryStatus | null;
-      delivered?: any | null;
-      address?: {
-        firstName?: string | null;
-        lastName?: string | null;
-        company?: string | null;
-        addressLine?: string | null;
-        addressLine2?: string | null;
-        postalCode?: string | null;
-        countryCode?: string | null;
-        regionCode?: string | null;
-        city?: string | null;
-      } | null;
-      provider?: {
-        _id: string;
-        type?: IDeliveryProviderType | null;
-        created?: any | null;
-        updated?: any | null;
-        deleted?: any | null;
-        configuration?: any | null;
-        interface?: {
-          _id: string;
-          label?: string | null;
-          version?: string | null;
-        } | null;
-      } | null;
-      fee?: {
-        isTaxable: boolean;
-        isNetPrice: boolean;
-        amount: number;
-        currencyCode: string;
-      } | null;
-      discounts?: Array<{
-        _id: string;
-        orderDiscount: {
-          _id: string;
-          trigger: IOrderDiscountTrigger;
-          code?: string | null;
-          order: { _id: string; orderNumber?: string | null };
-          interface?: {
-            _id: string;
-            label?: string | null;
-            version?: string | null;
           } | null;
-          total: {
+          discounts?: Array<{
+            _id: string;
+            orderDiscount: {
+              _id: string;
+              trigger: IOrderDiscountTrigger;
+              code?: string | null;
+              order: { _id: string; orderNumber?: string | null };
+              interface?: {
+                _id: string;
+                label?: string | null;
+                version?: string | null;
+              } | null;
+              total: {
+                isTaxable: boolean;
+                isNetPrice: boolean;
+                amount: number;
+                currencyCode: string;
+              };
+              discounted?: Array<
+                | {
+                    _id: string;
+                    orderDiscount: {
+                      _id: string;
+                      trigger: IOrderDiscountTrigger;
+                      code?: string | null;
+                      order: { _id: string; orderNumber?: string | null };
+                      interface?: {
+                        _id: string;
+                        label?: string | null;
+                        version?: string | null;
+                      } | null;
+                      total: {
+                        isTaxable: boolean;
+                        isNetPrice: boolean;
+                        amount: number;
+                        currencyCode: string;
+                      };
+                    };
+                  }
+                | {
+                    _id: string;
+                    orderDiscount: {
+                      _id: string;
+                      trigger: IOrderDiscountTrigger;
+                      code?: string | null;
+                      order: { _id: string; orderNumber?: string | null };
+                      interface?: {
+                        _id: string;
+                        label?: string | null;
+                        version?: string | null;
+                      } | null;
+                      total: {
+                        isTaxable: boolean;
+                        isNetPrice: boolean;
+                        amount: number;
+                        currencyCode: string;
+                      };
+                    };
+                  }
+                | {
+                    _id: string;
+                    orderDiscount: {
+                      _id: string;
+                      trigger: IOrderDiscountTrigger;
+                      code?: string | null;
+                      order: { _id: string; orderNumber?: string | null };
+                      interface?: {
+                        _id: string;
+                        label?: string | null;
+                        version?: string | null;
+                      } | null;
+                      total: {
+                        isTaxable: boolean;
+                        isNetPrice: boolean;
+                        amount: number;
+                        currencyCode: string;
+                      };
+                    };
+                  }
+                | {
+                    _id: string;
+                    orderDiscount: {
+                      _id: string;
+                      trigger: IOrderDiscountTrigger;
+                      code?: string | null;
+                      order: { _id: string; orderNumber?: string | null };
+                      interface?: {
+                        _id: string;
+                        label?: string | null;
+                        version?: string | null;
+                      } | null;
+                      total: {
+                        isTaxable: boolean;
+                        isNetPrice: boolean;
+                        amount: number;
+                        currencyCode: string;
+                      };
+                    };
+                  }
+              > | null;
+            };
+          }> | null;
+        }
+      | {
+          _id: string;
+          status?: IOrderDeliveryStatus | null;
+          delivered?: any | null;
+          address?: {
+            firstName?: string | null;
+            lastName?: string | null;
+            company?: string | null;
+            addressLine?: string | null;
+            addressLine2?: string | null;
+            postalCode?: string | null;
+            countryCode?: string | null;
+            regionCode?: string | null;
+            city?: string | null;
+          } | null;
+          provider?: {
+            _id: string;
+            type?: IDeliveryProviderType | null;
+            created?: any | null;
+            updated?: any | null;
+            deleted?: any | null;
+            configuration?: any | null;
+            interface?: {
+              _id: string;
+              label?: string | null;
+              version?: string | null;
+            } | null;
+          } | null;
+          fee?: {
             isTaxable: boolean;
             isNetPrice: boolean;
             amount: number;
             currencyCode: string;
-          };
-          discounted?: Array<
-            | {
+          } | null;
+          discounts?: Array<{
+            _id: string;
+            orderDiscount: {
               _id: string;
-              orderDiscount: {
+              trigger: IOrderDiscountTrigger;
+              code?: string | null;
+              order: { _id: string; orderNumber?: string | null };
+              interface?: {
                 _id: string;
-                trigger: IOrderDiscountTrigger;
-                code?: string | null;
-                order: { _id: string; orderNumber?: string | null };
-                interface?: {
-                  _id: string;
-                  label?: string | null;
-                  version?: string | null;
-                } | null;
-                total: {
-                  isTaxable: boolean;
-                  isNetPrice: boolean;
-                  amount: number;
-                  currencyCode: string;
-                };
+                label?: string | null;
+                version?: string | null;
+              } | null;
+              total: {
+                isTaxable: boolean;
+                isNetPrice: boolean;
+                amount: number;
+                currencyCode: string;
               };
-            }
-            | {
-              _id: string;
-              orderDiscount: {
-                _id: string;
-                trigger: IOrderDiscountTrigger;
-                code?: string | null;
-                order: { _id: string; orderNumber?: string | null };
-                interface?: {
-                  _id: string;
-                  label?: string | null;
-                  version?: string | null;
-                } | null;
-                total: {
-                  isTaxable: boolean;
-                  isNetPrice: boolean;
-                  amount: number;
-                  currencyCode: string;
-                };
-              };
-            }
-            | {
-              _id: string;
-              orderDiscount: {
-                _id: string;
-                trigger: IOrderDiscountTrigger;
-                code?: string | null;
-                order: { _id: string; orderNumber?: string | null };
-                interface?: {
-                  _id: string;
-                  label?: string | null;
-                  version?: string | null;
-                } | null;
-                total: {
-                  isTaxable: boolean;
-                  isNetPrice: boolean;
-                  amount: number;
-                  currencyCode: string;
-                };
-              };
-            }
-            | {
-              _id: string;
-              orderDiscount: {
-                _id: string;
-                trigger: IOrderDiscountTrigger;
-                code?: string | null;
-                order: { _id: string; orderNumber?: string | null };
-                interface?: {
-                  _id: string;
-                  label?: string | null;
-                  version?: string | null;
-                } | null;
-                total: {
-                  isTaxable: boolean;
-                  isNetPrice: boolean;
-                  amount: number;
-                  currencyCode: string;
-                };
-              };
-            }
-          > | null;
-        };
-      }> | null;
-    }
-    | null;
+              discounted?: Array<
+                | {
+                    _id: string;
+                    orderDiscount: {
+                      _id: string;
+                      trigger: IOrderDiscountTrigger;
+                      code?: string | null;
+                      order: { _id: string; orderNumber?: string | null };
+                      interface?: {
+                        _id: string;
+                        label?: string | null;
+                        version?: string | null;
+                      } | null;
+                      total: {
+                        isTaxable: boolean;
+                        isNetPrice: boolean;
+                        amount: number;
+                        currencyCode: string;
+                      };
+                    };
+                  }
+                | {
+                    _id: string;
+                    orderDiscount: {
+                      _id: string;
+                      trigger: IOrderDiscountTrigger;
+                      code?: string | null;
+                      order: { _id: string; orderNumber?: string | null };
+                      interface?: {
+                        _id: string;
+                        label?: string | null;
+                        version?: string | null;
+                      } | null;
+                      total: {
+                        isTaxable: boolean;
+                        isNetPrice: boolean;
+                        amount: number;
+                        currencyCode: string;
+                      };
+                    };
+                  }
+                | {
+                    _id: string;
+                    orderDiscount: {
+                      _id: string;
+                      trigger: IOrderDiscountTrigger;
+                      code?: string | null;
+                      order: { _id: string; orderNumber?: string | null };
+                      interface?: {
+                        _id: string;
+                        label?: string | null;
+                        version?: string | null;
+                      } | null;
+                      total: {
+                        isTaxable: boolean;
+                        isNetPrice: boolean;
+                        amount: number;
+                        currencyCode: string;
+                      };
+                    };
+                  }
+                | {
+                    _id: string;
+                    orderDiscount: {
+                      _id: string;
+                      trigger: IOrderDiscountTrigger;
+                      code?: string | null;
+                      order: { _id: string; orderNumber?: string | null };
+                      interface?: {
+                        _id: string;
+                        label?: string | null;
+                        version?: string | null;
+                      } | null;
+                      total: {
+                        isTaxable: boolean;
+                        isNetPrice: boolean;
+                        amount: number;
+                        currencyCode: string;
+                      };
+                    };
+                  }
+              > | null;
+            };
+          }> | null;
+        }
+      | null;
     contact?: {
       telNumber?: string | null;
       emailAddress?: string | null;
@@ -7598,81 +7584,81 @@ export type IOrdersWithItemsQuery = {
       _id: string;
       quantity: number;
       product:
-      | {
-        _id: string;
-        texts?: {
-          _id: string;
-          slug?: string | null;
-          brand?: string | null;
-          vendor?: string | null;
-          title?: string | null;
-          subtitle?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        texts?: {
-          _id: string;
-          slug?: string | null;
-          brand?: string | null;
-          vendor?: string | null;
-          title?: string | null;
-          subtitle?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        texts?: {
-          _id: string;
-          slug?: string | null;
-          brand?: string | null;
-          vendor?: string | null;
-          title?: string | null;
-          subtitle?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        texts?: {
-          _id: string;
-          slug?: string | null;
-          brand?: string | null;
-          vendor?: string | null;
-          title?: string | null;
-          subtitle?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        texts?: {
-          _id: string;
-          slug?: string | null;
-          brand?: string | null;
-          vendor?: string | null;
-          title?: string | null;
-          subtitle?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      };
+        | {
+            _id: string;
+            texts?: {
+              _id: string;
+              slug?: string | null;
+              brand?: string | null;
+              vendor?: string | null;
+              title?: string | null;
+              subtitle?: string | null;
+            } | null;
+            media: Array<{
+              _id: string;
+              file?: { _id: string; url?: string | null } | null;
+            }>;
+          }
+        | {
+            _id: string;
+            texts?: {
+              _id: string;
+              slug?: string | null;
+              brand?: string | null;
+              vendor?: string | null;
+              title?: string | null;
+              subtitle?: string | null;
+            } | null;
+            media: Array<{
+              _id: string;
+              file?: { _id: string; url?: string | null } | null;
+            }>;
+          }
+        | {
+            _id: string;
+            texts?: {
+              _id: string;
+              slug?: string | null;
+              brand?: string | null;
+              vendor?: string | null;
+              title?: string | null;
+              subtitle?: string | null;
+            } | null;
+            media: Array<{
+              _id: string;
+              file?: { _id: string; url?: string | null } | null;
+            }>;
+          }
+        | {
+            _id: string;
+            texts?: {
+              _id: string;
+              slug?: string | null;
+              brand?: string | null;
+              vendor?: string | null;
+              title?: string | null;
+              subtitle?: string | null;
+            } | null;
+            media: Array<{
+              _id: string;
+              file?: { _id: string; url?: string | null } | null;
+            }>;
+          }
+        | {
+            _id: string;
+            texts?: {
+              _id: string;
+              slug?: string | null;
+              brand?: string | null;
+              vendor?: string | null;
+              title?: string | null;
+              subtitle?: string | null;
+            } | null;
+            media: Array<{
+              _id: string;
+              file?: { _id: string; url?: string | null } | null;
+            }>;
+          };
       unitPrice?: {
         amount: number;
         isTaxable: boolean;
@@ -8842,391 +8828,391 @@ export type IOrderDetailFragment = {
     };
     discounted?: Array<
       | {
-        _id: string;
-        orderDiscount: {
           _id: string;
+          orderDiscount: {
+            _id: string;
+            total: {
+              amount: number;
+              currencyCode: string;
+              isTaxable: boolean;
+              isNetPrice: boolean;
+            };
+          };
           total: {
             amount: number;
             currencyCode: string;
             isTaxable: boolean;
             isNetPrice: boolean;
           };
-        };
-        total: {
-          amount: number;
-          currencyCode: string;
-          isTaxable: boolean;
-          isNetPrice: boolean;
-        };
-      }
+        }
       | {
-        _id: string;
-        orderDiscount: {
           _id: string;
+          orderDiscount: {
+            _id: string;
+            total: {
+              amount: number;
+              currencyCode: string;
+              isTaxable: boolean;
+              isNetPrice: boolean;
+            };
+          };
           total: {
             amount: number;
             currencyCode: string;
             isTaxable: boolean;
             isNetPrice: boolean;
           };
-        };
-        total: {
-          amount: number;
-          currencyCode: string;
-          isTaxable: boolean;
-          isNetPrice: boolean;
-        };
-      }
+        }
       | {
-        _id: string;
-        orderDiscount: {
           _id: string;
+          orderDiscount: {
+            _id: string;
+            total: {
+              amount: number;
+              currencyCode: string;
+              isTaxable: boolean;
+              isNetPrice: boolean;
+            };
+          };
           total: {
             amount: number;
             currencyCode: string;
             isTaxable: boolean;
             isNetPrice: boolean;
           };
-        };
-        total: {
-          amount: number;
-          currencyCode: string;
-          isTaxable: boolean;
-          isNetPrice: boolean;
-        };
-      }
+        }
       | {
-        _id: string;
-        orderDiscount: {
           _id: string;
+          orderDiscount: {
+            _id: string;
+            total: {
+              amount: number;
+              currencyCode: string;
+              isTaxable: boolean;
+              isNetPrice: boolean;
+            };
+          };
           total: {
             amount: number;
             currencyCode: string;
             isTaxable: boolean;
             isNetPrice: boolean;
           };
-        };
-        total: {
-          amount: number;
-          currencyCode: string;
-          isTaxable: boolean;
-          isNetPrice: boolean;
-        };
-      }
+        }
     > | null;
   }> | null;
   payment?:
-  | {
-    _id: string;
-    status?: IOrderPaymentStatus | null;
-    paid?: any | null;
-    provider?: {
-      _id: string;
-      type?: IPaymentProviderType | null;
-      interface?: {
+    | {
         _id: string;
-        label?: string | null;
-        version?: string | null;
-      } | null;
-    } | null;
-    fee?: { currencyCode: string; amount: number } | null;
-  }
-  | {
-    _id: string;
-    status?: IOrderPaymentStatus | null;
-    paid?: any | null;
-    provider?: {
-      _id: string;
-      type?: IPaymentProviderType | null;
-      interface?: {
+        status?: IOrderPaymentStatus | null;
+        paid?: any | null;
+        provider?: {
+          _id: string;
+          type?: IPaymentProviderType | null;
+          interface?: {
+            _id: string;
+            label?: string | null;
+            version?: string | null;
+          } | null;
+        } | null;
+        fee?: { currencyCode: string; amount: number } | null;
+      }
+    | {
         _id: string;
-        label?: string | null;
-        version?: string | null;
-      } | null;
-    } | null;
-    fee?: { currencyCode: string; amount: number } | null;
-  }
-  | {
-    _id: string;
-    status?: IOrderPaymentStatus | null;
-    paid?: any | null;
-    provider?: {
-      _id: string;
-      type?: IPaymentProviderType | null;
-      interface?: {
+        status?: IOrderPaymentStatus | null;
+        paid?: any | null;
+        provider?: {
+          _id: string;
+          type?: IPaymentProviderType | null;
+          interface?: {
+            _id: string;
+            label?: string | null;
+            version?: string | null;
+          } | null;
+        } | null;
+        fee?: { currencyCode: string; amount: number } | null;
+      }
+    | {
         _id: string;
-        label?: string | null;
-        version?: string | null;
-      } | null;
-    } | null;
-    fee?: { currencyCode: string; amount: number } | null;
-  }
-  | null;
+        status?: IOrderPaymentStatus | null;
+        paid?: any | null;
+        provider?: {
+          _id: string;
+          type?: IPaymentProviderType | null;
+          interface?: {
+            _id: string;
+            label?: string | null;
+            version?: string | null;
+          } | null;
+        } | null;
+        fee?: { currencyCode: string; amount: number } | null;
+      }
+    | null;
   delivery?:
-  | {
-    _id: string;
-    status?: IOrderDeliveryStatus | null;
-    delivered?: any | null;
-    provider?: {
-      _id: string;
-      type?: IDeliveryProviderType | null;
-      created?: any | null;
-      updated?: any | null;
-      deleted?: any | null;
-      configuration?: any | null;
-      interface?: {
+    | {
         _id: string;
-        label?: string | null;
-        version?: string | null;
-      } | null;
-    } | null;
-    fee?: {
-      isTaxable: boolean;
-      isNetPrice: boolean;
-      amount: number;
-      currencyCode: string;
-    } | null;
-    discounts?: Array<{
-      _id: string;
-      orderDiscount: {
-        _id: string;
-        trigger: IOrderDiscountTrigger;
-        code?: string | null;
-        order: { _id: string; orderNumber?: string | null };
-        interface?: {
+        status?: IOrderDeliveryStatus | null;
+        delivered?: any | null;
+        provider?: {
           _id: string;
-          label?: string | null;
-          version?: string | null;
+          type?: IDeliveryProviderType | null;
+          created?: any | null;
+          updated?: any | null;
+          deleted?: any | null;
+          configuration?: any | null;
+          interface?: {
+            _id: string;
+            label?: string | null;
+            version?: string | null;
+          } | null;
         } | null;
-        total: {
+        fee?: {
           isTaxable: boolean;
           isNetPrice: boolean;
           amount: number;
           currencyCode: string;
-        };
-        discounted?: Array<
-          | {
-            _id: string;
-            orderDiscount: {
-              _id: string;
-              trigger: IOrderDiscountTrigger;
-              code?: string | null;
-              order: { _id: string; orderNumber?: string | null };
-              interface?: {
-                _id: string;
-                label?: string | null;
-                version?: string | null;
-              } | null;
-              total: {
-                isTaxable: boolean;
-                isNetPrice: boolean;
-                amount: number;
-                currencyCode: string;
-              };
-            };
-          }
-          | {
-            _id: string;
-            orderDiscount: {
-              _id: string;
-              trigger: IOrderDiscountTrigger;
-              code?: string | null;
-              order: { _id: string; orderNumber?: string | null };
-              interface?: {
-                _id: string;
-                label?: string | null;
-                version?: string | null;
-              } | null;
-              total: {
-                isTaxable: boolean;
-                isNetPrice: boolean;
-                amount: number;
-                currencyCode: string;
-              };
-            };
-          }
-          | {
-            _id: string;
-            orderDiscount: {
-              _id: string;
-              trigger: IOrderDiscountTrigger;
-              code?: string | null;
-              order: { _id: string; orderNumber?: string | null };
-              interface?: {
-                _id: string;
-                label?: string | null;
-                version?: string | null;
-              } | null;
-              total: {
-                isTaxable: boolean;
-                isNetPrice: boolean;
-                amount: number;
-                currencyCode: string;
-              };
-            };
-          }
-          | {
-            _id: string;
-            orderDiscount: {
-              _id: string;
-              trigger: IOrderDiscountTrigger;
-              code?: string | null;
-              order: { _id: string; orderNumber?: string | null };
-              interface?: {
-                _id: string;
-                label?: string | null;
-                version?: string | null;
-              } | null;
-              total: {
-                isTaxable: boolean;
-                isNetPrice: boolean;
-                amount: number;
-                currencyCode: string;
-              };
-            };
-          }
-        > | null;
-      };
-    }> | null;
-  }
-  | {
-    _id: string;
-    status?: IOrderDeliveryStatus | null;
-    delivered?: any | null;
-    address?: {
-      firstName?: string | null;
-      lastName?: string | null;
-      company?: string | null;
-      addressLine?: string | null;
-      addressLine2?: string | null;
-      postalCode?: string | null;
-      countryCode?: string | null;
-      regionCode?: string | null;
-      city?: string | null;
-    } | null;
-    provider?: {
-      _id: string;
-      type?: IDeliveryProviderType | null;
-      created?: any | null;
-      updated?: any | null;
-      deleted?: any | null;
-      configuration?: any | null;
-      interface?: {
-        _id: string;
-        label?: string | null;
-        version?: string | null;
-      } | null;
-    } | null;
-    fee?: {
-      isTaxable: boolean;
-      isNetPrice: boolean;
-      amount: number;
-      currencyCode: string;
-    } | null;
-    discounts?: Array<{
-      _id: string;
-      orderDiscount: {
-        _id: string;
-        trigger: IOrderDiscountTrigger;
-        code?: string | null;
-        order: { _id: string; orderNumber?: string | null };
-        interface?: {
-          _id: string;
-          label?: string | null;
-          version?: string | null;
         } | null;
-        total: {
+        discounts?: Array<{
+          _id: string;
+          orderDiscount: {
+            _id: string;
+            trigger: IOrderDiscountTrigger;
+            code?: string | null;
+            order: { _id: string; orderNumber?: string | null };
+            interface?: {
+              _id: string;
+              label?: string | null;
+              version?: string | null;
+            } | null;
+            total: {
+              isTaxable: boolean;
+              isNetPrice: boolean;
+              amount: number;
+              currencyCode: string;
+            };
+            discounted?: Array<
+              | {
+                  _id: string;
+                  orderDiscount: {
+                    _id: string;
+                    trigger: IOrderDiscountTrigger;
+                    code?: string | null;
+                    order: { _id: string; orderNumber?: string | null };
+                    interface?: {
+                      _id: string;
+                      label?: string | null;
+                      version?: string | null;
+                    } | null;
+                    total: {
+                      isTaxable: boolean;
+                      isNetPrice: boolean;
+                      amount: number;
+                      currencyCode: string;
+                    };
+                  };
+                }
+              | {
+                  _id: string;
+                  orderDiscount: {
+                    _id: string;
+                    trigger: IOrderDiscountTrigger;
+                    code?: string | null;
+                    order: { _id: string; orderNumber?: string | null };
+                    interface?: {
+                      _id: string;
+                      label?: string | null;
+                      version?: string | null;
+                    } | null;
+                    total: {
+                      isTaxable: boolean;
+                      isNetPrice: boolean;
+                      amount: number;
+                      currencyCode: string;
+                    };
+                  };
+                }
+              | {
+                  _id: string;
+                  orderDiscount: {
+                    _id: string;
+                    trigger: IOrderDiscountTrigger;
+                    code?: string | null;
+                    order: { _id: string; orderNumber?: string | null };
+                    interface?: {
+                      _id: string;
+                      label?: string | null;
+                      version?: string | null;
+                    } | null;
+                    total: {
+                      isTaxable: boolean;
+                      isNetPrice: boolean;
+                      amount: number;
+                      currencyCode: string;
+                    };
+                  };
+                }
+              | {
+                  _id: string;
+                  orderDiscount: {
+                    _id: string;
+                    trigger: IOrderDiscountTrigger;
+                    code?: string | null;
+                    order: { _id: string; orderNumber?: string | null };
+                    interface?: {
+                      _id: string;
+                      label?: string | null;
+                      version?: string | null;
+                    } | null;
+                    total: {
+                      isTaxable: boolean;
+                      isNetPrice: boolean;
+                      amount: number;
+                      currencyCode: string;
+                    };
+                  };
+                }
+            > | null;
+          };
+        }> | null;
+      }
+    | {
+        _id: string;
+        status?: IOrderDeliveryStatus | null;
+        delivered?: any | null;
+        address?: {
+          firstName?: string | null;
+          lastName?: string | null;
+          company?: string | null;
+          addressLine?: string | null;
+          addressLine2?: string | null;
+          postalCode?: string | null;
+          countryCode?: string | null;
+          regionCode?: string | null;
+          city?: string | null;
+        } | null;
+        provider?: {
+          _id: string;
+          type?: IDeliveryProviderType | null;
+          created?: any | null;
+          updated?: any | null;
+          deleted?: any | null;
+          configuration?: any | null;
+          interface?: {
+            _id: string;
+            label?: string | null;
+            version?: string | null;
+          } | null;
+        } | null;
+        fee?: {
           isTaxable: boolean;
           isNetPrice: boolean;
           amount: number;
           currencyCode: string;
-        };
-        discounted?: Array<
-          | {
+        } | null;
+        discounts?: Array<{
+          _id: string;
+          orderDiscount: {
             _id: string;
-            orderDiscount: {
+            trigger: IOrderDiscountTrigger;
+            code?: string | null;
+            order: { _id: string; orderNumber?: string | null };
+            interface?: {
               _id: string;
-              trigger: IOrderDiscountTrigger;
-              code?: string | null;
-              order: { _id: string; orderNumber?: string | null };
-              interface?: {
-                _id: string;
-                label?: string | null;
-                version?: string | null;
-              } | null;
-              total: {
-                isTaxable: boolean;
-                isNetPrice: boolean;
-                amount: number;
-                currencyCode: string;
-              };
+              label?: string | null;
+              version?: string | null;
+            } | null;
+            total: {
+              isTaxable: boolean;
+              isNetPrice: boolean;
+              amount: number;
+              currencyCode: string;
             };
-          }
-          | {
-            _id: string;
-            orderDiscount: {
-              _id: string;
-              trigger: IOrderDiscountTrigger;
-              code?: string | null;
-              order: { _id: string; orderNumber?: string | null };
-              interface?: {
-                _id: string;
-                label?: string | null;
-                version?: string | null;
-              } | null;
-              total: {
-                isTaxable: boolean;
-                isNetPrice: boolean;
-                amount: number;
-                currencyCode: string;
-              };
-            };
-          }
-          | {
-            _id: string;
-            orderDiscount: {
-              _id: string;
-              trigger: IOrderDiscountTrigger;
-              code?: string | null;
-              order: { _id: string; orderNumber?: string | null };
-              interface?: {
-                _id: string;
-                label?: string | null;
-                version?: string | null;
-              } | null;
-              total: {
-                isTaxable: boolean;
-                isNetPrice: boolean;
-                amount: number;
-                currencyCode: string;
-              };
-            };
-          }
-          | {
-            _id: string;
-            orderDiscount: {
-              _id: string;
-              trigger: IOrderDiscountTrigger;
-              code?: string | null;
-              order: { _id: string; orderNumber?: string | null };
-              interface?: {
-                _id: string;
-                label?: string | null;
-                version?: string | null;
-              } | null;
-              total: {
-                isTaxable: boolean;
-                isNetPrice: boolean;
-                amount: number;
-                currencyCode: string;
-              };
-            };
-          }
-        > | null;
-      };
-    }> | null;
-  }
-  | null;
+            discounted?: Array<
+              | {
+                  _id: string;
+                  orderDiscount: {
+                    _id: string;
+                    trigger: IOrderDiscountTrigger;
+                    code?: string | null;
+                    order: { _id: string; orderNumber?: string | null };
+                    interface?: {
+                      _id: string;
+                      label?: string | null;
+                      version?: string | null;
+                    } | null;
+                    total: {
+                      isTaxable: boolean;
+                      isNetPrice: boolean;
+                      amount: number;
+                      currencyCode: string;
+                    };
+                  };
+                }
+              | {
+                  _id: string;
+                  orderDiscount: {
+                    _id: string;
+                    trigger: IOrderDiscountTrigger;
+                    code?: string | null;
+                    order: { _id: string; orderNumber?: string | null };
+                    interface?: {
+                      _id: string;
+                      label?: string | null;
+                      version?: string | null;
+                    } | null;
+                    total: {
+                      isTaxable: boolean;
+                      isNetPrice: boolean;
+                      amount: number;
+                      currencyCode: string;
+                    };
+                  };
+                }
+              | {
+                  _id: string;
+                  orderDiscount: {
+                    _id: string;
+                    trigger: IOrderDiscountTrigger;
+                    code?: string | null;
+                    order: { _id: string; orderNumber?: string | null };
+                    interface?: {
+                      _id: string;
+                      label?: string | null;
+                      version?: string | null;
+                    } | null;
+                    total: {
+                      isTaxable: boolean;
+                      isNetPrice: boolean;
+                      amount: number;
+                      currencyCode: string;
+                    };
+                  };
+                }
+              | {
+                  _id: string;
+                  orderDiscount: {
+                    _id: string;
+                    trigger: IOrderDiscountTrigger;
+                    code?: string | null;
+                    order: { _id: string; orderNumber?: string | null };
+                    interface?: {
+                      _id: string;
+                      label?: string | null;
+                      version?: string | null;
+                    } | null;
+                    total: {
+                      isTaxable: boolean;
+                      isNetPrice: boolean;
+                      amount: number;
+                      currencyCode: string;
+                    };
+                  };
+                }
+            > | null;
+          };
+        }> | null;
+      }
+    | null;
   contact?: { telNumber?: string | null; emailAddress?: string | null } | null;
   country?: {
     _id: string;
@@ -9251,81 +9237,81 @@ export type IOrderDetailFragment = {
     _id: string;
     quantity: number;
     product:
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        slug?: string | null;
-        brand?: string | null;
-        vendor?: string | null;
-        title?: string | null;
-        subtitle?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        slug?: string | null;
-        brand?: string | null;
-        vendor?: string | null;
-        title?: string | null;
-        subtitle?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        slug?: string | null;
-        brand?: string | null;
-        vendor?: string | null;
-        title?: string | null;
-        subtitle?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        slug?: string | null;
-        brand?: string | null;
-        vendor?: string | null;
-        title?: string | null;
-        subtitle?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        slug?: string | null;
-        brand?: string | null;
-        vendor?: string | null;
-        title?: string | null;
-        subtitle?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    };
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            slug?: string | null;
+            brand?: string | null;
+            vendor?: string | null;
+            title?: string | null;
+            subtitle?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; url?: string | null } | null;
+          }>;
+        }
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            slug?: string | null;
+            brand?: string | null;
+            vendor?: string | null;
+            title?: string | null;
+            subtitle?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; url?: string | null } | null;
+          }>;
+        }
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            slug?: string | null;
+            brand?: string | null;
+            vendor?: string | null;
+            title?: string | null;
+            subtitle?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; url?: string | null } | null;
+          }>;
+        }
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            slug?: string | null;
+            brand?: string | null;
+            vendor?: string | null;
+            title?: string | null;
+            subtitle?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; url?: string | null } | null;
+          }>;
+        }
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            slug?: string | null;
+            brand?: string | null;
+            vendor?: string | null;
+            title?: string | null;
+            subtitle?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; url?: string | null } | null;
+          }>;
+        };
     unitPrice?: {
       amount: number;
       isTaxable: boolean;
@@ -9434,391 +9420,391 @@ export type IOrderQuery = {
       };
       discounted?: Array<
         | {
-          _id: string;
-          orderDiscount: {
             _id: string;
+            orderDiscount: {
+              _id: string;
+              total: {
+                amount: number;
+                currencyCode: string;
+                isTaxable: boolean;
+                isNetPrice: boolean;
+              };
+            };
             total: {
               amount: number;
               currencyCode: string;
               isTaxable: boolean;
               isNetPrice: boolean;
             };
-          };
-          total: {
-            amount: number;
-            currencyCode: string;
-            isTaxable: boolean;
-            isNetPrice: boolean;
-          };
-        }
+          }
         | {
-          _id: string;
-          orderDiscount: {
             _id: string;
+            orderDiscount: {
+              _id: string;
+              total: {
+                amount: number;
+                currencyCode: string;
+                isTaxable: boolean;
+                isNetPrice: boolean;
+              };
+            };
             total: {
               amount: number;
               currencyCode: string;
               isTaxable: boolean;
               isNetPrice: boolean;
             };
-          };
-          total: {
-            amount: number;
-            currencyCode: string;
-            isTaxable: boolean;
-            isNetPrice: boolean;
-          };
-        }
+          }
         | {
-          _id: string;
-          orderDiscount: {
             _id: string;
+            orderDiscount: {
+              _id: string;
+              total: {
+                amount: number;
+                currencyCode: string;
+                isTaxable: boolean;
+                isNetPrice: boolean;
+              };
+            };
             total: {
               amount: number;
               currencyCode: string;
               isTaxable: boolean;
               isNetPrice: boolean;
             };
-          };
-          total: {
-            amount: number;
-            currencyCode: string;
-            isTaxable: boolean;
-            isNetPrice: boolean;
-          };
-        }
+          }
         | {
-          _id: string;
-          orderDiscount: {
             _id: string;
+            orderDiscount: {
+              _id: string;
+              total: {
+                amount: number;
+                currencyCode: string;
+                isTaxable: boolean;
+                isNetPrice: boolean;
+              };
+            };
             total: {
               amount: number;
               currencyCode: string;
               isTaxable: boolean;
               isNetPrice: boolean;
             };
-          };
-          total: {
-            amount: number;
-            currencyCode: string;
-            isTaxable: boolean;
-            isNetPrice: boolean;
-          };
-        }
+          }
       > | null;
     }> | null;
     payment?:
-    | {
-      _id: string;
-      status?: IOrderPaymentStatus | null;
-      paid?: any | null;
-      provider?: {
-        _id: string;
-        type?: IPaymentProviderType | null;
-        interface?: {
+      | {
           _id: string;
-          label?: string | null;
-          version?: string | null;
-        } | null;
-      } | null;
-      fee?: { currencyCode: string; amount: number } | null;
-    }
-    | {
-      _id: string;
-      status?: IOrderPaymentStatus | null;
-      paid?: any | null;
-      provider?: {
-        _id: string;
-        type?: IPaymentProviderType | null;
-        interface?: {
+          status?: IOrderPaymentStatus | null;
+          paid?: any | null;
+          provider?: {
+            _id: string;
+            type?: IPaymentProviderType | null;
+            interface?: {
+              _id: string;
+              label?: string | null;
+              version?: string | null;
+            } | null;
+          } | null;
+          fee?: { currencyCode: string; amount: number } | null;
+        }
+      | {
           _id: string;
-          label?: string | null;
-          version?: string | null;
-        } | null;
-      } | null;
-      fee?: { currencyCode: string; amount: number } | null;
-    }
-    | {
-      _id: string;
-      status?: IOrderPaymentStatus | null;
-      paid?: any | null;
-      provider?: {
-        _id: string;
-        type?: IPaymentProviderType | null;
-        interface?: {
+          status?: IOrderPaymentStatus | null;
+          paid?: any | null;
+          provider?: {
+            _id: string;
+            type?: IPaymentProviderType | null;
+            interface?: {
+              _id: string;
+              label?: string | null;
+              version?: string | null;
+            } | null;
+          } | null;
+          fee?: { currencyCode: string; amount: number } | null;
+        }
+      | {
           _id: string;
-          label?: string | null;
-          version?: string | null;
-        } | null;
-      } | null;
-      fee?: { currencyCode: string; amount: number } | null;
-    }
-    | null;
+          status?: IOrderPaymentStatus | null;
+          paid?: any | null;
+          provider?: {
+            _id: string;
+            type?: IPaymentProviderType | null;
+            interface?: {
+              _id: string;
+              label?: string | null;
+              version?: string | null;
+            } | null;
+          } | null;
+          fee?: { currencyCode: string; amount: number } | null;
+        }
+      | null;
     delivery?:
-    | {
-      _id: string;
-      status?: IOrderDeliveryStatus | null;
-      delivered?: any | null;
-      provider?: {
-        _id: string;
-        type?: IDeliveryProviderType | null;
-        created?: any | null;
-        updated?: any | null;
-        deleted?: any | null;
-        configuration?: any | null;
-        interface?: {
+      | {
           _id: string;
-          label?: string | null;
-          version?: string | null;
-        } | null;
-      } | null;
-      fee?: {
-        isTaxable: boolean;
-        isNetPrice: boolean;
-        amount: number;
-        currencyCode: string;
-      } | null;
-      discounts?: Array<{
-        _id: string;
-        orderDiscount: {
-          _id: string;
-          trigger: IOrderDiscountTrigger;
-          code?: string | null;
-          order: { _id: string; orderNumber?: string | null };
-          interface?: {
+          status?: IOrderDeliveryStatus | null;
+          delivered?: any | null;
+          provider?: {
             _id: string;
-            label?: string | null;
-            version?: string | null;
+            type?: IDeliveryProviderType | null;
+            created?: any | null;
+            updated?: any | null;
+            deleted?: any | null;
+            configuration?: any | null;
+            interface?: {
+              _id: string;
+              label?: string | null;
+              version?: string | null;
+            } | null;
           } | null;
-          total: {
+          fee?: {
             isTaxable: boolean;
             isNetPrice: boolean;
             amount: number;
             currencyCode: string;
-          };
-          discounted?: Array<
-            | {
-              _id: string;
-              orderDiscount: {
-                _id: string;
-                trigger: IOrderDiscountTrigger;
-                code?: string | null;
-                order: { _id: string; orderNumber?: string | null };
-                interface?: {
-                  _id: string;
-                  label?: string | null;
-                  version?: string | null;
-                } | null;
-                total: {
-                  isTaxable: boolean;
-                  isNetPrice: boolean;
-                  amount: number;
-                  currencyCode: string;
-                };
-              };
-            }
-            | {
-              _id: string;
-              orderDiscount: {
-                _id: string;
-                trigger: IOrderDiscountTrigger;
-                code?: string | null;
-                order: { _id: string; orderNumber?: string | null };
-                interface?: {
-                  _id: string;
-                  label?: string | null;
-                  version?: string | null;
-                } | null;
-                total: {
-                  isTaxable: boolean;
-                  isNetPrice: boolean;
-                  amount: number;
-                  currencyCode: string;
-                };
-              };
-            }
-            | {
-              _id: string;
-              orderDiscount: {
-                _id: string;
-                trigger: IOrderDiscountTrigger;
-                code?: string | null;
-                order: { _id: string; orderNumber?: string | null };
-                interface?: {
-                  _id: string;
-                  label?: string | null;
-                  version?: string | null;
-                } | null;
-                total: {
-                  isTaxable: boolean;
-                  isNetPrice: boolean;
-                  amount: number;
-                  currencyCode: string;
-                };
-              };
-            }
-            | {
-              _id: string;
-              orderDiscount: {
-                _id: string;
-                trigger: IOrderDiscountTrigger;
-                code?: string | null;
-                order: { _id: string; orderNumber?: string | null };
-                interface?: {
-                  _id: string;
-                  label?: string | null;
-                  version?: string | null;
-                } | null;
-                total: {
-                  isTaxable: boolean;
-                  isNetPrice: boolean;
-                  amount: number;
-                  currencyCode: string;
-                };
-              };
-            }
-          > | null;
-        };
-      }> | null;
-    }
-    | {
-      _id: string;
-      status?: IOrderDeliveryStatus | null;
-      delivered?: any | null;
-      address?: {
-        firstName?: string | null;
-        lastName?: string | null;
-        company?: string | null;
-        addressLine?: string | null;
-        addressLine2?: string | null;
-        postalCode?: string | null;
-        countryCode?: string | null;
-        regionCode?: string | null;
-        city?: string | null;
-      } | null;
-      provider?: {
-        _id: string;
-        type?: IDeliveryProviderType | null;
-        created?: any | null;
-        updated?: any | null;
-        deleted?: any | null;
-        configuration?: any | null;
-        interface?: {
-          _id: string;
-          label?: string | null;
-          version?: string | null;
-        } | null;
-      } | null;
-      fee?: {
-        isTaxable: boolean;
-        isNetPrice: boolean;
-        amount: number;
-        currencyCode: string;
-      } | null;
-      discounts?: Array<{
-        _id: string;
-        orderDiscount: {
-          _id: string;
-          trigger: IOrderDiscountTrigger;
-          code?: string | null;
-          order: { _id: string; orderNumber?: string | null };
-          interface?: {
-            _id: string;
-            label?: string | null;
-            version?: string | null;
           } | null;
-          total: {
+          discounts?: Array<{
+            _id: string;
+            orderDiscount: {
+              _id: string;
+              trigger: IOrderDiscountTrigger;
+              code?: string | null;
+              order: { _id: string; orderNumber?: string | null };
+              interface?: {
+                _id: string;
+                label?: string | null;
+                version?: string | null;
+              } | null;
+              total: {
+                isTaxable: boolean;
+                isNetPrice: boolean;
+                amount: number;
+                currencyCode: string;
+              };
+              discounted?: Array<
+                | {
+                    _id: string;
+                    orderDiscount: {
+                      _id: string;
+                      trigger: IOrderDiscountTrigger;
+                      code?: string | null;
+                      order: { _id: string; orderNumber?: string | null };
+                      interface?: {
+                        _id: string;
+                        label?: string | null;
+                        version?: string | null;
+                      } | null;
+                      total: {
+                        isTaxable: boolean;
+                        isNetPrice: boolean;
+                        amount: number;
+                        currencyCode: string;
+                      };
+                    };
+                  }
+                | {
+                    _id: string;
+                    orderDiscount: {
+                      _id: string;
+                      trigger: IOrderDiscountTrigger;
+                      code?: string | null;
+                      order: { _id: string; orderNumber?: string | null };
+                      interface?: {
+                        _id: string;
+                        label?: string | null;
+                        version?: string | null;
+                      } | null;
+                      total: {
+                        isTaxable: boolean;
+                        isNetPrice: boolean;
+                        amount: number;
+                        currencyCode: string;
+                      };
+                    };
+                  }
+                | {
+                    _id: string;
+                    orderDiscount: {
+                      _id: string;
+                      trigger: IOrderDiscountTrigger;
+                      code?: string | null;
+                      order: { _id: string; orderNumber?: string | null };
+                      interface?: {
+                        _id: string;
+                        label?: string | null;
+                        version?: string | null;
+                      } | null;
+                      total: {
+                        isTaxable: boolean;
+                        isNetPrice: boolean;
+                        amount: number;
+                        currencyCode: string;
+                      };
+                    };
+                  }
+                | {
+                    _id: string;
+                    orderDiscount: {
+                      _id: string;
+                      trigger: IOrderDiscountTrigger;
+                      code?: string | null;
+                      order: { _id: string; orderNumber?: string | null };
+                      interface?: {
+                        _id: string;
+                        label?: string | null;
+                        version?: string | null;
+                      } | null;
+                      total: {
+                        isTaxable: boolean;
+                        isNetPrice: boolean;
+                        amount: number;
+                        currencyCode: string;
+                      };
+                    };
+                  }
+              > | null;
+            };
+          }> | null;
+        }
+      | {
+          _id: string;
+          status?: IOrderDeliveryStatus | null;
+          delivered?: any | null;
+          address?: {
+            firstName?: string | null;
+            lastName?: string | null;
+            company?: string | null;
+            addressLine?: string | null;
+            addressLine2?: string | null;
+            postalCode?: string | null;
+            countryCode?: string | null;
+            regionCode?: string | null;
+            city?: string | null;
+          } | null;
+          provider?: {
+            _id: string;
+            type?: IDeliveryProviderType | null;
+            created?: any | null;
+            updated?: any | null;
+            deleted?: any | null;
+            configuration?: any | null;
+            interface?: {
+              _id: string;
+              label?: string | null;
+              version?: string | null;
+            } | null;
+          } | null;
+          fee?: {
             isTaxable: boolean;
             isNetPrice: boolean;
             amount: number;
             currencyCode: string;
-          };
-          discounted?: Array<
-            | {
+          } | null;
+          discounts?: Array<{
+            _id: string;
+            orderDiscount: {
               _id: string;
-              orderDiscount: {
+              trigger: IOrderDiscountTrigger;
+              code?: string | null;
+              order: { _id: string; orderNumber?: string | null };
+              interface?: {
                 _id: string;
-                trigger: IOrderDiscountTrigger;
-                code?: string | null;
-                order: { _id: string; orderNumber?: string | null };
-                interface?: {
-                  _id: string;
-                  label?: string | null;
-                  version?: string | null;
-                } | null;
-                total: {
-                  isTaxable: boolean;
-                  isNetPrice: boolean;
-                  amount: number;
-                  currencyCode: string;
-                };
+                label?: string | null;
+                version?: string | null;
+              } | null;
+              total: {
+                isTaxable: boolean;
+                isNetPrice: boolean;
+                amount: number;
+                currencyCode: string;
               };
-            }
-            | {
-              _id: string;
-              orderDiscount: {
-                _id: string;
-                trigger: IOrderDiscountTrigger;
-                code?: string | null;
-                order: { _id: string; orderNumber?: string | null };
-                interface?: {
-                  _id: string;
-                  label?: string | null;
-                  version?: string | null;
-                } | null;
-                total: {
-                  isTaxable: boolean;
-                  isNetPrice: boolean;
-                  amount: number;
-                  currencyCode: string;
-                };
-              };
-            }
-            | {
-              _id: string;
-              orderDiscount: {
-                _id: string;
-                trigger: IOrderDiscountTrigger;
-                code?: string | null;
-                order: { _id: string; orderNumber?: string | null };
-                interface?: {
-                  _id: string;
-                  label?: string | null;
-                  version?: string | null;
-                } | null;
-                total: {
-                  isTaxable: boolean;
-                  isNetPrice: boolean;
-                  amount: number;
-                  currencyCode: string;
-                };
-              };
-            }
-            | {
-              _id: string;
-              orderDiscount: {
-                _id: string;
-                trigger: IOrderDiscountTrigger;
-                code?: string | null;
-                order: { _id: string; orderNumber?: string | null };
-                interface?: {
-                  _id: string;
-                  label?: string | null;
-                  version?: string | null;
-                } | null;
-                total: {
-                  isTaxable: boolean;
-                  isNetPrice: boolean;
-                  amount: number;
-                  currencyCode: string;
-                };
-              };
-            }
-          > | null;
-        };
-      }> | null;
-    }
-    | null;
+              discounted?: Array<
+                | {
+                    _id: string;
+                    orderDiscount: {
+                      _id: string;
+                      trigger: IOrderDiscountTrigger;
+                      code?: string | null;
+                      order: { _id: string; orderNumber?: string | null };
+                      interface?: {
+                        _id: string;
+                        label?: string | null;
+                        version?: string | null;
+                      } | null;
+                      total: {
+                        isTaxable: boolean;
+                        isNetPrice: boolean;
+                        amount: number;
+                        currencyCode: string;
+                      };
+                    };
+                  }
+                | {
+                    _id: string;
+                    orderDiscount: {
+                      _id: string;
+                      trigger: IOrderDiscountTrigger;
+                      code?: string | null;
+                      order: { _id: string; orderNumber?: string | null };
+                      interface?: {
+                        _id: string;
+                        label?: string | null;
+                        version?: string | null;
+                      } | null;
+                      total: {
+                        isTaxable: boolean;
+                        isNetPrice: boolean;
+                        amount: number;
+                        currencyCode: string;
+                      };
+                    };
+                  }
+                | {
+                    _id: string;
+                    orderDiscount: {
+                      _id: string;
+                      trigger: IOrderDiscountTrigger;
+                      code?: string | null;
+                      order: { _id: string; orderNumber?: string | null };
+                      interface?: {
+                        _id: string;
+                        label?: string | null;
+                        version?: string | null;
+                      } | null;
+                      total: {
+                        isTaxable: boolean;
+                        isNetPrice: boolean;
+                        amount: number;
+                        currencyCode: string;
+                      };
+                    };
+                  }
+                | {
+                    _id: string;
+                    orderDiscount: {
+                      _id: string;
+                      trigger: IOrderDiscountTrigger;
+                      code?: string | null;
+                      order: { _id: string; orderNumber?: string | null };
+                      interface?: {
+                        _id: string;
+                        label?: string | null;
+                        version?: string | null;
+                      } | null;
+                      total: {
+                        isTaxable: boolean;
+                        isNetPrice: boolean;
+                        amount: number;
+                        currencyCode: string;
+                      };
+                    };
+                  }
+              > | null;
+            };
+          }> | null;
+        }
+      | null;
     contact?: {
       telNumber?: string | null;
       emailAddress?: string | null;
@@ -9850,81 +9836,81 @@ export type IOrderQuery = {
       _id: string;
       quantity: number;
       product:
-      | {
-        _id: string;
-        texts?: {
-          _id: string;
-          slug?: string | null;
-          brand?: string | null;
-          vendor?: string | null;
-          title?: string | null;
-          subtitle?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        texts?: {
-          _id: string;
-          slug?: string | null;
-          brand?: string | null;
-          vendor?: string | null;
-          title?: string | null;
-          subtitle?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        texts?: {
-          _id: string;
-          slug?: string | null;
-          brand?: string | null;
-          vendor?: string | null;
-          title?: string | null;
-          subtitle?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        texts?: {
-          _id: string;
-          slug?: string | null;
-          brand?: string | null;
-          vendor?: string | null;
-          title?: string | null;
-          subtitle?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        texts?: {
-          _id: string;
-          slug?: string | null;
-          brand?: string | null;
-          vendor?: string | null;
-          title?: string | null;
-          subtitle?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      };
+        | {
+            _id: string;
+            texts?: {
+              _id: string;
+              slug?: string | null;
+              brand?: string | null;
+              vendor?: string | null;
+              title?: string | null;
+              subtitle?: string | null;
+            } | null;
+            media: Array<{
+              _id: string;
+              file?: { _id: string; url?: string | null } | null;
+            }>;
+          }
+        | {
+            _id: string;
+            texts?: {
+              _id: string;
+              slug?: string | null;
+              brand?: string | null;
+              vendor?: string | null;
+              title?: string | null;
+              subtitle?: string | null;
+            } | null;
+            media: Array<{
+              _id: string;
+              file?: { _id: string; url?: string | null } | null;
+            }>;
+          }
+        | {
+            _id: string;
+            texts?: {
+              _id: string;
+              slug?: string | null;
+              brand?: string | null;
+              vendor?: string | null;
+              title?: string | null;
+              subtitle?: string | null;
+            } | null;
+            media: Array<{
+              _id: string;
+              file?: { _id: string; url?: string | null } | null;
+            }>;
+          }
+        | {
+            _id: string;
+            texts?: {
+              _id: string;
+              slug?: string | null;
+              brand?: string | null;
+              vendor?: string | null;
+              title?: string | null;
+              subtitle?: string | null;
+            } | null;
+            media: Array<{
+              _id: string;
+              file?: { _id: string; url?: string | null } | null;
+            }>;
+          }
+        | {
+            _id: string;
+            texts?: {
+              _id: string;
+              slug?: string | null;
+              brand?: string | null;
+              vendor?: string | null;
+              title?: string | null;
+              subtitle?: string | null;
+            } | null;
+            media: Array<{
+              _id: string;
+              file?: { _id: string; url?: string | null } | null;
+            }>;
+          };
       unitPrice?: {
         amount: number;
         isTaxable: boolean;
@@ -10229,66 +10215,66 @@ export type IProductReviewDetailFragment = {
     avatar?: { _id: string; url?: string | null } | null;
   };
   product:
-  | {
-    _id: string;
-    texts?: {
-      _id: string;
-      title?: string | null;
-      subtitle?: string | null;
-    } | null;
-    media: Array<{
-      _id: string;
-      file?: { _id: string; url?: string | null } | null;
-    }>;
-  }
-  | {
-    _id: string;
-    texts?: {
-      _id: string;
-      title?: string | null;
-      subtitle?: string | null;
-    } | null;
-    media: Array<{
-      _id: string;
-      file?: { _id: string; url?: string | null } | null;
-    }>;
-  }
-  | {
-    _id: string;
-    texts?: {
-      _id: string;
-      title?: string | null;
-      subtitle?: string | null;
-    } | null;
-    media: Array<{
-      _id: string;
-      file?: { _id: string; url?: string | null } | null;
-    }>;
-  }
-  | {
-    _id: string;
-    texts?: {
-      _id: string;
-      title?: string | null;
-      subtitle?: string | null;
-    } | null;
-    media: Array<{
-      _id: string;
-      file?: { _id: string; url?: string | null } | null;
-    }>;
-  }
-  | {
-    _id: string;
-    texts?: {
-      _id: string;
-      title?: string | null;
-      subtitle?: string | null;
-    } | null;
-    media: Array<{
-      _id: string;
-      file?: { _id: string; url?: string | null } | null;
-    }>;
-  };
+    | {
+        _id: string;
+        texts?: {
+          _id: string;
+          title?: string | null;
+          subtitle?: string | null;
+        } | null;
+        media: Array<{
+          _id: string;
+          file?: { _id: string; url?: string | null } | null;
+        }>;
+      }
+    | {
+        _id: string;
+        texts?: {
+          _id: string;
+          title?: string | null;
+          subtitle?: string | null;
+        } | null;
+        media: Array<{
+          _id: string;
+          file?: { _id: string; url?: string | null } | null;
+        }>;
+      }
+    | {
+        _id: string;
+        texts?: {
+          _id: string;
+          title?: string | null;
+          subtitle?: string | null;
+        } | null;
+        media: Array<{
+          _id: string;
+          file?: { _id: string; url?: string | null } | null;
+        }>;
+      }
+    | {
+        _id: string;
+        texts?: {
+          _id: string;
+          title?: string | null;
+          subtitle?: string | null;
+        } | null;
+        media: Array<{
+          _id: string;
+          file?: { _id: string; url?: string | null } | null;
+        }>;
+      }
+    | {
+        _id: string;
+        texts?: {
+          _id: string;
+          title?: string | null;
+          subtitle?: string | null;
+        } | null;
+        media: Array<{
+          _id: string;
+          file?: { _id: string; url?: string | null } | null;
+        }>;
+      };
   ownVotes: Array<{ timestamp: any; type: IProductReviewVoteType }>;
 };
 
@@ -10329,66 +10315,66 @@ export type IAddProductReviewVoteMutation = {
       avatar?: { _id: string; url?: string | null } | null;
     };
     product:
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        title?: string | null;
-        subtitle?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        title?: string | null;
-        subtitle?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        title?: string | null;
-        subtitle?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        title?: string | null;
-        subtitle?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        title?: string | null;
-        subtitle?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    };
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            title?: string | null;
+            subtitle?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; url?: string | null } | null;
+          }>;
+        }
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            title?: string | null;
+            subtitle?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; url?: string | null } | null;
+          }>;
+        }
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            title?: string | null;
+            subtitle?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; url?: string | null } | null;
+          }>;
+        }
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            title?: string | null;
+            subtitle?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; url?: string | null } | null;
+          }>;
+        }
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            title?: string | null;
+            subtitle?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; url?: string | null } | null;
+          }>;
+        };
     ownVotes: Array<{ timestamp: any; type: IProductReviewVoteType }>;
   };
 };
@@ -10425,66 +10411,66 @@ export type ICreateProductReviewMutation = {
       avatar?: { _id: string; url?: string | null } | null;
     };
     product:
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        title?: string | null;
-        subtitle?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        title?: string | null;
-        subtitle?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        title?: string | null;
-        subtitle?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        title?: string | null;
-        subtitle?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        title?: string | null;
-        subtitle?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    };
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            title?: string | null;
+            subtitle?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; url?: string | null } | null;
+          }>;
+        }
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            title?: string | null;
+            subtitle?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; url?: string | null } | null;
+          }>;
+        }
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            title?: string | null;
+            subtitle?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; url?: string | null } | null;
+          }>;
+        }
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            title?: string | null;
+            subtitle?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; url?: string | null } | null;
+          }>;
+        }
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            title?: string | null;
+            subtitle?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; url?: string | null } | null;
+          }>;
+        };
     ownVotes: Array<{ timestamp: any; type: IProductReviewVoteType }>;
   };
 };
@@ -10499,467 +10485,467 @@ export type IProductReviewByProductQueryVariables = Exact<{
 
 export type IProductReviewByProductQuery = {
   product?:
-  | {
-    _id: string;
-    reviewsCount: number;
-    reviews: Array<{
-      _id: string;
-      created?: any | null;
-      updated?: any | null;
-      deleted?: any | null;
-      rating?: number | null;
-      title?: string | null;
-      review?: string | null;
-      upVote?: number | null;
-      downVote?: number | null;
-      voteReport?: number | null;
-      author: {
+    | {
         _id: string;
-        username?: string | null;
-        name: string;
-        isGuest: boolean;
-        profile?: {
-          displayName?: string | null;
-          address?: {
-            firstName?: string | null;
-            lastName?: string | null;
-          } | null;
-        } | null;
-        avatar?: { _id: string; url?: string | null } | null;
-      };
-      product:
-      | {
-        _id: string;
-        texts?: {
+        reviewsCount: number;
+        reviews: Array<{
           _id: string;
+          created?: any | null;
+          updated?: any | null;
+          deleted?: any | null;
+          rating?: number | null;
           title?: string | null;
-          subtitle?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
+          review?: string | null;
+          upVote?: number | null;
+          downVote?: number | null;
+          voteReport?: number | null;
+          author: {
+            _id: string;
+            username?: string | null;
+            name: string;
+            isGuest: boolean;
+            profile?: {
+              displayName?: string | null;
+              address?: {
+                firstName?: string | null;
+                lastName?: string | null;
+              } | null;
+            } | null;
+            avatar?: { _id: string; url?: string | null } | null;
+          };
+          product:
+            | {
+                _id: string;
+                texts?: {
+                  _id: string;
+                  title?: string | null;
+                  subtitle?: string | null;
+                } | null;
+                media: Array<{
+                  _id: string;
+                  file?: { _id: string; url?: string | null } | null;
+                }>;
+              }
+            | {
+                _id: string;
+                texts?: {
+                  _id: string;
+                  title?: string | null;
+                  subtitle?: string | null;
+                } | null;
+                media: Array<{
+                  _id: string;
+                  file?: { _id: string; url?: string | null } | null;
+                }>;
+              }
+            | {
+                _id: string;
+                texts?: {
+                  _id: string;
+                  title?: string | null;
+                  subtitle?: string | null;
+                } | null;
+                media: Array<{
+                  _id: string;
+                  file?: { _id: string; url?: string | null } | null;
+                }>;
+              }
+            | {
+                _id: string;
+                texts?: {
+                  _id: string;
+                  title?: string | null;
+                  subtitle?: string | null;
+                } | null;
+                media: Array<{
+                  _id: string;
+                  file?: { _id: string; url?: string | null } | null;
+                }>;
+              }
+            | {
+                _id: string;
+                texts?: {
+                  _id: string;
+                  title?: string | null;
+                  subtitle?: string | null;
+                } | null;
+                media: Array<{
+                  _id: string;
+                  file?: { _id: string; url?: string | null } | null;
+                }>;
+              };
+          ownVotes: Array<{ timestamp: any; type: IProductReviewVoteType }>;
         }>;
       }
-      | {
+    | {
         _id: string;
-        texts?: {
+        reviewsCount: number;
+        reviews: Array<{
           _id: string;
+          created?: any | null;
+          updated?: any | null;
+          deleted?: any | null;
+          rating?: number | null;
           title?: string | null;
-          subtitle?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
+          review?: string | null;
+          upVote?: number | null;
+          downVote?: number | null;
+          voteReport?: number | null;
+          author: {
+            _id: string;
+            username?: string | null;
+            name: string;
+            isGuest: boolean;
+            profile?: {
+              displayName?: string | null;
+              address?: {
+                firstName?: string | null;
+                lastName?: string | null;
+              } | null;
+            } | null;
+            avatar?: { _id: string; url?: string | null } | null;
+          };
+          product:
+            | {
+                _id: string;
+                texts?: {
+                  _id: string;
+                  title?: string | null;
+                  subtitle?: string | null;
+                } | null;
+                media: Array<{
+                  _id: string;
+                  file?: { _id: string; url?: string | null } | null;
+                }>;
+              }
+            | {
+                _id: string;
+                texts?: {
+                  _id: string;
+                  title?: string | null;
+                  subtitle?: string | null;
+                } | null;
+                media: Array<{
+                  _id: string;
+                  file?: { _id: string; url?: string | null } | null;
+                }>;
+              }
+            | {
+                _id: string;
+                texts?: {
+                  _id: string;
+                  title?: string | null;
+                  subtitle?: string | null;
+                } | null;
+                media: Array<{
+                  _id: string;
+                  file?: { _id: string; url?: string | null } | null;
+                }>;
+              }
+            | {
+                _id: string;
+                texts?: {
+                  _id: string;
+                  title?: string | null;
+                  subtitle?: string | null;
+                } | null;
+                media: Array<{
+                  _id: string;
+                  file?: { _id: string; url?: string | null } | null;
+                }>;
+              }
+            | {
+                _id: string;
+                texts?: {
+                  _id: string;
+                  title?: string | null;
+                  subtitle?: string | null;
+                } | null;
+                media: Array<{
+                  _id: string;
+                  file?: { _id: string; url?: string | null } | null;
+                }>;
+              };
+          ownVotes: Array<{ timestamp: any; type: IProductReviewVoteType }>;
         }>;
       }
-      | {
+    | {
         _id: string;
-        texts?: {
+        reviewsCount: number;
+        reviews: Array<{
           _id: string;
+          created?: any | null;
+          updated?: any | null;
+          deleted?: any | null;
+          rating?: number | null;
           title?: string | null;
-          subtitle?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
+          review?: string | null;
+          upVote?: number | null;
+          downVote?: number | null;
+          voteReport?: number | null;
+          author: {
+            _id: string;
+            username?: string | null;
+            name: string;
+            isGuest: boolean;
+            profile?: {
+              displayName?: string | null;
+              address?: {
+                firstName?: string | null;
+                lastName?: string | null;
+              } | null;
+            } | null;
+            avatar?: { _id: string; url?: string | null } | null;
+          };
+          product:
+            | {
+                _id: string;
+                texts?: {
+                  _id: string;
+                  title?: string | null;
+                  subtitle?: string | null;
+                } | null;
+                media: Array<{
+                  _id: string;
+                  file?: { _id: string; url?: string | null } | null;
+                }>;
+              }
+            | {
+                _id: string;
+                texts?: {
+                  _id: string;
+                  title?: string | null;
+                  subtitle?: string | null;
+                } | null;
+                media: Array<{
+                  _id: string;
+                  file?: { _id: string; url?: string | null } | null;
+                }>;
+              }
+            | {
+                _id: string;
+                texts?: {
+                  _id: string;
+                  title?: string | null;
+                  subtitle?: string | null;
+                } | null;
+                media: Array<{
+                  _id: string;
+                  file?: { _id: string; url?: string | null } | null;
+                }>;
+              }
+            | {
+                _id: string;
+                texts?: {
+                  _id: string;
+                  title?: string | null;
+                  subtitle?: string | null;
+                } | null;
+                media: Array<{
+                  _id: string;
+                  file?: { _id: string; url?: string | null } | null;
+                }>;
+              }
+            | {
+                _id: string;
+                texts?: {
+                  _id: string;
+                  title?: string | null;
+                  subtitle?: string | null;
+                } | null;
+                media: Array<{
+                  _id: string;
+                  file?: { _id: string; url?: string | null } | null;
+                }>;
+              };
+          ownVotes: Array<{ timestamp: any; type: IProductReviewVoteType }>;
         }>;
       }
-      | {
+    | {
         _id: string;
-        texts?: {
+        reviewsCount: number;
+        reviews: Array<{
           _id: string;
+          created?: any | null;
+          updated?: any | null;
+          deleted?: any | null;
+          rating?: number | null;
           title?: string | null;
-          subtitle?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
+          review?: string | null;
+          upVote?: number | null;
+          downVote?: number | null;
+          voteReport?: number | null;
+          author: {
+            _id: string;
+            username?: string | null;
+            name: string;
+            isGuest: boolean;
+            profile?: {
+              displayName?: string | null;
+              address?: {
+                firstName?: string | null;
+                lastName?: string | null;
+              } | null;
+            } | null;
+            avatar?: { _id: string; url?: string | null } | null;
+          };
+          product:
+            | {
+                _id: string;
+                texts?: {
+                  _id: string;
+                  title?: string | null;
+                  subtitle?: string | null;
+                } | null;
+                media: Array<{
+                  _id: string;
+                  file?: { _id: string; url?: string | null } | null;
+                }>;
+              }
+            | {
+                _id: string;
+                texts?: {
+                  _id: string;
+                  title?: string | null;
+                  subtitle?: string | null;
+                } | null;
+                media: Array<{
+                  _id: string;
+                  file?: { _id: string; url?: string | null } | null;
+                }>;
+              }
+            | {
+                _id: string;
+                texts?: {
+                  _id: string;
+                  title?: string | null;
+                  subtitle?: string | null;
+                } | null;
+                media: Array<{
+                  _id: string;
+                  file?: { _id: string; url?: string | null } | null;
+                }>;
+              }
+            | {
+                _id: string;
+                texts?: {
+                  _id: string;
+                  title?: string | null;
+                  subtitle?: string | null;
+                } | null;
+                media: Array<{
+                  _id: string;
+                  file?: { _id: string; url?: string | null } | null;
+                }>;
+              }
+            | {
+                _id: string;
+                texts?: {
+                  _id: string;
+                  title?: string | null;
+                  subtitle?: string | null;
+                } | null;
+                media: Array<{
+                  _id: string;
+                  file?: { _id: string; url?: string | null } | null;
+                }>;
+              };
+          ownVotes: Array<{ timestamp: any; type: IProductReviewVoteType }>;
         }>;
       }
-      | {
+    | {
         _id: string;
-        texts?: {
+        reviewsCount: number;
+        reviews: Array<{
           _id: string;
+          created?: any | null;
+          updated?: any | null;
+          deleted?: any | null;
+          rating?: number | null;
           title?: string | null;
-          subtitle?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      };
-      ownVotes: Array<{ timestamp: any; type: IProductReviewVoteType }>;
-    }>;
-  }
-  | {
-    _id: string;
-    reviewsCount: number;
-    reviews: Array<{
-      _id: string;
-      created?: any | null;
-      updated?: any | null;
-      deleted?: any | null;
-      rating?: number | null;
-      title?: string | null;
-      review?: string | null;
-      upVote?: number | null;
-      downVote?: number | null;
-      voteReport?: number | null;
-      author: {
-        _id: string;
-        username?: string | null;
-        name: string;
-        isGuest: boolean;
-        profile?: {
-          displayName?: string | null;
-          address?: {
-            firstName?: string | null;
-            lastName?: string | null;
-          } | null;
-        } | null;
-        avatar?: { _id: string; url?: string | null } | null;
-      };
-      product:
-      | {
-        _id: string;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          subtitle?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          subtitle?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          subtitle?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          subtitle?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          subtitle?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      };
-      ownVotes: Array<{ timestamp: any; type: IProductReviewVoteType }>;
-    }>;
-  }
-  | {
-    _id: string;
-    reviewsCount: number;
-    reviews: Array<{
-      _id: string;
-      created?: any | null;
-      updated?: any | null;
-      deleted?: any | null;
-      rating?: number | null;
-      title?: string | null;
-      review?: string | null;
-      upVote?: number | null;
-      downVote?: number | null;
-      voteReport?: number | null;
-      author: {
-        _id: string;
-        username?: string | null;
-        name: string;
-        isGuest: boolean;
-        profile?: {
-          displayName?: string | null;
-          address?: {
-            firstName?: string | null;
-            lastName?: string | null;
-          } | null;
-        } | null;
-        avatar?: { _id: string; url?: string | null } | null;
-      };
-      product:
-      | {
-        _id: string;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          subtitle?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
+          review?: string | null;
+          upVote?: number | null;
+          downVote?: number | null;
+          voteReport?: number | null;
+          author: {
+            _id: string;
+            username?: string | null;
+            name: string;
+            isGuest: boolean;
+            profile?: {
+              displayName?: string | null;
+              address?: {
+                firstName?: string | null;
+                lastName?: string | null;
+              } | null;
+            } | null;
+            avatar?: { _id: string; url?: string | null } | null;
+          };
+          product:
+            | {
+                _id: string;
+                texts?: {
+                  _id: string;
+                  title?: string | null;
+                  subtitle?: string | null;
+                } | null;
+                media: Array<{
+                  _id: string;
+                  file?: { _id: string; url?: string | null } | null;
+                }>;
+              }
+            | {
+                _id: string;
+                texts?: {
+                  _id: string;
+                  title?: string | null;
+                  subtitle?: string | null;
+                } | null;
+                media: Array<{
+                  _id: string;
+                  file?: { _id: string; url?: string | null } | null;
+                }>;
+              }
+            | {
+                _id: string;
+                texts?: {
+                  _id: string;
+                  title?: string | null;
+                  subtitle?: string | null;
+                } | null;
+                media: Array<{
+                  _id: string;
+                  file?: { _id: string; url?: string | null } | null;
+                }>;
+              }
+            | {
+                _id: string;
+                texts?: {
+                  _id: string;
+                  title?: string | null;
+                  subtitle?: string | null;
+                } | null;
+                media: Array<{
+                  _id: string;
+                  file?: { _id: string; url?: string | null } | null;
+                }>;
+              }
+            | {
+                _id: string;
+                texts?: {
+                  _id: string;
+                  title?: string | null;
+                  subtitle?: string | null;
+                } | null;
+                media: Array<{
+                  _id: string;
+                  file?: { _id: string; url?: string | null } | null;
+                }>;
+              };
+          ownVotes: Array<{ timestamp: any; type: IProductReviewVoteType }>;
         }>;
       }
-      | {
-        _id: string;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          subtitle?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          subtitle?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          subtitle?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          subtitle?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      };
-      ownVotes: Array<{ timestamp: any; type: IProductReviewVoteType }>;
-    }>;
-  }
-  | {
-    _id: string;
-    reviewsCount: number;
-    reviews: Array<{
-      _id: string;
-      created?: any | null;
-      updated?: any | null;
-      deleted?: any | null;
-      rating?: number | null;
-      title?: string | null;
-      review?: string | null;
-      upVote?: number | null;
-      downVote?: number | null;
-      voteReport?: number | null;
-      author: {
-        _id: string;
-        username?: string | null;
-        name: string;
-        isGuest: boolean;
-        profile?: {
-          displayName?: string | null;
-          address?: {
-            firstName?: string | null;
-            lastName?: string | null;
-          } | null;
-        } | null;
-        avatar?: { _id: string; url?: string | null } | null;
-      };
-      product:
-      | {
-        _id: string;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          subtitle?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          subtitle?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          subtitle?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          subtitle?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          subtitle?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      };
-      ownVotes: Array<{ timestamp: any; type: IProductReviewVoteType }>;
-    }>;
-  }
-  | {
-    _id: string;
-    reviewsCount: number;
-    reviews: Array<{
-      _id: string;
-      created?: any | null;
-      updated?: any | null;
-      deleted?: any | null;
-      rating?: number | null;
-      title?: string | null;
-      review?: string | null;
-      upVote?: number | null;
-      downVote?: number | null;
-      voteReport?: number | null;
-      author: {
-        _id: string;
-        username?: string | null;
-        name: string;
-        isGuest: boolean;
-        profile?: {
-          displayName?: string | null;
-          address?: {
-            firstName?: string | null;
-            lastName?: string | null;
-          } | null;
-        } | null;
-        avatar?: { _id: string; url?: string | null } | null;
-      };
-      product:
-      | {
-        _id: string;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          subtitle?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          subtitle?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          subtitle?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          subtitle?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          subtitle?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      };
-      ownVotes: Array<{ timestamp: any; type: IProductReviewVoteType }>;
-    }>;
-  }
-  | null;
+    | null;
 };
 
 export type IRemoveProductReviewMutationVariables = Exact<{
@@ -11002,66 +10988,66 @@ export type IRemoveProductReviewVoteMutation = {
       avatar?: { _id: string; url?: string | null } | null;
     };
     product:
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        title?: string | null;
-        subtitle?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        title?: string | null;
-        subtitle?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        title?: string | null;
-        subtitle?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        title?: string | null;
-        subtitle?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        title?: string | null;
-        subtitle?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    };
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            title?: string | null;
+            subtitle?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; url?: string | null } | null;
+          }>;
+        }
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            title?: string | null;
+            subtitle?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; url?: string | null } | null;
+          }>;
+        }
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            title?: string | null;
+            subtitle?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; url?: string | null } | null;
+          }>;
+        }
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            title?: string | null;
+            subtitle?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; url?: string | null } | null;
+          }>;
+        }
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            title?: string | null;
+            subtitle?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; url?: string | null } | null;
+          }>;
+        };
     ownVotes: Array<{ timestamp: any; type: IProductReviewVoteType }>;
   };
 };
@@ -11089,140 +11075,140 @@ export type IUserProductReviewsQuery = {
       downVote?: number | null;
       voteReport?: number | null;
       product:
-      | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          subtitle?: string | null;
-          slug?: string | null;
-          description?: string | null;
-          vendor?: string | null;
-          brand?: string | null;
-          labels?: Array<string> | null;
-          locale: any;
-        } | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-        proxies: Array<
-          | { __typename: 'BundleProduct' }
-          | { __typename: 'ConfigurableProduct' }
-        >;
-      }
-      | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          subtitle?: string | null;
-          slug?: string | null;
-          description?: string | null;
-          vendor?: string | null;
-          brand?: string | null;
-          labels?: Array<string> | null;
-          locale: any;
-        } | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          subtitle?: string | null;
-          slug?: string | null;
-          description?: string | null;
-          vendor?: string | null;
-          brand?: string | null;
-          labels?: Array<string> | null;
-          locale: any;
-        } | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-        catalogPrice?: { amount: number; currencyCode: string } | null;
-        proxies: Array<
-          | { __typename: 'BundleProduct' }
-          | { __typename: 'ConfigurableProduct' }
-        >;
-      }
-      | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          subtitle?: string | null;
-          slug?: string | null;
-          description?: string | null;
-          vendor?: string | null;
-          brand?: string | null;
-          labels?: Array<string> | null;
-          locale: any;
-        } | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-        catalogPrice?: { amount: number; currencyCode: string } | null;
-        proxies: Array<
-          | { __typename: 'BundleProduct' }
-          | { __typename: 'ConfigurableProduct' }
-        >;
-      }
-      | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          subtitle?: string | null;
-          slug?: string | null;
-          description?: string | null;
-          vendor?: string | null;
-          brand?: string | null;
-          labels?: Array<string> | null;
-          locale: any;
-        } | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      };
+        | {
+            _id: string;
+            sequence: number;
+            status: IProductStatus;
+            tags?: Array<any> | null;
+            updated?: any | null;
+            published?: any | null;
+            texts?: {
+              _id: string;
+              title?: string | null;
+              subtitle?: string | null;
+              slug?: string | null;
+              description?: string | null;
+              vendor?: string | null;
+              brand?: string | null;
+              labels?: Array<string> | null;
+              locale: any;
+            } | null;
+            media: Array<{
+              _id: string;
+              tags?: Array<any> | null;
+              file?: { _id: string; url?: string | null } | null;
+            }>;
+            proxies: Array<
+              | { __typename: 'BundleProduct' }
+              | { __typename: 'ConfigurableProduct' }
+            >;
+          }
+        | {
+            _id: string;
+            sequence: number;
+            status: IProductStatus;
+            tags?: Array<any> | null;
+            updated?: any | null;
+            published?: any | null;
+            texts?: {
+              _id: string;
+              title?: string | null;
+              subtitle?: string | null;
+              slug?: string | null;
+              description?: string | null;
+              vendor?: string | null;
+              brand?: string | null;
+              labels?: Array<string> | null;
+              locale: any;
+            } | null;
+            media: Array<{
+              _id: string;
+              tags?: Array<any> | null;
+              file?: { _id: string; url?: string | null } | null;
+            }>;
+          }
+        | {
+            _id: string;
+            sequence: number;
+            status: IProductStatus;
+            tags?: Array<any> | null;
+            updated?: any | null;
+            published?: any | null;
+            texts?: {
+              _id: string;
+              title?: string | null;
+              subtitle?: string | null;
+              slug?: string | null;
+              description?: string | null;
+              vendor?: string | null;
+              brand?: string | null;
+              labels?: Array<string> | null;
+              locale: any;
+            } | null;
+            media: Array<{
+              _id: string;
+              tags?: Array<any> | null;
+              file?: { _id: string; url?: string | null } | null;
+            }>;
+            catalogPrice?: { amount: number; currencyCode: string } | null;
+            proxies: Array<
+              | { __typename: 'BundleProduct' }
+              | { __typename: 'ConfigurableProduct' }
+            >;
+          }
+        | {
+            _id: string;
+            sequence: number;
+            status: IProductStatus;
+            tags?: Array<any> | null;
+            updated?: any | null;
+            published?: any | null;
+            texts?: {
+              _id: string;
+              title?: string | null;
+              subtitle?: string | null;
+              slug?: string | null;
+              description?: string | null;
+              vendor?: string | null;
+              brand?: string | null;
+              labels?: Array<string> | null;
+              locale: any;
+            } | null;
+            media: Array<{
+              _id: string;
+              tags?: Array<any> | null;
+              file?: { _id: string; url?: string | null } | null;
+            }>;
+            catalogPrice?: { amount: number; currencyCode: string } | null;
+            proxies: Array<
+              | { __typename: 'BundleProduct' }
+              | { __typename: 'ConfigurableProduct' }
+            >;
+          }
+        | {
+            _id: string;
+            sequence: number;
+            status: IProductStatus;
+            tags?: Array<any> | null;
+            updated?: any | null;
+            published?: any | null;
+            texts?: {
+              _id: string;
+              title?: string | null;
+              subtitle?: string | null;
+              slug?: string | null;
+              description?: string | null;
+              vendor?: string | null;
+              brand?: string | null;
+              labels?: Array<string> | null;
+              locale: any;
+            } | null;
+            media: Array<{
+              _id: string;
+              tags?: Array<any> | null;
+              file?: { _id: string; url?: string | null } | null;
+            }>;
+          };
       author: {
         _id: string;
         username?: string | null;
@@ -11262,52 +11248,52 @@ export type IProductAssignmentFragment = {
     } | null;
   }> | null;
   product?:
-  | {
-    _id: string;
-    texts?: {
-      _id: string;
-      title?: string | null;
-      slug?: string | null;
-      subtitle?: string | null;
-    } | null;
-  }
-  | {
-    _id: string;
-    texts?: {
-      _id: string;
-      title?: string | null;
-      slug?: string | null;
-      subtitle?: string | null;
-    } | null;
-  }
-  | {
-    _id: string;
-    texts?: {
-      _id: string;
-      title?: string | null;
-      slug?: string | null;
-      subtitle?: string | null;
-    } | null;
-  }
-  | {
-    _id: string;
-    texts?: {
-      _id: string;
-      title?: string | null;
-      slug?: string | null;
-      subtitle?: string | null;
-    } | null;
-  }
-  | {
-    _id: string;
-    texts?: {
-      _id: string;
-      title?: string | null;
-      slug?: string | null;
-      subtitle?: string | null;
-    } | null;
-  }
-  | null;
+    | {
+        _id: string;
+        texts?: {
+          _id: string;
+          title?: string | null;
+          slug?: string | null;
+          subtitle?: string | null;
+        } | null;
+      }
+    | {
+        _id: string;
+        texts?: {
+          _id: string;
+          title?: string | null;
+          slug?: string | null;
+          subtitle?: string | null;
+        } | null;
+      }
+    | {
+        _id: string;
+        texts?: {
+          _id: string;
+          title?: string | null;
+          slug?: string | null;
+          subtitle?: string | null;
+        } | null;
+      }
+    | {
+        _id: string;
+        texts?: {
+          _id: string;
+          title?: string | null;
+          slug?: string | null;
+          subtitle?: string | null;
+        } | null;
+      }
+    | {
+        _id: string;
+        texts?: {
+          _id: string;
+          title?: string | null;
+          slug?: string | null;
+          subtitle?: string | null;
+        } | null;
+      }
+    | null;
 };
 
 export type IProductAssignmentFragmentVariables = Exact<{
@@ -11502,40 +11488,40 @@ type IProductDetailFragment_BundleProduct = {
   }>;
   siblings: Array<
     | {
-      _id: string;
-      media: Array<{
         _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
+        media: Array<{
+          _id: string;
+          file?: { _id: string; url?: string | null } | null;
+        }>;
+      }
     | {
-      _id: string;
-      media: Array<{
         _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
+        media: Array<{
+          _id: string;
+          file?: { _id: string; url?: string | null } | null;
+        }>;
+      }
     | {
-      _id: string;
-      media: Array<{
         _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
+        media: Array<{
+          _id: string;
+          file?: { _id: string; url?: string | null } | null;
+        }>;
+      }
     | {
-      _id: string;
-      media: Array<{
         _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
+        media: Array<{
+          _id: string;
+          file?: { _id: string; url?: string | null } | null;
+        }>;
+      }
     | {
-      _id: string;
-      media: Array<{
         _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
+        media: Array<{
+          _id: string;
+          file?: { _id: string; url?: string | null } | null;
+        }>;
+      }
   >;
 };
 
@@ -11564,40 +11550,40 @@ type IProductDetailFragment_ConfigurableProduct = {
   }>;
   siblings: Array<
     | {
-      _id: string;
-      media: Array<{
         _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
+        media: Array<{
+          _id: string;
+          file?: { _id: string; url?: string | null } | null;
+        }>;
+      }
     | {
-      _id: string;
-      media: Array<{
         _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
+        media: Array<{
+          _id: string;
+          file?: { _id: string; url?: string | null } | null;
+        }>;
+      }
     | {
-      _id: string;
-      media: Array<{
         _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
+        media: Array<{
+          _id: string;
+          file?: { _id: string; url?: string | null } | null;
+        }>;
+      }
     | {
-      _id: string;
-      media: Array<{
         _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
+        media: Array<{
+          _id: string;
+          file?: { _id: string; url?: string | null } | null;
+        }>;
+      }
     | {
-      _id: string;
-      media: Array<{
         _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
+        media: Array<{
+          _id: string;
+          file?: { _id: string; url?: string | null } | null;
+        }>;
+      }
   >;
 };
 
@@ -11626,40 +11612,40 @@ type IProductDetailFragment_PlanProduct = {
   }>;
   siblings: Array<
     | {
-      _id: string;
-      media: Array<{
         _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
+        media: Array<{
+          _id: string;
+          file?: { _id: string; url?: string | null } | null;
+        }>;
+      }
     | {
-      _id: string;
-      media: Array<{
         _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
+        media: Array<{
+          _id: string;
+          file?: { _id: string; url?: string | null } | null;
+        }>;
+      }
     | {
-      _id: string;
-      media: Array<{
         _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
+        media: Array<{
+          _id: string;
+          file?: { _id: string; url?: string | null } | null;
+        }>;
+      }
     | {
-      _id: string;
-      media: Array<{
         _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
+        media: Array<{
+          _id: string;
+          file?: { _id: string; url?: string | null } | null;
+        }>;
+      }
     | {
-      _id: string;
-      media: Array<{
         _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
+        media: Array<{
+          _id: string;
+          file?: { _id: string; url?: string | null } | null;
+        }>;
+      }
   >;
 };
 
@@ -11688,40 +11674,40 @@ type IProductDetailFragment_SimpleProduct = {
   }>;
   siblings: Array<
     | {
-      _id: string;
-      media: Array<{
         _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
+        media: Array<{
+          _id: string;
+          file?: { _id: string; url?: string | null } | null;
+        }>;
+      }
     | {
-      _id: string;
-      media: Array<{
         _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
+        media: Array<{
+          _id: string;
+          file?: { _id: string; url?: string | null } | null;
+        }>;
+      }
     | {
-      _id: string;
-      media: Array<{
         _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
+        media: Array<{
+          _id: string;
+          file?: { _id: string; url?: string | null } | null;
+        }>;
+      }
     | {
-      _id: string;
-      media: Array<{
         _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
+        media: Array<{
+          _id: string;
+          file?: { _id: string; url?: string | null } | null;
+        }>;
+      }
     | {
-      _id: string;
-      media: Array<{
         _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
+        media: Array<{
+          _id: string;
+          file?: { _id: string; url?: string | null } | null;
+        }>;
+      }
   >;
 };
 
@@ -11750,40 +11736,40 @@ type IProductDetailFragment_TokenizedProduct = {
   }>;
   siblings: Array<
     | {
-      _id: string;
-      media: Array<{
         _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
+        media: Array<{
+          _id: string;
+          file?: { _id: string; url?: string | null } | null;
+        }>;
+      }
     | {
-      _id: string;
-      media: Array<{
         _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
+        media: Array<{
+          _id: string;
+          file?: { _id: string; url?: string | null } | null;
+        }>;
+      }
     | {
-      _id: string;
-      media: Array<{
         _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
+        media: Array<{
+          _id: string;
+          file?: { _id: string; url?: string | null } | null;
+        }>;
+      }
     | {
-      _id: string;
-      media: Array<{
         _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
+        media: Array<{
+          _id: string;
+          file?: { _id: string; url?: string | null } | null;
+        }>;
+      }
     | {
-      _id: string;
-      media: Array<{
         _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
+        media: Array<{
+          _id: string;
+          file?: { _id: string; url?: string | null } | null;
+        }>;
+      }
   >;
 };
 
@@ -11916,11 +11902,11 @@ export type IAddProductAssignmentMutationVariables = Exact<{
 
 export type IAddProductAssignmentMutation = {
   addProductAssignment:
-  | { _id: string }
-  | { _id: string }
-  | { _id: string }
-  | { _id: string }
-  | { _id: string };
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
+    | { _id: string };
 };
 
 export type IPrepareProductMediaUploadMutationVariables = Exact<{
@@ -11939,366 +11925,366 @@ export type ICreateProductMutationVariables = Exact<{
 
 export type ICreateProductMutation = {
   createProduct:
-  | {
-    _id: string;
-    sequence: number;
-    status: IProductStatus;
-    created?: any | null;
-    tags?: Array<any> | null;
-    updated?: any | null;
-    published?: any | null;
-    texts?: {
-      _id: string;
-      locale: any;
-      slug?: string | null;
-      title?: string | null;
-      subtitle?: string | null;
-      description?: string | null;
-      vendor?: string | null;
-      brand?: string | null;
-      labels?: Array<string> | null;
-    } | null;
-    media: Array<{
-      _id: string;
-      tags?: Array<any> | null;
-      file?: { _id: string; url?: string | null } | null;
-    }>;
-    reviews: Array<{
-      _id: string;
-      created?: any | null;
-      rating?: number | null;
-      title?: string | null;
-      review?: string | null;
-      voteCount?: number | null;
-      author: { _id: string; username?: string | null; isGuest: boolean };
-      ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-    }>;
-    siblings: Array<
-      | {
+    | {
         _id: string;
+        sequence: number;
+        status: IProductStatus;
+        created?: any | null;
+        tags?: Array<any> | null;
+        updated?: any | null;
+        published?: any | null;
+        texts?: {
+          _id: string;
+          locale: any;
+          slug?: string | null;
+          title?: string | null;
+          subtitle?: string | null;
+          description?: string | null;
+          vendor?: string | null;
+          brand?: string | null;
+          labels?: Array<string> | null;
+        } | null;
         media: Array<{
           _id: string;
+          tags?: Array<any> | null;
           file?: { _id: string; url?: string | null } | null;
         }>;
+        reviews: Array<{
+          _id: string;
+          created?: any | null;
+          rating?: number | null;
+          title?: string | null;
+          review?: string | null;
+          voteCount?: number | null;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
+        }>;
+        siblings: Array<
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+        >;
       }
-      | {
+    | {
         _id: string;
+        sequence: number;
+        status: IProductStatus;
+        created?: any | null;
+        tags?: Array<any> | null;
+        updated?: any | null;
+        published?: any | null;
+        texts?: {
+          _id: string;
+          locale: any;
+          slug?: string | null;
+          title?: string | null;
+          subtitle?: string | null;
+          description?: string | null;
+          vendor?: string | null;
+          brand?: string | null;
+          labels?: Array<string> | null;
+        } | null;
         media: Array<{
           _id: string;
+          tags?: Array<any> | null;
           file?: { _id: string; url?: string | null } | null;
         }>;
+        reviews: Array<{
+          _id: string;
+          created?: any | null;
+          rating?: number | null;
+          title?: string | null;
+          review?: string | null;
+          voteCount?: number | null;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
+        }>;
+        siblings: Array<
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+        >;
       }
-      | {
+    | {
         _id: string;
+        sequence: number;
+        status: IProductStatus;
+        created?: any | null;
+        tags?: Array<any> | null;
+        updated?: any | null;
+        published?: any | null;
+        texts?: {
+          _id: string;
+          locale: any;
+          slug?: string | null;
+          title?: string | null;
+          subtitle?: string | null;
+          description?: string | null;
+          vendor?: string | null;
+          brand?: string | null;
+          labels?: Array<string> | null;
+        } | null;
         media: Array<{
           _id: string;
+          tags?: Array<any> | null;
           file?: { _id: string; url?: string | null } | null;
         }>;
+        reviews: Array<{
+          _id: string;
+          created?: any | null;
+          rating?: number | null;
+          title?: string | null;
+          review?: string | null;
+          voteCount?: number | null;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
+        }>;
+        siblings: Array<
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+        >;
       }
-      | {
+    | {
         _id: string;
+        sequence: number;
+        status: IProductStatus;
+        created?: any | null;
+        tags?: Array<any> | null;
+        updated?: any | null;
+        published?: any | null;
+        texts?: {
+          _id: string;
+          locale: any;
+          slug?: string | null;
+          title?: string | null;
+          subtitle?: string | null;
+          description?: string | null;
+          vendor?: string | null;
+          brand?: string | null;
+          labels?: Array<string> | null;
+        } | null;
         media: Array<{
           _id: string;
+          tags?: Array<any> | null;
           file?: { _id: string; url?: string | null } | null;
         }>;
+        reviews: Array<{
+          _id: string;
+          created?: any | null;
+          rating?: number | null;
+          title?: string | null;
+          review?: string | null;
+          voteCount?: number | null;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
+        }>;
+        siblings: Array<
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+        >;
       }
-      | {
+    | {
         _id: string;
+        sequence: number;
+        status: IProductStatus;
+        created?: any | null;
+        tags?: Array<any> | null;
+        updated?: any | null;
+        published?: any | null;
+        texts?: {
+          _id: string;
+          locale: any;
+          slug?: string | null;
+          title?: string | null;
+          subtitle?: string | null;
+          description?: string | null;
+          vendor?: string | null;
+          brand?: string | null;
+          labels?: Array<string> | null;
+        } | null;
         media: Array<{
           _id: string;
+          tags?: Array<any> | null;
           file?: { _id: string; url?: string | null } | null;
         }>;
-      }
-    >;
-  }
-  | {
-    _id: string;
-    sequence: number;
-    status: IProductStatus;
-    created?: any | null;
-    tags?: Array<any> | null;
-    updated?: any | null;
-    published?: any | null;
-    texts?: {
-      _id: string;
-      locale: any;
-      slug?: string | null;
-      title?: string | null;
-      subtitle?: string | null;
-      description?: string | null;
-      vendor?: string | null;
-      brand?: string | null;
-      labels?: Array<string> | null;
-    } | null;
-    media: Array<{
-      _id: string;
-      tags?: Array<any> | null;
-      file?: { _id: string; url?: string | null } | null;
-    }>;
-    reviews: Array<{
-      _id: string;
-      created?: any | null;
-      rating?: number | null;
-      title?: string | null;
-      review?: string | null;
-      voteCount?: number | null;
-      author: { _id: string; username?: string | null; isGuest: boolean };
-      ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-    }>;
-    siblings: Array<
-      | {
-        _id: string;
-        media: Array<{
+        reviews: Array<{
           _id: string;
-          file?: { _id: string; url?: string | null } | null;
+          created?: any | null;
+          rating?: number | null;
+          title?: string | null;
+          review?: string | null;
+          voteCount?: number | null;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
         }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-    >;
-  }
-  | {
-    _id: string;
-    sequence: number;
-    status: IProductStatus;
-    created?: any | null;
-    tags?: Array<any> | null;
-    updated?: any | null;
-    published?: any | null;
-    texts?: {
-      _id: string;
-      locale: any;
-      slug?: string | null;
-      title?: string | null;
-      subtitle?: string | null;
-      description?: string | null;
-      vendor?: string | null;
-      brand?: string | null;
-      labels?: Array<string> | null;
-    } | null;
-    media: Array<{
-      _id: string;
-      tags?: Array<any> | null;
-      file?: { _id: string; url?: string | null } | null;
-    }>;
-    reviews: Array<{
-      _id: string;
-      created?: any | null;
-      rating?: number | null;
-      title?: string | null;
-      review?: string | null;
-      voteCount?: number | null;
-      author: { _id: string; username?: string | null; isGuest: boolean };
-      ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-    }>;
-    siblings: Array<
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-    >;
-  }
-  | {
-    _id: string;
-    sequence: number;
-    status: IProductStatus;
-    created?: any | null;
-    tags?: Array<any> | null;
-    updated?: any | null;
-    published?: any | null;
-    texts?: {
-      _id: string;
-      locale: any;
-      slug?: string | null;
-      title?: string | null;
-      subtitle?: string | null;
-      description?: string | null;
-      vendor?: string | null;
-      brand?: string | null;
-      labels?: Array<string> | null;
-    } | null;
-    media: Array<{
-      _id: string;
-      tags?: Array<any> | null;
-      file?: { _id: string; url?: string | null } | null;
-    }>;
-    reviews: Array<{
-      _id: string;
-      created?: any | null;
-      rating?: number | null;
-      title?: string | null;
-      review?: string | null;
-      voteCount?: number | null;
-      author: { _id: string; username?: string | null; isGuest: boolean };
-      ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-    }>;
-    siblings: Array<
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-    >;
-  }
-  | {
-    _id: string;
-    sequence: number;
-    status: IProductStatus;
-    created?: any | null;
-    tags?: Array<any> | null;
-    updated?: any | null;
-    published?: any | null;
-    texts?: {
-      _id: string;
-      locale: any;
-      slug?: string | null;
-      title?: string | null;
-      subtitle?: string | null;
-      description?: string | null;
-      vendor?: string | null;
-      brand?: string | null;
-      labels?: Array<string> | null;
-    } | null;
-    media: Array<{
-      _id: string;
-      tags?: Array<any> | null;
-      file?: { _id: string; url?: string | null } | null;
-    }>;
-    reviews: Array<{
-      _id: string;
-      created?: any | null;
-      rating?: number | null;
-      title?: string | null;
-      review?: string | null;
-      voteCount?: number | null;
-      author: { _id: string; username?: string | null; isGuest: boolean };
-      ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-    }>;
-    siblings: Array<
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-    >;
-  };
+        siblings: Array<
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+        >;
+      };
 };
 
 export type ICreateProductBundleItemMutationVariables = Exact<{
@@ -12308,11 +12294,11 @@ export type ICreateProductBundleItemMutationVariables = Exact<{
 
 export type ICreateProductBundleItemMutation = {
   createProductBundleItem:
-  | { _id: string }
-  | { _id: string }
-  | { _id: string }
-  | { _id: string }
-  | { _id: string };
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
+    | { _id: string };
 };
 
 export type ICreateProductVariationMutationVariables = Exact<{
@@ -12365,354 +12351,354 @@ export type IProductQueryVariables = Exact<{
 
 export type IProductQuery = {
   product?:
-  | {
-    _id: string;
-    sequence: number;
-    status: IProductStatus;
-    created?: any | null;
-    tags?: Array<any> | null;
-    updated?: any | null;
-    published?: any | null;
-    texts?: {
-      _id: string;
-      title?: string | null;
-      subtitle?: string | null;
-      description?: string | null;
-    } | null;
-    proxies: Array<
-      | { __typename: 'BundleProduct' }
-      | { __typename: 'ConfigurableProduct' }
-    >;
-    media: Array<{
-      _id: string;
-      tags?: Array<any> | null;
-      file?: { _id: string; url?: string | null } | null;
-    }>;
-    reviews: Array<{
-      _id: string;
-      created?: any | null;
-      rating?: number | null;
-      title?: string | null;
-      review?: string | null;
-      voteCount?: number | null;
-      author: { _id: string; username?: string | null; isGuest: boolean };
-      ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-    }>;
-    siblings: Array<
-      | {
+    | {
         _id: string;
+        sequence: number;
+        status: IProductStatus;
+        created?: any | null;
+        tags?: Array<any> | null;
+        updated?: any | null;
+        published?: any | null;
+        texts?: {
+          _id: string;
+          title?: string | null;
+          subtitle?: string | null;
+          description?: string | null;
+        } | null;
+        proxies: Array<
+          | { __typename: 'BundleProduct' }
+          | { __typename: 'ConfigurableProduct' }
+        >;
         media: Array<{
           _id: string;
+          tags?: Array<any> | null;
           file?: { _id: string; url?: string | null } | null;
         }>;
+        reviews: Array<{
+          _id: string;
+          created?: any | null;
+          rating?: number | null;
+          title?: string | null;
+          review?: string | null;
+          voteCount?: number | null;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
+        }>;
+        siblings: Array<
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+        >;
       }
-      | {
+    | {
         _id: string;
+        sequence: number;
+        status: IProductStatus;
+        created?: any | null;
+        tags?: Array<any> | null;
+        updated?: any | null;
+        published?: any | null;
+        texts?: {
+          _id: string;
+          title?: string | null;
+          subtitle?: string | null;
+          description?: string | null;
+        } | null;
         media: Array<{
           _id: string;
+          tags?: Array<any> | null;
           file?: { _id: string; url?: string | null } | null;
         }>;
+        reviews: Array<{
+          _id: string;
+          created?: any | null;
+          rating?: number | null;
+          title?: string | null;
+          review?: string | null;
+          voteCount?: number | null;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
+        }>;
+        siblings: Array<
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+        >;
       }
-      | {
+    | {
         _id: string;
+        sequence: number;
+        status: IProductStatus;
+        created?: any | null;
+        tags?: Array<any> | null;
+        updated?: any | null;
+        published?: any | null;
+        texts?: {
+          _id: string;
+          title?: string | null;
+          subtitle?: string | null;
+          description?: string | null;
+        } | null;
+        proxies: Array<
+          | { __typename: 'BundleProduct' }
+          | { __typename: 'ConfigurableProduct' }
+        >;
         media: Array<{
           _id: string;
+          tags?: Array<any> | null;
           file?: { _id: string; url?: string | null } | null;
         }>;
+        reviews: Array<{
+          _id: string;
+          created?: any | null;
+          rating?: number | null;
+          title?: string | null;
+          review?: string | null;
+          voteCount?: number | null;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
+        }>;
+        siblings: Array<
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+        >;
       }
-      | {
+    | {
         _id: string;
+        sequence: number;
+        status: IProductStatus;
+        created?: any | null;
+        tags?: Array<any> | null;
+        updated?: any | null;
+        published?: any | null;
+        texts?: {
+          _id: string;
+          title?: string | null;
+          subtitle?: string | null;
+          description?: string | null;
+        } | null;
+        proxies: Array<
+          | { __typename: 'BundleProduct' }
+          | { __typename: 'ConfigurableProduct' }
+        >;
         media: Array<{
           _id: string;
+          tags?: Array<any> | null;
           file?: { _id: string; url?: string | null } | null;
         }>;
+        reviews: Array<{
+          _id: string;
+          created?: any | null;
+          rating?: number | null;
+          title?: string | null;
+          review?: string | null;
+          voteCount?: number | null;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
+        }>;
+        siblings: Array<
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+        >;
       }
-      | {
+    | {
         _id: string;
+        sequence: number;
+        status: IProductStatus;
+        created?: any | null;
+        tags?: Array<any> | null;
+        updated?: any | null;
+        published?: any | null;
+        texts?: {
+          _id: string;
+          title?: string | null;
+          subtitle?: string | null;
+          description?: string | null;
+        } | null;
         media: Array<{
           _id: string;
+          tags?: Array<any> | null;
           file?: { _id: string; url?: string | null } | null;
         }>;
-      }
-    >;
-  }
-  | {
-    _id: string;
-    sequence: number;
-    status: IProductStatus;
-    created?: any | null;
-    tags?: Array<any> | null;
-    updated?: any | null;
-    published?: any | null;
-    texts?: {
-      _id: string;
-      title?: string | null;
-      subtitle?: string | null;
-      description?: string | null;
-    } | null;
-    media: Array<{
-      _id: string;
-      tags?: Array<any> | null;
-      file?: { _id: string; url?: string | null } | null;
-    }>;
-    reviews: Array<{
-      _id: string;
-      created?: any | null;
-      rating?: number | null;
-      title?: string | null;
-      review?: string | null;
-      voteCount?: number | null;
-      author: { _id: string; username?: string | null; isGuest: boolean };
-      ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-    }>;
-    siblings: Array<
-      | {
-        _id: string;
-        media: Array<{
+        reviews: Array<{
           _id: string;
-          file?: { _id: string; url?: string | null } | null;
+          created?: any | null;
+          rating?: number | null;
+          title?: string | null;
+          review?: string | null;
+          voteCount?: number | null;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
         }>;
+        siblings: Array<
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+        >;
       }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-    >;
-  }
-  | {
-    _id: string;
-    sequence: number;
-    status: IProductStatus;
-    created?: any | null;
-    tags?: Array<any> | null;
-    updated?: any | null;
-    published?: any | null;
-    texts?: {
-      _id: string;
-      title?: string | null;
-      subtitle?: string | null;
-      description?: string | null;
-    } | null;
-    proxies: Array<
-      | { __typename: 'BundleProduct' }
-      | { __typename: 'ConfigurableProduct' }
-    >;
-    media: Array<{
-      _id: string;
-      tags?: Array<any> | null;
-      file?: { _id: string; url?: string | null } | null;
-    }>;
-    reviews: Array<{
-      _id: string;
-      created?: any | null;
-      rating?: number | null;
-      title?: string | null;
-      review?: string | null;
-      voteCount?: number | null;
-      author: { _id: string; username?: string | null; isGuest: boolean };
-      ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-    }>;
-    siblings: Array<
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-    >;
-  }
-  | {
-    _id: string;
-    sequence: number;
-    status: IProductStatus;
-    created?: any | null;
-    tags?: Array<any> | null;
-    updated?: any | null;
-    published?: any | null;
-    texts?: {
-      _id: string;
-      title?: string | null;
-      subtitle?: string | null;
-      description?: string | null;
-    } | null;
-    proxies: Array<
-      | { __typename: 'BundleProduct' }
-      | { __typename: 'ConfigurableProduct' }
-    >;
-    media: Array<{
-      _id: string;
-      tags?: Array<any> | null;
-      file?: { _id: string; url?: string | null } | null;
-    }>;
-    reviews: Array<{
-      _id: string;
-      created?: any | null;
-      rating?: number | null;
-      title?: string | null;
-      review?: string | null;
-      voteCount?: number | null;
-      author: { _id: string; username?: string | null; isGuest: boolean };
-      ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-    }>;
-    siblings: Array<
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-    >;
-  }
-  | {
-    _id: string;
-    sequence: number;
-    status: IProductStatus;
-    created?: any | null;
-    tags?: Array<any> | null;
-    updated?: any | null;
-    published?: any | null;
-    texts?: {
-      _id: string;
-      title?: string | null;
-      subtitle?: string | null;
-      description?: string | null;
-    } | null;
-    media: Array<{
-      _id: string;
-      tags?: Array<any> | null;
-      file?: { _id: string; url?: string | null } | null;
-    }>;
-    reviews: Array<{
-      _id: string;
-      created?: any | null;
-      rating?: number | null;
-      title?: string | null;
-      review?: string | null;
-      voteCount?: number | null;
-      author: { _id: string; username?: string | null; isGuest: boolean };
-      ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-    }>;
-    siblings: Array<
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-    >;
-  }
-  | null;
+    | null;
 };
 
 export type IProductAssignmentsQueryVariables = Exact<{
@@ -12722,101 +12708,101 @@ export type IProductAssignmentsQueryVariables = Exact<{
 
 export type IProductAssignmentsQuery = {
   product?:
-  | { _id: string }
-  | {
-    _id: string;
-    texts?: {
-      _id: string;
-      subtitle?: string | null;
-      slug?: string | null;
-      title?: string | null;
-    } | null;
-    variations?: Array<{
-      _id: string;
-      key?: string | null;
-      texts?: { _id: string; title?: string | null } | null;
-      options?: Array<{
+    | { _id: string }
+    | {
         _id: string;
-        value?: string | null;
-        texts?: { _id: string; title?: string | null } | null;
-      }> | null;
-    }> | null;
-    assignments: Array<{
-      _id: string;
-      vectors?: Array<{
-        _id: string;
-        option?: {
+        texts?: {
           _id: string;
-          value?: string | null;
-          texts?: {
-            _id: string;
-            title?: string | null;
-            subtitle?: string | null;
-          } | null;
+          subtitle?: string | null;
+          slug?: string | null;
+          title?: string | null;
         } | null;
-        variation?: {
+        variations?: Array<{
           _id: string;
           key?: string | null;
-          texts?: {
+          texts?: { _id: string; title?: string | null } | null;
+          options?: Array<{
             _id: string;
-            locale: any;
-            title?: string | null;
-          } | null;
-        } | null;
-      }> | null;
-      product?:
-      | {
-        _id: string;
-        texts?: {
+            value?: string | null;
+            texts?: { _id: string; title?: string | null } | null;
+          }> | null;
+        }> | null;
+        assignments: Array<{
           _id: string;
-          title?: string | null;
-          slug?: string | null;
-          subtitle?: string | null;
-        } | null;
+          vectors?: Array<{
+            _id: string;
+            option?: {
+              _id: string;
+              value?: string | null;
+              texts?: {
+                _id: string;
+                title?: string | null;
+                subtitle?: string | null;
+              } | null;
+            } | null;
+            variation?: {
+              _id: string;
+              key?: string | null;
+              texts?: {
+                _id: string;
+                locale: any;
+                title?: string | null;
+              } | null;
+            } | null;
+          }> | null;
+          product?:
+            | {
+                _id: string;
+                texts?: {
+                  _id: string;
+                  title?: string | null;
+                  slug?: string | null;
+                  subtitle?: string | null;
+                } | null;
+              }
+            | {
+                _id: string;
+                texts?: {
+                  _id: string;
+                  title?: string | null;
+                  slug?: string | null;
+                  subtitle?: string | null;
+                } | null;
+              }
+            | {
+                _id: string;
+                texts?: {
+                  _id: string;
+                  title?: string | null;
+                  slug?: string | null;
+                  subtitle?: string | null;
+                } | null;
+              }
+            | {
+                _id: string;
+                texts?: {
+                  _id: string;
+                  title?: string | null;
+                  slug?: string | null;
+                  subtitle?: string | null;
+                } | null;
+              }
+            | {
+                _id: string;
+                texts?: {
+                  _id: string;
+                  title?: string | null;
+                  slug?: string | null;
+                  subtitle?: string | null;
+                } | null;
+              }
+            | null;
+        }>;
       }
-      | {
-        _id: string;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          slug?: string | null;
-          subtitle?: string | null;
-        } | null;
-      }
-      | {
-        _id: string;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          slug?: string | null;
-          subtitle?: string | null;
-        } | null;
-      }
-      | {
-        _id: string;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          slug?: string | null;
-          subtitle?: string | null;
-        } | null;
-      }
-      | {
-        _id: string;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          slug?: string | null;
-          subtitle?: string | null;
-        } | null;
-      }
-      | null;
-    }>;
-  }
-  | { _id: string }
-  | { _id: string }
-  | { _id: string }
-  | null;
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
+    | null;
 };
 
 export type IProductBundleItemsQueryVariables = Exact<{
@@ -12826,152 +12812,152 @@ export type IProductBundleItemsQueryVariables = Exact<{
 
 export type IProductBundleItemsQuery = {
   product?:
-  | {
-    _id: string;
-    bundleItems?: Array<{
-      quantity: number;
-      product:
-      | {
+    | {
         _id: string;
-        sequence: number;
-        status: IProductStatus;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        proxies: Array<
-          | { __typename: 'BundleProduct' }
-          | { __typename: 'ConfigurableProduct' }
-        >;
-        texts?: {
-          _id: string;
-          slug?: string | null;
-          title?: string | null;
-          subtitle?: string | null;
-          description?: string | null;
-          vendor?: string | null;
-          brand?: string | null;
-          labels?: Array<string> | null;
-          locale: any;
-        } | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
+        bundleItems?: Array<{
+          quantity: number;
+          product:
+            | {
+                _id: string;
+                sequence: number;
+                status: IProductStatus;
+                tags?: Array<any> | null;
+                updated?: any | null;
+                published?: any | null;
+                proxies: Array<
+                  | { __typename: 'BundleProduct' }
+                  | { __typename: 'ConfigurableProduct' }
+                >;
+                texts?: {
+                  _id: string;
+                  slug?: string | null;
+                  title?: string | null;
+                  subtitle?: string | null;
+                  description?: string | null;
+                  vendor?: string | null;
+                  brand?: string | null;
+                  labels?: Array<string> | null;
+                  locale: any;
+                } | null;
+                media: Array<{
+                  _id: string;
+                  tags?: Array<any> | null;
+                  file?: { _id: string; url?: string | null } | null;
+                }>;
+              }
+            | {
+                _id: string;
+                sequence: number;
+                status: IProductStatus;
+                tags?: Array<any> | null;
+                updated?: any | null;
+                published?: any | null;
+                texts?: {
+                  _id: string;
+                  slug?: string | null;
+                  title?: string | null;
+                  subtitle?: string | null;
+                  description?: string | null;
+                  vendor?: string | null;
+                  brand?: string | null;
+                  labels?: Array<string> | null;
+                  locale: any;
+                } | null;
+                media: Array<{
+                  _id: string;
+                  tags?: Array<any> | null;
+                  file?: { _id: string; url?: string | null } | null;
+                }>;
+              }
+            | {
+                _id: string;
+                sequence: number;
+                status: IProductStatus;
+                tags?: Array<any> | null;
+                updated?: any | null;
+                published?: any | null;
+                catalogPrice?: { amount: number; currencyCode: string } | null;
+                proxies: Array<
+                  | { __typename: 'BundleProduct' }
+                  | { __typename: 'ConfigurableProduct' }
+                >;
+                texts?: {
+                  _id: string;
+                  slug?: string | null;
+                  title?: string | null;
+                  subtitle?: string | null;
+                  description?: string | null;
+                  vendor?: string | null;
+                  brand?: string | null;
+                  labels?: Array<string> | null;
+                  locale: any;
+                } | null;
+                media: Array<{
+                  _id: string;
+                  tags?: Array<any> | null;
+                  file?: { _id: string; url?: string | null } | null;
+                }>;
+              }
+            | {
+                _id: string;
+                sequence: number;
+                status: IProductStatus;
+                tags?: Array<any> | null;
+                updated?: any | null;
+                published?: any | null;
+                catalogPrice?: { amount: number; currencyCode: string } | null;
+                proxies: Array<
+                  | { __typename: 'BundleProduct' }
+                  | { __typename: 'ConfigurableProduct' }
+                >;
+                texts?: {
+                  _id: string;
+                  slug?: string | null;
+                  title?: string | null;
+                  subtitle?: string | null;
+                  description?: string | null;
+                  vendor?: string | null;
+                  brand?: string | null;
+                  labels?: Array<string> | null;
+                  locale: any;
+                } | null;
+                media: Array<{
+                  _id: string;
+                  tags?: Array<any> | null;
+                  file?: { _id: string; url?: string | null } | null;
+                }>;
+              }
+            | {
+                _id: string;
+                sequence: number;
+                status: IProductStatus;
+                tags?: Array<any> | null;
+                updated?: any | null;
+                published?: any | null;
+                texts?: {
+                  _id: string;
+                  slug?: string | null;
+                  title?: string | null;
+                  subtitle?: string | null;
+                  description?: string | null;
+                  vendor?: string | null;
+                  brand?: string | null;
+                  labels?: Array<string> | null;
+                  locale: any;
+                } | null;
+                media: Array<{
+                  _id: string;
+                  tags?: Array<any> | null;
+                  file?: { _id: string; url?: string | null } | null;
+                }>;
+              };
+        }> | null;
       }
-      | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        texts?: {
-          _id: string;
-          slug?: string | null;
-          title?: string | null;
-          subtitle?: string | null;
-          description?: string | null;
-          vendor?: string | null;
-          brand?: string | null;
-          labels?: Array<string> | null;
-          locale: any;
-        } | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        catalogPrice?: { amount: number; currencyCode: string } | null;
-        proxies: Array<
-          | { __typename: 'BundleProduct' }
-          | { __typename: 'ConfigurableProduct' }
-        >;
-        texts?: {
-          _id: string;
-          slug?: string | null;
-          title?: string | null;
-          subtitle?: string | null;
-          description?: string | null;
-          vendor?: string | null;
-          brand?: string | null;
-          labels?: Array<string> | null;
-          locale: any;
-        } | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        catalogPrice?: { amount: number; currencyCode: string } | null;
-        proxies: Array<
-          | { __typename: 'BundleProduct' }
-          | { __typename: 'ConfigurableProduct' }
-        >;
-        texts?: {
-          _id: string;
-          slug?: string | null;
-          title?: string | null;
-          subtitle?: string | null;
-          description?: string | null;
-          vendor?: string | null;
-          brand?: string | null;
-          labels?: Array<string> | null;
-          locale: any;
-        } | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        texts?: {
-          _id: string;
-          slug?: string | null;
-          title?: string | null;
-          subtitle?: string | null;
-          description?: string | null;
-          vendor?: string | null;
-          brand?: string | null;
-          labels?: Array<string> | null;
-          locale: any;
-        } | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      };
-    }> | null;
-  }
-  | { _id: string }
-  | { _id: string }
-  | { _id: string }
-  | { _id: string }
-  | null;
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
+    | null;
 };
 
 export type IProductCatalogPricesQueryVariables = Exact<{
@@ -13001,112 +12987,112 @@ export type IProductMediaQueryVariables = Exact<{
 
 export type IProductMediaQuery = {
   product?:
-  | {
-    _id: string;
-    media: Array<{
-      _id: string;
-      tags?: Array<any> | null;
-      sortKey: number;
-      file?: {
+    | {
         _id: string;
-        name: string;
-        type: string;
-        size: number;
-        url?: string | null;
-      } | null;
-      texts?: {
+        media: Array<{
+          _id: string;
+          tags?: Array<any> | null;
+          sortKey: number;
+          file?: {
+            _id: string;
+            name: string;
+            type: string;
+            size: number;
+            url?: string | null;
+          } | null;
+          texts?: {
+            _id: string;
+            locale: any;
+            title?: string | null;
+            subtitle?: string | null;
+          } | null;
+        }>;
+      }
+    | {
         _id: string;
-        locale: any;
-        title?: string | null;
-        subtitle?: string | null;
-      } | null;
-    }>;
-  }
-  | {
-    _id: string;
-    media: Array<{
-      _id: string;
-      tags?: Array<any> | null;
-      sortKey: number;
-      file?: {
+        media: Array<{
+          _id: string;
+          tags?: Array<any> | null;
+          sortKey: number;
+          file?: {
+            _id: string;
+            name: string;
+            type: string;
+            size: number;
+            url?: string | null;
+          } | null;
+          texts?: {
+            _id: string;
+            locale: any;
+            title?: string | null;
+            subtitle?: string | null;
+          } | null;
+        }>;
+      }
+    | {
         _id: string;
-        name: string;
-        type: string;
-        size: number;
-        url?: string | null;
-      } | null;
-      texts?: {
+        media: Array<{
+          _id: string;
+          tags?: Array<any> | null;
+          sortKey: number;
+          file?: {
+            _id: string;
+            name: string;
+            type: string;
+            size: number;
+            url?: string | null;
+          } | null;
+          texts?: {
+            _id: string;
+            locale: any;
+            title?: string | null;
+            subtitle?: string | null;
+          } | null;
+        }>;
+      }
+    | {
         _id: string;
-        locale: any;
-        title?: string | null;
-        subtitle?: string | null;
-      } | null;
-    }>;
-  }
-  | {
-    _id: string;
-    media: Array<{
-      _id: string;
-      tags?: Array<any> | null;
-      sortKey: number;
-      file?: {
+        media: Array<{
+          _id: string;
+          tags?: Array<any> | null;
+          sortKey: number;
+          file?: {
+            _id: string;
+            name: string;
+            type: string;
+            size: number;
+            url?: string | null;
+          } | null;
+          texts?: {
+            _id: string;
+            locale: any;
+            title?: string | null;
+            subtitle?: string | null;
+          } | null;
+        }>;
+      }
+    | {
         _id: string;
-        name: string;
-        type: string;
-        size: number;
-        url?: string | null;
-      } | null;
-      texts?: {
-        _id: string;
-        locale: any;
-        title?: string | null;
-        subtitle?: string | null;
-      } | null;
-    }>;
-  }
-  | {
-    _id: string;
-    media: Array<{
-      _id: string;
-      tags?: Array<any> | null;
-      sortKey: number;
-      file?: {
-        _id: string;
-        name: string;
-        type: string;
-        size: number;
-        url?: string | null;
-      } | null;
-      texts?: {
-        _id: string;
-        locale: any;
-        title?: string | null;
-        subtitle?: string | null;
-      } | null;
-    }>;
-  }
-  | {
-    _id: string;
-    media: Array<{
-      _id: string;
-      tags?: Array<any> | null;
-      sortKey: number;
-      file?: {
-        _id: string;
-        name: string;
-        type: string;
-        size: number;
-        url?: string | null;
-      } | null;
-      texts?: {
-        _id: string;
-        locale: any;
-        title?: string | null;
-        subtitle?: string | null;
-      } | null;
-    }>;
-  }
-  | null;
+        media: Array<{
+          _id: string;
+          tags?: Array<any> | null;
+          sortKey: number;
+          file?: {
+            _id: string;
+            name: string;
+            type: string;
+            size: number;
+            url?: string | null;
+          } | null;
+          texts?: {
+            _id: string;
+            locale: any;
+            title?: string | null;
+            subtitle?: string | null;
+          } | null;
+        }>;
+      }
+    | null;
 };
 
 export type IProductPlanQueryVariables = Exact<{
@@ -13116,21 +13102,21 @@ export type IProductPlanQueryVariables = Exact<{
 
 export type IProductPlanQuery = {
   product?:
-  | { _id: string }
-  | { _id: string }
-  | {
-    _id: string;
-    plan?: {
-      usageCalculationType: IProductPlanUsageCalculationType;
-      billingInterval: IProductPlanConfigurationInterval;
-      trialInterval?: IProductPlanConfigurationInterval | null;
-      trialIntervalCount?: number | null;
-      billingIntervalCount?: number | null;
-    } | null;
-  }
-  | { _id: string }
-  | { _id: string }
-  | null;
+    | { _id: string }
+    | { _id: string }
+    | {
+        _id: string;
+        plan?: {
+          usageCalculationType: IProductPlanUsageCalculationType;
+          billingInterval: IProductPlanConfigurationInterval;
+          trialInterval?: IProductPlanConfigurationInterval | null;
+          trialIntervalCount?: number | null;
+          billingIntervalCount?: number | null;
+        } | null;
+      }
+    | { _id: string }
+    | { _id: string }
+    | null;
 };
 
 export type IProductPlanConfigurationOptionsQueryVariables = Exact<{
@@ -13180,66 +13166,66 @@ export type IProductReviewsQuery = {
       avatar?: { _id: string; url?: string | null } | null;
     };
     product:
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        title?: string | null;
-        subtitle?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        title?: string | null;
-        subtitle?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        title?: string | null;
-        subtitle?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        title?: string | null;
-        subtitle?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        title?: string | null;
-        subtitle?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    };
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            title?: string | null;
+            subtitle?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; url?: string | null } | null;
+          }>;
+        }
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            title?: string | null;
+            subtitle?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; url?: string | null } | null;
+          }>;
+        }
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            title?: string | null;
+            subtitle?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; url?: string | null } | null;
+          }>;
+        }
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            title?: string | null;
+            subtitle?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; url?: string | null } | null;
+          }>;
+        }
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            title?: string | null;
+            subtitle?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; url?: string | null } | null;
+          }>;
+        };
     ownVotes: Array<{ timestamp: any; type: IProductReviewVoteType }>;
   }>;
 };
@@ -13251,20 +13237,20 @@ export type IProductSupplyQueryVariables = Exact<{
 
 export type IProductSupplyQuery = {
   product?:
-  | { _id: string }
-  | { _id: string }
-  | { _id: string }
-  | {
-    _id: string;
-    dimensions?: {
-      weight?: number | null;
-      length?: number | null;
-      width?: number | null;
-      height?: number | null;
-    } | null;
-  }
-  | { _id: string }
-  | null;
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
+    | {
+        _id: string;
+        dimensions?: {
+          weight?: number | null;
+          length?: number | null;
+          width?: number | null;
+          height?: number | null;
+        } | null;
+      }
+    | { _id: string }
+    | null;
 };
 
 export type IProductTokenizationQueryVariables = Exact<{
@@ -13274,17 +13260,17 @@ export type IProductTokenizationQueryVariables = Exact<{
 
 export type IProductTokenizationQuery = {
   product?:
-  | { _id: string }
-  | { _id: string }
-  | { _id: string }
-  | { _id: string }
-  | {
-    contractStandard?: ISmartContractStandard | null;
-    contractAddress?: string | null;
-    _id: string;
-    contractConfiguration?: { tokenId: string; supply: number } | null;
-  }
-  | null;
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
+    | {
+        contractStandard?: ISmartContractStandard | null;
+        contractAddress?: string | null;
+        _id: string;
+        contractConfiguration?: { tokenId: string; supply: number } | null;
+      }
+    | null;
 };
 
 export type IProductVariationTypeQueryVariables = Exact<{
@@ -13305,35 +13291,35 @@ export type IProductVariationsQueryVariables = Exact<{
 
 export type IProductVariationsQuery = {
   product?:
-  | { _id: string }
-  | {
-    _id: string;
-    variations?: Array<{
-      _id: string;
-      type?: IProductVariationType | null;
-      key?: string | null;
-      texts?: {
+    | { _id: string }
+    | {
         _id: string;
-        locale: any;
-        title?: string | null;
-        subtitle?: string | null;
-      } | null;
-      options?: Array<{
-        _id: string;
-        value?: string | null;
-        texts?: {
+        variations?: Array<{
           _id: string;
-          locale: any;
-          title?: string | null;
-          subtitle?: string | null;
-        } | null;
-      }> | null;
-    }> | null;
-  }
-  | { _id: string }
-  | { _id: string }
-  | { _id: string }
-  | null;
+          type?: IProductVariationType | null;
+          key?: string | null;
+          texts?: {
+            _id: string;
+            locale: any;
+            title?: string | null;
+            subtitle?: string | null;
+          } | null;
+          options?: Array<{
+            _id: string;
+            value?: string | null;
+            texts?: {
+              _id: string;
+              locale: any;
+              title?: string | null;
+              subtitle?: string | null;
+            } | null;
+          }> | null;
+        }> | null;
+      }
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
+    | null;
 };
 
 export type IProductWarehousingQueryVariables = Exact<{
@@ -13343,12 +13329,12 @@ export type IProductWarehousingQueryVariables = Exact<{
 
 export type IProductWarehousingQuery = {
   product?:
-  | { _id: string }
-  | { _id: string }
-  | { _id: string }
-  | { sku?: string | null; baseUnit?: string | null; _id: string }
-  | { _id: string }
-  | null;
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
+    | { sku?: string | null; baseUnit?: string | null; _id: string }
+    | { _id: string }
+    | null;
 };
 
 export type IProductsQueryVariables = Exact<{
@@ -13365,139 +13351,139 @@ export type IProductsQuery = {
   productsCount: number;
   products: Array<
     | {
-      _id: string;
-      sequence: number;
-      status: IProductStatus;
-      tags?: Array<any> | null;
-      updated?: any | null;
-      published?: any | null;
-      proxies: Array<
-        | { __typename: 'BundleProduct' }
-        | { __typename: 'ConfigurableProduct' }
-      >;
-      texts?: {
         _id: string;
-        slug?: string | null;
-        title?: string | null;
-        subtitle?: string | null;
-        description?: string | null;
-        vendor?: string | null;
-        brand?: string | null;
-        labels?: Array<string> | null;
-        locale: any;
-      } | null;
-      media: Array<{
-        _id: string;
+        sequence: number;
+        status: IProductStatus;
         tags?: Array<any> | null;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
+        updated?: any | null;
+        published?: any | null;
+        proxies: Array<
+          | { __typename: 'BundleProduct' }
+          | { __typename: 'ConfigurableProduct' }
+        >;
+        texts?: {
+          _id: string;
+          slug?: string | null;
+          title?: string | null;
+          subtitle?: string | null;
+          description?: string | null;
+          vendor?: string | null;
+          brand?: string | null;
+          labels?: Array<string> | null;
+          locale: any;
+        } | null;
+        media: Array<{
+          _id: string;
+          tags?: Array<any> | null;
+          file?: { _id: string; url?: string | null } | null;
+        }>;
+      }
     | {
-      _id: string;
-      sequence: number;
-      status: IProductStatus;
-      tags?: Array<any> | null;
-      updated?: any | null;
-      published?: any | null;
-      texts?: {
         _id: string;
-        slug?: string | null;
-        title?: string | null;
-        subtitle?: string | null;
-        description?: string | null;
-        vendor?: string | null;
-        brand?: string | null;
-        labels?: Array<string> | null;
-        locale: any;
-      } | null;
-      media: Array<{
-        _id: string;
+        sequence: number;
+        status: IProductStatus;
         tags?: Array<any> | null;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
+        updated?: any | null;
+        published?: any | null;
+        texts?: {
+          _id: string;
+          slug?: string | null;
+          title?: string | null;
+          subtitle?: string | null;
+          description?: string | null;
+          vendor?: string | null;
+          brand?: string | null;
+          labels?: Array<string> | null;
+          locale: any;
+        } | null;
+        media: Array<{
+          _id: string;
+          tags?: Array<any> | null;
+          file?: { _id: string; url?: string | null } | null;
+        }>;
+      }
     | {
-      _id: string;
-      sequence: number;
-      status: IProductStatus;
-      tags?: Array<any> | null;
-      updated?: any | null;
-      published?: any | null;
-      catalogPrice?: { amount: number; currencyCode: string } | null;
-      proxies: Array<
-        | { __typename: 'BundleProduct' }
-        | { __typename: 'ConfigurableProduct' }
-      >;
-      texts?: {
         _id: string;
-        slug?: string | null;
-        title?: string | null;
-        subtitle?: string | null;
-        description?: string | null;
-        vendor?: string | null;
-        brand?: string | null;
-        labels?: Array<string> | null;
-        locale: any;
-      } | null;
-      media: Array<{
-        _id: string;
+        sequence: number;
+        status: IProductStatus;
         tags?: Array<any> | null;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
+        updated?: any | null;
+        published?: any | null;
+        catalogPrice?: { amount: number; currencyCode: string } | null;
+        proxies: Array<
+          | { __typename: 'BundleProduct' }
+          | { __typename: 'ConfigurableProduct' }
+        >;
+        texts?: {
+          _id: string;
+          slug?: string | null;
+          title?: string | null;
+          subtitle?: string | null;
+          description?: string | null;
+          vendor?: string | null;
+          brand?: string | null;
+          labels?: Array<string> | null;
+          locale: any;
+        } | null;
+        media: Array<{
+          _id: string;
+          tags?: Array<any> | null;
+          file?: { _id: string; url?: string | null } | null;
+        }>;
+      }
     | {
-      _id: string;
-      sequence: number;
-      status: IProductStatus;
-      tags?: Array<any> | null;
-      updated?: any | null;
-      published?: any | null;
-      catalogPrice?: { amount: number; currencyCode: string } | null;
-      proxies: Array<
-        | { __typename: 'BundleProduct' }
-        | { __typename: 'ConfigurableProduct' }
-      >;
-      texts?: {
         _id: string;
-        slug?: string | null;
-        title?: string | null;
-        subtitle?: string | null;
-        description?: string | null;
-        vendor?: string | null;
-        brand?: string | null;
-        labels?: Array<string> | null;
-        locale: any;
-      } | null;
-      media: Array<{
-        _id: string;
+        sequence: number;
+        status: IProductStatus;
         tags?: Array<any> | null;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
+        updated?: any | null;
+        published?: any | null;
+        catalogPrice?: { amount: number; currencyCode: string } | null;
+        proxies: Array<
+          | { __typename: 'BundleProduct' }
+          | { __typename: 'ConfigurableProduct' }
+        >;
+        texts?: {
+          _id: string;
+          slug?: string | null;
+          title?: string | null;
+          subtitle?: string | null;
+          description?: string | null;
+          vendor?: string | null;
+          brand?: string | null;
+          labels?: Array<string> | null;
+          locale: any;
+        } | null;
+        media: Array<{
+          _id: string;
+          tags?: Array<any> | null;
+          file?: { _id: string; url?: string | null } | null;
+        }>;
+      }
     | {
-      _id: string;
-      sequence: number;
-      status: IProductStatus;
-      tags?: Array<any> | null;
-      updated?: any | null;
-      published?: any | null;
-      texts?: {
         _id: string;
-        slug?: string | null;
-        title?: string | null;
-        subtitle?: string | null;
-        description?: string | null;
-        vendor?: string | null;
-        brand?: string | null;
-        labels?: Array<string> | null;
-        locale: any;
-      } | null;
-      media: Array<{
-        _id: string;
+        sequence: number;
+        status: IProductStatus;
         tags?: Array<any> | null;
-        file?: { _id: string; url?: string | null } | null;
-      }>;
-    }
+        updated?: any | null;
+        published?: any | null;
+        texts?: {
+          _id: string;
+          slug?: string | null;
+          title?: string | null;
+          subtitle?: string | null;
+          description?: string | null;
+          vendor?: string | null;
+          brand?: string | null;
+          labels?: Array<string> | null;
+          locale: any;
+        } | null;
+        media: Array<{
+          _id: string;
+          tags?: Array<any> | null;
+          file?: { _id: string; url?: string | null } | null;
+        }>;
+      }
   >;
 };
 
@@ -13516,311 +13502,311 @@ export type IPublishProductMutationVariables = Exact<{
 
 export type IPublishProductMutation = {
   publishProduct:
-  | {
-    _id: string;
-    sequence: number;
-    status: IProductStatus;
-    created?: any | null;
-    tags?: Array<any> | null;
-    updated?: any | null;
-    published?: any | null;
-    media: Array<{
-      _id: string;
-      tags?: Array<any> | null;
-      file?: { _id: string; url?: string | null } | null;
-    }>;
-    reviews: Array<{
-      _id: string;
-      created?: any | null;
-      rating?: number | null;
-      title?: string | null;
-      review?: string | null;
-      voteCount?: number | null;
-      author: { _id: string; username?: string | null; isGuest: boolean };
-      ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-    }>;
-    siblings: Array<
-      | {
+    | {
         _id: string;
+        sequence: number;
+        status: IProductStatus;
+        created?: any | null;
+        tags?: Array<any> | null;
+        updated?: any | null;
+        published?: any | null;
         media: Array<{
           _id: string;
+          tags?: Array<any> | null;
           file?: { _id: string; url?: string | null } | null;
         }>;
+        reviews: Array<{
+          _id: string;
+          created?: any | null;
+          rating?: number | null;
+          title?: string | null;
+          review?: string | null;
+          voteCount?: number | null;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
+        }>;
+        siblings: Array<
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+        >;
       }
-      | {
+    | {
         _id: string;
+        sequence: number;
+        status: IProductStatus;
+        created?: any | null;
+        tags?: Array<any> | null;
+        updated?: any | null;
+        published?: any | null;
         media: Array<{
           _id: string;
+          tags?: Array<any> | null;
           file?: { _id: string; url?: string | null } | null;
         }>;
+        reviews: Array<{
+          _id: string;
+          created?: any | null;
+          rating?: number | null;
+          title?: string | null;
+          review?: string | null;
+          voteCount?: number | null;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
+        }>;
+        siblings: Array<
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+        >;
       }
-      | {
+    | {
         _id: string;
+        sequence: number;
+        status: IProductStatus;
+        created?: any | null;
+        tags?: Array<any> | null;
+        updated?: any | null;
+        published?: any | null;
         media: Array<{
           _id: string;
+          tags?: Array<any> | null;
           file?: { _id: string; url?: string | null } | null;
         }>;
+        reviews: Array<{
+          _id: string;
+          created?: any | null;
+          rating?: number | null;
+          title?: string | null;
+          review?: string | null;
+          voteCount?: number | null;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
+        }>;
+        siblings: Array<
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+        >;
       }
-      | {
+    | {
         _id: string;
+        sequence: number;
+        status: IProductStatus;
+        created?: any | null;
+        tags?: Array<any> | null;
+        updated?: any | null;
+        published?: any | null;
         media: Array<{
           _id: string;
+          tags?: Array<any> | null;
           file?: { _id: string; url?: string | null } | null;
         }>;
+        reviews: Array<{
+          _id: string;
+          created?: any | null;
+          rating?: number | null;
+          title?: string | null;
+          review?: string | null;
+          voteCount?: number | null;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
+        }>;
+        siblings: Array<
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+        >;
       }
-      | {
+    | {
         _id: string;
+        sequence: number;
+        status: IProductStatus;
+        created?: any | null;
+        tags?: Array<any> | null;
+        updated?: any | null;
+        published?: any | null;
         media: Array<{
           _id: string;
+          tags?: Array<any> | null;
           file?: { _id: string; url?: string | null } | null;
         }>;
-      }
-    >;
-  }
-  | {
-    _id: string;
-    sequence: number;
-    status: IProductStatus;
-    created?: any | null;
-    tags?: Array<any> | null;
-    updated?: any | null;
-    published?: any | null;
-    media: Array<{
-      _id: string;
-      tags?: Array<any> | null;
-      file?: { _id: string; url?: string | null } | null;
-    }>;
-    reviews: Array<{
-      _id: string;
-      created?: any | null;
-      rating?: number | null;
-      title?: string | null;
-      review?: string | null;
-      voteCount?: number | null;
-      author: { _id: string; username?: string | null; isGuest: boolean };
-      ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-    }>;
-    siblings: Array<
-      | {
-        _id: string;
-        media: Array<{
+        reviews: Array<{
           _id: string;
-          file?: { _id: string; url?: string | null } | null;
+          created?: any | null;
+          rating?: number | null;
+          title?: string | null;
+          review?: string | null;
+          voteCount?: number | null;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
         }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-    >;
-  }
-  | {
-    _id: string;
-    sequence: number;
-    status: IProductStatus;
-    created?: any | null;
-    tags?: Array<any> | null;
-    updated?: any | null;
-    published?: any | null;
-    media: Array<{
-      _id: string;
-      tags?: Array<any> | null;
-      file?: { _id: string; url?: string | null } | null;
-    }>;
-    reviews: Array<{
-      _id: string;
-      created?: any | null;
-      rating?: number | null;
-      title?: string | null;
-      review?: string | null;
-      voteCount?: number | null;
-      author: { _id: string; username?: string | null; isGuest: boolean };
-      ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-    }>;
-    siblings: Array<
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-    >;
-  }
-  | {
-    _id: string;
-    sequence: number;
-    status: IProductStatus;
-    created?: any | null;
-    tags?: Array<any> | null;
-    updated?: any | null;
-    published?: any | null;
-    media: Array<{
-      _id: string;
-      tags?: Array<any> | null;
-      file?: { _id: string; url?: string | null } | null;
-    }>;
-    reviews: Array<{
-      _id: string;
-      created?: any | null;
-      rating?: number | null;
-      title?: string | null;
-      review?: string | null;
-      voteCount?: number | null;
-      author: { _id: string; username?: string | null; isGuest: boolean };
-      ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-    }>;
-    siblings: Array<
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-    >;
-  }
-  | {
-    _id: string;
-    sequence: number;
-    status: IProductStatus;
-    created?: any | null;
-    tags?: Array<any> | null;
-    updated?: any | null;
-    published?: any | null;
-    media: Array<{
-      _id: string;
-      tags?: Array<any> | null;
-      file?: { _id: string; url?: string | null } | null;
-    }>;
-    reviews: Array<{
-      _id: string;
-      created?: any | null;
-      rating?: number | null;
-      title?: string | null;
-      review?: string | null;
-      voteCount?: number | null;
-      author: { _id: string; username?: string | null; isGuest: boolean };
-      ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-    }>;
-    siblings: Array<
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-    >;
-  };
+        siblings: Array<
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+        >;
+      };
 };
 
 export type IReOrderProductMediaMutationVariables = Exact<{
@@ -13838,11 +13824,11 @@ export type IRemoveBundleItemMutationVariables = Exact<{
 
 export type IRemoveBundleItemMutation = {
   removeBundleItem:
-  | { _id: string }
-  | { _id: string }
-  | { _id: string }
-  | { _id: string }
-  | { _id: string };
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
+    | { _id: string };
 };
 
 export type IRemoveProductMutationVariables = Exact<{
@@ -13851,11 +13837,11 @@ export type IRemoveProductMutationVariables = Exact<{
 
 export type IRemoveProductMutation = {
   removeProduct:
-  | { _id: string }
-  | { _id: string }
-  | { _id: string }
-  | { _id: string }
-  | { _id: string };
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
+    | { _id: string };
 };
 
 export type IRemoveProductAssignmentMutationVariables = Exact<{
@@ -13865,11 +13851,11 @@ export type IRemoveProductAssignmentMutationVariables = Exact<{
 
 export type IRemoveProductAssignmentMutation = {
   removeProductAssignment:
-  | { _id: string }
-  | { _id: string }
-  | { _id: string }
-  | { _id: string }
-  | { _id: string };
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
+    | { _id: string };
 };
 
 export type IRemoveProductMediaMutationVariables = Exact<{
@@ -13944,311 +13930,311 @@ export type IUnpublishProductMutationVariables = Exact<{
 
 export type IUnpublishProductMutation = {
   unpublishProduct:
-  | {
-    _id: string;
-    sequence: number;
-    status: IProductStatus;
-    created?: any | null;
-    tags?: Array<any> | null;
-    updated?: any | null;
-    published?: any | null;
-    media: Array<{
-      _id: string;
-      tags?: Array<any> | null;
-      file?: { _id: string; url?: string | null } | null;
-    }>;
-    reviews: Array<{
-      _id: string;
-      created?: any | null;
-      rating?: number | null;
-      title?: string | null;
-      review?: string | null;
-      voteCount?: number | null;
-      author: { _id: string; username?: string | null; isGuest: boolean };
-      ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-    }>;
-    siblings: Array<
-      | {
+    | {
         _id: string;
+        sequence: number;
+        status: IProductStatus;
+        created?: any | null;
+        tags?: Array<any> | null;
+        updated?: any | null;
+        published?: any | null;
         media: Array<{
           _id: string;
+          tags?: Array<any> | null;
           file?: { _id: string; url?: string | null } | null;
         }>;
+        reviews: Array<{
+          _id: string;
+          created?: any | null;
+          rating?: number | null;
+          title?: string | null;
+          review?: string | null;
+          voteCount?: number | null;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
+        }>;
+        siblings: Array<
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+        >;
       }
-      | {
+    | {
         _id: string;
+        sequence: number;
+        status: IProductStatus;
+        created?: any | null;
+        tags?: Array<any> | null;
+        updated?: any | null;
+        published?: any | null;
         media: Array<{
           _id: string;
+          tags?: Array<any> | null;
           file?: { _id: string; url?: string | null } | null;
         }>;
+        reviews: Array<{
+          _id: string;
+          created?: any | null;
+          rating?: number | null;
+          title?: string | null;
+          review?: string | null;
+          voteCount?: number | null;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
+        }>;
+        siblings: Array<
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+        >;
       }
-      | {
+    | {
         _id: string;
+        sequence: number;
+        status: IProductStatus;
+        created?: any | null;
+        tags?: Array<any> | null;
+        updated?: any | null;
+        published?: any | null;
         media: Array<{
           _id: string;
+          tags?: Array<any> | null;
           file?: { _id: string; url?: string | null } | null;
         }>;
+        reviews: Array<{
+          _id: string;
+          created?: any | null;
+          rating?: number | null;
+          title?: string | null;
+          review?: string | null;
+          voteCount?: number | null;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
+        }>;
+        siblings: Array<
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+        >;
       }
-      | {
+    | {
         _id: string;
+        sequence: number;
+        status: IProductStatus;
+        created?: any | null;
+        tags?: Array<any> | null;
+        updated?: any | null;
+        published?: any | null;
         media: Array<{
           _id: string;
+          tags?: Array<any> | null;
           file?: { _id: string; url?: string | null } | null;
         }>;
+        reviews: Array<{
+          _id: string;
+          created?: any | null;
+          rating?: number | null;
+          title?: string | null;
+          review?: string | null;
+          voteCount?: number | null;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
+        }>;
+        siblings: Array<
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+        >;
       }
-      | {
+    | {
         _id: string;
+        sequence: number;
+        status: IProductStatus;
+        created?: any | null;
+        tags?: Array<any> | null;
+        updated?: any | null;
+        published?: any | null;
         media: Array<{
           _id: string;
+          tags?: Array<any> | null;
           file?: { _id: string; url?: string | null } | null;
         }>;
-      }
-    >;
-  }
-  | {
-    _id: string;
-    sequence: number;
-    status: IProductStatus;
-    created?: any | null;
-    tags?: Array<any> | null;
-    updated?: any | null;
-    published?: any | null;
-    media: Array<{
-      _id: string;
-      tags?: Array<any> | null;
-      file?: { _id: string; url?: string | null } | null;
-    }>;
-    reviews: Array<{
-      _id: string;
-      created?: any | null;
-      rating?: number | null;
-      title?: string | null;
-      review?: string | null;
-      voteCount?: number | null;
-      author: { _id: string; username?: string | null; isGuest: boolean };
-      ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-    }>;
-    siblings: Array<
-      | {
-        _id: string;
-        media: Array<{
+        reviews: Array<{
           _id: string;
-          file?: { _id: string; url?: string | null } | null;
+          created?: any | null;
+          rating?: number | null;
+          title?: string | null;
+          review?: string | null;
+          voteCount?: number | null;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
         }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-    >;
-  }
-  | {
-    _id: string;
-    sequence: number;
-    status: IProductStatus;
-    created?: any | null;
-    tags?: Array<any> | null;
-    updated?: any | null;
-    published?: any | null;
-    media: Array<{
-      _id: string;
-      tags?: Array<any> | null;
-      file?: { _id: string; url?: string | null } | null;
-    }>;
-    reviews: Array<{
-      _id: string;
-      created?: any | null;
-      rating?: number | null;
-      title?: string | null;
-      review?: string | null;
-      voteCount?: number | null;
-      author: { _id: string; username?: string | null; isGuest: boolean };
-      ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-    }>;
-    siblings: Array<
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-    >;
-  }
-  | {
-    _id: string;
-    sequence: number;
-    status: IProductStatus;
-    created?: any | null;
-    tags?: Array<any> | null;
-    updated?: any | null;
-    published?: any | null;
-    media: Array<{
-      _id: string;
-      tags?: Array<any> | null;
-      file?: { _id: string; url?: string | null } | null;
-    }>;
-    reviews: Array<{
-      _id: string;
-      created?: any | null;
-      rating?: number | null;
-      title?: string | null;
-      review?: string | null;
-      voteCount?: number | null;
-      author: { _id: string; username?: string | null; isGuest: boolean };
-      ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-    }>;
-    siblings: Array<
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-    >;
-  }
-  | {
-    _id: string;
-    sequence: number;
-    status: IProductStatus;
-    created?: any | null;
-    tags?: Array<any> | null;
-    updated?: any | null;
-    published?: any | null;
-    media: Array<{
-      _id: string;
-      tags?: Array<any> | null;
-      file?: { _id: string; url?: string | null } | null;
-    }>;
-    reviews: Array<{
-      _id: string;
-      created?: any | null;
-      rating?: number | null;
-      title?: string | null;
-      review?: string | null;
-      voteCount?: number | null;
-      author: { _id: string; username?: string | null; isGuest: boolean };
-      ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-    }>;
-    siblings: Array<
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-    >;
-  };
+        siblings: Array<
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+        >;
+      };
 };
 
 export type IUpdateProductMutationVariables = Exact<{
@@ -14258,312 +14244,312 @@ export type IUpdateProductMutationVariables = Exact<{
 
 export type IUpdateProductMutation = {
   updateProduct?:
-  | {
-    _id: string;
-    sequence: number;
-    status: IProductStatus;
-    created?: any | null;
-    tags?: Array<any> | null;
-    updated?: any | null;
-    published?: any | null;
-    media: Array<{
-      _id: string;
-      tags?: Array<any> | null;
-      file?: { _id: string; url?: string | null } | null;
-    }>;
-    reviews: Array<{
-      _id: string;
-      created?: any | null;
-      rating?: number | null;
-      title?: string | null;
-      review?: string | null;
-      voteCount?: number | null;
-      author: { _id: string; username?: string | null; isGuest: boolean };
-      ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-    }>;
-    siblings: Array<
-      | {
+    | {
         _id: string;
+        sequence: number;
+        status: IProductStatus;
+        created?: any | null;
+        tags?: Array<any> | null;
+        updated?: any | null;
+        published?: any | null;
         media: Array<{
           _id: string;
+          tags?: Array<any> | null;
           file?: { _id: string; url?: string | null } | null;
         }>;
+        reviews: Array<{
+          _id: string;
+          created?: any | null;
+          rating?: number | null;
+          title?: string | null;
+          review?: string | null;
+          voteCount?: number | null;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
+        }>;
+        siblings: Array<
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+        >;
       }
-      | {
+    | {
         _id: string;
+        sequence: number;
+        status: IProductStatus;
+        created?: any | null;
+        tags?: Array<any> | null;
+        updated?: any | null;
+        published?: any | null;
         media: Array<{
           _id: string;
+          tags?: Array<any> | null;
           file?: { _id: string; url?: string | null } | null;
         }>;
+        reviews: Array<{
+          _id: string;
+          created?: any | null;
+          rating?: number | null;
+          title?: string | null;
+          review?: string | null;
+          voteCount?: number | null;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
+        }>;
+        siblings: Array<
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+        >;
       }
-      | {
+    | {
         _id: string;
+        sequence: number;
+        status: IProductStatus;
+        created?: any | null;
+        tags?: Array<any> | null;
+        updated?: any | null;
+        published?: any | null;
         media: Array<{
           _id: string;
+          tags?: Array<any> | null;
           file?: { _id: string; url?: string | null } | null;
         }>;
+        reviews: Array<{
+          _id: string;
+          created?: any | null;
+          rating?: number | null;
+          title?: string | null;
+          review?: string | null;
+          voteCount?: number | null;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
+        }>;
+        siblings: Array<
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+        >;
       }
-      | {
+    | {
         _id: string;
+        sequence: number;
+        status: IProductStatus;
+        created?: any | null;
+        tags?: Array<any> | null;
+        updated?: any | null;
+        published?: any | null;
         media: Array<{
           _id: string;
+          tags?: Array<any> | null;
           file?: { _id: string; url?: string | null } | null;
         }>;
+        reviews: Array<{
+          _id: string;
+          created?: any | null;
+          rating?: number | null;
+          title?: string | null;
+          review?: string | null;
+          voteCount?: number | null;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
+        }>;
+        siblings: Array<
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+        >;
       }
-      | {
+    | {
         _id: string;
+        sequence: number;
+        status: IProductStatus;
+        created?: any | null;
+        tags?: Array<any> | null;
+        updated?: any | null;
+        published?: any | null;
         media: Array<{
           _id: string;
+          tags?: Array<any> | null;
           file?: { _id: string; url?: string | null } | null;
         }>;
-      }
-    >;
-  }
-  | {
-    _id: string;
-    sequence: number;
-    status: IProductStatus;
-    created?: any | null;
-    tags?: Array<any> | null;
-    updated?: any | null;
-    published?: any | null;
-    media: Array<{
-      _id: string;
-      tags?: Array<any> | null;
-      file?: { _id: string; url?: string | null } | null;
-    }>;
-    reviews: Array<{
-      _id: string;
-      created?: any | null;
-      rating?: number | null;
-      title?: string | null;
-      review?: string | null;
-      voteCount?: number | null;
-      author: { _id: string; username?: string | null; isGuest: boolean };
-      ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-    }>;
-    siblings: Array<
-      | {
-        _id: string;
-        media: Array<{
+        reviews: Array<{
           _id: string;
-          file?: { _id: string; url?: string | null } | null;
+          created?: any | null;
+          rating?: number | null;
+          title?: string | null;
+          review?: string | null;
+          voteCount?: number | null;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
         }>;
+        siblings: Array<
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+        >;
       }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-    >;
-  }
-  | {
-    _id: string;
-    sequence: number;
-    status: IProductStatus;
-    created?: any | null;
-    tags?: Array<any> | null;
-    updated?: any | null;
-    published?: any | null;
-    media: Array<{
-      _id: string;
-      tags?: Array<any> | null;
-      file?: { _id: string; url?: string | null } | null;
-    }>;
-    reviews: Array<{
-      _id: string;
-      created?: any | null;
-      rating?: number | null;
-      title?: string | null;
-      review?: string | null;
-      voteCount?: number | null;
-      author: { _id: string; username?: string | null; isGuest: boolean };
-      ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-    }>;
-    siblings: Array<
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-    >;
-  }
-  | {
-    _id: string;
-    sequence: number;
-    status: IProductStatus;
-    created?: any | null;
-    tags?: Array<any> | null;
-    updated?: any | null;
-    published?: any | null;
-    media: Array<{
-      _id: string;
-      tags?: Array<any> | null;
-      file?: { _id: string; url?: string | null } | null;
-    }>;
-    reviews: Array<{
-      _id: string;
-      created?: any | null;
-      rating?: number | null;
-      title?: string | null;
-      review?: string | null;
-      voteCount?: number | null;
-      author: { _id: string; username?: string | null; isGuest: boolean };
-      ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-    }>;
-    siblings: Array<
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-    >;
-  }
-  | {
-    _id: string;
-    sequence: number;
-    status: IProductStatus;
-    created?: any | null;
-    tags?: Array<any> | null;
-    updated?: any | null;
-    published?: any | null;
-    media: Array<{
-      _id: string;
-      tags?: Array<any> | null;
-      file?: { _id: string; url?: string | null } | null;
-    }>;
-    reviews: Array<{
-      _id: string;
-      created?: any | null;
-      rating?: number | null;
-      title?: string | null;
-      review?: string | null;
-      voteCount?: number | null;
-      author: { _id: string; username?: string | null; isGuest: boolean };
-      ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-    }>;
-    siblings: Array<
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-    >;
-  }
-  | null;
+    | null;
 };
 
 export type IUpdateProductCommerceMutationVariables = Exact<{
@@ -14573,312 +14559,312 @@ export type IUpdateProductCommerceMutationVariables = Exact<{
 
 export type IUpdateProductCommerceMutation = {
   updateProductCommerce?:
-  | {
-    _id: string;
-    sequence: number;
-    status: IProductStatus;
-    created?: any | null;
-    tags?: Array<any> | null;
-    updated?: any | null;
-    published?: any | null;
-    media: Array<{
-      _id: string;
-      tags?: Array<any> | null;
-      file?: { _id: string; url?: string | null } | null;
-    }>;
-    reviews: Array<{
-      _id: string;
-      created?: any | null;
-      rating?: number | null;
-      title?: string | null;
-      review?: string | null;
-      voteCount?: number | null;
-      author: { _id: string; username?: string | null; isGuest: boolean };
-      ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-    }>;
-    siblings: Array<
-      | {
+    | {
         _id: string;
+        sequence: number;
+        status: IProductStatus;
+        created?: any | null;
+        tags?: Array<any> | null;
+        updated?: any | null;
+        published?: any | null;
         media: Array<{
           _id: string;
+          tags?: Array<any> | null;
           file?: { _id: string; url?: string | null } | null;
         }>;
+        reviews: Array<{
+          _id: string;
+          created?: any | null;
+          rating?: number | null;
+          title?: string | null;
+          review?: string | null;
+          voteCount?: number | null;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
+        }>;
+        siblings: Array<
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+        >;
       }
-      | {
+    | {
         _id: string;
+        sequence: number;
+        status: IProductStatus;
+        created?: any | null;
+        tags?: Array<any> | null;
+        updated?: any | null;
+        published?: any | null;
         media: Array<{
           _id: string;
+          tags?: Array<any> | null;
           file?: { _id: string; url?: string | null } | null;
         }>;
+        reviews: Array<{
+          _id: string;
+          created?: any | null;
+          rating?: number | null;
+          title?: string | null;
+          review?: string | null;
+          voteCount?: number | null;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
+        }>;
+        siblings: Array<
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+        >;
       }
-      | {
+    | {
         _id: string;
+        sequence: number;
+        status: IProductStatus;
+        created?: any | null;
+        tags?: Array<any> | null;
+        updated?: any | null;
+        published?: any | null;
         media: Array<{
           _id: string;
+          tags?: Array<any> | null;
           file?: { _id: string; url?: string | null } | null;
         }>;
+        reviews: Array<{
+          _id: string;
+          created?: any | null;
+          rating?: number | null;
+          title?: string | null;
+          review?: string | null;
+          voteCount?: number | null;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
+        }>;
+        siblings: Array<
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+        >;
       }
-      | {
+    | {
         _id: string;
+        sequence: number;
+        status: IProductStatus;
+        created?: any | null;
+        tags?: Array<any> | null;
+        updated?: any | null;
+        published?: any | null;
         media: Array<{
           _id: string;
+          tags?: Array<any> | null;
           file?: { _id: string; url?: string | null } | null;
         }>;
+        reviews: Array<{
+          _id: string;
+          created?: any | null;
+          rating?: number | null;
+          title?: string | null;
+          review?: string | null;
+          voteCount?: number | null;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
+        }>;
+        siblings: Array<
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+        >;
       }
-      | {
+    | {
         _id: string;
+        sequence: number;
+        status: IProductStatus;
+        created?: any | null;
+        tags?: Array<any> | null;
+        updated?: any | null;
+        published?: any | null;
         media: Array<{
           _id: string;
+          tags?: Array<any> | null;
           file?: { _id: string; url?: string | null } | null;
         }>;
-      }
-    >;
-  }
-  | {
-    _id: string;
-    sequence: number;
-    status: IProductStatus;
-    created?: any | null;
-    tags?: Array<any> | null;
-    updated?: any | null;
-    published?: any | null;
-    media: Array<{
-      _id: string;
-      tags?: Array<any> | null;
-      file?: { _id: string; url?: string | null } | null;
-    }>;
-    reviews: Array<{
-      _id: string;
-      created?: any | null;
-      rating?: number | null;
-      title?: string | null;
-      review?: string | null;
-      voteCount?: number | null;
-      author: { _id: string; username?: string | null; isGuest: boolean };
-      ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-    }>;
-    siblings: Array<
-      | {
-        _id: string;
-        media: Array<{
+        reviews: Array<{
           _id: string;
-          file?: { _id: string; url?: string | null } | null;
+          created?: any | null;
+          rating?: number | null;
+          title?: string | null;
+          review?: string | null;
+          voteCount?: number | null;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
         }>;
+        siblings: Array<
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+          | {
+              _id: string;
+              media: Array<{
+                _id: string;
+                file?: { _id: string; url?: string | null } | null;
+              }>;
+            }
+        >;
       }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-    >;
-  }
-  | {
-    _id: string;
-    sequence: number;
-    status: IProductStatus;
-    created?: any | null;
-    tags?: Array<any> | null;
-    updated?: any | null;
-    published?: any | null;
-    media: Array<{
-      _id: string;
-      tags?: Array<any> | null;
-      file?: { _id: string; url?: string | null } | null;
-    }>;
-    reviews: Array<{
-      _id: string;
-      created?: any | null;
-      rating?: number | null;
-      title?: string | null;
-      review?: string | null;
-      voteCount?: number | null;
-      author: { _id: string; username?: string | null; isGuest: boolean };
-      ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-    }>;
-    siblings: Array<
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-    >;
-  }
-  | {
-    _id: string;
-    sequence: number;
-    status: IProductStatus;
-    created?: any | null;
-    tags?: Array<any> | null;
-    updated?: any | null;
-    published?: any | null;
-    media: Array<{
-      _id: string;
-      tags?: Array<any> | null;
-      file?: { _id: string; url?: string | null } | null;
-    }>;
-    reviews: Array<{
-      _id: string;
-      created?: any | null;
-      rating?: number | null;
-      title?: string | null;
-      review?: string | null;
-      voteCount?: number | null;
-      author: { _id: string; username?: string | null; isGuest: boolean };
-      ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-    }>;
-    siblings: Array<
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-    >;
-  }
-  | {
-    _id: string;
-    sequence: number;
-    status: IProductStatus;
-    created?: any | null;
-    tags?: Array<any> | null;
-    updated?: any | null;
-    published?: any | null;
-    media: Array<{
-      _id: string;
-      tags?: Array<any> | null;
-      file?: { _id: string; url?: string | null } | null;
-    }>;
-    reviews: Array<{
-      _id: string;
-      created?: any | null;
-      rating?: number | null;
-      title?: string | null;
-      review?: string | null;
-      voteCount?: number | null;
-      author: { _id: string; username?: string | null; isGuest: boolean };
-      ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-    }>;
-    siblings: Array<
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; url?: string | null } | null;
-        }>;
-      }
-    >;
-  }
-  | null;
+    | null;
 };
 
 export type IUpdateProductMediaTextsMutationVariables = Exact<{
@@ -14902,12 +14888,12 @@ export type IUpdateProductPlanMutationVariables = Exact<{
 
 export type IUpdateProductPlanMutation = {
   updateProductPlan?:
-  | { _id: string }
-  | { _id: string }
-  | { _id: string }
-  | { _id: string }
-  | { _id: string }
-  | null;
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
+    | null;
 };
 
 export type IUpdateProductSupplyMutationVariables = Exact<{
@@ -14917,20 +14903,20 @@ export type IUpdateProductSupplyMutationVariables = Exact<{
 
 export type IUpdateProductSupplyMutation = {
   updateProductSupply?:
-  | { _id: string }
-  | { _id: string }
-  | { _id: string }
-  | {
-    _id: string;
-    dimensions?: {
-      weight?: number | null;
-      length?: number | null;
-      width?: number | null;
-      height?: number | null;
-    } | null;
-  }
-  | { _id: string }
-  | null;
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
+    | {
+        _id: string;
+        dimensions?: {
+          weight?: number | null;
+          length?: number | null;
+          width?: number | null;
+          height?: number | null;
+        } | null;
+      }
+    | { _id: string }
+    | null;
 };
 
 export type IUpdateProductTextsMutationVariables = Exact<{
@@ -14978,12 +14964,12 @@ export type IUpdateProductWarehousingMutationVariables = Exact<{
 
 export type IUpdateProductWarehousingMutation = {
   updateProductWarehousing?:
-  | { _id: string }
-  | { _id: string }
-  | { _id: string }
-  | { sku?: string | null; baseUnit?: string | null; _id: string }
-  | { _id: string }
-  | null;
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
+    | { sku?: string | null; baseUnit?: string | null; _id: string }
+    | { _id: string }
+    | null;
 };
 
 export type IUserTokensQueryVariables = Exact<{
@@ -15066,76 +15052,76 @@ export type IQuotationDetailFragment = {
   } | null;
   currency?: { _id: string; isoCode: string; isActive?: boolean | null } | null;
   product:
-  | {
-    _id: string;
-    texts?: {
-      _id: string;
-      slug?: string | null;
-      subtitle?: string | null;
-      title?: string | null;
-      description?: string | null;
-    } | null;
-    media: Array<{
-      _id: string;
-      file?: { _id: string; type: string; url?: string | null } | null;
-    }>;
-  }
-  | {
-    _id: string;
-    texts?: {
-      _id: string;
-      slug?: string | null;
-      subtitle?: string | null;
-      title?: string | null;
-      description?: string | null;
-    } | null;
-    media: Array<{
-      _id: string;
-      file?: { _id: string; type: string; url?: string | null } | null;
-    }>;
-  }
-  | {
-    _id: string;
-    texts?: {
-      _id: string;
-      slug?: string | null;
-      subtitle?: string | null;
-      title?: string | null;
-      description?: string | null;
-    } | null;
-    media: Array<{
-      _id: string;
-      file?: { _id: string; type: string; url?: string | null } | null;
-    }>;
-  }
-  | {
-    _id: string;
-    texts?: {
-      _id: string;
-      slug?: string | null;
-      subtitle?: string | null;
-      title?: string | null;
-      description?: string | null;
-    } | null;
-    media: Array<{
-      _id: string;
-      file?: { _id: string; type: string; url?: string | null } | null;
-    }>;
-  }
-  | {
-    _id: string;
-    texts?: {
-      _id: string;
-      slug?: string | null;
-      subtitle?: string | null;
-      title?: string | null;
-      description?: string | null;
-    } | null;
-    media: Array<{
-      _id: string;
-      file?: { _id: string; type: string; url?: string | null } | null;
-    }>;
-  };
+    | {
+        _id: string;
+        texts?: {
+          _id: string;
+          slug?: string | null;
+          subtitle?: string | null;
+          title?: string | null;
+          description?: string | null;
+        } | null;
+        media: Array<{
+          _id: string;
+          file?: { _id: string; type: string; url?: string | null } | null;
+        }>;
+      }
+    | {
+        _id: string;
+        texts?: {
+          _id: string;
+          slug?: string | null;
+          subtitle?: string | null;
+          title?: string | null;
+          description?: string | null;
+        } | null;
+        media: Array<{
+          _id: string;
+          file?: { _id: string; type: string; url?: string | null } | null;
+        }>;
+      }
+    | {
+        _id: string;
+        texts?: {
+          _id: string;
+          slug?: string | null;
+          subtitle?: string | null;
+          title?: string | null;
+          description?: string | null;
+        } | null;
+        media: Array<{
+          _id: string;
+          file?: { _id: string; type: string; url?: string | null } | null;
+        }>;
+      }
+    | {
+        _id: string;
+        texts?: {
+          _id: string;
+          slug?: string | null;
+          subtitle?: string | null;
+          title?: string | null;
+          description?: string | null;
+        } | null;
+        media: Array<{
+          _id: string;
+          file?: { _id: string; type: string; url?: string | null } | null;
+        }>;
+      }
+    | {
+        _id: string;
+        texts?: {
+          _id: string;
+          slug?: string | null;
+          subtitle?: string | null;
+          title?: string | null;
+          description?: string | null;
+        } | null;
+        media: Array<{
+          _id: string;
+          file?: { _id: string; type: string; url?: string | null } | null;
+        }>;
+      };
 };
 
 export type IQuotationDetailFragmentVariables = Exact<{ [key: string]: never }>;
@@ -15158,76 +15144,76 @@ export type IQuotationFragment = {
     primaryEmail?: { verified: boolean; address: string } | null;
   };
   product:
-  | {
-    _id: string;
-    texts?: {
-      _id: string;
-      slug?: string | null;
-      subtitle?: string | null;
-      title?: string | null;
-      description?: string | null;
-    } | null;
-    media: Array<{
-      _id: string;
-      file?: { _id: string; type: string; url?: string | null } | null;
-    }>;
-  }
-  | {
-    _id: string;
-    texts?: {
-      _id: string;
-      slug?: string | null;
-      subtitle?: string | null;
-      title?: string | null;
-      description?: string | null;
-    } | null;
-    media: Array<{
-      _id: string;
-      file?: { _id: string; type: string; url?: string | null } | null;
-    }>;
-  }
-  | {
-    _id: string;
-    texts?: {
-      _id: string;
-      slug?: string | null;
-      subtitle?: string | null;
-      title?: string | null;
-      description?: string | null;
-    } | null;
-    media: Array<{
-      _id: string;
-      file?: { _id: string; type: string; url?: string | null } | null;
-    }>;
-  }
-  | {
-    _id: string;
-    texts?: {
-      _id: string;
-      slug?: string | null;
-      subtitle?: string | null;
-      title?: string | null;
-      description?: string | null;
-    } | null;
-    media: Array<{
-      _id: string;
-      file?: { _id: string; type: string; url?: string | null } | null;
-    }>;
-  }
-  | {
-    _id: string;
-    texts?: {
-      _id: string;
-      slug?: string | null;
-      subtitle?: string | null;
-      title?: string | null;
-      description?: string | null;
-    } | null;
-    media: Array<{
-      _id: string;
-      file?: { _id: string; type: string; url?: string | null } | null;
-    }>;
-  };
+    | {
+        _id: string;
+        texts?: {
+          _id: string;
+          slug?: string | null;
+          subtitle?: string | null;
+          title?: string | null;
+          description?: string | null;
+        } | null;
+        media: Array<{
+          _id: string;
+          file?: { _id: string; type: string; url?: string | null } | null;
+        }>;
+      }
+    | {
+        _id: string;
+        texts?: {
+          _id: string;
+          slug?: string | null;
+          subtitle?: string | null;
+          title?: string | null;
+          description?: string | null;
+        } | null;
+        media: Array<{
+          _id: string;
+          file?: { _id: string; type: string; url?: string | null } | null;
+        }>;
+      }
+    | {
+        _id: string;
+        texts?: {
+          _id: string;
+          slug?: string | null;
+          subtitle?: string | null;
+          title?: string | null;
+          description?: string | null;
+        } | null;
+        media: Array<{
+          _id: string;
+          file?: { _id: string; type: string; url?: string | null } | null;
+        }>;
+      }
+    | {
+        _id: string;
+        texts?: {
+          _id: string;
+          slug?: string | null;
+          subtitle?: string | null;
+          title?: string | null;
+          description?: string | null;
+        } | null;
+        media: Array<{
+          _id: string;
+          file?: { _id: string; type: string; url?: string | null } | null;
+        }>;
+      }
+    | {
+        _id: string;
+        texts?: {
+          _id: string;
+          slug?: string | null;
+          subtitle?: string | null;
+          title?: string | null;
+          description?: string | null;
+        } | null;
+        media: Array<{
+          _id: string;
+          file?: { _id: string; type: string; url?: string | null } | null;
+        }>;
+      };
   currency?: {
     _id: string;
     contractAddress?: string | null;
@@ -15274,76 +15260,76 @@ export type IMakeQuotationProposalMutation = {
       isActive?: boolean | null;
     } | null;
     product:
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        slug?: string | null;
-        subtitle?: string | null;
-        title?: string | null;
-        description?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; type: string; url?: string | null } | null;
-      }>;
-    }
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        slug?: string | null;
-        subtitle?: string | null;
-        title?: string | null;
-        description?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; type: string; url?: string | null } | null;
-      }>;
-    }
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        slug?: string | null;
-        subtitle?: string | null;
-        title?: string | null;
-        description?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; type: string; url?: string | null } | null;
-      }>;
-    }
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        slug?: string | null;
-        subtitle?: string | null;
-        title?: string | null;
-        description?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; type: string; url?: string | null } | null;
-      }>;
-    }
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        slug?: string | null;
-        subtitle?: string | null;
-        title?: string | null;
-        description?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; type: string; url?: string | null } | null;
-      }>;
-    };
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            slug?: string | null;
+            subtitle?: string | null;
+            title?: string | null;
+            description?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; type: string; url?: string | null } | null;
+          }>;
+        }
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            slug?: string | null;
+            subtitle?: string | null;
+            title?: string | null;
+            description?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; type: string; url?: string | null } | null;
+          }>;
+        }
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            slug?: string | null;
+            subtitle?: string | null;
+            title?: string | null;
+            description?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; type: string; url?: string | null } | null;
+          }>;
+        }
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            slug?: string | null;
+            subtitle?: string | null;
+            title?: string | null;
+            description?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; type: string; url?: string | null } | null;
+          }>;
+        }
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            slug?: string | null;
+            subtitle?: string | null;
+            title?: string | null;
+            description?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; type: string; url?: string | null } | null;
+          }>;
+        };
   };
 };
 
@@ -15383,76 +15369,76 @@ export type IQuotationQuery = {
       isActive?: boolean | null;
     } | null;
     product:
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        slug?: string | null;
-        subtitle?: string | null;
-        title?: string | null;
-        description?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; type: string; url?: string | null } | null;
-      }>;
-    }
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        slug?: string | null;
-        subtitle?: string | null;
-        title?: string | null;
-        description?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; type: string; url?: string | null } | null;
-      }>;
-    }
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        slug?: string | null;
-        subtitle?: string | null;
-        title?: string | null;
-        description?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; type: string; url?: string | null } | null;
-      }>;
-    }
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        slug?: string | null;
-        subtitle?: string | null;
-        title?: string | null;
-        description?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; type: string; url?: string | null } | null;
-      }>;
-    }
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        slug?: string | null;
-        subtitle?: string | null;
-        title?: string | null;
-        description?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; type: string; url?: string | null } | null;
-      }>;
-    };
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            slug?: string | null;
+            subtitle?: string | null;
+            title?: string | null;
+            description?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; type: string; url?: string | null } | null;
+          }>;
+        }
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            slug?: string | null;
+            subtitle?: string | null;
+            title?: string | null;
+            description?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; type: string; url?: string | null } | null;
+          }>;
+        }
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            slug?: string | null;
+            subtitle?: string | null;
+            title?: string | null;
+            description?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; type: string; url?: string | null } | null;
+          }>;
+        }
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            slug?: string | null;
+            subtitle?: string | null;
+            title?: string | null;
+            description?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; type: string; url?: string | null } | null;
+          }>;
+        }
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            slug?: string | null;
+            subtitle?: string | null;
+            title?: string | null;
+            description?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; type: string; url?: string | null } | null;
+          }>;
+        };
   } | null;
 };
 
@@ -15491,76 +15477,76 @@ export type IQuotationsQuery = {
       primaryEmail?: { verified: boolean; address: string } | null;
     };
     product:
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        slug?: string | null;
-        subtitle?: string | null;
-        title?: string | null;
-        description?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; type: string; url?: string | null } | null;
-      }>;
-    }
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        slug?: string | null;
-        subtitle?: string | null;
-        title?: string | null;
-        description?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; type: string; url?: string | null } | null;
-      }>;
-    }
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        slug?: string | null;
-        subtitle?: string | null;
-        title?: string | null;
-        description?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; type: string; url?: string | null } | null;
-      }>;
-    }
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        slug?: string | null;
-        subtitle?: string | null;
-        title?: string | null;
-        description?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; type: string; url?: string | null } | null;
-      }>;
-    }
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        slug?: string | null;
-        subtitle?: string | null;
-        title?: string | null;
-        description?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; type: string; url?: string | null } | null;
-      }>;
-    };
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            slug?: string | null;
+            subtitle?: string | null;
+            title?: string | null;
+            description?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; type: string; url?: string | null } | null;
+          }>;
+        }
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            slug?: string | null;
+            subtitle?: string | null;
+            title?: string | null;
+            description?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; type: string; url?: string | null } | null;
+          }>;
+        }
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            slug?: string | null;
+            subtitle?: string | null;
+            title?: string | null;
+            description?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; type: string; url?: string | null } | null;
+          }>;
+        }
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            slug?: string | null;
+            subtitle?: string | null;
+            title?: string | null;
+            description?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; type: string; url?: string | null } | null;
+          }>;
+        }
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            slug?: string | null;
+            subtitle?: string | null;
+            title?: string | null;
+            description?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; type: string; url?: string | null } | null;
+          }>;
+        };
     currency?: {
       _id: string;
       contractAddress?: string | null;
@@ -15606,76 +15592,76 @@ export type IRejectQuotationMutation = {
       isActive?: boolean | null;
     } | null;
     product:
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        slug?: string | null;
-        subtitle?: string | null;
-        title?: string | null;
-        description?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; type: string; url?: string | null } | null;
-      }>;
-    }
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        slug?: string | null;
-        subtitle?: string | null;
-        title?: string | null;
-        description?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; type: string; url?: string | null } | null;
-      }>;
-    }
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        slug?: string | null;
-        subtitle?: string | null;
-        title?: string | null;
-        description?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; type: string; url?: string | null } | null;
-      }>;
-    }
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        slug?: string | null;
-        subtitle?: string | null;
-        title?: string | null;
-        description?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; type: string; url?: string | null } | null;
-      }>;
-    }
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        slug?: string | null;
-        subtitle?: string | null;
-        title?: string | null;
-        description?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; type: string; url?: string | null } | null;
-      }>;
-    };
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            slug?: string | null;
+            subtitle?: string | null;
+            title?: string | null;
+            description?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; type: string; url?: string | null } | null;
+          }>;
+        }
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            slug?: string | null;
+            subtitle?: string | null;
+            title?: string | null;
+            description?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; type: string; url?: string | null } | null;
+          }>;
+        }
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            slug?: string | null;
+            subtitle?: string | null;
+            title?: string | null;
+            description?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; type: string; url?: string | null } | null;
+          }>;
+        }
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            slug?: string | null;
+            subtitle?: string | null;
+            title?: string | null;
+            description?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; type: string; url?: string | null } | null;
+          }>;
+        }
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            slug?: string | null;
+            subtitle?: string | null;
+            title?: string | null;
+            description?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; type: string; url?: string | null } | null;
+          }>;
+        };
   };
 };
 
@@ -15705,76 +15691,76 @@ export type IUserQuotationsQuery = {
         primaryEmail?: { verified: boolean; address: string } | null;
       };
       product:
-      | {
-        _id: string;
-        texts?: {
-          _id: string;
-          slug?: string | null;
-          subtitle?: string | null;
-          title?: string | null;
-          description?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; type: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        texts?: {
-          _id: string;
-          slug?: string | null;
-          subtitle?: string | null;
-          title?: string | null;
-          description?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; type: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        texts?: {
-          _id: string;
-          slug?: string | null;
-          subtitle?: string | null;
-          title?: string | null;
-          description?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; type: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        texts?: {
-          _id: string;
-          slug?: string | null;
-          subtitle?: string | null;
-          title?: string | null;
-          description?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; type: string; url?: string | null } | null;
-        }>;
-      }
-      | {
-        _id: string;
-        texts?: {
-          _id: string;
-          slug?: string | null;
-          subtitle?: string | null;
-          title?: string | null;
-          description?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file?: { _id: string; type: string; url?: string | null } | null;
-        }>;
-      };
+        | {
+            _id: string;
+            texts?: {
+              _id: string;
+              slug?: string | null;
+              subtitle?: string | null;
+              title?: string | null;
+              description?: string | null;
+            } | null;
+            media: Array<{
+              _id: string;
+              file?: { _id: string; type: string; url?: string | null } | null;
+            }>;
+          }
+        | {
+            _id: string;
+            texts?: {
+              _id: string;
+              slug?: string | null;
+              subtitle?: string | null;
+              title?: string | null;
+              description?: string | null;
+            } | null;
+            media: Array<{
+              _id: string;
+              file?: { _id: string; type: string; url?: string | null } | null;
+            }>;
+          }
+        | {
+            _id: string;
+            texts?: {
+              _id: string;
+              slug?: string | null;
+              subtitle?: string | null;
+              title?: string | null;
+              description?: string | null;
+            } | null;
+            media: Array<{
+              _id: string;
+              file?: { _id: string; type: string; url?: string | null } | null;
+            }>;
+          }
+        | {
+            _id: string;
+            texts?: {
+              _id: string;
+              slug?: string | null;
+              subtitle?: string | null;
+              title?: string | null;
+              description?: string | null;
+            } | null;
+            media: Array<{
+              _id: string;
+              file?: { _id: string; type: string; url?: string | null } | null;
+            }>;
+          }
+        | {
+            _id: string;
+            texts?: {
+              _id: string;
+              slug?: string | null;
+              subtitle?: string | null;
+              title?: string | null;
+              description?: string | null;
+            } | null;
+            media: Array<{
+              _id: string;
+              file?: { _id: string; type: string; url?: string | null } | null;
+            }>;
+          };
       currency?: {
         _id: string;
         contractAddress?: string | null;
@@ -15821,77 +15807,86 @@ export type IVerifyQuotationMutation = {
       isActive?: boolean | null;
     } | null;
     product:
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        slug?: string | null;
-        subtitle?: string | null;
-        title?: string | null;
-        description?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; type: string; url?: string | null } | null;
-      }>;
-    }
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        slug?: string | null;
-        subtitle?: string | null;
-        title?: string | null;
-        description?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; type: string; url?: string | null } | null;
-      }>;
-    }
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        slug?: string | null;
-        subtitle?: string | null;
-        title?: string | null;
-        description?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; type: string; url?: string | null } | null;
-      }>;
-    }
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        slug?: string | null;
-        subtitle?: string | null;
-        title?: string | null;
-        description?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; type: string; url?: string | null } | null;
-      }>;
-    }
-    | {
-      _id: string;
-      texts?: {
-        _id: string;
-        slug?: string | null;
-        subtitle?: string | null;
-        title?: string | null;
-        description?: string | null;
-      } | null;
-      media: Array<{
-        _id: string;
-        file?: { _id: string; type: string; url?: string | null } | null;
-      }>;
-    };
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            slug?: string | null;
+            subtitle?: string | null;
+            title?: string | null;
+            description?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; type: string; url?: string | null } | null;
+          }>;
+        }
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            slug?: string | null;
+            subtitle?: string | null;
+            title?: string | null;
+            description?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; type: string; url?: string | null } | null;
+          }>;
+        }
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            slug?: string | null;
+            subtitle?: string | null;
+            title?: string | null;
+            description?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; type: string; url?: string | null } | null;
+          }>;
+        }
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            slug?: string | null;
+            subtitle?: string | null;
+            title?: string | null;
+            description?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; type: string; url?: string | null } | null;
+          }>;
+        }
+      | {
+          _id: string;
+          texts?: {
+            _id: string;
+            slug?: string | null;
+            subtitle?: string | null;
+            title?: string | null;
+            description?: string | null;
+          } | null;
+          media: Array<{
+            _id: string;
+            file?: { _id: string; type: string; url?: string | null } | null;
+          }>;
+        };
   };
+};
+
+export type ITagsCountQueryVariables = Exact<{
+  tag: Scalars['LowerCaseString']['input'];
+}>;
+
+export type ITagsCountQuery = {
+  productsCount: number;
+  assortmentsCount: number;
 };
 
 export type IInvalidateTokenMutationVariables = Exact<{

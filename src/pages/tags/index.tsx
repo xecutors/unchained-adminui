@@ -2,28 +2,23 @@ import { useIntl } from 'react-intl';
 import { useRouter } from 'next/router';
 
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
-import PageHeader from '../../modules/common/components/PageHeader';
 import ListHeader from '../../modules/common/components/ListHeader';
-import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 import TagList from '../../modules/tags/components/TagList';
-import useTags from '../../modules/tags/hooks/useTags';
-import useAuth from '../../modules/Auth/useAuth';
+
 import {
   convertSortFieldsToQueryFormat,
   normalizeQuery,
 } from '../../modules/common/utils/utils';
 import SearchWithTags from '../../modules/common/components/SearchWithTags';
-import TagDetailPage from './TagDetailPage';
-import AnimatedCounter from '../../modules/common/components/AnimatedCounter';
-import InfiniteScroll from '../../modules/common/components/InfiniteScroll';
 import Loading from '../../modules/common/components/Loading';
+import useApp from '../../modules/common/hooks/useApp';
+import PageHeader from '../../modules/common/components/PageHeader';
+import AnimatedCounter from '../../modules/common/components/AnimatedCounter';
 
 const Tags = () => {
   const { formatMessage } = useIntl();
   const { query, push } = useRouter();
-  const { hasRole } = useAuth();
-  const limit = parseInt(query?.limit as string, 10) || DefaultLimit;
-  const offset = parseInt(query?.skip as string, 10) || 0;
+  const { shopInfo } = useApp();
   const sort = query?.sort || '';
 
   const { queryString, tagId, ...restQuery } = query;
@@ -42,20 +37,25 @@ const Tags = () => {
   };
   const sortKeys = convertSortFieldsToQueryFormat(sort);
 
-  const { tags, tagsCount, loading, loadMore, hasMore } = useTags({
-    queryString: queryString as string,
-    limit,
-    offset,
-    sort: sortKeys,
-  });
-
-  if (tagId) return <TagDetailPage tagId={tagId} />;
+  const tags = shopInfo
+    ? Array.from(
+        new Set([
+          ...(shopInfo.adminUiConfig?.productTags || []),
+          ...(shopInfo?.adminUiConfig?.assortmentTags || []),
+        ]),
+      ).filter(Boolean)
+    : [];
+  const filteredTags = queryString
+    ? tags?.filter((tag) =>
+        tag.toLowerCase().includes((queryString as string).toLowerCase() || ''),
+      )
+    : tags;
   return (
     <>
       <BreadCrumbs />
       <PageHeader
         headerText={formatMessage(
-          (tagsCount ?? 0) === 1
+          (filteredTags?.length ?? 0) === 1
             ? {
                 id: 'tag_count_header_singular',
                 defaultMessage: '1 Tag',
@@ -64,13 +64,8 @@ const Tags = () => {
                 id: 'tags_count_header',
                 defaultMessage: '{count} Tags',
               },
-          { count: <AnimatedCounter value={tagsCount ?? 0} /> },
+          { count: <AnimatedCounter value={filteredTags?.length ?? 0} /> },
         )}
-        addPath={hasRole('manageTags') && '/tags/new'}
-        addButtonText={formatMessage({
-          id: 'add_tag',
-          defaultMessage: 'Add Tag',
-        })}
       />
       <div className="min-w-full overflow-x-auto px-1">
         <ListHeader>
@@ -87,17 +82,11 @@ const Tags = () => {
           onSearchChange={setQueryString}
           defaultSearchValue={queryString}
         >
-          <InfiniteScroll
-            loading={loading}
-            hasMore={hasMore}
-            onLoadMore={loadMore}
-          >
-            {loading && tags?.length === 0 ? (
-              <Loading />
-            ) : (
-              <TagList tags={tags} sortable />
-            )}
-          </InfiniteScroll>
+          {!shopInfo && filteredTags?.length === 0 ? (
+            <Loading />
+          ) : (
+            <TagList tags={filteredTags} sortable />
+          )}
         </SearchWithTags>
       </div>
     </>
