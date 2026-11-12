@@ -1,3 +1,10 @@
+> **Deprecated, no longer maintained (2026-11-12).** This standalone admin UI served
+> Unchained Engine 1.x to 4.x; the current admin UI lives in
+> [unchainedshop/unchained](https://github.com/unchainedshop/unchained) under `admin-ui/`.
+> Its images were published to `registry.ucc.dev`, which is being retired: build the image
+> yourself from the branch that matches your engine (`v2.x` for Unchained 2.x, `master` for 4.x)
+> with the `Dockerfile` in this repository. No issues or pull requests are accepted.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
